@@ -251,10 +251,14 @@ def run(input_dir: Path, output_dir: Path) -> None:
         )  # R§2 output out= predicted=: pd per training row, final model (no SAS exp() call, S1 n/a)
     )
 
+    # Association and LACKFIT describe the fitted model on its analysis observations (complete cases,
+    # PROC LOGISTIC Missing Values); ROC nofit below stays on the scored dataset
+    fit_scored = logit_scored_train.filter(pl.Series(fit_mask))
+
     # ODS Association -> printed_association.csv  # INV printed_association.csv, R§2 A8
     # stored formats: Label1 $18., cValue1 $9., nValue1 d12.3, Label2 $9., cValue2 $5., nValue2 d12.3 (S7)
     assoc = sas_compat.association_table(
-        logit_scored_train.get_column("default_flag"), logit_scored_train.get_column("pd_logistic")
+        fit_scored.get_column("default_flag"), fit_scored.get_column("pd_logistic")
     )
     printed_association = pl.DataFrame(
         {
@@ -338,7 +342,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     # stored formats: Group/Total/Observed 8., Expected 8.2; ChiSq 10.4, DF 4.,
     # ProbChiSq pvalue6.4, NGroups best8. (S7)
     hl_table, hl_chisq, hl_df, hl_p = sas_compat.hosmer_lemeshow(
-        logit_scored_train.get_column("default_flag"), logit_scored_train.get_column("pd_logistic")
+        fit_scored.get_column("default_flag"), fit_scored.get_column("pd_logistic")
     )
     printed_hl_partition = pl.DataFrame(
         {
