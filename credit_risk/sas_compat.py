@@ -350,6 +350,8 @@ def sas_best(x: float | None, w: int) -> str:
     At other widths a value below 1 prints in E-notation when plain notation cannot show it within w
     (experiment X05: 0.000015 -> BEST6 '15E-6', BEST8 and BEST12 '0.000015').
     RESOLVED (post-parity): X06 fixes the BEST8/BEST6 cells below 1 and above 1e11 (see _best_e).
+    Still unverified: a w too small to show any digit (-100 at w=3 gives '-1E2'); BEST32 of integers
+    over 15 digits (X06 input32 prints them exactly; out of scope, unused).
     Non-finite -> ''."""
     if x is None or not math.isfinite(x):
         return ""
