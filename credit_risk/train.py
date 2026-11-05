@@ -129,8 +129,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     sas_compat.write_sas_csv(stepwise_summary, output_dir / "stepwise_summary.csv", formats={})
 
     # ODS FitStatistics -> printed_fit_statistics.csv  # INV printed_fit_statistics.csv
-    # TODO(port): rows with a missing MODEL variable are excluded from the fit; stats here use all rows
-    # (none missing on any judged input; RULEBOOK §2 stepwise)
+    # (complete cases only: x_k, n_obs and y_train come from fit_frame)
     # stored formats: RowId $8., Criterion $8., Equals $1., InterceptOnly d12.3,
     # InterceptAndCovariates 9.3 (S7)
     fs_step: list[str] = ["0"]
@@ -164,10 +163,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         x_k = np.column_stack(
             [
                 np.ones(n_obs),
-                *[
-                    np.asarray(model_features_train.get_column(c).to_numpy(), dtype=np.float64)
-                    for c in names_k[1:]
-                ],
+                *[np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64) for c in names_k[1:]],
             ]
         )
         # fit statistics: AIC, SC, -2 Log L for each step
@@ -783,4 +779,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     run(args.input_dir, args.output_dir)
 
-# PORT STATUS: confidence=medium todos=3
+# PORT STATUS: confidence=medium todos=2
