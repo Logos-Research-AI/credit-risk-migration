@@ -52,3 +52,21 @@ verdicts are unchanged.
 | A14 | §2 PROC EXPORT `percent8.2` | `percent8.2` keeps width 8: values ≥ 100% lose a decimal (`100.0%`), SAS's w.d shrinking rule | arith report; `judge/reference/printed_cumulative_lift.csv` and 4 scenario copies print `100.0%` | the §2 example `percent8.2 → 5.00%` suggests a fixed 2 decimals, giving `100.00%` |
 | A15 | §1 CSV I/O + §2 PROC EXPORT (`sas_best12`) | `sas_compat.sas_best12` prints **E-notation for 0 < \|x\| < 1e-5**: mantissa rounded to fill 12 characters, trailing zeros stripped (`9.670322E-6`, `8.406611E-51`, `2.01153E-23`); plain notation otherwise as today. The judge's `compare.sas_best12` is plain-only and must not be copied as the port's helper. | proc shard rows (model_features_train, kaggle_submission, test_predictions, printed_psi_calculation); `scratchpad/fan/proc/best12e.py` reproduces all 31.9M BEST12 cells of the references | following §2, pd `8.406611E-51` prints `0` and `9.670322E-6` prints `0.0000096703`: the judge's format check fails kaggle_submission / test_predictions (6 cells each), model_features_*, risk_scores_*, edge_a printed_psi_calculation |
 | A16 | §2 `today()` + date9. | Month names in English upper case regardless of locale: `f"{d.day:02d}{MONTHS[d.month-1]}{d.year}"` with a fixed `MONTHS` tuple, not `strftime("%b")` | proc report | under a non-English locale `strftime("%b")` gives e.g. `05NOV.2026` / `05NOVEMBRE`; the judge requires DATE9. |
+| A17 | §2 model fitting inside PROC LOGISTIC | Name the Newton starting point and safeguard: start every fit from all-zero coefficients, and halve the step while -2 Log L increases (SAS's own safeguard is step-halving). Convergence stays max\|step\| < 1e-10. | review train-A | plain Newton started from the intercept-only fit (intercept = logit(ȳ), slopes 0) diverges at stepwise step 2; an implementer following §2 as written can pick that start |
+| A18 | §2 PROC EXPORT (`sas_best12` rounding) | BEST12. rounds **half up from the value's 15-significant-digit form** (`Decimal(f"{x:.15g}")` quantized ROUND_HALF_UP), not from the exact binary value. Byte identity cannot be guaranteed: 39 of 149,987 cells of utilization_debt_interaction still differ by 1 unit in the 12th character (judge tolerance covers it) | experiment X04 (`migration/experiments/x04_findings.md`) | Python formatting of the exact value prints 424 cells 1 unit low (`174544.68751` vs SAS `174544.68752`) |
+
+## Questions for the human (fan-out)
+
+**Q2 — Hosmer–Lemeshow group Totals (row `printed_hl_partition.csv`, modelstat-classify).**
+SAS forms the HL groups from blocks of rows whose pd agree to within 1e-6, with the documented
+group-size rule. That rule reproduces all 18 SAS HL tables exactly (reference plus 17 mutation
+runs). On the fully converged fit that RULEBOOK §2 requires, rows near group boundaries move,
+so 6 of the 10 group Totals differ by 1 (e.g. 10502 → 10503). The judge requires Totals to be
+exact (`ABS_COL_TOL` 0, with the comment "groups are formed by count: exact", which is wrong:
+grouping depends on pd). The chi-square file passes, and the observed counts are already
+allowed ±2. Verified by the orchestrator: the table from SAS's pd passes, the table from the
+converged pd fails only on Total. Options:
+(a) judge change: Total absolute tolerance 2, the same as the observed counts;
+(b) the port stops Fisher scoring where SAS does (GCONV=1e-8), which the judge README calls
+brittle.
+Recommended: (a). This is a change to the signed-off judge.

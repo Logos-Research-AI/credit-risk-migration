@@ -7,6 +7,8 @@
                     validate migration/inventory.<SHARD>.tsv against its assignment
                     (format, vocabulary, cited sites real and in the right file, coverage;
                     --final makes missing coverage an error)
+  finalize          set the status of every fan-out row in migration/inventory.tsv from the
+                    skeptic verdicts (migration/fanout/review.*.tsv, review.*.recheck.tsv)
   merge             merge batch1 + every shard into migration/inventory.tsv: dedupe on
                     (file, symbol, source_construct) (last write wins inside a shard; the
                     same key from two sources with different content is a CONFLICT),
@@ -198,7 +200,59 @@ def merge() -> int:
     return 1 if missing else 0
 
 
+REVIEWERS = ["fe-predict-A", "fe-predict-B", "train-A", "train-B", "metrics-A", "metrics-B"]
+
+
+def finalize() -> int:
+    def verdicts(suffix: str) -> dict[tuple[str, str, str], dict[str, str]]:
+        out: dict[tuple[str, str, str], dict[str, str]] = {}
+        for rv in REVIEWERS:
+            f = FANOUT / f"review.{rv}{suffix}.tsv"
+            if f.exists():
+                for ln in f.read_text().split("\n")[1:]:
+                    if ln.strip():
+                        r = ln.split("\t")
+                        out.setdefault((r[0], r[1], r[2]), {})[rv] = r[3]
+        return out
+    first, second = verdicts(""), verdicts(".recheck")
+    rows = read_rows(MERGED)
+    counts: dict[str, int] = {}
+    for r in rows:
+        k = (r[0], r[1], r[2])
+        if r[6].startswith("confirmed"):  # batch 1, reviewed at the first-20 gate
+            st = r[6]
+        elif r[6] == "unknown" or "UNKNOWN" in r[3]:
+            st = "unknown"
+        else:
+            v1 = first.get(k, {})
+            if len(v1) < 2:
+                raise SystemExit(f"{k}: {len(v1)} first-round verdicts")
+            if k in second:
+                v2 = second[k]
+                if any(v in ("REFUTED", "EVIDENCE_DEFECT") for v in v2.values()):
+                    st = "unknown"  # still contested after one revision
+                else:
+                    st = "confirmed (revised)"
+            elif any(v in ("REFUTED", "EVIDENCE_DEFECT") for v in v1.values()):
+                raise SystemExit(f"{k}: flagged but never re-checked")
+            else:
+                st = "confirmed"
+            if any(v == "RULEBOOK_CONFLICT" for v in list(v1.values()) + list(second.get(k, {}).values())):
+                st += "; needs queued rulebook amendment"
+        r[6] = st
+        counts[st] = counts.get(st, 0) + 1
+    with open(MERGED, "w") as f:
+        f.write("\t".join(HEADER) + "\n")
+        for r in rows:
+            f.write("\t".join(r) + "\n")
+    for k2, v in sorted(counts.items()):
+        print(f"{v:4d}  {k2}")
+    return 0
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "finalize":
+        sys.exit(finalize())
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
     if cmd == "assign":
         sys.exit(assign())
