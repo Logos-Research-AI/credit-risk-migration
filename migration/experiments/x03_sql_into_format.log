@@ -1,0 +1,43 @@
+5                                                          The SAS System                        Thursday,  5 November 2026 14:39:00
+
+24         ods listing close;ods html5 (id=saspy_internal) file=_tomods1 options(bitmap_mode='inline') device=svg style=HTMLBlue;
+24       ! ods graphics on / outputfmt=png;
+25         
+26         /* Inventory experiment X03 (prompt 02 fan-out): what text does PROC SQL INTO: store for a
+27            numeric aggregate without a format? metrics_calculation.sas:213-217 stores
+28            sum(default_flag) / mean(default_flag) in &total_defaults / &overall_default_rate and
+29            divides by them at :232 and :236 (cum_capture_rate, cum_lift). */
+30         data d; do i = 1 to 3; y = (i = 1); output; end; run;
+30       !                                                                /* mean = 1/3 */
+31         data e; do i = 1 to 105000; y = (mod(i, 15) = 0); output; end; run;
+31       !                                                                     /* mean = 0.0666... */
+32         data f; y = 123456789; output; y = 1; output; run;
+32       !                                                                 /* sum needs 9 digits */
+33         proc sql noprint;
+34           select sum(y), mean(y) into :s1, :m1 from d;
+35           select sum(y), mean(y) into :s2, :m2 from e;
+36           select sum(y), mean(y) into :s3, :m3 from f;
+37         quit;
+38         %put X03 s1=[&s1] m1=[&m1];
+X03 s1=[       1] m1=[0.333333]
+39         %put X03 s2=[&s2] m2=[&m2];
+X03 s2=[    7000] m2=[0.066667]
+40         %put X03 s3=[&s3] m3=[&m3];
+X03 s3=[1.2346E8] m3=[61728395]
+41         data _null_; x = 1 / &m1; put "X03 1/m1 = " x best32.; run;
+X03 1/m1 =                   3.000003000003
+42         /* (b) same, with the BEST12. format PROC IMPORT attaches to default_flag (metrics log) */
+43         data g; set e; format y best12.; run;
+44         proc sql noprint;
+45           select sum(y), mean(y) into :s4, :m4 from g;
+46         quit;
+47         %put X03 formatted s4=[&s4] m4=[&m4];
+X03 formatted s4=[    7000] m4=[0.066667]
+48         
+49         
+50         
+51         ods html5 (id=saspy_internal) close;ods listing;
+52         
+6                                                          The SAS System                        Thursday,  5 November 2026 14:39:00
+
+53         

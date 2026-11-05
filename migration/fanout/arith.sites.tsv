@@ -1,0 +1,81 @@
+site_id	file	line	category	symbol	snippet
+S022	feature_engineering.sas	86	FUNC	missing()	if missing(MonthlyIncome) then MonthlyIncome_missing = 1
+S023	feature_engineering.sas	89	FUNC	missing()	if missing(NumberOfDependents) then do
+S030	feature_engineering.sas	130	FUNC	sum()	total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus)
+S040	feature_engineering.sas	151	DIV	income_per_dependent = monthly_income / (num_dependents + 1)	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1)
+S041	feature_engineering.sas	155	DIV	credit_lines_per_person = num_credit_lines / (num_dependents + 1)	credit_lines_per_person = num_credit_lines / (num_dependents + 1)
+S056	feature_engineering.sas	177	FUNC	sum()	total_risk_flags = sum(flag_high_utilization, flag_high_debt_ratio, flag_serious_delinquency, flag_multiple_delinquencies, flag_low_income)
+S057	feature_engineering.sas	183	ARITH	financial_health	if credit_utilization > 30 then financial_health = financial_health - 15
+S059	feature_engineering.sas	184	ARITH	financial_health	if credit_utilization > 75 then financial_health = financial_health - 15
+S061	feature_engineering.sas	185	ARITH	financial_health	if debt_ratio > 43 then financial_health = financial_health - 20
+S063	feature_engineering.sas	186	ARITH	financial_health	if has_delinquency then financial_health = financial_health - 20
+S065	feature_engineering.sas	187	ARITH	financial_health	if num_late_90_plus > 0 then financial_health = financial_health - 30
+S067	feature_engineering.sas	188	FUNC	max()	financial_health = max(0, financial_health)
+S068	feature_engineering.sas	191	ARITH	log_monthly_income	log_monthly_income = log(monthly_income + 1)
+S069	feature_engineering.sas	191	FUNC	log()	log_monthly_income = log(monthly_income + 1)
+S070	feature_engineering.sas	192	ARITH	log_num_credit_lines	log_num_credit_lines = log(num_credit_lines + 1)
+S071	feature_engineering.sas	192	FUNC	log()	log_num_credit_lines = log(num_credit_lines + 1)
+S072	feature_engineering.sas	193	ARITH	log_total_late_payments	log_total_late_payments = log(total_late_payments + 1)
+S073	feature_engineering.sas	193	FUNC	log()	log_total_late_payments = log(total_late_payments + 1)
+S074	feature_engineering.sas	196	ARITH	age_income_interaction	age_income_interaction = age * log_monthly_income
+S075	feature_engineering.sas	197	DIV	utilization_debt_interaction = debt_ratio / 100	utilization_debt_interaction = credit_utilization * debt_ratio / 100
+S076	feature_engineering.sas	200	FUNC	min()	credit_utilization_capped = min(credit_utilization, 200)
+S077	feature_engineering.sas	201	FUNC	min()	debt_ratio_capped = min(debt_ratio, 500)
+S110	train.sas	128	DIV	train_precision = tp / (tp + fp)	if (TP + FP) > 0 then train_precision = TP / (TP + FP)
+S112	train.sas	130	DIV	train_recall = tp / (tp + fn)	if (TP + FN) > 0 then train_recall = TP / (TP + FN)
+S114	train.sas	132	DIV	train_f1_score = (train_precision * train_recall) / (train_precision + train_recall)	if (train_precision + train_recall) > 0 then train_f1_score = 2 * (train_precision * train_recall) / (train_precision + train_recall)
+S116	train.sas	134	DIV	train_accuracy = (tp + tn) / (tp + tn + fp + fn)	if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN)
+S121	train.sas	162	DIV	pd_logistic = 1 / (1 + exp(-predicted_logit))	pd_logistic = 1 / (1 + exp(-predicted_logit))
+S122	train.sas	162	FUNC	exp()	pd_logistic = 1 / (1 + exp(-predicted_logit))
+S139	train.sas	190	DIV	valid_precision = tp / (tp + fp)	if (TP + FP) > 0 then valid_precision = TP / (TP + FP)
+S141	train.sas	192	DIV	valid_recall = tp / (tp + fn)	if (TP + FN) > 0 then valid_recall = TP / (TP + FN)
+S143	train.sas	194	DIV	valid_f1_score = (valid_precision * valid_recall) / (valid_precision + valid_recall)	if (valid_precision + valid_recall) > 0 then valid_f1_score = 2 * (valid_precision * valid_recall) / (valid_precision + valid_recall)
+S145	train.sas	196	DIV	valid_accuracy = (tp + tn) / (tp + tn + fp + fn)	if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN)
+S159	train.sas	237	ARITH	interest_rate	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S161	train.sas	238	ARITH	interest_rate	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S163	train.sas	239	ARITH	interest_rate	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S165	train.sas	240	ARITH	interest_rate	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S167	train.sas	241	ARITH	interest_rate	else interest_rate = base_rate + 0.15
+S179	train.sas	268	ARITH	interest_rate	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S181	train.sas	269	ARITH	interest_rate	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S183	train.sas	270	ARITH	interest_rate	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S185	train.sas	271	ARITH	interest_rate	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S187	train.sas	272	ARITH	interest_rate	else interest_rate = base_rate + 0.15
+S206	train.sas	374	FUNC	today()	training_date = today()
+S218	metrics_calculation.sas	61	ARITH	gini	Gini = 2 * Area - 1
+S255	metrics_calculation.sas	144	DIV	accuracy = (tp + tn) / (tp + tn + fp + fn)	if (TP + TN + FP + FN) > 0 then accuracy = (TP + TN) / (TP + TN + FP + FN)
+S257	metrics_calculation.sas	146	DIV	precision = tp / (tp + fp)	if (TP + FP) > 0 then precision = TP / (TP + FP)
+S259	metrics_calculation.sas	148	DIV	recall = tp / (tp + fn)	if (TP + FN) > 0 then recall = TP / (TP + FN)
+S261	metrics_calculation.sas	150	DIV	f1_score = (precision * recall) / (precision + recall)	if (precision + recall) > 0 then f1_score = 2 * (precision * recall) / (precision + recall)
+S263	metrics_calculation.sas	152	DIV	specificity = tn / (tn + fp)	if (TN + FP) > 0 then specificity = TN / (TN + FP)
+S295	metrics_calculation.sas	214	FUNC	mean()	select sum(default_flag), mean(default_flag) into :total_defaults, :overall_default_rate from work.decile_data
+S296	metrics_calculation.sas	214	FUNC	sum()	select sum(default_flag), mean(default_flag) into :total_defaults, :overall_default_rate from work.decile_data
+S302	metrics_calculation.sas	232	DIV	cum_capture_rate = cum_defaults / &total_defaults	cum_capture_rate = cum_defaults / &total_defaults
+S303	metrics_calculation.sas	233	DIV	cum_lift = (cum_defaults / cum_count) / &overall_default_rate	cum_lift = (cum_defaults / cum_count) / &overall_default_rate
+S304	metrics_calculation.sas	233	DIV	cum_lift = cum_defaults / cum_count	cum_lift = (cum_defaults / cum_count) / &overall_default_rate
+S330	metrics_calculation.sas	307	FUNC	count(*)	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S331	metrics_calculation.sas	307	FUNC	mean()	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S347	metrics_calculation.sas	399	FUNC	today()	validation_date = today()
+S357	predict.sas	49	FUNC	input()	MonthlyIncome_num = input(MonthlyIncome, best32.)
+S358	predict.sas	50	FUNC	input()	NumberOfDependents_num = input(NumberOfDependents, best32.)
+S367	predict.sas	60	FUNC	median()	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S374	predict.sas	86	FUNC	missing()	if missing(MonthlyIncome) then MonthlyIncome_missing = 1
+S375	predict.sas	89	FUNC	missing()	if missing(NumberOfDependents) then do
+S377	predict.sas	98	ARITH	sql credit_utilization	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S378	predict.sas	98	ARITH	sql debt_ratio	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S382	predict.sas	129	FUNC	sum()	total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus)
+S393	predict.sas	154	DIV	credit_lines_per_person = num_credit_lines / (num_dependents + 1)	credit_lines_per_person = num_credit_lines / (num_dependents + 1)
+S408	predict.sas	176	FUNC	sum()	total_risk_flags = sum(flag_high_utilization, flag_high_debt_ratio, flag_serious_delinquency, flag_multiple_delinquencies, flag_low_income)
+S409	predict.sas	182	ARITH	financial_health	if credit_utilization > 30 then financial_health = financial_health - 15
+S411	predict.sas	183	ARITH	financial_health	if credit_utilization > 75 then financial_health = financial_health - 15
+S413	predict.sas	184	ARITH	financial_health	if debt_ratio > 43 then financial_health = financial_health - 20
+S415	predict.sas	185	ARITH	financial_health	if has_delinquency then financial_health = financial_health - 20
+S417	predict.sas	186	ARITH	financial_health	if num_late_90_plus > 0 then financial_health = financial_health - 30
+S419	predict.sas	187	FUNC	max()	financial_health = max(0, financial_health)
+S422	predict.sas	191	ARITH	log_num_credit_lines	log_num_credit_lines = log(num_credit_lines + 1)
+S423	predict.sas	191	FUNC	log()	log_num_credit_lines = log(num_credit_lines + 1)
+S424	predict.sas	192	ARITH	log_total_late_payments	log_total_late_payments = log(total_late_payments + 1)
+S425	predict.sas	192	FUNC	log()	log_total_late_payments = log(total_late_payments + 1)
+S427	predict.sas	196	DIV	utilization_debt_interaction = debt_ratio / 100	utilization_debt_interaction = credit_utilization * debt_ratio / 100
+S428	predict.sas	199	FUNC	min()	credit_utilization_capped = min(credit_utilization, 200)
+S429	predict.sas	200	FUNC	min()	debt_ratio_capped = min(debt_ratio, 500)

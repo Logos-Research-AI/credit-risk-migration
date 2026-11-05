@@ -1,0 +1,59 @@
+site_id	file	line	category	symbol	snippet
+S100	train.sas	122	CMP	default_flag = 1	if default_flag = 1 and pred_logistic = 1 then TP = count
+S101	train.sas	122	CMP	pred_logistic = 1	if default_flag = 1 and pred_logistic = 1 then TP = count
+S102	train.sas	123	CMP	default_flag = 0	else if default_flag = 0 and pred_logistic = 0 then TN = count
+S103	train.sas	123	CMP	pred_logistic = 0	else if default_flag = 0 and pred_logistic = 0 then TN = count
+S104	train.sas	124	CMP	default_flag = 0	else if default_flag = 0 and pred_logistic = 1 then FP = count
+S105	train.sas	124	CMP	pred_logistic = 1	else if default_flag = 0 and pred_logistic = 1 then FP = count
+S106	train.sas	125	CMP	default_flag = 1	else if default_flag = 1 and pred_logistic = 0 then FN = count
+S107	train.sas	125	CMP	pred_logistic = 0	else if default_flag = 1 and pred_logistic = 0 then FN = count
+S108	train.sas	127	CMP	truthy eof	if eof then do
+S109	train.sas	128	CMP	(tp + fp) > 0	if (TP + FP) > 0 then train_precision = TP / (TP + FP)
+S111	train.sas	130	CMP	(tp + fn) > 0	if (TP + FN) > 0 then train_recall = TP / (TP + FN)
+S113	train.sas	132	CMP	(train_precision + train_recall) > 0	if (train_precision + train_recall) > 0 then train_f1_score = 2 * (train_precision * train_recall) / (train_precision + train_recall)
+S115	train.sas	134	CMP	(tp + tn + fp + fn) > 0	if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN)
+S129	train.sas	184	CMP	default_flag = 1	if default_flag = 1 and pred_logistic = 1 then TP = count
+S130	train.sas	184	CMP	pred_logistic = 1	if default_flag = 1 and pred_logistic = 1 then TP = count
+S131	train.sas	185	CMP	default_flag = 0	else if default_flag = 0 and pred_logistic = 0 then TN = count
+S132	train.sas	185	CMP	pred_logistic = 0	else if default_flag = 0 and pred_logistic = 0 then TN = count
+S133	train.sas	186	CMP	default_flag = 0	else if default_flag = 0 and pred_logistic = 1 then FP = count
+S134	train.sas	186	CMP	pred_logistic = 1	else if default_flag = 0 and pred_logistic = 1 then FP = count
+S135	train.sas	187	CMP	default_flag = 1	else if default_flag = 1 and pred_logistic = 0 then FN = count
+S136	train.sas	187	CMP	pred_logistic = 0	else if default_flag = 1 and pred_logistic = 0 then FN = count
+S137	train.sas	189	CMP	truthy eof	if eof then do
+S138	train.sas	190	CMP	(tp + fp) > 0	if (TP + FP) > 0 then valid_precision = TP / (TP + FP)
+S140	train.sas	192	CMP	(tp + fn) > 0	if (TP + FN) > 0 then valid_recall = TP / (TP + FN)
+S142	train.sas	194	CMP	(valid_precision + valid_recall) > 0	if (valid_precision + valid_recall) > 0 then valid_f1_score = 2 * (valid_precision * valid_recall) / (valid_precision + valid_recall)
+S144	train.sas	196	CMP	(tp + tn + fp + fn) > 0	if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN)
+S156	train.sas	230	CMP	risk_grade in ( 'a'	if risk_grade in ('A', 'B') then recommendation = 'Approve'
+S157	train.sas	231	CMP	risk_grade = 'c'	else if risk_grade = 'C' then recommendation = 'Review'
+S158	train.sas	236	CMP	risk_grade = 'a'	if risk_grade = 'A' then interest_rate = base_rate
+S160	train.sas	237	CMP	risk_grade = 'b'	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S162	train.sas	238	CMP	risk_grade = 'c'	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S164	train.sas	239	CMP	risk_grade = 'd'	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S166	train.sas	240	CMP	risk_grade = 'e'	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S176	train.sas	262	CMP	risk_grade in ( 'a'	if risk_grade in ('A', 'B') then recommendation = 'Approve'
+S177	train.sas	263	CMP	risk_grade = 'c'	else if risk_grade = 'C' then recommendation = 'Review'
+S178	train.sas	267	CMP	risk_grade = 'a'	if risk_grade = 'A' then interest_rate = base_rate
+S180	train.sas	268	CMP	risk_grade = 'b'	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S182	train.sas	269	CMP	risk_grade = 'c'	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S184	train.sas	270	CMP	risk_grade = 'd'	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S186	train.sas	271	CMP	risk_grade = 'e'	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S196	train.sas	310	CMP	rocmodel = 'training	where ROCModel = 'Training Set'
+S198	train.sas	316	CMP	rocmodel = 'validation	where ROCModel = 'Validation Set'
+S217	metrics_calculation.sas	59	CMP	rocmodel = 'logistic	where ROCModel = 'Logistic Model'
+S245	metrics_calculation.sas	137	CMP	default_flag = 1	if default_flag = 1 and predicted = 1 then TP = count
+S246	metrics_calculation.sas	137	CMP	predicted = 1	if default_flag = 1 and predicted = 1 then TP = count
+S247	metrics_calculation.sas	138	CMP	default_flag = 0	else if default_flag = 0 and predicted = 0 then TN = count
+S248	metrics_calculation.sas	138	CMP	predicted = 0	else if default_flag = 0 and predicted = 0 then TN = count
+S249	metrics_calculation.sas	139	CMP	default_flag = 0	else if default_flag = 0 and predicted = 1 then FP = count
+S250	metrics_calculation.sas	139	CMP	predicted = 1	else if default_flag = 0 and predicted = 1 then FP = count
+S251	metrics_calculation.sas	140	CMP	default_flag = 1	else if default_flag = 1 and predicted = 0 then FN = count
+S252	metrics_calculation.sas	140	CMP	predicted = 0	else if default_flag = 1 and predicted = 0 then FN = count
+S253	metrics_calculation.sas	142	CMP	truthy eof	if eof then do
+S254	metrics_calculation.sas	144	CMP	(tp + tn + fp + fn) > 0	if (TP + TN + FP + FN) > 0 then accuracy = (TP + TN) / (TP + TN + FP + FN)
+S256	metrics_calculation.sas	146	CMP	(tp + fp) > 0	if (TP + FP) > 0 then precision = TP / (TP + FP)
+S258	metrics_calculation.sas	148	CMP	(tp + fn) > 0	if (TP + FN) > 0 then recall = TP / (TP + FN)
+S260	metrics_calculation.sas	150	CMP	(precision + recall) > 0	if (precision + recall) > 0 then f1_score = 2 * (precision * recall) / (precision + recall)
+S262	metrics_calculation.sas	152	CMP	(tn + fp) > 0	if (TN + FP) > 0 then specificity = TN / (TN + FP)
+S299	metrics_calculation.sas	223	CMP	_n_ = 1	if _n_ = 1 then do

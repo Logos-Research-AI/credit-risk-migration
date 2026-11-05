@@ -460,3 +460,4 @@ S458	predict.sas	295	PROC	proc export	proc export data=work.test_predictions_ful
 S459	predict.sas	302	PROC	proc freq	proc freq data=work.test_predictions
 S460	predict.sas	307	PROC	proc means	proc means data=work.test_predictions n mean std min max
 S461	predict.sas	313	PROC	proc print	proc print data=work.test_predictions_full(obs=20) noobs
+S462	metrics_calculation.sas	125	CMP	pd_logistic >= &threshold	predicted = (pd_logistic >= &threshold)

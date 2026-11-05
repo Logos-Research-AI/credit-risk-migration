@@ -1,0 +1,72 @@
+site_id	file	line	category	symbol	snippet
+S004	feature_engineering.sas	36	PROC	proc means	proc means data=work.credit_raw n nmiss mean std min max
+S009	feature_engineering.sas	59	PROC	proc sql	proc sql
+S024	feature_engineering.sas	97	PROC	proc sql	proc sql
+S082	feature_engineering.sas	227	PROC	proc means	proc means data=work.credit_train n mean std min max
+S083	feature_engineering.sas	233	PROC	proc freq	proc freq data=work.credit_train
+S084	feature_engineering.sas	238	PROC	proc means	proc means data=work.credit_validation n mean std min max
+S085	feature_engineering.sas	244	PROC	proc freq	proc freq data=work.credit_validation
+S086	feature_engineering.sas	257	FORMAT	_numeric_ best12.	format _numeric_ best12.
+S087	feature_engineering.sas	263	FORMAT	_numeric_ best12.	format _numeric_ best12.
+S088	feature_engineering.sas	267	PROC	proc export	proc export data=work.credit_train_export outfile="&output_path/model_features_train.csv" dbms=csv replace
+S089	feature_engineering.sas	274	PROC	proc export	proc export data=work.credit_validation_export outfile="&output_path/model_features_validation.csv" dbms=csv replace
+S091	train.sas	26	PROC	proc import	proc import datafile="&output_path/model_features_train.csv" out=work.model_features_train dbms=csv replace
+S092	train.sas	35	PROC	proc import	proc import datafile="&output_path/model_features_validation.csv" out=work.model_features_validation dbms=csv replace
+S096	train.sas	109	PROC	proc freq	proc freq data=work.logit_scored_train noprint
+S097	train.sas	113	PROC	proc print	proc print data=work.confusion_matrix_train
+S118	train.sas	141	PROC	proc print	proc print data=work.training_metrics
+S119	train.sas	143	FORMAT	train_accuracy 8.4	format train_precision train_recall train_f1_score train_accuracy 8.4
+S120	train.sas	151	PROC	proc plm	proc plm restore=work.logit_model
+S125	train.sas	171	PROC	proc freq	proc freq data=work.logit_scored_valid noprint
+S126	train.sas	175	PROC	proc print	proc print data=work.confusion_matrix
+S147	train.sas	203	PROC	proc print	proc print data=work.validation_metrics
+S148	train.sas	205	FORMAT	valid_accuracy 8.4	format valid_precision valid_recall valid_f1_score valid_accuracy 8.4
+S168	train.sas	243	FORMAT	interest_rate percent8.2	format interest_rate percent8.2
+S188	train.sas	274	FORMAT	interest_rate percent8.2	format interest_rate percent8.2
+S189	train.sas	278	PROC	proc freq	proc freq data=work.risk_scores_train
+S190	train.sas	283	PROC	proc freq	proc freq data=work.risk_scores_validation
+S195	train.sas	309	PROC	proc print	proc print data=work.roc_train
+S197	train.sas	315	PROC	proc print	proc print data=work.roc_valid
+S201	train.sas	338	PROC	proc export	proc export data=work.risk_scores_train_clean outfile="&output_path/risk_scores_train.csv" dbms=csv replace
+S202	train.sas	345	PROC	proc export	proc export data=work.risk_scores_validation_clean outfile="&output_path/risk_scores_validation.csv" dbms=csv replace
+S204	train.sas	360	PROC	proc export	proc export data=work.final_model_output outfile="&output_path/final_model_output.csv" dbms=csv replace
+S207	train.sas	378	FORMAT	training_date date9.	format training_date date9. Train_AUC Valid_AUC train_precision train_recall train_f1_score train_accuracy valid_precision valid_recall valid_f1_score valid_acc
+S208	train.sas	378	FORMAT	valid_accuracy 8.4	format training_date date9. Train_AUC Valid_AUC train_precision train_recall train_f1_score train_accuracy valid_precision valid_recall valid_f1_score valid_acc
+S210	train.sas	388	PROC	proc export	proc export data=work.model_summary outfile="&output_path/model_summary.csv" dbms=csv replace
+S211	train.sas	395	PROC	proc export	proc export data=work.model_coefficients outfile="&output_path/model_coefficients.csv" dbms=csv replace
+S220	metrics_calculation.sas	63	FORMAT	gini 8.4	format AUC Gini 8.4
+S221	metrics_calculation.sas	66	PROC	proc print	proc print data=work.auc_summary noobs
+S240	metrics_calculation.sas	113	PROC	proc print	proc print data=work.ks_statistic noobs
+S242	metrics_calculation.sas	128	PROC	proc freq	proc freq data=work.confusion_&suffix noprint
+S271	metrics_calculation.sas	173	PROC	proc print	proc print data=work.threshold_analysis
+S272	metrics_calculation.sas	175	FORMAT	specificity 8.4	format accuracy precision recall f1_score specificity 8.4
+S274	metrics_calculation.sas	191	PROC	proc sql	proc sql
+S293	metrics_calculation.sas	208	PROC	proc print	proc print data=work.decile_analysis
+S294	metrics_calculation.sas	213	PROC	proc sql	proc sql noprint
+S305	metrics_calculation.sas	234	FORMAT	cum_capture_rate percent8.2	format cum_capture_rate percent8.2 cum_lift 8.2
+S306	metrics_calculation.sas	234	FORMAT	cum_lift 8.2	format cum_capture_rate percent8.2 cum_lift 8.2
+S307	metrics_calculation.sas	237	PROC	proc sgplot	proc sgplot data=work.cumulative_lift
+S310	metrics_calculation.sas	265	PROC	proc sql	proc sql
+S325	metrics_calculation.sas	290	PROC	proc print	proc print data=work.psi_summary noobs
+S326	metrics_calculation.sas	299	PROC	proc rank	proc rank data=work.logit_scored_valid out=work.calibration_data groups=20
+S327	metrics_calculation.sas	306	PROC	proc sql	proc sql
+S328	metrics_calculation.sas	307	FORMAT	mean_actual 8.4	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S329	metrics_calculation.sas	307	FORMAT	mean_predicted 8.4	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S334	metrics_calculation.sas	318	PROC	proc sgplot	proc sgplot data=work.calibration_plot
+S340	metrics_calculation.sas	347	PROC	proc print	proc print data=work.validation_summary noobs
+S341	metrics_calculation.sas	356	PROC	proc export	proc export data=work.validation_summary outfile="&output_path/validation_summary.csv" dbms=csv replace
+S342	metrics_calculation.sas	363	PROC	proc export	proc export data=work.decile_analysis outfile="&output_path/decile_analysis.csv" dbms=csv replace
+S343	metrics_calculation.sas	370	PROC	proc export	proc export data=work.threshold_analysis outfile="&output_path/threshold_analysis.csv" dbms=csv replace
+S344	metrics_calculation.sas	377	PROC	proc export	proc export data=work.ks_statistic outfile="&output_path/ks_statistic.csv" dbms=csv replace
+S345	metrics_calculation.sas	384	PROC	proc export	proc export data=work.calibration_plot outfile="&output_path/calibration_plot.csv" dbms=csv replace
+S349	metrics_calculation.sas	409	FORMAT	validation_date date9.	format validation_date date9.
+S351	metrics_calculation.sas	416	PROC	proc export	proc export data=work.model_performance_metrics outfile="&output_path/model_performance_metrics.csv" dbms=csv replace
+S352	metrics_calculation.sas	423	PROC	proc print	proc print data=work.model_performance_metrics noobs
+S356	predict.sas	36	PROC	proc contents	proc contents data=work.test_raw
+S361	predict.sas	59	PROC	proc sql	proc sql
+S376	predict.sas	97	PROC	proc sql	proc sql
+S457	predict.sas	288	PROC	proc export	proc export data=work.kaggle_submission outfile="&output_path/kaggle_submission.csv" dbms=csv replace
+S458	predict.sas	295	PROC	proc export	proc export data=work.test_predictions_full outfile="&output_path/test_predictions.csv" dbms=csv replace
+S459	predict.sas	302	PROC	proc freq	proc freq data=work.test_predictions
+S460	predict.sas	307	PROC	proc means	proc means data=work.test_predictions n mean std min max
+S461	predict.sas	313	PROC	proc print	proc print data=work.test_predictions_full(obs=20) noobs

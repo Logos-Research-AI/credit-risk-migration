@@ -93,7 +93,7 @@ Default is **exact**. Each tolerance below is deliberate and is a place a defect
 | Rows matched by key; key text also compared exactly | SAS's row order comes from its SQL join engine, not business logic |
 | Columns must match in name and order | Downstream CSV consumers may depend on it |
 | Text exact (no trimming), including `<.0001`, `_`, `5.00%` | Printed formats are part of the output |
-| **Format:** integers stay integers (`28`, not `28.0`); E-notation only where SAS used it; fixed-format columns keep their decimals; BEST12. cells must be exactly what BEST12. prints for the candidate's own value | Printed formats are part of the output. `sas_best12()` reproduces all 2,942,611 distinct BEST12 cells of the reference, and is a ready rule for the port |
+| **Format:** integers stay integers (`28`, not `28.0`); E-notation only where SAS used it; fixed-format columns keep their decimals; BEST12. cells must be exactly what BEST12. prints for the candidate's own value | Printed formats are part of the output. `sas_best12()` reproduces the 2,942,611 distinct plain-notation BEST12 cells of the reference. It does NOT print E-notation (SAS uses it below 1e-5, e.g. `2.01153E-23`; 15 reference files), so it is not by itself a rule for the port (RULEBOOK amendment A15) |
 | **Value**, fixed-format columns (`8.4`, `percent8.2`, ...): 1 display unit | SAS printed a rounded value |
 | **Value**, other numbers (BEST12.): 1 unit in the 12th character | Integers and flags are effectively exact |
 | `pd_logistic`: per row within `PD_TOL = 1e-4`, and per file mean \|Δ\| within `PD_MEAN_TOL = 1e-5` | Tolerance evidence; the mean bound catches systematic bias |

@@ -1,0 +1,45 @@
+site_id	file	line	category	symbol	snippet
+S001	feature_engineering.sas	20	MACRO	%let data_path	%let data_path = /home/u64352077
+S002	feature_engineering.sas	21	MACRO	%let output_path	%let output_path = /home/u64352077/output
+S090	train.sas	19	MACRO	%let output_path	%let output_path = /home/u64352077/output
+S098	train.sas	119	DSTEP	set end=eof	set work.confusion_matrix_train end=eof
+S099	train.sas	120	DSTEP	retain tp tn fp fn 0	retain TP TN FP FN 0
+S117	train.sas	138	DSTEP	keep train_precision train_recall train_f1_score train_accuracy	keep train_precision train_recall train_f1_score train_accuracy
+S124	train.sas	167	DSTEP	drop predicted_logit	drop predicted_logit
+S127	train.sas	181	DSTEP	set end=eof	set work.confusion_matrix end=eof
+S128	train.sas	182	DSTEP	retain tp tn fp fn 0	retain TP TN FP FN 0
+S146	train.sas	200	DSTEP	keep valid_precision valid_recall valid_f1_score valid_accuracy	keep valid_precision valid_recall valid_f1_score valid_accuracy
+S199	train.sas	328	DSTEP	drop ip_: xp_: _from_ _into_ _level_	drop IP_: XP_: _FROM_ _INTO_ _LEVEL_
+S200	train.sas	334	DSTEP	drop ip_: xp_: _from_ _into_ _level_	drop IP_: XP_: _FROM_ _INTO_ _LEVEL_
+S203	train.sas	354	DSTEP	keep row_id default_flag pd_logistic credit_risk_score risk_grade recommendation inte	keep row_id default_flag pd_logistic credit_risk_score risk_grade recommendation interest_rate age monthly_income credit_utilization debt_ratio total_late_payme
+S205	train.sas	368	DSTEP	merge roc_train roc_valid training_metrics validation_metrics	merge work.roc_train(where=(ROCModel='Training Set') rename=(Area=Train_AUC)) work.roc_valid(where=(ROCModel='Validation Set') rename=(Area=Valid_AUC)) work.tra
+S209	train.sas	382	DSTEP	keep model_name training_date training_records validation_records train_auc valid_auc	keep model_name training_date training_records validation_records Train_AUC Valid_AUC train_precision train_recall train_f1_score train_accuracy valid_precision
+S212	metrics_calculation.sas	21	MACRO	%let output_path	%let output_path = /home/u64352077/output
+S219	metrics_calculation.sas	62	DSTEP	keep rocmodel auc gini	keep ROCModel AUC Gini
+S241	metrics_calculation.sas	122	MACRO	%macro confusion_metrics	%macro confusion_metrics(threshold, suffix)
+S243	metrics_calculation.sas	134	DSTEP	set end=eof	set work.conf_matrix_&suffix end=eof
+S244	metrics_calculation.sas	135	DSTEP	retain tp tn fp fn 0	retain TP TN FP FN 0
+S264	metrics_calculation.sas	156	DSTEP	keep threshold accuracy precision recall f1_score specificity	keep threshold accuracy precision recall f1_score specificity
+S265	metrics_calculation.sas	161	MACRO	macro call confusion_metrics	%confusion_metrics(0.3, 03)
+S266	metrics_calculation.sas	162	MACRO	macro call confusion_metrics	%confusion_metrics(0.4, 04)
+S267	metrics_calculation.sas	163	MACRO	macro call confusion_metrics	%confusion_metrics(0.5, 05)
+S268	metrics_calculation.sas	164	MACRO	macro call confusion_metrics	%confusion_metrics(0.6, 06)
+S269	metrics_calculation.sas	165	MACRO	macro call confusion_metrics	%confusion_metrics(0.7, 07)
+S270	metrics_calculation.sas	169	DSTEP	set (concatenate) metrics_03 metrics_04 metrics_05 metrics_06 metrics_07	set work.metrics_03 work.metrics_04 work.metrics_05 work.metrics_06 work.metrics_07
+S297	metrics_calculation.sas	214	MACRO	into total_defaults overall_default_rate	select sum(default_flag), mean(default_flag) into :total_defaults, :overall_default_rate from work.decile_data
+S298	metrics_calculation.sas	222	DSTEP	retain cum_defaults cum_count	retain cum_defaults cum_count
+S300	metrics_calculation.sas	228	DSTEP	sum statement cum_defaults + defaults	cum_defaults + defaults
+S301	metrics_calculation.sas	229	DSTEP	sum statement cum_count + total_count	cum_count + total_count
+S332	metrics_calculation.sas	307	SQL	group by pred_bin	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S333	metrics_calculation.sas	307	SQL	order by pred_bin	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S348	metrics_calculation.sas	403	DSTEP	rename acc_50 = accuracy_at_50 prec_50 = precision_at_50 rec_50 = recall_at_50 f1_50 = 	rename acc_50 = accuracy_at_50 prec_50 = precision_at_50 rec_50 = recall_at_50 f1_50 = f1_score_at_50 spec_50 = specificity_at_50
+S350	metrics_calculation.sas	412	DSTEP	drop threshold rocmodel	drop threshold ROCModel
+S353	predict.sas	19	MACRO	%let data_path	%let data_path = /home/u64352077
+S354	predict.sas	20	MACRO	%let output_path	%let output_path = /home/u64352077/output
+S359	predict.sas	53	DSTEP	drop monthlyincome numberofdependents	drop MonthlyIncome NumberOfDependents
+S360	predict.sas	54	DSTEP	rename monthlyincome_num = monthlyincome numberofdependents_num = numberofdependents	rename MonthlyIncome_num = MonthlyIncome NumberOfDependents_num = NumberOfDependents
+S368	predict.sas	60	SQL	calculated age_group	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S369	predict.sas	60	SQL	group by calculated age_group	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S381	predict.sas	98	SQL	left join	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S455	predict.sas	271	DSTEP	keep row_id pd_logistic	keep row_id pd_logistic
+S456	predict.sas	277	DSTEP	keep row_id pd_logistic pred_logistic credit_risk_score risk_grade recommendation int	keep row_id pd_logistic pred_logistic credit_risk_score risk_grade recommendation interest_rate age monthly_income credit_utilization debt_ratio total_late_paym

@@ -1,0 +1,7 @@
+site_id	file	line	category	symbol	snippet
+S191	train.sas	293	PROC	proc logistic	proc logistic data=work.risk_scores_train
+S192	train.sas	296	ODS	ods output rocassociation	ods output ROCAssociation=work.roc_train
+S193	train.sas	301	PROC	proc logistic	proc logistic data=work.risk_scores_validation
+S194	train.sas	304	ODS	ods output rocassociation	ods output ROCAssociation=work.roc_valid
+S215	metrics_calculation.sas	48	PROC	proc logistic	proc logistic data=work.logit_scored_valid
+S216	metrics_calculation.sas	52	ODS	ods output rocassociation	ods output ROCAssociation=work.roc_stats

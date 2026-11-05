@@ -1,0 +1,69 @@
+site_id	file	line	category	symbol	snippet
+S018	feature_engineering.sas	79	CMP	age < 30	if age < 30 then age_group = 1
+S019	feature_engineering.sas	80	CMP	age < 40	else if age < 40 then age_group = 2
+S020	feature_engineering.sas	81	CMP	age < 50	else if age < 50 then age_group = 3
+S021	feature_engineering.sas	82	CMP	age < 60	else if age < 60 then age_group = 4
+S031	feature_engineering.sas	133	CMP	total_late_payments > 0	has_delinquency = (total_late_payments > 0)
+S032	feature_engineering.sas	136	CMP	num_late_90_plus > 0	has_serious_delinquency = (num_late_90_plus > 0)
+S033	feature_engineering.sas	139	CMP	credit_utilization < 30	if credit_utilization < 30 then credit_util_category = 1
+S034	feature_engineering.sas	140	CMP	credit_utilization < 50	else if credit_utilization < 50 then credit_util_category = 2
+S035	feature_engineering.sas	141	CMP	credit_utilization < 75	else if credit_utilization < 75 then credit_util_category = 3
+S036	feature_engineering.sas	145	CMP	debt_ratio < 30	if debt_ratio < 30 then debt_category = 1
+S037	feature_engineering.sas	146	CMP	debt_ratio < 43	else if debt_ratio < 43 then debt_category = 2
+S038	feature_engineering.sas	147	CMP	debt_ratio < 60	else if debt_ratio < 60 then debt_category = 3
+S039	feature_engineering.sas	151	CMP	num_dependents > 0	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1)
+S042	feature_engineering.sas	158	CMP	age < 25	if age < 25 then age_category = 1
+S043	feature_engineering.sas	159	CMP	age < 35	else if age < 35 then age_category = 2
+S044	feature_engineering.sas	160	CMP	age < 50	else if age < 50 then age_category = 3
+S045	feature_engineering.sas	161	CMP	age < 65	else if age < 65 then age_category = 4
+S046	feature_engineering.sas	165	CMP	credit_utilization > 75	flag_high_utilization = (credit_utilization > 75)
+S047	feature_engineering.sas	166	CMP	credit_utilization > 100	flag_very_high_utilization = (credit_utilization > 100)
+S048	feature_engineering.sas	167	CMP	debt_ratio > 43	flag_high_debt_ratio = (debt_ratio > 43)
+S049	feature_engineering.sas	168	CMP	debt_ratio > 60	flag_very_high_debt_ratio = (debt_ratio > 60)
+S050	feature_engineering.sas	169	CMP	num_late_30_59 > 0	flag_recent_late_payments = (num_late_30_59 > 0)
+S051	feature_engineering.sas	170	CMP	num_late_90_plus > 0	flag_serious_delinquency = (num_late_90_plus > 0)
+S052	feature_engineering.sas	171	CMP	total_late_payments >= 3	flag_multiple_delinquencies = (total_late_payments >= 3)
+S054	feature_engineering.sas	173	CMP	num_dependents >= 3	flag_many_dependents = (num_dependents >= 3)
+S055	feature_engineering.sas	174	CMP	num_credit_lines <= 2	flag_few_credit_lines = (num_credit_lines <= 2)
+S058	feature_engineering.sas	183	CMP	credit_utilization > 30	if credit_utilization > 30 then financial_health = financial_health - 15
+S060	feature_engineering.sas	184	CMP	credit_utilization > 75	if credit_utilization > 75 then financial_health = financial_health - 15
+S062	feature_engineering.sas	185	CMP	debt_ratio > 43	if debt_ratio > 43 then financial_health = financial_health - 20
+S064	feature_engineering.sas	186	CMP	truthy has_delinquency	if has_delinquency then financial_health = financial_health - 20
+S066	feature_engineering.sas	187	CMP	num_late_90_plus > 0	if num_late_90_plus > 0 then financial_health = financial_health - 30
+S362	predict.sas	60	CMP	age < 30	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S363	predict.sas	60	CMP	age < 40	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S364	predict.sas	60	CMP	age < 50	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S365	predict.sas	60	CMP	age < 60	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S366	predict.sas	60	CMP	is not missing	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S370	predict.sas	79	CMP	age < 30	if age < 30 then age_group = 1
+S371	predict.sas	80	CMP	age < 40	else if age < 40 then age_group = 2
+S372	predict.sas	81	CMP	age < 50	else if age < 50 then age_group = 3
+S373	predict.sas	82	CMP	age < 60	else if age < 60 then age_group = 4
+S379	predict.sas	98	CMP	a.age_group = b.age_group	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S380	predict.sas	98	CMP	a.monthlyincome_missing = 1	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S383	predict.sas	132	CMP	total_late_payments > 0	has_delinquency = (total_late_payments > 0)
+S384	predict.sas	135	CMP	num_late_90_plus > 0	has_serious_delinquency = (num_late_90_plus > 0)
+S385	predict.sas	138	CMP	credit_utilization < 30	if credit_utilization < 30 then credit_util_category = 1
+S386	predict.sas	139	CMP	credit_utilization < 50	else if credit_utilization < 50 then credit_util_category = 2
+S387	predict.sas	140	CMP	credit_utilization < 75	else if credit_utilization < 75 then credit_util_category = 3
+S388	predict.sas	144	CMP	debt_ratio < 30	if debt_ratio < 30 then debt_category = 1
+S389	predict.sas	145	CMP	debt_ratio < 43	else if debt_ratio < 43 then debt_category = 2
+S390	predict.sas	146	CMP	debt_ratio < 60	else if debt_ratio < 60 then debt_category = 3
+S394	predict.sas	157	CMP	age < 25	if age < 25 then age_category = 1
+S395	predict.sas	158	CMP	age < 35	else if age < 35 then age_category = 2
+S396	predict.sas	159	CMP	age < 50	else if age < 50 then age_category = 3
+S397	predict.sas	160	CMP	age < 65	else if age < 65 then age_category = 4
+S398	predict.sas	164	CMP	credit_utilization > 75	flag_high_utilization = (credit_utilization > 75)
+S399	predict.sas	165	CMP	credit_utilization > 100	flag_very_high_utilization = (credit_utilization > 100)
+S400	predict.sas	166	CMP	debt_ratio > 43	flag_high_debt_ratio = (debt_ratio > 43)
+S401	predict.sas	167	CMP	debt_ratio > 60	flag_very_high_debt_ratio = (debt_ratio > 60)
+S402	predict.sas	168	CMP	num_late_30_59 > 0	flag_recent_late_payments = (num_late_30_59 > 0)
+S403	predict.sas	169	CMP	num_late_90_plus > 0	flag_serious_delinquency = (num_late_90_plus > 0)
+S404	predict.sas	170	CMP	total_late_payments >= 3	flag_multiple_delinquencies = (total_late_payments >= 3)
+S406	predict.sas	172	CMP	num_dependents >= 3	flag_many_dependents = (num_dependents >= 3)
+S407	predict.sas	173	CMP	num_credit_lines <= 2	flag_few_credit_lines = (num_credit_lines <= 2)
+S410	predict.sas	182	CMP	credit_utilization > 30	if credit_utilization > 30 then financial_health = financial_health - 15
+S412	predict.sas	183	CMP	credit_utilization > 75	if credit_utilization > 75 then financial_health = financial_health - 15
+S414	predict.sas	184	CMP	debt_ratio > 43	if debt_ratio > 43 then financial_health = financial_health - 20
+S416	predict.sas	185	CMP	truthy has_delinquency	if has_delinquency then financial_health = financial_health - 20
+S418	predict.sas	186	CMP	num_late_90_plus > 0	if num_late_90_plus > 0 then financial_health = financial_health - 30

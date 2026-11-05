@@ -17,8 +17,10 @@ Categories (one site per occurrence; a statement can yield several sites):
   MACRO     macro definitions/calls, %let, INTO: macro variables
   ODS       ods output requests
 
-Usage:  python3 sweep_gaps.py --root <repo> --out migration/gap-sweep.tsv
+Usage:  python3 sweep_gaps.py --root <repo> --out migration/gap-sweep.tsv [--stable]
 Output: TSV site_id, file, line, category, symbol, snippet. Deterministic, sorted.
+--stable keeps the site_id of every site already in --out (inventory rows cite them) and
+numbers new sites after the highest existing id; sites no longer found are reported.
 """
 
 from __future__ import annotations
@@ -163,7 +165,7 @@ def scan(path: Path, rel: str) -> list[tuple[str, int, str, str, str]]:
             rhs = action.split("=", 1)[1]
             cmp_zones += [z[0] for z in re.findall(r"\(([^()]*" + CMP_OP + r"[^()]*)\)", rhs)]
         for zone in cmp_zones:
-            for cm in re.finditer(r"([\w.]+|\([^()]*\))\s*" + CMP_OP + r"\s*([\w.'\"-]+)", zone):
+            for cm in re.finditer(r"([\w.]+|\([^()]*\))\s*" + CMP_OP + r"\s*([\w.'\"&-]+)", zone):  # & = macro variable
                 add("CMP", f"{cm.group(1)} {cm.group(2).strip()} {cm.group(3)}")
             if "is not missing" in zone:
                 add("CMP", "is not missing")
@@ -198,16 +200,35 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", required=True, type=Path)
     ap.add_argument("--out", required=True, type=Path)
+    ap.add_argument("--stable", action="store_true")
     args = ap.parse_args()
     rows = []
     for prog in PROGRAMS:
         rows += scan(args.root / prog, prog)
     rows = sorted(set(rows), key=lambda r: (PROGRAMS.index(r[0]), r[1], r[2], r[3]))
     args.out.parent.mkdir(parents=True, exist_ok=True)
+    ids = {r: f"S{i:03d}" for i, r in enumerate(rows, 1)}
+    if args.stable and args.out.exists():
+        old = {}
+        for ln in args.out.read_text().splitlines()[1:]:
+            sid, file, line, cat, sym, snip = ln.split("\t")
+            old[(file, int(line), cat, sym, snip)] = sid
+        gone = [sid for k, sid in old.items() if k not in ids]
+        if gone:
+            print(f"WARNING: sites no longer found: {','.join(gone)}")
+        nxt = max(int(v[1:]) for v in old.values()) + 1
+        for r in rows:
+            if r in old:
+                ids[r] = old[r]
+            else:
+                ids[r] = f"S{nxt:03d}"
+                nxt += 1
+                print(f"new site {ids[r]}: {r[0]}:{r[1]} {r[2]} {r[3]}")
     with open(args.out, "w") as f:
         f.write("site_id\tfile\tline\tcategory\tsymbol\tsnippet\n")
-        for i, (file, line, cat, sym, snip) in enumerate(rows, 1):
-            f.write(f"S{i:03d}\t{file}\t{line}\t{cat}\t{sym}\t{snip}\n")
+        for r in sorted(rows, key=lambda r: int(ids[r][1:])):
+            file, line, cat, sym, snip = r
+            f.write(f"{ids[r]}\t{file}\t{line}\t{cat}\t{sym}\t{snip}\n")
     counts: dict[str, int] = {}
     for r in rows:
         counts[r[2]] = counts.get(r[2], 0) + 1

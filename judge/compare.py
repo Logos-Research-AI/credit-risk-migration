@@ -119,7 +119,7 @@ ABS_COL_TOL = {
 # (file, column) -> (label column, label, absolute tolerance) for one labelled cell
 ABS_CELL_TOL = {
     # SAS counts pairs with |dpd| <= ~1e-8 as tied (280 pairs, 4.0773e-5 %); a correct
-    # converged port gets 285 (4.15e-5 %). Printed diagnostic: absolute 1e-5 percentage
+    # converged port gets 283 (4.12e-5 %). Printed diagnostic: absolute 1e-5 percentage
     # points (human sign-off Q1, 2026-11-05; migration/rulebook-amendments.md A8).
     ("printed_association.csv", "nValue1"): ("Label1", "Percent Tied", 1e-5),
 }
@@ -138,7 +138,9 @@ SCORED = {"train": "risk_scores_train.csv", "valid": "risk_scores_validation.csv
 # --------------------------------------------------------------- helpers -----
 def sas_best12(x: float) -> str:
     """SAS BEST12. in plain notation: round to fit 12 characters, drop trailing zeros.
-    Reproduces all 2,942,611 distinct non-formatted numeric cells of the reference."""
+    Reproduces the 2,942,611 distinct plain-notation cells of the reference. Used only for
+    cells printed without E-notation (format_ok); SAS prints 0 < |x| < 1e-5 in E-notation,
+    which this function does not (RULEBOOK amendment A15)."""
     if x == 0 or not math.isfinite(x):
         return "0" if x == 0 else repr(x)
     ilen = len(str(int(abs(x)))) + (1 if x < 0 else 0)
