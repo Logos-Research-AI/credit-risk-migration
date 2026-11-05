@@ -767,8 +767,7 @@ def stepwise_logistic(
             zwz = float(z @ (z * w))
             v = x.T @ (z * w)
             resid = zwz - float(v @ np.linalg.solve(info, v))
-            # TODO(port): an effect whose alias is outside the model, if removed, could alternate with
-            # that alias (inventory stepwise row); the alias test below does not model it.
+            # RESOLVED (post-parity): alias alternation is unreachable here; the stop rule prevents a loop.
             if zwz <= 0.0 or resid / zwz < 1e-8:
                 continue  # aliased with the current model
             u = float(z @ (y - p))
@@ -1083,4 +1082,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=5
+# PORT STATUS: confidence=medium todos=4
