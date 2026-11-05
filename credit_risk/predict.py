@@ -12,7 +12,14 @@ from credit_risk import sas_compat
 # INV &data_path / &output_path
 
 
-def run(input_dir: Path, output_dir: Path, *, data_dir: Path) -> None:
+def run(
+    input_dir: Path,
+    output_dir: Path,
+    *,
+    data_dir: Path,
+    fix_train_medians: bool = False,
+    medians: Path | None = None,
+) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)  # R§4 S12
 
     # predict.sas:27-33 PROC IMPORT, guessingrows=max
@@ -55,6 +62,14 @@ def run(input_dir: Path, output_dir: Path, *, data_dir: Path) -> None:
         .agg(median_income=pl.col("MonthlyIncome").median())
     )
 
+    # FIXED(post-parity, flag --fix-train-medians): impute from the TRAINING medians (income_medians.csv)
+    if fix_train_medians:
+        if medians is None:
+            raise ValueError("--fix-train-medians requires --medians <income_medians.csv>")
+        test_income_medians = pl.read_csv(
+            medians, schema_overrides={"age_group": pl.Int32, "median_income": pl.Float64}
+        )
+
     # predict.sas:75-94 DATA test_cleaned
     # INV age_group; INV MonthlyIncome_missing
     # INV NumberOfDependents / Dependents_missing
@@ -77,6 +92,7 @@ def run(input_dir: Path, output_dir: Path, *, data_dir: Path) -> None:
     # predict.sas:97-119 PROC SQL test_imputed
     # INV work.test_imputed; R§2 PROC SQL left join (A11 not needed: keys never missing)
     # BUG(port): imputes from TEST-set medians. Repro: edge_predict under-30 rows get null monthly_income.
+    # (FIXED(post-parity, flag --fix-train-medians): test_income_medians above is the training table)
     # monthly_income stays null where the age group has no median row (INV monthly_income (test_imputed)).
     test_imputed = test_cleaned.join(
         test_income_medians, on="age_group", how="left", maintain_order="left"
@@ -318,7 +334,21 @@ if __name__ == "__main__":
     parser.add_argument("--data-dir", type=Path, required=True)
     parser.add_argument("--input-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument(
+        "--fix-train-medians",
+        action="store_true",
+        help="post-parity fix: impute MonthlyIncome from the training medians",
+    )
+    parser.add_argument("--medians", type=Path, help="income_medians.csv from feature_engineering")
     args = parser.parse_args()
-    run(args.input_dir, args.output_dir, data_dir=args.data_dir)
+    if args.fix_train_medians and args.medians is None:
+        parser.error("--fix-train-medians requires --medians")
+    run(
+        args.input_dir,
+        args.output_dir,
+        data_dir=args.data_dir,
+        fix_train_medians=args.fix_train_medians,
+        medians=args.medians,
+    )
 
 # PORT STATUS: confidence=high todos=1

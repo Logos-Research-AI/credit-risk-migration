@@ -58,6 +58,14 @@ def run(data_dir: Path, output_dir: Path, *, split_ids: Path, fix_income_truncat
         .agg(median_income=pl.col("MonthlyIncome").median())
     )
 
+    # post-parity (row 3): training medians exported for predict --fix-train-medians; an EXTRA file,
+    # never judged, written always
+    sas_compat.write_sas_csv(
+        income_medians.sort("age_group"),
+        output_dir / "income_medians.csv",
+        formats={},
+    )
+
     # feature_engineering.sas:75-94  # INV age_group, MonthlyIncome_missing, Dependents_missing
     credit_cleaned = credit_raw_clean.with_columns(
         # :79-83 R§2 if/else-if chain, INV age_group: Int32 literals, plain comparisons (A2)
