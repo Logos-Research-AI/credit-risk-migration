@@ -1,0 +1,10 @@
+[project]
+name = "sas-migration-judge"
+version = "0.1.0"
+description = "Parity judge: runs the original SAS (via saspy/ODA) and the Python port on equal terms and diffs outputs"
+requires-python = ">=3.13"
+dependencies = [
+    "saspy>=5.0",
+    "polars>=1.0",
+    "numpy>=2.0",
+]

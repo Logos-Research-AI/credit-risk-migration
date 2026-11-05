@@ -1,0 +1,128 @@
+
+                                                      Test Data - Column Check               Thursday,  5 November 2026 10:14:00  27
+
+                                                       The CONTENTS Procedure
+
+             Data Set Name        WORK.TEST_RAW                                            Observations          101503
+             Member Type          DATA                                                     Variables             12    
+             Engine               V9                                                       Indexes               0     
+             Created              05/11/2026 10:18:43                                      Observation Length    88    
+             Last Modified        05/11/2026 10:18:43                                      Deleted Observations  0     
+             Protection                                                                    Compressed            NO    
+             Data Set Type                                                                 Sorted                NO    
+             Label                                                                                                     
+             Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                                
+             Encoding             utf-8  Unicode (UTF-8)                                                               
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    69                                                                                                      
+First Data Page             1                                                                                                       
+Max Obs per Page            1486                                                                                                    
+Obs in First Data Page      1447                                                                                                    
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work8AAF0000978B_odaws02-euw1.oda.sas.com/SAS_                                             
+                            work3ACE0000978B_odaws02-euw1.oda.sas.com/test_raw.sas7bdat                                             
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                536904418                                                                                               
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   9MB                                                                                                     
+File Size (bytes)           9175040                                                                                                 
+
+
+                                             Alphabetic List of Variables and Attributes
+ 
+                             #    Variable                            Type    Len    Format     Informat
+
+                             6    DebtRatio                           Num       8    BEST12.    BEST32. 
+                             7    MonthlyIncome                       Char      7    $7.        $7.     
+                            12    NumberOfDependents                  Char      2    $2.        $2.     
+                             8    NumberOfOpenCreditLinesAndLoans     Num       8    BEST12.    BEST32. 
+                             5    NumberOfTime30-59DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                            11    NumberOfTime60-89DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                             9    NumberOfTimes90DaysLate             Num       8    BEST12.    BEST32. 
+                            10    NumberRealEstateLoansOrLines        Num       8    BEST12.    BEST32. 
+                             3    RevolvingUtilizationOfUnsecuredL    Num       8    BEST12.    BEST32. 
+                             2    SeriousDlqin2yrs                    Char      1    $1.        $1.     
+                             1    VAR1                                Num       8    BEST12.    BEST32. 
+                             4    age                                 Num       8    BEST12.    BEST32. 
+
+                                                      Test Data - Column Check               Thursday,  5 November 2026 10:14:00  28
+
+                                                         The PLM Procedure
+
+                                                         Store Information
+
+                                 Item Store               WORK.LOGIT_MODEL                         
+                                 Data Set Created From    WORK.MODEL_FEATURES_TRAIN                
+                                 Created By               PROC LOGISTIC                            
+                                 Date Created             05NOV26:10:17:32                         
+                                 Response Variable        default_flag                             
+                                 Link Function            Logit                                    
+                                 Distribution             Binary                                   
+                                 Class Variable           default_flag                             
+                                 Model Effects            Intercept credit_utilization_c           
+                                                          debt_ratio_capped has_delinquency        
+                                                          has_serious_delinque ...                 
+
+                                                 Test Set - Risk Grade Distribution          Thursday,  5 November 2026 10:14:00  29
+
+                                                         The FREQ Procedure
+
+                                     risk_                             Cumulative    Cumulative
+                                     grade    Frequency     Percent     Frequency      Percent
+                                     ----------------------------------------------------------
+                                     A           92477       91.11         92477        91.11  
+                                     B            2205        2.17         94682        93.28  
+                                     C             921        0.91         95603        94.19  
+                                     D              19        0.02         95622        94.21  
+                                     F            5881        5.79        101503       100.00  
+
+
+                                                                           Cumulative    Cumulative
+                                recommendation    Frequency     Percent     Frequency      Percent
+                                -------------------------------------------------------------------
+                                Approve              94682       93.28         94682        93.28  
+                                Decline               5900        5.81        100582        99.09  
+                                Review                 921        0.91        101503       100.00  
+
+                                                   Test Set - Prediction Summary             Thursday,  5 November 2026 10:14:00  30
+
+                                                        The MEANS Procedure
+
+                    Variable                  N            Mean         Std Dev         Minimum         Maximum
+                    -------------------------------------------------------------------------------------------
+                    pd_logistic           95622       0.0636937       0.1118148    6.791479E-55       0.8488395
+                    credit_risk_score     95622     834.0759658      27.9561345     638.0000000     850.0000000
+                    -------------------------------------------------------------------------------------------
+
+                                                    Sample Test Set Predictions              Thursday,  5 November 2026 10:14:00  31
+
+                                                                      credit_
+                                                            pred_      risk_     risk_
+                                 row_id    pd_logistic    logistic     score     grade    recommendation
+
+                                  83949         .             0          .         F         Decline    
+                                  83825         .             0          .         F         Decline    
+                                  93207         .             0          .         F         Decline    
+                                  80346         .             0          .         F         Decline    
+                                  66404         .             0          .         F         Decline    
+                                  65941         .             0          .         F         Decline    
+                                  80303         .             0          .         F         Decline    
+                                  75077         .             0          .         F         Decline    
+                                  85194         .             0          .         F         Decline    
+                                  99042         .             0          .         F         Decline    
+                                 101037         .             0          .         F         Decline    
+                                  91441         .             0          .         F         Decline    
+                                  63721         .             0          .         F         Decline    
+                                  80238         .             0          .         F         Decline    
+                                  70173         .             0          .         F         Decline    
+                                 101234         .             0          .         F         Decline    
+                                  79952         .             0          .         F         Decline    
+                                  95704         .             0          .         F         Decline    
+                                  74455         .             0          .         F         Decline    
+                                  66809         .             0          .         F         Decline    

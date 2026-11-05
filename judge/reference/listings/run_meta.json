@@ -1,0 +1,45 @@
+{
+  "run_id": "baseline_v2",
+  "mutation": null,
+  "scripts": [
+    "feature_engineering.sas",
+    "train.sas",
+    "metrics_calculation.sas",
+    "predict.sas"
+  ],
+  "data_dir": "/Users/cristophersalvi/GitHub/sas-migration/data",
+  "stage_inputs": "",
+  "sas_version": "9.04.01M9P06052025",
+  "errors": {
+    "feature_engineering.sas": [],
+    "train.sas": [],
+    "metrics_calculation.sas": [],
+    "predict.sas": []
+  },
+  "new_warnings": {
+    "feature_engineering.sas": [],
+    "train.sas": [],
+    "metrics_calculation.sas": [],
+    "predict.sas": []
+  },
+  "remote_run_root": "/home/u64643823/sasmig/runs/baseline_v2-20261105T100634",
+  "wall_clock_s": 315,
+  "warnings_reviewed": {
+    "reviewed_on": "2026-11-05",
+    "verdict": "benign, present in original code",
+    "warnings": [
+      "WARNING: Limit set by ERRORS= option reached. Further errors of this type will not be printed.",
+      "WARNING: Multiple lengths were specified for the variable ROCModel by input data set(s). This can cause truncation of data.",
+      "WARNING: The variable 'IP_:'n in the DROP, KEEP, or RENAME list has never been referenced.",
+      "WARNING: The variable 'XP_:'n in the DROP, KEEP, or RENAME list has never been referenced.",
+      "WARNING: The variable _FROM_ in the DROP, KEEP, or RENAME list has never been referenced.",
+      "WARNING: The variable _INTO_ in the DROP, KEEP, or RENAME list has never been referenced.",
+      "WARNING: The variable _LEVEL_ in the DROP, KEEP, or RENAME list has never been referenced."
+    ],
+    "notes": [
+      "DROP-list names never referenced (train.sas cleanup of PROC LOGISTIC columns that are not created)",
+      "ERRORS= limit: input('NA', best32.) invalid-data notes; NA -> missing is the intended conversion",
+      "ROCModel multiple lengths: model_summary merge of 'Training Set'/'Validation Set'; ROCModel is not kept"
+    ]
+  }
+}

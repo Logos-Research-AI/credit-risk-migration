@@ -1,0 +1,18 @@
+{
+  "run_id": "ref_edge_metrics_c",
+  "mutation": null,
+  "scripts": [
+    "metrics_calculation.sas"
+  ],
+  "data_dir": "/Users/cristophersalvi/GitHub/sas-migration/data",
+  "stage_inputs": "scenarios/edge_metrics_c",
+  "sas_version": "9.04.01M9P06052025",
+  "errors": {
+    "metrics_calculation.sas": []
+  },
+  "new_warnings": {
+    "metrics_calculation.sas": []
+  },
+  "remote_run_root": "/home/u64643823/sasmig/runs/ref_edge_metrics_c-20261105T105638",
+  "wall_clock_s": 29
+}
