@@ -429,8 +429,7 @@ def sas_d8(x: float | None) -> str:
     max(4, decimals for 3 significant digits)) decimals ('-4.1668', '0.00250', '0.0170'), decided
     from the ROUNDED value (a carry across a power of ten re-decides once); a value that does not fit
     in 8 falls back to BEST8. Fitted on 1,239 fixed reference cells.
-    TODO(port): D8. fitted on 38 cells first; E threshold bracketed (2.90e-5 fixed, 6.42e-6 E);
-    0 unverified."""
+    RESOLVED (post-parity): X06 fixes 14 cells; |x| >= 100 prints 1 decimal (cap 8), E below 1e-5."""
     if x is None or not math.isfinite(x):
         return ""
     if x == 0:
@@ -445,6 +444,9 @@ def sas_d8(x: float | None) -> str:
         need = max(0, 3 - (_sig15(v).adjusted() + 1))
         return max(0, min(cap, max(4, need)))
 
+    if ax >= 100:  # X06: 123.5, 12345.7, 250.5; 1234568 (no room for a decimal)
+        s = _fixed(x, max(0, min(8 - len(str(int(ax))) - 1 - neg, 1)))
+        return s if len(s) <= 8 else sas_best(x, 8)
     dec = decimals(x)
     s = _fixed(x, dec)
     dec2 = decimals(float(s))
@@ -1092,4 +1094,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=9
+# PORT STATUS: confidence=medium todos=8

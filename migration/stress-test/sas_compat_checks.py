@@ -869,13 +869,25 @@ def check_x06_percent() -> None:
     counted("X06 PERCENT8.2 cells", bad, len(cases), "cases")
 
 
+def check_x06_d8() -> None:
+    """X06 D8. cells, exact."""
+    cases = [
+        (0.000029, "0.000029"), (0.00001, "0.000010"), (6.42e-6, "6.42E-6"), (0.000123456, "0.000123"),
+        (123.456789, "123.5"), (12345.6789, "12345.7"), (-0.5, "-0.5000"), (0.0, "0"),
+        (1234567.89, "1234568"), (-0.000029, "-0.00003"), (0.5, "0.5000"), (99.123456789, "99.1235"),
+        (250.5, "250.5"), (1.2345e-6, "1.235E-6"),
+    ]
+    bad = [f"{x!r}: {sc.sas_d8(x)!r} want {w!r}" for x, w in cases if sc.sas_d8(x) != w]
+    counted("X06 D8. cells", bad, len(cases), "cases")
+
+
 def main() -> None:
     steps: list[Callable[[], object]] = [
         check_best_small, check_best12, check_percent_wd, check_rank_and_wd84, check_import,
         check_edge_cases, check_d_formats, check_writer, check_stepwise, check_reference_pd_tables, check_roc,
         check_x05_scalars, check_x05_exprs, check_sql_and_merge, check_helper_names_and_agg, check_writer_rules,
         check_fit_and_stepwise_edges, check_degenerate_stats, check_runs_sas_pd, check_runs_stepwise,
-        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent,
+        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent, check_x06_d8,
     ]
     for f in steps:
         try:
