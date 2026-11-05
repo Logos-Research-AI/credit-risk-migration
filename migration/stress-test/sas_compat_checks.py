@@ -862,13 +862,20 @@ def check_x06_best() -> None:
     counted("X06 BESTw. cells at w = 6, 8, 12", bad, len(cases) * 3)
 
 
+def check_x06_percent() -> None:
+    """X06 PERCENT8.2 cells, exact (SAS text before the export strips it)."""
+    cases = [(9.99, "999.0%"), (9.999, "999.9%"), (12.34, "1234%"), (-12.34, "( 1234%)"), (1e-7, "0.00%")]
+    bad = [f"{x!r}: {sc.fmt_percent(x, 8, 2)!r} want {w!r}" for x, w in cases if sc.fmt_percent(x, 8, 2) != w]
+    counted("X06 PERCENT8.2 cells", bad, len(cases), "cases")
+
+
 def main() -> None:
     steps: list[Callable[[], object]] = [
         check_best_small, check_best12, check_percent_wd, check_rank_and_wd84, check_import,
         check_edge_cases, check_d_formats, check_writer, check_stepwise, check_reference_pd_tables, check_roc,
         check_x05_scalars, check_x05_exprs, check_sql_and_merge, check_helper_names_and_agg, check_writer_rules,
         check_fit_and_stepwise_edges, check_degenerate_stats, check_runs_sas_pd, check_runs_stepwise,
-        check_x06_oddsr, check_x06_input, check_x06_best,
+        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent,
     ]
     for f in steps:
         try:

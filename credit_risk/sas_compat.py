@@ -405,9 +405,7 @@ def fmt_percent(x: float | None, w: int, d: int) -> str:
     '5.00%' but '100.0%' (A14, A24). A negative value is enclosed in parentheses and right-aligned
     inside them (experiment X05: -0.05 at percent8.2 -> '( 5.00%)'); this is SAS's text before any
     stripping. None -> ''.
-    TODO(port): a value that does not fit w at 0 decimals (> 999% at percent8.2) falls back to BEST
-    (unverified), and a negative value that rounds to zero prints unsigned and unparenthesised
-    (unverified)."""
+    RESOLVED (post-parity): X06 overflow cells (1234%, ( 1234%), 0.00%) match; > 6 digits is BEST."""
     if x is None or not math.isfinite(x):
         return ""
     v = x * 100
@@ -1094,4 +1092,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=10
+# PORT STATUS: confidence=medium todos=9
