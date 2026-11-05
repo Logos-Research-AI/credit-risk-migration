@@ -1,0 +1,50 @@
+5                                                          The SAS System                        Thursday,  5 November 2026 15:49:00
+
+24         ods listing close;ods html5 (id=saspy_internal) file=_tomods1 options(bitmap_mode='inline') device=svg style=HTMLBlue;
+24       ! ods graphics on / outputfmt=png;
+25         
+26         /* Inventory experiment X05 (prompt 03 round 1): settle latent semantics the stress test
+27            found (amendment queue S1, S10, sas_compat review A-01/A-04/A-05/A-06/A-19, diff D21). */
+28         data e; x = 1; if 0; run;
+28       !                                                   /* zero rows */
+29         proc sql noprint;
+29       !                   select sum(x), mean(x), max(x) into :s, :m, :mx from e;
+29       !                                                                           quit;
+30         %put X05 sql_empty sum=[&s] mean=[&m] max=[&mx];
+X05 sql_empty sum=[       .] mean=[       .] max=[       .]
+31         data _null_;
+32           array v{12} _temporary_ (2.4999999999999996 2.5 2.4999999999 2.49999999999999 -2.4999999999999996
+33                                    712.49999999999989 712.5 0.5 1.5 4503599627370497 -0.5 2.5000000000000004);
+34           do i = 1 to 12; r = round(v{i}); put "X05 round " v{i} best32. " -> " r best32.; end;
+35           a = -0.00001; put "X05 w.d neg-zero 8.4 [" a 8.4 "]";
+36           b = -0.05;    put "X05 percent8.2 neg [" b percent8.2 "]";
+37           c = 0.000015; put "X05 best6 [" c best6. "] best8 [" c best8. "] best12 [" c best12. "]";
+38           d = 123456789; put "X05 8.4 overflow [" d 8.4 "]";
+39           f = exp(1000); put "X05 exp(1000) [" f "]";
+40         run;
+X05 round                              2.5 ->                                3
+X05 round                              2.5 ->                                3
+X05 round                     2.4999999999 ->                                2
+X05 round                 2.49999999999999 ->                                3
+X05 round                             -2.5 ->                               -3
+X05 round                            712.5 ->                              713
+X05 round                            712.5 ->                              713
+X05 round                              0.5 ->                                1
+X05 round                              1.5 ->                                2
+X05 round                 4503599627370497 ->                 4503599627370497
+X05 round                             -0.5 ->                               -1
+X05 round                              2.5 ->                                3
+X05 w.d neg-zero 8.4 [ -0.0000]
+X05 percent8.2 neg [( 5.00%)]
+X05 best6 [ 15E-6] best8 [0.000015] best12 [    0.000015]
+X05 8.4 overflow [1.2346E8]
+X05 exp(1000) [. ]
+i=13 r=3 a=-0.00001 b=-0.05 c=0.000015 d=123456789 f=. _ERROR_=1 _N_=1
+41         
+42         
+43         
+44         ods html5 (id=saspy_internal) close;ods listing;
+45         
+6                                                          The SAS System                        Thursday,  5 November 2026 15:49:00
+
+46         

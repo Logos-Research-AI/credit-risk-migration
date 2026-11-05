@@ -252,7 +252,7 @@ def finalize() -> int:
             else:
                 st = "confirmed"
             if any(v == "RULEBOOK_CONFLICT" for v in list(v1.values()) + list(second.get(k, {}).values())):
-                st += "; needs queued rulebook amendment"
+                st += "; depended on a rulebook amendment (applied in v1.2)"
         if k in resolved:
             st = f"confirmed ({resolved[k]})"
         if k in fixes and not r[6].startswith("confirmed"):

@@ -98,3 +98,16 @@ for translation rules once it exists.
 - Stack: pyproject.toml (uv), polars 2.1.0 and numpy 2.5.4 pinned to the judge's versions,
   scipy, ruff and pyright (strict) as the in-loop referee.
 - sas_compat API stub written by the orchestrator; bodies by a Sonnet implementer and reviewed.
+
+## Step 2 (prompt 03) — closed 2026-11-05 (orchestrator decision, standing instruction)
+- Round 1:
+  - sas_compat: 68/68 checks.
+  - Pilot: 0 wrong-output findings.
+  - Bakeoff: 13 rulebook-right, 10 both-defensible, 1 native-right, 0 both-wrong.
+  - The pilot translations pass judge runs 2–8 (staged) on first execution.
+- Amendments S1–S12 + X05 applied as RULEBOOK v1.3; inventory fixes for the decile
+  divisors, S6 and S11.
+- Re-round folded into Step 3 (DEV-009).
+- Workspaces deleted: the stress-pilot worktree (`git worktree remove` + branch deleted) and
+  translator B's scratch folder. Confirmed absent by `ls`.
+- Report: migration/stress-test/report.md.

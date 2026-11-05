@@ -50,3 +50,4 @@ predict.sas	flag_few_credit_lines	flag = (num_credit_lines <= 2)	FP-02
 predict.sas	work.kaggle_submission (kaggle_submission.csv)	data step keep row_id pd_logistic	FP-05
 predict.sas	kaggle_submission.csv	data kaggle_submission (keep row_id pd_logistic) + PROC EXPORT	FP-05
 predict.sas	test_predictions.csv	data test_predictions_full (keep ...) + PROC EXPORT	FP-02
+train.sas	printed_fit_statistics.csv	ODS FitStatistics (Model Fit Statistics) at step 0 and after each of the 24 steps	pilot S6
