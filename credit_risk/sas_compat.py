@@ -303,22 +303,29 @@ def _enotation(x: float, w: int, mant_dec: int | None = None) -> str:
 def _best_e(x: float, w: int) -> str:
     """E-notation text of BESTw. at w != 12 (X05, X06). With at least two mantissa decimals
     available ('1.23E-6' at w=8, '1.23E6' at w=6) it is the decimal form; with fewer the integer-mantissa
-    form fills the width ('123E-7' at w=6, '-12E-6', '123E9'), trailing zeros stripped ('1E-5', '15E-6')."""
+    form fills the width ('123E-7' at w=6, '-12E-6', '123E9'), trailing zeros stripped ('1E-5', '15E-6').
+    The text never exceeds w: digits are dropped until the
+    printed exponent fits (BEST6 of 1.005e-9 -> '1E-9'); the digits kept there are unverified."""
     d15 = _sig15(x)
     neg = 1 if x < 0 else 0
     adj = d15.adjusted()
     if w - len(f"E{adj}") - neg - 2 >= 2:
         return _enotation(x, w)
-    nd = max(w - neg - len(f"E{adj}"), 1)
-    m = int(d15.scaleb(-(adj - nd + 1)).quantize(Decimal(1), rounding=ROUND_HALF_UP, context=_CTX))
-    e = adj - nd + 1
-    if m >= 10**nd:
-        m //= 10
-        e += 1
-    while m % 10 == 0:
-        m //= 10
-        e += 1
-    return ("-" if neg else "") + str(m) + f"E{e}"
+    sign = "-" if neg else ""
+    out = ""
+    for nd in range(max(w - neg - len(f"E{adj}"), 1), 0, -1):  # fewer digits until the text fits w
+        e = adj - nd + 1
+        m = int(d15.scaleb(-e).quantize(Decimal(1), rounding=ROUND_HALF_UP, context=_CTX))
+        if m >= 10**nd:
+            m //= 10
+            e += 1
+        while m % 10 == 0:
+            m //= 10
+            e += 1
+        out = sign + str(m) + f"E{e}"
+        if len(out) <= w:
+            break
+    return out
 
 
 def _best_below_one(x: float, w: int) -> str:

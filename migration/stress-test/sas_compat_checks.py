@@ -888,13 +888,20 @@ def check_x06_d12() -> None:
     counted("X06 D12.3 cells", bad, len(cases), "cases")
 
 
+def check_best_width_invariant() -> None:
+    """BESTw. never prints wider than w (review of 06674b5); the digits kept are not SAS-verified."""
+    cases = [(1.005e-9, 6), (1.005e-8, 6), (9.96e-9, 6), (-9.948e-9, 6), (-1.05e-9, 7), (-9.948e-9, 7)]
+    bad = [f"{x!r} w={w}: {sc.sas_best(x, w)!r}" for x, w in cases if len(sc.sas_best(x, w)) > w]
+    counted("BEST6/BEST7 width invariant on tiny values", bad, len(cases), "cases")
+
+
 def main() -> None:
     steps: list[Callable[[], object]] = [
         check_best_small, check_best12, check_percent_wd, check_rank_and_wd84, check_import,
         check_edge_cases, check_d_formats, check_writer, check_stepwise, check_reference_pd_tables, check_roc,
         check_x05_scalars, check_x05_exprs, check_sql_and_merge, check_helper_names_and_agg, check_writer_rules,
         check_fit_and_stepwise_edges, check_degenerate_stats, check_runs_sas_pd, check_runs_stepwise,
-        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent, check_x06_d8, check_x06_d12,
+        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent, check_x06_d8, check_x06_d12, check_best_width_invariant,
     ]
     for f in steps:
         try:
