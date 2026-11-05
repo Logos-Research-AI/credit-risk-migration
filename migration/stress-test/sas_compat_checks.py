@@ -895,13 +895,19 @@ def check_best_width_invariant() -> None:
     counted("BEST6/BEST7 width invariant on tiny values", bad, len(cases), "cases")
 
 
+def check_hl_empty() -> None:
+    """hosmer_lemeshow on an empty frame returns an empty table and missing statistics."""
+    tb, chi, dof, pv = sc.hosmer_lemeshow(pl.Series("y", [], dtype=pl.Float64), pl.Series("p", [], dtype=pl.Float64))
+    report("hosmer_lemeshow on an empty frame", tb.height == 0 and chi is None and pv is None and dof == 0, f"{tb.shape} {chi} {dof} {pv}")
+
+
 def main() -> None:
     steps: list[Callable[[], object]] = [
         check_best_small, check_best12, check_percent_wd, check_rank_and_wd84, check_import,
         check_edge_cases, check_d_formats, check_writer, check_stepwise, check_reference_pd_tables, check_roc,
         check_x05_scalars, check_x05_exprs, check_sql_and_merge, check_helper_names_and_agg, check_writer_rules,
         check_fit_and_stepwise_edges, check_degenerate_stats, check_runs_sas_pd, check_runs_stepwise,
-        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent, check_x06_d8, check_x06_d12, check_best_width_invariant,
+        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent, check_x06_d8, check_x06_d12, check_best_width_invariant, check_hl_empty,
     ]
     for f in steps:
         try:

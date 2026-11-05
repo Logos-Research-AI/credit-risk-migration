@@ -959,8 +959,20 @@ def hosmer_lemeshow(y: pl.Series, pd: pl.Series) -> tuple[pl.DataFrame, float | 
     NoneventsObserved, NoneventsExpected (Int64 counts, Float64 expected; the caller renders
     the expected columns with 2 decimals). The chi-square is None when a group's expected count is 0;
     the p-value is None when it is None or DF < 1 (fewer than 3 groups).
-    RESOLVED (post-parity): fewer than 3 groups or an empty expected count are out of domain; None."""
+    RESOLVED (post-parity): an empty input returns an empty table with missing statistics (DF 0); fewer
+    than 3 groups gives DF < 1 and a missing p-value. SAS output for these inputs is unverified."""
     d = pl.DataFrame({"y": y.cast(pl.Float64), "p": pd.cast(pl.Float64)}).drop_nulls()
+    if d.height == 0:
+        cols0 = [
+            "Group",
+            "Total",
+            "EventsObserved",
+            "EventsExpected",
+            "NoneventsObserved",
+            "NoneventsExpected",
+        ]
+        types0 = [pl.Int64, pl.Int64, pl.Int64, pl.Float64, pl.Int64, pl.Float64]
+        return pl.DataFrame(schema=dict(zip(cols0, types0, strict=True))), None, 0, None
     p0 = np.asarray(d.get_column("p").to_numpy(), dtype=np.float64)
     y0 = np.asarray(d.get_column("y").to_numpy(), dtype=np.float64)
     o = np.argsort(p0, kind="stable")
