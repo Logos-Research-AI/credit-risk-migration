@@ -264,14 +264,31 @@ def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> Non
     a = a.with_columns(train_pct=sas_compat.div(pl.col("cnt"), train_bins.height)).drop("cnt")
     b = valid_bins.group_by("score_bin", maintain_order=True).agg(cnt=pl.len().cast(pl.Int64))
     b = b.with_columns(valid_pct=sas_compat.div(pl.col("cnt"), valid_bins.height)).drop("cnt")
-    psi_calculation = (
-        a.join(b, on="score_bin", how="inner", maintain_order="left", nulls_equal=True)
-        .with_columns(
+    if fix_psi_bins:
+        # FIXED(post-parity, flag --fix-psi-bins): left join from the TRAINING bins; a training bin with no
+        # validation rows keeps valid_pct = 0 (printed as 0) and enters the log term with both shares
+        # floored at PSI_EPS = 1e-4 (ln(train/0) is undefined), so the shift is not silently dropped
+        eps = 1e-4
+        psi_calculation = a.join(
+            b, on="score_bin", how="left", maintain_order="left", nulls_equal=True
+        ).with_columns(pl.col("valid_pct").fill_null(0.0))
+        share_sum = float(psi_calculation.select(pl.col("valid_pct").sum()).item())
+        if abs(share_sum - 1.0) > 1e-9:
+            raise ValueError("--fix-psi-bins: validation shares do not sum to 1")
+        psi_calculation = psi_calculation.with_columns(
             psi_component=(pl.col("train_pct") - pl.col("valid_pct"))
-            * sas_compat.sas_log(pl.col("train_pct") / pl.col("valid_pct"))  # R§2 log; column / column
+            * pl.max_horizontal(pl.col("train_pct"), eps).log()
+            - (pl.col("train_pct") - pl.col("valid_pct")) * pl.max_horizontal(pl.col("valid_pct"), eps).log()
+        ).sort("score_bin", maintain_order=True)
+    else:
+        psi_calculation = (
+            a.join(b, on="score_bin", how="inner", maintain_order="left", nulls_equal=True)
+            .with_columns(
+                psi_component=(pl.col("train_pct") - pl.col("valid_pct"))
+                * sas_compat.sas_log(pl.col("train_pct") / pl.col("valid_pct"))  # R§2 log; column / column
+            )
+            .sort("score_bin", maintain_order=True)  # ascending score_bin (INV printed_psi_calculation.csv)
         )
-        .sort("score_bin", maintain_order=True)  # ascending score_bin (INV printed_psi_calculation.csv)
-    )
 
     # metrics_calculation.sas:280-287 psi_summary
     # R§2 SQL aggregates (S10): PSI is missing over an empty join; INV work.psi_calculation / psi_summary
