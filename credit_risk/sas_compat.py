@@ -412,7 +412,8 @@ def fmt_percent(x: float | None, w: int, d: int) -> str:
     '5.00%' but '100.0%' (A14, A24). A negative value is enclosed in parentheses and right-aligned
     inside them (experiment X05: -0.05 at percent8.2 -> '( 5.00%)'); this is SAS's text before any
     stripping. None -> ''.
-    RESOLVED (post-parity): X06 overflow cells (1234%, ( 1234%), 0.00%) match; > 6 digits is BEST."""
+    RESOLVED (post-parity): X06 overflow cells (1234%, ( 1234%), 0.00%) match. Still unverified: a negative
+    value that rounds to zero prints unsigned; the BEST fallback for 6+ digit percentages (>= 123456%)."""
     if x is None or not math.isfinite(x):
         return ""
     v = x * 100
