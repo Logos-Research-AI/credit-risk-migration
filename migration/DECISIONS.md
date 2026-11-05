@@ -88,3 +88,13 @@ for translation rules once it exists.
   - DEV-006 sanctioned and moved into RULEBOOK §7.
 - Before Step 2 (prompt 03), the user installs .claude/settings.json from the kit template
   (absent as of this gate; the kit forbids the agent from installing it).
+
+## Step 2 (prompt 03) — started 2026-11-05 under the user's standing instruction
+- The user: "Do all the steps without ever stopping asking me. I trust your judgement and
+  recommendations." Every later gate is decided by the orchestrator using its recommendation,
+  and recorded here for audit.
+- settings.json is absent; logged as waived (DEV-007), not installed.
+- Pilot implementer = translator A (DEV-008).
+- Stack: pyproject.toml (uv), polars 2.1.0 and numpy 2.5.4 pinned to the judge's versions,
+  scipy, ruff and pyright (strict) as the in-loop referee.
+- sas_compat API stub written by the orchestrator; bodies by a Sonnet implementer and reviewed.
