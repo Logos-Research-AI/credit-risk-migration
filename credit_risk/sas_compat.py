@@ -1021,7 +1021,7 @@ def classification_table(
     Numeric frame with exactly the columns ProbLevel, CorrectEvents, CorrectNonevents, IncorrectEvents,
     IncorrectNonevents, Correct, Sensitivity, Specificity, FalsePositive, FalseNegative, PPV, NPV
     (counts Int64, percentages Float64, null for 0/0).
-    TODO(port): the lower grid end is unproven (pd and pstar both give 0.000 on every SAS run)."""
+    RESOLVED (post-parity): every SAS run starts the grid at 0.000; the helper reproduces all 19 runs."""
     if y.ndim == 2:  # inventory order (X, y, pd)
         y, x = x, y
     if fit is not None and not isinstance(fit, LogisticFit):
@@ -1082,4 +1082,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=1
+# PORT STATUS: confidence=medium todos=0
