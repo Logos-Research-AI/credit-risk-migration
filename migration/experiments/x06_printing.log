@@ -1,0 +1,65 @@
+5                                                          The SAS System                        Thursday,  5 November 2026 16:26:00
+
+24         ods listing close;ods html5 (id=saspy_internal) file=_tomods1 options(bitmap_mode='inline') device=svg style=HTMLBlue;
+24       ! ods graphics on / outputfmt=png;
+25         
+26         /* Inventory experiment X06 (prompt 06 post-parity): verify the printing rules that
+27            credit_risk/sas_compat.py marks TODO(port) as unverified. One value per line. */
+28         data _null_;
+29           length s $40;
+30           s = '1234567890123456789012345678901234567'; x = input(s, best32.); put "X06 input32 " x best32.;
+31           s = '   12.5'; x = input(s, best32.); put "X06 input_lead " x best32.;
+32           array b{8} _temporary_ (0.0000123 0.00000123 0.00012345 0.000012345 0.0000099999 1234567.891 -0.0000123 123456789012);
+33           do i = 1 to 8; v = b{i}; put "X06 best " v best32. " b8=[" v best8. "] b12=[" v best12. "] b6=[" v best6. "]"; end;
+34           array p{5} _temporary_ (9.99 9.999 12.34 -12.34 0.0000001);
+35           do i = 1 to 5; v = p{i}; put "X06 pct " v best32. " p82=[" v percent8.2 "]"; end;
+36           array d{14} _temporary_ (0.000029 0.00001 0.00000642 0.000123456 123.456789 12345.6789 -0.5 0 1234567.89 -0.000029 0.5
+36       ! 99.123456789 250.5 0.0000012345);
+37           do i = 1 to 14; v = d{i}; put "X06 d " v best32. " d8=[" v d8. "] d123=[" v d12.3 "]"; end;
+38           array o{7} _temporary_ (1234.5 0.0005 0.001 999.999 1000 0.0009999 3.7495);
+39           do i = 1 to 7; v = o{i}; put "X06 oddsr " v best32. " o83=[" v oddsr8.3 "]"; end;
+40         run;
+X06 input32 12345678901234566802609541218304
+X06 input_lead                             12.5
+X06 best                        0.0000123 b8=[0.000012] b12=[   0.0000123] b6=[123E-7]
+X06 best                          1.23E-6 b8=[ 1.23E-6] b12=[     1.23E-6] b6=[123E-8]
+X06 best                       0.00012345 b8=[0.000123] b12=[  0.00012345] b6=[0.0001]
+X06 best                      0.000012345 b8=[0.000012] b12=[ 0.000012345] b6=[123E-7]
+X06 best                        9.9999E-6 b8=[    1E-5] b12=[   9.9999E-6] b6=[  1E-5]
+X06 best                      1234567.891 b8=[ 1234568] b12=[ 1234567.891] b6=[1.23E6]
+X06 best                       -0.0000123 b8=[-0.00001] b12=[  -0.0000123] b6=[-12E-6]
+X06 best                     123456789012 b8=[1.235E11] b12=[123456789012] b6=[ 123E9]
+X06 pct                             9.99 p82=[ 999.0% ]
+X06 pct                            9.999 p82=[ 999.9% ]
+X06 pct                            12.34 p82=[  1234% ]
+X06 pct                           -12.34 p82=[( 1234%)]
+X06 pct                             1E-7 p82=[  0.00% ]
+X06 d                         0.000029 d8=[0.000029] d123=[ 0.000029000]
+X06 d                          0.00001 d8=[0.000010] d123=[ 0.000010000]
+X06 d                          6.42E-6 d8=[ 6.42E-6] d123=[ 0.000006420]
+X06 d                      0.000123456 d8=[0.000123] d123=[    0.000123]
+X06 d                       123.456789 d8=[   123.5] d123=[  123.456789]
+X06 d                       12345.6789 d8=[ 12345.7] d123=[       12346]
+X06 d                             -0.5 d8=[ -0.5000] d123=[   -0.500000]
+X06 d                                0 d8=[       0] d123=[           0]
+X06 d                       1234567.89 d8=[ 1234568] d123=[     1234568]
+X06 d                        -0.000029 d8=[-0.00003] d123=[-0.000029000]
+X06 d                              0.5 d8=[  0.5000] d123=[    0.500000]
+X06 d                     99.123456789 d8=[ 99.1235] d123=[   99.123457]
+X06 d                            250.5 d8=[   250.5] d123=[  250.500000]
+X06 d                        1.2345E-6 d8=[1.235E-6] d123=[ 0.000001235]
+X06 oddsr                           1234.5 o83=[>999.999]
+X06 oddsr                           0.0005 o83=[  <0.001]
+X06 oddsr                            0.001 o83=[   0.001]
+X06 oddsr                          999.999 o83=[ 999.999]
+X06 oddsr                             1000 o83=[>999.999]
+X06 oddsr                        0.0009999 o83=[  <0.001]
+X06 oddsr                           3.7495 o83=[   3.750]
+41         
+42         
+43         
+44         ods html5 (id=saspy_internal) close;ods listing;
+45         
+6                                                          The SAS System                        Thursday,  5 November 2026 16:26:00
+
+46         

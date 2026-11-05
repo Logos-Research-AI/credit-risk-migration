@@ -1,0 +1,25 @@
+credit_risk/metrics_calculation.py:245:    # R§2 PROC RANK; BUG(port): judge/reference risk_scores_*: every score_bin has
+credit_risk/sas_compat.py:234:    TODO(port): best32. reads only the first 32 columns (A-02); the 32-character cut is unverified."""
+credit_risk/sas_compat.py:311:    TODO(port): only the 0.000015 cells of X05 are SAS-verified; the digit-count choice and the
+credit_risk/sas_compat.py:337:    TODO(port): the 1e-5 threshold is verified at w = 12 only (A15); BEST8. below 1e-4 beyond the
+credit_risk/sas_compat.py:385:    TODO(port): a value that does not fit w at 0 decimals (> 999% at percent8.2) falls back to BEST
+credit_risk/sas_compat.py:411:    TODO(port): D8. fitted on 38 cells first; E threshold bracketed (2.90e-5 fixed, 6.42e-6 E);
+credit_risk/sas_compat.py:441:    TODO(port): 100 <= |x| < 1e4 (6 decimals assumed) and |x| < 1e-5 (BEST12 E-notation assumed)
+credit_risk/sas_compat.py:483:    longest of those values, LATER VALUES TRUNCATED to that width (BUG(port): guessingrows=20 sizes
+credit_risk/sas_compat.py:622:    TODO(port): non-convergence / separation behaviour is unspecified by A17 (SAS: MAXITER=25, prints
+credit_risk/sas_compat.py:704:    TODO(port): SAS would print a warning (separation / non-convergence) and continue with the
+credit_risk/sas_compat.py:758:            # TODO(port): an effect whose alias is outside the model, if removed, could alternate with
+credit_risk/sas_compat.py:842:    TODO(port): SAS's output for these degenerate inputs is unverified."""
+credit_risk/sas_compat.py:898:    TODO(port): SAS's output for these degenerate inputs is unverified."""
+credit_risk/sas_compat.py:944:    TODO(port): SAS output for LACKFIT with fewer than 3 groups or an empty expected count is unverified."""
+credit_risk/sas_compat.py:1013:    TODO(port): the lower grid end is unproven (pd and pstar both give 0.000 on every SAS run)."""
+credit_risk/feature_engineering.py:22:    # BUG(port): MonthlyIncome is sized $5. from the first 20 rows, so 159791 is cut to 15979 (77 rows)
+credit_risk/feature_engineering.py:204:    # BUG(port): SAS split depends on unguaranteed SQL row order; repro: judge run
+credit_risk/predict.py:37:    # BUG(port): medians come from the TEST set, not training. Repro: cs-test.csv gives
+credit_risk/predict.py:79:    # BUG(port): imputes from TEST-set medians. Repro: edge_predict under-30 rows get null monthly_income.
+credit_risk/predict.py:202:    # TODO(port): rulebook silent on a model variable absent at scoring (SAS PLM errors) —
+credit_risk/train.py:81:    # TODO(port): rows with a missing MODEL variable are excluded from the fit; stats here use all rows
+credit_risk/train.py:126:    # TODO(port): rows with a missing MODEL variable are excluded from the fit; stats here use all rows
+credit_risk/train.py:137:    # TODO(port): rows with a missing MODEL variable are excluded from the fit; stats here use all rows
+credit_risk/train.py:313:            # TODO(port): ODDSR8.3 prints >999.999 / <0.001 outside [0.001, 999.999]; fmt_wd does not
+credit_risk/train.py:384:    # TODO(port): rows with a missing MODEL variable are excluded from the fit; stats here use all rows
