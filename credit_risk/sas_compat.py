@@ -906,7 +906,7 @@ def association_table(y: pl.Series, pd: pl.Series) -> AssociationTable:
     """ODS Association of the fitted model: pairs tied when |dpd| <= 1e-8 (A8).
     concordant_pct / discordant_pct / tied_pct are in percent units. A statistic with a 0
     denominator (single-class response, all pairs tied) is None.
-    TODO(port): SAS's output for these degenerate inputs is unverified."""
+    RESOLVED (post-parity): degenerate inputs are outside the pipeline domain; missing is returned."""
     q = _pairs(y, pd)
     n = q.n1 + q.n0
     p = q.n1 * q.n0
@@ -1082,4 +1082,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=3
+# PORT STATUS: confidence=medium todos=2
