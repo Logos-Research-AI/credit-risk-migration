@@ -469,7 +469,8 @@ def sas_d12_3(x: float | None) -> str:
     decimals; 0 < |x| < 1e-4 -> 9 decimals, never E-notation (X06: 1.2345E-6 -> '0.000001235'); last
     digit half up (A18). The branch is chosen from the value rounded at the branch's decimals
     (9999.9999996 -> '10000'); a text wider than 12 falls back to BEST12; 0 prints '0'.
-    RESOLVED (post-parity): X06: 100 <= |x| < 1e4 has 6 decimals; |x| < 1e-4 has 9, never E-notation."""
+    RESOLVED (post-parity): X06 verifies 100 <= |x| < 1e4 (6 decimals) and 9 decimals down to 1.2e-6.
+    Unverified: |x| below about 1e-6 (rounds to 0.000000000, sign dropped)."""
     if x is None or not math.isfinite(x):
         return ""
     if x == 0:
