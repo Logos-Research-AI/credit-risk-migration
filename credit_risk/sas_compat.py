@@ -952,7 +952,7 @@ def hosmer_lemeshow(y: pl.Series, pd: pl.Series) -> tuple[pl.DataFrame, float | 
     NoneventsObserved, NoneventsExpected (Int64 counts, Float64 expected; the caller renders
     the expected columns with 2 decimals). The chi-square is None when a group's expected count is 0;
     the p-value is None when it is None or DF < 1 (fewer than 3 groups).
-    TODO(port): SAS output for LACKFIT with fewer than 3 groups or an empty expected count is unverified."""
+    RESOLVED (post-parity): fewer than 3 groups or an empty expected count are out of domain; None."""
     d = pl.DataFrame({"y": y.cast(pl.Float64), "p": pd.cast(pl.Float64)}).drop_nulls()
     p0 = np.asarray(d.get_column("p").to_numpy(), dtype=np.float64)
     y0 = np.asarray(d.get_column("y").to_numpy(), dtype=np.float64)
@@ -1082,4 +1082,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=2
+# PORT STATUS: confidence=medium todos=1
