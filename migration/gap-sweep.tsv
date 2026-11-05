@@ -1,0 +1,462 @@
+site_id	file	line	category	symbol	snippet
+S001	feature_engineering.sas	20	MACRO	%let data_path	%let data_path = /home/u64352077
+S002	feature_engineering.sas	21	MACRO	%let output_path	%let output_path = /home/u64352077/output
+S003	feature_engineering.sas	28	PROC	proc import	proc import datafile="&data_path/cs-training.csv" out=work.credit_raw dbms=csv replace
+S004	feature_engineering.sas	36	PROC	proc means	proc means data=work.credit_raw n nmiss mean std min max
+S005	feature_engineering.sas	49	FUNC	input()	MonthlyIncome_num = input(MonthlyIncome, best32.)
+S006	feature_engineering.sas	50	FUNC	input()	NumberOfDependents_num = input(NumberOfDependents, best32.)
+S007	feature_engineering.sas	53	DSTEP	drop monthlyincome numberofdependents	drop MonthlyIncome NumberOfDependents
+S008	feature_engineering.sas	54	DSTEP	rename monthlyincome_num = monthlyincome numberofdependents_num = numberofdependents	rename MonthlyIncome_num = MonthlyIncome NumberOfDependents_num = NumberOfDependents
+S009	feature_engineering.sas	59	PROC	proc sql	proc sql
+S010	feature_engineering.sas	60	CMP	age < 30	create table work.income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group, med
+S011	feature_engineering.sas	60	CMP	age < 40	create table work.income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group, med
+S012	feature_engineering.sas	60	CMP	age < 50	create table work.income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group, med
+S013	feature_engineering.sas	60	CMP	age < 60	create table work.income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group, med
+S014	feature_engineering.sas	60	CMP	is not missing	create table work.income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group, med
+S015	feature_engineering.sas	60	FUNC	median()	create table work.income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group, med
+S016	feature_engineering.sas	60	SQL	calculated age_group	create table work.income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group, med
+S017	feature_engineering.sas	60	SQL	group by calculated age_group	create table work.income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group, med
+S018	feature_engineering.sas	79	CMP	age < 30	if age < 30 then age_group = 1
+S019	feature_engineering.sas	80	CMP	age < 40	else if age < 40 then age_group = 2
+S020	feature_engineering.sas	81	CMP	age < 50	else if age < 50 then age_group = 3
+S021	feature_engineering.sas	82	CMP	age < 60	else if age < 60 then age_group = 4
+S022	feature_engineering.sas	86	FUNC	missing()	if missing(MonthlyIncome) then MonthlyIncome_missing = 1
+S023	feature_engineering.sas	89	FUNC	missing()	if missing(NumberOfDependents) then do
+S024	feature_engineering.sas	97	PROC	proc sql	proc sql
+S025	feature_engineering.sas	98	ARITH	sql credit_utilization	create table work.credit_imputed as select a.VAR1 as row_id, a.SeriousDlqin2yrs as default_flag, a.age, case when a.MonthlyIncome_missing = 1 then b.median_inco
+S026	feature_engineering.sas	98	ARITH	sql debt_ratio	create table work.credit_imputed as select a.VAR1 as row_id, a.SeriousDlqin2yrs as default_flag, a.age, case when a.MonthlyIncome_missing = 1 then b.median_inco
+S027	feature_engineering.sas	98	CMP	a.age_group = b.age_group	create table work.credit_imputed as select a.VAR1 as row_id, a.SeriousDlqin2yrs as default_flag, a.age, case when a.MonthlyIncome_missing = 1 then b.median_inco
+S028	feature_engineering.sas	98	CMP	a.monthlyincome_missing = 1	create table work.credit_imputed as select a.VAR1 as row_id, a.SeriousDlqin2yrs as default_flag, a.age, case when a.MonthlyIncome_missing = 1 then b.median_inco
+S029	feature_engineering.sas	98	SQL	left join	create table work.credit_imputed as select a.VAR1 as row_id, a.SeriousDlqin2yrs as default_flag, a.age, case when a.MonthlyIncome_missing = 1 then b.median_inco
+S030	feature_engineering.sas	130	FUNC	sum()	total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus)
+S031	feature_engineering.sas	133	CMP	total_late_payments > 0	has_delinquency = (total_late_payments > 0)
+S032	feature_engineering.sas	136	CMP	num_late_90_plus > 0	has_serious_delinquency = (num_late_90_plus > 0)
+S033	feature_engineering.sas	139	CMP	credit_utilization < 30	if credit_utilization < 30 then credit_util_category = 1
+S034	feature_engineering.sas	140	CMP	credit_utilization < 50	else if credit_utilization < 50 then credit_util_category = 2
+S035	feature_engineering.sas	141	CMP	credit_utilization < 75	else if credit_utilization < 75 then credit_util_category = 3
+S036	feature_engineering.sas	145	CMP	debt_ratio < 30	if debt_ratio < 30 then debt_category = 1
+S037	feature_engineering.sas	146	CMP	debt_ratio < 43	else if debt_ratio < 43 then debt_category = 2
+S038	feature_engineering.sas	147	CMP	debt_ratio < 60	else if debt_ratio < 60 then debt_category = 3
+S039	feature_engineering.sas	151	CMP	num_dependents > 0	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1)
+S040	feature_engineering.sas	151	DIV	income_per_dependent = monthly_income / (num_dependents + 1)	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1)
+S041	feature_engineering.sas	155	DIV	credit_lines_per_person = num_credit_lines / (num_dependents + 1)	credit_lines_per_person = num_credit_lines / (num_dependents + 1)
+S042	feature_engineering.sas	158	CMP	age < 25	if age < 25 then age_category = 1
+S043	feature_engineering.sas	159	CMP	age < 35	else if age < 35 then age_category = 2
+S044	feature_engineering.sas	160	CMP	age < 50	else if age < 50 then age_category = 3
+S045	feature_engineering.sas	161	CMP	age < 65	else if age < 65 then age_category = 4
+S046	feature_engineering.sas	165	CMP	credit_utilization > 75	flag_high_utilization = (credit_utilization > 75)
+S047	feature_engineering.sas	166	CMP	credit_utilization > 100	flag_very_high_utilization = (credit_utilization > 100)
+S048	feature_engineering.sas	167	CMP	debt_ratio > 43	flag_high_debt_ratio = (debt_ratio > 43)
+S049	feature_engineering.sas	168	CMP	debt_ratio > 60	flag_very_high_debt_ratio = (debt_ratio > 60)
+S050	feature_engineering.sas	169	CMP	num_late_30_59 > 0	flag_recent_late_payments = (num_late_30_59 > 0)
+S051	feature_engineering.sas	170	CMP	num_late_90_plus > 0	flag_serious_delinquency = (num_late_90_plus > 0)
+S052	feature_engineering.sas	171	CMP	total_late_payments >= 3	flag_multiple_delinquencies = (total_late_payments >= 3)
+S053	feature_engineering.sas	172	CMP	monthly_income < 2500	flag_low_income = (monthly_income < 2500)
+S054	feature_engineering.sas	173	CMP	num_dependents >= 3	flag_many_dependents = (num_dependents >= 3)
+S055	feature_engineering.sas	174	CMP	num_credit_lines <= 2	flag_few_credit_lines = (num_credit_lines <= 2)
+S056	feature_engineering.sas	177	FUNC	sum()	total_risk_flags = sum(flag_high_utilization, flag_high_debt_ratio, flag_serious_delinquency, flag_multiple_delinquencies, flag_low_income)
+S057	feature_engineering.sas	183	ARITH	financial_health	if credit_utilization > 30 then financial_health = financial_health - 15
+S058	feature_engineering.sas	183	CMP	credit_utilization > 30	if credit_utilization > 30 then financial_health = financial_health - 15
+S059	feature_engineering.sas	184	ARITH	financial_health	if credit_utilization > 75 then financial_health = financial_health - 15
+S060	feature_engineering.sas	184	CMP	credit_utilization > 75	if credit_utilization > 75 then financial_health = financial_health - 15
+S061	feature_engineering.sas	185	ARITH	financial_health	if debt_ratio > 43 then financial_health = financial_health - 20
+S062	feature_engineering.sas	185	CMP	debt_ratio > 43	if debt_ratio > 43 then financial_health = financial_health - 20
+S063	feature_engineering.sas	186	ARITH	financial_health	if has_delinquency then financial_health = financial_health - 20
+S064	feature_engineering.sas	186	CMP	truthy has_delinquency	if has_delinquency then financial_health = financial_health - 20
+S065	feature_engineering.sas	187	ARITH	financial_health	if num_late_90_plus > 0 then financial_health = financial_health - 30
+S066	feature_engineering.sas	187	CMP	num_late_90_plus > 0	if num_late_90_plus > 0 then financial_health = financial_health - 30
+S067	feature_engineering.sas	188	FUNC	max()	financial_health = max(0, financial_health)
+S068	feature_engineering.sas	191	ARITH	log_monthly_income	log_monthly_income = log(monthly_income + 1)
+S069	feature_engineering.sas	191	FUNC	log()	log_monthly_income = log(monthly_income + 1)
+S070	feature_engineering.sas	192	ARITH	log_num_credit_lines	log_num_credit_lines = log(num_credit_lines + 1)
+S071	feature_engineering.sas	192	FUNC	log()	log_num_credit_lines = log(num_credit_lines + 1)
+S072	feature_engineering.sas	193	ARITH	log_total_late_payments	log_total_late_payments = log(total_late_payments + 1)
+S073	feature_engineering.sas	193	FUNC	log()	log_total_late_payments = log(total_late_payments + 1)
+S074	feature_engineering.sas	196	ARITH	age_income_interaction	age_income_interaction = age * log_monthly_income
+S075	feature_engineering.sas	197	DIV	utilization_debt_interaction = debt_ratio / 100	utilization_debt_interaction = credit_utilization * debt_ratio / 100
+S076	feature_engineering.sas	200	FUNC	min()	credit_utilization_capped = min(credit_utilization, 200)
+S077	feature_engineering.sas	201	FUNC	min()	debt_ratio_capped = min(debt_ratio, 500)
+S078	feature_engineering.sas	209	PROC	proc surveyselect	proc surveyselect data=work.credit_features out=work.credit_split samprate=0.7 seed=42 outall
+S079	feature_engineering.sas	216	DSTEP	multiple output datasets: credit_train credit_validation	data work.credit_train work.credit_validation
+S080	feature_engineering.sas	218	CMP	selected = 1	if selected = 1 then output work.credit_train
+S081	feature_engineering.sas	220	DSTEP	drop selected	drop selected
+S082	feature_engineering.sas	227	PROC	proc means	proc means data=work.credit_train n mean std min max
+S083	feature_engineering.sas	233	PROC	proc freq	proc freq data=work.credit_train
+S084	feature_engineering.sas	238	PROC	proc means	proc means data=work.credit_validation n mean std min max
+S085	feature_engineering.sas	244	PROC	proc freq	proc freq data=work.credit_validation
+S086	feature_engineering.sas	257	FORMAT	_numeric_ best12.	format _numeric_ best12.
+S087	feature_engineering.sas	263	FORMAT	_numeric_ best12.	format _numeric_ best12.
+S088	feature_engineering.sas	267	PROC	proc export	proc export data=work.credit_train_export outfile="&output_path/model_features_train.csv" dbms=csv replace
+S089	feature_engineering.sas	274	PROC	proc export	proc export data=work.credit_validation_export outfile="&output_path/model_features_validation.csv" dbms=csv replace
+S090	train.sas	19	MACRO	%let output_path	%let output_path = /home/u64352077/output
+S091	train.sas	26	PROC	proc import	proc import datafile="&output_path/model_features_train.csv" out=work.model_features_train dbms=csv replace
+S092	train.sas	35	PROC	proc import	proc import datafile="&output_path/model_features_validation.csv" out=work.model_features_validation dbms=csv replace
+S093	train.sas	48	PROC	proc logistic	proc logistic data=work.model_features_train descending
+S094	train.sas	93	ODS	ods output parameterestimates	ods output ParameterEstimates=work.model_coefficients
+S095	train.sas	105	CMP	pd_logistic >= 0.5	pred_logistic = (pd_logistic >= 0.5)
+S096	train.sas	109	PROC	proc freq	proc freq data=work.logit_scored_train noprint
+S097	train.sas	113	PROC	proc print	proc print data=work.confusion_matrix_train
+S098	train.sas	119	DSTEP	set end=eof	set work.confusion_matrix_train end=eof
+S099	train.sas	120	DSTEP	retain tp tn fp fn 0	retain TP TN FP FN 0
+S100	train.sas	122	CMP	default_flag = 1	if default_flag = 1 and pred_logistic = 1 then TP = count
+S101	train.sas	122	CMP	pred_logistic = 1	if default_flag = 1 and pred_logistic = 1 then TP = count
+S102	train.sas	123	CMP	default_flag = 0	else if default_flag = 0 and pred_logistic = 0 then TN = count
+S103	train.sas	123	CMP	pred_logistic = 0	else if default_flag = 0 and pred_logistic = 0 then TN = count
+S104	train.sas	124	CMP	default_flag = 0	else if default_flag = 0 and pred_logistic = 1 then FP = count
+S105	train.sas	124	CMP	pred_logistic = 1	else if default_flag = 0 and pred_logistic = 1 then FP = count
+S106	train.sas	125	CMP	default_flag = 1	else if default_flag = 1 and pred_logistic = 0 then FN = count
+S107	train.sas	125	CMP	pred_logistic = 0	else if default_flag = 1 and pred_logistic = 0 then FN = count
+S108	train.sas	127	CMP	truthy eof	if eof then do
+S109	train.sas	128	CMP	(tp + fp) > 0	if (TP + FP) > 0 then train_precision = TP / (TP + FP)
+S110	train.sas	128	DIV	train_precision = tp / (tp + fp)	if (TP + FP) > 0 then train_precision = TP / (TP + FP)
+S111	train.sas	130	CMP	(tp + fn) > 0	if (TP + FN) > 0 then train_recall = TP / (TP + FN)
+S112	train.sas	130	DIV	train_recall = tp / (tp + fn)	if (TP + FN) > 0 then train_recall = TP / (TP + FN)
+S113	train.sas	132	CMP	(train_precision + train_recall) > 0	if (train_precision + train_recall) > 0 then train_f1_score = 2 * (train_precision * train_recall) / (train_precision + train_recall)
+S114	train.sas	132	DIV	train_f1_score = (train_precision * train_recall) / (train_precision + train_recall)	if (train_precision + train_recall) > 0 then train_f1_score = 2 * (train_precision * train_recall) / (train_precision + train_recall)
+S115	train.sas	134	CMP	(tp + tn + fp + fn) > 0	if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN)
+S116	train.sas	134	DIV	train_accuracy = (tp + tn) / (tp + tn + fp + fn)	if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN)
+S117	train.sas	138	DSTEP	keep train_precision train_recall train_f1_score train_accuracy	keep train_precision train_recall train_f1_score train_accuracy
+S118	train.sas	141	PROC	proc print	proc print data=work.training_metrics
+S119	train.sas	143	FORMAT	train_accuracy 8.4	format train_precision train_recall train_f1_score train_accuracy 8.4
+S120	train.sas	151	PROC	proc plm	proc plm restore=work.logit_model
+S121	train.sas	162	DIV	pd_logistic = 1 / (1 + exp(-predicted_logit))	pd_logistic = 1 / (1 + exp(-predicted_logit))
+S122	train.sas	162	FUNC	exp()	pd_logistic = 1 / (1 + exp(-predicted_logit))
+S123	train.sas	165	CMP	pd_logistic >= 0.5	pred_logistic = (pd_logistic >= 0.5)
+S124	train.sas	167	DSTEP	drop predicted_logit	drop predicted_logit
+S125	train.sas	171	PROC	proc freq	proc freq data=work.logit_scored_valid noprint
+S126	train.sas	175	PROC	proc print	proc print data=work.confusion_matrix
+S127	train.sas	181	DSTEP	set end=eof	set work.confusion_matrix end=eof
+S128	train.sas	182	DSTEP	retain tp tn fp fn 0	retain TP TN FP FN 0
+S129	train.sas	184	CMP	default_flag = 1	if default_flag = 1 and pred_logistic = 1 then TP = count
+S130	train.sas	184	CMP	pred_logistic = 1	if default_flag = 1 and pred_logistic = 1 then TP = count
+S131	train.sas	185	CMP	default_flag = 0	else if default_flag = 0 and pred_logistic = 0 then TN = count
+S132	train.sas	185	CMP	pred_logistic = 0	else if default_flag = 0 and pred_logistic = 0 then TN = count
+S133	train.sas	186	CMP	default_flag = 0	else if default_flag = 0 and pred_logistic = 1 then FP = count
+S134	train.sas	186	CMP	pred_logistic = 1	else if default_flag = 0 and pred_logistic = 1 then FP = count
+S135	train.sas	187	CMP	default_flag = 1	else if default_flag = 1 and pred_logistic = 0 then FN = count
+S136	train.sas	187	CMP	pred_logistic = 0	else if default_flag = 1 and pred_logistic = 0 then FN = count
+S137	train.sas	189	CMP	truthy eof	if eof then do
+S138	train.sas	190	CMP	(tp + fp) > 0	if (TP + FP) > 0 then valid_precision = TP / (TP + FP)
+S139	train.sas	190	DIV	valid_precision = tp / (tp + fp)	if (TP + FP) > 0 then valid_precision = TP / (TP + FP)
+S140	train.sas	192	CMP	(tp + fn) > 0	if (TP + FN) > 0 then valid_recall = TP / (TP + FN)
+S141	train.sas	192	DIV	valid_recall = tp / (tp + fn)	if (TP + FN) > 0 then valid_recall = TP / (TP + FN)
+S142	train.sas	194	CMP	(valid_precision + valid_recall) > 0	if (valid_precision + valid_recall) > 0 then valid_f1_score = 2 * (valid_precision * valid_recall) / (valid_precision + valid_recall)
+S143	train.sas	194	DIV	valid_f1_score = (valid_precision * valid_recall) / (valid_precision + valid_recall)	if (valid_precision + valid_recall) > 0 then valid_f1_score = 2 * (valid_precision * valid_recall) / (valid_precision + valid_recall)
+S144	train.sas	196	CMP	(tp + tn + fp + fn) > 0	if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN)
+S145	train.sas	196	DIV	valid_accuracy = (tp + tn) / (tp + tn + fp + fn)	if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN)
+S146	train.sas	200	DSTEP	keep valid_precision valid_recall valid_f1_score valid_accuracy	keep valid_precision valid_recall valid_f1_score valid_accuracy
+S147	train.sas	203	PROC	proc print	proc print data=work.validation_metrics
+S148	train.sas	205	FORMAT	valid_accuracy 8.4	format valid_precision valid_recall valid_f1_score valid_accuracy 8.4
+S149	train.sas	219	ARITH	credit_risk_score	credit_risk_score = round(base_score + score_range * (1 - pd_logistic))
+S150	train.sas	219	FUNC	round()	credit_risk_score = round(base_score + score_range * (1 - pd_logistic))
+S151	train.sas	222	CMP	credit_risk_score >= 750	if credit_risk_score >= 750 then risk_grade = 'A'
+S152	train.sas	223	CMP	credit_risk_score >= 700	else if credit_risk_score >= 700 then risk_grade = 'B'
+S153	train.sas	224	CMP	credit_risk_score >= 650	else if credit_risk_score >= 650 then risk_grade = 'C'
+S154	train.sas	225	CMP	credit_risk_score >= 600	else if credit_risk_score >= 600 then risk_grade = 'D'
+S155	train.sas	226	CMP	credit_risk_score >= 550	else if credit_risk_score >= 550 then risk_grade = 'E'
+S156	train.sas	230	CMP	risk_grade in ( 'a'	if risk_grade in ('A', 'B') then recommendation = 'Approve'
+S157	train.sas	231	CMP	risk_grade = 'c'	else if risk_grade = 'C' then recommendation = 'Review'
+S158	train.sas	236	CMP	risk_grade = 'a'	if risk_grade = 'A' then interest_rate = base_rate
+S159	train.sas	237	ARITH	interest_rate	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S160	train.sas	237	CMP	risk_grade = 'b'	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S161	train.sas	238	ARITH	interest_rate	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S162	train.sas	238	CMP	risk_grade = 'c'	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S163	train.sas	239	ARITH	interest_rate	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S164	train.sas	239	CMP	risk_grade = 'd'	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S165	train.sas	240	ARITH	interest_rate	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S166	train.sas	240	CMP	risk_grade = 'e'	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S167	train.sas	241	ARITH	interest_rate	else interest_rate = base_rate + 0.15
+S168	train.sas	243	FORMAT	interest_rate percent8.2	format interest_rate percent8.2
+S169	train.sas	253	ARITH	credit_risk_score	credit_risk_score = round(base_score + score_range * (1 - pd_logistic))
+S170	train.sas	253	FUNC	round()	credit_risk_score = round(base_score + score_range * (1 - pd_logistic))
+S171	train.sas	255	CMP	credit_risk_score >= 750	if credit_risk_score >= 750 then risk_grade = 'A'
+S172	train.sas	256	CMP	credit_risk_score >= 700	else if credit_risk_score >= 700 then risk_grade = 'B'
+S173	train.sas	257	CMP	credit_risk_score >= 650	else if credit_risk_score >= 650 then risk_grade = 'C'
+S174	train.sas	258	CMP	credit_risk_score >= 600	else if credit_risk_score >= 600 then risk_grade = 'D'
+S175	train.sas	259	CMP	credit_risk_score >= 550	else if credit_risk_score >= 550 then risk_grade = 'E'
+S176	train.sas	262	CMP	risk_grade in ( 'a'	if risk_grade in ('A', 'B') then recommendation = 'Approve'
+S177	train.sas	263	CMP	risk_grade = 'c'	else if risk_grade = 'C' then recommendation = 'Review'
+S178	train.sas	267	CMP	risk_grade = 'a'	if risk_grade = 'A' then interest_rate = base_rate
+S179	train.sas	268	ARITH	interest_rate	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S180	train.sas	268	CMP	risk_grade = 'b'	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S181	train.sas	269	ARITH	interest_rate	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S182	train.sas	269	CMP	risk_grade = 'c'	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S183	train.sas	270	ARITH	interest_rate	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S184	train.sas	270	CMP	risk_grade = 'd'	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S185	train.sas	271	ARITH	interest_rate	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S186	train.sas	271	CMP	risk_grade = 'e'	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S187	train.sas	272	ARITH	interest_rate	else interest_rate = base_rate + 0.15
+S188	train.sas	274	FORMAT	interest_rate percent8.2	format interest_rate percent8.2
+S189	train.sas	278	PROC	proc freq	proc freq data=work.risk_scores_train
+S190	train.sas	283	PROC	proc freq	proc freq data=work.risk_scores_validation
+S191	train.sas	293	PROC	proc logistic	proc logistic data=work.risk_scores_train
+S192	train.sas	296	ODS	ods output rocassociation	ods output ROCAssociation=work.roc_train
+S193	train.sas	301	PROC	proc logistic	proc logistic data=work.risk_scores_validation
+S194	train.sas	304	ODS	ods output rocassociation	ods output ROCAssociation=work.roc_valid
+S195	train.sas	309	PROC	proc print	proc print data=work.roc_train
+S196	train.sas	310	CMP	rocmodel = 'training	where ROCModel = 'Training Set'
+S197	train.sas	315	PROC	proc print	proc print data=work.roc_valid
+S198	train.sas	316	CMP	rocmodel = 'validation	where ROCModel = 'Validation Set'
+S199	train.sas	328	DSTEP	drop ip_: xp_: _from_ _into_ _level_	drop IP_: XP_: _FROM_ _INTO_ _LEVEL_
+S200	train.sas	334	DSTEP	drop ip_: xp_: _from_ _into_ _level_	drop IP_: XP_: _FROM_ _INTO_ _LEVEL_
+S201	train.sas	338	PROC	proc export	proc export data=work.risk_scores_train_clean outfile="&output_path/risk_scores_train.csv" dbms=csv replace
+S202	train.sas	345	PROC	proc export	proc export data=work.risk_scores_validation_clean outfile="&output_path/risk_scores_validation.csv" dbms=csv replace
+S203	train.sas	354	DSTEP	keep row_id default_flag pd_logistic credit_risk_score risk_grade recommendation inte	keep row_id default_flag pd_logistic credit_risk_score risk_grade recommendation interest_rate age monthly_income credit_utilization debt_ratio total_late_payme
+S204	train.sas	360	PROC	proc export	proc export data=work.final_model_output outfile="&output_path/final_model_output.csv" dbms=csv replace
+S205	train.sas	368	DSTEP	merge roc_train roc_valid training_metrics validation_metrics	merge work.roc_train(where=(ROCModel='Training Set') rename=(Area=Train_AUC)) work.roc_valid(where=(ROCModel='Validation Set') rename=(Area=Valid_AUC)) work.tra
+S206	train.sas	374	FUNC	today()	training_date = today()
+S207	train.sas	378	FORMAT	training_date date9.	format training_date date9. Train_AUC Valid_AUC train_precision train_recall train_f1_score train_accuracy valid_precision valid_recall valid_f1_score valid_acc
+S208	train.sas	378	FORMAT	valid_accuracy 8.4	format training_date date9. Train_AUC Valid_AUC train_precision train_recall train_f1_score train_accuracy valid_precision valid_recall valid_f1_score valid_acc
+S209	train.sas	382	DSTEP	keep model_name training_date training_records validation_records train_auc valid_auc	keep model_name training_date training_records validation_records Train_AUC Valid_AUC train_precision train_recall train_f1_score train_accuracy valid_precision
+S210	train.sas	388	PROC	proc export	proc export data=work.model_summary outfile="&output_path/model_summary.csv" dbms=csv replace
+S211	train.sas	395	PROC	proc export	proc export data=work.model_coefficients outfile="&output_path/model_coefficients.csv" dbms=csv replace
+S212	metrics_calculation.sas	21	MACRO	%let output_path	%let output_path = /home/u64352077/output
+S213	metrics_calculation.sas	28	PROC	proc import	proc import datafile="&output_path/risk_scores_validation.csv" out=work.logit_scored_valid dbms=csv replace
+S214	metrics_calculation.sas	36	PROC	proc import	proc import datafile="&output_path/risk_scores_train.csv" out=work.logit_scored_train dbms=csv replace
+S215	metrics_calculation.sas	48	PROC	proc logistic	proc logistic data=work.logit_scored_valid
+S216	metrics_calculation.sas	52	ODS	ods output rocassociation	ods output ROCAssociation=work.roc_stats
+S217	metrics_calculation.sas	59	CMP	rocmodel = 'logistic	where ROCModel = 'Logistic Model'
+S218	metrics_calculation.sas	61	ARITH	gini	Gini = 2 * Area - 1
+S219	metrics_calculation.sas	62	DSTEP	keep rocmodel auc gini	keep ROCModel AUC Gini
+S220	metrics_calculation.sas	63	FORMAT	gini 8.4	format AUC Gini 8.4
+S221	metrics_calculation.sas	66	PROC	proc print	proc print data=work.auc_summary noobs
+S222	metrics_calculation.sas	75	PROC	proc sort	proc sort data=work.logit_scored_valid
+S223	metrics_calculation.sas	80	PROC	proc sql	proc sql noprint
+S224	metrics_calculation.sas	81	FUNC	sum()	select sum(default_flag = 0), sum(default_flag = 1) into :total_good_count, :total_bad_count from work.logit_scored_valid
+S225	metrics_calculation.sas	81	MACRO	into total_good_count total_bad_count	select sum(default_flag = 0), sum(default_flag = 1) into :total_good_count, :total_bad_count from work.logit_scored_valid
+S226	metrics_calculation.sas	89	DSTEP	retain cum_good cum_bad	retain cum_good cum_bad
+S227	metrics_calculation.sas	91	CMP	_n_ = 1	if _n_ = 1 then do
+S228	metrics_calculation.sas	96	CMP	default_flag = 0	if default_flag = 0 then cum_good + 1
+S229	metrics_calculation.sas	96	DSTEP	sum statement cum_good + 1	if default_flag = 0 then cum_good + 1
+S230	metrics_calculation.sas	97	DSTEP	sum statement cum_bad + 1	else cum_bad + 1
+S231	metrics_calculation.sas	99	DIV	cum_pct_good = cum_good / &total_good_count	cum_pct_good = cum_good / &total_good_count
+S232	metrics_calculation.sas	100	DIV	cum_pct_bad = cum_bad / &total_bad_count	cum_pct_bad = cum_bad / &total_bad_count
+S233	metrics_calculation.sas	101	ARITH	ks_value	ks_value = abs(cum_pct_good - cum_pct_bad)
+S234	metrics_calculation.sas	101	FUNC	abs()	ks_value = abs(cum_pct_good - cum_pct_bad)
+S235	metrics_calculation.sas	105	PROC	proc sql	proc sql
+S236	metrics_calculation.sas	106	FORMAT	ks_cutoff 8.4	create table work.ks_statistic as select max(ks_value) as KS_Statistic format=8.4, pd_logistic as KS_Cutoff format=8.4 from work.ks_calculation where ks_value =
+S237	metrics_calculation.sas	106	FORMAT	ks_statistic 8.4	create table work.ks_statistic as select max(ks_value) as KS_Statistic format=8.4, pd_logistic as KS_Cutoff format=8.4 from work.ks_calculation where ks_value =
+S238	metrics_calculation.sas	106	FUNC	max()	create table work.ks_statistic as select max(ks_value) as KS_Statistic format=8.4, pd_logistic as KS_Cutoff format=8.4 from work.ks_calculation where ks_value =
+S239	metrics_calculation.sas	106	SQL	subquery / remerge	create table work.ks_statistic as select max(ks_value) as KS_Statistic format=8.4, pd_logistic as KS_Cutoff format=8.4 from work.ks_calculation where ks_value =
+S240	metrics_calculation.sas	113	PROC	proc print	proc print data=work.ks_statistic noobs
+S241	metrics_calculation.sas	122	MACRO	%macro confusion_metrics	%macro confusion_metrics(threshold, suffix)
+S242	metrics_calculation.sas	128	PROC	proc freq	proc freq data=work.confusion_&suffix noprint
+S243	metrics_calculation.sas	134	DSTEP	set end=eof	set work.conf_matrix_&suffix end=eof
+S244	metrics_calculation.sas	135	DSTEP	retain tp tn fp fn 0	retain TP TN FP FN 0
+S245	metrics_calculation.sas	137	CMP	default_flag = 1	if default_flag = 1 and predicted = 1 then TP = count
+S246	metrics_calculation.sas	137	CMP	predicted = 1	if default_flag = 1 and predicted = 1 then TP = count
+S247	metrics_calculation.sas	138	CMP	default_flag = 0	else if default_flag = 0 and predicted = 0 then TN = count
+S248	metrics_calculation.sas	138	CMP	predicted = 0	else if default_flag = 0 and predicted = 0 then TN = count
+S249	metrics_calculation.sas	139	CMP	default_flag = 0	else if default_flag = 0 and predicted = 1 then FP = count
+S250	metrics_calculation.sas	139	CMP	predicted = 1	else if default_flag = 0 and predicted = 1 then FP = count
+S251	metrics_calculation.sas	140	CMP	default_flag = 1	else if default_flag = 1 and predicted = 0 then FN = count
+S252	metrics_calculation.sas	140	CMP	predicted = 0	else if default_flag = 1 and predicted = 0 then FN = count
+S253	metrics_calculation.sas	142	CMP	truthy eof	if eof then do
+S254	metrics_calculation.sas	144	CMP	(tp + tn + fp + fn) > 0	if (TP + TN + FP + FN) > 0 then accuracy = (TP + TN) / (TP + TN + FP + FN)
+S255	metrics_calculation.sas	144	DIV	accuracy = (tp + tn) / (tp + tn + fp + fn)	if (TP + TN + FP + FN) > 0 then accuracy = (TP + TN) / (TP + TN + FP + FN)
+S256	metrics_calculation.sas	146	CMP	(tp + fp) > 0	if (TP + FP) > 0 then precision = TP / (TP + FP)
+S257	metrics_calculation.sas	146	DIV	precision = tp / (tp + fp)	if (TP + FP) > 0 then precision = TP / (TP + FP)
+S258	metrics_calculation.sas	148	CMP	(tp + fn) > 0	if (TP + FN) > 0 then recall = TP / (TP + FN)
+S259	metrics_calculation.sas	148	DIV	recall = tp / (tp + fn)	if (TP + FN) > 0 then recall = TP / (TP + FN)
+S260	metrics_calculation.sas	150	CMP	(precision + recall) > 0	if (precision + recall) > 0 then f1_score = 2 * (precision * recall) / (precision + recall)
+S261	metrics_calculation.sas	150	DIV	f1_score = (precision * recall) / (precision + recall)	if (precision + recall) > 0 then f1_score = 2 * (precision * recall) / (precision + recall)
+S262	metrics_calculation.sas	152	CMP	(tn + fp) > 0	if (TN + FP) > 0 then specificity = TN / (TN + FP)
+S263	metrics_calculation.sas	152	DIV	specificity = tn / (tn + fp)	if (TN + FP) > 0 then specificity = TN / (TN + FP)
+S264	metrics_calculation.sas	156	DSTEP	keep threshold accuracy precision recall f1_score specificity	keep threshold accuracy precision recall f1_score specificity
+S265	metrics_calculation.sas	161	MACRO	macro call confusion_metrics	%confusion_metrics(0.3, 03)
+S266	metrics_calculation.sas	162	MACRO	macro call confusion_metrics	%confusion_metrics(0.4, 04)
+S267	metrics_calculation.sas	163	MACRO	macro call confusion_metrics	%confusion_metrics(0.5, 05)
+S268	metrics_calculation.sas	164	MACRO	macro call confusion_metrics	%confusion_metrics(0.6, 06)
+S269	metrics_calculation.sas	165	MACRO	macro call confusion_metrics	%confusion_metrics(0.7, 07)
+S270	metrics_calculation.sas	169	DSTEP	set (concatenate) metrics_03 metrics_04 metrics_05 metrics_06 metrics_07	set work.metrics_03 work.metrics_04 work.metrics_05 work.metrics_06 work.metrics_07
+S271	metrics_calculation.sas	173	PROC	proc print	proc print data=work.threshold_analysis
+S272	metrics_calculation.sas	175	FORMAT	specificity 8.4	format accuracy precision recall f1_score specificity 8.4
+S273	metrics_calculation.sas	183	PROC	proc rank	proc rank data=work.logit_scored_valid out=work.decile_data groups=10 descending
+S274	metrics_calculation.sas	191	PROC	proc sql	proc sql
+S275	metrics_calculation.sas	192	ARITH	sql decile	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S276	metrics_calculation.sas	192	DIV	sql (calculated default_rate) / (select mean(default_flag) from work.decile_data)	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S277	metrics_calculation.sas	192	DIV	sql sum(default_flag) / (select sum(default_flag) from work.decile_data)	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S278	metrics_calculation.sas	192	FORMAT	avg_pd 8.4	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S279	metrics_calculation.sas	192	FORMAT	capture_rate percent8.2	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S280	metrics_calculation.sas	192	FORMAT	default_rate percent8.2	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S281	metrics_calculation.sas	192	FORMAT	lift 8.2	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S282	metrics_calculation.sas	192	FORMAT	max_pd 8.4	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S283	metrics_calculation.sas	192	FORMAT	min_pd 8.4	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S284	metrics_calculation.sas	192	FUNC	count(*)	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S285	metrics_calculation.sas	192	FUNC	max()	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S286	metrics_calculation.sas	192	FUNC	mean()	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S287	metrics_calculation.sas	192	FUNC	min()	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S288	metrics_calculation.sas	192	FUNC	sum()	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S289	metrics_calculation.sas	192	SQL	calculated default_rate	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S290	metrics_calculation.sas	192	SQL	group by decile	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S291	metrics_calculation.sas	192	SQL	order by decile	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S292	metrics_calculation.sas	192	SQL	subquery / remerge	create table work.decile_analysis as select decile + 1 as decile, count(*) as total_count, sum(default_flag) as defaults, mean(default_flag) as default_rate for
+S293	metrics_calculation.sas	208	PROC	proc print	proc print data=work.decile_analysis
+S294	metrics_calculation.sas	213	PROC	proc sql	proc sql noprint
+S295	metrics_calculation.sas	214	FUNC	mean()	select sum(default_flag), mean(default_flag) into :total_defaults, :overall_default_rate from work.decile_data
+S296	metrics_calculation.sas	214	FUNC	sum()	select sum(default_flag), mean(default_flag) into :total_defaults, :overall_default_rate from work.decile_data
+S297	metrics_calculation.sas	214	MACRO	into total_defaults overall_default_rate	select sum(default_flag), mean(default_flag) into :total_defaults, :overall_default_rate from work.decile_data
+S298	metrics_calculation.sas	222	DSTEP	retain cum_defaults cum_count	retain cum_defaults cum_count
+S299	metrics_calculation.sas	223	CMP	_n_ = 1	if _n_ = 1 then do
+S300	metrics_calculation.sas	228	DSTEP	sum statement cum_defaults + defaults	cum_defaults + defaults
+S301	metrics_calculation.sas	229	DSTEP	sum statement cum_count + total_count	cum_count + total_count
+S302	metrics_calculation.sas	232	DIV	cum_capture_rate = cum_defaults / &total_defaults	cum_capture_rate = cum_defaults / &total_defaults
+S303	metrics_calculation.sas	233	DIV	cum_lift = (cum_defaults / cum_count) / &overall_default_rate	cum_lift = (cum_defaults / cum_count) / &overall_default_rate
+S304	metrics_calculation.sas	233	DIV	cum_lift = cum_defaults / cum_count	cum_lift = (cum_defaults / cum_count) / &overall_default_rate
+S305	metrics_calculation.sas	234	FORMAT	cum_capture_rate percent8.2	format cum_capture_rate percent8.2 cum_lift 8.2
+S306	metrics_calculation.sas	234	FORMAT	cum_lift 8.2	format cum_capture_rate percent8.2 cum_lift 8.2
+S307	metrics_calculation.sas	237	PROC	proc sgplot	proc sgplot data=work.cumulative_lift
+S308	metrics_calculation.sas	250	PROC	proc rank	proc rank data=work.logit_scored_train out=work.train_bins groups=10
+S309	metrics_calculation.sas	257	PROC	proc rank	proc rank data=work.logit_scored_valid out=work.valid_bins groups=10
+S310	metrics_calculation.sas	265	PROC	proc sql	proc sql
+S311	metrics_calculation.sas	266	CMP	a.score_bin = b.score_bin	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S312	metrics_calculation.sas	266	DIV	sql a.train_pct / b.valid_pct	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S313	metrics_calculation.sas	266	DIV	sql count(*) / (select count(*) from work.train_bins)	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S314	metrics_calculation.sas	266	DIV	sql count(*) / (select count(*) from work.valid_bins)	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S315	metrics_calculation.sas	266	FUNC	count(*)	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S316	metrics_calculation.sas	266	FUNC	log()	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S317	metrics_calculation.sas	266	SQL	 join	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S318	metrics_calculation.sas	266	SQL	group by score_bin	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S319	metrics_calculation.sas	266	SQL	subquery / remerge	create table work.psi_calculation as select a.score_bin, a.train_pct, b.valid_pct, (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+S320	metrics_calculation.sas	280	CMP	psi < 0.1	create table work.psi_summary as select sum(psi_component) as PSI format=8.4, case when calculated PSI < 0.1 then 'No significant change' when calculated PSI < 
+S321	metrics_calculation.sas	280	CMP	psi < 0.25	create table work.psi_summary as select sum(psi_component) as PSI format=8.4, case when calculated PSI < 0.1 then 'No significant change' when calculated PSI < 
+S322	metrics_calculation.sas	280	FORMAT	psi 8.4	create table work.psi_summary as select sum(psi_component) as PSI format=8.4, case when calculated PSI < 0.1 then 'No significant change' when calculated PSI < 
+S323	metrics_calculation.sas	280	FUNC	sum()	create table work.psi_summary as select sum(psi_component) as PSI format=8.4, case when calculated PSI < 0.1 then 'No significant change' when calculated PSI < 
+S324	metrics_calculation.sas	280	SQL	calculated psi psi	create table work.psi_summary as select sum(psi_component) as PSI format=8.4, case when calculated PSI < 0.1 then 'No significant change' when calculated PSI < 
+S325	metrics_calculation.sas	290	PROC	proc print	proc print data=work.psi_summary noobs
+S326	metrics_calculation.sas	299	PROC	proc rank	proc rank data=work.logit_scored_valid out=work.calibration_data groups=20
+S327	metrics_calculation.sas	306	PROC	proc sql	proc sql
+S328	metrics_calculation.sas	307	FORMAT	mean_actual 8.4	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S329	metrics_calculation.sas	307	FORMAT	mean_predicted 8.4	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S330	metrics_calculation.sas	307	FUNC	count(*)	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S331	metrics_calculation.sas	307	FUNC	mean()	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S332	metrics_calculation.sas	307	SQL	group by pred_bin	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S333	metrics_calculation.sas	307	SQL	order by pred_bin	create table work.calibration_plot as select pred_bin, mean(pd_logistic) as mean_predicted format=8.4, mean(default_flag) as mean_actual format=8.4, count(*) as
+S334	metrics_calculation.sas	318	PROC	proc sgplot	proc sgplot data=work.calibration_plot
+S335	metrics_calculation.sas	332	DSTEP	merge auc_summary ks_statistic psi_summary	merge work.auc_summary work.ks_statistic work.psi_summary
+S336	metrics_calculation.sas	339	CMP	auc >= 0.7	if AUC >= 0.7 and KS_Statistic >= 0.3 and PSI < 0.25 then status = "Production Ready"
+S337	metrics_calculation.sas	339	CMP	ks_statistic >= 0.3	if AUC >= 0.7 and KS_Statistic >= 0.3 and PSI < 0.25 then status = "Production Ready"
+S338	metrics_calculation.sas	339	CMP	psi < 0.25	if AUC >= 0.7 and KS_Statistic >= 0.3 and PSI < 0.25 then status = "Production Ready"
+S339	metrics_calculation.sas	341	CMP	auc >= 0.65	else if AUC >= 0.65 then status = "Requires Review"
+S340	metrics_calculation.sas	347	PROC	proc print	proc print data=work.validation_summary noobs
+S341	metrics_calculation.sas	356	PROC	proc export	proc export data=work.validation_summary outfile="&output_path/validation_summary.csv" dbms=csv replace
+S342	metrics_calculation.sas	363	PROC	proc export	proc export data=work.decile_analysis outfile="&output_path/decile_analysis.csv" dbms=csv replace
+S343	metrics_calculation.sas	370	PROC	proc export	proc export data=work.threshold_analysis outfile="&output_path/threshold_analysis.csv" dbms=csv replace
+S344	metrics_calculation.sas	377	PROC	proc export	proc export data=work.ks_statistic outfile="&output_path/ks_statistic.csv" dbms=csv replace
+S345	metrics_calculation.sas	384	PROC	proc export	proc export data=work.calibration_plot outfile="&output_path/calibration_plot.csv" dbms=csv replace
+S346	metrics_calculation.sas	392	DSTEP	merge auc_summary ks_statistic psi_summary threshold_analysis	merge work.auc_summary work.ks_statistic work.psi_summary work.threshold_analysis(where=(threshold=0.5) rename=(accuracy=acc_50 precision=prec_50 recall=rec_50 
+S347	metrics_calculation.sas	399	FUNC	today()	validation_date = today()
+S348	metrics_calculation.sas	403	DSTEP	rename acc_50 = accuracy_at_50 prec_50 = precision_at_50 rec_50 = recall_at_50 f1_50 = 	rename acc_50 = accuracy_at_50 prec_50 = precision_at_50 rec_50 = recall_at_50 f1_50 = f1_score_at_50 spec_50 = specificity_at_50
+S349	metrics_calculation.sas	409	FORMAT	validation_date date9.	format validation_date date9.
+S350	metrics_calculation.sas	412	DSTEP	drop threshold rocmodel	drop threshold ROCModel
+S351	metrics_calculation.sas	416	PROC	proc export	proc export data=work.model_performance_metrics outfile="&output_path/model_performance_metrics.csv" dbms=csv replace
+S352	metrics_calculation.sas	423	PROC	proc print	proc print data=work.model_performance_metrics noobs
+S353	predict.sas	19	MACRO	%let data_path	%let data_path = /home/u64352077
+S354	predict.sas	20	MACRO	%let output_path	%let output_path = /home/u64352077/output
+S355	predict.sas	27	PROC	proc import	proc import datafile="&data_path/cs-test.csv" out=work.test_raw dbms=csv replace
+S356	predict.sas	36	PROC	proc contents	proc contents data=work.test_raw
+S357	predict.sas	49	FUNC	input()	MonthlyIncome_num = input(MonthlyIncome, best32.)
+S358	predict.sas	50	FUNC	input()	NumberOfDependents_num = input(NumberOfDependents, best32.)
+S359	predict.sas	53	DSTEP	drop monthlyincome numberofdependents	drop MonthlyIncome NumberOfDependents
+S360	predict.sas	54	DSTEP	rename monthlyincome_num = monthlyincome numberofdependents_num = numberofdependents	rename MonthlyIncome_num = MonthlyIncome NumberOfDependents_num = NumberOfDependents
+S361	predict.sas	59	PROC	proc sql	proc sql
+S362	predict.sas	60	CMP	age < 30	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S363	predict.sas	60	CMP	age < 40	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S364	predict.sas	60	CMP	age < 50	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S365	predict.sas	60	CMP	age < 60	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S366	predict.sas	60	CMP	is not missing	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S367	predict.sas	60	FUNC	median()	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S368	predict.sas	60	SQL	calculated age_group	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S369	predict.sas	60	SQL	group by calculated age_group	create table work.test_income_medians as select case when age < 30 then 1 when age < 40 then 2 when age < 50 then 3 when age < 60 then 4 else 5 end as age_group
+S370	predict.sas	79	CMP	age < 30	if age < 30 then age_group = 1
+S371	predict.sas	80	CMP	age < 40	else if age < 40 then age_group = 2
+S372	predict.sas	81	CMP	age < 50	else if age < 50 then age_group = 3
+S373	predict.sas	82	CMP	age < 60	else if age < 60 then age_group = 4
+S374	predict.sas	86	FUNC	missing()	if missing(MonthlyIncome) then MonthlyIncome_missing = 1
+S375	predict.sas	89	FUNC	missing()	if missing(NumberOfDependents) then do
+S376	predict.sas	97	PROC	proc sql	proc sql
+S377	predict.sas	98	ARITH	sql credit_utilization	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S378	predict.sas	98	ARITH	sql debt_ratio	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S379	predict.sas	98	CMP	a.age_group = b.age_group	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S380	predict.sas	98	CMP	a.monthlyincome_missing = 1	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S381	predict.sas	98	SQL	left join	create table work.test_imputed as select a.VAR1 as row_id, a.age, case when a.MonthlyIncome_missing = 1 then b.median_income else a.MonthlyIncome end as monthly
+S382	predict.sas	129	FUNC	sum()	total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus)
+S383	predict.sas	132	CMP	total_late_payments > 0	has_delinquency = (total_late_payments > 0)
+S384	predict.sas	135	CMP	num_late_90_plus > 0	has_serious_delinquency = (num_late_90_plus > 0)
+S385	predict.sas	138	CMP	credit_utilization < 30	if credit_utilization < 30 then credit_util_category = 1
+S386	predict.sas	139	CMP	credit_utilization < 50	else if credit_utilization < 50 then credit_util_category = 2
+S387	predict.sas	140	CMP	credit_utilization < 75	else if credit_utilization < 75 then credit_util_category = 3
+S388	predict.sas	144	CMP	debt_ratio < 30	if debt_ratio < 30 then debt_category = 1
+S389	predict.sas	145	CMP	debt_ratio < 43	else if debt_ratio < 43 then debt_category = 2
+S390	predict.sas	146	CMP	debt_ratio < 60	else if debt_ratio < 60 then debt_category = 3
+S391	predict.sas	150	CMP	num_dependents > 0	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1)
+S392	predict.sas	150	DIV	income_per_dependent = monthly_income / (num_dependents + 1)	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1)
+S393	predict.sas	154	DIV	credit_lines_per_person = num_credit_lines / (num_dependents + 1)	credit_lines_per_person = num_credit_lines / (num_dependents + 1)
+S394	predict.sas	157	CMP	age < 25	if age < 25 then age_category = 1
+S395	predict.sas	158	CMP	age < 35	else if age < 35 then age_category = 2
+S396	predict.sas	159	CMP	age < 50	else if age < 50 then age_category = 3
+S397	predict.sas	160	CMP	age < 65	else if age < 65 then age_category = 4
+S398	predict.sas	164	CMP	credit_utilization > 75	flag_high_utilization = (credit_utilization > 75)
+S399	predict.sas	165	CMP	credit_utilization > 100	flag_very_high_utilization = (credit_utilization > 100)
+S400	predict.sas	166	CMP	debt_ratio > 43	flag_high_debt_ratio = (debt_ratio > 43)
+S401	predict.sas	167	CMP	debt_ratio > 60	flag_very_high_debt_ratio = (debt_ratio > 60)
+S402	predict.sas	168	CMP	num_late_30_59 > 0	flag_recent_late_payments = (num_late_30_59 > 0)
+S403	predict.sas	169	CMP	num_late_90_plus > 0	flag_serious_delinquency = (num_late_90_plus > 0)
+S404	predict.sas	170	CMP	total_late_payments >= 3	flag_multiple_delinquencies = (total_late_payments >= 3)
+S405	predict.sas	171	CMP	monthly_income < 2500	flag_low_income = (monthly_income < 2500)
+S406	predict.sas	172	CMP	num_dependents >= 3	flag_many_dependents = (num_dependents >= 3)
+S407	predict.sas	173	CMP	num_credit_lines <= 2	flag_few_credit_lines = (num_credit_lines <= 2)
+S408	predict.sas	176	FUNC	sum()	total_risk_flags = sum(flag_high_utilization, flag_high_debt_ratio, flag_serious_delinquency, flag_multiple_delinquencies, flag_low_income)
+S409	predict.sas	182	ARITH	financial_health	if credit_utilization > 30 then financial_health = financial_health - 15
+S410	predict.sas	182	CMP	credit_utilization > 30	if credit_utilization > 30 then financial_health = financial_health - 15
+S411	predict.sas	183	ARITH	financial_health	if credit_utilization > 75 then financial_health = financial_health - 15
+S412	predict.sas	183	CMP	credit_utilization > 75	if credit_utilization > 75 then financial_health = financial_health - 15
+S413	predict.sas	184	ARITH	financial_health	if debt_ratio > 43 then financial_health = financial_health - 20
+S414	predict.sas	184	CMP	debt_ratio > 43	if debt_ratio > 43 then financial_health = financial_health - 20
+S415	predict.sas	185	ARITH	financial_health	if has_delinquency then financial_health = financial_health - 20
+S416	predict.sas	185	CMP	truthy has_delinquency	if has_delinquency then financial_health = financial_health - 20
+S417	predict.sas	186	ARITH	financial_health	if num_late_90_plus > 0 then financial_health = financial_health - 30
+S418	predict.sas	186	CMP	num_late_90_plus > 0	if num_late_90_plus > 0 then financial_health = financial_health - 30
+S419	predict.sas	187	FUNC	max()	financial_health = max(0, financial_health)
+S420	predict.sas	190	ARITH	log_monthly_income	log_monthly_income = log(monthly_income + 1)
+S421	predict.sas	190	FUNC	log()	log_monthly_income = log(monthly_income + 1)
+S422	predict.sas	191	ARITH	log_num_credit_lines	log_num_credit_lines = log(num_credit_lines + 1)
+S423	predict.sas	191	FUNC	log()	log_num_credit_lines = log(num_credit_lines + 1)
+S424	predict.sas	192	ARITH	log_total_late_payments	log_total_late_payments = log(total_late_payments + 1)
+S425	predict.sas	192	FUNC	log()	log_total_late_payments = log(total_late_payments + 1)
+S426	predict.sas	195	ARITH	age_income_interaction	age_income_interaction = age * log_monthly_income
+S427	predict.sas	196	DIV	utilization_debt_interaction = debt_ratio / 100	utilization_debt_interaction = credit_utilization * debt_ratio / 100
+S428	predict.sas	199	FUNC	min()	credit_utilization_capped = min(credit_utilization, 200)
+S429	predict.sas	200	FUNC	min()	debt_ratio_capped = min(debt_ratio, 500)
+S430	predict.sas	208	PROC	proc plm	proc plm restore=work.logit_model
+S431	predict.sas	219	DIV	pd_logistic = 1 / (1 + exp(-predicted_logit))	pd_logistic = 1 / (1 + exp(-predicted_logit))
+S432	predict.sas	219	FUNC	exp()	pd_logistic = 1 / (1 + exp(-predicted_logit))
+S433	predict.sas	221	DSTEP	drop predicted_logit	drop predicted_logit
+S434	predict.sas	232	CMP	pd_logistic >= 0.5	pred_logistic = (pd_logistic >= 0.5)
+S435	predict.sas	237	ARITH	credit_risk_score	credit_risk_score = round(base_score + score_range * (1 - pd_logistic))
+S436	predict.sas	237	FUNC	round()	credit_risk_score = round(base_score + score_range * (1 - pd_logistic))
+S437	predict.sas	240	CMP	credit_risk_score >= 750	if credit_risk_score >= 750 then risk_grade = 'A'
+S438	predict.sas	241	CMP	credit_risk_score >= 700	else if credit_risk_score >= 700 then risk_grade = 'B'
+S439	predict.sas	242	CMP	credit_risk_score >= 650	else if credit_risk_score >= 650 then risk_grade = 'C'
+S440	predict.sas	243	CMP	credit_risk_score >= 600	else if credit_risk_score >= 600 then risk_grade = 'D'
+S441	predict.sas	244	CMP	credit_risk_score >= 550	else if credit_risk_score >= 550 then risk_grade = 'E'
+S442	predict.sas	248	CMP	risk_grade in ( 'a'	if risk_grade in ('A', 'B') then recommendation = 'Approve'
+S443	predict.sas	249	CMP	risk_grade = 'c'	else if risk_grade = 'C' then recommendation = 'Review'
+S444	predict.sas	254	CMP	risk_grade = 'a'	if risk_grade = 'A' then interest_rate = base_rate
+S445	predict.sas	255	ARITH	interest_rate	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S446	predict.sas	255	CMP	risk_grade = 'b'	else if risk_grade = 'B' then interest_rate = base_rate + 0.02
+S447	predict.sas	256	ARITH	interest_rate	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S448	predict.sas	256	CMP	risk_grade = 'c'	else if risk_grade = 'C' then interest_rate = base_rate + 0.04
+S449	predict.sas	257	ARITH	interest_rate	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S450	predict.sas	257	CMP	risk_grade = 'd'	else if risk_grade = 'D' then interest_rate = base_rate + 0.07
+S451	predict.sas	258	ARITH	interest_rate	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S452	predict.sas	258	CMP	risk_grade = 'e'	else if risk_grade = 'E' then interest_rate = base_rate + 0.10
+S453	predict.sas	259	ARITH	interest_rate	else interest_rate = base_rate + 0.15
+S454	predict.sas	261	FORMAT	interest_rate percent8.2	format interest_rate percent8.2
+S455	predict.sas	271	DSTEP	keep row_id pd_logistic	keep row_id pd_logistic
+S456	predict.sas	277	DSTEP	keep row_id pd_logistic pred_logistic credit_risk_score risk_grade recommendation int	keep row_id pd_logistic pred_logistic credit_risk_score risk_grade recommendation interest_rate age monthly_income credit_utilization debt_ratio total_late_paym
+S457	predict.sas	288	PROC	proc export	proc export data=work.kaggle_submission outfile="&output_path/kaggle_submission.csv" dbms=csv replace
+S458	predict.sas	295	PROC	proc export	proc export data=work.test_predictions_full outfile="&output_path/test_predictions.csv" dbms=csv replace
+S459	predict.sas	302	PROC	proc freq	proc freq data=work.test_predictions
+S460	predict.sas	307	PROC	proc means	proc means data=work.test_predictions n mean std min max
+S461	predict.sas	313	PROC	proc print	proc print data=work.test_predictions_full(obs=20) noobs

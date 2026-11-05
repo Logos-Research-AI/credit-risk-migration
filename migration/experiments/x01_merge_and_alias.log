@@ -1,0 +1,29 @@
+5                                                          The SAS System                        Thursday,  5 November 2026 11:59:00
+
+24         
+25         /* Inventory experiment X01 (prompt 02): settle two SAS behaviors empirically.
+26            (a) one-to-one MERGE (no BY) when one input has more rows than another
+27                -- metrics_calculation.sas:332 merges auc_summary (1 row), ks_statistic
+28                   (1+ rows on KS ties), psi_summary (1 row).
+29            (b) PROC SQL "select x + 1 as x ... group by x": source column or alias?
+30                -- metrics_calculation.sas:192 (decile + 1 as decile ... group by decile). */
+31         data a; auc = 0.8; run;
+32         data k; ks = 0.5; output; ks = 0.6; output; run;
+33         data p; psi = 0.01; run;
+34         data merged; merge a k p; run;
+35         proc print data=merged noobs; title "X01a one-to-one merge"; run;
+36         
+37         data r; input decile v; datalines;
+42         ;
+43         proc sql;
+44           create table g as select decile + 1 as decile, count(*) as n, sum(v) as s
+45           from r group by decile order by decile;
+46         quit;
+47         proc print data=g noobs; title "X01b alias vs column in group by"; run;
+48         
+49         
+50         
+51         
+6                                                          The SAS System                        Thursday,  5 November 2026 11:59:00
+
+52         

@@ -55,3 +55,10 @@ for translation rules once it exists.
 - Reference storage: plain git (user approved without choosing; plain git is the
   simpler default for a trial; largest file 23 MB). Switch to Git LFS if the repo grows.
 - This sign-off kicks off Step 1 (prompts 01 dependency map, 02 gap inventory, rulebook).
+
+## Step 1 — dependency map + rulebook draft signed off 2026-11-05
+- Dependency map (4 files, 5 edges, 0 cycles) and manifest (4 units) accepted.
+- RULEBOOK.md v1.0: user accepted all five proposed defaults (in-loop ruff+pyright;
+  statsmodels/scikit-learn banned; SGPLOT not ported; listing-only PROCs not ported;
+  predict.sas duplication kept until parity). DEV-004 sanctioned.
+- Next: prompt 02 gap inventory; stops after the first 20 rows.

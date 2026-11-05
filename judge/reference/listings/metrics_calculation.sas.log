@@ -1,0 +1,1351 @@
+39                                                         The SAS System                        Thursday,  5 November 2026 10:06:00
+
+2933       
+2934       /*****************************************************************************
+2935        * Credit Risk Scoring Model - Model Validation
+2936        *
+2937        * Purpose: Comprehensive validation of credit risk model performance
+2938        * Author: Risk Analytics Team
+2939        * Date: 2025
+2940        *
+2941        * Data Source: Kaggle "Give Me Some Credit" competition
+2942        *
+2943        * Validation includes:
+2944        * - ROC curve and AUC calculation
+2945        * - Gini coefficient
+2946        * - KS statistic
+2947        * - Confusion matrix and accuracy metrics
+2948        * - Decile analysis and lift charts
+2949        * - Population Stability Index (PSI)
+2950        * - Calibration plots
+2951        *****************************************************************************/
+2952       
+2953       /* Define output path */
+2954       %let output_path = /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output;
+2955       
+2956       /*****************************************************************************
+2957        * 1. Load Scored Data
+2958        *****************************************************************************/
+2959       
+2960       /* Read scored validation data */
+2961       proc import datafile="&output_path/risk_scores_validation.csv"
+2962           out=work.logit_scored_valid
+2963           dbms=csv
+2964           replace;
+2965           getnames=yes;
+2966       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+2967        /**********************************************************************
+2968        *   PRODUCT:   SAS
+2969        *   VERSION:   9.4
+2970        *   CREATOR:   External File Interface
+2971        *   DATE:      05NOV26
+2972        *   DESC:      Generated SAS Datastep Code
+2973        *   TEMPLATE SOURCE:  (None Specified.)
+2974        ***********************************************************************/
+2975           data WORK.LOGIT_SCORED_VALID    ;
+2976           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2977           infile '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/risk_scores_validation.csv' delimiter = ','
+2977     ! MISSOVER DSD lrecl=32767 firstobs=2 ;
+2978              informat row_id best32. ;
+2979              informat default_flag best32. ;
+2980              informat age best32. ;
+2981              informat monthly_income best32. ;
+2982              informat MonthlyIncome_missing best32. ;
+2983              informat num_dependents best32. ;
+2984              informat Dependents_missing best32. ;
+2985              informat age_group best32. ;
+2986              informat num_late_30_59 best32. ;
+2987              informat num_late_60_89 best32. ;
+2988              informat num_late_90_plus best32. ;
+2989              informat credit_utilization best32. ;
+2990              informat debt_ratio best32. ;
+2991              informat num_credit_lines best32. ;
+2992              informat num_real_estate_loans best32. ;
+2993              informat total_late_payments best32. ;
+2994              informat has_delinquency best32. ;
+2995              informat has_serious_delinquency best32. ;
+2996              informat credit_util_category best32. ;
+2997              informat debt_category best32. ;
+2998              informat income_per_dependent best32. ;
+2999              informat credit_lines_per_person best32. ;
+3000              informat age_category best32. ;
+3001              informat flag_high_utilization best32. ;
+3002              informat flag_very_high_utilization best32. ;
+3003              informat flag_high_debt_ratio best32. ;
+3004              informat flag_very_high_debt_ratio best32. ;
+3005              informat flag_recent_late_payments best32. ;
+3006              informat flag_serious_delinquency best32. ;
+3007              informat flag_multiple_delinquencies best32. ;
+3008              informat flag_low_income best32. ;
+3009              informat flag_many_dependents best32. ;
+3010              informat flag_few_credit_lines best32. ;
+3011              informat total_risk_flags best32. ;
+3012              informat financial_health best32. ;
+3013              informat log_monthly_income best32. ;
+3014              informat log_num_credit_lines best32. ;
+3015              informat log_total_late_payments best32. ;
+3016              informat age_income_interaction best32. ;
+3017              informat utilization_debt_interaction best32. ;
+3018              informat credit_utilization_capped best32. ;
+3019              informat debt_ratio_capped best32. ;
+3020              informat pd_logistic best32. ;
+3021              informat pred_logistic best32. ;
+3022              informat base_score best32. ;
+3023              informat score_range best32. ;
+3024              informat credit_risk_score best32. ;
+3025              informat risk_grade $1. ;
+3026              informat recommendation $7. ;
+3027              informat base_rate best32. ;
+3028              informat interest_rate $5. ;
+3029              format row_id best12. ;
+3030              format default_flag best12. ;
+3031              format age best12. ;
+3032              format monthly_income best12. ;
+3033              format MonthlyIncome_missing best12. ;
+3034              format num_dependents best12. ;
+3035              format Dependents_missing best12. ;
+3036              format age_group best12. ;
+3037              format num_late_30_59 best12. ;
+3038              format num_late_60_89 best12. ;
+3039              format num_late_90_plus best12. ;
+3040              format credit_utilization best12. ;
+3041              format debt_ratio best12. ;
+3042              format num_credit_lines best12. ;
+3043              format num_real_estate_loans best12. ;
+3044              format total_late_payments best12. ;
+3045              format has_delinquency best12. ;
+3046              format has_serious_delinquency best12. ;
+3047              format credit_util_category best12. ;
+3048              format debt_category best12. ;
+3049              format income_per_dependent best12. ;
+3050              format credit_lines_per_person best12. ;
+3051              format age_category best12. ;
+3052              format flag_high_utilization best12. ;
+3053              format flag_very_high_utilization best12. ;
+3054              format flag_high_debt_ratio best12. ;
+3055              format flag_very_high_debt_ratio best12. ;
+3056              format flag_recent_late_payments best12. ;
+3057              format flag_serious_delinquency best12. ;
+3058              format flag_multiple_delinquencies best12. ;
+3059              format flag_low_income best12. ;
+3060              format flag_many_dependents best12. ;
+3061              format flag_few_credit_lines best12. ;
+3062              format total_risk_flags best12. ;
+3063              format financial_health best12. ;
+3064              format log_monthly_income best12. ;
+3065              format log_num_credit_lines best12. ;
+3066              format log_total_late_payments best12. ;
+3067              format age_income_interaction best12. ;
+3068              format utilization_debt_interaction best12. ;
+3069              format credit_utilization_capped best12. ;
+3070              format debt_ratio_capped best12. ;
+3071              format pd_logistic best12. ;
+3072              format pred_logistic best12. ;
+3073              format base_score best12. ;
+3074              format score_range best12. ;
+3075              format credit_risk_score best12. ;
+3076              format risk_grade $1. ;
+3077              format recommendation $7. ;
+3078              format base_rate best12. ;
+3079              format interest_rate $5. ;
+3080           input
+3081                       row_id
+3082                       default_flag
+3083                       age
+3084                       monthly_income
+3085                       MonthlyIncome_missing
+3086                       num_dependents
+3087                       Dependents_missing
+3088                       age_group
+3089                       num_late_30_59
+3090                       num_late_60_89
+3091                       num_late_90_plus
+3092                       credit_utilization
+3093                       debt_ratio
+3094                       num_credit_lines
+3095                       num_real_estate_loans
+3096                       total_late_payments
+3097                       has_delinquency
+3098                       has_serious_delinquency
+3099                       credit_util_category
+3100                       debt_category
+3101                       income_per_dependent
+3102                       credit_lines_per_person
+3103                       age_category
+3104                       flag_high_utilization
+3105                       flag_very_high_utilization
+3106                       flag_high_debt_ratio
+3107                       flag_very_high_debt_ratio
+3108                       flag_recent_late_payments
+3109                       flag_serious_delinquency
+3110                       flag_multiple_delinquencies
+3111                       flag_low_income
+3112                       flag_many_dependents
+3113                       flag_few_credit_lines
+3114                       total_risk_flags
+3115                       financial_health
+3116                       log_monthly_income
+3117                       log_num_credit_lines
+3118                       log_total_late_payments
+3119                       age_income_interaction
+3120                       utilization_debt_interaction
+3121                       credit_utilization_capped
+3122                       debt_ratio_capped
+3123                       pd_logistic
+3124                       pred_logistic
+3125                       base_score
+3126                       score_range
+3127                       credit_risk_score
+3128                       risk_grade  $
+3129                       recommendation  $
+3130                       base_rate
+3131                       interest_rate  $
+3132           ;
+3133           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3134           run;
+45000 rows created in WORK.LOGIT_SCORED_VALID from 
+/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/risk_scores_validation.csv.
+  
+  
+  
+3135       
+3136       /* Read scored training data (needed for PSI) */
+3137       proc import datafile="&output_path/risk_scores_train.csv"
+3138           out=work.logit_scored_train
+3139           dbms=csv
+3140           replace;
+3141           getnames=yes;
+3142       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+3143        /**********************************************************************
+3144        *   PRODUCT:   SAS
+3145        *   VERSION:   9.4
+3146        *   CREATOR:   External File Interface
+3147        *   DATE:      05NOV26
+3148        *   DESC:      Generated SAS Datastep Code
+3149        *   TEMPLATE SOURCE:  (None Specified.)
+3150        ***********************************************************************/
+3151           data WORK.LOGIT_SCORED_TRAIN    ;
+3152           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3153           infile '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/risk_scores_train.csv' delimiter = ','
+3153     ! MISSOVER DSD lrecl=32767 firstobs=2 ;
+3154              informat row_id best32. ;
+3155              informat default_flag best32. ;
+3156              informat age best32. ;
+3157              informat monthly_income best32. ;
+3158              informat MonthlyIncome_missing best32. ;
+3159              informat num_dependents best32. ;
+3160              informat Dependents_missing best32. ;
+3161              informat age_group best32. ;
+3162              informat num_late_30_59 best32. ;
+3163              informat num_late_60_89 best32. ;
+3164              informat num_late_90_plus best32. ;
+3165              informat credit_utilization best32. ;
+3166              informat debt_ratio best32. ;
+3167              informat num_credit_lines best32. ;
+3168              informat num_real_estate_loans best32. ;
+3169              informat total_late_payments best32. ;
+3170              informat has_delinquency best32. ;
+3171              informat has_serious_delinquency best32. ;
+3172              informat credit_util_category best32. ;
+3173              informat debt_category best32. ;
+3174              informat income_per_dependent best32. ;
+3175              informat credit_lines_per_person best32. ;
+3176              informat age_category best32. ;
+3177              informat flag_high_utilization best32. ;
+3178              informat flag_very_high_utilization best32. ;
+3179              informat flag_high_debt_ratio best32. ;
+3180              informat flag_very_high_debt_ratio best32. ;
+3181              informat flag_recent_late_payments best32. ;
+3182              informat flag_serious_delinquency best32. ;
+3183              informat flag_multiple_delinquencies best32. ;
+3184              informat flag_low_income best32. ;
+3185              informat flag_many_dependents best32. ;
+3186              informat flag_few_credit_lines best32. ;
+3187              informat total_risk_flags best32. ;
+3188              informat financial_health best32. ;
+3189              informat log_monthly_income best32. ;
+3190              informat log_num_credit_lines best32. ;
+3191              informat log_total_late_payments best32. ;
+3192              informat age_income_interaction best32. ;
+3193              informat utilization_debt_interaction best32. ;
+3194              informat credit_utilization_capped best32. ;
+3195              informat debt_ratio_capped best32. ;
+3196              informat pd_logistic best32. ;
+3197              informat pred_logistic best32. ;
+3198              informat base_score best32. ;
+3199              informat score_range best32. ;
+3200              informat credit_risk_score best32. ;
+3201              informat risk_grade $1. ;
+3202              informat recommendation $7. ;
+3203              informat base_rate best32. ;
+3204              informat interest_rate $5. ;
+3205              format row_id best12. ;
+3206              format default_flag best12. ;
+3207              format age best12. ;
+3208              format monthly_income best12. ;
+3209              format MonthlyIncome_missing best12. ;
+3210              format num_dependents best12. ;
+3211              format Dependents_missing best12. ;
+3212              format age_group best12. ;
+3213              format num_late_30_59 best12. ;
+3214              format num_late_60_89 best12. ;
+3215              format num_late_90_plus best12. ;
+3216              format credit_utilization best12. ;
+3217              format debt_ratio best12. ;
+3218              format num_credit_lines best12. ;
+3219              format num_real_estate_loans best12. ;
+3220              format total_late_payments best12. ;
+3221              format has_delinquency best12. ;
+3222              format has_serious_delinquency best12. ;
+3223              format credit_util_category best12. ;
+3224              format debt_category best12. ;
+3225              format income_per_dependent best12. ;
+3226              format credit_lines_per_person best12. ;
+3227              format age_category best12. ;
+3228              format flag_high_utilization best12. ;
+3229              format flag_very_high_utilization best12. ;
+3230              format flag_high_debt_ratio best12. ;
+3231              format flag_very_high_debt_ratio best12. ;
+3232              format flag_recent_late_payments best12. ;
+3233              format flag_serious_delinquency best12. ;
+3234              format flag_multiple_delinquencies best12. ;
+3235              format flag_low_income best12. ;
+3236              format flag_many_dependents best12. ;
+3237              format flag_few_credit_lines best12. ;
+3238              format total_risk_flags best12. ;
+3239              format financial_health best12. ;
+3240              format log_monthly_income best12. ;
+3241              format log_num_credit_lines best12. ;
+3242              format log_total_late_payments best12. ;
+3243              format age_income_interaction best12. ;
+3244              format utilization_debt_interaction best12. ;
+3245              format credit_utilization_capped best12. ;
+3246              format debt_ratio_capped best12. ;
+3247              format pd_logistic best12. ;
+3248              format pred_logistic best12. ;
+3249              format base_score best12. ;
+3250              format score_range best12. ;
+3251              format credit_risk_score best12. ;
+3252              format risk_grade $1. ;
+3253              format recommendation $7. ;
+3254              format base_rate best12. ;
+3255              format interest_rate $5. ;
+3256           input
+3257                       row_id
+3258                       default_flag
+3259                       age
+3260                       monthly_income
+3261                       MonthlyIncome_missing
+3262                       num_dependents
+3263                       Dependents_missing
+3264                       age_group
+3265                       num_late_30_59
+3266                       num_late_60_89
+3267                       num_late_90_plus
+3268                       credit_utilization
+3269                       debt_ratio
+3270                       num_credit_lines
+3271                       num_real_estate_loans
+3272                       total_late_payments
+3273                       has_delinquency
+3274                       has_serious_delinquency
+3275                       credit_util_category
+3276                       debt_category
+3277                       income_per_dependent
+3278                       credit_lines_per_person
+3279                       age_category
+3280                       flag_high_utilization
+3281                       flag_very_high_utilization
+3282                       flag_high_debt_ratio
+3283                       flag_very_high_debt_ratio
+3284                       flag_recent_late_payments
+3285                       flag_serious_delinquency
+3286                       flag_multiple_delinquencies
+3287                       flag_low_income
+3288                       flag_many_dependents
+3289                       flag_few_credit_lines
+3290                       total_risk_flags
+3291                       financial_health
+3292                       log_monthly_income
+3293                       log_num_credit_lines
+3294                       log_total_late_payments
+3295                       age_income_interaction
+3296                       utilization_debt_interaction
+3297                       credit_utilization_capped
+3298                       debt_ratio_capped
+3299                       pd_logistic
+3300                       pred_logistic
+3301                       base_score
+3302                       score_range
+3303                       credit_risk_score
+3304                       risk_grade  $
+3305                       recommendation  $
+3306                       base_rate
+3307                       interest_rate  $
+3308           ;
+3309           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3310           run;
+105000 rows created in WORK.LOGIT_SCORED_TRAIN from 
+/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/risk_scores_train.csv.
+  
+  
+  
+3311       
+3312       /*****************************************************************************
+3313        * 2. ROC Curve and AUC Analysis
+3314        *****************************************************************************/
+3315       
+3316       /* ROC analysis for validation set */
+3317       proc logistic data=work.logit_scored_valid;
+3318           model default_flag(event='1') = pd_logistic / nofit;
+3319           roc 'Logistic Model' pred=pd_logistic;
+3320           roccontrast;
+3321           ods output ROCAssociation=work.roc_stats;
+3322           title "ROC Curve Analysis - Validation Set";
+3323       run;
+3324       
+3325       /* Extract and display AUC */
+3326       data work.auc_summary;
+3327           set work.roc_stats;
+3328           where ROCModel = 'Logistic Model';
+3329           AUC = Area;
+3330           Gini = 2 * Area - 1;
+3331           keep ROCModel AUC Gini;
+3332           format AUC Gini 8.4;
+3333       run;
+3334       
+3335       proc print data=work.auc_summary noobs;
+3336           title "Model Performance Metrics - AUC and Gini";
+3337       run;
+3338       
+3339       /*****************************************************************************
+3340        * 3. Kolmogorov-Smirnov (KS) Statistic
+3341        *****************************************************************************/
+3342       
+3343       /* Sort by predicted probability */
+3344       proc sort data=work.logit_scored_valid;
+3345           by pd_logistic;
+3346       run;
+3347       
+3348       /* Calculate total good and bad counts */
+3349       proc sql noprint;
+3350           select sum(default_flag = 0), sum(default_flag = 1)
+3351           into :total_good_count, :total_bad_count
+3352           from work.logit_scored_valid;
+3353       quit;
+3354       
+3355       /* Calculate cumulative distributions */
+3356       data work.ks_calculation;
+3357           set work.logit_scored_valid;
+3358           retain cum_good cum_bad;
+3359       
+3360           if _n_ = 1 then do;
+3361               cum_good = 0;
+3362               cum_bad = 0;
+3363           end;
+3364       
+3365           if default_flag = 0 then cum_good + 1;
+3366           else cum_bad + 1;
+3367       
+3368           cum_pct_good = cum_good / &total_good_count;
+3369           cum_pct_bad = cum_bad / &total_bad_count;
+3370           ks_value = abs(cum_pct_good - cum_pct_bad);
+3371       run;
+3372       
+3373       /* Find maximum KS */
+3374       proc sql;
+3375           create table work.ks_statistic as
+3376           select max(ks_value) as KS_Statistic format=8.4,
+3377                  pd_logistic as KS_Cutoff format=8.4
+3378           from work.ks_calculation
+3379           where ks_value = (select max(ks_value) from work.ks_calculation);
+3380       quit;
+3381       
+3382       proc print data=work.ks_statistic noobs;
+3383           title "Kolmogorov-Smirnov Statistic";
+3384       run;
+3385       
+3386       /*****************************************************************************
+3387        * 4. Confusion Matrix and Accuracy Metrics
+3388        *****************************************************************************/
+3389       
+3390       /* Calculate metrics at different thresholds */
+3391       %macro confusion_metrics(threshold, suffix);
+3392           data work.confusion_&suffix;
+3393               set work.logit_scored_valid;
+3394               predicted = (pd_logistic >= &threshold);
+3395           run;
+3396       
+3397           proc freq data=work.confusion_&suffix noprint;
+3398               tables default_flag * predicted / out=work.conf_matrix_&suffix;
+3399           run;
+3400       
+3401           /* Calculate metrics */
+3402           data work.metrics_&suffix;
+3403               set work.conf_matrix_&suffix end=eof;
+3404               retain TP TN FP FN 0;
+3405       
+3406               if default_flag = 1 and predicted = 1 then TP = count;
+3407               else if default_flag = 0 and predicted = 0 then TN = count;
+3408               else if default_flag = 0 and predicted = 1 then FP = count;
+3409               else if default_flag = 1 and predicted = 0 then FN = count;
+3410       
+3411               if eof then do;
+3412                   threshold = &threshold;
+3413                   if (TP + TN + FP + FN) > 0 then accuracy = (TP + TN) / (TP + TN + FP + FN);
+3414                   else accuracy = .;
+3415                   if (TP + FP) > 0 then precision = TP / (TP + FP);
+3416                   else precision = .;
+3417                   if (TP + FN) > 0 then recall = TP / (TP + FN);
+3418                   else recall = .;
+3419                   if (precision + recall) > 0 then f1_score = 2 * (precision * recall) / (precision + recall);
+3420                   else f1_score = .;
+3421                   if (TN + FP) > 0 then specificity = TN / (TN + FP);
+3422                   else specificity = .;
+3423                   output;
+3424               end;
+3425               keep threshold accuracy precision recall f1_score specificity;
+3426           run;
+3427       %mend;
+3428       
+3429       /* Test multiple thresholds */
+3430       %confusion_metrics(0.3, 03);
+3431       %confusion_metrics(0.4, 04);
+3432       %confusion_metrics(0.5, 05);
+3433       %confusion_metrics(0.6, 06);
+3434       %confusion_metrics(0.7, 07);
+3435       
+3436       /* Combine results */
+3437       data work.threshold_analysis;
+3438           set work.metrics_03 work.metrics_04 work.metrics_05
+3439               work.metrics_06 work.metrics_07;
+3440       run;
+3441       
+3442       proc print data=work.threshold_analysis;
+3443           title "Performance Metrics at Different Thresholds";
+3444           format accuracy precision recall f1_score specificity 8.4;
+3445       run;
+3446       
+3447       /*****************************************************************************
+3448        * 5. Decile Analysis and Lift Chart
+3449        *****************************************************************************/
+3450       
+3451       /* Create deciles based on predicted probability */
+3452       proc rank data=work.logit_scored_valid
+3453                 out=work.decile_data
+3454                 groups=10 descending;
+3455           var pd_logistic;
+3456           ranks decile;
+3457       run;
+3458       
+3459       /* Calculate lift by decile */
+3460       proc sql;
+3461           create table work.decile_analysis as
+3462           select
+3463               decile + 1 as decile,
+3464               count(*) as total_count,
+3465               sum(default_flag) as defaults,
+3466               mean(default_flag) as default_rate format=percent8.2,
+3467               mean(pd_logistic) as avg_pd format=8.4,
+3468               min(pd_logistic) as min_pd format=8.4,
+3469               max(pd_logistic) as max_pd format=8.4,
+3470               sum(default_flag) / (select sum(default_flag) from work.decile_data) as capture_rate format=percent8.2,
+3471               (calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift format=8.2
+3472           from work.decile_data
+3473           group by decile
+3474           order by decile;
+3475       quit;
+3476       
+3477       proc print data=work.decile_analysis;
+3478           title "Decile Analysis - Model Lift and Capture Rate";
+3479       run;
+3480       
+3481       /* Calculate totals for cumulative lift chart */
+3482       proc sql noprint;
+3483           select sum(default_flag), mean(default_flag)
+3484           into :total_defaults, :overall_default_rate
+3485           from work.decile_data;
+3486       quit;
+3487       
+3488       /* Create cumulative lift chart */
+3489       data work.cumulative_lift;
+3490           set work.decile_analysis;
+3491           retain cum_defaults cum_count;
+3492           if _n_ = 1 then do;
+3493               cum_defaults = defaults;
+3494               cum_count = total_count;
+3495           end;
+3496           else do;
+3497               cum_defaults + defaults;
+3498               cum_count + total_count;
+3499           end;
+3500       
+3501           cum_capture_rate = cum_defaults / &total_defaults;
+3502           cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
+3503           format cum_capture_rate percent8.2 cum_lift 8.2;
+3504       run;
+3505       
+3506       proc sgplot data=work.cumulative_lift;
+3507           series x=decile y=cum_lift;
+3508           refline 1 / axis=y;
+3509           xaxis label="Decile";
+3510           yaxis label="Cumulative Lift";
+3511           title "Cumulative Lift Chart";
+3512       run;
+3513       
+3514       /*****************************************************************************
+3515        * 6. Population Stability Index (PSI)
+3516        *****************************************************************************/
+3517       
+3518       /* Compare score distributions between training and validation */
+3519       proc rank data=work.logit_scored_train
+3520                 out=work.train_bins
+3521                 groups=10;
+3522           var pd_logistic;
+3523           ranks score_bin;
+3524       run;
+3525       
+3526       proc rank data=work.logit_scored_valid
+3527                 out=work.valid_bins
+3528                 groups=10;
+3529           var pd_logistic;
+3530           ranks score_bin;
+3531       run;
+3532       
+3533       /* Calculate PSI */
+3534       proc sql;
+3535           create table work.psi_calculation as
+3536           select
+3537               a.score_bin,
+3538               a.train_pct,
+3539               b.valid_pct,
+3540               (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+3541           from
+3542               (select score_bin, count(*) / (select count(*) from work.train_bins) as train_pct
+3543                from work.train_bins group by score_bin) a
+3544           join
+3545               (select score_bin, count(*) / (select count(*) from work.valid_bins) as valid_pct
+3546                from work.valid_bins group by score_bin) b
+3547           on a.score_bin = b.score_bin;
+3548       
+3549           create table work.psi_summary as
+3550           select sum(psi_component) as PSI format=8.4,
+3551                  case
+3552                     when calculated PSI < 0.1 then 'No significant change'
+3553                     when calculated PSI < 0.25 then 'Some change'
+3554                     else 'Significant change'
+3555                  end as PSI_interpretation
+3556           from work.psi_calculation;
+3557       quit;
+3558       
+3559       proc print data=work.psi_summary noobs;
+3560           title "Population Stability Index";
+3561       run;
+3562       
+3563       /*****************************************************************************
+3564        * 7. Calibration Plot
+3565        *****************************************************************************/
+3566       
+3567       /* Bin predictions and compare to actual */
+3568       proc rank data=work.logit_scored_valid
+3569                 out=work.calibration_data
+3570                 groups=20;
+3571           var pd_logistic;
+3572           ranks pred_bin;
+3573       run;
+3574       
+3575       proc sql;
+3576           create table work.calibration_plot as
+3577           select
+3578               pred_bin,
+3579               mean(pd_logistic) as mean_predicted format=8.4,
+3580               mean(default_flag) as mean_actual format=8.4,
+3581               count(*) as bin_count
+3582           from work.calibration_data
+3583           group by pred_bin
+3584           order by pred_bin;
+3585       quit;
+3586       
+3587       proc sgplot data=work.calibration_plot;
+3588           scatter x=mean_predicted y=mean_actual / markerattrs=(size=10);
+3589           lineparm x=0 y=0 slope=1 / lineattrs=(pattern=dash);
+3590           xaxis label="Mean Predicted Probability";
+3591           yaxis label="Mean Actual Default Rate";
+3592           title "Calibration Plot - Predicted vs Actual";
+3593       run;
+3594       
+3595       /*****************************************************************************
+3596        * 8. Generate Validation Report
+3597        *****************************************************************************/
+3598       
+3599       /* Compile validation metrics */
+3600       data work.validation_summary;
+3601           merge work.auc_summary
+3602                 work.ks_statistic
+3603                 work.psi_summary;
+3604           length model $20 status $20;
+3605           model = "Logistic Regression";
+3606       
+3607           /* Determine model status based on metrics */
+3608           if AUC >= 0.7 and KS_Statistic >= 0.3 and PSI < 0.25 then
+3609               status = "Production Ready";
+3610           else if AUC >= 0.65 then
+3611               status = "Requires Review";
+3612           else
+3613               status = "Needs Improvement";
+3614       run;
+3615       
+3616       proc print data=work.validation_summary noobs;
+3617           title "Model Validation Summary";
+3618       run;
+3619       
+3620       /*****************************************************************************
+3621        * 9. Export Validation Results
+3622        *****************************************************************************/
+3623       
+3624       /* Export validation summary */
+3625       proc export data=work.validation_summary
+3626           outfile="&output_path/validation_summary.csv"
+3627           dbms=csv
+3628           replace;
+3629       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+3630        /**********************************************************************
+3631        *   PRODUCT:   SAS
+3632        *   VERSION:   9.4
+3633        *   CREATOR:   External File Interface
+3634        *   DATE:      05NOV26
+3635        *   DESC:      Generated SAS Datastep Code
+3636        *   TEMPLATE SOURCE:  (None Specified.)
+3637        ***********************************************************************/
+3638           data _null_;
+3639           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3640           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+3641           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/validation_summary.csv' delimiter=',' DSD
+3641     ! DROPOVER lrecl=32767;
+3642           if _n_ = 1 then        /* write column names or labels */
+3643            do;
+3644              put
+3645                 "ROCModel"
+3646              ','
+3647                 "AUC"
+3648              ','
+3649                 "Gini"
+3650              ','
+3651                 "KS_Statistic"
+3652              ','
+3653                 "KS_Cutoff"
+3654              ','
+3655                 "PSI"
+3656              ','
+3657                 "PSI_interpretation"
+3658              ','
+3659                 "model"
+3660              ','
+3661                 "status"
+3662              ;
+3663            end;
+3664          set  WORK.VALIDATION_SUMMARY   end=EFIEOD;
+3665              format ROCModel $14. ;
+3666              format AUC 8.4 ;
+3667              format Gini 8.4 ;
+3668              format KS_Statistic 8.4 ;
+3669              format KS_Cutoff 8.4 ;
+3670              format PSI 8.4 ;
+3671              format PSI_interpretation $21. ;
+3672              format model $20. ;
+3673              format status $20. ;
+3674            do;
+3675              EFIOUT + 1;
+3676              put ROCModel $ @;
+3677              put AUC @;
+3678              put Gini @;
+3679              put KS_Statistic @;
+3680              put KS_Cutoff @;
+3681              put PSI @;
+3682              put PSI_interpretation $ @;
+3683              put model $ @;
+3684              put status $ ;
+3685              ;
+3686            end;
+3687           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3688           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+3689           run;
+1 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/validation_summary.csv from 
+WORK.VALIDATION_SUMMARY.
+  
+  
+3690       
+3691       /* Export decile analysis */
+3692       proc export data=work.decile_analysis
+3693           outfile="&output_path/decile_analysis.csv"
+3694           dbms=csv
+3695           replace;
+3696       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+3697        /**********************************************************************
+3698        *   PRODUCT:   SAS
+3699        *   VERSION:   9.4
+3700        *   CREATOR:   External File Interface
+3701        *   DATE:      05NOV26
+3702        *   DESC:      Generated SAS Datastep Code
+3703        *   TEMPLATE SOURCE:  (None Specified.)
+3704        ***********************************************************************/
+3705           data _null_;
+3706           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3707           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+3708           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/decile_analysis.csv' delimiter=',' DSD DROPOVER
+3708     ! lrecl=32767;
+3709           if _n_ = 1 then        /* write column names or labels */
+3710            do;
+3711              put
+3712                 "decile"
+3713              ','
+3714                 "total_count"
+3715              ','
+3716                 "defaults"
+3717              ','
+3718                 "default_rate"
+3719              ','
+3720                 "avg_pd"
+3721              ','
+3722                 "min_pd"
+3723              ','
+3724                 "max_pd"
+3725              ','
+3726                 "capture_rate"
+3727              ','
+3728                 "lift"
+3729              ;
+3730            end;
+3731          set  WORK.DECILE_ANALYSIS   end=EFIEOD;
+3732              format decile best12. ;
+3733              format total_count best12. ;
+3734              format defaults best12. ;
+3735              format default_rate percent8.2 ;
+3736              format avg_pd 8.4 ;
+3737              format min_pd 8.4 ;
+3738              format max_pd 8.4 ;
+3739              format capture_rate percent8.2 ;
+3740              format lift 8.2 ;
+3741            do;
+3742              EFIOUT + 1;
+3743              put decile @;
+3744              put total_count @;
+3745              put defaults @;
+3746              put default_rate @;
+3747              put avg_pd @;
+3748              put min_pd @;
+3749              put max_pd @;
+3750              put capture_rate @;
+3751              put lift ;
+3752              ;
+3753            end;
+3754           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3755           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+3756           run;
+10 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/decile_analysis.csv from WORK.DECILE_ANALYSIS.
+  
+  
+3757       
+3758       /* Export threshold analysis */
+3759       proc export data=work.threshold_analysis
+3760           outfile="&output_path/threshold_analysis.csv"
+3761           dbms=csv
+3762           replace;
+3763       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+3764        /**********************************************************************
+3765        *   PRODUCT:   SAS
+3766        *   VERSION:   9.4
+3767        *   CREATOR:   External File Interface
+3768        *   DATE:      05NOV26
+3769        *   DESC:      Generated SAS Datastep Code
+3770        *   TEMPLATE SOURCE:  (None Specified.)
+3771        ***********************************************************************/
+3772           data _null_;
+3773           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3774           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+3775           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/threshold_analysis.csv' delimiter=',' DSD
+3775     ! DROPOVER lrecl=32767;
+3776           if _n_ = 1 then        /* write column names or labels */
+3777            do;
+3778              put
+3779                 "threshold"
+3780              ','
+3781                 "accuracy"
+3782              ','
+3783                 "precision"
+3784              ','
+3785                 "recall"
+3786              ','
+3787                 "f1_score"
+3788              ','
+3789                 "specificity"
+3790              ;
+3791            end;
+3792          set  WORK.THRESHOLD_ANALYSIS   end=EFIEOD;
+3793              format threshold best12. ;
+3794              format accuracy best12. ;
+3795              format precision best12. ;
+3796              format recall best12. ;
+3797              format f1_score best12. ;
+3798              format specificity best12. ;
+3799            do;
+3800              EFIOUT + 1;
+3801              put threshold @;
+3802              put accuracy @;
+3803              put precision @;
+3804              put recall @;
+3805              put f1_score @;
+3806              put specificity ;
+3807              ;
+3808            end;
+3809           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3810           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+3811           run;
+5 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/threshold_analysis.csv from 
+WORK.THRESHOLD_ANALYSIS.
+  
+  
+3812       
+3813       /* Export KS statistics */
+3814       proc export data=work.ks_statistic
+3815           outfile="&output_path/ks_statistic.csv"
+3816           dbms=csv
+3817           replace;
+3818       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+3819        /**********************************************************************
+3820        *   PRODUCT:   SAS
+3821        *   VERSION:   9.4
+3822        *   CREATOR:   External File Interface
+3823        *   DATE:      05NOV26
+3824        *   DESC:      Generated SAS Datastep Code
+3825        *   TEMPLATE SOURCE:  (None Specified.)
+3826        ***********************************************************************/
+3827           data _null_;
+3828           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3829           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+3830           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/ks_statistic.csv' delimiter=',' DSD DROPOVER
+3830     ! lrecl=32767;
+3831           if _n_ = 1 then        /* write column names or labels */
+3832            do;
+3833              put
+3834                 "KS_Statistic"
+3835              ','
+3836                 "KS_Cutoff"
+3837              ;
+3838            end;
+3839          set  WORK.KS_STATISTIC   end=EFIEOD;
+3840              format KS_Statistic 8.4 ;
+3841              format KS_Cutoff 8.4 ;
+3842            do;
+3843              EFIOUT + 1;
+3844              put KS_Statistic @;
+3845              put KS_Cutoff ;
+3846              ;
+3847            end;
+3848           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3849           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+3850           run;
+1 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/ks_statistic.csv from WORK.KS_STATISTIC.
+  
+  
+3851       
+3852       /* Export calibration plot data */
+3853       proc export data=work.calibration_plot
+3854           outfile="&output_path/calibration_plot.csv"
+3855           dbms=csv
+3856           replace;
+3857       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+3858        /**********************************************************************
+3859        *   PRODUCT:   SAS
+3860        *   VERSION:   9.4
+3861        *   CREATOR:   External File Interface
+3862        *   DATE:      05NOV26
+3863        *   DESC:      Generated SAS Datastep Code
+3864        *   TEMPLATE SOURCE:  (None Specified.)
+3865        ***********************************************************************/
+3866           data _null_;
+3867           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3868           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+3869           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/calibration_plot.csv' delimiter=',' DSD DROPOVER
+3869     !  lrecl=32767;
+3870           if _n_ = 1 then        /* write column names or labels */
+3871            do;
+3872              put
+3873                 "pred_bin"
+3874              ','
+3875                 "mean_predicted"
+3876              ','
+3877                 "mean_actual"
+3878              ','
+3879                 "bin_count"
+3880              ;
+3881            end;
+3882          set  WORK.CALIBRATION_PLOT   end=EFIEOD;
+3883              format pred_bin best12. ;
+3884              format mean_predicted 8.4 ;
+3885              format mean_actual 8.4 ;
+3886              format bin_count best12. ;
+3887            do;
+3888              EFIOUT + 1;
+3889              put pred_bin @;
+3890              put mean_predicted @;
+3891              put mean_actual @;
+3892              put bin_count ;
+3893              ;
+3894            end;
+3895           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3896           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+3897           run;
+20 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/calibration_plot.csv from 
+WORK.CALIBRATION_PLOT.
+  
+  
+3898       
+3899       /* Create comprehensive model performance metrics dataset */
+3900       data work.model_performance_metrics;
+3901           merge work.auc_summary
+3902                 work.ks_statistic
+3903                 work.psi_summary
+3904                 work.threshold_analysis(where=(threshold=0.5) rename=(accuracy=acc_50 precision=prec_50 recall=rec_50
+3904     ! f1_score=f1_50 specificity=spec_50));
+3905       
+3906           /* Add metadata */
+3907           model_name = "Logistic Regression";
+3908           validation_date = today();
+3909           dataset = "Kaggle Give Me Some Credit";
+3910       
+3911           /* Rename for clarity */
+3912           rename acc_50 = accuracy_at_50
+3913                  prec_50 = precision_at_50
+3914                  rec_50 = recall_at_50
+3915                  f1_50 = f1_score_at_50
+3916                  spec_50 = specificity_at_50;
+3917       
+3918           format validation_date date9.;
+3919       
+3920           /* Keep relevant variables */
+3921           drop threshold ROCModel;
+3922       run;
+3923       
+3924       /* Export comprehensive metrics */
+3925       proc export data=work.model_performance_metrics
+3926           outfile="&output_path/model_performance_metrics.csv"
+3927           dbms=csv
+3928           replace;
+3929       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+3930        /**********************************************************************
+3931        *   PRODUCT:   SAS
+3932        *   VERSION:   9.4
+3933        *   CREATOR:   External File Interface
+3934        *   DATE:      05NOV26
+3935        *   DESC:      Generated SAS Datastep Code
+3936        *   TEMPLATE SOURCE:  (None Specified.)
+3937        ***********************************************************************/
+3938           data _null_;
+3939           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3940           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+3941           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/model_performance_metrics.csv' delimiter=',' DSD
+3941     !  DROPOVER lrecl=32767;
+3942           if _n_ = 1 then        /* write column names or labels */
+3943            do;
+3944              put
+3945                 "AUC"
+3946              ','
+3947                 "Gini"
+3948              ','
+3949                 "KS_Statistic"
+3950              ','
+3951                 "KS_Cutoff"
+3952              ','
+3953                 "PSI"
+3954              ','
+3955                 "PSI_interpretation"
+3956              ','
+3957                 "accuracy_at_50"
+3958              ','
+3959                 "precision_at_50"
+3960              ','
+3961                 "recall_at_50"
+3962              ','
+3963                 "f1_score_at_50"
+3964              ','
+3965                 "specificity_at_50"
+3966              ','
+3967                 "model_name"
+3968              ','
+3969                 "validation_date"
+3970              ','
+3971                 "dataset"
+3972              ;
+3973            end;
+3974          set  WORK.MODEL_PERFORMANCE_METRICS   end=EFIEOD;
+3975              format AUC 8.4 ;
+3976              format Gini 8.4 ;
+3977              format KS_Statistic 8.4 ;
+3978              format KS_Cutoff 8.4 ;
+3979              format PSI 8.4 ;
+3980              format PSI_interpretation $21. ;
+3981              format accuracy_at_50 best12. ;
+3982              format precision_at_50 best12. ;
+3983              format recall_at_50 best12. ;
+3984              format f1_score_at_50 best12. ;
+3985              format specificity_at_50 best12. ;
+3986              format model_name $19. ;
+3987              format validation_date date9. ;
+3988              format dataset $26. ;
+3989            do;
+3990              EFIOUT + 1;
+3991              put AUC @;
+3992              put Gini @;
+3993              put KS_Statistic @;
+3994              put KS_Cutoff @;
+3995              put PSI @;
+3996              put PSI_interpretation $ @;
+3997              put accuracy_at_50 @;
+3998              put precision_at_50 @;
+3999              put recall_at_50 @;
+4000              put f1_score_at_50 @;
+4001              put specificity_at_50 @;
+4002              put model_name $ @;
+4003              put validation_date @;
+4004              put dataset $ ;
+4005              ;
+4006            end;
+4007           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+4008           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+4009           run;
+1 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/model_performance_metrics.csv from 
+WORK.MODEL_PERFORMANCE_METRICS.
+  
+  
+4010       
+4011       /* Print summary of saved metrics */
+4012       proc print data=work.model_performance_metrics noobs;
+4013           title "Model Performance Metrics - Saved to Output Folder";
+4014       run;
+4015       
+4016       %put NOTE: Model validation completed successfully;
+4017       %put NOTE: Validation metrics calculated and exported;
+4018       %put NOTE: Results saved to: &output_path;
+4019       %put NOTE: Check validation_summary.csv for overall performance;
+4020       proc export data=work.roc_stats outfile="&output_path/printed_roc_metrics.csv" dbms=csv replace;
+4020     !                                                                                                  run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+4021        /**********************************************************************
+4022        *   PRODUCT:   SAS
+4023        *   VERSION:   9.4
+4024        *   CREATOR:   External File Interface
+4025        *   DATE:      05NOV26
+4026        *   DESC:      Generated SAS Datastep Code
+4027        *   TEMPLATE SOURCE:  (None Specified.)
+4028        ***********************************************************************/
+4029           data _null_;
+4030           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+4031           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+4032           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/printed_roc_metrics.csv' delimiter=',' DSD
+4032     ! DROPOVER lrecl=32767;
+4033           if _n_ = 1 then        /* write column names or labels */
+4034            do;
+4035              put
+4036                 "ROCModel"
+4037              ','
+4038                 "Area"
+4039              ','
+4040                 "StdErr"
+4041              ','
+4042                 "LowerArea"
+4043              ','
+4044                 "UpperArea"
+4045              ','
+4046                 "SomersD"
+4047              ','
+4048                 "Gamma"
+4049              ','
+4050                 "TauA"
+4051              ;
+4052            end;
+4053          set  WORK.ROC_STATS   end=EFIEOD;
+4054              format ROCModel $14. ;
+4055              format Area d8. ;
+4056              format StdErr d8. ;
+4057              format LowerArea d8. ;
+4058              format UpperArea d8. ;
+4059              format SomersD d8. ;
+4060              format Gamma d8. ;
+4061              format TauA d8. ;
+4062            do;
+4063              EFIOUT + 1;
+4064              put ROCModel $ @;
+4065              put Area @;
+4066              put StdErr @;
+4067              put LowerArea @;
+4068              put UpperArea @;
+4069              put SomersD @;
+4070              put Gamma @;
+4071              put TauA ;
+4072              ;
+4073            end;
+4074           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+4075           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+4076           run;
+1 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/printed_roc_metrics.csv from WORK.ROC_STATS.
+  
+  
+4077       proc export data=work.cumulative_lift outfile="&output_path/printed_cumulative_lift.csv" dbms=csv replace;
+4077     !                                                                                                            run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+4078        /**********************************************************************
+4079        *   PRODUCT:   SAS
+4080        *   VERSION:   9.4
+4081        *   CREATOR:   External File Interface
+4082        *   DATE:      05NOV26
+4083        *   DESC:      Generated SAS Datastep Code
+4084        *   TEMPLATE SOURCE:  (None Specified.)
+4085        ***********************************************************************/
+4086           data _null_;
+4087           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+4088           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+4089           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/printed_cumulative_lift.csv' delimiter=',' DSD
+4089     ! DROPOVER lrecl=32767;
+4090           if _n_ = 1 then        /* write column names or labels */
+4091            do;
+4092              put
+4093                 "decile"
+4094              ','
+4095                 "total_count"
+4096              ','
+4097                 "defaults"
+4098              ','
+4099                 "default_rate"
+4100              ','
+4101                 "avg_pd"
+4102              ','
+4103                 "min_pd"
+4104              ','
+4105                 "max_pd"
+4106              ','
+4107                 "capture_rate"
+4108              ','
+4109                 "lift"
+4110              ','
+4111                 "cum_defaults"
+4112              ','
+4113                 "cum_count"
+4114              ','
+4115                 "cum_capture_rate"
+4116              ','
+4117                 "cum_lift"
+4118              ;
+4119            end;
+4120          set  WORK.CUMULATIVE_LIFT   end=EFIEOD;
+4121              format decile best12. ;
+4122              format total_count best12. ;
+4123              format defaults best12. ;
+4124              format default_rate percent8.2 ;
+4125              format avg_pd 8.4 ;
+4126              format min_pd 8.4 ;
+4127              format max_pd 8.4 ;
+4128              format capture_rate percent8.2 ;
+4129              format lift 8.2 ;
+4130              format cum_defaults best12. ;
+4131              format cum_count best12. ;
+4132              format cum_capture_rate percent8.2 ;
+4133              format cum_lift 8.2 ;
+4134            do;
+4135              EFIOUT + 1;
+4136              put decile @;
+4137              put total_count @;
+4138              put defaults @;
+4139              put default_rate @;
+4140              put avg_pd @;
+4141              put min_pd @;
+4142              put max_pd @;
+4143              put capture_rate @;
+4144              put lift @;
+4145              put cum_defaults @;
+4146              put cum_count @;
+4147              put cum_capture_rate @;
+4148              put cum_lift ;
+4149              ;
+4150            end;
+4151           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+4152           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+4153           run;
+10 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/printed_cumulative_lift.csv from 
+WORK.CUMULATIVE_LIFT.
+  
+  
+4154       proc export data=work.psi_calculation outfile="&output_path/printed_psi_calculation.csv" dbms=csv replace;
+4154     !                                                                                                            run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+4155        /**********************************************************************
+4156        *   PRODUCT:   SAS
+4157        *   VERSION:   9.4
+4158        *   CREATOR:   External File Interface
+4159        *   DATE:      05NOV26
+4160        *   DESC:      Generated SAS Datastep Code
+4161        *   TEMPLATE SOURCE:  (None Specified.)
+4162        ***********************************************************************/
+4163           data _null_;
+4164           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+4165           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+4166           file '/home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/printed_psi_calculation.csv' delimiter=',' DSD
+4166     ! DROPOVER lrecl=32767;
+4167           if _n_ = 1 then        /* write column names or labels */
+4168            do;
+4169              put
+4170                 "score_bin"
+4171              ','
+4172                 "train_pct"
+4173              ','
+4174                 "valid_pct"
+4175              ','
+4176                 "psi_component"
+4177              ;
+4178            end;
+4179          set  WORK.PSI_CALCULATION   end=EFIEOD;
+4180              format score_bin best12. ;
+4181              format train_pct best12. ;
+4182              format valid_pct best12. ;
+4183              format psi_component best12. ;
+4184            do;
+4185              EFIOUT + 1;
+4186              put score_bin @;
+4187              put train_pct @;
+4188              put valid_pct @;
+4189              put psi_component ;
+4190              ;
+4191            end;
+4192           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+4193           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+4194           run;
+10 records created in /home/u64643823/sasmig/runs/baseline_v2-20261105T100634/output/printed_psi_calculation.csv from 
+WORK.PSI_CALCULATION.
+  
+  
+4195       
+4196       
+4197       
+4198       
+40                                                         The SAS System                        Thursday,  5 November 2026 10:06:00
+
+4199       

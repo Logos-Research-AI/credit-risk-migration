@@ -1,0 +1,37 @@
+stop after step 24 best (np.float64(3.800814021577753), 'num_credit_lines') 0.05122767232345546 aliased now ['flag_serious_delinquency']
+min rel residual among non-aliased 0.001295826342728672 max rel among aliased 7.01985035181698e-15
+1 financial_health  14471.4043 14471.4043 OK
+2 flag_multiple_delinq  713.7097 713.6852 OK
+3 flag_high_debt_ratio  471.023 471.0222 OK
+4 has_serious_delinque  294.625 294.6242 OK
+5 age  216.1068 216.1064 OK
+6 num_credit_lines  157.5328 157.5328 OK
+7 flag_very_high_utili  84.2249 84.2249 OK
+8 flag_high_utilizatio  43.7575 43.7568 OK
+9 debt_ratio_capped  24.6366 24.6360 OK
+10 flag_very_high_debt_  46.6169 46.6169 OK
+11 flag_few_credit_line  26.1639 26.1639 OK
+12 num_real_estate_loan  13.953 13.9530 OK
+13 income_per_dependent  17.2289 17.2280 OK
+14 credit_utilization_c  8.0084 8.0083 OK
+15 has_delinquency  18.2626 18.2620 OK
+16 credit_util_category  29.6996 29.6995 OK
+17  flag_high_debt_ratio 1.5952 1.5952 OK
+18 flag_recent_late_pay  13.5117 13.5117 OK
+19 log_monthly_income  4.9421 4.9420 OK
+20 age_income_interacti  17.7689 17.7682 OK
+21  age 3.061 3.0602 OK
+22 credit_lines_per_per  7.5175 7.5173 OK
+23 num_dependents  8.6457 8.6456 OK
+24  num_credit_lines 3.8001 3.8001 OK
+len 24 24 all match True
+outside 18 rank 16 smallest eig [-1.16186344e-14  6.56312507e-15  4.31394113e-03  6.87536393e-03
+  2.36705459e-01]
+residual chi2 3.1933946176418626
+normalized eig [-3.69012352e-15  2.90353648e-18  1.02857574e-15  1.18233040e-03
+  3.69890820e-03]
+rank 15
+residual chi2 (pinv) 53.519391976649786
+null vec [('total_late_payments', np.float64(-0.865)), ('num_late_30_59', np.float64(0.291)), ('num_late_90_plus', np.float64(0.289)), ('num_late_60_89', np.float64(0.288)), ('total_risk_flags', np.float64(-0.008)), ('flag_high_debt_ratio', np.float64(0.003))]
+null vec [('flag_serious_delinquency', np.float64(1.0)), ('total_risk_flags', np.float64(-0.001))]
+null vec [('total_risk_flags', np.float64(0.924)), ('flag_high_debt_ratio', np.float64(-0.338)), ('flag_low_income', np.float64(-0.176)), ('total_late_payments', np.float64(-0.007)), ('num_late_30_59', np.float64(0.002)), ('num_late_90_plus', np.float64(0.002))]

@@ -5,8 +5,8 @@
 > Read-only inside any loop: amendments are queued for the human and applied between
 > batches.
 
-**Status: DRAFT v0.1 (2026-11-05), awaiting human sign-off.** Items marked
-**[DECIDE]** are policy calls for the human; the text states the proposed default.
+**Status: v1.0, signed off by the user 2026-11-05.** Items marked **[DECIDED]** were
+policy calls made by the user at that gate (all five: the proposed defaults).
 
 Read this whole document before writing any code. The judge (`judge/README.md`) is the
 exit condition; this rulebook is how translations get there.
@@ -25,7 +25,7 @@ exit condition; this rulebook is how translations get there.
 - **Cheap referee.** Python has no compile step; the referee is
   `ruff check` + `pyright --strict` on the package, seconds per run. Per README Step 4
   this dissolves Step 4 into Step 3: implementers run both inside their loop, and a
-  draft that does not pass both is not done. **[DECIDE]** Proposed: yes — the human
+  draft that does not pass both is not done. **[DECIDED]** Yes — the human
   removes the lint/typecheck denies from `.claude/settings.json` at the Step 3 gate.
   Running the pipeline or the judge stays out of the loop until Step 5/6.
 - **Fidelity over performance.** Mark known slow-but-faithful translations
@@ -40,8 +40,8 @@ exit condition; this rulebook is how translations get there.
 | Python | 3.13, managed by uv, `pyproject.toml` at repo root | user decision (feasibility gate) |
 | DataFrames | **polars** only. `pandas` **BANNED** | user decision; one data model |
 | Numerics | **numpy** for linear algebra (model fitting); **scipy** only for `scipy.stats.chi2.sf` (p-values) | stepwise needs score/Wald tests by hand |
-| Model libraries | `statsmodels`, `scikit-learn` **BANNED** **[DECIDE]** | hidden defaults (sklearn's L2 penalty was caught by the judge in review C); SAS's stepwise rules must be explicit code (§2) |
-| Plotting | none. PROC SGPLOT is not ported (§2) **[DECIDE]** | no judged output; no matplotlib dependency |
+| Model libraries | `statsmodels`, `scikit-learn` **BANNED** **[DECIDED]** | hidden defaults (sklearn's L2 penalty was caught by the judge in review C); SAS's stepwise rules must be explicit code (§2) |
+| Plotting | none. PROC SGPLOT is not ported (§2) **[DECIDED]** | no judged output; no matplotlib dependency |
 | Other third-party deps | NONE without a row here | |
 | CSV I/O | read raw inputs with `pl.read_csv(..., infer_schema=False)` (all text) and convert explicitly per §2 "PROC IMPORT"; write outputs with the shared writer `sas_compat.write_sas_csv` (§4) only | type guessing and number printing are SAS behaviors we must emulate, not delegate |
 | Floating point | IEEE double (`pl.Float64`) everywhere, like SAS | |
@@ -108,7 +108,7 @@ flagged for this table and handled by the UNKNOWN rule.
 | PROC SORT `by x` | `sort(x, maintain_order=True)` (stable, missing first) | SAS's default EQUALS keeps ties in input order |
 | PROC EXPORT dbms=csv | `sas_compat.write_sas_csv(df, path, formats={col: fmt})`: unformatted numerics as BEST12. (`sas_compat.sas_best12`), formatted columns with their format (`percent8.2` → `5.00%`, `8.4` → `0.8592`, `8.2`, `date9.`), missing numeric → empty field, header = column names | `sas_best12` reproduces all 2.9M reference cells |
 | `format x best12.` / `format x 8.4` / `percent8.2` / `date9.` attached to a column | the `formats=` argument at export time; values stay full precision in memory | formats change printing only |
-| PROC MEANS / PROC FREQ (printed) / PROC PRINT / PROC CONTENTS / PROC SGPLOT | **not ported**; replaced by a one-line comment `# listing-only: PROC X <what it showed>` **[DECIDE]** | not judged (judge README "Not judged") |
+| PROC MEANS / PROC FREQ (printed) / PROC PRINT / PROC CONTENTS / PROC SGPLOT | **not ported**; replaced by a one-line comment `# listing-only: PROC X <what it showed>` **[DECIDED]** | not judged (judge README "Not judged") |
 
 **The BUG rule:** when the source's behavior is itself defective, reproduce it
 bug-for-bug and mark the site `BUG(port):` with a one-line repro. Known instances:
@@ -171,4 +171,4 @@ Reviewers check the trailer against the file's actual `TODO(port)` count.
 | DEV-001 | 2026-11-05 | 00b steps 1–2 (categorize/rewrite tests) not applicable: 0 tests in repo; replaced by real-world and edge-case scenarios | user (judge sign-off) |
 | DEV-002 | 2026-11-05 | 00b reviewers A and B reviewed code edited during their review; mitigated by review C on the final state | user (judge sign-off) |
 | DEV-003 | 2026-11-05 | 00b review C's fixes verified by self-test + full re-validation, not by a fourth reviewer | user (judge sign-off) |
-| DEV-004 | 2026-11-05 | Prompt 01 skeptic samples: the codebase has 4 files, so each reviewer takes 2 (all files covered) instead of 20 | — (pending) |
+| DEV-004 | 2026-11-05 | Prompt 01 skeptic samples: the codebase has 4 files, so each reviewer takes 2 (all files covered) instead of 20 | user, 2026-11-05 |
