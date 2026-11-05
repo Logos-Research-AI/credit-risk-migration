@@ -78,7 +78,7 @@ def confusion_metrics(
     return confusion, conf_matrix, metrics
 
 
-def run(input_dir: Path, output_dir: Path) -> None:
+def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)  # R§4, S12
 
     # metrics_calculation.sas:28-41 PROC IMPORT of the scored data
@@ -247,9 +247,15 @@ def run(input_dir: Path, output_dir: Path) -> None:
     train_bins = logit_scored_train.with_columns(
         sas_compat.proc_rank_groups(logit_scored_train.get_column("pd_logistic"), 10).alias("score_bin")
     )
-    valid_bins = logit_scored_valid.with_columns(
-        sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 10).alias("score_bin")
+    # FIXED(post-parity, flag --fix-psi-bins): validation rows take the TRAINING decile cut-points
+    valid_bin_col = (
+        sas_compat.proc_rank_apply_groups(
+            logit_scored_train.get_column("pd_logistic"), logit_scored_valid.get_column("pd_logistic"), 10
+        )
+        if fix_psi_bins
+        else sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 10)
     )
+    valid_bins = logit_scored_valid.with_columns(valid_bin_col.alias("score_bin"))
 
     # metrics_calculation.sas:265-278 psi_calculation
     # INV work.psi_calculation / psi_summary: shares = div(count, n) after aggregation (A7, A13); inner
@@ -420,7 +426,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Credit risk model validation (metrics_calculation.sas)")
     parser.add_argument("--input-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument(
+        "--fix-psi-bins",
+        action="store_true",
+        help="post-parity fix: PSI bins validation on the training decile cut-points",
+    )
     args = parser.parse_args()
-    run(args.input_dir, args.output_dir)
+    run(args.input_dir, args.output_dir, fix_psi_bins=args.fix_psi_bins)
 
 # PORT STATUS: confidence=high todos=0
