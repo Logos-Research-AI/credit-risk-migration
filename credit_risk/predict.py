@@ -199,8 +199,7 @@ def run(input_dir: Path, output_dir: Path, *, data_dir: Path) -> None:
     model = json.loads((input_dir / "model.json").read_text())
     intercept = float(model["intercept"])
     coefficients: dict[str, float] = {str(k): float(v) for k, v in model["coefficients"].items()}
-    # TODO(port): rulebook silent on a model variable absent at scoring (SAS PLM errors) —
-    # keys are full names per RULEBOOK §2 PLM
+    # RESOLVED (post-parity): ValueError matches PROC PLM's ERROR; model.json keys are full names.
     absent = [k for k in coefficients if k not in test_features.columns]
     if absent:
         raise ValueError(f"model.json coefficient variables absent from the scoring frame: {absent}")
@@ -321,4 +320,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     run(args.input_dir, args.output_dir, data_dir=args.data_dir)
 
-# PORT STATUS: confidence=high todos=1
+# PORT STATUS: confidence=high todos=0
