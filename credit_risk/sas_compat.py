@@ -457,30 +457,22 @@ def sas_d8(x: float | None) -> str:
 
 def sas_d12_3(x: float | None) -> str:
     """D12.3 as exported (inventory: printed_association.csv, printed_rsquare.csv,
-    printed_fit_statistics.csv InterceptOnly): |x| >= 1e4 -> 0 decimals; 1e-4 <= |x| < 100 ->
-    6 decimals; 1e-5 <= |x| < 1e-4 -> 9 decimals; last digit half up (A18). The branch is chosen
-    from the value rounded at the branch's decimals (9999.9999996 -> '10000'); a text wider than 12
-    falls back to BEST12.
-    TODO(port): 100 <= |x| < 1e4 (6 decimals assumed) and |x| < 1e-5 (BEST12 E-notation assumed)
-    were never observed in SAS output; |x| < 1e-5 is reachable (Percent Tied is below 1e-5 when
-    there are 68 or fewer tied pairs of 686,727,936); 0 prints '0'."""
+    printed_fit_statistics.csv InterceptOnly): |x| >= 1e4 -> 0 decimals; 1e-4 <= |x| < 1e4 -> 6
+    decimals; 0 < |x| < 1e-4 -> 9 decimals, never E-notation (X06: 1.2345E-6 -> '0.000001235'); last
+    digit half up (A18). The branch is chosen from the value rounded at the branch's decimals
+    (9999.9999996 -> '10000'); a text wider than 12 falls back to BEST12; 0 prints '0'.
+    RESOLVED (post-parity): X06: 100 <= |x| < 1e4 has 6 decimals; |x| < 1e-4 has 9, never E-notation."""
     if x is None or not math.isfinite(x):
         return ""
     if x == 0:
         return "0"
 
-    def decimals(v: float) -> int | None:
+    def decimals(v: float) -> int:
         av = abs(v)
-        if av >= 1e4:
-            return 0
-        if av >= 1e-4:
-            return 6
-        return 9 if av >= 1e-5 else None
+        return 0 if av >= 1e4 else 6 if av >= 1e-4 else 9
 
     dec = decimals(x)
     for _ in range(3):
-        if dec is None:
-            return sas_best(x, 12)
         s = _fixed(x, dec)
         nxt = decimals(float(s))
         if nxt == dec:
@@ -1094,4 +1086,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=8
+# PORT STATUS: confidence=medium todos=7

@@ -495,11 +495,6 @@ def check_d_formats() -> None:
     ]
     bad = [f"{g!r} want {w!r}" for g, w in cases if g != w]
     counted("sas_d8 / sas_d12_3 / sas_pvalue spot values from the inventory rows", bad, len(cases), "cases")
-    print(  # B-13: not a check (cannot be verified without SAS); outside the PASS/FAIL count
-        "OPEN  D12.3 unobserved magnitudes (100<=|x|<1e4, |x|<1e-5): NOT SAS-verified; "
-        f"implemented guesses: 250.5->{sc.sas_d12_3(250.5)}, 3e-6->{sc.sas_d12_3(3e-6)}",
-        flush=True,
-    )
 
 
 def check_writer() -> None:
@@ -881,13 +876,25 @@ def check_x06_d8() -> None:
     counted("X06 D8. cells", bad, len(cases), "cases")
 
 
+def check_x06_d12() -> None:
+    """X06 D12.3 cells, exact."""
+    cases = [
+        (0.000029, "0.000029000"), (0.00001, "0.000010000"), (6.42e-6, "0.000006420"),
+        (0.000123456, "0.000123"), (123.456789, "123.456789"), (12345.6789, "12346"), (-0.5, "-0.500000"),
+        (0.0, "0"), (1234567.89, "1234568"), (-0.000029, "-0.000029000"), (0.5, "0.500000"),
+        (99.123456789, "99.123457"), (250.5, "250.500000"), (1.2345e-6, "0.000001235"),
+    ]
+    bad = [f"{x!r}: {sc.sas_d12_3(x)!r} want {w!r}" for x, w in cases if sc.sas_d12_3(x) != w]
+    counted("X06 D12.3 cells", bad, len(cases), "cases")
+
+
 def main() -> None:
     steps: list[Callable[[], object]] = [
         check_best_small, check_best12, check_percent_wd, check_rank_and_wd84, check_import,
         check_edge_cases, check_d_formats, check_writer, check_stepwise, check_reference_pd_tables, check_roc,
         check_x05_scalars, check_x05_exprs, check_sql_and_merge, check_helper_names_and_agg, check_writer_rules,
         check_fit_and_stepwise_edges, check_degenerate_stats, check_runs_sas_pd, check_runs_stepwise,
-        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent, check_x06_d8,
+        check_x06_oddsr, check_x06_input, check_x06_best, check_x06_percent, check_x06_d8, check_x06_d12,
     ]
     for f in steps:
         try:
