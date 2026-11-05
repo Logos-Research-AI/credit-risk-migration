@@ -73,15 +73,21 @@ def run(input_dir: Path, output_dir: Path) -> None:
     ]
     # R§2 PROC LOGISTIC selection=stepwise, A5
     # INV work.logit_scored_train / model_coefficients / stepwise path
-    stepwise = sas_compat.stepwise_logistic(model_features_train, "default_flag", candidates, 0.05, 0.05)
+    # SAS fits on complete cases only: a row with a missing MODEL variable or response is excluded
+    # (RULEBOOK §2 stepwise); the fit frame feeds the fit and every fit statistic below
+    fit_mask = (
+        model_features_train.select(pl.all_horizontal(pl.col(*candidates, "default_flag").is_not_null()))
+        .to_series()
+        .to_numpy()
+    )
+    fit_frame = model_features_train.filter(pl.Series(fit_mask))
+    stepwise = sas_compat.stepwise_logistic(fit_frame, "default_flag", candidates, 0.05, 0.05)
     final = stepwise.final
     intercept_only = stepwise.intercept_only
     if final is None or intercept_only is None:
         raise RuntimeError("stepwise_logistic returned no final model")
-    # TODO(port): rows with a missing MODEL variable are excluded from the fit; stats here use all rows
-    # (none missing on any judged input; RULEBOOK §2 stepwise)
-    n_obs = model_features_train.height
-    y_train = np.asarray(model_features_train.get_column("default_flag").to_numpy(), dtype=np.float64)
+    n_obs = fit_frame.height
+    y_train = np.asarray(fit_frame.get_column("default_flag").to_numpy(), dtype=np.float64)
     m2ll0 = -2.0 * intercept_only.loglik  # -2 Log L of the intercept-only fit
     ybar = float(y_train.mean())
 
@@ -777,4 +783,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     run(args.input_dir, args.output_dir)
 
-# PORT STATUS: confidence=medium todos=4
+# PORT STATUS: confidence=medium todos=3
