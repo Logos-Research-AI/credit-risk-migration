@@ -14,13 +14,16 @@ import polars as pl
 from credit_risk import sas_compat
 
 
-def run(data_dir: Path, output_dir: Path, *, split_ids: Path) -> None:
+def run(data_dir: Path, output_dir: Path, *, split_ids: Path, fix_income_truncation: bool = False) -> None:
     # R§4 (S12, A27): create the output folder first
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # feature_engineering.sas:28-33  PROC IMPORT, default guessingrows=20  # INV work.credit_raw
     # BUG(port): MonthlyIncome is sized $5. from the first 20 rows, so 159791 is cut to 15979 (77 rows)
-    credit_raw = sas_compat.proc_import_csv(data_dir / "cs-training.csv", guessingrows=20)
+    # FIXED(post-parity, flag --fix-income-truncation): guessingrows=None keeps all 77 incomes >= 100,000
+    credit_raw = sas_compat.proc_import_csv(
+        data_dir / "cs-training.csv", guessingrows=None if fix_income_truncation else 20
+    )
 
     # feature_engineering.sas:36-38
     # listing-only: PROC MEANS n nmiss mean std min max of credit_raw  # INV listing-only PROCs
@@ -242,7 +245,17 @@ if __name__ == "__main__":  # R§4
     parser.add_argument("--data-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--split-ids", type=Path, required=True)
+    parser.add_argument(
+        "--fix-income-truncation",
+        action="store_true",
+        help="post-parity fix: import cs-training.csv with guessingrows=max (off: SAS-faithful truncation)",
+    )
     args = parser.parse_args()
-    run(args.data_dir, args.output_dir, split_ids=args.split_ids)
+    run(
+        args.data_dir,
+        args.output_dir,
+        split_ids=args.split_ids,
+        fix_income_truncation=args.fix_income_truncation,
+    )
 
 # PORT STATUS: confidence=high todos=0
