@@ -342,8 +342,7 @@ def sas_best(x: float | None, w: int) -> str:
     characters also prints in E-notation (experiment X03: 123456789 -> '1.2346E8' at BEST8.).
     At other widths a value below 1 prints in E-notation when plain notation cannot show it within w
     (experiment X05: 0.000015 -> BEST6 '15E-6', BEST8 and BEST12 '0.000015').
-    TODO(port): the 1e-5 threshold is verified at w = 12 only (A15); BEST8. below 1e-4 beyond the
-    X05 cell, and a w too small to show any digit (e.g. -100 at w=3), are unverified.
+    RESOLVED (post-parity): X06 fixes the BEST8/BEST6 cells below 1 and above 1e11 (see _best_e).
     Non-finite -> ''."""
     if x is None or not math.isfinite(x):
         return ""
@@ -362,7 +361,7 @@ def sas_best(x: float | None, w: int) -> str:
             out = _strip_zeros(_fixed(x, max(w - 1 - ilen, 0)))
             if len(out) <= w:
                 return out
-    return _enotation(x, w)
+    return _enotation(x, w) if w == 12 else _best_e(x, w)
 
 
 def sas_best12(x: float | None) -> str:
@@ -1095,4 +1094,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=11
+# PORT STATUS: confidence=medium todos=10
