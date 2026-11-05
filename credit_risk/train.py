@@ -139,8 +139,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     fs_only: list[str] = [sas_compat.sas_d12_3(m2ll0)]  # R§2 S6: the one D12.3 helper
     fs_cov: list[str] = [sas_compat.fmt_wd(m2ll0, 9, 3)]
     # ODS GlobalTests -> printed_global_tests.csv  # INV printed_global_tests.csv
-    # TODO(port): rows with a missing MODEL variable are excluded from the fit; stats here use all rows
-    # (none missing on any judged input; RULEBOOK §2 stepwise)
+    # (complete cases only: the global tests come from the fit on fit_frame)
     # stored formats: Test $16., ChiSq 10.4, DF 4., ProbChiSq pvalue6.4 (S7)
     gt_step: list[str] = []
     gt_test: list[str] = []
@@ -779,4 +778,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     run(args.input_dir, args.output_dir)
 
-# PORT STATUS: confidence=medium todos=2
+# PORT STATUS: confidence=medium todos=1
