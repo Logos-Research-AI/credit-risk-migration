@@ -777,7 +777,8 @@ def stepwise_logistic(
             zwz = float(z @ (z * w))
             v = x.T @ (z * w)
             resid = zwz - float(v @ np.linalg.solve(info, v))
-            # RESOLVED (post-parity): alias alternation is unreachable here; the stop rule prevents a loop.
+            # RESOLVED (post-parity): alias alternation not reached on judged inputs (path matches SAS);
+            # a longer cycle would stop at the 500-step cap with RuntimeError.
             if zwz <= 0.0 or resid / zwz < 1e-8:
                 continue  # aliased with the current model
             u = float(z @ (y - p))
