@@ -223,6 +223,13 @@ def finalize() -> int:
             if ln.strip():
                 r = ln.split("\t")
                 fixes[(r[0], r[1], r[2])] = r[3]
+    resolved: dict[tuple[str, str, str], str] = {}
+    rf = FANOUT / "resolutions.tsv"  # UNKNOWN rows answered by the human at a gate
+    if rf.exists():
+        for ln in rf.read_text().split("\n")[1:]:
+            if ln.strip():
+                q = ln.split("\t")
+                resolved[(q[0], q[1], q[2])] = q[3]
     counts: dict[str, int] = {}
     for r in rows:
         k = (r[0], r[1], r[2])
@@ -246,6 +253,8 @@ def finalize() -> int:
                 st = "confirmed"
             if any(v == "RULEBOOK_CONFLICT" for v in list(v1.values()) + list(second.get(k, {}).values())):
                 st += "; needs queued rulebook amendment"
+        if k in resolved:
+            st = f"confirmed ({resolved[k]})"
         if k in fixes and not r[6].startswith("confirmed"):
             st += f"; audit fix {fixes[k]}"
         r[6] = st

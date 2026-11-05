@@ -112,7 +112,9 @@ MODEL_STAT_FILES = {"model_coefficients.csv", "stepwise_summary.csv"} | {
 DU_ONLY_COLS = {"Estimate", "StdErr"}
 # (file, column) -> absolute tolerance overriding the model-fit rule
 ABS_COL_TOL = {
-    ("printed_hl_partition.csv", "Total"): 0.0,  # HL groups are formed by count: exact
+    # HL groups are blocks of rows whose pd agree within 1e-6, so a converged port moves
+    # boundary rows: 6 of 10 Totals differ by 1 (human sign-off Q2, 2026-11-05)
+    ("printed_hl_partition.csv", "Total"): 2.0,
     ("printed_hl_partition.csv", "EventsObserved"): 2.0,  # rows adjacent in pd may swap groups
     ("printed_hl_partition.csv", "NoneventsObserved"): 2.0,
 }

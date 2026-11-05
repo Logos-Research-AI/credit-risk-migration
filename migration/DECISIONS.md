@@ -79,3 +79,12 @@ for translation rules once it exists.
   migration/inventory-review-fanout.md.
 - Waiting on the human: Q2; amendments A9–A31 (A20 replaces A10); DEV-006.
 - Judge documentation fixes, no verdict change: sas_best12 is plain-notation only; 283 ties.
+
+## Step 1 — gap inventory SIGNED OFF 2026-11-05
+- The user answered "Ok" to the gate recommendations, recorded as approval of all of:
+  - Q2 (a): the judge allows HL Totals ±2 (compare.py; self-test 81/81; validation verdicts
+    unchanged). The HL row is confirmed, so 193/193 rows are confirmed.
+  - Amendments A9–A31 applied as RULEBOOK v1.2 (A10 withdrawn, replaced by A20).
+  - DEV-006 sanctioned and moved into RULEBOOK §7.
+- Before Step 2 (prompt 03), the user installs .claude/settings.json from the kit template
+  (absent as of this gate; the kit forbids the agent from installing it).

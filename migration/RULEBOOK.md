@@ -5,10 +5,12 @@
 > Read-only inside any loop: amendments are queued for the human and applied between
 > batches.
 
-**Status: v1.1, signed off by the user 2026-11-05.** Items marked **[DECIDED]** were
+**Status: v1.2, signed off by the user 2026-11-05.** Items marked **[DECIDED]** were
 policy calls made by the user at that gate (all five: the proposed defaults).
 v1.1 = v1.0 + amendments A1–A8 (`migration/rulebook-amendments.md`), approved by the
 user at the prompt 02 first-20-rows gate and applied on their authorization.
+v1.2 = v1.1 + amendments A9, A11–A31 (A10 withdrawn, replaced by A20), approved by the
+user at the prompt 02 final gate ("Ok" to the recommendations) and applied on their authorization.
 
 Read this whole document before writing any code. The judge (`judge/README.md`) is the
 exit condition; this rulebook is how translations get there.
@@ -45,8 +47,8 @@ exit condition; this rulebook is how translations get there.
 | Model libraries | `statsmodels`, `scikit-learn` **BANNED** **[DECIDED]** | hidden defaults (sklearn's L2 penalty was caught by the judge in review C); SAS's stepwise rules must be explicit code (§2) |
 | Plotting | none. PROC SGPLOT is not ported (§2) **[DECIDED]** | no judged output; no matplotlib dependency |
 | Other third-party deps | NONE without a row here | |
-| CSV I/O | read raw inputs with `pl.read_csv(..., infer_schema=False)` (all text) and convert explicitly per §2 "PROC IMPORT"; write outputs with the shared writer `sas_compat.write_sas_csv` (§4) only | type guessing and number printing are SAS behaviors we must emulate, not delegate |
-| Floating point | IEEE double (`pl.Float64`) everywhere, like SAS | |
+| CSV I/O | read raw inputs with `pl.read_csv(..., infer_schema=False)` (all text) and convert explicitly per §2 "PROC IMPORT"; write outputs with the shared writer `sas_compat.write_sas_csv` (§4) only. The judge's `compare.sas_best12` is plain-notation only and is **never** copied as the port's printer (A15) | type guessing and number printing are SAS behaviors we must emulate, not delegate |
+| Floating point | IEEE double (`pl.Float64`) for measured values, like SAS. Integer-literal category codes from `when` chains stay polars Int32 and are never cast; a join key is built by the same chain on both sides (A28) | `.then(1.0)` on one side → Int32 vs Float64 key → SchemaError |
 | Row order | `maintain_order=True` on every `group_by`, `unique`, `join`; sorts are stable (`maintain_order=True`) | KS and ranks depend on order within ties (judge README findings) |
 
 ## 2. Constructs with no Python equivalent — one canonical mapping each
@@ -63,31 +65,34 @@ flagged for this table and handled by the UNKNOWN rule.
 | comparison with a possibly-missing operand: `x < c`, `x <= c`, `x > c`, `x >= c`, `x = c` | `sas_compat.lt/le/gt/ge/eq(x, c)`: **missing is smaller than every number**, so `. < 2500` is **true**, `. > 30` is false, `. = .` is true. Result is a **non-null `pl.Boolean`** (A1) | SAS rule; mutation `predict_null_compare_false` (judge) is exactly the polars default `null < 2500 → null → false`. **Which form (A2):** the helpers are mandatory where the inventory classifies the operand `MISSING_NULLABLE`; a **plain polars comparison** is required where it says `MISSING_NEVER` (the row must prove never-missing for every input the program can receive) |
 | boolean assignment `flag = (cond);` | `sas_compat.flag(cond)`: any Boolean expression (helper or plain comparison) → Int64 0/1. The only way to make a 0/1 numeric (A1) | SAS stores 0/1 numerics; exported as `0`/`1` |
 | `if A then x=1; else if B then x=2; else x=3;` | one `pl.when(A).then(1).when(B).then(2).otherwise(3)` chain; each condition is a helper or a plain comparison per the inventory's `MISSING_NULLABLE` / `MISSING_NEVER` classification (A2) | preserves first-match order and missing semantics |
-| arithmetic `a + b`, `a * b`, `a / b` | plain polars arithmetic (null propagates, as SAS) | division by zero: SAS → missing + note; polars → inf. Use `sas_compat.div(a, b)` wherever the inventory says a divisor can be 0 |
-| proportions: shares and rates (`count/n`, capture rate, lift, PSI shares) | Float64 division done **after** aggregation (aggregate counts/sums first, divide in a later `with_columns`), never inside `group_by().agg(...)` (A7) | polars 2.1 gives `0.09999999999999999` inside the aggregation, so PSI prints `1.540744E-33` instead of `0` |
+| arithmetic `a + b`, `a * b`, `a / b` | plain polars arithmetic (null propagates, as SAS), and plain `/` **only column by column**. Any division whose divisor is a scalar, a literal or an aggregate (`x / 100`, `x / n`, `x / x.sum()`) → `sas_compat.div(a, b)`: element-wise IEEE division (numpy `np.divide`), missing → missing, /0 → missing (A13). Also use it wherever the inventory says a divisor can be 0 | polars 2.1 computes `col / scalar` as `col * (1/scalar)` depending on chunk layout; SAS divides like IEEE (experiment X04, `migration/experiments/x04_findings.md`) |
+| proportions: shares and rates (`count/n`, capture rate, lift, PSI shares) | aggregate counts/sums first, divide **after** the aggregation (A7), and with `sas_compat.div` when the divisor is a scalar (A13) | without A13, PSI prints `1.540744E-33` instead of `0` even after aggregation |
 | `sum(a, b, ...)` | `sas_compat.sas_sum(a, b, ...)`: ignores missing; all missing → missing | NOT `a + b` |
 | `min(a, b)`, `max(a, b)` | `sas_compat.sas_min/sas_max`: ignore missing | NOT `pl.min_horizontal` without checking null handling (it also ignores nulls — allowed only via the helper) |
 | `log(x)` | `sas_compat.sas_log(x)`: x ≤ 0 or missing → missing | |
 | `exp(x)` | `pl.Expr.exp()`; missing → missing | |
+| numeric truthiness `if x then` | `pl.col(x) != 0` inside the `when` (missing and 0 are false) (A29) | |
 | `round(x)` | `sas_compat.sas_round(x)`: **half away from zero** | Python `round` is half-to-even: BANNED for SAS `round` |
 | `input(s, best32.)` | `sas_compat.input_best32(s)`: numeric text → float, anything else (`"NA"`, `""`) → missing | logs nothing |
 | `missing(x)` | `x.is_null()` | |
-| `today()` + `format date9.` | `datetime.date.today().strftime("%d%b%Y").upper()` | e.g. `05NOV2026` |
+| `today()` + `format date9.` | `f"{d.day:02d}{MONTHS[d.month - 1]}{d.year}"` with a fixed `MONTHS = ("JAN", ..., "DEC")`, never `strftime("%b")` (locale-dependent) (A16) | e.g. `05NOV2026` |
 | macro variables `%let`, `&x` | module-level constants or function parameters | `&output_path` / `&data_path` become CLI arguments (§4) |
-| `%macro name(a, b); ... %mend;` + calls | a Python function with the same name and parameters, called at the same points | metrics_calculation.sas:120 `%confusion_metrics` |
-| `select ... into :mvar` | a Python scalar variable | |
+| `%macro name(a, b); ... %mend;` + calls | a Python function with the same name and macro parameters, plus the WORK datasets the body reads as DataFrame parameters; it returns the datasets it creates; called at the same points (A23) | metrics_calculation.sas:122 `%confusion_metrics` |
+| `select ... into :mvar` | a Python scalar holding what SAS stores: numeric values without `format=` are **BEST8. text**, so `float(sas_compat.sas_best(x, 8))` (A9) | experiment X03: mean 0.0670666… → `0.066667`, and later arithmetic sees the rounded value |
 | `%put NOTE: ...` | `print(...)` with the same text | |
 | `title "...";` | dropped | listing-only |
+| normal quantile in CIs | the single constant `sas_compat.Z975 = 1.959963984540054` (A25) | odds-ratio and ROC CIs |
 
 ### DATA step and PROC SQL
 
 | SAS construct | Canonical Python translation | Notes |
 |---|---|---|
-| `data out; set in; ... run;` | `out = in.with_columns(...)` in statement order; a later statement that reads a variable assigned earlier in the same step must see the new value → split into successive `with_columns` calls | SAS evaluates statements sequentially per row |
+| `data out; set in; ... run;` | `out = in.with_columns(...)` in statement order; a later statement that reads a variable assigned earlier in the same step must see the new value → split into successive `with_columns` calls. Repeated reassignment of ONE variable (e.g. `financial_health`) may instead be one nested expression that applies the statements in order (A30). A copy step that only attaches a format (`data x_export; set x; format _numeric_ best12.;`) may be elided: the writer's default is BEST12. (A31) | SAS evaluates statements sequentially per row |
 | `retain` + `end=eof` accumulation | an explicit aggregation over the frame producing the single output row | train.sas:132 training_metrics; behavior on missing cells as the source |
-| `keep` / `drop` / `rename` | `select` / `drop` / `rename`, preserving SAS column order rules: new columns are appended in order of first assignment | column order is judged |
+| `keep` / `drop` / `rename` | `keep` keeps the **input** column order, not the order written in the statement: `select([c for c in df.columns if c in KEEP])` (A12); `drop` / `rename` as polars; new columns are appended in order of first assignment | column order is judged |
 | `merge a b ...;` (no BY) | one-to-one merge: rows = the longest input; values from a shorter input are **missing** on the extra rows (not repeated), written as empty fields (A6) | train.sas:366 model_summary; experiment X01a (`migration/experiments/x01_merge_and_alias.lst`) |
-| PROC SQL `select ... from a left join b on ...` | `a.join(b, on=..., how="left", maintain_order="left")` | output row order is not guaranteed in SAS; the judge matches by key |
+| PROC SQL `select ... from a left join b on ...` | `a.join(b, on=..., how="left", maintain_order="left")`, plus `nulls_equal=True` where a key can be missing (SAS SQL matches missing keys) (A11) | output row order is not guaranteed in SAS; the judge matches by key |
+| PROC SQL inner join | `a.join(b, on=..., how="inner", maintain_order="left", nulls_equal=True)` (A26) | metrics PSI join |
 | PROC SQL `median(x)` with `group by` | `pl.col(x).median()` over non-missing values, `group_by(..., maintain_order=True)` | even counts average the two middle values, like SAS |
 | PROC SQL `calculated name` | reuse the expression / column computed earlier in the same select | |
 | PROC SQL `case when ... end` | `pl.when` chain; conditions as in the `if/else` row (A2) | |
@@ -97,22 +102,25 @@ flagged for this table and handled by the UNKNOWN rule.
 
 | SAS construct | Canonical Python translation | Notes |
 |---|---|---|
-| PROC IMPORT (csv, `getnames=yes`) | `sas_compat.proc_import_csv(path, guessingrows=20 or None)`: column type = numeric if every one of the first `guessingrows` data values parses as a number, else character with length = longest of those values, **later values truncated to that length** (`BUG(port)`); a column whose first `guessingrows` values are **all empty** is character of length 1 (A3: `SeriousDlqin2yrs $1.` in cs-test.csv); character values that are not numbers stay text; empty header → `VAR1`; names truncated to 32 characters; hyphens kept | feature_engineering.sas:28 uses the default (20) → `MonthlyIncome` becomes `$5.` and 77 incomes ≥ 100,000 are truncated (judge README finding). predict.sas:28 uses `guessingrows=max` (None = all rows) |
-| PROC SURVEYSELECT samprate=0.7 seed=42 | **not reproduced.** `feature_engineering.run(..., split_ids=...)` takes the set of training `row_id`s (from the reference) and marks `selected` from it | SAS's split depends on unguaranteed SQL row order (judge README); `BUG(port)` |
+| PROC IMPORT (csv, `getnames=yes`) | `sas_compat.proc_import_csv(path, guessingrows=20 or None)`: column type = numeric if every one of the first `guessingrows` data values parses as a number, else character with length = longest of those values, **later values truncated to that length** (`BUG(port)`); a column whose first `guessingrows` values are **all empty** is character of length 1 (A3: `SeriousDlqin2yrs $1.` in cs-test.csv); character values that are not numbers stay text; empty header → `VAR1`; names truncated to 32 characters; hyphens kept | feature_engineering.sas:28 uses the default (20) → `MonthlyIncome` becomes `$5.` and 77 incomes ≥ 100,000 are truncated (judge README finding). predict.sas:27-33 uses `guessingrows=max` at :32 (None = all rows) (A31) |
+| PROC SURVEYSELECT samprate=0.7 seed=42 | **not reproduced.** `feature_engineering.run(data_dir, output_dir, *, split_ids: Path)` reads the training `row_id`s from a CSV with a `row_id` column (from the reference) and marks `selected` from it (A27) | SAS's split depends on unguaranteed SQL row order (judge README); `BUG(port)` |
 | PROC LOGISTIC `selection=stepwise slentry=0.05 slstay=0.05` (descending) | `sas_compat.stepwise_logistic(...)`, written once, over the candidates in MODEL statement order, modelling P(default_flag = 1) (A5): (1) intercept-only start; after every step test **removal first, then entry**. (2) Removal: Wald χ² for each effect in the model; remove the one with the **smallest χ²** if its p > slstay (ties: first in MODEL order), one per step. (3) Entry: for each candidate not in the model, in MODEL order, **skip it if aliased with the current model** (relative residual V/(z′Wz) < 1e-8, V = its residual variance after projecting on the model's columns in the information metric; decided per step, never by pre-excluding columns); else score χ² = U²/V at the current fit; enter the **largest χ²** (DF = 1; strict >, so ties go to the **first in MODEL order**; never select by smallest p, which underflows) if its p < slentry. (4) Stop when nothing enters or the best entry is the effect just removed. Newton to max\|step\| < 1e-10 at every step | the judge compares the 24-step path exactly (`stepwise_summary.csv`); `migration/experiments/x02_stepwise_reference.py` reproduces it; inventory row for train.sas stepwise |
-| model fitting inside PROC LOGISTIC | Newton–Raphson (= Fisher scoring for the logit link) on numpy float64 to full convergence (max abs step < 1e-10) | SAS stops at GCONV=1E-8; the judge accepts a fully converged fit (PD_TOL evidence) |
-| ODS tables of PROC LOGISTIC (`ParameterEstimates`, `ModelBuildingSummary`, `FitStatistics`, `GlobalTests`, `RSquare`, `Association`, `OddsRatios`, `LackFitPartition`, `LackFitChiSq`, `Classification`) | computed explicitly and written as the `printed_*.csv` / coefficient / stepwise files of the judge contract, with ODS's column names, row labels and printed formats | **UNKNOWN until the inventory settles each one**: the exact SAS definitions (HL grouping, `ctable` jackknife classification, R-square, odds-ratio CI method) are inventory rows |
+| model fitting inside PROC LOGISTIC | Newton–Raphson (= Fisher scoring for the logit link) on numpy float64, **started from all-zero coefficients**, halving the step while -2 Log L increases, to full convergence (max abs step < 1e-10) (A17) | SAS stops at GCONV=1E-8; the judge accepts a fully converged fit (PD_TOL evidence; HL Totals ±2, Q2). Started from the intercept-only fit, plain Newton diverges at stepwise step 2 |
+| ODS tables of PROC LOGISTIC (`ParameterEstimates`, `ModelBuildingSummary`, `FitStatistics`, `GlobalTests`, `RSquare`, `Association`, `OddsRatios`, `LackFitPartition`, `LackFitChiSq`, `Classification`) | computed explicitly as the inventory row for each judged file decides (`sas_compat.classification_table` for the ctable, `sas_compat.hosmer_lemeshow` for HL), written as **pre-rendered text columns**. Printed text = the **stored formats of the ODS output dataset that PROC EXPORT applies** (export code in `judge/reference/listings/*.log`), never the listing's template format (A19, A20) | listing InterceptOnly `51477.521` vs exported `51478` |
 | ODS variable names in coefficient tables | truncated to 20 characters (`credit_utilization_c`) | |
 | `output out= predicted=` | pd for each training row from the final model | |
 | PROC LOGISTIC `store` / PROC PLM `restore ... score predicted=` | train writes `model.json` = `{"intercept": b0, "coefficients": {full_variable_name: b}}`; predict reads it, computes the linear predictor η = b0 + Σ bᵢxᵢ (missing if any xᵢ missing), then pd = 1/(1+exp(−η)) as the SAS code does | the only cross-program session state (depmap) |
 | PROC LOGISTIC `nofit` + `roc` (ROCAssociation) | `sas_compat.roc_association(y, score)`: Area = Mann–Whitney AUC with ties counted ½; StdErr and CI per SAS's DeLong method; Somers' D, Gamma, Tau-a | inventory row confirms SAS formulas |
 | ODS `Association` table of the fitted model | over all event × non-event pairs on the final model's pd, no binning; a pair is **tied when \|pd_event − pd_nonevent\| ≤ 1e-8** (SAS tie fuzz); c = (C + T/2)/pairs, Somers' D = (C − D)/pairs, Gamma = (C − D)/(C + D), Tau-a = (C − D)/(n(n − 1)/2) (A8) | judge compares Percent Tied with an absolute 1e-5 percentage-point tolerance (Q1, signed off 2026-11-05): a converged port gets 283 ties vs SAS's 280 |
 | PROC RANK `groups=k` (`descending`) | `sas_compat.proc_rank_groups(x, k, descending)`: rank with ties = mean, group = floor(rank·k/(n+1)) | reproduces SAS exactly on edge scenario a (judge README) |
-| PROC FREQ `tables a*b / out=` | `group_by([a, b], maintain_order=True).len()` → `COUNT`, `PERCENT` = 100·COUNT/N, sorted by a, b | `printed_confusion_*` |
+| PROC FREQ `tables a*b / out=` | `group_by([a, b], maintain_order=True).len()` → `COUNT` (Int64), `PERCENT = sas_compat.div(100 * COUNT, N)` (A22), sorted by a, b | `printed_confusion_*` |
 | PROC SORT `by x` | `sort(x, maintain_order=True)` (stable, missing first) | SAS's default EQUALS keeps ties in input order |
-| PROC EXPORT dbms=csv | `sas_compat.write_sas_csv(df, path, formats={col: fmt})`: unformatted numerics as BEST12. (`sas_compat.sas_best12`), formatted columns with their format (`percent8.2` → `5.00%`, `8.4` → `0.8592`, `8.2`, `date9.`), missing numeric → empty field, header = column names | `sas_best12` reproduces all 2.9M reference cells |
+| PROC EXPORT dbms=csv | `sas_compat.write_sas_csv(df, path, formats={col: fmt})`. Unformatted numerics as BEST12. via `sas_compat.sas_best12`: plain notation, rounded **half up from the value's 15-significant-digit form** (A18), and **E-notation for 0 < \|x\| < 1e-5** (mantissa rounded to fill 12 characters, trailing zeros stripped, e.g. `9.670322E-6`) (A15). Formatted columns: `w.d` and `percentw.d` round half away from zero from the 15-significant-digit form (A24) and keep width w, so `percent8.2` prints `5.00%` but `100.0%` (A14); `date9.` per §2. Missing numeric → empty field. **str columns are written verbatim** (empty string → empty field): model-statistics files are pre-rendered with `sas_compat.sas_d8`, `sas_d12_3`, `sas_pvalue` (PVALUE6.4, `<.0001`), `sas_best(x, w)` and ODS's special missing `_` (A20) | X04: 39 of 149,987 cells still differ by 1 unit in the 12th character (within judge tolerance) |
 | `format x best12.` / `format x 8.4` / `percent8.2` / `date9.` attached to a column | the `formats=` argument at export time; values stay full precision in memory | formats change printing only |
 | PROC MEANS / PROC FREQ (printed) / PROC PRINT / PROC CONTENTS / PROC SGPLOT | **not ported**; replaced by a one-line comment `# listing-only: PROC X <what it showed>` **[DECIDED]** | not judged (judge README "Not judged") |
+| datasets the judge exports although the SAS code only prints them (`judge/run_sas.py` EXPORT_AFTER: roc_train, roc_valid, confusion_matrix_train, confusion_matrix, roc_stats, cumulative_lift, psi_calculation) | `write_sas_csv` of the dataset's FINAL state to `printed_<name>.csv` (the judge contract's file name) with its stored formats (A21) | judged files: dropping them fails the judge |
+
+**Helper verification (A31).** `sas_compat.le` and `sas_compat.eq` have no site in the inventory: keep them, marked "no site; unverified". Helper branches that no judged input reaches get explicit cases in the Step 2 `sas_compat` review: `sum(., 1) = 1`, `sum(., .) = .`, `min(., 200) = 200`, `log(0) = .`, `input('') = .`, and the D12.3 magnitudes never observed (100 ≤ \|x\| < 1e4, \|x\| < 1e-5).
 
 **The BUG rule:** when the source's behavior is itself defective, reproduce it
 bug-for-bug and mark the site `BUG(port):` with a one-line repro. Known instances:
@@ -143,7 +151,10 @@ helpers above.
   §2. It has no SAS source; it is written once before the fan-out (Step 2 pilot) and
   reviewed like a translation. Translations import it as `from credit_risk import sas_compat`.
   No translation defines its own copy of a helper.
-- **Stage entry points:** each module exposes `run(input_dir: Path, output_dir: Path, ...) -> None`
+- **Stage entry points (A27):** `feature_engineering.run(data_dir: Path, output_dir: Path, *, split_ids: Path)`;
+  `train.run(input_dir: Path, output_dir: Path)`; `metrics_calculation.run(input_dir: Path, output_dir: Path)`;
+  `predict.run(input_dir: Path, output_dir: Path, *, data_dir: Path)`. `input_dir` is the folder holding the previous
+  stage's outputs. Each module exposes its `run(...) -> None`
   and `if __name__ == "__main__":` argparse with `--data-dir`, `--input-dir`,
   `--output-dir` replacing `&data_path` / `&output_path`; feature_engineering also
   takes `--split-ids <csv of row_id>`. Paths like `/home/u64352077` never appear.
@@ -177,3 +188,4 @@ Reviewers check the trailer against the file's actual `TODO(port)` count.
 | DEV-003 | 2026-11-05 | 00b review C's fixes verified by self-test + full re-validation, not by a fourth reviewer | user (judge sign-off) |
 | DEV-004 | 2026-11-05 | Prompt 01 skeptic samples: the codebase has 4 files, so each reviewer takes 2 (all files covered) instead of 20 | user, 2026-11-05 |
 | DEV-005 | 2026-11-05 | Prompt 02: inventory row 14 (stepwise) was revised a second time instead of being marked UNKNOWN after its one resubmission, because the reviewer named the single missing sentence (tie-break by MODEL order) and `migration/experiments/x02_stepwise_reference.py` (re-run independently by the orchestrator) reproduces SAS's 24-step path exactly | user, 2026-11-05 (prompt 02 first-20 gate) |
+| DEV-006 | 2026-11-05 | Prompt 02 batch 1: the two skeptic reviewers took disjoint halves, so each of the first 20 rows had ONE reviewer, not two. Mitigation: the fan-out used two independent reviewers per row, and the joint audit re-read the batch-1 rows (6 defects fixed, none changing computed values in the FE/predict half) | user, 2026-11-05 (prompt 02 final gate) |

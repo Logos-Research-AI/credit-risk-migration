@@ -152,6 +152,9 @@ def cases():
     yield "HL EventsObserved +3", HP, {HP: setc(hp, 0, "EventsObserved", str(int(hp["EventsObserved"][0]) + 3))}, {"EventsObserved"}, False, {}
     t0, t1 = int(hp["Total"][0]), int(hp["Total"][1])
     yield "C/D6: HL 10 rows moved between groups", HP, {HP: setc(setc(hp, 0, "Total", str(t0 + 10)), 1, "Total", str(t1 - 10))}, {"Total"}, False, {}
+    # Q2 (2026-11-05): HL Totals within 2 (a converged port moves block-boundary rows: 6 Totals by 1)
+    yield "Q2: HL 1 row moved between groups", HP, {HP: setc(setc(hp, 0, "Total", str(t0 + 1)), 1, "Total", str(t1 - 1))}, PASS, False, {}
+    yield "Q2: HL Total +3", HP, {HP: setc(hp, 0, "Total", str(t0 + 3))}, {"Total"}, False, {}
     c0, c1 = int(ct["COUNT"][0]), int(ct["COUNT"][1])
     yield "C/D6: confusion row moved, no flips", CT, {CT: setc(setc(ct, 0, "COUNT", str(c0 - 1)), 1, "COUNT", str(c1 + 1))}, {"COUNT"}, False, {}
     # metrics and summaries

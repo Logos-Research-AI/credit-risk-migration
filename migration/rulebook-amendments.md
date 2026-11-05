@@ -40,7 +40,9 @@ verdicts are unchanged.
 - The rule delegating every gap decision to `migration/inventory.tsv` by path (§5) was
   part of the signed-off draft, so prompt 02's "queue a delegating rule" step is done.
 
-## Batch 2 (fan-out): queued, NOT applied
+## Batch 2 (fan-out, A9–A31): APPLIED 2026-11-05 as RULEBOOK v1.2
+
+The user approved the gate's recommendations ("Ok"). A10 is withdrawn and replaced by A20.
 
 | ID | Rule | Change | Exposed by | What goes wrong today |
 |---|---|---|---|---|
@@ -83,3 +85,5 @@ converged pd fails only on Total. Options:
 (b) the port stops Fisher scoring where SAS does (GCONV=1e-8), which the judge README calls
 brittle.
 Recommended: (a). This is a change to the signed-off judge.
+**ANSWERED 2026-11-05: (a).** judge/compare.py ABS_COL_TOL Total 2.0. The converged HL table passes;
+self-test 81/81; validation verdicts unchanged.

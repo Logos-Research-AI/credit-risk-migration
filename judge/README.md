@@ -97,7 +97,7 @@ Default is **exact**. Each tolerance below is deliberate and is a place a defect
 | **Value**, fixed-format columns (`8.4`, `percent8.2`, ...): 1 display unit | SAS printed a rounded value |
 | **Value**, other numbers (BEST12.): 1 unit in the 12th character | Integers and flags are effectively exact |
 | `pd_logistic`: per row within `PD_TOL = 1e-4`, and per file mean \|Δ\| within `PD_MEAN_TOL = 1e-5` | Tolerance evidence; the mean bound catches systematic bias |
-| Model-fit tables: 2 display units + 0.1% relative; -2 Log L, AIC, SC, LR test 1e-6 relative; Estimate/StdErr 2 display units; integers relative only; HL group Totals exact, HL observed counts ±2; Association `Percent Tied` absolute 1e-5 percentage points (added 2026-11-05, Q1) | Tolerance evidence |
+| Model-fit tables: 2 display units + 0.1% relative; -2 Log L, AIC, SC, LR test 1e-6 relative; Estimate/StdErr 2 display units; integers relative only; HL group Totals and observed counts ±2 (Totals: Q2, 2026-11-05); Association `Percent Tied` absolute 1e-5 percentage points (added 2026-11-05, Q1) | Tolerance evidence |
 | Score ±1 only where the reference pd is within `PD_TOL` of round()'s .5 boundary **and** the candidate score is SAS round() of the candidate's own pd **and** grade/recommendation/rate are the tuple SAS assigns to that score; 0/1 prediction may flip only within `PD_TOL` of 0.5 and only to (candidate pd ≥ 0.5) | A legitimate pd difference can cross a boundary; the port must be self-consistent. Every excusal is counted and reported |
 | Each such 0.5 flip widens `model_summary` and `printed_confusion_*` by exactly one flip's worth per metric (accuracy 1/N, recall 1/P, ...), computed from the files independent of `--only` | |
 | `training_date`, `validation_date`: a real DATE9. date within 2 days of the candidate file | Stamped with `today()` |
@@ -125,6 +125,13 @@ Against it:
   Effect on validation: verdicts unchanged (18 CAUGHT, 1 EQUIVALENT); three mutations
   (`fe_impute_mean`, `fe_import_guessingrows`, `fe_median_group_misaligned`) no longer
   fail on that one cell and remain caught in about 20 other files each.
+
+- HL group Totals (added after sign-off, human decision Q2 at the prompt 02 gate,
+  2026-11-05). SAS forms HL groups from blocks of rows whose pd agree within 1e-6, so a
+  converged port moves rows at block boundaries. The rule reproduces all 18 SAS HL tables on
+  SAS's pd. On the converged refit, 6 of the 10 Totals differ by 1 (10502 → 10503). Totals
+  are now judged at ±2, the same as the observed counts. The HL chi-square file is unchanged.
+  The positive control originally covered only the score files, which is why this was missed.
 
 Reproducing SAS's exact Fisher-scoring stopping point would allow tighter bounds, but
 is brittle. Tightening is a rulebook choice, not a judge choice.

@@ -1,0 +1,2 @@
+file	symbol	source_construct	resolution
+train.sas	printed_hl_partition.csv	PROC LOGISTIC model option lackfit: ODS LackFitPartition	resolved by Q2 (judge tolerance, 2026-11-05)
