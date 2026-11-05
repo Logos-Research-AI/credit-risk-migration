@@ -377,6 +377,22 @@ def fmt_wd(x: float | None, w: int, d: int) -> str:
     return sas_best(x, w)
 
 
+def fmt_oddsr(x: float | None, w: int, d: int) -> str:
+    """ODDSRw.d (X06: ODDSR8.3). In range [10**-d, 10**(w-d-2) - 10**-d] it is w.d (half away from
+    zero, 15-digit form); below the range it prints '<' + the lower bound and above it '>' + the upper
+    bound ('<0.001', '>999.999'). The range test is on the value, not the rounded text (X06: 0.0009999
+    -> '<0.001', 1000 -> '>999.999'). None -> ''; the text is stripped, as the export writes it."""
+    if x is None or not math.isfinite(x):
+        return ""
+    lo = Decimal(1).scaleb(-d)
+    hi = Decimal(10) ** (w - d - 2) - lo  # one position is reserved (X06: max 999.999 at 8.3)
+    if x < float(lo):
+        return "<" + f"{lo:f}"
+    if x > float(hi):
+        return ">" + f"{hi:f}"
+    return fmt_wd(x, w, d)
+
+
 def fmt_percent(x: float | None, w: int, d: int) -> str:
     """percentw.d: 100*x with d decimals and '%', keeping width w, so percent8.2 prints
     '5.00%' but '100.0%' (A14, A24). A negative value is enclosed in parentheses and right-aligned

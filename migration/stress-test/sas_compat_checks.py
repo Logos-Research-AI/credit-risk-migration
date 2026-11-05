@@ -827,12 +827,21 @@ def check_runs_stepwise() -> None:
     counted("D8 E-notation StdErr cells from the converged fit within the judge tolerance (2e-8)", bad_se, n_se)
 
 
+def check_x06_oddsr() -> None:
+    """X06 (migration/experiments/x06_printing.log): ODDSR8.3 cells, exact."""
+    cases = [(1234.5, ">999.999"), (0.0005, "<0.001"), (0.001, "0.001"), (999.999, "999.999"),
+             (1000.0, ">999.999"), (0.0009999, "<0.001"), (3.7495, "3.750")]
+    bad = [f"{x!r}: {sc.fmt_oddsr(x, 8, 3)!r} want {w!r}" for x, w in cases if sc.fmt_oddsr(x, 8, 3) != w]
+    counted("X06 ODDSR8.3 cells (fmt_oddsr)", bad, len(cases), "cases")
+
+
 def main() -> None:
     steps: list[Callable[[], object]] = [
         check_best_small, check_best12, check_percent_wd, check_rank_and_wd84, check_import,
         check_edge_cases, check_d_formats, check_writer, check_stepwise, check_reference_pd_tables, check_roc,
         check_x05_scalars, check_x05_exprs, check_sql_and_merge, check_helper_names_and_agg, check_writer_rules,
         check_fit_and_stepwise_edges, check_degenerate_stats, check_runs_sas_pd, check_runs_stepwise,
+        check_x06_oddsr,
     ]
     for f in steps:
         try:

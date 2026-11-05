@@ -310,11 +310,9 @@ def run(input_dir: Path, output_dir: Path) -> None:
             mc_estimate.append(sas_compat.sas_d8(b))
             or_effect.append(name[:20])
             # R§2 ODS stored widths (S7)
-            # TODO(port): ODDSR8.3 prints >999.999 / <0.001 outside [0.001, 999.999]; fmt_wd does not
-            # (no sas_compat.fmt_oddsr yet)
-            or_est.append(sas_compat.fmt_wd(math.exp(b), 8, 3))
-            or_lower.append(sas_compat.fmt_wd(math.exp(b - sas_compat.Z975 * se), 8, 3))
-            or_upper.append(sas_compat.fmt_wd(math.exp(b + sas_compat.Z975 * se), 8, 3))
+            or_est.append(sas_compat.fmt_oddsr(math.exp(b), 8, 3))
+            or_lower.append(sas_compat.fmt_oddsr(math.exp(b - sas_compat.Z975 * se), 8, 3))
+            or_upper.append(sas_compat.fmt_oddsr(math.exp(b + sas_compat.Z975 * se), 8, 3))
         mc_stderr.append(sas_compat.sas_d8(se))
         mc_wald.append(sas_compat.fmt_wd(wald_b, 10, 4))
         mc_prob.append(sas_compat.sas_pvalue(sas_compat.chi2_sf(wald_b, 1)))
@@ -779,4 +777,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     run(args.input_dir, args.output_dir)
 
-# PORT STATUS: confidence=medium todos=5
+# PORT STATUS: confidence=medium todos=4
