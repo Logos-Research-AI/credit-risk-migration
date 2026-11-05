@@ -25,7 +25,8 @@ port    Python-port-vs-SAS. Two checks on every numeric cell:
           * pd_logistic: |diff| <= PD_TOL per row AND mean |diff| <= PD_MEAN_TOL per file.
           * Model-fit tables: 2 display units + MODEL_REL_TOL relative; likelihood-based
             statistics (-2 Log L, AIC, SC, likelihood-ratio test) LIKELIHOOD_REL_TOL;
-            Estimate/StdErr 2 display units; integer cells relative only.
+            Estimate/StdErr 2 display units; integer cells relative only; Association
+            "Percent Tied" absolute 1e-5 percentage points (ABS_CELL_TOL).
           * credit_risk_score may differ by exactly 1 only where the reference pd is within
             PD_TOL of round()'s .5 boundary AND the candidate's score is SAS round() of the
             candidate's own pd; grade/recommendation/rate must then be the tuple SAS
@@ -114,6 +115,13 @@ ABS_COL_TOL = {
     ("printed_hl_partition.csv", "Total"): 0.0,  # HL groups are formed by count: exact
     ("printed_hl_partition.csv", "EventsObserved"): 2.0,  # rows adjacent in pd may swap groups
     ("printed_hl_partition.csv", "NoneventsObserved"): 2.0,
+}
+# (file, column) -> (label column, label, absolute tolerance) for one labelled cell
+ABS_CELL_TOL = {
+    # SAS counts pairs with |dpd| <= ~1e-8 as tied (280 pairs, 4.0773e-5 %); a correct
+    # converged port gets 285 (4.15e-5 %). Printed diagnostic: absolute 1e-5 percentage
+    # points (human sign-off Q1, 2026-11-05; migration/rulebook-amendments.md A8).
+    ("printed_association.csv", "nValue1"): ("Label1", "Percent Tied", 1e-5),
 }
 
 DATE_COLS = {"model_summary.csv": {"training_date"}, "model_performance_metrics.csv": {"validation_date"}}
@@ -257,6 +265,9 @@ def value_bad(name: str, col: str, r: pl.Expr, c: pl.Expr, extra_tol: float) -> 
         tol = display_unit(r)
     else:
         tol = best12_unit(r)
+    if (name, col) in ABS_CELL_TOL:
+        label_col, label, cell_tol = ABS_CELL_TOL[(name, col)]
+        tol = pl.when(pl.col(label_col) == label).then(pl.lit(cell_tol)).otherwise(tol)
     tol = tol + extra_tol + FLOAT_EPS * rn.abs()
     pct_mismatch = r.str.ends_with("%") != c.str.ends_with("%")
     within = ((rn - cn).abs() <= tol).fill_null(False)  # unparseable / NaN candidate -> False

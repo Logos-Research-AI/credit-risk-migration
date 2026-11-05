@@ -62,3 +62,14 @@ for translation rules once it exists.
   statsmodels/scikit-learn banned; SGPLOT not ported; listing-only PROCs not ported;
   predict.sas duplication kept until parity). DEV-004 sanctioned.
 - Next: prompt 02 gap inventory; stops after the first 20 rows.
+
+## Step 1 — gap inventory first 20 rows signed off 2026-11-05
+- Sweep (461 sites) and batch 1 (20 rows, 134 sites) accepted.
+- Q1: option (a). The judge judges Association "Percent Tied" with an absolute
+  tolerance of 1e-5 percentage points (judge/compare.py `ABS_CELL_TOL`, 4 new
+  self-test cases, 79/79). Re-validation: 18 CAUGHT, 1 EQUIVALENT, unchanged. Row 15
+  is now confirmed.
+- Amendments A1–A8 approved. Applied to RULEBOOK.md (v1.1) on the user's authorization.
+- DEV-005 sanctioned. Moved into RULEBOOK §7.
+- Next: fan out the remaining sites (shards per category, two Opus skeptics per batch),
+  merge, joint audit, then stop at the prompt 02 gate.

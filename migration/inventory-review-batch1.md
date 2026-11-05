@@ -19,7 +19,7 @@ each citing SAS source lines; neither saw the other's verdicts.
 | 12 | PROC PLM scoring | CONFIRMED | site S433 added | confirmed |
 | 13 | predict score/grade chain with missing pd | CONFIRMED | format site S454 added | confirmed |
 | 14 | stepwise selection | **REFUTED** (aliasing; p underflow) | revised; re-check REFUTED (missing tie-break); 2nd revision verified by implementation | confirmed (DEV-005) |
-| 15 | Association table | **REFUTED** (tie fuzz) | revised with SAS's 1e-8 tie fuzz; still fails the judge on Percent Tied | **UNKNOWN — Q1** |
+| 15 | Association table | **REFUTED** (tie fuzz) | revised with SAS's 1e-8 tie fuzz; still failed the judge on Percent Tied → Q1 | UNKNOWN → confirmed after Q1 (judge tolerance, 2026-11-05) |
 | 16 | train credit_risk_score | CONFIRMED | 12 plain-comparison sites added | confirmed |
 | 17 | KS | EVIDENCE_DEFECT | tie counts fixed; edge-scenario order evidence added | confirmed |
 | 18 | deciles | EVIDENCE_DEFECT | X01b claim narrowed; capture/lift/format decided | confirmed |
@@ -28,3 +28,6 @@ each citing SAS source lines; neither saw the other's verdicts.
 
 Round 1: 9 CONFIRMED, 9 EVIDENCE_DEFECT, 2 REFUTED (cf. kit RUN-NOTES Run 1: 7 evidence
 defects in 20 confirmed rows). Rule conflicts and gaps → migration/rulebook-amendments.md (A1–A8).
+
+Gate (2026-11-05): the user approved Q1 option (a), amendments A1–A8 and DEV-005. Row 15
+re-verified after the judge change (converged table passes); final: 20/20 confirmed.

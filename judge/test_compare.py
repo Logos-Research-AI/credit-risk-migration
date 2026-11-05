@@ -27,6 +27,7 @@ FT, CO, MS = "model_features_train.csv", "model_coefficients.csv", "model_summar
 KG, ST, DA, TA = "kaggle_submission.csv", "stepwise_summary.csv", "decile_analysis.csv", "threshold_analysis.csv"
 HL, HP, FS = "printed_hosmer_lemeshow.csv", "printed_hl_partition.csv", "printed_fit_statistics.csv"
 CT, PM = "printed_confusion_train.csv", "model_performance_metrics.csv"
+AS = "printed_association.csv"
 PASS = frozenset()
 TODAY = dt.date.today().strftime("%d%b%Y").upper()
 
@@ -176,6 +177,12 @@ def cases():
     yield "CRLF line endings", CO, {CO: raw.replace(b"\n", b"\r\n")}, PASS, False, {}
     yield "quoted text fields", CO, {CO: raw.replace(b"MLE", b'"MLE"')}, PASS, False, {}
     yield "empty candidate file", CO, {CO: b""}, {"error"}, False, {}
+    # Q1 (2026-11-05): Percent Tied absolute 1e-5 percentage points; other cells keep the model rule
+    asc = load(AS)
+    yield "Q1: Percent Tied of converged port (283 ties)", AS, {AS: setc(asc, 2, "nValue1", "0.0000412099")}, PASS, False, {}
+    yield "Q1: Percent Tied +2e-5 pp", AS, {AS: setc(asc, 2, "nValue1", "0.000060773")}, {"nValue1"}, False, {}
+    yield "Q1: Percent Concordant off by 0.2", AS, {AS: setc(asc, 0, "nValue1", "86.122064")}, {"nValue1"}, False, {}
+    yield "Q1: Tau-a +1e-4 (not the tied cell)", AS, {AS: setc(asc, 2, "nValue2", "0.089602")}, {"nValue2"}, False, {}
 
 
 def main() -> int:

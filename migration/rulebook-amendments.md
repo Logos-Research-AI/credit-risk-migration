@@ -1,8 +1,12 @@
 # Queued RULEBOOK amendments
 
-Rulebook changes found while building the gap inventory (prompt 02). Queued for the
-human; **not applied** to `migration/RULEBOOK.md` (the rulebook is read-only to agents;
-CLAUDE.md standing rule 1). Each names the rule, the inventory row that exposed it, and
+Rulebook changes found while building the gap inventory (prompt 02). The rulebook is
+read-only to agents (CLAUDE.md standing rule 1): every change waits in this queue for the human.
+
+**Batch 1 (A1–A8): APPLIED 2026-11-05** as RULEBOOK v1.1. The user approved the batch at
+the prompt 02 first-20-rows gate ("I approve") and authorized it to be applied. Q1 was
+answered with option (a), and the judge was changed accordingly (judge/README.md, tolerance
+evidence). New amendments from the fan-out and the joint audit are queued below as A9+. Each names the rule, the inventory row that exposed it, and
 the translation that goes wrong without it.
 
 | ID | Rule | Change | Exposed by | What goes wrong today |
@@ -26,6 +30,9 @@ converged port has slightly different probabilities, so the same rule gives 285 
 points (it is a printed diagnostic; Concordant/Discordant still pass at 0.1%);
 (b) require the port to reproduce SAS's exact optimizer stopping point (brittle; see judge
 README tolerance evidence). Recommended: (a). This is a change to the signed-off judge.
+**ANSWERED 2026-11-05: (a).** Applied in judge/compare.py `ABS_CELL_TOL`. A table built by
+the rule from the converged refit (283 ties) passes, the self-test is 79/79 and validation
+verdicts are unchanged.
 
 ## Already in RULEBOOK v1.0
 

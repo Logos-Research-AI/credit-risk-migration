@@ -6,7 +6,7 @@ for Academics (ODA) through saspy and compares output folders.
 
 **Status:** validated (see `validation_report.md`): 18 of 19 deliberate breakages of the
 SAS code caught, 1 provably undetectable (outputs byte-identical), 0 missed; a correct
-port (fully converged refit) passes; 75/75 comparator self-test cases. Built and then
+port (fully converged refit) passes; 79/79 comparator self-test cases. Built and then
 audited by three separate adversarial reviews; every confirmed finding is fixed and has
 a self-test case.
 
@@ -97,7 +97,7 @@ Default is **exact**. Each tolerance below is deliberate and is a place a defect
 | **Value**, fixed-format columns (`8.4`, `percent8.2`, ...): 1 display unit | SAS printed a rounded value |
 | **Value**, other numbers (BEST12.): 1 unit in the 12th character | Integers and flags are effectively exact |
 | `pd_logistic`: per row within `PD_TOL = 1e-4`, and per file mean \|Δ\| within `PD_MEAN_TOL = 1e-5` | Tolerance evidence; the mean bound catches systematic bias |
-| Model-fit tables: 2 display units + 0.1% relative; -2 Log L, AIC, SC, LR test 1e-6 relative; Estimate/StdErr 2 display units; integers relative only; HL group Totals exact, HL observed counts ±2 | Tolerance evidence |
+| Model-fit tables: 2 display units + 0.1% relative; -2 Log L, AIC, SC, LR test 1e-6 relative; Estimate/StdErr 2 display units; integers relative only; HL group Totals exact, HL observed counts ±2; Association `Percent Tied` absolute 1e-5 percentage points (added 2026-11-05, Q1) | Tolerance evidence |
 | Score ±1 only where the reference pd is within `PD_TOL` of round()'s .5 boundary **and** the candidate score is SAS round() of the candidate's own pd **and** grade/recommendation/rate are the tuple SAS assigns to that score; 0/1 prediction may flip only within `PD_TOL` of 0.5 and only to (candidate pd ≥ 0.5) | A legitimate pd difference can cross a boundary; the port must be self-consistent. Every excusal is counted and reported |
 | Each such 0.5 flip widens `model_summary` and `printed_confusion_*` by exactly one flip's worth per metric (accuracy 1/N, recall 1/P, ...), computed from the files independent of `--only` | |
 | `training_date`, `validation_date`: a real DATE9. date within 2 days of the candidate file | Stamped with `today()` |
@@ -116,6 +116,15 @@ Against it:
 - Wald χ² differs by up to 0.0285 (`has_delinquency` 306.3717 vs 306.4002), about
   1e-4 relative; the Intercept prints -4.1669 vs -4.1668. → 0.1% relative, 2 display units.
 - The log-likelihood gap is 4.5e-6 absolute. → likelihood statistics at 1e-6 relative.
+
+- Association `Percent Tied` (added after sign-off, human decision Q1 at the prompt 02
+  gate, 2026-11-05): SAS counts event/non-event pairs whose pd differ by ≤ ~1e-8 as tied
+  (280 of 686,727,936 pairs = 4.0773e-5 %). The same rule on the converged refit gives 283
+  (4.12e-5 %), 1% relative off, outside the 0.1% model rule. The cell is judged with an
+  absolute 1e-5 percentage points (≈ 69 pairs). Concordant/Discordant keep the model rule.
+  Effect on validation: verdicts unchanged (18 CAUGHT, 1 EQUIVALENT); three mutations
+  (`fe_impute_mean`, `fe_import_guessingrows`, `fe_median_group_misaligned`) no longer
+  fail on that one cell and remain caught in about 20 other files each.
 
 Reproducing SAS's exact Fisher-scoring stopping point would allow tighter bounds, but
 is brittle. Tightening is a rulebook choice, not a judge choice.

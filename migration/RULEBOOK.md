@@ -5,8 +5,10 @@
 > Read-only inside any loop: amendments are queued for the human and applied between
 > batches.
 
-**Status: v1.0, signed off by the user 2026-11-05.** Items marked **[DECIDED]** were
+**Status: v1.1, signed off by the user 2026-11-05.** Items marked **[DECIDED]** were
 policy calls made by the user at that gate (all five: the proposed defaults).
+v1.1 = v1.0 + amendments A1–A8 (`migration/rulebook-amendments.md`), approved by the
+user at the prompt 02 first-20-rows gate and applied on their authorization.
 
 Read this whole document before writing any code. The judge (`judge/README.md`) is the
 exit condition; this rulebook is how translations get there.
@@ -20,7 +22,7 @@ exit condition; this rulebook is how translations get there.
   duplicated (deduplication is a post-parity change, prompt 06).
 - **One forced structural change:** SAS WORK-library state shared across programs
   becomes a file. The only instance is the item store `work.logit_model`
-  (train.sas:93 `store`, predict.sas:208 `restore`) → `model.json` in the output folder
+  (train.sas:90 `store`, predict.sas:208 `restore`) → `model.json` in the output folder
   (§2, "PROC LOGISTIC store / PROC PLM restore").
 - **Cheap referee.** Python has no compile step; the referee is
   `ruff check` + `pyright --strict` on the package, seconds per run. Per README Step 4
@@ -58,10 +60,11 @@ flagged for this table and handled by the UNKNOWN rule.
 | SAS construct | Canonical Python translation | Notes / evidence |
 |---|---|---|
 | numeric missing `.` | polars `null` (never NaN) | NaN is not SAS missing; `is_nan` never appears |
-| comparison with a possibly-missing operand: `x < c`, `x <= c`, `x > c`, `x >= c`, `x = c` | `sas_compat.lt/le/gt/ge/eq(x, c)`: **missing is smaller than every number**, so `. < 2500` is **1**, `. > 30` is 0, `. = .` is 1. Result is Int8 0/1, never null | SAS rule; mutation `predict_null_compare_false` (judge) is exactly the polars default `null < 2500 → null → false`. Use the helpers on EVERY comparison whose operand can be missing (inventory says which) |
-| boolean assignment `flag = (cond);` | `sas_compat.flag(cond)` → Int64 0/1 | SAS stores 0/1 numerics; exported as `0`/`1` |
-| `if A then x=1; else if B then x=2; else x=3;` | one `pl.when(A).then(1).when(B).then(2).otherwise(3)` chain, conditions built with the comparison helpers | preserves first-match order and missing semantics |
+| comparison with a possibly-missing operand: `x < c`, `x <= c`, `x > c`, `x >= c`, `x = c` | `sas_compat.lt/le/gt/ge/eq(x, c)`: **missing is smaller than every number**, so `. < 2500` is **true**, `. > 30` is false, `. = .` is true. Result is a **non-null `pl.Boolean`** (A1) | SAS rule; mutation `predict_null_compare_false` (judge) is exactly the polars default `null < 2500 → null → false`. **Which form (A2):** the helpers are mandatory where the inventory classifies the operand `MISSING_NULLABLE`; a **plain polars comparison** is required where it says `MISSING_NEVER` (the row must prove never-missing for every input the program can receive) |
+| boolean assignment `flag = (cond);` | `sas_compat.flag(cond)`: any Boolean expression (helper or plain comparison) → Int64 0/1. The only way to make a 0/1 numeric (A1) | SAS stores 0/1 numerics; exported as `0`/`1` |
+| `if A then x=1; else if B then x=2; else x=3;` | one `pl.when(A).then(1).when(B).then(2).otherwise(3)` chain; each condition is a helper or a plain comparison per the inventory's `MISSING_NULLABLE` / `MISSING_NEVER` classification (A2) | preserves first-match order and missing semantics |
 | arithmetic `a + b`, `a * b`, `a / b` | plain polars arithmetic (null propagates, as SAS) | division by zero: SAS → missing + note; polars → inf. Use `sas_compat.div(a, b)` wherever the inventory says a divisor can be 0 |
+| proportions: shares and rates (`count/n`, capture rate, lift, PSI shares) | Float64 division done **after** aggregation (aggregate counts/sums first, divide in a later `with_columns`), never inside `group_by().agg(...)` (A7) | polars 2.1 gives `0.09999999999999999` inside the aggregation, so PSI prints `1.540744E-33` instead of `0` |
 | `sum(a, b, ...)` | `sas_compat.sas_sum(a, b, ...)`: ignores missing; all missing → missing | NOT `a + b` |
 | `min(a, b)`, `max(a, b)` | `sas_compat.sas_min/sas_max`: ignore missing | NOT `pl.min_horizontal` without checking null handling (it also ignores nulls — allowed only via the helper) |
 | `log(x)` | `sas_compat.sas_log(x)`: x ≤ 0 or missing → missing | |
@@ -83,26 +86,27 @@ flagged for this table and handled by the UNKNOWN rule.
 | `data out; set in; ... run;` | `out = in.with_columns(...)` in statement order; a later statement that reads a variable assigned earlier in the same step must see the new value → split into successive `with_columns` calls | SAS evaluates statements sequentially per row |
 | `retain` + `end=eof` accumulation | an explicit aggregation over the frame producing the single output row | train.sas:132 training_metrics; behavior on missing cells as the source |
 | `keep` / `drop` / `rename` | `select` / `drop` / `rename`, preserving SAS column order rules: new columns are appended in order of first assignment | column order is judged |
-| `merge a b ...;` (no BY) | positional horizontal concat of single-row frames | train.sas:366 model_summary |
+| `merge a b ...;` (no BY) | one-to-one merge: rows = the longest input; values from a shorter input are **missing** on the extra rows (not repeated), written as empty fields (A6) | train.sas:366 model_summary; experiment X01a (`migration/experiments/x01_merge_and_alias.lst`) |
 | PROC SQL `select ... from a left join b on ...` | `a.join(b, on=..., how="left", maintain_order="left")` | output row order is not guaranteed in SAS; the judge matches by key |
 | PROC SQL `median(x)` with `group by` | `pl.col(x).median()` over non-missing values, `group_by(..., maintain_order=True)` | even counts average the two middle values, like SAS |
 | PROC SQL `calculated name` | reuse the expression / column computed earlier in the same select | |
-| PROC SQL `case when ... end` | `pl.when` chain with comparison helpers | |
+| PROC SQL `case when ... end` | `pl.when` chain; conditions as in the `if/else` row (A2) | |
 | PROC SQL remerge (`select max(x), y from t where x = (select max(x) ...)`) | filter to the rows equal to the max, keep every such row | metrics_calculation.sas:107 KS can return several rows on ties |
 
 ### Procedures
 
 | SAS construct | Canonical Python translation | Notes |
 |---|---|---|
-| PROC IMPORT (csv, `getnames=yes`) | `sas_compat.proc_import_csv(path, guessingrows=20 or None)`: column type = numeric if every one of the first `guessingrows` data values parses as a number, else character with length = longest of those values, **later values truncated to that length** (`BUG(port)`); character values that are not numbers stay text; empty header → `VAR1`; names truncated to 32 characters; hyphens kept | feature_engineering.sas:28 uses the default (20) → `MonthlyIncome` becomes `$5.` and 77 incomes ≥ 100,000 are truncated (judge README finding). predict.sas:28 uses `guessingrows=max` (None = all rows) |
+| PROC IMPORT (csv, `getnames=yes`) | `sas_compat.proc_import_csv(path, guessingrows=20 or None)`: column type = numeric if every one of the first `guessingrows` data values parses as a number, else character with length = longest of those values, **later values truncated to that length** (`BUG(port)`); a column whose first `guessingrows` values are **all empty** is character of length 1 (A3: `SeriousDlqin2yrs $1.` in cs-test.csv); character values that are not numbers stay text; empty header → `VAR1`; names truncated to 32 characters; hyphens kept | feature_engineering.sas:28 uses the default (20) → `MonthlyIncome` becomes `$5.` and 77 incomes ≥ 100,000 are truncated (judge README finding). predict.sas:28 uses `guessingrows=max` (None = all rows) |
 | PROC SURVEYSELECT samprate=0.7 seed=42 | **not reproduced.** `feature_engineering.run(..., split_ids=...)` takes the set of training `row_id`s (from the reference) and marks `selected` from it | SAS's split depends on unguaranteed SQL row order (judge README); `BUG(port)` |
-| PROC LOGISTIC `selection=stepwise slentry=0.05 slstay=0.05` (descending) | `sas_compat.stepwise_logistic(...)`, written once, implementing SAS's rules exactly: (1) start with intercept only; (2) entry: for each candidate not in the model compute the **score χ²** at the current fit; enter the largest if its p < slentry; (3) removal: compute **Wald χ²** for effects in the model; remove the one with the largest p if p > slstay, one at a time; (4) stop when nothing enters, or when the effect to enter is the one just removed ("recycles previous steps"); (5) model P(default_flag = 1) | the judge compares the 24-step path exactly (`stepwise_summary.csv`) |
+| PROC LOGISTIC `selection=stepwise slentry=0.05 slstay=0.05` (descending) | `sas_compat.stepwise_logistic(...)`, written once, over the candidates in MODEL statement order, modelling P(default_flag = 1) (A5): (1) intercept-only start; after every step test **removal first, then entry**. (2) Removal: Wald χ² for each effect in the model; remove the one with the **smallest χ²** if its p > slstay (ties: first in MODEL order), one per step. (3) Entry: for each candidate not in the model, in MODEL order, **skip it if aliased with the current model** (relative residual V/(z′Wz) < 1e-8, V = its residual variance after projecting on the model's columns in the information metric; decided per step, never by pre-excluding columns); else score χ² = U²/V at the current fit; enter the **largest χ²** (DF = 1; strict >, so ties go to the **first in MODEL order**; never select by smallest p, which underflows) if its p < slentry. (4) Stop when nothing enters or the best entry is the effect just removed. Newton to max\|step\| < 1e-10 at every step | the judge compares the 24-step path exactly (`stepwise_summary.csv`); `migration/experiments/x02_stepwise_reference.py` reproduces it; inventory row for train.sas stepwise |
 | model fitting inside PROC LOGISTIC | Newton–Raphson (= Fisher scoring for the logit link) on numpy float64 to full convergence (max abs step < 1e-10) | SAS stops at GCONV=1E-8; the judge accepts a fully converged fit (PD_TOL evidence) |
 | ODS tables of PROC LOGISTIC (`ParameterEstimates`, `ModelBuildingSummary`, `FitStatistics`, `GlobalTests`, `RSquare`, `Association`, `OddsRatios`, `LackFitPartition`, `LackFitChiSq`, `Classification`) | computed explicitly and written as the `printed_*.csv` / coefficient / stepwise files of the judge contract, with ODS's column names, row labels and printed formats | **UNKNOWN until the inventory settles each one**: the exact SAS definitions (HL grouping, `ctable` jackknife classification, R-square, odds-ratio CI method) are inventory rows |
 | ODS variable names in coefficient tables | truncated to 20 characters (`credit_utilization_c`) | |
 | `output out= predicted=` | pd for each training row from the final model | |
 | PROC LOGISTIC `store` / PROC PLM `restore ... score predicted=` | train writes `model.json` = `{"intercept": b0, "coefficients": {full_variable_name: b}}`; predict reads it, computes the linear predictor η = b0 + Σ bᵢxᵢ (missing if any xᵢ missing), then pd = 1/(1+exp(−η)) as the SAS code does | the only cross-program session state (depmap) |
 | PROC LOGISTIC `nofit` + `roc` (ROCAssociation) | `sas_compat.roc_association(y, score)`: Area = Mann–Whitney AUC with ties counted ½; StdErr and CI per SAS's DeLong method; Somers' D, Gamma, Tau-a | inventory row confirms SAS formulas |
+| ODS `Association` table of the fitted model | over all event × non-event pairs on the final model's pd, no binning; a pair is **tied when \|pd_event − pd_nonevent\| ≤ 1e-8** (SAS tie fuzz); c = (C + T/2)/pairs, Somers' D = (C − D)/pairs, Gamma = (C − D)/(C + D), Tau-a = (C − D)/(n(n − 1)/2) (A8) | judge compares Percent Tied with an absolute 1e-5 percentage-point tolerance (Q1, signed off 2026-11-05): a converged port gets 283 ties vs SAS's 280 |
 | PROC RANK `groups=k` (`descending`) | `sas_compat.proc_rank_groups(x, k, descending)`: rank with ties = mean, group = floor(rank·k/(n+1)) | reproduces SAS exactly on edge scenario a (judge README) |
 | PROC FREQ `tables a*b / out=` | `group_by([a, b], maintain_order=True).len()` → `COUNT`, `PERCENT` = 100·COUNT/N, sorted by a, b | `printed_confusion_*` |
 | PROC SORT `by x` | `sort(x, maintain_order=True)` (stable, missing first) | SAS's default EQUALS keeps ties in input order |
@@ -172,3 +176,4 @@ Reviewers check the trailer against the file's actual `TODO(port)` count.
 | DEV-002 | 2026-11-05 | 00b reviewers A and B reviewed code edited during their review; mitigated by review C on the final state | user (judge sign-off) |
 | DEV-003 | 2026-11-05 | 00b review C's fixes verified by self-test + full re-validation, not by a fourth reviewer | user (judge sign-off) |
 | DEV-004 | 2026-11-05 | Prompt 01 skeptic samples: the codebase has 4 files, so each reviewer takes 2 (all files covered) instead of 20 | user, 2026-11-05 |
+| DEV-005 | 2026-11-05 | Prompt 02: inventory row 14 (stepwise) was revised a second time instead of being marked UNKNOWN after its one resubmission, because the reviewer named the single missing sentence (tie-break by MODEL order) and `migration/experiments/x02_stepwise_reference.py` (re-run independently by the orchestrator) reproduces SAS's 24-step path exactly | user, 2026-11-05 (prompt 02 first-20 gate) |
