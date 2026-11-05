@@ -714,8 +714,7 @@ def stepwise_logistic(
     migration/experiments/x02_stepwise_reference.py. Rows with a missing response or candidate are
     dropped. The model columns of each fit are in ENTRY order (names[0] = "Intercept").
     Raises RuntimeError when a fit does not converge or the 500-step cap is hit.
-    TODO(port): SAS would print a warning (separation / non-convergence) and continue with the
-    unconverged fit; the port stops with an error instead."""
+    RESOLVED (post-parity): the port stops with an error on separation/non-convergence (RULEBOOK §2)."""
     used = df.select([response, *candidates]).drop_nulls()
     y = np.asarray(used.get_column(response).to_numpy(), dtype=np.float64)
     z_all = {c: np.asarray(used.get_column(c).to_numpy(), dtype=np.float64) for c in candidates}
@@ -1084,4 +1083,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=6
+# PORT STATUS: confidence=medium todos=5
