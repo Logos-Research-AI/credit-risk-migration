@@ -6,7 +6,7 @@ You **touch nothing**: no edits, no git, no SAS, no pipeline or judge runs.
 
 ## Context
 
-- `migration/RULEBOOK.md` (v1.2): the law.
+- `migration/RULEBOOK.md` (v1.3): the law.
 - `migration/inventory.tsv`: the rows for your `.sas` file are binding per-site decisions.
 - The SAS source at the repo root.
 - `judge/README.md` "Contract": required outputs.

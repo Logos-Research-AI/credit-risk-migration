@@ -111,3 +111,19 @@ for translation rules once it exists.
 - Workspaces deleted: the stress-pilot worktree (`git worktree remove` + branch deleted) and
   translator B's scratch folder. Confirmed absent by `ls`.
 - Report: migration/stress-test/report.md.
+
+## Step 3 (prompt 04) — translation complete 2026-11-05 (orchestrator, standing instruction)
+- 4 units translated in the main repo, each through a Sonnet implementer, 2 Opus reviewers,
+  arbitration by the orchestrator and a Sonnet fixer. Reviews: migration/translation-review/.
+- Wrong-output findings caught by review: 1 (feature_engineering column order; both reviewers).
+  Every other finding was a rule violation, latent or a nit, and all were applied.
+- Inventory rows corrected against v1.3 during review:
+  - merge_one_to_one, sas_exp in train, sql_mean, KS eq, macro returns, the D8. E-notation;
+  - the garbled model_summary row that an orchestrator edit had introduced.
+- Step 4 (survey build) is dissolved: ruff + pyright strict ran in-loop (RULEBOOK §0).
+- Referee on the package: ruff format and check clean, pyright strict 0 errors; every
+  trailer's todos= equals its grep count.
+- Judge contract (Step 5/6) on the final code, receipts in migration/parity/:
+  - runs 1, 2, 3, 6, 7, 8, 4, 5 all PASS (2/2, 18/18, 9/9 ×4, 2/2 ×2);
+  - run 9 e2e PASSES for fe and predict;
+  - full pipeline about 16 s.

@@ -6,7 +6,7 @@ don't improve the code.
 
 ## Read first, in this order
 
-1. `migration/RULEBOOK.md` (v1.2), the whole document. It is the law. Its §2 table gives the
+1. `migration/RULEBOOK.md` (v1.3), the whole document. It is the law. Its §2 table gives the
    ONE canonical translation of every construct it lists.
 2. Every row of `migration/inventory.tsv` whose `file` column is your `.sas` file. Each row
    decides one site: the target translation is binding, and the evidence column says why. Grep

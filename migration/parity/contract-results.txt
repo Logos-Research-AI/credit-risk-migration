@@ -1,0 +1,20 @@
+== out/parity/r1_fe/judge_fe.txt
+2/2 files pass (port mode)
+== out/parity/r2_train/judge_train.txt
+18/18 files pass (port mode)
+== out/parity/r3_metrics/judge_metrics.txt
+9/9 files pass (port mode)
+== out/parity/r4_predict/judge_predict.txt
+2/2 files pass (port mode)
+== out/parity/r5_predict_edge/judge_predict.txt
+2/2 files pass (port mode)
+== out/parity/r6_metrics_a/judge_metrics.txt
+9/9 files pass (port mode)
+== out/parity/r7_metrics_b/judge_metrics.txt
+9/9 files pass (port mode)
+== out/parity/r8_metrics_c/judge_metrics.txt
+9/9 files pass (port mode)
+== out/parity/r9_e2e/judge_fe.txt
+2/2 files pass (port mode)
+== out/parity/r9_e2e/judge_predict.txt
+2/2 files pass (port mode)

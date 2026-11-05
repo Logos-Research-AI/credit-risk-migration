@@ -51,3 +51,14 @@ predict.sas	work.kaggle_submission (kaggle_submission.csv)	data step keep row_id
 predict.sas	kaggle_submission.csv	data kaggle_submission (keep row_id pd_logistic) + PROC EXPORT	FP-05
 predict.sas	test_predictions.csv	data test_predictions_full (keep ...) + PROC EXPORT	FP-02
 train.sas	printed_fit_statistics.csv	ODS FitStatistics (Model Fit Statistics) at step 0 and after each of the 24 steps	pilot S6
+train.sas	work.model_summary (model_summary.csv)	one-to-one merge roc_train(where= rename=Area->Train_AUC) roc_valid(where= rename=Area->Valid_AUC) training_metrics validation_metrics + keep	translation S5
+metrics_calculation.sas	work.model_performance_metrics (model_performance_metrics.csv)	rename acc_50=accuracy_at_50 ... spec_50=specificity_at_50 + drop threshold ROCModel	translation S5
+metrics_calculation.sas	confusion_metrics	%macro confusion_metrics(threshold, suffix) and its 5 calls	translation review
+metrics_calculation.sas	work.calibration_plot (calibration_plot.csv)	PROC SQL mean/mean/count group by pred_bin order by pred_bin	translation review
+metrics_calculation.sas	calibration_plot.csv	PROC RANK groups=20 (ascending) ranks pred_bin + PROC SQL calibration_plot (format=8.4) + PROC EXPORT	translation review
+metrics_calculation.sas	work.calibration_plot	PROC SQL select pred_bin, mean(pd_logistic), mean(default_flag), count(*) group by pred_bin order by pred_bin	translation review
+train.sas	work.logit_scored_valid	drop predicted_logit after pd_logistic and pred_logistic are added	translation review
+train.sas	work.model_summary (model_summary.csv)	one-to-one merge roc_train(where= rename=Area->Train_AUC) roc_valid(where= rename=Area->Valid_AUC) training_metrics validation_metrics + keep	translation review
+train.sas	work.logit_scored_valid_temp (PROC PLM in train)	PROC PLM restore=work.logit_model score data=model_features_validation predicted=	translation review
+train.sas	pd_logistic (validation)	pd_logistic = 1 / (1 + exp(-predicted_logit)) after PROC PLM score	translation review
+train.sas	model_coefficients.csv	ODS ParameterEstimates (final stepwise model) via ods output + PROC EXPORT	translation review
