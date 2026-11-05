@@ -634,9 +634,7 @@ def fit_logistic(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logistic
     system is singular (LinAlgError), the line search is exhausted, 100 iterations pass, or some row is
     perfectly predicted (pd within 1e-8 of its response) while the standardized information matrix is
     rank-deficient (min eigenvalue < 1e-10): complete or quasi-complete separation.
-    TODO(port): non-convergence / separation behaviour is unspecified by A17 (SAS: MAXITER=25, prints
-    separation warnings and continues); 100 iterations, 40 halvings and the 1e-12 relative roundoff
-    slack of the halving test are port choices (queue a rulebook amendment)."""
+    RESOLVED (post-parity): non-convergence/separation fails loudly (RULEBOOK §2); caps are port choices."""
     b = np.zeros(x.shape[1])
     ll = _loglik(x @ b, y)
     converged = False
@@ -1086,4 +1084,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=7
+# PORT STATUS: confidence=medium todos=6
