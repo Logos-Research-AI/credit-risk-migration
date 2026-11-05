@@ -845,13 +845,30 @@ def check_x06_input() -> None:
     report("X06 input best32. 32-column cut and leading blanks", ok, f"{got!r}")
 
 
+def check_x06_best() -> None:
+    """X06 BEST cells (value, w=8, w=12, w=6), exact; the stored text is stripped."""
+    cases = [
+        (0.0000123, "0.000012", "0.0000123", "123E-7"), (1.23e-6, "1.23E-6", "1.23E-6", "123E-8"),
+        (0.00012345, "0.000123", "0.00012345", "0.0001"), (0.000012345, "0.000012", "0.000012345", "123E-7"),
+        (9.9999e-6, "1E-5", "9.9999E-6", "1E-5"), (1234567.891, "1234568", "1234567.891", "1.23E6"),
+        (-0.0000123, "-0.00001", "-0.0000123", "-12E-6"),
+    ]
+    bad = []
+    for x, b8, b12, b6 in cases:
+        for w, want in ((8, b8), (12, b12), (6, b6)):
+            got = sc.sas_best(x, w)
+            if got != want:
+                bad.append(f"{x!r} w={w}: {got!r} want {want!r}")
+    counted("X06 BESTw. cells at w = 6, 8, 12", bad, len(cases) * 3)
+
+
 def main() -> None:
     steps: list[Callable[[], object]] = [
         check_best_small, check_best12, check_percent_wd, check_rank_and_wd84, check_import,
         check_edge_cases, check_d_formats, check_writer, check_stepwise, check_reference_pd_tables, check_roc,
         check_x05_scalars, check_x05_exprs, check_sql_and_merge, check_helper_names_and_agg, check_writer_rules,
         check_fit_and_stepwise_edges, check_degenerate_stats, check_runs_sas_pd, check_runs_stepwise,
-        check_x06_oddsr, check_x06_input,
+        check_x06_oddsr, check_x06_input, check_x06_best,
     ]
     for f in steps:
         try:

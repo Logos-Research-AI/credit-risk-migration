@@ -300,30 +300,38 @@ def _enotation(x: float, w: int, mant_dec: int | None = None) -> str:
     return ("-" if neg else "") + s + f"E{exp}"
 
 
-def _sig_digits(s: str) -> int:
-    """Significant digits shown by a stripped plain or E-notation text."""
-    return len(s.split("E")[0].replace("-", "").replace(".", "").lstrip("0"))
+def _best_e(x: float, w: int) -> str:
+    """E-notation text of BESTw. at w != 12 (X05, X06). With at least two mantissa decimals
+    available ('1.23E-6' at w=8, '1.23E6' at w=6) it is the decimal form; with fewer the integer-mantissa
+    form fills the width ('123E-7' at w=6, '-12E-6', '123E9'), trailing zeros stripped ('1E-5', '15E-6')."""
+    d15 = _sig15(x)
+    neg = 1 if x < 0 else 0
+    adj = d15.adjusted()
+    if w - len(f"E{adj}") - neg - 2 >= 2:
+        return _enotation(x, w)
+    nd = max(w - neg - len(f"E{adj}"), 1)
+    m = int(d15.scaleb(-(adj - nd + 1)).quantize(Decimal(1), rounding=ROUND_HALF_UP, context=_CTX))
+    e = adj - nd + 1
+    if m >= 10**nd:
+        m //= 10
+        e += 1
+    while m % 10 == 0:
+        m //= 10
+        e += 1
+    return ("-" if neg else "") + str(m) + f"E{e}"
 
 
 def _best_below_one(x: float, w: int) -> str:
-    """BESTw. for 0 < |x| < 1 at w != 12: plain notation when it shows at least as many significant
-    digits as E-notation within w (0.000015: BEST6 '15E-6', BEST8 '0.000015'; experiment X05).
-    TODO(port): only the 0.000015 cells of X05 are SAS-verified; the digit-count choice and the
-    integer-mantissa form ('15E-6', used when exact and shorter than '1.5E-5') are extrapolated."""
+    """BESTw. for 0 < |x| < 1 at w != 12: plain notation (w - 2 - sign decimals, trailing zeros
+    stripped) when |x| >= 1e-5 and the plain text is not zero, else E-notation (_best_e). X06 cells:
+    1.23E-5 -> BEST8 '0.000012', BEST6 '123E-7'; 9.9999E-6 -> '1E-5'; 1.2345E-4 -> BEST6 '0.0001';
+    -1.23E-5 -> BEST8 '-0.00001', BEST6 '-12E-6'; X05: 0.000015 -> BEST6 '15E-6', BEST8 '0.000015'."""
     neg = 1 if x < 0 else 0
-    plain = _strip_zeros(_fixed(x, max(w - 2 - neg, 0)))
-    sci = _enotation(x, w)
-    digs = _sig15(x).as_tuple().digits
-    k = len(digs)
-    while k > 1 and digs[k - 1] == 0:
-        k -= 1
-    if _sig_digits(sci) == k:
-        intform = (
-            ("-" if neg else "") + "".join(str(v) for v in digs[:k]) + f"E{_sig15(x).adjusted() - (k - 1)}"
-        )
-        if len(intform) < len(sci):
-            sci = intform
-    return plain if _sig_digits(plain) >= _sig_digits(sci) else sci
+    if abs(x) >= 1e-5:
+        plain = _strip_zeros(_fixed(x, max(w - 2 - neg, 0)))
+        if plain.strip("-0.") != "":
+            return plain
+    return _best_e(x, w)
 
 
 def sas_best(x: float | None, w: int) -> str:
@@ -1087,4 +1095,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=12
+# PORT STATUS: confidence=medium todos=11
