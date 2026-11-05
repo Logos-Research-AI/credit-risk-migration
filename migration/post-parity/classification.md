@@ -24,7 +24,7 @@ The kit says nothing merges without sign-off; the user said never stop.
 | 3 | predict.py:37, :79 | BUG: test set imputed from TEST-set medians | **fix now, flagged, unmerged** | Leakage and instability (age group 1 gets no median on edge_predict). The fix is to impute from the training medians, exported by feature_engineering as an artifact |
 | 4 | metrics_calculation.py:245 | BUG: PSI always 0 (each set ranked into its own deciles) | **fix now, flagged, unmerged** | PSI is meaningless as written. The fix is to apply the TRAINING decile cut-points to validation |
 | 5 | train.py:313 | TODO: ODDSR8.3 out of range | **fix now (parity-preserving)** | X06 verified: >999.999 / <0.001. Add `sas_compat.fmt_oddsr` |
-| 6 | sas_compat.py:234 | TODO: best32. reads 32 columns | **fix now (parity-preserving)** | X06: a 37-digit string reads its full value (no 32-character cut); leading blanks are ignored |
+| 6 | sas_compat.py:234 | TODO: best32. reads 32 columns | **close (verified, no code change)** | X06: the 32-column cut IS real (a 37-digit string reads as its first 32 digits, 1.2345…E31); leading blanks are ignored. The helper already behaved this way. CORRECTED: the first draft of this row misread X06 as "no cut"; the fixer caught it |
 | 7 | sas_compat.py:311, :337 | TODO: BEST E-notation at w ≠ 12, digit counts | **fix now (parity-preserving)** | X06 gives exact cells at w = 6, 8, 12 |
 | 8 | sas_compat.py:385 | TODO: percent overflow | **fix now (parity-preserving)** | X06: `1234%`, `( 1234%)`, `999.0%`, `0.00%` |
 | 9 | sas_compat.py:411 | TODO: D8. thresholds | **fix now (parity-preserving)** | X06: 14 exact D8. cells across magnitudes |
@@ -36,5 +36,12 @@ The kit says nothing merges without sign-off; the user said never stop.
 | 15 | sas_compat.py:1013 | TODO: ctable lower grid end | **document and close** | Every SAS run starts the grid at 0.000; the helper reproduces all 19 runs |
 | 16 | predict.py:202 | TODO: model variable absent at scoring | **document and close** | Raising a ValueError matches PROC PLM's ERROR. model.json keys are full names per RULEBOOK §2 |
 
-Totals: 4 BUG defects (3 fix-now flagged and unmerged, 1 closed); 19 TODO lines
-(10 fix-now parity-preserving, across 7 classification rows; 9 closed).
+Totals (corrected after review):
+- BUG(port): 4 defects. 3 are fix-now, flagged and NOT merged (branch post-parity-bugfixes); 1 is
+  closed (row 2).
+- TODO(port): 19 lines across 12 sites.
+  - Fix-now rows 5, 7, 9, 10 (printing) and 11 (complete-case mask, 4 sites): code changed.
+  - Rows 6 and 8 closed as verified with no code change (X06 matched the existing helper).
+  - Rows 12–16 closed with a resolution note.
+- Receipt after the burndown: `grep -c 'TODO(port)'` is 0 in every module; PERF(port) is 0;
+  BUG(port) lines remain as documentation of the default (SAS-compatible) behaviour.

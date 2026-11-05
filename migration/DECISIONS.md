@@ -132,3 +132,21 @@ for translation rules once it exists.
 - Port parity: 10/10 judged runs pass (66/66 files). The original SAS re-run (baseline_v3) is
   31/31 strict-identical, with 0 errors and 0 new warnings. Record: migration/parity/done-gate.md.
 - Next: prompt 06 post-parity burndown.
+
+## Prompt 06 post-parity burndown — complete 2026-11-05 (orchestrator, standing instruction)
+- Receipt before: 6 BUG(port) lines (4 defects), 19 TODO(port), 0 PERF(port).
+  After: 0 TODO(port) in every module and every trailer todos=0. The BUG(port) lines stay as
+  documentation of the default SAS-compatible behaviour. Classification:
+  migration/post-parity/classification.md.
+- Parity-preserving fixes and closures are MERGED on sas-to-python-migration (one commit per
+  marker). Opus review: all 95 judged output files byte-identical to the pre-burndown run;
+  review findings fixed forward. The fixer died on a network error, and the orchestrator
+  finished findings 7, 11 and 12. Final checks: 76/76 sas_compat checks, judge contract 10/10 PASS.
+- Behaviour-changing BUG fixes are NOT merged. Branch `post-parity-bugfixes` (5 commits:
+  #4 PSI bins, #1 income truncation, #3 training medians, plus 2 review fix-ups), each behind an
+  off-by-default flag. Flag-off contract: 10/10 PASS at every commit. Flag-on effects are in
+  migration/post-parity/bugfix-{1,3,4}.md (on the branch). Merging them changes model outputs;
+  that is the user's decision.
+- RULEBOOK v1.4: post-parity notes.
+- Cost-log row 06: tokens are a lower bound (the failed agent's final usage was not reported);
+  wall-clock is unknown.
