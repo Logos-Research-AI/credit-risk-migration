@@ -374,15 +374,11 @@ def run(input_dir: Path, output_dir: Path) -> None:
     x_final = np.column_stack(
         [
             np.ones(n_obs),
-            *[
-                np.asarray(model_features_train.get_column(c).to_numpy(), dtype=np.float64)
-                for c in final.names[1:]
-            ],
+            *[np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64) for c in final.names[1:]],
         ]
     )
-    # TODO(port): rows with a missing MODEL variable are excluded from the fit; stats here use all rows
-    # (none missing on any judged input; RULEBOOK §2 stepwise)
-    pd_train = np.asarray(logit_scored_train.get_column("pd_logistic").to_numpy(), dtype=np.float64)
+    # CTABLE uses the complete cases only: x_final, y_train and pd_train are all on the fit frame
+    pd_train = np.asarray(logit_scored_train.get_column("pd_logistic").to_numpy(), dtype=np.float64)[fit_mask]
     ctable = sas_compat.classification_table(y_train, x_final, pd=pd_train)
     printed_classification = pl.DataFrame(
         {
@@ -778,4 +774,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     run(args.input_dir, args.output_dir)
 
-# PORT STATUS: confidence=medium todos=1
+# PORT STATUS: confidence=medium todos=0
