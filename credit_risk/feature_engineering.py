@@ -201,8 +201,8 @@ def run(data_dir: Path, output_dir: Path, *, split_ids: Path) -> None:
     )
 
     # feature_engineering.sas:209-221  # INV work.credit_split
-    # BUG(port): SAS split depends on unguaranteed SQL row order; repro: judge run
-    # x_split_drift_m_metrics_threshold drew a different split, identical NOTEs (judge/README.md:75-81)
+    # RESOLVED (post-parity): the split is an explicit input (--split-ids), so row order cannot change it
+    # (SAS drew a different split in judge run x_split_drift_m_metrics_threshold, judge/README.md:75-81)
     # the split is an INPUT (A27): selected = row_id is a training row_id in split_ids
     train_ids = (
         pl.read_csv(split_ids, columns=["row_id"], infer_schema=False)  # R§1 CSV I/O: all text
