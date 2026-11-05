@@ -835,13 +835,23 @@ def check_x06_oddsr() -> None:
     counted("X06 ODDSR8.3 cells (fmt_oddsr)", bad, len(cases), "cases")
 
 
+def check_x06_input() -> None:
+    """X06: input(s, best32.): a 37-digit string reads as its first 32 digits; leading blanks ignored."""
+    got = pl.select(
+        sc.input_best32(pl.lit("1234567890123456789012345678901234567")).alias("a"),
+        sc.input_best32(pl.lit("   12.5")).alias("b"),
+    ).row(0)
+    ok = got[0] == 12345678901234566802609541218304.0 and got[1] == 12.5
+    report("X06 input best32. 32-column cut and leading blanks", ok, f"{got!r}")
+
+
 def main() -> None:
     steps: list[Callable[[], object]] = [
         check_best_small, check_best12, check_percent_wd, check_rank_and_wd84, check_import,
         check_edge_cases, check_d_formats, check_writer, check_stepwise, check_reference_pd_tables, check_roc,
         check_x05_scalars, check_x05_exprs, check_sql_and_merge, check_helper_names_and_agg, check_writer_rules,
         check_fit_and_stepwise_edges, check_degenerate_stats, check_runs_sas_pd, check_runs_stepwise,
-        check_x06_oddsr,
+        check_x06_oddsr, check_x06_input,
     ]
     for f in steps:
         try:

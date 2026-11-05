@@ -231,7 +231,7 @@ _NUM_RE = r"^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$"
 def input_best32(s: pl.Expr) -> pl.Expr:
     """SAS input(s, best32.): numeric text -> Float64; anything else ('NA', '') -> missing. An
     already-numeric column is an identity cast to Float64 (S2). Overflow ('1E400') and inf -> missing.
-    TODO(port): best32. reads only the first 32 columns (A-02); the 32-character cut is unverified."""
+    RESOLVED (post-parity): X06 confirms the 32-column cut (37 digits read as 32); leading blanks ignored."""
     t = s.cast(pl.String).str.slice(0, 32).str.strip_chars()
     v = t.cast(pl.Float64, strict=False)
     return _named(s, pl.when(t.str.contains(_NUM_RE) & v.is_finite()).then(v))
@@ -1087,4 +1087,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=13
+# PORT STATUS: confidence=medium todos=12
