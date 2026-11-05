@@ -437,7 +437,8 @@ def sas_d8(x: float | None) -> str:
     max(4, decimals for 3 significant digits)) decimals ('-4.1668', '0.00250', '0.0170'), decided
     from the ROUNDED value (a carry across a power of ten re-decides once); a value that does not fit
     in 8 falls back to BEST8. Fitted on 1,239 fixed reference cells.
-    RESOLVED (post-parity): X06 fixes 14 cells; |x| >= 100 prints 1 decimal (cap 8), E below 1e-5."""
+    RESOLVED (post-parity): X06 fixes 14 cells. |x| >= 100 printing 1 decimal is interpolated (no cell in
+    [1e3, 1e4), none negative >= 100); E-notation below 1e-5 is only bracketed (6.42e-6 E, 1e-5 fixed)."""
     if x is None or not math.isfinite(x):
         return ""
     if x == 0:
