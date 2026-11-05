@@ -73,3 +73,9 @@ for translation rules once it exists.
 - DEV-005 sanctioned. Moved into RULEBOOK §7.
 - Next: fan out the remaining sites (shards per category, two Opus skeptics per batch),
   merge, joint audit, then stop at the prompt 02 gate.
+
+## Step 1 — gap inventory complete 2026-11-05 (awaiting sign-off)
+- Inventory: 193 rows, 462/462 sites; 192 confirmed, 1 UNKNOWN (Q2). Record:
+  migration/inventory-review-fanout.md.
+- Waiting on the human: Q2; amendments A9–A31 (A20 replaces A10); DEV-006.
+- Judge documentation fixes, no verdict change: sas_best12 is plain-notation only; 283 ties.

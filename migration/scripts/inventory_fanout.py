@@ -216,6 +216,13 @@ def finalize() -> int:
         return out
     first, second = verdicts(""), verdicts(".recheck")
     rows = read_rows(MERGED)
+    fixes: dict[tuple[str, str, str], str] = {}
+    af = FANOUT / "audit-fixes.tsv"
+    if af.exists():
+        for ln in af.read_text().split("\n")[1:]:
+            if ln.strip():
+                r = ln.split("\t")
+                fixes[(r[0], r[1], r[2])] = r[3]
     counts: dict[str, int] = {}
     for r in rows:
         k = (r[0], r[1], r[2])
@@ -239,8 +246,10 @@ def finalize() -> int:
                 st = "confirmed"
             if any(v == "RULEBOOK_CONFLICT" for v in list(v1.values()) + list(second.get(k, {}).values())):
                 st += "; needs queued rulebook amendment"
+        if k in fixes and not r[6].startswith("confirmed"):
+            st += f"; audit fix {fixes[k]}"
         r[6] = st
-        counts[st] = counts.get(st, 0) + 1
+        counts[st.split("; audit fix")[0]] = counts.get(st.split("; audit fix")[0], 0) + 1
     with open(MERGED, "w") as f:
         f.write("\t".join(HEADER) + "\n")
         for r in rows:

@@ -1,0 +1,52 @@
+file	symbol	source_construct	audit_ids
+feature_engineering.sas	&data_path / &output_path	%let data_path / %let output_path (hard-coded ODA folders)	FP-04
+feature_engineering.sas	model_features_train.csv	data credit_train_export (format _numeric_ best12.) + PROC EXPORT dbms=csv	FP-03;FP-10
+feature_engineering.sas	model_features_validation.csv	data credit_validation_export (format _numeric_ best12.) + PROC EXPORT dbms=csv	FP-10;FP-03
+train.sas	model_coefficients.csv	ODS ParameterEstimates (final stepwise model) via ods output + PROC EXPORT	TM-04
+train.sas	printed_hl_partition.csv	PROC LOGISTIC model option lackfit: ODS LackFitPartition	FP-02;TM-17
+train.sas	printed_hosmer_lemeshow.csv	PROC LOGISTIC model option lackfit: ODS LackFitChiSq	TM-04
+train.sas	printed_odds_ratios.csv	ODS OddsRatios (Odds Ratio Estimates, final stepwise model)	TM-14
+train.sas	printed_confusion_train.csv	PROC FREQ noprint tables default_flag*pred_logistic / out=work.confusion_matrix_train; PROC PRINT of it	TM-06;TM-05
+train.sas	train_precision	work.training_metrics: if (TP + FP) > 0 then train_precision = TP / (TP + FP); else train_precision = .	TM-11
+train.sas	train_recall	work.training_metrics: if (TP + FN) > 0 then train_recall = TP / (TP + FN); else train_recall = .	TM-11
+train.sas	train_accuracy	work.training_metrics: if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN); else .	TM-11
+train.sas	work.logit_scored_valid	drop predicted_logit after pd_logistic and pred_logistic are added	FP-02
+train.sas	printed_confusion_validation.csv	PROC FREQ noprint tables default_flag*pred_logistic / out=work.confusion_matrix; PROC PRINT of it	TM-06;TM-05
+train.sas	valid_precision	work.validation_metrics: if (TP + FP) > 0 then valid_precision = TP / (TP + FP); else valid_precision = .	TM-11
+train.sas	valid_recall	work.validation_metrics: if (TP + FN) > 0 then valid_recall = TP / (TP + FN); else valid_recall = .	TM-11
+train.sas	valid_accuracy	work.validation_metrics: if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN); else .	TM-11
+train.sas	risk_scores_train.csv	data risk_scores_train (format interest_rate percent8.2) + data risk_scores_train_clean (drop IP_: XP_: _FROM_ _INTO_ _LEVEL_) + PROC EXPORT	TM-13
+train.sas	printed_roc_train.csv	PROC LOGISTIC nofit + roc 'Training Set' pred=pd_logistic; ods output ROCAssociation=work.roc_train	FP-02;TM-04;TM-14
+train.sas	printed_roc_validation.csv	PROC LOGISTIC nofit + roc 'Validation Set' pred=pd_logistic; ods output ROCAssociation=work.roc_valid	FP-02;TM-04;TM-14
+train.sas	training_date	training_date = today(); format date9. (model_summary)	TM-12
+train.sas	model_summary.csv	data model_summary (merge roc_train roc_valid training_metrics validation_metrics; format training_date date9. ... 8.4; keep) + PROC EXPORT	FP-02;TM-13
+train.sas	model_coefficients.csv	PROC EXPORT data=work.model_coefficients (ODS ParameterEstimates dataset)	TM-04
+metrics_calculation.sas	printed_roc_metrics.csv	PROC LOGISTIC nofit + roc 'Logistic Model' pred=pd_logistic + roccontrast; ods output ROCAssociation=work.roc_stats	FP-02;TM-04;TM-14
+metrics_calculation.sas	printed_cumulative_lift.csv	proc sql noprint (total_defaults, overall_default_rate into macro vars) + data cumulative_lift (format cum_capture_rate percent8.2 cum_lift 8.2); judged via EXPORT_AFTER	TM-13
+metrics_calculation.sas	&total_defaults / &overall_default_rate	proc sql select sum(default_flag), mean(default_flag) into :total_defaults, :overall_default_rate from decile_data	TM-16
+metrics_calculation.sas	calibration_plot.csv	PROC RANK groups=20 (ascending) ranks pred_bin + PROC SQL calibration_plot (format=8.4) + PROC EXPORT	FP-02
+metrics_calculation.sas	validation_summary.csv	PROC EXPORT data=work.validation_summary	FP-02
+metrics_calculation.sas	ks_statistic.csv	PROC EXPORT data=work.ks_statistic	FP-02
+metrics_calculation.sas	validation_date	validation_date = today(); format date9. (model_performance_metrics)	TM-12
+predict.sas	work.test_raw_clean	drop MonthlyIncome NumberOfDependents; rename MonthlyIncome_num = MonthlyIncome, NumberOfDependents_num = NumberOfDependents	FP-02;FP-06
+predict.sas	age_group (test_income_medians)	PROC SQL CASE WHEN age < 30 / 40 / 50 / 60 THEN 1..4 ELSE 5 + WHERE MonthlyIncome is not missing, group by calculated age_group	FP-01
+predict.sas	work.test_income_medians	PROC SQL median(MonthlyIncome) where MonthlyIncome is not missing group by calculated age_group (TEST data)	FP-01
+predict.sas	work.test_income_medians	PROC SQL median(MonthlyIncome) where not missing group by calculated age_group	FP-01
+predict.sas	proc sql (test_imputed)	PROC SQL create table work.test_imputed (left join on age_group)	FP-02
+predict.sas	work.test_imputed	PROC SQL left join test_cleaned a, test_income_medians b on age_group + CASE imputation + renames + *100	FP-02
+predict.sas	has_delinquency	flag = (total_late_payments > 0)	FP-02
+predict.sas	has_serious_delinquency	flag = (num_late_90_plus > 0)	FP-02
+predict.sas	credit_util_category	if/else-if chain credit_utilization < 30 / 50 / 75 -> 1..3, else 4	FP-02
+predict.sas	debt_category	if/else-if chain debt_ratio < 30 / 43 / 60 -> 1..3, else 4	FP-02
+predict.sas	flag_high_utilization	flag = (credit_utilization > 75)	FP-02
+predict.sas	flag_very_high_utilization	flag = (credit_utilization > 100)	FP-02
+predict.sas	flag_high_debt_ratio	flag = (debt_ratio > 43)	FP-02
+predict.sas	flag_very_high_debt_ratio	flag = (debt_ratio > 60)	FP-02
+predict.sas	flag_recent_late_payments	flag = (num_late_30_59 > 0)	FP-02
+predict.sas	flag_serious_delinquency	flag = (num_late_90_plus > 0)	FP-02
+predict.sas	flag_multiple_delinquencies	flag = (total_late_payments >= 3)	FP-02
+predict.sas	flag_many_dependents	flag = (num_dependents >= 3)	FP-02
+predict.sas	flag_few_credit_lines	flag = (num_credit_lines <= 2)	FP-02
+predict.sas	work.kaggle_submission (kaggle_submission.csv)	data step keep row_id pd_logistic	FP-05
+predict.sas	kaggle_submission.csv	data kaggle_submission (keep row_id pd_logistic) + PROC EXPORT	FP-05
+predict.sas	test_predictions.csv	data test_predictions_full (keep ...) + PROC EXPORT	FP-02
