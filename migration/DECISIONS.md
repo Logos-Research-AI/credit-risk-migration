@@ -127,3 +127,8 @@ for translation rules once it exists.
   - runs 1, 2, 3, 6, 7, 8, 4, 5 all PASS (2/2, 18/18, 9/9 ×4, 2/2 ×2);
   - run 9 e2e PASSES for fe and predict;
   - full pipeline about 16 s.
+
+## Step 6 done-gate — PASSED 2026-11-05
+- Port parity: 10/10 judged runs pass (66/66 files). The original SAS re-run (baseline_v3) is
+  31/31 strict-identical, with 0 errors and 0 new warnings. Record: migration/parity/done-gate.md.
+- Next: prompt 06 post-parity burndown.
