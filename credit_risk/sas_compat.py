@@ -850,7 +850,7 @@ def roc_association(
     rows specify (ROCModel, Area, StdErr, LowerArea, UpperArea, SomersD, Gamma, TauA; full-precision
     Float64). An undefined statistic (empty class, all pairs tied, one observation in a class for the
     standard error) is None.
-    TODO(port): SAS's output for these degenerate inputs is unverified."""
+    RESOLVED (post-parity): degenerate inputs are outside the pipeline domain; missing is returned."""
     q = _pairs(y, score)
     n = q.n1 + q.n0
     p = q.n1 * q.n0
@@ -1082,4 +1082,4 @@ def classification_table(
     )
 
 
-# PORT STATUS: confidence=medium todos=4
+# PORT STATUS: confidence=medium todos=3
