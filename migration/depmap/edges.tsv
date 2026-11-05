@@ -1,0 +1,6 @@
+from	to	kind	symbol	evidence
+metrics_calculation.sas	train.sas	file	risk_scores_train.csv	metrics_calculation.sas:36 <- train.sas:339
+metrics_calculation.sas	train.sas	file	risk_scores_validation.csv	metrics_calculation.sas:28 <- train.sas:346
+predict.sas	train.sas	session	work.logit_model	predict.sas:208 <- train.sas:90
+train.sas	feature_engineering.sas	file	model_features_train.csv	train.sas:26 <- feature_engineering.sas:268
+train.sas	feature_engineering.sas	file	model_features_validation.csv	train.sas:35 <- feature_engineering.sas:275

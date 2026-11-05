@@ -1,0 +1,4 @@
+# Target package granularity (RULEBOOK §4): every unit lands in package credit_risk/.
+# Condensed graph: credit_risk (4 modules) -> credit_risk.sas_compat (shared helpers, no SAS source).
+# sas_compat imports no translated module, so the package graph is acyclic.
+# strongly connected components > 1 package: 0
