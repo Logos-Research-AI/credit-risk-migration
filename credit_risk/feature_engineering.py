@@ -14,7 +14,14 @@ import polars as pl
 from credit_risk import sas_compat
 
 
-def run(data_dir: Path, output_dir: Path, *, split_ids: Path, fix_income_truncation: bool = False) -> None:
+def run(
+    data_dir: Path,
+    output_dir: Path,
+    *,
+    split_ids: Path,
+    fix_income_truncation: bool = False,
+    export_train_medians: bool = False,
+) -> None:
     # R§4 (S12, A27): create the output folder first
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -58,13 +65,12 @@ def run(data_dir: Path, output_dir: Path, *, split_ids: Path, fix_income_truncat
         .agg(median_income=pl.col("MonthlyIncome").median())
     )
 
-    # post-parity (row 3): training medians exported for predict --fix-train-medians; an EXTRA file,
-    # never judged, written always
-    sas_compat.write_sas_csv(
-        income_medians.sort("age_group"),
-        output_dir / "income_medians.csv",
-        formats={},
-    )
+    # post-parity (row 3, flag --export-train-medians): medians of the FULL cs-training.csv (before the
+    # split), i.e. the table used to impute the training features; an EXTRA file, never judged
+    if export_train_medians:
+        sas_compat.write_sas_csv(
+            income_medians.sort("age_group"), output_dir / "income_medians.csv", formats={}
+        )
 
     # feature_engineering.sas:75-94  # INV age_group, MonthlyIncome_missing, Dependents_missing
     credit_cleaned = credit_raw_clean.with_columns(
@@ -258,12 +264,18 @@ if __name__ == "__main__":  # R§4
         action="store_true",
         help="post-parity fix: import cs-training.csv with guessingrows=max (off: SAS-faithful truncation)",
     )
+    parser.add_argument(
+        "--export-train-medians",
+        action="store_true",
+        help="also write income_medians.csv (for predict --fix-train-medians)",
+    )
     args = parser.parse_args()
     run(
         args.data_dir,
         args.output_dir,
         split_ids=args.split_ids,
         fix_income_truncation=args.fix_income_truncation,
+        export_train_medians=args.export_train_medians,
     )
 
 # PORT STATUS: confidence=high todos=0

@@ -14,3 +14,9 @@ python -m credit_risk.predict --input-dir out/off/r2_train --data-dir data --out
 ```
 - cs-test: 16,613 of the 101,503 rows change (the rows with imputed income). `test_predictions.csv`: `monthly_income`, `pd_logistic`, `credit_risk_score`; `kaggle_submission.csv`: `pd_logistic`. Max |delta pd| = 0.00076.
 - edge_predict: null monthly_income 5,881 -> 0. 21,513 rows change (under-30 rows go from null score to scored): monthly_income, total_risk_flags, pd_logistic, pred_logistic, credit_risk_score, risk_grade, recommendation, interest_rate. Example row 5 (age 27): monthly_income null -> 2557, pd null -> 0.075679; row 10: pd null -> 0.626506.
+
+## Fix-up (review)
+- `income_medians.csv` is now written only with the new FE flag `--export-train-medians` (`export_train_medians=True`); flag off, FE output is exactly the two judged files.
+- Median source: the medians come from the FULL cs-training.csv (150,000 rows, train plus validation, before the split). This is the table FE used to impute the model's training features, so scoring-time imputation matches fit-time imputation.
+- `--medians` is validated: age groups must be exactly 1-5 (ValueError otherwise); `--medians` without `--fix-train-medians` is an argparse error.
+- Re-run: `feature_engineering ... --export-train-medians` writes the same income_medians.csv as before (1:2557, 2:4666, 3:6000, 4:6333, 5:5313).

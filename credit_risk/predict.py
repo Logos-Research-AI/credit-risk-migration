@@ -69,6 +69,8 @@ def run(
         test_income_medians = pl.read_csv(
             medians, schema_overrides={"age_group": pl.Int32, "median_income": pl.Float64}
         )
+        if set(test_income_medians.get_column("age_group").to_list()) != {1, 2, 3, 4, 5}:
+            raise ValueError(f"{medians}: age_group must cover exactly 1-5")
 
     # predict.sas:75-94 DATA test_cleaned
     # INV age_group; INV MonthlyIncome_missing
@@ -343,6 +345,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.fix_train_medians and args.medians is None:
         parser.error("--fix-train-medians requires --medians")
+    if args.medians is not None and not args.fix_train_medians:
+        parser.error("--medians requires --fix-train-medians")
     run(
         args.input_dir,
         args.output_dir,
