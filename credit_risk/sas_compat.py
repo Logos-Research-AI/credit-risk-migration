@@ -616,6 +616,23 @@ def proc_rank_groups(x: pl.Series, k: int, descending: bool = False) -> pl.Serie
     return pl.Series(x.name, g, dtype=pl.Float64, nan_to_null=True).cast(pl.Int64)
 
 
+def proc_rank_apply_groups(reference: pl.Series, x: pl.Series, k: int) -> pl.Series:
+    """Bins for `x` using the PROC RANK groups=k cut-points of `reference` (post-parity PSI fix).
+    Group g of the reference starts at its smallest member; x falls in the highest group whose start
+    is <= x; below every start -> the LOWEST reference group present (open below). A value in the gap
+    between max(g) and min(g+1) goes to g (lower-bound rule). Missing -> missing. Int64."""
+    ref = reference.drop_nulls()
+    groups = proc_rank_groups(ref, k)
+    starts = pl.DataFrame({"g": groups, "v": ref}).group_by("g").agg(lo=pl.col("v").min()).sort("g")
+    g_arr = starts.get_column("g").to_numpy()
+    lo = starts.get_column("lo").to_numpy()
+    xv = np.asarray(x.fill_null(np.nan).to_numpy(), dtype=np.float64)
+    idx = np.searchsorted(lo, xv, side="right") - 1
+    out = np.where(idx < 0, g_arr[0], g_arr[np.clip(idx, 0, None)]).astype(np.float64)
+    out[np.isnan(xv)] = np.nan
+    return pl.Series(x.name, out, dtype=pl.Float64, nan_to_null=True).cast(pl.Int64)
+
+
 @dataclass
 class LogisticFit:
     """A fitted logistic model P(y = 1) on columns `names`. `names[0]` is "Intercept";
