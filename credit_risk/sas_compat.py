@@ -830,7 +830,10 @@ class RocAssociation:
     tau_a: float | None
 
 
-_TIE_EPS = 1e-8  # A8: SAS tie fuzz
+# ROCEPS, PROC LOGISTIC's tie tolerance (finding P1). SAS uses 0x3E46A09E667F3BCE, one ulp above the
+# double sqrt(2**-53) = 1.0536712127723509e-8: experiment X08 (a pair is tied up to that distance, at
+# every magnitude, and not tied one ulp further).
+_TIE_EPS = math.nextafter(math.sqrt(2.0**-53), 1.0)
 
 
 @dataclass
@@ -848,13 +851,24 @@ def _pairs(y: pl.Series, score: pl.Series) -> _Pairs:
     d = pl.DataFrame({"y": y.cast(pl.Float64), "s": score.cast(pl.Float64)}).drop_nulls()
     yy = np.asarray(d.get_column("y").to_numpy(), dtype=np.float64)
     ss = np.asarray(d.get_column("s").to_numpy(), dtype=np.float64)
-    ev = np.sort(ss[yy == 1])
-    ne = np.sort(ss[yy == 0])
+    # SAS groups the probabilities from the largest down: a value joins the current group while it is
+    # within _TIE_EPS of the group's largest value, else it opens a new group (finding P1; X07, X08).
+    # A pair is concordant, discordant or tied by the groups of its two members (gg: group number,
+    # larger for a higher probability).
+    gg = np.zeros(len(ss), dtype=np.int64)
+    top, g = 0.0, 0
+    for k, i in enumerate(np.argsort(ss, kind="stable")[::-1].tolist()):
+        v = float(ss[i])
+        if k == 0 or top - v > _TIE_EPS:
+            top, g = v, g - 1
+        gg[i] = g
+    ev = np.sort(gg[yy == 1])
+    ne = np.sort(gg[yy == 0])
     n1, n0 = len(ev), len(ne)
-    lo_ne = np.searchsorted(ne, ev - _TIE_EPS, side="left")
-    le_ne = np.searchsorted(ne, ev + _TIE_EPS, side="right")
-    lo_ev = np.searchsorted(ev, ne - _TIE_EPS, side="left")
-    le_ev = np.searchsorted(ev, ne + _TIE_EPS, side="right")
+    lo_ne = np.searchsorted(ne, ev, side="left")
+    le_ne = np.searchsorted(ne, ev, side="right")
+    lo_ev = np.searchsorted(ev, ne, side="left")
+    le_ev = np.searchsorted(ev, ne, side="right")
     conc = int(lo_ne.sum())
     tied = int((le_ne - lo_ne).sum())
     v10 = (lo_ne + 0.5 * (le_ne - lo_ne)) / max(n0, 1)
@@ -875,7 +889,7 @@ def roc_association(
 ) -> RocAssociation | pl.DataFrame:
     """PROC LOGISTIC nofit + roc (ROCAssociation): Mann-Whitney area with ties counted 1/2,
     DeLong standard error, Wald CI with Z975, Somers' D, Gamma, Tau-a (inventory ROC rows).
-    Tied = |difference| <= 1e-8. Without `label`: a RocAssociation of numbers (the caller adds the
+    Tied = same ROCEPS group (`_pairs`). Without `label`: a RocAssociation of numbers (the caller adds the
     ROCModel label and renders every value with sas_d8). With `label`: the ONE-row frame the inventory
     rows specify (ROCModel, Area, StdErr, LowerArea, UpperArea, SomersD, Gamma, TauA; full-precision
     Float64). An undefined statistic (empty class, all pairs tied, one observation in a class for the
@@ -933,7 +947,7 @@ class AssociationTable:
 
 
 def association_table(y: pl.Series, pd: pl.Series) -> AssociationTable:
-    """ODS Association of the fitted model: pairs tied when |dpd| <= 1e-8 (A8).
+    """ODS Association of the fitted model: pairs tied when in the same ROCEPS group (`_pairs`; X07 C).
     concordant_pct / discordant_pct / tied_pct are in percent units. A statistic with a 0
     denominator (single-class response, all pairs tied) is None.
     RESOLVED (post-parity): degenerate inputs are outside the pipeline domain; missing is returned."""

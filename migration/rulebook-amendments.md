@@ -87,3 +87,14 @@ brittle.
 Recommended: (a). This is a change to the signed-off judge.
 **ANSWERED 2026-11-05: (a).** judge/compare.py ABS_COL_TOL Total 2.0. The converged HL table passes;
 self-test 81/81; validation verdicts unchanged.
+
+## Batch 3 (formal verification, FV-*): QUEUED 2026-11-12, not applied
+
+Queued by the coding pass on the formal-verification findings
+(`sas-migration-formal/prover/findings-for-code.md`; report in
+`migration/formal-verification/changes.md`). The code and the inventory already follow these;
+RULEBOOK.md is unchanged until the human applies them. Ids are `FV-<finding id>`.
+
+| ID | Rule | Change | Exposed by | What goes wrong today |
+|---|---|---|---|---|
+| FV-P1 | §2 ODS `Association` table (A8) and §2 PROC LOGISTIC `nofit` + `roc` | Replace "tied when \|pd_event − pd_nonevent\| ≤ 1e-8" by SAS's ROCEPS grouping, for both tables: drop rows with a missing response or probability; take the probabilities from the largest down; the first opens a group and is its top; a value joins the current group while `top − value ≤ ROCEPS`, else it opens a new group and becomes its top; a pair is concordant / discordant / tied by the groups of its two members. ROCEPS is the double `0x3E46A09E667F3BCE` = 1.0536712127723511e-8, **one ulp above** the double sqrt(2^-53) (`math.nextafter(math.sqrt(2.0**-53), 1.0)`). Area = (C + T/2)/pairs, in that operation order. | finding P1; SAS experiments `migration/experiments/x07_roc_ties.*` and `x08_roceps_boundary.*` | pairwise 1e-8: two probabilities 1.02e-8 apart are concordant in the port and tied in SAS (AUC 1 against 0.5); 0.5, 0.500000009, 0.500000018 are tied pairwise where SAS separates 0.5 from the other two; 275 tied pairs against SAS's 280 on the reference training scores |
