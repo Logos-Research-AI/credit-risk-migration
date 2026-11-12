@@ -131,20 +131,20 @@ def run(
         # predict.sas:132-135 INV has_delinquency / has_serious_delinquency (plain: MISSING_NEVER)
         has_delinquency=sas_compat.flag(pl.col("total_late_payments") > 0),
         has_serious_delinquency=sas_compat.flag(pl.col("num_late_90_plus") > 0),
-        # predict.sas:138-141 INV credit_util_category
-        credit_util_category=pl.when(pl.col("credit_utilization") < 30)
+        # predict.sas:138-141 INV credit_util_category; SAS comparisons in the three chains (finding P5)
+        credit_util_category=pl.when(sas_compat.lt(pl.col("credit_utilization"), 30))
         .then(1)
-        .when(pl.col("credit_utilization") < 50)
+        .when(sas_compat.lt(pl.col("credit_utilization"), 50))
         .then(2)
-        .when(pl.col("credit_utilization") < 75)
+        .when(sas_compat.lt(pl.col("credit_utilization"), 75))
         .then(3)
         .otherwise(4),
         # predict.sas:144-147 INV debt_category
-        debt_category=pl.when(pl.col("debt_ratio") < 30)
+        debt_category=pl.when(sas_compat.lt(pl.col("debt_ratio"), 30))
         .then(1)
-        .when(pl.col("debt_ratio") < 43)
+        .when(sas_compat.lt(pl.col("debt_ratio"), 43))
         .then(2)
-        .when(pl.col("debt_ratio") < 60)
+        .when(sas_compat.lt(pl.col("debt_ratio"), 60))
         .then(3)
         .otherwise(4),
         # predict.sas:150-151 INV log_monthly_income / age_income_interaction / income_per_dependent
@@ -155,13 +155,13 @@ def run(
         # predict.sas:154 INV credit_lines_per_person (divisor >= 1, plain `/`)
         credit_lines_per_person=pl.col("num_credit_lines") / (pl.col("num_dependents") + 1),
         # predict.sas:157-161 INV age_category
-        age_category=pl.when(pl.col("age") < 25)
+        age_category=pl.when(sas_compat.lt(pl.col("age"), 25))
         .then(1)
-        .when(pl.col("age") < 35)
+        .when(sas_compat.lt(pl.col("age"), 35))
         .then(2)
-        .when(pl.col("age") < 50)
+        .when(sas_compat.lt(pl.col("age"), 50))
         .then(3)
-        .when(pl.col("age") < 65)
+        .when(sas_compat.lt(pl.col("age"), 65))
         .then(4)
         .otherwise(5),
         # predict.sas:164-173 risk flags; INV flag_* (plain comparisons, MISSING_NEVER)
@@ -175,7 +175,7 @@ def run(
         # INV flag_low_income: MISSING_NULLABLE, missing < 2500 is true (R§2 comparison, A1/A2)
         flag_low_income=sas_compat.flag(sas_compat.lt(pl.col("monthly_income"), 2500)),
         flag_many_dependents=sas_compat.flag(pl.col("num_dependents") >= 3),
-        flag_few_credit_lines=sas_compat.flag(pl.col("num_credit_lines") <= 2),
+        flag_few_credit_lines=sas_compat.flag(sas_compat.le(pl.col("num_credit_lines"), 2)),
     )
     # predict.sas:176-187 INV total_risk_flags, INV financial_health (A30: one nested expression)
     financial_health = pl.lit(100.0)
