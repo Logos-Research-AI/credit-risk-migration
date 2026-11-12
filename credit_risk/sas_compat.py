@@ -240,8 +240,8 @@ def input_best32(s: pl.Expr) -> pl.Expr:
 def merge_one_to_one(*frames: pl.DataFrame) -> pl.DataFrame:
     """SAS one-to-one MERGE (no BY; A6, experiment X01a). Rows = the longest frame; shorter frames
     are padded with nulls at the end. Columns are in frame order (first appearance). A later frame's
-    column with the same name OVERWRITES the earlier one, including with null on its padded rows
-    (the shorter input's values are missing there)."""
+    column with the same name OVERWRITES the earlier one on the rows the later frame has; on the rows
+    after its end the earlier value is kept (finding P9; SAS experiment X15A)."""
     if not frames:
         return pl.DataFrame()
     n = max(f.height for f in frames)
@@ -249,7 +249,13 @@ def merge_one_to_one(*frames: pl.DataFrame) -> pl.DataFrame:
     for f in frames:
         for s in f.iter_columns():
             pad = n - s.len()
-            cols[s.name] = s if pad == 0 else pl.concat([s, pl.Series(s.name, [None] * pad, dtype=s.dtype)])
+            prev = cols.get(s.name)
+            rest = pl.Series(s.name, [None] * pad, dtype=s.dtype) if prev is None else prev.slice(s.len())
+            cols[s.name] = (
+                s
+                if pad == 0
+                else pl.concat([s.to_frame(), rest.to_frame()], how="vertical_relaxed").to_series()
+            )
     return pl.DataFrame(list(cols.values()))
 
 
