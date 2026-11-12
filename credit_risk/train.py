@@ -433,7 +433,17 @@ def run(input_dir: Path, output_dir: Path) -> None:
         logit_scored_train.group_by(["default_flag", "pred_logistic"], maintain_order=True)
         .agg(COUNT=pl.len().cast(pl.Int64))
         .sort(["default_flag", "pred_logistic"], maintain_order=True)
-        .with_columns(PERCENT=sas_compat.div(100 * pl.col("COUNT"), pl.col("COUNT").sum()))
+        .with_columns(
+            # finding P6: N = the rows with both variables present; a missing level has a missing PERCENT
+            PERCENT=pl.when(pl.all_horizontal(pl.col("default_flag", "pred_logistic").is_not_null())).then(
+                sas_compat.div(
+                    100 * pl.col("COUNT"),
+                    pl.col("COUNT")
+                    .filter(pl.all_horizontal(pl.col("default_flag", "pred_logistic").is_not_null()))
+                    .sum(),
+                )
+            )
+        )
     )
 
     # train.sas:113-115
@@ -500,7 +510,17 @@ def run(input_dir: Path, output_dir: Path) -> None:
         logit_scored_valid.group_by(["default_flag", "pred_logistic"], maintain_order=True)
         .agg(COUNT=pl.len().cast(pl.Int64))
         .sort(["default_flag", "pred_logistic"], maintain_order=True)
-        .with_columns(PERCENT=sas_compat.div(100 * pl.col("COUNT"), pl.col("COUNT").sum()))
+        .with_columns(
+            # finding P6: N = the rows with both variables present; a missing level has a missing PERCENT
+            PERCENT=pl.when(pl.all_horizontal(pl.col("default_flag", "pred_logistic").is_not_null())).then(
+                sas_compat.div(
+                    100 * pl.col("COUNT"),
+                    pl.col("COUNT")
+                    .filter(pl.all_horizontal(pl.col("default_flag", "pred_logistic").is_not_null()))
+                    .sum(),
+                )
+            )
+        )
     )
 
     # train.sas:175-177
