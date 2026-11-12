@@ -175,30 +175,30 @@ def sas_exp(x: ExprOrNum) -> pl.Expr:
     return _named(x, pl.when(v.is_finite()).then(v))
 
 
-_TWO52 = 2.0**52
+_ROUND_FUZZ_CAP = 1e-6
 _ROUND_FUZZ = 1e-12
 
 
 def sas_round(x: ExprOrNum) -> pl.Expr:
-    """SAS round(x) to an integer: half away from zero, with SAS's fuzz: |frac - 0.5| <= 1e-12 *
-    max(1, |x|) counts as half (experiment X05: 1e-14 below .5 rounds up, 1e-10 below does not);
-    |x| >= 2^52 is returned unchanged. Missing stays missing. Float64 result, no -0.0."""
+    """SAS round(x) to an integer (finding P8): with a = |x| and eps = min(1e-6, a * 1e-12), the result is
+    floor((a + 0.5) + eps) with the sign of x (SAS's documented fuzz; SAS experiment X11 reproduces nine
+    half-way thresholds to the bit); an integer is returned unchanged. Missing stays missing."""
     xf = _e(x).cast(pl.Float64)
     a = xf.abs()
     fl = a.floor()
-    up = (a - fl) >= (0.5 - pl.max_horizontal(pl.lit(1.0), a) * _ROUND_FUZZ)
-    r = xf.sign() * (fl + up.cast(pl.Float64))
-    return _named(x, pl.when(a >= _TWO52).then(xf).otherwise(r) + 0.0)
+    eps = pl.min_horizontal(pl.lit(_ROUND_FUZZ_CAP), a * _ROUND_FUZZ)
+    r = xf.sign() * ((a + 0.5) + eps).floor()
+    return _named(x, pl.when(a == fl).then(xf).otherwise(r) + 0.0)
 
 
 def sas_round_scalar(x: float) -> float:
     """Scalar form of sas_round (same rule)."""
-    if not math.isfinite(x) or abs(x) >= _TWO52:
+    if not math.isfinite(x):
         return x
     a = abs(x)
-    fl = math.floor(a)
-    up = (a - fl) >= 0.5 - _ROUND_FUZZ * max(1.0, a)
-    return math.copysign(float(fl + (1 if up else 0)), x) + 0.0
+    eps = min(_ROUND_FUZZ_CAP, a * _ROUND_FUZZ)
+    r = a if a == math.floor(a) else math.floor((a + 0.5) + eps)
+    return math.copysign(float(r), x) + 0.0
 
 
 def sql_sum(x: ExprOrNum) -> pl.Expr:
