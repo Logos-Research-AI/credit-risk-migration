@@ -99,7 +99,7 @@ def lt(x: ExprOrNum, c: ExprOrNum) -> pl.Expr:
 
 
 def le(x: ExprOrNum, c: ExprOrNum) -> pl.Expr:
-    """SAS `x <= c`. No inventory site (A31): unverified."""
+    """SAS `x <= c`. Site: flag_few_credit_lines (findings P4, P5)."""
     return _named(x, ~lt(_e(c), x))
 
 

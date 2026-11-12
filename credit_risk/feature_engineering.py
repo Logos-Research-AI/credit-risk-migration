@@ -136,20 +136,20 @@ def run(
             has_delinquency=sas_compat.flag(pl.col("total_late_payments") > 0),
             # :136  # INV has_serious_delinquency
             has_serious_delinquency=sas_compat.flag(pl.col("num_late_90_plus") > 0),
-            # :139-142  # INV credit_util_category
-            credit_util_category=pl.when(pl.col("credit_utilization") < 30)
+            # :139-142  # INV credit_util_category; SAS comparisons in the three chains (finding P4)
+            credit_util_category=pl.when(sas_compat.lt(pl.col("credit_utilization"), 30))
             .then(1)
-            .when(pl.col("credit_utilization") < 50)
+            .when(sas_compat.lt(pl.col("credit_utilization"), 50))
             .then(2)
-            .when(pl.col("credit_utilization") < 75)
+            .when(sas_compat.lt(pl.col("credit_utilization"), 75))
             .then(3)
             .otherwise(4),
             # :145-148  # INV debt_category
-            debt_category=pl.when(pl.col("debt_ratio") < 30)
+            debt_category=pl.when(sas_compat.lt(pl.col("debt_ratio"), 30))
             .then(1)
-            .when(pl.col("debt_ratio") < 43)
+            .when(sas_compat.lt(pl.col("debt_ratio"), 43))
             .then(2)
-            .when(pl.col("debt_ratio") < 60)
+            .when(sas_compat.lt(pl.col("debt_ratio"), 60))
             .then(3)
             .otherwise(4),
             # :151-152  # INV income_per_dependent (plain `/`, column by column, divisor >= 2; A13)
@@ -159,13 +159,13 @@ def run(
             # :155  # INV credit_lines_per_person (divisor >= 1)
             credit_lines_per_person=pl.col("num_credit_lines") / (pl.col("num_dependents") + 1),
             # :158-162  # INV age_category
-            age_category=pl.when(pl.col("age") < 25)
+            age_category=pl.when(sas_compat.lt(pl.col("age"), 25))
             .then(1)
-            .when(pl.col("age") < 35)
+            .when(sas_compat.lt(pl.col("age"), 35))
             .then(2)
-            .when(pl.col("age") < 50)
+            .when(sas_compat.lt(pl.col("age"), 50))
             .then(3)
-            .when(pl.col("age") < 65)
+            .when(sas_compat.lt(pl.col("age"), 65))
             .then(4)
             .otherwise(5),
             # :165-174  # INV flag_* rows; R§2 flag()
@@ -176,9 +176,9 @@ def run(
             flag_recent_late_payments=sas_compat.flag(pl.col("num_late_30_59") > 0),
             flag_serious_delinquency=sas_compat.flag(pl.col("num_late_90_plus") > 0),
             flag_multiple_delinquencies=sas_compat.flag(pl.col("total_late_payments") >= 3),
-            flag_low_income=sas_compat.flag(pl.col("monthly_income") < 2500),
+            flag_low_income=sas_compat.flag(sas_compat.lt(pl.col("monthly_income"), 2500)),
             flag_many_dependents=sas_compat.flag(pl.col("num_dependents") >= 3),
-            flag_few_credit_lines=sas_compat.flag(pl.col("num_credit_lines") <= 2),
+            flag_few_credit_lines=sas_compat.flag(sas_compat.le(pl.col("num_credit_lines"), 2)),
         )
         .with_columns(
             # :177-179  # INV total_risk_flags
