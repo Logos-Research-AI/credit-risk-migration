@@ -228,7 +228,7 @@ def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> Non
     cumulative_lift = (
         decile_analysis.sort("decile", maintain_order=True)
         .with_columns(
-            cum_defaults=pl.col("defaults").cum_sum(),
+            cum_defaults=pl.col("defaults").cum_sum().forward_fill(),  # sum statement skips missing (P7)
             cum_count=pl.col("total_count").cum_sum(),
         )
         .with_columns(
