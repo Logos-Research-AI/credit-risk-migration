@@ -49,14 +49,14 @@ def run(
     # feature_engineering.sas:59-73  # INV work.income_medians; R§2 PROC SQL median
     income_medians = (
         credit_raw_clean.with_columns(
-            # :62-68 PROC SQL CASE; R§2 chain, INV age_group: Int32 literals, plain comparisons (A2)
-            age_group=pl.when(pl.col("age") < 30)
+            # :62-68 PROC SQL CASE; R§2 chain, INV age_group: Int32 literals; SAS comparisons (finding P2)
+            age_group=pl.when(sas_compat.lt(pl.col("age"), 30))
             .then(1)
-            .when(pl.col("age") < 40)
+            .when(sas_compat.lt(pl.col("age"), 40))
             .then(2)
-            .when(pl.col("age") < 50)
+            .when(sas_compat.lt(pl.col("age"), 50))
             .then(3)
-            .when(pl.col("age") < 60)
+            .when(sas_compat.lt(pl.col("age"), 60))
             .then(4)
             .otherwise(5)
         )
@@ -74,14 +74,14 @@ def run(
 
     # feature_engineering.sas:75-94  # INV age_group, MonthlyIncome_missing, Dependents_missing
     credit_cleaned = credit_raw_clean.with_columns(
-        # :79-83 R§2 if/else-if chain, INV age_group: Int32 literals, plain comparisons (A2)
-        age_group=pl.when(pl.col("age") < 30)
+        # :79-83 R§2 if/else-if chain, INV age_group: Int32 literals; SAS comparisons (finding P2)
+        age_group=pl.when(sas_compat.lt(pl.col("age"), 30))
         .then(1)
-        .when(pl.col("age") < 40)
+        .when(sas_compat.lt(pl.col("age"), 40))
         .then(2)
-        .when(pl.col("age") < 50)
+        .when(sas_compat.lt(pl.col("age"), 50))
         .then(3)
-        .when(pl.col("age") < 60)
+        .when(sas_compat.lt(pl.col("age"), 60))
         .then(4)
         .otherwise(5),
         MonthlyIncome_missing=sas_compat.flag(pl.col("MonthlyIncome").is_null()),
