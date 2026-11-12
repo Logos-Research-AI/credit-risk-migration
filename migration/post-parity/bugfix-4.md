@@ -7,7 +7,8 @@ Site: `metrics_calculation.py` valid_bins; new helper `sas_compat.proc_rank_appl
 
 ## Flag on
 `python -m credit_risk.metrics_calculation --input-dir judge/reference --output-dir out/on/psi --fix-psi-bins`
-- Only PSI-related cells change: `validation_summary.csv` PSI, `model_performance_metrics.csv` PSI, `printed_psi_calculation.csv` (10 rows: valid_pct, psi_component). Every other file is identical; PSI_interpretation and status stay "No significant change" / "Production Ready" (PSI is small because the split is random).
+- On this input only PSI-related cells change: `validation_summary.csv` PSI, `model_performance_metrics.csv` PSI, `printed_psi_calculation.csv` (10 rows: valid_pct, psi_component). Every other file is identical; PSI_interpretation and status stay "No significant change" / "Production Ready" (PSI is small because the split is random).
+- CORRECTED 2026-11-12 (formal verification, R3): "only PSI cells change" holds for this input, not in general. `PSI_interpretation` and `status` are computed from PSI (`status` from AUC, KS and PSI), so the flag can change them too; what is proved is that the PSI cells, `PSI_interpretation` and `status` can change and every other cell is identical. Example: training pd 0.1, 0.2 and validation pd 0.8, 0.9 with default_flag 0, 1 (AUC 1, KS 1): flag off gives PSI 0 and "Production Ready"; flag on puts both validation rows in the upper training bin, PSI is above 0.25 and status is "Requires Review".
 - PSI 0.0000 -> 0.0002. valid_pct per training decile: 0.1027, 0.0976, 0.1013, 0.0986, 0.0985, 0.0999, 0.0999, 0.1002, 0.0998, 0.1016 (train_pct stays 0.1).
 
 ## Fix-up (review)
@@ -22,4 +23,4 @@ Site: `metrics_calculation.py` valid_bins; new helper `sas_compat.proc_rank_appl
 | edge_metrics_b | 1.5743 | 0.0560 | No significant change |
 | edge_metrics_c | 0.1790 | 0.0210 | No significant change |
 
-edge_metrics_b training groups are {4, 8, 9} (ties); the pre-fixup commit gave 0.7552 because 1988 validation rows went to a bin 0 that training lacks. Status is unchanged in all four.
+edge_metrics_b training groups are {4, 8, 9} (ties); the pre-fixup commit gave 0.7552 because 1988 validation rows went to a bin 0 that training lacks. Status is unchanged in all four (on other inputs the flag can change it: see the correction above).
