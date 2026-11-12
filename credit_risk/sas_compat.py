@@ -899,8 +899,8 @@ def roc_association(
     ROCModel label and renders every value with sas_d8). With `label`: the ONE-row frame the inventory
     rows specify (ROCModel, Area, StdErr, LowerArea, UpperArea, SomersD, Gamma, TauA; full-precision
     Float64). An undefined statistic (empty class, all pairs tied, one observation in a class for the
-    standard error) is None.
-    RESOLVED (post-parity): degenerate inputs are outside the pipeline domain; missing is returned."""
+    standard error) is None, except TauA: on a single-class input it is 0 (None only with at most one
+    usable row). RESOLVED (post-parity): degenerate inputs are outside the pipeline domain (R1)."""
     q = _pairs(y, score)
     n = q.n1 + q.n0
     p = q.n1 * q.n0
@@ -955,8 +955,8 @@ class AssociationTable:
 def association_table(y: pl.Series, pd: pl.Series) -> AssociationTable:
     """ODS Association of the fitted model: pairs tied when in the same ROCEPS group (`_pairs`; X07 C).
     concordant_pct / discordant_pct / tied_pct are in percent units. A statistic with a 0
-    denominator (single-class response, all pairs tied) is None.
-    RESOLVED (post-parity): degenerate inputs are outside the pipeline domain; missing is returned."""
+    denominator (single-class response, all pairs tied) is None; tau_a is 0 on a single-class response.
+    RESOLVED (post-parity): degenerate inputs are outside the pipeline domain (R1: not all missing)."""
     q = _pairs(y, pd)
     n = q.n1 + q.n0
     p = q.n1 * q.n0
