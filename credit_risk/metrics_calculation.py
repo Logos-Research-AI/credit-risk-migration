@@ -266,9 +266,9 @@ def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> Non
     b = b.with_columns(valid_pct=sas_compat.div(pl.col("cnt"), valid_bins.height)).drop("cnt")
     if fix_psi_bins:
         # FIXED(post-parity, flag --fix-psi-bins): left join from the TRAINING bins; a training bin with no
-        # validation rows keeps valid_pct = 0 (printed as 0) and enters the log term with both shares
-        # floored at PSI_EPS = 1e-4 (ln(train/0) is undefined), so the shift is not silently dropped
-        eps = 1e-4
+        # validation rows keeps valid_pct = 0 (printed as 0) and enters the log term floored at eps (ln of 0
+        # is undefined). eps is below every non-zero share (>= 1/n): only a share of exactly 0 is raised (D1)
+        eps = min(1e-4, 0.5 / max(train_bins.height, 1), 0.5 / max(valid_bins.height, 1))
         psi_calculation = a.join(
             b, on="score_bin", how="left", maintain_order="left", nulls_equal=True
         ).with_columns(pl.col("valid_pct").fill_null(0.0))

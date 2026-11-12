@@ -24,3 +24,10 @@ Site: `metrics_calculation.py` valid_bins; new helper `sas_compat.proc_rank_appl
 | edge_metrics_c | 0.1790 | 0.0210 | No significant change |
 
 edge_metrics_b training groups are {4, 8, 9} (ties); the pre-fixup commit gave 0.7552 because 1988 validation rows went to a bin 0 that training lacks. Status is unchanged in all four (on other inputs the flag can change it: see the correction above).
+
+## Floor changed (formal verification, D1, 2026-11-12)
+- Defect: with both shares floored at 1e-4, a bin whose two shares were both at or below 1e-4 contributed 0 even when they differed, so PSI could be exactly 0 while the shares differ.
+- Fix (decided by the user): the floor is `eps = min(1e-4, 0.5 / n_train, 0.5 / n_valid)`, n = the row counts the shares are divided by. A non-zero share is at least 1/n, so eps is below every non-zero share and only a share of exactly 0 is raised. A term is then 0 exactly when the two shares are equal. The statement above "both shares floored at 1e-4" is superseded by this.
+- The finding's input (training pd 0.1 once, 0.5 on 19,998 rows, 0.9 once; validation pd 0.5 on 9,999 rows, 0.95 once): eps = 2.5e-5; psi_component 0.0000346574, 0, 0.0000346574; PSI 6.93e-5 (printed 0.0001), "No significant change". Before: every term 0, PSI 0.
+- The four flag-on runs of the table above (judge/reference, edge_metrics_a, _b, _c): every output file is byte-identical before and after (no bin has a zero share or a share below 1e-4).
+- Flag off: unchanged; `migration/parity/run_contract.sh`: all 10 lines PASS.

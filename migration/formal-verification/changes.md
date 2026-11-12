@@ -21,7 +21,7 @@ Line numbers under "old" are those of `143ddf2`; under "new" those of the head o
 | R2 fit mask and `default_flag` | Record corrected | `35173b8` |
 | R3 `fix_psi_bins` and `status` | Record corrected | `9946676` |
 | R4 two smaller statements | One corrected; the other is not in this repository | `ff1ea35` |
-| D1 PSI exactly 0 with the fix on | Code not changed; three options below | none |
+| D1 PSI exactly 0 with the fix on | Fixed with option 1, on the user's decision | commit starting `D1` |
 | N1, N2 | Already behind flags (`--fix-psi-bins`, `--fix-train-medians`); nothing to do | none |
 | N3 to N9 | No flag yet; left as candidates, code not changed | none |
 
@@ -68,6 +68,7 @@ changing; their shifts are in the second table.
 | `train.py` | `run` | 436 | 436-446 | P6 | `PERCENT` of `confusion_matrix_train` |
 | `train.py` | `run` | 503 | 513-523 | P6 | `PERCENT` of `confusion_matrix` |
 | `metrics_calculation.py` | `run` | 231 | 231 | P7 | `cum_defaults` |
+| `metrics_calculation.py` | `run` | 269-271 | 269-271 | D1 | `eps` on 271 (flag-on branch only); 269-270 are its comment |
 
 Lines that moved without changing:
 
@@ -244,7 +245,23 @@ and `cum_defaults` carried over the missing decile.
 
 ## Kind `fix-defect`
 
-### D1. With `fix_psi_bins` on, PSI can be exactly 0 while the shares differ: code not changed
+### D1. With `fix_psi_bins` on, PSI can be exactly 0 while the shares differ: fixed with option 1
+
+Decision (user, 2026-11-12): option 1 below. `metrics_calculation.run`, line 271, inside the
+`if fix_psi_bins:` branch:
+
+- old: `eps = 1e-4`
+- new: `eps = min(1e-4, 0.5 / max(train_bins.height, 1), 0.5 / max(valid_bins.height, 1))`
+
+The two heights are the row counts the shares are divided by. `max(..., 1)` only keeps an empty
+table from dividing by zero; such a run stops at the existing share check as before. Lines
+269-270 are the comment. Line numbers unchanged; the flag-off branch is untouched.
+
+On the finding's input PSI is now 6.93e-5 (terms 0.0000346574, 0, 0.0000346574) instead of 0.
+The four flag-on runs recorded in `bugfix-4.md` are byte-identical before and after. The parity
+contract passes all ten lines. `bugfix-4.md` has a dated section on the change.
+
+The analysis the decision was taken on:
 
 The defect: both shares are raised to 1e-4 inside the logarithms, so a bin whose two shares are
 both at or below 1e-4 contributes 0 even when they differ.
