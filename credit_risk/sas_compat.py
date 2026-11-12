@@ -114,7 +114,7 @@ def ge(x: ExprOrNum, c: ExprOrNum) -> pl.Expr:
 
 
 def eq(x: ExprOrNum, c: ExprOrNum) -> pl.Expr:
-    """SAS `x = c` (`. = .` is true). No inventory site (A31): unverified."""
+    """SAS `x = c` (`. = .` is true). Site: the KS remerge filter of metrics_calculation (R4)."""
     xe, ce = _e(x), _e(c)
     return _named(x, (xe.is_null() & ce.is_null()) | (xe == ce).fill_null(False))
 

@@ -125,6 +125,13 @@ Against it:
   Effect on validation: verdicts unchanged (18 CAUGHT, 1 EQUIVALENT); three mutations
   (`fe_impute_mean`, `fe_import_guessingrows`, `fe_median_group_misaligned`) no longer
   fail on that one cell and remain caught in about 20 other files each.
+  CORRECTED 2026-11-12 (formal verification, P1 and R4): the tie rule is not "differ by
+  ≤ ~1e-8". SAS groups the probabilities from the largest down, a value joining the
+  current group while it is within ROCEPS = 1.0536712127723511e-8 of the group's largest
+  value, and a pair is tied when both are in one group (SAS experiments
+  `migration/experiments/x07_roc_ties`, `x08_roceps_boundary`). That rule gives SAS's 280 on
+  the reference scores (1e-8 gives 275) and 286 on the port's converged refit (4.16e-5 %),
+  still inside the tolerance of this cell, which is unchanged.
 
 - HL group Totals (added after sign-off, human decision Q2 at the prompt 02 gate,
   2026-11-05). SAS forms HL groups from blocks of rows whose pd agree within 1e-6, so a
