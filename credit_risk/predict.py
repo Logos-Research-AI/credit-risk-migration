@@ -43,18 +43,18 @@ def run(
     # predict.sas:59-73 PROC SQL test_income_medians
     # BUG(port): medians come from the TEST set, not training. Repro: cs-test.csv gives
     # {1: 2516, 2: 4667, 3: 6000, 4: 6260.5, 5: 5395}; edge_predict age group 1 has no median.
-    # INV work.test_income_medians; age never missing so plain comparisons (MISSING_NEVER)
+    # INV work.test_income_medians; SAS comparisons: a missing age is < 30 (finding P3)
     # The WHERE runs before the group by, so an all-missing age group gets no row (INV test_income_medians).
     test_income_medians = (
         test_raw_clean.filter(pl.col("MonthlyIncome").is_not_null())
         .with_columns(
-            age_group=pl.when(pl.col("age") < 30)
+            age_group=pl.when(sas_compat.lt(pl.col("age"), 30))
             .then(1)
-            .when(pl.col("age") < 40)
+            .when(sas_compat.lt(pl.col("age"), 40))
             .then(2)
-            .when(pl.col("age") < 50)
+            .when(sas_compat.lt(pl.col("age"), 50))
             .then(3)
-            .when(pl.col("age") < 60)
+            .when(sas_compat.lt(pl.col("age"), 60))
             .then(4)
             .otherwise(5)
         )
@@ -77,13 +77,13 @@ def run(
     # INV NumberOfDependents / Dependents_missing
     # R§2 `data out; set in;` -- Dependents_missing and the imputation both read the pre-imputation column
     test_cleaned = test_raw_clean.with_columns(
-        age_group=pl.when(pl.col("age") < 30)
+        age_group=pl.when(sas_compat.lt(pl.col("age"), 30))
         .then(1)
-        .when(pl.col("age") < 40)
+        .when(sas_compat.lt(pl.col("age"), 40))
         .then(2)
-        .when(pl.col("age") < 50)
+        .when(sas_compat.lt(pl.col("age"), 50))
         .then(3)
-        .when(pl.col("age") < 60)
+        .when(sas_compat.lt(pl.col("age"), 60))
         .then(4)
         .otherwise(5),
         MonthlyIncome_missing=sas_compat.flag(pl.col("MonthlyIncome").is_null()),
