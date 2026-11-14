@@ -1,6 +1,7 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 2, 2026-11-13. The contradiction and the silences found in draft 1 are ruled on (section 4).
+Draft 3, 2026-11-14. The contradiction and the silences found in draft 1, and the twelve points
+the first formalisation raised, are ruled on (section 4).
 
 Source: the documentation only, `MODEL_CARD.md` (MC) and `README.md` (RM), cited by line. No
 requirement here is taken from the SAS or Python code. The documentation is the authority: where
@@ -22,20 +23,20 @@ data.
 | Q1 | A missing `MonthlyIncome` is replaced by the median of the known incomes of the applicant's age group in the training data; when that group has no known income, by the median of all known training incomes. A present income is unchanged. After this step every applicant has an income. The age groups are: under 30, 30-39, 40-49, 50-59, 60 and over (rulings G4, G5) | MC 58, RM 85, RM 268 |
 | Q2 | A missing `NumberOfDependents` is replaced by 0; a present value is unchanged | MC 59, RM 86 |
 | Q3 | For income and for dependents there is an indicator that is 1 exactly when the original value was missing | MC 50 |
-| Q4 | Credit utilization is capped at 200 % and debt ratio at 500 %: the capped value equals the original when the original is at most the cap, and equals the cap when it is above | MC 60, MC 136, RM 196-197 |
+| Q4 | Credit utilization is capped at 200 % and debt ratio at 500 %: the capped value equals the original when the original is at most the cap, and equals the cap when it is above. The raw file holds both as fractions; the feature columns, the caps and all thresholds are in percent, that is raw value × 100 (ruling G17) | MC 60, MC 136, RM 196-197 |
 | Q5 | Total late payments is the sum of the three late-payment counts | MC 40, RM 205 |
-| Q6 | Each risk flag is 1 exactly when its condition holds: utilization above 75 %; utilization above 100 %; debt ratio above 43 %; at least one 90-day delinquency; at least 3 late payments in total; income below 2,500; at least 3 dependents; at most 2 credit lines | RM 208-216 |
+| Q6 | Each risk flag is 1 when its condition holds and 0 when it does not (ruling G22): utilization above 75 %; utilization above 100 %; debt ratio above 43 %; at least one 90-day delinquency; at least 3 late payments in total; income below 2,500; at least 3 dependents; at most 2 credit lines | RM 208-216 |
 | Q7 | The total risk flags count is the number of the eight risk flags of Q6 that are set | RM 220 |
 | Q8 | The financial health score lies between 0 and 100 | MC 47, RM 219 |
-| Q9 | The interaction features are age × log(income) and utilization × debt ratio | MC 49, RM 223-224 |
-| Q10 | The training data is split into a training set and a validation set that together contain every applicant exactly once, about 70 % and 30 % | MC 20, RM 93 |
+| Q9 | The interaction features are age × log(income) and utilization × debt ratio. The logarithm is the natural one; the first feature is required only when income is above 0 (ruling G16). Utilization and debt ratio are the uncapped percent values (ruling G17) | MC 49, RM 223-224 |
+| Q10 | The training data is split into a training set and a validation set that together contain every applicant exactly once. Their sizes are within one applicant of 70 % and 30 % of the training data (ruling G15) | MC 20, RM 93 |
 | Q11 | The same seed gives the same split | RM 274 |
 
 ### Scoring new applicants
 
 | # | Requirement | Source |
 |---|---|---|
-| Q12 | The test set receives the same feature engineering as the training set | RM 163 |
+| Q12 | The test set receives the same feature engineering as the training set. No test feature file is published, so this reads: the test predictions are the scores of some test feature table whose rows obey Q1 to Q9 (ruling G13) | RM 163 |
 | Q13 | Missing values in the test set are handled consistently with training: a missing test income is replaced by the training median of Q1 for the applicant's age group, and missing dependents by 0 (ruling G10) | RM 164 |
 | Q14 | Every applicant, in the training, validation and test sets, receives a probability in [0, 1], a score, a grade, a recommendation and a prediction. There is no unscored applicant (ruling G3) | RM 165-166, MC 157 |
 
@@ -47,7 +48,7 @@ data.
 | Q16 | The score lies in 300..850 | MC 116 |
 | Q17 | (withdrawn by ruling G1) The documentation's score ranges per grade are not a requirement. The score of Q15 is a displayed value; the grade is defined by Q18 | MC 122-129, RM 182-189 |
 | Q18 | The grade is determined by the probability p: A when p < 10 %; B when 10 % ≤ p < 15 %; C when 15 % ≤ p < 25 %; D when 25 % ≤ p < 35 %; E when 35 % ≤ p ≤ 50 %; F when p > 50 % (rulings G1, G2) | MC 122-129, RM 182-189 |
-| Q19 | Interest rate by grade: A 5 %, B 7 %, C 9 %, D 12 %, E 15 %, F 20 % | same |
+| Q19 | Interest rate by grade: A 5 %, B 7 %, C 9 %, D 12 %, E 15 %, F 20 %, held as fractions: 5 % is 0.05 (ruling G18) | same |
 | Q20 | Recommendation by grade: A and B Approve; C Review; D, E and F Decline | same |
 | Q21 | An applicant is predicted to default exactly when the probability is at least 0.5 | MC 72, MC 85 |
 
@@ -55,11 +56,17 @@ data.
 
 | # | Requirement | Source |
 |---|---|---|
-| Q22 | Accuracy, precision, recall and F1 are the standard functions of the confusion counts, and the four counts sum to the number of scored applicants | MC 72-76, MC 91-98 |
+| Q22 | Accuracy, precision, recall and F1 are the standard functions of the confusion counts, and the four counts sum to the number of scored applicants. These, and the AUC, Gini and KS of Q23 and Q24, are computed on the validation set; where a denominator is zero or a class is empty, nothing is required of the value (ruling G19) | MC 72-76, MC 91-98 |
 | Q23 | Gini = 2 × AUC − 1, and Somers' D equals Gini | RM 136, MC 69-70 |
 | Q24 | KS is the maximum separation between the cumulative distributions of defaulters and non-defaulters: one number per run | RM 137 |
-| Q25 | PSI measures the shift between the training and validation score distributions. Ten bins are cut from the training scores and the validation scores are placed in the same bins. PSI is 0 when the two sets have the same share in every bin and positive otherwise (ruling G9) | RM 141, MC 100-102 |
-| Q26 | Decile analysis reports lift and capture rate by risk decile; capture rates sum to 1 | RM 140 |
+| Q25 | PSI measures the shift between the training and validation score distributions. Ten bins are cut from the training scores and the validation scores are placed in the same bins. PSI is 0 when the two sets have the same share in every bin and positive otherwise. The cuts are the nearest-rank deciles of the training scores, without interpolation, and a score equal to a cut belongs to the lower bin (rulings G9, G20) | RM 141, MC 100-102 |
+| Q26 | Decile analysis reports lift and capture rate by risk decile: exactly ten rows, deciles 1 to 10, each once. The capture rates sum to 1 when the validation set has at least one defaulter (ruling G21) | RM 140 |
+
+### Inputs and errors
+
+| # | Requirement | Source |
+|---|---|---|
+| Q27 | On an input that meets the conditions of section 3, every step produces its result. On an input that does not, the pipeline stops with an error and produces no result (rulings G3, G4, G11) | section 3 |
 
 ## 2. Reported figures, not requirements
 
@@ -74,7 +81,8 @@ the requirements are stated for raw inputs in which:
 
 - only `MonthlyIncome` and `NumberOfDependents` may be missing; every other field is present;
 - the training data has at least one known income;
-- the outcome, where present, is 0 or 1.
+- the outcome, where present, is 0 or 1;
+- the row ids (`VAR1`) are distinct within each raw file (ruling G14).
 
 On such inputs Q1 and Q2 leave no missing value, so no later requirement has to say what a
 missing value does. A pipeline that meets an input outside these conditions must stop with an
@@ -94,6 +102,19 @@ error, not produce a result.
 | G8 | The financial health score is required only to lie in 0..100; its definition is left to the code | 2026-11-13 |
 | G9 | PSI bins are the training deciles, applied to both sets (see Q25) | 2026-11-13 |
 | G10 | "Consistently" in the README means training medians for the test set (see Q13) | 2026-11-13 |
+
+| G11 | "Must stop with an error" is a requirement (Q27). The pipeline's steps can end in an error, and the interface must be able to say so | 2026-11-14 |
+| G12 | The interface names the fitted model: the model is fitted on the training feature set, and scoring (of the training, validation and test sets) takes that model. What a model is, is left open | 2026-11-14 |
+| G13 | Q12 and Q13 are read through a test feature table that is not published (see Q12) | 2026-11-14 |
+| G14 | Row ids are distinct within each raw file (section 3) | 2026-11-14 |
+| G15 | "About 70 % and 30 %" means within one applicant (see Q10) | 2026-11-14 |
+| G16 | log(income) is the natural logarithm and is required only when income is above 0 (see Q9) | 2026-11-14 |
+| G17 | Utilization and debt ratio are fractions in the raw file and percent (raw × 100) in the feature files; caps and thresholds are in percent (see Q4, Q6, Q9) | 2026-11-14 |
+| G18 | Interest rates are held as fractions (see Q19) | 2026-11-14 |
+| G19 | The metrics are computed on the validation set; undefined cases are not constrained (see Q22) | 2026-11-14 |
+| G20 | PSI cuts are nearest-rank deciles; a score equal to a cut goes to the lower bin (see Q25) | 2026-11-14 |
+| G21 | The decile table has ten rows, deciles 1 to 10; the capture sum is required when there is a defaulter (see Q26) | 2026-11-14 |
+| G22 | A risk flag is 0 when its condition does not hold (see Q6) | 2026-11-14 |
 
 ## 5. Names
 

@@ -38,13 +38,15 @@ stop and tell me.
 
 1. **The pipeline as an interface.** One definition: what a pipeline *is*, as far as the
    requirements can see it. A structure whose fields are functions between the tables of
-   section 5 of `requirements.md`: feature engineering (raw training table and a split to the two
-   feature tables), scoring (a feature table to a score table), test scoring (raw test table and
-   the training data to the test predictions), and metrics (two score tables to the metrics
-   tables). Keep it as small as the requirements allow. It must not assume how any step is
+   section 5 of `requirements.md`: feature engineering (raw training table and a seed to the two
+   feature tables), fitting (the training feature table to a model, whose type is left open),
+   scoring (the model and a feature table to a score table), test scoring (the model, the raw
+   test table and the raw training table to the test predictions), and metrics (two score tables
+   to the metrics tables). Every step can end in an error instead of a result (rulings G11,
+   G12). Keep it as small as the requirements allow. It must not assume how any step is
    computed: a later team will plug the real SAS program into this structure.
 2. **The input conditions** of section 3, as one definition.
-3. **One definition per requirement** Q1 to Q26 (not the withdrawn Q17): a property of a
+3. **One definition per requirement** Q1 to Q27 (not the withdrawn Q17): a property of a
    pipeline, quantified over every input that meets the input conditions. Name each after its
    number. Where a requirement needs a notion the documents use without defining (median, the
    cumulative distributions of KS, the bin shares of PSI, AUC), define it once, as its own item,
