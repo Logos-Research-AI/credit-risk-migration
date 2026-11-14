@@ -6,7 +6,7 @@ The documentation of the SAS credit-risk pipeline has been turned into formal re
 consistent and signed off by its owner: blueprint `credit-risk-requirements`
 (`006ff04c-d34c-4a9c-b230-ccd725b1be6f`), written up in `migration/requirements/requirements.md`.
 The SAS program has been translated to Lean, unit by unit, and checked against real SAS runs:
-blueprint `sas-credit-risk-spec` (`3f5df696-7c80-45cc-809f-b2881714663d`, the copy that has the requirements in its profile; the earlier copy `a490bc52-8080-49b4-a6f3-8d3c4d29754a` is the one pinned to the port blueprint), record in
+blueprint `sas-credit-risk-spec` (`3f5df696-7c80-45cc-809f-b2881714663d`), record in
 `migration/legacy-to-lean/` (start with `manifest.tsv`).
 
 Your job is to decide, requirement by requirement, whether the SAS program meets it. The
