@@ -1,6 +1,6 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 5, 2026-11-15. Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G38,
+Draft 5, 2026-11-15. Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G39,
 made after the requirements were checked against the SAS program and the program was corrected. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
@@ -89,7 +89,8 @@ the requirements are stated for raw inputs in which:
   (ruling G28);
 - the three late-payment counts, the number of dependents and the number of credit lines are
   whole numbers, zero or more (ruling G29);
-- a known `MonthlyIncome` is zero or more (ruling G34).
+- a known `MonthlyIncome` is zero or more (ruling G34);
+- no field holds a text value: each is a number or missing (ruling G39).
 
 On such inputs Q1 and Q2 leave no missing value, so no later requirement has to say what a
 missing value does. A pipeline that meets an input outside these conditions must stop with an
@@ -142,8 +143,10 @@ error, not produce a result.
 | G37 | The raw files are imported reading every row to size the columns, so no present value is cut | 2026-11-15 |
 | G38 | The published files hold 12 characters per number. Requirements that relate two published columns (Q15, Q18) are about the values computed, and hold between printed values only to that precision; printed formats are a later pass | 2026-11-15 |
 
+| G39 | A raw file with a text value in any field does not meet the input conditions; "missing" means absent, as section 1 says | 2026-11-15 |
+
 **Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
-(58 items, consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
+(58 items at that date, 59 since draft 4; consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
 
 ## 5. Names
 
