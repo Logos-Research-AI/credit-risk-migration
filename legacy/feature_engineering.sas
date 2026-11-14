@@ -34,8 +34,17 @@ proc import datafile="&data_path/cs-training.csv"
 run;
 
 /* Check the input conditions: stop with an error before anything is exported */
+/* The numeric value of a raw column: a numeric column as it is; a character column
+   read as a number, missing when the text is no number or is longer than 32 characters */
 %macro num(v);
-    input(cats(&v), ?? best32.)
+    %local dsid pos vtype;
+    %let vtype = ;
+    %let dsid = %sysfunc(open(work.credit_raw));
+    %let pos = %sysfunc(varnum(&dsid, &v));
+    %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+    %let dsid = %sysfunc(close(&dsid));
+    %if &vtype = N %then "&v"n;
+    %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
 %mend;
 
 %let columns_ok = 0;
@@ -66,10 +75,10 @@ data work.input_check;
         or missing(%num(RevolvingUtilizationOfUnsecuredL))
         or missing(%num(DebtRatio))
         or missing(%num(NumberRealEstateLoansOrLines))
-        or not (%num("NumberOfTime30-59DaysPastDueNotW"n) >= 0 and
-                %num("NumberOfTime30-59DaysPastDueNotW"n) = int(%num("NumberOfTime30-59DaysPastDueNotW"n)))
-        or not (%num("NumberOfTime60-89DaysPastDueNotW"n) >= 0 and
-                %num("NumberOfTime60-89DaysPastDueNotW"n) = int(%num("NumberOfTime60-89DaysPastDueNotW"n)))
+        or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+                %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+        or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+                %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
         or not (%num(NumberOfTimes90DaysLate) >= 0 and
                 %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
         or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
