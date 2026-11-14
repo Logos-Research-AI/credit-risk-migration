@@ -18,6 +18,29 @@
 /* Define output path */
 %let output_path = /home/u64352077/output;
 
+/* Remove the results of an earlier run first: a run that stops leaves no result */
+data _null_;
+    length fref $8 fname $64;
+    do fname = 'risk_scores_train.csv', 'risk_scores_validation.csv',
+               'final_model_output.csv', 'model_summary.csv', 'model_coefficients.csv';
+        fref = ' ';
+        if filename(fref, cats("&output_path/", fname)) = 0 then do;
+            if fexist(fref) then rc = fdelete(fref);
+            rc = filename(fref);
+        end;
+    end;
+run;
+
+/* Stop when the step before did not produce its result */
+data _null_;
+    if not fileexist("&output_path/model_features_train.csv")
+       or not fileexist("&output_path/model_features_validation.csv") then do;
+        put "ERROR: The feature files are not in the output folder: feature engineering did not complete.";
+        put "ERROR: Model training stopped. Nothing is exported.";
+        abort cancel;
+    end;
+run;
+
 /*****************************************************************************
  * 1. Load Feature-Engineered Data
  *****************************************************************************/

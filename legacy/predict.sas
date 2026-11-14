@@ -19,6 +19,28 @@
 %let data_path = /home/u64352077;
 %let output_path = /home/u64352077/output;
 
+/* Remove the results of an earlier run first: a run that stops leaves no result */
+data _null_;
+    length fref $8 fname $64;
+    do fname = 'kaggle_submission.csv', 'test_predictions.csv';
+        fref = ' ';
+        if filename(fref, cats("&output_path/", fname)) = 0 then do;
+            if fexist(fref) then rc = fdelete(fref);
+            rc = filename(fref);
+        end;
+    end;
+run;
+
+/* Stop when the step before did not produce its result */
+data _null_;
+    if not fileexist("&output_path/income_medians.csv")
+       or not fileexist("&output_path/model_coefficients.csv") then do;
+        put "ERROR: The training medians or the model are not in the output folder: the training steps did not complete.";
+        put "ERROR: Test set scoring stopped. Nothing is exported.";
+        abort cancel;
+    end;
+run;
+
 /*****************************************************************************
  * 1. Load Kaggle Test Data
  *****************************************************************************/

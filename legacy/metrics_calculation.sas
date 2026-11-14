@@ -20,6 +20,29 @@
 /* Define output path */
 %let output_path = /home/u64352077/output;
 
+/* Remove the results of an earlier run first: a run that stops leaves no result */
+data _null_;
+    length fref $8 fname $64;
+    do fname = 'validation_summary.csv', 'decile_analysis.csv', 'threshold_analysis.csv',
+               'ks_statistic.csv', 'calibration_plot.csv', 'model_performance_metrics.csv';
+        fref = ' ';
+        if filename(fref, cats("&output_path/", fname)) = 0 then do;
+            if fexist(fref) then rc = fdelete(fref);
+            rc = filename(fref);
+        end;
+    end;
+run;
+
+/* Stop when the step before did not produce its result */
+data _null_;
+    if not fileexist("&output_path/risk_scores_train.csv")
+       or not fileexist("&output_path/risk_scores_validation.csv") then do;
+        put "ERROR: The score files are not in the output folder: model training did not complete.";
+        put "ERROR: Model validation stopped. Nothing is exported.";
+        abort cancel;
+    end;
+run;
+
 /*****************************************************************************
  * 1. Load Scored Data
  *****************************************************************************/

@@ -20,6 +20,19 @@
 %let data_path = /home/u64352077;
 %let output_path = /home/u64352077/output;
 
+/* Remove the results of an earlier run first: a run that stops leaves no result */
+data _null_;
+    length fref $8 fname $64;
+    do fname = 'income_medians.csv', 'model_features_train.csv',
+               'model_features_validation.csv';
+        fref = ' ';
+        if filename(fref, cats("&output_path/", fname)) = 0 then do;
+            if fexist(fref) then rc = fdelete(fref);
+            rc = filename(fref);
+        end;
+    end;
+run;
+
 /*****************************************************************************
  * 1. Load Kaggle Training Data
  *****************************************************************************/
