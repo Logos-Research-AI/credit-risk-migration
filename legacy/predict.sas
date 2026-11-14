@@ -228,7 +228,7 @@ data work.test_predictions;
     /* Convert probability to credit risk score (300-850 scale) */
     base_score = 600;
     score_range = 250;
-    credit_risk_score = round(base_score + score_range * (1 - pd_logistic));
+    credit_risk_score = base_score + score_range * (1 - pd_logistic);
 
     /* Assign risk grades */
     if credit_risk_score >= 750 then risk_grade = 'A';

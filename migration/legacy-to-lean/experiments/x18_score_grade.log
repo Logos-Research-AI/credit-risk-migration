@@ -1,0 +1,61 @@
+5                                                          The SAS System                        Saturday, 14 November 2026 18:09:00
+
+24         
+25         /* x18: findings Q15 and Q18. The corrected scoring statements of predict.sas section 5 (copied verbatim below;
+26            train.sas has the same score and grade statements twice) on chosen probabilities, since no input file can
+27            set a probability: 0.25 (Q15: score 787.5) and 0.20 (Q18: grade C), the band edges of Q18 with their
+28            neighbours, and a missing probability. */
+29         data work.test_scored;
+30             input pd_logistic @@;
+31             datalines;
+33         ;
+34         run;
+35         
+36         data work.test_predictions;
+37             set work.test_scored;
+38         
+39             /* Binary prediction at 0.5 threshold */
+40             pred_logistic = (pd_logistic >= 0.5);
+41         
+42             /* Convert probability to credit risk score (300-850 scale) */
+43             base_score = 600;
+44             score_range = 250;
+45             credit_risk_score = base_score + score_range * (1 - pd_logistic);
+46         
+47             /* Assign risk grades from the probability (a missing probability is graded F) */
+48             if missing(pd_logistic) then risk_grade = 'F';
+49             else if pd_logistic < 0.10 then risk_grade = 'A';
+50             else if pd_logistic < 0.15 then risk_grade = 'B';
+51             else if pd_logistic < 0.25 then risk_grade = 'C';
+52             else if pd_logistic < 0.35 then risk_grade = 'D';
+53             else if pd_logistic <= 0.50 then risk_grade = 'E';
+54             else risk_grade = 'F';
+55         
+56             /* Recommended actions */
+57             if risk_grade in ('A', 'B') then recommendation = 'Approve';
+58             else if risk_grade = 'C' then recommendation = 'Review';
+59             else recommendation = 'Decline';
+60         
+61             /* Suggested interest rate */
+62             base_rate = 0.05;
+63             if risk_grade = 'A' then interest_rate = base_rate;
+64             else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
+65             else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
+66             else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
+67             else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
+68             else interest_rate = base_rate + 0.15;
+69         
+70             format interest_rate percent8.2;
+71         run;
+72         
+73         proc print data=work.test_predictions noobs;
+74             var pd_logistic pred_logistic credit_risk_score risk_grade recommendation interest_rate;
+75             format credit_risk_score best12.;
+76         run;
+77         
+78         
+79         
+80         
+6                                                          The SAS System                        Saturday, 14 November 2026 18:09:00
+
+81         

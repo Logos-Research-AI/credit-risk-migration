@@ -216,7 +216,7 @@ data work.risk_scores_train;
     /* Convert probability to credit risk score (300-850 scale like FICO) */
     base_score = 600;
     score_range = 250;
-    credit_risk_score = round(base_score + score_range * (1 - pd_logistic));
+    credit_risk_score = base_score + score_range * (1 - pd_logistic);
 
     /* Assign risk grades based on score */
     if credit_risk_score >= 750 then risk_grade = 'A';
@@ -250,7 +250,7 @@ data work.risk_scores_validation;
     /* Same scoring logic as training */
     base_score = 600;
     score_range = 250;
-    credit_risk_score = round(base_score + score_range * (1 - pd_logistic));
+    credit_risk_score = base_score + score_range * (1 - pd_logistic);
 
     if credit_risk_score >= 750 then risk_grade = 'A';
     else if credit_risk_score >= 700 then risk_grade = 'B';
