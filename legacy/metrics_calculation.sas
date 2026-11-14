@@ -86,6 +86,7 @@ quit;
 /* Calculate cumulative distributions */
 data work.ks_calculation;
     set work.logit_scored_valid;
+    by pd_logistic;
     retain cum_good cum_bad;
 
     if _n_ = 1 then do;
@@ -98,7 +99,8 @@ data work.ks_calculation;
 
     cum_pct_good = cum_good / &total_good_count;
     cum_pct_bad = cum_bad / &total_bad_count;
-    ks_value = abs(cum_pct_good - cum_pct_bad);
+    /* Compare the two distributions only after the last applicant of each probability */
+    if last.pd_logistic then ks_value = abs(cum_pct_good - cum_pct_bad);
 run;
 
 /* Find maximum KS (one row: the lowest cutoff when several attain the maximum) */
