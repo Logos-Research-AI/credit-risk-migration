@@ -1,0 +1,1 @@
+Kit record of the Python to Lean migration, copied from the `python` workspace (its `migration/` folder) at workspace commit 8f422a9. Left out for size: `diffeval/work/` (generated pipeline outputs and evaluation batches), which stays in the workspace.

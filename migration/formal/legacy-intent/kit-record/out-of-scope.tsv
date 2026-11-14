@@ -1,0 +1,19 @@
+file	lines	step	why_out	treated_as
+feature_engineering.sas	27-33	PROC IMPORT cs-training.csv	type guessing out of scope	parameter `credit_raw` of credit_raw_clean
+feature_engineering.sas	35-38	PROC MEANS	listing only	not translated
+feature_engineering.sas	208-214	PROC SURVEYSELECT	random draw not reproducible	parameter `credit_split` of credit_train_validation
+feature_engineering.sas	227-247	PROC MEANS, PROC FREQ	listing only	not translated
+feature_engineering.sas	266-278	PROC EXPORT	printed formats	not translated; CSV hand-off is the Table
+train.sas	25-41	PROC IMPORT x2	type guessing out of scope	parameters of the scoring units
+train.sas	47-96	PROC LOGISTIC fit (stepwise, optimiser), model_coefficients, CTABLE, RSQUARE, fit statistics	model fit out of scope; CTABLE uses leave-one-out quantities of the fit	fitted model is parameter P4
+train.sas	113-115,141-144,175-177,203-206	PROC PRINT	listing only	not translated
+train.sas	277-286	PROC FREQ (no OUT=)	listing only	not translated
+train.sas	308-319	PROC PRINT	listing only	not translated
+train.sas	337-349,360-364,388-399	PROC EXPORT	printed formats	not translated
+metrics_calculation.sas	27-41	PROC IMPORT x2	type guessing out of scope	parameters `risk_scores_validation`, `risk_scores_train`
+metrics_calculation.sas	47-54	ROCCONTRAST, ROC curve plot	listing only	not translated
+metrics_calculation.sas	66-68,113-115,173-176,208-210,290-292,347-349,422-425	PROC PRINT	listing only	not translated
+metrics_calculation.sas	237-243,318-324	PROC SGPLOT	listing only	not translated
+metrics_calculation.sas	355-388,415-420	PROC EXPORT	printed formats	not translated
+predict.sas	26-38	PROC IMPORT, PROC CONTENTS	type guessing out of scope; listing	parameter `test_raw`
+predict.sas	287-316	PROC EXPORT, FREQ, MEANS, PRINT	printed formats; listing	not translated

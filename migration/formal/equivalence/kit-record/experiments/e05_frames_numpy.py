@@ -1,0 +1,73 @@
+"""E05: frame-level polars semantics and numpy primitives used by the package."""
+import math, struct, sys, random
+import numpy as np, polars as pl
+sys.path.insert(0, ".")
+from credit_risk import sas_compat as sc
+nan, inf = float("nan"), float("inf")
+bits = lambda x: struct.unpack("<Q", struct.pack("<d", x))[0]
+sg = lambda x: math.copysign(1, x)
+print("== optimizer: x + 0.0")
+d = pl.DataFrame({"x": [-0.0, -0.3, 0.3, -2.5, 2.5, None, nan, 0.49999999999999, -inf, 4503599627370497.0, 0.5 - 1e-14, 0.5 - 1e-10, -7.5]})
+print([(v, None if r is None else (r, sg(r))) for v, r in zip(d["x"], d.select(sc.sas_round(pl.col("x"))).to_series())])
+print("plain x+0.0 sign for -0.0:", sg(d.select(pl.col("x") + 0.0).item(0, 0)), " (x*1.0)+0.0:", sg(d.select(pl.col("x") * 1.0 + 0.0).item(0, 0)),
+      " when..otherwise(x)+0.0:", sg(d.select(pl.when(pl.col("x") > 5).then(1.0).otherwise(pl.col("x")) + 0.0).item(0, 0)), " lazy explain:", d.lazy().select(sc.sas_round(pl.col("x"))).explain().replace("\n", " ")[:400])
+print("== sum_horizontal order (3 args):")
+a, b, c = 0.1, 0.2, 0.3; t = pl.DataFrame({"a": [a, 1e16], "b": [b, 1.0], "c": [c, 1.0]})
+r = t.select(pl.sum_horizontal("a", "b", "c")).to_series().to_list(); print(r, "left fold:", [(a + b) + c, (1e16 + 1.0) + 1.0], "right:", [a + (b + c), 1e16 + 2.0])
+t5 = pl.DataFrame({k: [random.Random(i).random() * 10 ** (i * 3 - 6)] * 1 for i, k in enumerate("abcde")}); v5 = [t5[k][0] for k in "abcde"]
+acc = v5[0]
+for v in v5[1:]: acc += v
+print("5-arg left fold match:", bits(acc) == bits(t5.select(pl.sum_horizontal(*"abcde")).item()), " sas_sum same:", bits(acc) == bits(t5.select(sc.sas_sum(*[pl.col(k) for k in "abcde"])).item()))
+print("sas_sum nulls:", pl.DataFrame({"a": [None, None, 1.0], "b": [None, 2.0, None]}, schema={"a": pl.Float64, "b": pl.Float64}).select(sc.sas_sum(pl.col("a"), pl.col("b"))).to_series().to_list())
+print("min_h 3 args w/ nan/null:", pl.DataFrame({"a": [nan, None, 3.0], "b": [1.0, nan, None], "c": [2.0, None, 1.0]}).select(mn=pl.min_horizontal("a", "b", "c"), mx=pl.max_horizontal("a", "b", "c")).to_dicts())
+print("== sort: nulls/NaN/stability")
+s = pl.DataFrame({"k": [2.0, None, nan, 1.0, 2.0, -0.0, 0.0, None, -inf, 1.0], "i": list(range(10))})
+print(s.sort("k", maintain_order=True).to_dict(as_series=False))
+m = pl.DataFrame({"a": [1.0, 0.0, None, 1.0, 0.0, 1.0, None], "b": [1, 1, 0, 0, None, 1, 1], "i": list(range(7))})
+print(m.sort(["a", "b"], maintain_order=True).to_dict(as_series=False))
+print("int sort nulls:", pl.DataFrame({"k": [3, None, 1, 2, None]}).sort("k", maintain_order=True).to_series().to_list(), " n_chunks after sort of 2-chunk frame:", pl.concat([s, s]).sort("k").n_chunks())
+print("== group_by keys: float NaN/-0.0/null, multi-key order")
+g = pl.DataFrame({"k": [0.0, -0.0, nan, nan, None, 1.0, None], "p": [1, 1, 0, 0, 1, 1, 1]})
+print(g.group_by("k", maintain_order=True).agg(n=pl.len().cast(pl.Int64)).to_dict(as_series=False))
+print(g.group_by(["k", "p"], maintain_order=True).agg(COUNT=pl.len().cast(pl.Int64)).sort(["k", "p"], maintain_order=True).to_dict(as_series=False))
+cm = g.group_by(["k", "p"], maintain_order=True).agg(COUNT=pl.len().cast(pl.Int64))
+print("filter-sum:", cm.select(TP=pl.col("COUNT").filter((pl.col("k") == 1) & (pl.col("p") == 1)).sum(), Z=pl.col("COUNT").filter((pl.col("k") == 7) & (pl.col("p") == 1)).sum(), NN=pl.col("COUNT").filter(pl.col("k") == 0).sum()).cast(pl.Int64).to_dicts())
+print("== join")
+L = pl.DataFrame({"k": [3, 1, None, 2, 1], "x": [10, 11, 12, 13, 14]}); R = pl.DataFrame({"k": [1, None, 5, 3], "y": [1.5, 2.5, 3.5, 4.5]})
+print("left:", L.join(R, on="k", how="left", maintain_order="left").to_dict(as_series=False))
+print("left nulls_equal:", L.join(R, on="k", how="left", maintain_order="left", nulls_equal=True).to_dict(as_series=False))
+print("inner nulls_equal:", L.join(R, on="k", how="inner", maintain_order="left", nulls_equal=True).to_dict(as_series=False))
+L2 = pl.DataFrame({"a": [1.0], "k": [2], "median_income": [9.0]}); R2 = pl.DataFrame({"k": [2], "median_income": [5.0], "a": [7.0]})
+print("left name clash columns:", L2.join(R2, on="k", how="left", maintain_order="left").columns)
+print("== with_columns / select / drop / rename / concat")
+w = pl.DataFrame({"a": [1.0, 2.0], "b": [3.0, 4.0]})
+print(w.with_columns(c=pl.col("a") + 1, a=pl.col("b") * 2, d=pl.col("a")).to_dict(as_series=False), w.with_columns(pl.col("b").fill_null(0.0), z=pl.lit("s")).columns,
+      w.rename({"a": "q"}).columns, w.select("b", A=pl.col("a")).columns, w.with_columns(n=pl.lit(None, pl.Float64), k=pl.lit(105000)).schema)
+print("lit broadcast in select only-literals:", w.select(x=pl.lit(1.0)).height, " agg+col broadcast:", w.select(pl.col("a"), s=pl.col("a").sum()).to_dict(as_series=False), " empty frame select agg:", w.clear().select(s=sc.sql_sum(pl.col("a")), m=sc.sql_max(pl.col("a")), n=pl.len()).to_dicts())
+print("filter null predicate:", pl.DataFrame({"p": [True, None, False], "v": [1, 2, 3]}).filter(pl.col("p")).to_dicts(), pl.DataFrame({"p": [True, None, False], "v": [1, 2, 3]}).filter(~pl.col("p")).to_dicts())
+print("is_in:", pl.DataFrame({"r": [1.0, 2.0, None, nan, 3.0]}).with_columns(s=pl.col("r").is_in(pl.Series([2.0, 3.0, 9.0]).implode()), s2=pl.col("r").is_in(pl.Series([2.0, None, nan], dtype=pl.Float64).implode())).to_dict(as_series=False))
+print("str is_in/eq with null:", pl.DataFrame({"g": ["A", None, "C"]}).select(i=pl.col("g").is_in(["A", "B"]), e=pl.col("g") == "C").to_dict(as_series=False))
+print("cast whole frame f64:", pl.DataFrame({"a": [1, None], "b": [None, None]}).cast(pl.Float64).schema, " item:", pl.DataFrame({"a": [None]}, schema={"a": pl.Float64}).item(0, "a"))
+print("== rank")
+x = pl.Series("x", [0.3, None, 0.1, 0.3, nan, 0.2, 0.3, None, -0.0, 0.0])
+print("avg asc:", x.rank("average").to_list(), "\navg desc:", x.rank("average", descending=True).to_list(), x.rank("average").dtype)
+for k, desc in ((10, True), (10, False), (20, False)):
+    print("proc_rank_groups", k, desc, sc.proc_rank_groups(x, k, descending=desc).to_list())
+print("all-null:", sc.proc_rank_groups(pl.Series("x", [None, None], dtype=pl.Float64), 10).to_list(), " empty:", sc.proc_rank_groups(pl.Series("x", [], dtype=pl.Float64), 10).to_list())
+print("== numpy")
+arr = np.array([0.1, 0.2, 0.2, 0.5, nan])
+print("searchsorted L/R:", [(v, int(np.searchsorted(arr, v, side="left")), int(np.searchsorted(arr, v, side="right"))) for v in [0.0, 0.2, 0.3, 0.6, nan, inf, -0.0]])
+print("np.sort nan:", np.sort(np.array([nan, 1.0, -inf, nan, 0.0, -0.0, inf])).tolist(), " argsort stable:", np.argsort(np.array([2.0, nan, 1.0, 2.0, nan, 1.0, -0.0, 0.0]), kind="stable").tolist())
+print("round:", [(k, float(np.round(k * 0.02, 3)), k * 0.02) for k in (0, 1, 3, 7, 29, 43, 50)], " np.arange*0.02 exact:", all(bits(float(v)) == bits(k * 0.02) for k, v in zip(range(-3, 60), np.arange(-3, 60) * 0.02)))
+rr = lambda v: math.floor(v * 1000 + 0.5) / 1000
+import itertools
+print("np.round(k*0.02,3) vs rint(v*1000)/1000:", all(bits(float(np.round(k * 0.02, 3))) == bits(float(np.rint(k * 0.02 * 1000.0) / 1000.0)) for k in range(-100, 2000)))
+print("divide/isfinite:", sc.div(pl.col("a"), pl.col("b")), pl.DataFrame({"a": [1.0, 1.0, 0.0, None, nan, inf, 1e308, 3], "b": [0.0, 3.0, 0.0, 1.0, 1.0, 1.0, 1e-10, None]}).select(sc.div(pl.col("a"), pl.col("b"))).to_series().to_list())
+print("to_numpy null->nan:", pl.Series([1.0, None]).to_numpy().tolist(), pl.Series([1, None]).to_numpy().tolist(), " Series nan_to_null cast i64:", pl.Series("g", np.array([1.0, nan, -0.0]), dtype=pl.Float64, nan_to_null=True).cast(pl.Int64).to_list())
+print("np sum int of empty:", int(np.array([], dtype=np.int64).sum()), " np.sum 8x -0.0 sign:", sg(float(np.array([-0.0] * 9).sum())), " float sum empty:", float(np.array([]).sum()), " var n=1 ddof=1:", "skipped")
+print("apply_groups:", sc.proc_rank_apply_groups(pl.Series("r", [0.1, 0.2, 0.3, 0.4, None, 0.5]), pl.Series("x", [0.05, 0.1, 0.25, 0.45, None, 9.0, nan]), 4).to_list())
+p = sc._pairs(pl.Series([1.0, 0.0, 1.0, 0.0, None, 2.0, 1.0]), pl.Series([0.5, 0.5, 0.7, 0.2, 0.1, 0.3, None])); print("_pairs:", p)
+print("roc:", sc.roc_association(pl.Series([1.0, 0.0, 1.0, 0.0, 0.0]), pl.Series([0.5, 0.5, 0.7, 0.2, 0.9])))
+print("merge:", sc.merge_one_to_one(pl.DataFrame({"a": [1.0], "b": ["x"]}), pl.DataFrame({"c": [1, 2], "a": [5.0, 6.0]}), pl.DataFrame({"c": pl.Series([], dtype=pl.Int64), "z": pl.Series([], dtype=pl.String)})).to_dict(as_series=False))
+print("hl_groups:", sc._hl_groups([3, 1, 4, 1, 5, 9, 2, 6], 31, 10), math.floor(31 / 10 + 0.5), math.floor(0.05 * 31))
+print("floor(n/g+0.5) python: n=25,g=10 ->", math.floor(25 / 10 + 0.5), " int/float semantic: n/g true division")

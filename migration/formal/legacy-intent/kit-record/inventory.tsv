@@ -1,0 +1,355 @@
+file	line	source_construct	classification	target_translation	evidence	status	source_text
+feature_engineering.sas	49	INPUT(char, BEST32.)	CHAR_TO_NUM	Sas.inputBest (R9); precondition: text column, no exponent notation	REF log; X06	confirmed	MonthlyIncome_num = input(MonthlyIncome, best32.);
+feature_engineering.sas	50	INPUT(char, BEST32.)	CHAR_TO_NUM	Sas.inputBest (R9); precondition: text column, no exponent notation	REF log; X06	confirmed	NumberOfDependents_num = input(NumberOfDependents, best32.);
+feature_engineering.sas	53	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	drop MonthlyIncome NumberOfDependents;
+feature_engineering.sas	54	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	rename MonthlyIncome_num = MonthlyIncome
+feature_engineering.sas	63	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when age < 30 then 1
+feature_engineering.sas	64	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when age < 40 then 2
+feature_engineering.sas	65	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when age < 50 then 3
+feature_engineering.sas	66	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when age < 60 then 4
+feature_engineering.sas	69	PROC SQL MEDIAN aggregate	AGGREGATE	Sas.sqlMedian (R15)	X13; X14	confirmed	median(MonthlyIncome) as median_income
+feature_engineering.sas	71	missing test	MISSING	Sas.isMissing (R3)	D2	confirmed	where MonthlyIncome is not missing
+feature_engineering.sas	71	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	where MonthlyIncome is not missing
+feature_engineering.sas	72	GROUP BY	ROW_ORDER	Sas.groupKeys (R14): keys ascending, missing first	X13	confirmed	group by calculated age_group;
+feature_engineering.sas	72	CALCULATED alias	ALIAS	the alias's expression, evaluated once per row/group	D8; X01	confirmed	group by calculated age_group;
+feature_engineering.sas	79	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if age < 30 then age_group = 1;
+feature_engineering.sas	80	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 40 then age_group = 2;
+feature_engineering.sas	81	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 50 then age_group = 3;
+feature_engineering.sas	82	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 60 then age_group = 4;
+feature_engineering.sas	86	missing test	MISSING	Sas.isMissing (R3)	D2	confirmed	if missing(MonthlyIncome) then MonthlyIncome_missing = 1;
+feature_engineering.sas	89	missing test	MISSING	Sas.isMissing (R3)	D2	confirmed	if missing(NumberOfDependents) then do;
+feature_engineering.sas	118	PROC SQL join	ROW_ORDER	missing = missing matches (R16); row order: see unit (left join: parameter P1; psi inner join: key order)	X13; REF	open: row order	left join work.income_medians b
+feature_engineering.sas	130	SUM(a,b,...) function	MISSING	Sas.sumFn (R10)	X10; X14	confirmed	total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus);
+feature_engineering.sas	133	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	has_delinquency = (total_late_payments > 0);
+feature_engineering.sas	136	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	has_serious_delinquency = (num_late_90_plus > 0);
+feature_engineering.sas	139	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_utilization < 30 then credit_util_category = 1;
+feature_engineering.sas	140	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_utilization < 50 then credit_util_category = 2;
+feature_engineering.sas	141	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_utilization < 75 then credit_util_category = 3;
+feature_engineering.sas	145	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if debt_ratio < 30 then debt_category = 1;
+feature_engineering.sas	146	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if debt_ratio < 43 then debt_category = 2;
+feature_engineering.sas	147	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if debt_ratio < 60 then debt_category = 3;
+feature_engineering.sas	151	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
+feature_engineering.sas	151	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
+feature_engineering.sas	155	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	credit_lines_per_person = num_credit_lines / (num_dependents + 1);
+feature_engineering.sas	158	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if age < 25 then age_category = 1;
+feature_engineering.sas	159	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 35 then age_category = 2;
+feature_engineering.sas	160	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 50 then age_category = 3;
+feature_engineering.sas	161	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 65 then age_category = 4;
+feature_engineering.sas	165	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_high_utilization = (credit_utilization > 75);
+feature_engineering.sas	166	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_very_high_utilization = (credit_utilization > 100);
+feature_engineering.sas	167	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_high_debt_ratio = (debt_ratio > 43);
+feature_engineering.sas	168	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_very_high_debt_ratio = (debt_ratio > 60);
+feature_engineering.sas	169	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_recent_late_payments = (num_late_30_59 > 0);
+feature_engineering.sas	170	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_serious_delinquency = (num_late_90_plus > 0);
+feature_engineering.sas	171	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_multiple_delinquencies = (total_late_payments >= 3);
+feature_engineering.sas	172	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_low_income = (monthly_income < 2500);
+feature_engineering.sas	173	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_many_dependents = (num_dependents >= 3);
+feature_engineering.sas	174	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_few_credit_lines = (num_credit_lines <= 2);
+feature_engineering.sas	177	SUM(a,b,...) function	MISSING	Sas.sumFn (R10)	X10; X14	confirmed	total_risk_flags = sum(flag_high_utilization, flag_high_debt_ratio,
+feature_engineering.sas	183	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_utilization > 30 then financial_health = financial_health - 15;
+feature_engineering.sas	184	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_utilization > 75 then financial_health = financial_health - 15;
+feature_engineering.sas	185	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if debt_ratio > 43 then financial_health = financial_health - 20;
+feature_engineering.sas	186	numeric used as condition	MISSING	Sas.truthy (R5)	X10	confirmed	if has_delinquency then financial_health = financial_health - 20;
+feature_engineering.sas	187	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if num_late_90_plus > 0 then financial_health = financial_health - 30;
+feature_engineering.sas	188	MIN/MAX function	MISSING	Sas.minFn / Sas.maxFn (R11)	X10	confirmed	financial_health = max(0, financial_health);
+feature_engineering.sas	191	LOG(x)	DOMAIN	Sas.log (R7): missing for x <= 0 or missing x	X10	confirmed	log_monthly_income = log(monthly_income + 1);
+feature_engineering.sas	192	LOG(x)	DOMAIN	Sas.log (R7): missing for x <= 0 or missing x	X10	confirmed	log_num_credit_lines = log(num_credit_lines + 1);
+feature_engineering.sas	193	LOG(x)	DOMAIN	Sas.log (R7): missing for x <= 0 or missing x	X10	confirmed	log_total_late_payments = log(total_late_payments + 1);
+feature_engineering.sas	197	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	utilization_debt_interaction = credit_utilization * debt_ratio / 100;
+feature_engineering.sas	200	MIN/MAX function	MISSING	Sas.minFn / Sas.maxFn (R11)	X10	confirmed	credit_utilization_capped = min(credit_utilization, 200);
+feature_engineering.sas	201	MIN/MAX function	MISSING	Sas.minFn / Sas.maxFn (R11)	X10	confirmed	debt_ratio_capped = min(debt_ratio, 500);
+feature_engineering.sas	220	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	drop selected;
+feature_engineering.sas	257	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format _numeric_ best12.;
+feature_engineering.sas	263	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format _numeric_ best12.;
+train.sas	48	PROC LOGISTIC	BUILTIN	fit out of scope (P4); OUTPUT scoring P5; ROC area R25	D10-D13	see unit	proc logistic data=work.model_features_train descending;
+train.sas	105	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	pred_logistic = (pd_logistic >= 0.5);
+train.sas	109	PROC FREQ OUT=	DEFAULTS	Sas.freq2 (R20): missing levels kept, PERCENT missing on them	X13	confirmed	proc freq data=work.logit_scored_train noprint;
+train.sas	119	END= / _N_	STATE	R22	D3	confirmed	set work.confusion_matrix_train end=eof;
+train.sas	120	RETAIN	STATE	explicit fold (R22)	X13; D3	confirmed	retain TP TN FP FN 0;
+train.sas	128	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + FP) > 0 then train_precision = TP / (TP + FP);
+train.sas	128	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + FP) > 0 then train_precision = TP / (TP + FP);
+train.sas	130	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + FN) > 0 then train_recall = TP / (TP + FN);
+train.sas	130	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + FN) > 0 then train_recall = TP / (TP + FN);
+train.sas	132	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (train_precision + train_recall) > 0 then train_f1_score = 2 * (train_precision * train_recall) / (train_precision + train_recall);
+train.sas	132	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (train_precision + train_recall) > 0 then train_f1_score = 2 * (train_precision * train_recall) / (train_precision + train_recall);
+train.sas	134	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN);
+train.sas	134	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN);
+train.sas	138	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	keep train_precision train_recall train_f1_score train_accuracy;
+train.sas	143	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format train_precision train_recall train_f1_score train_accuracy 8.4;
+train.sas	151	PROC PLM SCORE	BUILTIN	R26: linear predictor, missing if a covariate is missing; parameter linpred (P4)	D13; REF edge_predict	open: operation order	proc plm restore=work.logit_model;
+train.sas	162	EXP(x)	DOMAIN	Sas.exp (R7): missing on overflow	X10; X05	confirmed	pd_logistic = 1 / (1 + exp(-predicted_logit));
+train.sas	162	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	pd_logistic = 1 / (1 + exp(-predicted_logit));
+train.sas	165	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	pred_logistic = (pd_logistic >= 0.5);
+train.sas	167	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	drop predicted_logit;
+train.sas	171	PROC FREQ OUT=	DEFAULTS	Sas.freq2 (R20): missing levels kept, PERCENT missing on them	X13	confirmed	proc freq data=work.logit_scored_valid noprint;
+train.sas	181	END= / _N_	STATE	R22	D3	confirmed	set work.confusion_matrix end=eof;
+train.sas	182	RETAIN	STATE	explicit fold (R22)	X13; D3	confirmed	retain TP TN FP FN 0;
+train.sas	190	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + FP) > 0 then valid_precision = TP / (TP + FP);
+train.sas	190	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + FP) > 0 then valid_precision = TP / (TP + FP);
+train.sas	192	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + FN) > 0 then valid_recall = TP / (TP + FN);
+train.sas	192	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + FN) > 0 then valid_recall = TP / (TP + FN);
+train.sas	194	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (valid_precision + valid_recall) > 0 then valid_f1_score = 2 * (valid_precision * valid_recall) / (valid_precision + valid_recall);
+train.sas	194	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (valid_precision + valid_recall) > 0 then valid_f1_score = 2 * (valid_precision * valid_recall) / (valid_precision + valid_recall);
+train.sas	196	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN);
+train.sas	196	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN);
+train.sas	200	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	keep valid_precision valid_recall valid_f1_score valid_accuracy;
+train.sas	205	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format valid_precision valid_recall valid_f1_score valid_accuracy 8.4;
+train.sas	219	ROUND(x)	ROUNDING	Sas.round (R23): half away from zero with SAS's tolerance	X05; X11; D1	confirmed	credit_risk_score = round(base_score + score_range * (1 - pd_logistic));
+train.sas	222	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if credit_risk_score >= 750 then risk_grade = 'A';
+train.sas	222	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_risk_score >= 750 then risk_grade = 'A';
+train.sas	223	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 700 then risk_grade = 'B';
+train.sas	223	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 700 then risk_grade = 'B';
+train.sas	224	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 650 then risk_grade = 'C';
+train.sas	224	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 650 then risk_grade = 'C';
+train.sas	225	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 600 then risk_grade = 'D';
+train.sas	225	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 600 then risk_grade = 'D';
+train.sas	226	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 550 then risk_grade = 'E';
+train.sas	226	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 550 then risk_grade = 'E';
+train.sas	227	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else risk_grade = 'F';
+train.sas	230	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if risk_grade in ('A', 'B') then recommendation = 'Approve';
+train.sas	231	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'C' then recommendation = 'Review';
+train.sas	232	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else recommendation = 'Decline';
+train.sas	236	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if risk_grade = 'A' then interest_rate = base_rate;
+train.sas	237	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
+train.sas	238	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
+train.sas	239	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
+train.sas	240	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
+train.sas	243	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format interest_rate percent8.2;
+train.sas	253	ROUND(x)	ROUNDING	Sas.round (R23): half away from zero with SAS's tolerance	X05; X11; D1	confirmed	credit_risk_score = round(base_score + score_range * (1 - pd_logistic));
+train.sas	255	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if credit_risk_score >= 750 then risk_grade = 'A';
+train.sas	255	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_risk_score >= 750 then risk_grade = 'A';
+train.sas	256	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 700 then risk_grade = 'B';
+train.sas	256	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 700 then risk_grade = 'B';
+train.sas	257	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 650 then risk_grade = 'C';
+train.sas	257	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 650 then risk_grade = 'C';
+train.sas	258	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 600 then risk_grade = 'D';
+train.sas	258	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 600 then risk_grade = 'D';
+train.sas	259	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 550 then risk_grade = 'E';
+train.sas	259	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 550 then risk_grade = 'E';
+train.sas	260	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else risk_grade = 'F';
+train.sas	262	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if risk_grade in ('A', 'B') then recommendation = 'Approve';
+train.sas	263	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'C' then recommendation = 'Review';
+train.sas	264	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else recommendation = 'Decline';
+train.sas	267	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if risk_grade = 'A' then interest_rate = base_rate;
+train.sas	268	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
+train.sas	269	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
+train.sas	270	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
+train.sas	271	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
+train.sas	274	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format interest_rate percent8.2;
+train.sas	293	PROC LOGISTIC	BUILTIN	fit out of scope (P4); OUTPUT scoring P5; ROC area R25	D10-D13	see unit	proc logistic data=work.risk_scores_train;
+train.sas	301	PROC LOGISTIC	BUILTIN	fit out of scope (P4); OUTPUT scoring P5; ROC area R25	D10-D13	see unit	proc logistic data=work.risk_scores_validation;
+train.sas	310	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	where ROCModel = 'Training Set';
+train.sas	316	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	where ROCModel = 'Validation Set';
+train.sas	328	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	drop IP_: XP_: _FROM_ _INTO_ _LEVEL_;
+train.sas	334	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	drop IP_: XP_: _FROM_ _INTO_ _LEVEL_;
+train.sas	354	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	keep row_id default_flag pd_logistic credit_risk_score
+train.sas	368	one-to-one MERGE	ROW_ALIGN	Sas.merge11 (R21)	X01; X13	confirmed	merge work.roc_train(where=(ROCModel='Training Set') rename=(Area=Train_AUC))
+train.sas	368	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	merge work.roc_train(where=(ROCModel='Training Set') rename=(Area=Train_AUC))
+train.sas	368	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	merge work.roc_train(where=(ROCModel='Training Set') rename=(Area=Train_AUC))
+train.sas	369	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	work.roc_valid(where=(ROCModel='Validation Set') rename=(Area=Valid_AUC))
+train.sas	369	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	work.roc_valid(where=(ROCModel='Validation Set') rename=(Area=Valid_AUC))
+train.sas	373	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	model_name = "Logistic Regression";
+train.sas	374	TODAY()	CLOCK	parameter today (P7)	-	confirmed	training_date = today();
+train.sas	378	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format training_date date9.
+train.sas	382	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	keep model_name training_date training_records validation_records
+metrics_calculation.sas	48	PROC LOGISTIC	BUILTIN	fit out of scope (P4); OUTPUT scoring P5; ROC area R25	D10-D13	see unit	proc logistic data=work.logit_scored_valid;
+metrics_calculation.sas	59	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	where ROCModel = 'Logistic Model';
+metrics_calculation.sas	62	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	keep ROCModel AUC Gini;
+metrics_calculation.sas	63	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format AUC Gini 8.4;
+metrics_calculation.sas	75	PROC SORT	ROW_ORDER	Sas.sortBy (R13): stable, missing first	D5	confirmed	proc sort data=work.logit_scored_valid;
+metrics_calculation.sas	81	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	select sum(default_flag = 0), sum(default_flag = 1)
+metrics_calculation.sas	82	SELECT INTO macro variable	FORMAT_ROUNDTRIP	R19: BEST8. text read back; integers < 1e8 exact (precondition), else parameter best8 (P3)	X03; X13	confirmed	into :total_good_count, :total_bad_count
+metrics_calculation.sas	89	RETAIN	STATE	explicit fold (R22)	X13; D3	confirmed	retain cum_good cum_bad;
+metrics_calculation.sas	91	END= / _N_	STATE	R22	D3	confirmed	if _n_ = 1 then do;
+metrics_calculation.sas	96	sum statement	STATE	v = Sas.sumFn [v, e] (R10)	X13	confirmed	if default_flag = 0 then cum_good + 1;
+metrics_calculation.sas	97	sum statement	STATE	v = Sas.sumFn [v, e] (R10)	X13	confirmed	else cum_bad + 1;
+metrics_calculation.sas	99	macro variable used as number	FORMAT_ROUNDTRIP	R19	X03	confirmed	cum_pct_good = cum_good / &total_good_count;
+metrics_calculation.sas	99	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	cum_pct_good = cum_good / &total_good_count;
+metrics_calculation.sas	100	macro variable used as number	FORMAT_ROUNDTRIP	R19	X03	confirmed	cum_pct_bad = cum_bad / &total_bad_count;
+metrics_calculation.sas	100	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	cum_pct_bad = cum_bad / &total_bad_count;
+metrics_calculation.sas	101	ABS(x)	MISSING	Sas.abs (R7)	X10	confirmed	ks_value = abs(cum_pct_good - cum_pct_bad);
+metrics_calculation.sas	107	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	select max(ks_value) as KS_Statistic format=8.4,
+metrics_calculation.sas	107	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	select max(ks_value) as KS_Statistic format=8.4,
+metrics_calculation.sas	108	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	pd_logistic as KS_Cutoff format=8.4
+metrics_calculation.sas	110	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	where ks_value = (select max(ks_value) from work.ks_calculation);
+metrics_calculation.sas	110	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	where ks_value = (select max(ks_value) from work.ks_calculation);
+metrics_calculation.sas	125	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	predicted = (pd_logistic >= &threshold);
+metrics_calculation.sas	128	PROC FREQ OUT=	DEFAULTS	Sas.freq2 (R20): missing levels kept, PERCENT missing on them	X13	confirmed	proc freq data=work.confusion_&suffix noprint;
+metrics_calculation.sas	134	END= / _N_	STATE	R22	D3	confirmed	set work.conf_matrix_&suffix end=eof;
+metrics_calculation.sas	135	RETAIN	STATE	explicit fold (R22)	X13; D3	confirmed	retain TP TN FP FN 0;
+metrics_calculation.sas	144	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + TN + FP + FN) > 0 then accuracy = (TP + TN) / (TP + TN + FP + FN);
+metrics_calculation.sas	144	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + TN + FP + FN) > 0 then accuracy = (TP + TN) / (TP + TN + FP + FN);
+metrics_calculation.sas	146	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + FP) > 0 then precision = TP / (TP + FP);
+metrics_calculation.sas	146	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + FP) > 0 then precision = TP / (TP + FP);
+metrics_calculation.sas	148	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TP + FN) > 0 then recall = TP / (TP + FN);
+metrics_calculation.sas	148	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TP + FN) > 0 then recall = TP / (TP + FN);
+metrics_calculation.sas	150	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (precision + recall) > 0 then f1_score = 2 * (precision * recall) / (precision + recall);
+metrics_calculation.sas	150	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (precision + recall) > 0 then f1_score = 2 * (precision * recall) / (precision + recall);
+metrics_calculation.sas	152	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if (TN + FP) > 0 then specificity = TN / (TN + FP);
+metrics_calculation.sas	152	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if (TN + FP) > 0 then specificity = TN / (TN + FP);
+metrics_calculation.sas	156	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	keep threshold accuracy precision recall f1_score specificity;
+metrics_calculation.sas	175	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format accuracy precision recall f1_score specificity 8.4;
+metrics_calculation.sas	183	PROC RANK GROUPS=	TIES	Sas.rankGroups (R24)	X12; D6	confirmed	proc rank data=work.logit_scored_valid
+metrics_calculation.sas	195	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	count(*) as total_count,
+metrics_calculation.sas	196	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	sum(default_flag) as defaults,
+metrics_calculation.sas	197	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	mean(default_flag) as default_rate format=percent8.2,
+metrics_calculation.sas	197	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	mean(default_flag) as default_rate format=percent8.2,
+metrics_calculation.sas	198	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	mean(pd_logistic) as avg_pd format=8.4,
+metrics_calculation.sas	198	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	mean(pd_logistic) as avg_pd format=8.4,
+metrics_calculation.sas	199	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	min(pd_logistic) as min_pd format=8.4,
+metrics_calculation.sas	199	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	min(pd_logistic) as min_pd format=8.4,
+metrics_calculation.sas	200	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	max(pd_logistic) as max_pd format=8.4,
+metrics_calculation.sas	200	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	max(pd_logistic) as max_pd format=8.4,
+metrics_calculation.sas	201	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	sum(default_flag) / (select sum(default_flag) from work.decile_data) as capture_rate format=percent8.2,
+metrics_calculation.sas	201	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	sum(default_flag) / (select sum(default_flag) from work.decile_data) as capture_rate format=percent8.2,
+metrics_calculation.sas	201	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	sum(default_flag) / (select sum(default_flag) from work.decile_data) as capture_rate format=percent8.2,
+metrics_calculation.sas	202	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	(calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift format=8.2
+metrics_calculation.sas	202	CALCULATED alias	ALIAS	the alias's expression, evaluated once per row/group	D8; X01	confirmed	(calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift format=8.2
+metrics_calculation.sas	202	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	(calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift format=8.2
+metrics_calculation.sas	202	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	(calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift format=8.2
+metrics_calculation.sas	204	GROUP BY	ROW_ORDER	Sas.groupKeys (R14): keys ascending, missing first	X13	confirmed	group by decile
+metrics_calculation.sas	205	ORDER BY	ROW_ORDER	ascending, missing first (R13)	D8	confirmed	order by decile;
+metrics_calculation.sas	214	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	select sum(default_flag), mean(default_flag)
+metrics_calculation.sas	215	SELECT INTO macro variable	FORMAT_ROUNDTRIP	R19: BEST8. text read back; integers < 1e8 exact (precondition), else parameter best8 (P3)	X03; X13	confirmed	into :total_defaults, :overall_default_rate
+metrics_calculation.sas	222	RETAIN	STATE	explicit fold (R22)	X13; D3	confirmed	retain cum_defaults cum_count;
+metrics_calculation.sas	223	END= / _N_	STATE	R22	D3	confirmed	if _n_ = 1 then do;
+metrics_calculation.sas	228	sum statement	STATE	v = Sas.sumFn [v, e] (R10)	X13	confirmed	cum_defaults + defaults;
+metrics_calculation.sas	229	sum statement	STATE	v = Sas.sumFn [v, e] (R10)	X13	confirmed	cum_count + total_count;
+metrics_calculation.sas	232	macro variable used as number	FORMAT_ROUNDTRIP	R19	X03	confirmed	cum_capture_rate = cum_defaults / &total_defaults;
+metrics_calculation.sas	232	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	cum_capture_rate = cum_defaults / &total_defaults;
+metrics_calculation.sas	233	macro variable used as number	FORMAT_ROUNDTRIP	R19	X03	confirmed	cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
+metrics_calculation.sas	233	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
+metrics_calculation.sas	234	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format cum_capture_rate percent8.2 cum_lift 8.2;
+metrics_calculation.sas	240	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	xaxis label="Decile";
+metrics_calculation.sas	241	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	yaxis label="Cumulative Lift";
+metrics_calculation.sas	250	PROC RANK GROUPS=	TIES	Sas.rankGroups (R24)	X12; D6	confirmed	proc rank data=work.logit_scored_train
+metrics_calculation.sas	257	PROC RANK GROUPS=	TIES	Sas.rankGroups (R24)	X12; D6	confirmed	proc rank data=work.logit_scored_valid
+metrics_calculation.sas	271	LOG(x)	DOMAIN	Sas.log (R7): missing for x <= 0 or missing x	X10	confirmed	(a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+metrics_calculation.sas	271	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	(a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
+metrics_calculation.sas	273	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	(select score_bin, count(*) / (select count(*) from work.train_bins) as train_pct
+metrics_calculation.sas	273	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	(select score_bin, count(*) / (select count(*) from work.train_bins) as train_pct
+metrics_calculation.sas	274	GROUP BY	ROW_ORDER	Sas.groupKeys (R14): keys ascending, missing first	X13	confirmed	from work.train_bins group by score_bin) a
+metrics_calculation.sas	275	PROC SQL join	ROW_ORDER	missing = missing matches (R16); row order: see unit (left join: parameter P1; psi inner join: key order)	X13; REF	open: row order	join
+metrics_calculation.sas	276	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	(select score_bin, count(*) / (select count(*) from work.valid_bins) as valid_pct
+metrics_calculation.sas	276	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	(select score_bin, count(*) / (select count(*) from work.valid_bins) as valid_pct
+metrics_calculation.sas	277	GROUP BY	ROW_ORDER	Sas.groupKeys (R14): keys ascending, missing first	X13	confirmed	from work.valid_bins group by score_bin) b
+metrics_calculation.sas	281	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	select sum(psi_component) as PSI format=8.4,
+metrics_calculation.sas	281	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	select sum(psi_component) as PSI format=8.4,
+metrics_calculation.sas	283	CALCULATED alias	ALIAS	the alias's expression, evaluated once per row/group	D8; X01	confirmed	when calculated PSI < 0.1 then 'No significant change'
+metrics_calculation.sas	283	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when calculated PSI < 0.1 then 'No significant change'
+metrics_calculation.sas	284	CALCULATED alias	ALIAS	the alias's expression, evaluated once per row/group	D8; X01	confirmed	when calculated PSI < 0.25 then 'Some change'
+metrics_calculation.sas	284	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when calculated PSI < 0.25 then 'Some change'
+metrics_calculation.sas	299	PROC RANK GROUPS=	TIES	Sas.rankGroups (R24)	X12; D6	confirmed	proc rank data=work.logit_scored_valid
+metrics_calculation.sas	310	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	mean(pd_logistic) as mean_predicted format=8.4,
+metrics_calculation.sas	310	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	mean(pd_logistic) as mean_predicted format=8.4,
+metrics_calculation.sas	311	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	mean(default_flag) as mean_actual format=8.4,
+metrics_calculation.sas	311	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	mean(default_flag) as mean_actual format=8.4,
+metrics_calculation.sas	312	PROC SQL aggregate	AGGREGATE	Sas.sqlSum/sqlMean with parameter agg (R17, P2); sqlMin/sqlMax/count (R18)	X13	open: accumulation order	count(*) as bin_count
+metrics_calculation.sas	314	GROUP BY	ROW_ORDER	Sas.groupKeys (R14): keys ascending, missing first	X13	confirmed	group by pred_bin
+metrics_calculation.sas	315	ORDER BY	ROW_ORDER	ascending, missing first (R13)	D8	confirmed	order by pred_bin;
+metrics_calculation.sas	321	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	xaxis label="Mean Predicted Probability";
+metrics_calculation.sas	322	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	yaxis label="Mean Actual Default Rate";
+metrics_calculation.sas	332	one-to-one MERGE	ROW_ALIGN	Sas.merge11 (R21)	X01; X13	confirmed	merge work.auc_summary
+metrics_calculation.sas	335	LENGTH statement	CHAR_LENGTH	R12: $20 holds every assigned value	D4	confirmed	length model $20 status $20;
+metrics_calculation.sas	336	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	model = "Logistic Regression";
+metrics_calculation.sas	339	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if AUC >= 0.7 and KS_Statistic >= 0.3 and PSI < 0.25 then
+metrics_calculation.sas	340	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	status = "Production Ready";
+metrics_calculation.sas	341	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if AUC >= 0.65 then
+metrics_calculation.sas	342	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	status = "Requires Review";
+metrics_calculation.sas	344	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	status = "Needs Improvement";
+metrics_calculation.sas	392	one-to-one MERGE	ROW_ALIGN	Sas.merge11 (R21)	X01; X13	confirmed	merge work.auc_summary
+metrics_calculation.sas	395	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	work.threshold_analysis(where=(threshold=0.5) rename=(accuracy=acc_50 precision=prec_50 recall=rec_50 f1_score=f1_50 specificity=spec_50));
+metrics_calculation.sas	395	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	work.threshold_analysis(where=(threshold=0.5) rename=(accuracy=acc_50 precision=prec_50 recall=rec_50 f1_score=f1_50 specificity=spec_50));
+metrics_calculation.sas	398	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	model_name = "Logistic Regression";
+metrics_calculation.sas	399	TODAY()	CLOCK	parameter today (P7)	-	confirmed	validation_date = today();
+metrics_calculation.sas	400	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	dataset = "Kaggle Give Me Some Credit";
+metrics_calculation.sas	403	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	rename acc_50 = accuracy_at_50
+metrics_calculation.sas	409	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format validation_date date9.;
+metrics_calculation.sas	412	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	drop threshold ROCModel;
+predict.sas	49	INPUT(char, BEST32.)	CHAR_TO_NUM	Sas.inputBest (R9); precondition: text column, no exponent notation	REF log; X06	confirmed	MonthlyIncome_num = input(MonthlyIncome, best32.);
+predict.sas	50	INPUT(char, BEST32.)	CHAR_TO_NUM	Sas.inputBest (R9); precondition: text column, no exponent notation	REF log; X06	confirmed	NumberOfDependents_num = input(NumberOfDependents, best32.);
+predict.sas	53	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	drop MonthlyIncome NumberOfDependents;
+predict.sas	54	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	rename MonthlyIncome_num = MonthlyIncome
+predict.sas	63	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when age < 30 then 1
+predict.sas	64	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when age < 40 then 2
+predict.sas	65	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when age < 50 then 3
+predict.sas	66	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	when age < 60 then 4
+predict.sas	69	PROC SQL MEDIAN aggregate	AGGREGATE	Sas.sqlMedian (R15)	X13; X14	confirmed	median(MonthlyIncome) as median_income
+predict.sas	71	missing test	MISSING	Sas.isMissing (R3)	D2	confirmed	where MonthlyIncome is not missing
+predict.sas	71	WHERE	FILTER	row filter with R3 comparisons; character comparison ignores trailing blanks	X13	confirmed	where MonthlyIncome is not missing
+predict.sas	72	GROUP BY	ROW_ORDER	Sas.groupKeys (R14): keys ascending, missing first	X13	confirmed	group by calculated age_group;
+predict.sas	72	CALCULATED alias	ALIAS	the alias's expression, evaluated once per row/group	D8; X01	confirmed	group by calculated age_group;
+predict.sas	79	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if age < 30 then age_group = 1;
+predict.sas	80	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 40 then age_group = 2;
+predict.sas	81	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 50 then age_group = 3;
+predict.sas	82	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 60 then age_group = 4;
+predict.sas	86	missing test	MISSING	Sas.isMissing (R3)	D2	confirmed	if missing(MonthlyIncome) then MonthlyIncome_missing = 1;
+predict.sas	89	missing test	MISSING	Sas.isMissing (R3)	D2	confirmed	if missing(NumberOfDependents) then do;
+predict.sas	117	PROC SQL join	ROW_ORDER	missing = missing matches (R16); row order: see unit (left join: parameter P1; psi inner join: key order)	X13; REF	open: row order	left join work.test_income_medians b
+predict.sas	129	SUM(a,b,...) function	MISSING	Sas.sumFn (R10)	X10; X14	confirmed	total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus);
+predict.sas	132	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	has_delinquency = (total_late_payments > 0);
+predict.sas	135	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	has_serious_delinquency = (num_late_90_plus > 0);
+predict.sas	138	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_utilization < 30 then credit_util_category = 1;
+predict.sas	139	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_utilization < 50 then credit_util_category = 2;
+predict.sas	140	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_utilization < 75 then credit_util_category = 3;
+predict.sas	144	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if debt_ratio < 30 then debt_category = 1;
+predict.sas	145	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if debt_ratio < 43 then debt_category = 2;
+predict.sas	146	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if debt_ratio < 60 then debt_category = 3;
+predict.sas	150	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
+predict.sas	150	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
+predict.sas	154	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	credit_lines_per_person = num_credit_lines / (num_dependents + 1);
+predict.sas	157	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if age < 25 then age_category = 1;
+predict.sas	158	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 35 then age_category = 2;
+predict.sas	159	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 50 then age_category = 3;
+predict.sas	160	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if age < 65 then age_category = 4;
+predict.sas	164	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_high_utilization = (credit_utilization > 75);
+predict.sas	165	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_very_high_utilization = (credit_utilization > 100);
+predict.sas	166	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_high_debt_ratio = (debt_ratio > 43);
+predict.sas	167	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_very_high_debt_ratio = (debt_ratio > 60);
+predict.sas	168	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_recent_late_payments = (num_late_30_59 > 0);
+predict.sas	169	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_serious_delinquency = (num_late_90_plus > 0);
+predict.sas	170	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_multiple_delinquencies = (total_late_payments >= 3);
+predict.sas	171	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_low_income = (monthly_income < 2500);
+predict.sas	172	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_many_dependents = (num_dependents >= 3);
+predict.sas	173	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	flag_few_credit_lines = (num_credit_lines <= 2);
+predict.sas	176	SUM(a,b,...) function	MISSING	Sas.sumFn (R10)	X10; X14	confirmed	total_risk_flags = sum(flag_high_utilization, flag_high_debt_ratio,
+predict.sas	182	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_utilization > 30 then financial_health = financial_health - 15;
+predict.sas	183	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_utilization > 75 then financial_health = financial_health - 15;
+predict.sas	184	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if debt_ratio > 43 then financial_health = financial_health - 20;
+predict.sas	185	numeric used as condition	MISSING	Sas.truthy (R5)	X10	confirmed	if has_delinquency then financial_health = financial_health - 20;
+predict.sas	186	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if num_late_90_plus > 0 then financial_health = financial_health - 30;
+predict.sas	187	MIN/MAX function	MISSING	Sas.minFn / Sas.maxFn (R11)	X10	confirmed	financial_health = max(0, financial_health);
+predict.sas	190	LOG(x)	DOMAIN	Sas.log (R7): missing for x <= 0 or missing x	X10	confirmed	log_monthly_income = log(monthly_income + 1);
+predict.sas	191	LOG(x)	DOMAIN	Sas.log (R7): missing for x <= 0 or missing x	X10	confirmed	log_num_credit_lines = log(num_credit_lines + 1);
+predict.sas	192	LOG(x)	DOMAIN	Sas.log (R7): missing for x <= 0 or missing x	X10	confirmed	log_total_late_payments = log(total_late_payments + 1);
+predict.sas	196	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	utilization_debt_interaction = credit_utilization * debt_ratio / 100;
+predict.sas	199	MIN/MAX function	MISSING	Sas.minFn / Sas.maxFn (R11)	X10	confirmed	credit_utilization_capped = min(credit_utilization, 200);
+predict.sas	200	MIN/MAX function	MISSING	Sas.minFn / Sas.maxFn (R11)	X10	confirmed	debt_ratio_capped = min(debt_ratio, 500);
+predict.sas	208	PROC PLM SCORE	BUILTIN	R26: linear predictor, missing if a covariate is missing; parameter linpred (P4)	D13; REF edge_predict	open: operation order	proc plm restore=work.logit_model;
+predict.sas	219	EXP(x)	DOMAIN	Sas.exp (R7): missing on overflow	X10; X05	confirmed	pd_logistic = 1 / (1 + exp(-predicted_logit));
+predict.sas	219	division	DOMAIN	Sas.div (R6): zero or missing divisor gives missing	X10	confirmed	pd_logistic = 1 / (1 + exp(-predicted_logit));
+predict.sas	221	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	drop predicted_logit;
+predict.sas	232	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	pred_logistic = (pd_logistic >= 0.5);
+predict.sas	237	ROUND(x)	ROUNDING	Sas.round (R23): half away from zero with SAS's tolerance	X05; X11; D1	confirmed	credit_risk_score = round(base_score + score_range * (1 - pd_logistic));
+predict.sas	240	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if credit_risk_score >= 750 then risk_grade = 'A';
+predict.sas	240	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	if credit_risk_score >= 750 then risk_grade = 'A';
+predict.sas	241	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 700 then risk_grade = 'B';
+predict.sas	241	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 700 then risk_grade = 'B';
+predict.sas	242	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 650 then risk_grade = 'C';
+predict.sas	242	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 650 then risk_grade = 'C';
+predict.sas	243	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 600 then risk_grade = 'D';
+predict.sas	243	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 600 then risk_grade = 'D';
+predict.sas	244	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if credit_risk_score >= 550 then risk_grade = 'E';
+predict.sas	244	numeric comparison	MISSING	Sas.lt/le/gt/ge (R3): a missing operand is below every number; Boolean assignment via Sas.ofBool (R4)	X10; REF edge_predict	confirmed	else if credit_risk_score >= 550 then risk_grade = 'E';
+predict.sas	245	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else risk_grade = 'F';
+predict.sas	248	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if risk_grade in ('A', 'B') then recommendation = 'Approve';
+predict.sas	249	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'C' then recommendation = 'Review';
+predict.sas	250	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else recommendation = 'Decline';
+predict.sas	254	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	if risk_grade = 'A' then interest_rate = base_rate;
+predict.sas	255	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
+predict.sas	256	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
+predict.sas	257	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
+predict.sas	258	character value	CHAR_LENGTH	R12: no truncation at this site; Lean String	X13; D4	confirmed	else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
+predict.sas	261	FORMAT	PRINT_ONLY	not translated (printed formats out of scope)	PROMPT	confirmed	format interest_rate percent8.2;
+predict.sas	271	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	keep row_id pd_logistic;
+predict.sas	277	DROP/KEEP/RENAME	COLUMN_ORDER	Sas.drop/keep/rename (R8): order unchanged	REF headers	confirmed	keep row_id pd_logistic pred_logistic credit_risk_score risk_grade

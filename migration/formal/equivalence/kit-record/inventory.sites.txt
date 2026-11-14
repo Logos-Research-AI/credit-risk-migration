@@ -1,0 +1,1434 @@
+# Gap-inventory sweep for credit_risk/ -> Lean (definition of done: every line below has >= 1 row in migration/inventory.tsv).
+# Produced by an AST walk (not judgment) over the in-scope functions/constants only; pathlib '/' joins and string pl.lit(...) are excluded mechanically.
+# Line format: file:line:col#n <TAB> TAG <TAB> symbol <TAB> enclosing calls <TAB> snippet.   n distinguishes two sites at the same position.
+# Row key in inventory.tsv: file column + source_construct prefix 'L<line>:<col>#<n> [TAG]'.
+# total sites: 1376
+# ADD_ZERO	1
+# AGG	48
+# CAST	30
+# CMP	207
+# COLREF	50
+# CONCAT	3
+# CONST	6
+# CONSTRUCT	29
+# CUMSUM	5
+# DATACLASS	4
+# DATE_TODAY	2
+# DICT_ORDER	15
+# DIV	44
+# DROP_NULLS	3
+# F2I_INT	7
+# FILL_NULL	7
+# FILTER	23
+# FINITE	3
+# FLOAT_CONV	20
+# FLOOR_CEIL	7
+# FRAME_COLS	114
+# GROUP_BY	10
+# HELPER_CALL	198
+# HORIZ	8
+# INT_PROMO	44
+# IS_IN	5
+# IS_NULL	13
+# ITEM	10
+# JOIN	4
+# LEN	15
+# LIT	96
+# LOG_EXP_SQRT	17
+# LOOKUP	57
+# MAP_BATCHES	2
+# META	2
+# NAN_TO_NULL	3
+# NP_ELEMWISE	12
+# OOS_CALL	125
+# POW	4
+# PY_MINMAX	3
+# RAISE	6
+# RANK	1
+# SEARCHSORTED	6
+# SET	7
+# SORT	14
+# STR_CONV	12
+# TO_LIST	24
+# TO_NUMPY	32
+# TYPE_DISPATCH	5
+# UNARY	4
+# WHILE	1
+# ZIP	4
+# ZIP_STRICT	4
+credit_risk/feature_engineering.py:31:28#1	OOS_CALL	feature_engineering.run:credit_raw	-	sas_compat.proc_import_csv( data_dir / "cs-training.csv", guessingrows=None if fix_income_truncation else 20 )
+credit_risk/feature_engineering.py:41:19#1	FRAME_COLS	feature_engineering.run:credit_raw_clean	-	...nput_best32(pl.col("MonthlyIncome")), NumberOfDependents_num=sas_compat.input_best32(pl.col("NumberOfDependents")), )
+credit_risk/feature_engineering.py:42:41#1	OOS_CALL	feature_engineering.run:MonthlyIncome_num	with_columns	sas_compat.input_best32(pl.col("MonthlyIncome"))
+credit_risk/feature_engineering.py:43:46#1	OOS_CALL	feature_engineering.run:NumberOfDependents_num	with_columns	sas_compat.input_best32(pl.col("NumberOfDependents"))
+credit_risk/feature_engineering.py:45:9#1	FRAME_COLS	feature_engineering.run:credit_raw_clean	-	...fDependents_num=sas_compat.input_best32(pl.col("NumberOfDependents")), ) .drop("MonthlyIncome", "NumberOfDependents")
+credit_risk/feature_engineering.py:46:9#1	FRAME_COLS	feature_engineering.run:credit_raw_clean	-	..."NumberOfDependents") .rename({"MonthlyIncome_num": "MonthlyIncome", "NumberOfDependents_num": "NumberOfDependents"})
+credit_risk/feature_engineering.py:51:25#1	FRAME_COLS	feature_engineering.run:income_medians	-	...en(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4) .otherwise(5) )
+credit_risk/feature_engineering.py:53:30#1	CMP	feature_engineering.run:age_group	when<with_columns	pl.col("age") < 30
+credit_risk/feature_engineering.py:54:13#1	LIT	feature_engineering.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1)
+credit_risk/feature_engineering.py:55:18#1	CMP	feature_engineering.run:age_group	when<with_columns	pl.col("age") < 40
+credit_risk/feature_engineering.py:56:13#1	LIT	feature_engineering.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1) .when(pl.col("age") < 40) .then(2)
+credit_risk/feature_engineering.py:57:18#1	CMP	feature_engineering.run:age_group	when<with_columns	pl.col("age") < 50
+credit_risk/feature_engineering.py:58:13#1	LIT	feature_engineering.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1) .when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3)
+credit_risk/feature_engineering.py:59:18#1	CMP	feature_engineering.run:age_group	when<with_columns	pl.col("age") < 60
+credit_risk/feature_engineering.py:60:13#1	LIT	feature_engineering.run:age_group	with_columns	...30) .then(1) .when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4)
+credit_risk/feature_engineering.py:61:13#1	LIT	feature_engineering.run:age_group	with_columns	...when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4) .otherwise(5)
+credit_risk/feature_engineering.py:63:9#1	FILTER	feature_engineering.run:income_medians	-	...ge") < 50) .then(3) .when(pl.col("age") < 60) .then(4) .otherwise(5) ) .filter(pl.col("MonthlyIncome").is_not_null())
+credit_risk/feature_engineering.py:63:40#1	IS_NULL	feature_engineering.run:income_medians	filter	pl.col("MonthlyIncome").is_not_null()
+credit_risk/feature_engineering.py:64:9#1	GROUP_BY	feature_engineering.run:income_medians	-	...) .then(4) .otherwise(5) ) .filter(pl.col("MonthlyIncome").is_not_null()) .group_by("age_group", maintain_order=True)
+credit_risk/feature_engineering.py:65:9#1	FRAME_COLS	feature_engineering.run:income_medians	-	...ome").is_not_null()) .group_by("age_group", maintain_order=True) .agg(median_income=pl.col("MonthlyIncome").median())
+credit_risk/feature_engineering.py:65:51#1	AGG	feature_engineering.run:median_income	agg	pl.col("MonthlyIncome").median()
+credit_risk/feature_engineering.py:71:19#1	OOS_CALL	feature_engineering.run	-	sas_compat.write_sas_csv( income_medians.sort("age_group"), output_dir / "income_medians.csv", formats={} )
+credit_risk/feature_engineering.py:72:27#1	SORT	feature_engineering.run	write_sas_csv	income_medians.sort("age_group")
+credit_risk/feature_engineering.py:76:38#1	FRAME_COLS	feature_engineering.run:credit_cleaned	-	...ompat.flag(pl.col("NumberOfDependents").is_null()), NumberOfDependents=pl.col("NumberOfDependents").fill_null(0.0), )
+credit_risk/feature_engineering.py:78:26#1	CMP	feature_engineering.run:age_group	when<with_columns	pl.col("age") < 30
+credit_risk/feature_engineering.py:79:9#1	LIT	feature_engineering.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1)
+credit_risk/feature_engineering.py:80:14#1	CMP	feature_engineering.run:age_group	when<with_columns	pl.col("age") < 40
+credit_risk/feature_engineering.py:81:9#1	LIT	feature_engineering.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1) .when(pl.col("age") < 40) .then(2)
+credit_risk/feature_engineering.py:82:14#1	CMP	feature_engineering.run:age_group	when<with_columns	pl.col("age") < 50
+credit_risk/feature_engineering.py:83:9#1	LIT	feature_engineering.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1) .when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3)
+credit_risk/feature_engineering.py:84:14#1	CMP	feature_engineering.run:age_group	when<with_columns	pl.col("age") < 60
+credit_risk/feature_engineering.py:85:9#1	LIT	feature_engineering.run:age_group	with_columns	...30) .then(1) .when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4)
+credit_risk/feature_engineering.py:86:9#1	LIT	feature_engineering.run:age_group	with_columns	...when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4) .otherwise(5)
+credit_risk/feature_engineering.py:87:41#1	HELPER_CALL	feature_engineering.run:MonthlyIncome_missing	with_columns	sas_compat.flag(pl.col("MonthlyIncome").is_null())
+credit_risk/feature_engineering.py:87:70#1	IS_NULL	feature_engineering.run:MonthlyIncome_missing	flag<with_columns	pl.col("MonthlyIncome").is_null()
+credit_risk/feature_engineering.py:89:38#1	HELPER_CALL	feature_engineering.run:Dependents_missing	with_columns	sas_compat.flag(pl.col("NumberOfDependents").is_null())
+credit_risk/feature_engineering.py:89:72#1	IS_NULL	feature_engineering.run:Dependents_missing	flag<with_columns	pl.col("NumberOfDependents").is_null()
+credit_risk/feature_engineering.py:90:56#1	FILL_NULL	feature_engineering.run:NumberOfDependents	with_columns	pl.col("NumberOfDependents").fill_null(0.0)
+credit_risk/feature_engineering.py:94:36#1	JOIN	feature_engineering.run:credit_imputed	-	credit_cleaned.join( income_medians, on="age_group", how="left", maintain_order="left" )
+credit_risk/feature_engineering.py:96:6#1	FRAME_COLS	feature_engineering.run:credit_imputed	-	...itLinesAndLoans").alias("num_credit_lines"), pl.col("NumberRealEstateLoansOrLines").alias("num_real_estate_loans"), )
+credit_risk/feature_engineering.py:100:16#1	CMP	feature_engineering.run:monthly_income	when<select	pl.col("MonthlyIncome_missing") == 1
+credit_risk/feature_engineering.py:111:9#1	INT_PROMO	feature_engineering.run:credit_utilization	select	pl.col("RevolvingUtilizationOfUnsecuredL") * 100
+credit_risk/feature_engineering.py:112:9#1	INT_PROMO	feature_engineering.run:debt_ratio	select	pl.col("DebtRatio") * 100
+credit_risk/feature_engineering.py:120:12#1	LIT	feature_engineering.run:fh	-	pl.lit(100.0)
+credit_risk/feature_engineering.py:121:17#1	CMP	feature_engineering.run:fh	when	pl.col("credit_utilization") > 30
+credit_risk/feature_engineering.py:121:57#1	INT_PROMO	feature_engineering.run:fh	then	fh - 15
+credit_risk/feature_engineering.py:122:17#1	CMP	feature_engineering.run:fh	when	pl.col("credit_utilization") > 75
+credit_risk/feature_engineering.py:122:57#1	INT_PROMO	feature_engineering.run:fh	then	fh - 15
+credit_risk/feature_engineering.py:123:17#1	CMP	feature_engineering.run:fh	when	pl.col("debt_ratio") > 43
+credit_risk/feature_engineering.py:123:49#1	INT_PROMO	feature_engineering.run:fh	then	fh - 20
+credit_risk/feature_engineering.py:124:17#1	CMP	feature_engineering.run:fh	when	pl.col("has_delinquency") != 0
+credit_risk/feature_engineering.py:124:54#1	INT_PROMO	feature_engineering.run:fh	then	fh - 20
+credit_risk/feature_engineering.py:125:17#1	CMP	feature_engineering.run:fh	when	pl.col("num_late_90_plus") > 0
+credit_risk/feature_engineering.py:125:54#1	INT_PROMO	feature_engineering.run:fh	then	fh - 30
+credit_risk/feature_engineering.py:128:23#1	FRAME_COLS	feature_engineering.run:credit_features	-	...sum( pl.col("num_late_30_59"), pl.col("num_late_60_89"), pl.col("num_late_90_plus") ).alias("total_late_payments"), )
+credit_risk/feature_engineering.py:130:43#1	HELPER_CALL	feature_engineering.run:total_late_payments	with_columns	sas_compat.sas_sum( pl.col("num_late_30_59"), pl.col("num_late_60_89"), pl.col("num_late_90_plus") )
+credit_risk/feature_engineering.py:134:9#1	FRAME_COLS	feature_engineering.run:credit_features	-	...compat.flag(pl.col("num_dependents") >= 3), flag_few_credit_lines=sas_compat.flag(pl.col("num_credit_lines") <= 2), )
+credit_risk/feature_engineering.py:136:39#1	HELPER_CALL	feature_engineering.run:has_delinquency	with_columns	sas_compat.flag(pl.col("total_late_payments") > 0)
+credit_risk/feature_engineering.py:136:44#1	CMP	feature_engineering.run:has_delinquency	flag<with_columns	pl.col("total_late_payments") > 0
+credit_risk/feature_engineering.py:138:47#1	HELPER_CALL	feature_engineering.run:has_serious_delinquency	with_columns	sas_compat.flag(pl.col("num_late_90_plus") > 0)
+credit_risk/feature_engineering.py:138:52#1	CMP	feature_engineering.run:has_serious_delinquency	flag<with_columns	pl.col("num_late_90_plus") > 0
+credit_risk/feature_engineering.py:140:41#1	CMP	feature_engineering.run:credit_util_category	when<with_columns	pl.col("credit_utilization") < 30
+credit_risk/feature_engineering.py:141:13#1	LIT	feature_engineering.run:credit_util_category	with_columns	pl.when(pl.col("credit_utilization") < 30) .then(1)
+credit_risk/feature_engineering.py:142:18#1	CMP	feature_engineering.run:credit_util_category	when<with_columns	pl.col("credit_utilization") < 50
+credit_risk/feature_engineering.py:143:13#1	LIT	feature_engineering.run:credit_util_category	with_columns	pl.when(pl.col("credit_utilization") < 30) .then(1) .when(pl.col("credit_utilization") < 50) .then(2)
+credit_risk/feature_engineering.py:144:18#1	CMP	feature_engineering.run:credit_util_category	when<with_columns	pl.col("credit_utilization") < 75
+credit_risk/feature_engineering.py:145:13#1	LIT	feature_engineering.run:credit_util_category	with_columns	...") < 30) .then(1) .when(pl.col("credit_utilization") < 50) .then(2) .when(pl.col("credit_utilization") < 75) .then(3)
+credit_risk/feature_engineering.py:146:13#1	LIT	feature_engineering.run:credit_util_category	with_columns	...(1) .when(pl.col("credit_utilization") < 50) .then(2) .when(pl.col("credit_utilization") < 75) .then(3) .otherwise(4)
+credit_risk/feature_engineering.py:148:34#1	CMP	feature_engineering.run:debt_category	when<with_columns	pl.col("debt_ratio") < 30
+credit_risk/feature_engineering.py:149:13#1	LIT	feature_engineering.run:debt_category	with_columns	pl.when(pl.col("debt_ratio") < 30) .then(1)
+credit_risk/feature_engineering.py:150:18#1	CMP	feature_engineering.run:debt_category	when<with_columns	pl.col("debt_ratio") < 43
+credit_risk/feature_engineering.py:151:13#1	LIT	feature_engineering.run:debt_category	with_columns	pl.when(pl.col("debt_ratio") < 30) .then(1) .when(pl.col("debt_ratio") < 43) .then(2)
+credit_risk/feature_engineering.py:152:18#1	CMP	feature_engineering.run:debt_category	when<with_columns	pl.col("debt_ratio") < 60
+credit_risk/feature_engineering.py:153:13#1	LIT	feature_engineering.run:debt_category	with_columns	....col("debt_ratio") < 30) .then(1) .when(pl.col("debt_ratio") < 43) .then(2) .when(pl.col("debt_ratio") < 60) .then(3)
+credit_risk/feature_engineering.py:154:13#1	LIT	feature_engineering.run:debt_category	with_columns	...io") < 30) .then(1) .when(pl.col("debt_ratio") < 43) .then(2) .when(pl.col("debt_ratio") < 60) .then(3) .otherwise(4)
+credit_risk/feature_engineering.py:156:41#1	CMP	feature_engineering.run:income_per_dependent	when<with_columns	pl.col("num_dependents") > 0
+credit_risk/feature_engineering.py:157:18#1	DIV	feature_engineering.run:income_per_dependent	then<with_columns	pl.col("monthly_income") / (pl.col("num_dependents") + 1)
+credit_risk/feature_engineering.py:157:46#1	INT_PROMO	feature_engineering.run:income_per_dependent	then<with_columns	pl.col("num_dependents") + 1
+credit_risk/feature_engineering.py:160:36#1	DIV	feature_engineering.run:credit_lines_per_person	with_columns	pl.col("num_credit_lines") / (pl.col("num_dependents") + 1)
+credit_risk/feature_engineering.py:160:66#1	INT_PROMO	feature_engineering.run:credit_lines_per_person	with_columns	pl.col("num_dependents") + 1
+credit_risk/feature_engineering.py:162:33#1	CMP	feature_engineering.run:age_category	when<with_columns	pl.col("age") < 25
+credit_risk/feature_engineering.py:163:13#1	LIT	feature_engineering.run:age_category	with_columns	pl.when(pl.col("age") < 25) .then(1)
+credit_risk/feature_engineering.py:164:18#1	CMP	feature_engineering.run:age_category	when<with_columns	pl.col("age") < 35
+credit_risk/feature_engineering.py:165:13#1	LIT	feature_engineering.run:age_category	with_columns	pl.when(pl.col("age") < 25) .then(1) .when(pl.col("age") < 35) .then(2)
+credit_risk/feature_engineering.py:166:18#1	CMP	feature_engineering.run:age_category	when<with_columns	pl.col("age") < 50
+credit_risk/feature_engineering.py:167:13#1	LIT	feature_engineering.run:age_category	with_columns	pl.when(pl.col("age") < 25) .then(1) .when(pl.col("age") < 35) .then(2) .when(pl.col("age") < 50) .then(3)
+credit_risk/feature_engineering.py:168:18#1	CMP	feature_engineering.run:age_category	when<with_columns	pl.col("age") < 65
+credit_risk/feature_engineering.py:169:13#1	LIT	feature_engineering.run:age_category	with_columns	...25) .then(1) .when(pl.col("age") < 35) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 65) .then(4)
+credit_risk/feature_engineering.py:170:13#1	LIT	feature_engineering.run:age_category	with_columns	...when(pl.col("age") < 35) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 65) .then(4) .otherwise(5)
+credit_risk/feature_engineering.py:172:45#1	HELPER_CALL	feature_engineering.run:flag_high_utilization	with_columns	sas_compat.flag(pl.col("credit_utilization") > 75)
+credit_risk/feature_engineering.py:172:50#1	CMP	feature_engineering.run:flag_high_utilization	flag<with_columns	pl.col("credit_utilization") > 75
+credit_risk/feature_engineering.py:173:50#1	HELPER_CALL	feature_engineering.run:flag_very_high_utilization	with_columns	sas_compat.flag(pl.col("credit_utilization") > 100)
+credit_risk/feature_engineering.py:173:55#1	CMP	feature_engineering.run:flag_very_high_utilization	flag<with_columns	pl.col("credit_utilization") > 100
+credit_risk/feature_engineering.py:174:44#1	HELPER_CALL	feature_engineering.run:flag_high_debt_ratio	with_columns	sas_compat.flag(pl.col("debt_ratio") > 43)
+credit_risk/feature_engineering.py:174:49#1	CMP	feature_engineering.run:flag_high_debt_ratio	flag<with_columns	pl.col("debt_ratio") > 43
+credit_risk/feature_engineering.py:175:49#1	HELPER_CALL	feature_engineering.run:flag_very_high_debt_ratio	with_columns	sas_compat.flag(pl.col("debt_ratio") > 60)
+credit_risk/feature_engineering.py:175:54#1	CMP	feature_engineering.run:flag_very_high_debt_ratio	flag<with_columns	pl.col("debt_ratio") > 60
+credit_risk/feature_engineering.py:176:49#1	HELPER_CALL	feature_engineering.run:flag_recent_late_payments	with_columns	sas_compat.flag(pl.col("num_late_30_59") > 0)
+credit_risk/feature_engineering.py:176:54#1	CMP	feature_engineering.run:flag_recent_late_payments	flag<with_columns	pl.col("num_late_30_59") > 0
+credit_risk/feature_engineering.py:177:48#1	HELPER_CALL	feature_engineering.run:flag_serious_delinquency	with_columns	sas_compat.flag(pl.col("num_late_90_plus") > 0)
+credit_risk/feature_engineering.py:177:53#1	CMP	feature_engineering.run:flag_serious_delinquency	flag<with_columns	pl.col("num_late_90_plus") > 0
+credit_risk/feature_engineering.py:178:51#1	HELPER_CALL	feature_engineering.run:flag_multiple_delinquencies	with_columns	sas_compat.flag(pl.col("total_late_payments") >= 3)
+credit_risk/feature_engineering.py:178:56#1	CMP	feature_engineering.run:flag_multiple_delinquencies	flag<with_columns	pl.col("total_late_payments") >= 3
+credit_risk/feature_engineering.py:179:39#1	HELPER_CALL	feature_engineering.run:flag_low_income	with_columns	sas_compat.flag(pl.col("monthly_income") < 2500)
+credit_risk/feature_engineering.py:179:44#1	CMP	feature_engineering.run:flag_low_income	flag<with_columns	pl.col("monthly_income") < 2500
+credit_risk/feature_engineering.py:180:44#1	HELPER_CALL	feature_engineering.run:flag_many_dependents	with_columns	sas_compat.flag(pl.col("num_dependents") >= 3)
+credit_risk/feature_engineering.py:180:49#1	CMP	feature_engineering.run:flag_many_dependents	flag<with_columns	pl.col("num_dependents") >= 3
+credit_risk/feature_engineering.py:181:45#1	HELPER_CALL	feature_engineering.run:flag_few_credit_lines	with_columns	sas_compat.flag(pl.col("num_credit_lines") <= 2)
+credit_risk/feature_engineering.py:181:50#1	CMP	feature_engineering.run:flag_few_credit_lines	flag<with_columns	pl.col("num_credit_lines") <= 2
+credit_risk/feature_engineering.py:183:9#1	FRAME_COLS	feature_engineering.run:credit_features	-	..., log_total_late_payments=sas_compat.sas_log(pl.col("total_late_payments") + 1).alias( "log_total_late_payments" ), )
+credit_risk/feature_engineering.py:185:40#1	HELPER_CALL	feature_engineering.run:total_risk_flags	with_columns	...debt_ratio"), pl.col("flag_serious_delinquency"), pl.col("flag_multiple_delinquencies"), pl.col("flag_low_income"), )
+credit_risk/feature_engineering.py:193:40#1	HELPER_CALL	feature_engineering.run:financial_health	with_columns	sas_compat.sas_max(pl.lit(0.0), fh)
+credit_risk/feature_engineering.py:193:51#1	LIT	feature_engineering.run:financial_health	sas_max<with_columns	pl.lit(0.0)
+credit_risk/feature_engineering.py:195:42#1	HELPER_CALL	feature_engineering.run:log_monthly_income	with_columns	sas_compat.sas_log(pl.col("monthly_income") + 1)
+credit_risk/feature_engineering.py:195:50#1	INT_PROMO	feature_engineering.run:log_monthly_income	sas_log<with_columns	pl.col("monthly_income") + 1
+credit_risk/feature_engineering.py:196:44#1	HELPER_CALL	feature_engineering.run:log_num_credit_lines	with_columns	sas_compat.sas_log(pl.col("num_credit_lines") + 1)
+credit_risk/feature_engineering.py:196:52#1	INT_PROMO	feature_engineering.run:log_num_credit_lines	sas_log<with_columns	pl.col("num_credit_lines") + 1
+credit_risk/feature_engineering.py:199:47#1	HELPER_CALL	feature_engineering.run:log_total_late_payments	with_columns	sas_compat.sas_log(pl.col("total_late_payments") + 1)
+credit_risk/feature_engineering.py:199:55#1	INT_PROMO	feature_engineering.run:log_total_late_payments	sas_log<with_columns	pl.col("total_late_payments") + 1
+credit_risk/feature_engineering.py:203:9#1	FRAME_COLS	feature_engineering.run:credit_features	-	..._capped" ), debt_ratio_capped=sas_compat.sas_min(pl.col("debt_ratio"), pl.lit(500.0)).alias( "debt_ratio_capped" ), )
+credit_risk/feature_engineering.py:207:52#1	HELPER_CALL	feature_engineering.run:utilization_debt_interaction	with_columns	sas_compat.div( pl.col("credit_utilization") * pl.col("debt_ratio"), 100 )
+credit_risk/feature_engineering.py:211:49#1	HELPER_CALL	feature_engineering.run:credit_utilization_capped	with_columns	sas_compat.sas_min(pl.col("credit_utilization"), pl.lit(200.0))
+credit_risk/feature_engineering.py:211:90#1	LIT	feature_engineering.run:credit_utilization_capped	sas_min<with_columns	pl.lit(200.0)
+credit_risk/feature_engineering.py:214:41#1	HELPER_CALL	feature_engineering.run:debt_ratio_capped	with_columns	sas_compat.sas_min(pl.col("debt_ratio"), pl.lit(500.0))
+credit_risk/feature_engineering.py:214:74#1	LIT	feature_engineering.run:debt_ratio_capped	sas_min<with_columns	pl.lit(500.0)
+credit_risk/feature_engineering.py:225:11#1	OOS_CALL	feature_engineering.run:train_ids	-	pl.read_csv(split_ids, columns=["row_id"], infer_schema=False)
+credit_risk/feature_engineering.py:226:9#1	COLREF	feature_engineering.run:train_ids	-	pl.read_csv(split_ids, columns=["row_id"], infer_schema=False) # R§1 CSV I/O: all text .get_column("row_id")
+credit_risk/feature_engineering.py:227:9#1	CAST	feature_engineering.run:train_ids	-	..._csv(split_ids, columns=["row_id"], infer_schema=False) # R§1 CSV I/O: all text .get_column("row_id") .cast(pl.Int64)
+credit_risk/feature_engineering.py:228:9#1	CAST	feature_engineering.run:train_ids	-	...lumns=["row_id"], infer_schema=False) # R§1 CSV I/O: all text .get_column("row_id") .cast(pl.Int64) .cast(pl.Float64)
+credit_risk/feature_engineering.py:230:35#1	FRAME_COLS	feature_engineering.run:credit_split	-	credit_features.with_columns(selected=pl.col("row_id").is_in(train_ids.implode()))
+credit_risk/feature_engineering.py:230:74#1	IS_IN	feature_engineering.run:selected	with_columns	pl.col("row_id").is_in(train_ids.implode())
+credit_risk/feature_engineering.py:230:90#1	IS_IN	feature_engineering.run:selected	is_in<with_columns	train_ids.implode()
+credit_risk/feature_engineering.py:231:32#1	FILTER	feature_engineering.run:credit_train	-	credit_split.filter(pl.col("selected"))
+credit_risk/feature_engineering.py:231:59#1	FRAME_COLS	feature_engineering.run:credit_train	-	credit_split.filter(pl.col("selected")).drop("selected")
+credit_risk/feature_engineering.py:232:37#1	FILTER	feature_engineering.run:credit_validation	-	credit_split.filter(~pl.col("selected"))
+credit_risk/feature_engineering.py:232:65#1	FRAME_COLS	feature_engineering.run:credit_validation	-	credit_split.filter(~pl.col("selected")).drop("selected")
+credit_risk/feature_engineering.py:244:15#1	OOS_CALL	feature_engineering.run	-	sas_compat.write_sas_csv(credit_train_export, output_dir / "model_features_train.csv", formats={})
+credit_risk/feature_engineering.py:245:15#1	OOS_CALL	feature_engineering.run	-	sas_compat.write_sas_csv( credit_validation_export, output_dir / "model_features_validation.csv", formats={} )
+credit_risk/metrics_calculation.py:20:19#1	OOS_CALL	metrics_calculation._into_float:v	-	sas_compat.sas_best(x, 8)
+credit_risk/metrics_calculation.py:21:11#1	FLOAT_CONV	metrics_calculation._into_float:return	-	float(v)
+credit_risk/metrics_calculation.py:33:35#1	FRAME_COLS	metrics_calculation.confusion_metrics:confusion	-	...compat.flag( pl.col("pd_logistic") >= threshold ) # R§2 boolean assignment; INV predicted (MISSING_NEVER, plain >=) )
+credit_risk/metrics_calculation.py:34:29#1	HELPER_CALL	metrics_calculation.confusion_metrics:predicted	with_columns	sas_compat.flag( pl.col("pd_logistic") >= threshold )
+credit_risk/metrics_calculation.py:35:12#1	CMP	metrics_calculation.confusion_metrics:predicted	flag<with_columns	pl.col("pd_logistic") >= threshold
+credit_risk/metrics_calculation.py:41:18#1	GROUP_BY	metrics_calculation.confusion_metrics:conf_matrix	-	confusion.group_by(["default_flag", "predicted"], maintain_order=True)
+credit_risk/metrics_calculation.py:42:9#1	FRAME_COLS	metrics_calculation.confusion_metrics:conf_matrix	-	confusion.group_by(["default_flag", "predicted"], maintain_order=True) .agg(COUNT=pl.len().cast(pl.Int64))
+credit_risk/metrics_calculation.py:42:22#1	AGG	metrics_calculation.confusion_metrics:COUNT	agg	pl.len()
+credit_risk/metrics_calculation.py:42:28#1	CAST	metrics_calculation.confusion_metrics:COUNT	agg	pl.len().cast(pl.Int64)
+credit_risk/metrics_calculation.py:43:9#1	SORT	metrics_calculation.confusion_metrics:conf_matrix	-	...], maintain_order=True) .agg(COUNT=pl.len().cast(pl.Int64)) .sort(["default_flag", "predicted"], maintain_order=True)
+credit_risk/metrics_calculation.py:47:25#1	FRAME_COLS	metrics_calculation.confusion_metrics:counts	-	...dicted") == 1)).sum(), FN=pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("predicted") == 0)).sum(), )
+credit_risk/metrics_calculation.py:48:27#1	FILTER	metrics_calculation.confusion_metrics:TP	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("predicted") == 1))
+credit_risk/metrics_calculation.py:48:35#1	CMP	metrics_calculation.confusion_metrics:TP	filter<select	pl.col("default_flag") == 1
+credit_risk/metrics_calculation.py:48:67#1	CMP	metrics_calculation.confusion_metrics:TP	filter<select	pl.col("predicted") == 1
+credit_risk/metrics_calculation.py:48:94#1	AGG	metrics_calculation.confusion_metrics:TP	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("predicted") == 1)).sum()
+credit_risk/metrics_calculation.py:49:27#1	FILTER	metrics_calculation.confusion_metrics:TN	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("predicted") == 0))
+credit_risk/metrics_calculation.py:49:35#1	CMP	metrics_calculation.confusion_metrics:TN	filter<select	pl.col("default_flag") == 0
+credit_risk/metrics_calculation.py:49:67#1	CMP	metrics_calculation.confusion_metrics:TN	filter<select	pl.col("predicted") == 0
+credit_risk/metrics_calculation.py:49:94#1	AGG	metrics_calculation.confusion_metrics:TN	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("predicted") == 0)).sum()
+credit_risk/metrics_calculation.py:50:27#1	FILTER	metrics_calculation.confusion_metrics:FP	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("predicted") == 1))
+credit_risk/metrics_calculation.py:50:35#1	CMP	metrics_calculation.confusion_metrics:FP	filter<select	pl.col("default_flag") == 0
+credit_risk/metrics_calculation.py:50:67#1	CMP	metrics_calculation.confusion_metrics:FP	filter<select	pl.col("predicted") == 1
+credit_risk/metrics_calculation.py:50:94#1	AGG	metrics_calculation.confusion_metrics:FP	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("predicted") == 1)).sum()
+credit_risk/metrics_calculation.py:51:27#1	FILTER	metrics_calculation.confusion_metrics:FN	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("predicted") == 0))
+credit_risk/metrics_calculation.py:51:35#1	CMP	metrics_calculation.confusion_metrics:FN	filter<select	pl.col("default_flag") == 1
+credit_risk/metrics_calculation.py:51:67#1	CMP	metrics_calculation.confusion_metrics:FN	filter<select	pl.col("predicted") == 0
+credit_risk/metrics_calculation.py:51:94#1	AGG	metrics_calculation.confusion_metrics:FN	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("predicted") == 0)).sum()
+credit_risk/metrics_calculation.py:52:6#1	CAST	metrics_calculation.confusion_metrics:counts	-	....sum(), FN=pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("predicted") == 0)).sum(), ).cast(pl.Int64)
+credit_risk/metrics_calculation.py:54:21#1	FRAME_COLS	metrics_calculation.confusion_metrics:metrics	-	...ty=pl.when((pl.col("TN") + pl.col("FP")) > 0) .then(pl.col("TN") / (pl.col("TN") + pl.col("FP"))) .otherwise(None), )
+credit_risk/metrics_calculation.py:55:21#1	LIT	metrics_calculation.confusion_metrics:threshold	with_columns	pl.lit(threshold, pl.Float64)
+credit_risk/metrics_calculation.py:56:25#1	CMP	metrics_calculation.confusion_metrics:accuracy	when<with_columns	(pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN")) > 0
+credit_risk/metrics_calculation.py:57:14#1	DIV	metrics_calculation.confusion_metrics:accuracy	then<with_columns	(pl.col("TP") + pl.col("TN")) / (pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN"))
+credit_risk/metrics_calculation.py:58:9#1	LIT	metrics_calculation.confusion_metrics:accuracy	with_columns	...) .then((pl.col("TP") + pl.col("TN")) / (pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN"))) .otherwise(None)
+credit_risk/metrics_calculation.py:59:26#1	CMP	metrics_calculation.confusion_metrics:precision	when<with_columns	(pl.col("TP") + pl.col("FP")) > 0
+credit_risk/metrics_calculation.py:60:14#1	DIV	metrics_calculation.confusion_metrics:precision	then<with_columns	pl.col("TP") / (pl.col("TP") + pl.col("FP"))
+credit_risk/metrics_calculation.py:61:9#1	LIT	metrics_calculation.confusion_metrics:precision	with_columns	pl.when((pl.col("TP") + pl.col("FP")) > 0) .then(pl.col("TP") / (pl.col("TP") + pl.col("FP"))) .otherwise(None)
+credit_risk/metrics_calculation.py:62:23#1	CMP	metrics_calculation.confusion_metrics:recall	when<with_columns	(pl.col("TP") + pl.col("FN")) > 0
+credit_risk/metrics_calculation.py:63:14#1	DIV	metrics_calculation.confusion_metrics:recall	then<with_columns	pl.col("TP") / (pl.col("TP") + pl.col("FN"))
+credit_risk/metrics_calculation.py:64:9#1	LIT	metrics_calculation.confusion_metrics:recall	with_columns	pl.when((pl.col("TP") + pl.col("FN")) > 0) .then(pl.col("TP") / (pl.col("TP") + pl.col("FN"))) .otherwise(None)
+credit_risk/metrics_calculation.py:65:28#1	CMP	metrics_calculation.confusion_metrics:specificity	when<with_columns	(pl.col("TN") + pl.col("FP")) > 0
+credit_risk/metrics_calculation.py:66:14#1	DIV	metrics_calculation.confusion_metrics:specificity	then<with_columns	pl.col("TN") / (pl.col("TN") + pl.col("FP"))
+credit_risk/metrics_calculation.py:67:9#1	LIT	metrics_calculation.confusion_metrics:specificity	with_columns	pl.when((pl.col("TN") + pl.col("FP")) > 0) .then(pl.col("TN") / (pl.col("TN") + pl.col("FP"))) .otherwise(None)
+credit_risk/metrics_calculation.py:70:22#1	FRAME_COLS	metrics_calculation.confusion_metrics:metrics	-	...0)) .then(2 * (pl.col("precision") * pl.col("recall")) / (pl.col("precision") + pl.col("recall"))) .otherwise(None) )
+credit_risk/metrics_calculation.py:71:36#1	HELPER_CALL	metrics_calculation.confusion_metrics:f1_score	when<with_columns	sas_compat.gt(pl.col("precision") + pl.col("recall"), 0)
+credit_risk/metrics_calculation.py:72:14#1	DIV	metrics_calculation.confusion_metrics:f1_score	then<with_columns	2 * (pl.col("precision") * pl.col("recall")) / (pl.col("precision") + pl.col("recall"))
+credit_risk/metrics_calculation.py:72:14#1	INT_PROMO	metrics_calculation.confusion_metrics:f1_score	then<with_columns	2 * (pl.col("precision") * pl.col("recall"))
+credit_risk/metrics_calculation.py:73:9#1	LIT	metrics_calculation.confusion_metrics:f1_score	with_columns	..., 0)) .then(2 * (pl.col("precision") * pl.col("recall")) / (pl.col("precision") + pl.col("recall"))) .otherwise(None)
+credit_risk/metrics_calculation.py:75:22#1	FRAME_COLS	metrics_calculation.confusion_metrics:metrics	-	metrics.select("threshold", "accuracy", "precision", "recall", "f1_score", "specificity")
+credit_risk/metrics_calculation.py:75:104#1	CAST	metrics_calculation.confusion_metrics:metrics	-	metrics.select("threshold", "accuracy", "precision", "recall", "f1_score", "specificity").cast( pl.Float64 )
+credit_risk/metrics_calculation.py:86:36#1	OOS_CALL	metrics_calculation.run:logit_scored_valid	-	sas_compat.proc_import_csv(input_dir / "risk_scores_validation.csv", guessingrows=20)
+credit_risk/metrics_calculation.py:87:36#1	OOS_CALL	metrics_calculation.run:logit_scored_train	-	sas_compat.proc_import_csv(input_dir / "risk_scores_train.csv", guessingrows=20)
+credit_risk/metrics_calculation.py:92:27#1	HELPER_CALL	metrics_calculation.run:roc_stats	-	...ion( logit_scored_valid.get_column("default_flag"), logit_scored_valid.get_column("pd_logistic"), "Logistic Model", )
+credit_risk/metrics_calculation.py:93:27#1	COLREF	metrics_calculation.run:roc_stats	roc_association	logit_scored_valid.get_column("default_flag")
+credit_risk/metrics_calculation.py:94:27#1	COLREF	metrics_calculation.run:roc_stats	roc_association	logit_scored_valid.get_column("pd_logistic")
+credit_risk/metrics_calculation.py:100:28#1	FILTER	metrics_calculation.run:auc_summary	-	roc_stats.filter(pl.col("ROCModel") == "Logistic Model")
+credit_risk/metrics_calculation.py:100:35#1	CMP	metrics_calculation.run:auc_summary	filter	pl.col("ROCModel") == "Logistic Model"
+credit_risk/metrics_calculation.py:100:75#1	FRAME_COLS	metrics_calculation.run:auc_summary	-	....filter(pl.col("ROCModel") == "Logistic Model").select( "ROCModel", AUC=pl.col("Area"), Gini=2 * pl.col("Area") - 1 )
+credit_risk/metrics_calculation.py:101:45#1	INT_PROMO	metrics_calculation.run:Gini	select	2 * pl.col("Area")
+credit_risk/metrics_calculation.py:101:45#2	INT_PROMO	metrics_calculation.run:Gini	select	2 * pl.col("Area") - 1
+credit_risk/metrics_calculation.py:107:44#1	SORT	metrics_calculation.run:logit_scored_valid	-	logit_scored_valid.sort("pd_logistic", maintain_order=True)
+credit_risk/metrics_calculation.py:111:32#1	FRAME_COLS	metrics_calculation.run:totals	-	...ult_flag") == 0)), # R§2 SQL aggregates (S10) bad=sas_compat.sql_sum(sas_compat.flag(pl.col("default_flag") == 1)), )
+credit_risk/metrics_calculation.py:112:24#1	HELPER_CALL	metrics_calculation.run:good	select	sas_compat.sql_sum(sas_compat.flag(pl.col("default_flag") == 0))
+credit_risk/metrics_calculation.py:112:43#1	HELPER_CALL	metrics_calculation.run:good	sql_sum<select	sas_compat.flag(pl.col("default_flag") == 0)
+credit_risk/metrics_calculation.py:112:48#1	CMP	metrics_calculation.run:good	flag<sql_sum<select	pl.col("default_flag") == 0
+credit_risk/metrics_calculation.py:113:23#1	HELPER_CALL	metrics_calculation.run:bad	select	sas_compat.sql_sum(sas_compat.flag(pl.col("default_flag") == 1))
+credit_risk/metrics_calculation.py:113:42#1	HELPER_CALL	metrics_calculation.run:bad	sql_sum<select	sas_compat.flag(pl.col("default_flag") == 1)
+credit_risk/metrics_calculation.py:113:47#1	CMP	metrics_calculation.run:bad	flag<sql_sum<select	pl.col("default_flag") == 1
+credit_risk/metrics_calculation.py:115:23#1	HELPER_CALL	metrics_calculation.run:total_good_count	-	_into_float(cast(float | None, totals.item(0, "good")))
+credit_risk/metrics_calculation.py:115:61#1	ITEM	metrics_calculation.run:total_good_count	cast<_into_float	totals.item(0, "good")
+credit_risk/metrics_calculation.py:116:22#1	HELPER_CALL	metrics_calculation.run:total_bad_count	-	_into_float(cast(float | None, totals.item(0, "bad")))
+credit_risk/metrics_calculation.py:116:60#1	ITEM	metrics_calculation.run:total_bad_count	cast<_into_float	totals.item(0, "bad")
+credit_risk/metrics_calculation.py:121:40#1	FRAME_COLS	metrics_calculation.run:ks_calculation	-	...lag") == 0).cum_sum(), cum_bad=(1 - sas_compat.flag(pl.col("default_flag") == 0)).cum_sum(), # else branch (:96-97) )
+credit_risk/metrics_calculation.py:122:28#1	HELPER_CALL	metrics_calculation.run:cum_good	with_columns	sas_compat.flag(pl.col("default_flag") == 0)
+credit_risk/metrics_calculation.py:122:33#1	CMP	metrics_calculation.run:cum_good	flag<with_columns	pl.col("default_flag") == 0
+credit_risk/metrics_calculation.py:122:62#1	CUMSUM	metrics_calculation.run:cum_good	with_columns	sas_compat.flag(pl.col("default_flag") == 0).cum_sum()
+credit_risk/metrics_calculation.py:123:17#1	INT_PROMO	metrics_calculation.run:cum_bad	with_columns	1 - sas_compat.flag(pl.col("default_flag") == 0)
+credit_risk/metrics_calculation.py:123:32#1	HELPER_CALL	metrics_calculation.run:cum_bad	with_columns	sas_compat.flag(pl.col("default_flag") == 0)
+credit_risk/metrics_calculation.py:123:37#1	CMP	metrics_calculation.run:cum_bad	flag<with_columns	pl.col("default_flag") == 0
+credit_risk/metrics_calculation.py:123:67#1	CUMSUM	metrics_calculation.run:cum_bad	with_columns	(1 - sas_compat.flag(pl.col("default_flag") == 0)).cum_sum()
+credit_risk/metrics_calculation.py:125:36#1	FRAME_COLS	metrics_calculation.run:ks_calculation	-	...total_good_count, pl.Float64)), cum_pct_bad=sas_compat.div(pl.col("cum_bad"), pl.lit(total_bad_count, pl.Float64)), )
+credit_risk/metrics_calculation.py:126:32#1	HELPER_CALL	metrics_calculation.run:cum_pct_good	with_columns	sas_compat.div(pl.col("cum_good"), pl.lit(total_good_count, pl.Float64))
+credit_risk/metrics_calculation.py:126:59#1	LIT	metrics_calculation.run:cum_pct_good	div<with_columns	pl.lit(total_good_count, pl.Float64)
+credit_risk/metrics_calculation.py:127:31#1	HELPER_CALL	metrics_calculation.run:cum_pct_bad	with_columns	sas_compat.div(pl.col("cum_bad"), pl.lit(total_bad_count, pl.Float64))
+credit_risk/metrics_calculation.py:127:57#1	LIT	metrics_calculation.run:cum_pct_bad	div<with_columns	pl.lit(total_bad_count, pl.Float64)
+credit_risk/metrics_calculation.py:129:36#1	FRAME_COLS	metrics_calculation.run:ks_calculation	-	ks_calculation.with_columns( ks_value=(pl.col("cum_pct_good") - pl.col("cum_pct_bad")).abs() )
+credit_risk/metrics_calculation.py:130:66#1	UNARY	metrics_calculation.run:ks_value	with_columns	(pl.col("cum_pct_good") - pl.col("cum_pct_bad")).abs()
+credit_risk/metrics_calculation.py:135:34#1	FRAME_COLS	metrics_calculation.run:max_ks_value	-	ks_calculation.select(sas_compat.sql_max(pl.col("ks_value")))
+credit_risk/metrics_calculation.py:135:52#1	HELPER_CALL	metrics_calculation.run:max_ks_value	select	sas_compat.sql_max(pl.col("ks_value"))
+credit_risk/metrics_calculation.py:136:34#1	FILTER	metrics_calculation.run:ks_statistic	-	...ulation.filter( sas_compat.eq(pl.col("ks_value"), pl.lit(max_ks_value.item(0, 0), pl.Float64)) # SQL: . = . is true )
+credit_risk/metrics_calculation.py:137:19#1	HELPER_CALL	metrics_calculation.run:ks_statistic	filter	sas_compat.eq(pl.col("ks_value"), pl.lit(max_ks_value.item(0, 0), pl.Float64))
+credit_risk/metrics_calculation.py:137:45#1	LIT	metrics_calculation.run:ks_statistic	eq<filter	pl.lit(max_ks_value.item(0, 0), pl.Float64)
+credit_risk/metrics_calculation.py:137:62#1	ITEM	metrics_calculation.run:ks_statistic	lit<eq<filter	max_ks_value.item(0, 0)
+credit_risk/metrics_calculation.py:138:6#1	FRAME_COLS	metrics_calculation.run:ks_statistic	-	...m(0, 0), pl.Float64)) # SQL: . = . is true ).select(KS_Statistic=pl.col("ks_value"), KS_Cutoff=pl.col("pd_logistic"))
+credit_risk/metrics_calculation.py:143:49#1	HELPER_CALL	metrics_calculation.run:_confusion_03,_conf_matrix_03,metrics_03	-	confusion_metrics(0.3, "03", logit_scored_valid)
+credit_risk/metrics_calculation.py:144:49#1	HELPER_CALL	metrics_calculation.run:_confusion_04,_conf_matrix_04,metrics_04	-	confusion_metrics(0.4, "04", logit_scored_valid)
+credit_risk/metrics_calculation.py:145:49#1	HELPER_CALL	metrics_calculation.run:_confusion_05,_conf_matrix_05,metrics_05	-	confusion_metrics(0.5, "05", logit_scored_valid)
+credit_risk/metrics_calculation.py:146:49#1	HELPER_CALL	metrics_calculation.run:_confusion_06,_conf_matrix_06,metrics_06	-	confusion_metrics(0.6, "06", logit_scored_valid)
+credit_risk/metrics_calculation.py:147:49#1	HELPER_CALL	metrics_calculation.run:_confusion_07,_conf_matrix_07,metrics_07	-	confusion_metrics(0.7, "07", logit_scored_valid)
+credit_risk/metrics_calculation.py:150:28#1	CONCAT	metrics_calculation.run:threshold_analysis	-	pl.concat( [metrics_03, metrics_04, metrics_05, metrics_06, metrics_07], how="vertical" )
+credit_risk/metrics_calculation.py:158:37#1	FRAME_COLS	metrics_calculation.run:decile_data	-	...s( sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 10, descending=True).alias( "decile" ) )
+credit_risk/metrics_calculation.py:159:19#1	HELPER_CALL	metrics_calculation.run:decile	with_columns	sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 10, descending=True)
+credit_risk/metrics_calculation.py:159:55#1	COLREF	metrics_calculation.run:decile	proc_rank_groups<with_columns	logit_scored_valid.get_column("pd_logistic")
+credit_risk/metrics_calculation.py:167:27#1	FRAME_COLS	metrics_calculation.run:subquery	-	....col("default_flag")), # R§2 SQL aggregates (S10) overall_default_rate=sas_compat.sql_mean(pl.col("default_flag")), )
+credit_risk/metrics_calculation.py:168:34#1	HELPER_CALL	metrics_calculation.run:total_defaults	select	sas_compat.sql_sum(pl.col("default_flag"))
+credit_risk/metrics_calculation.py:169:40#1	HELPER_CALL	metrics_calculation.run:overall_default_rate	select	sas_compat.sql_mean(pl.col("default_flag"))
+credit_risk/metrics_calculation.py:171:52#1	ITEM	metrics_calculation.run:sq_total_defaults	cast	subquery.item(0, "total_defaults")
+credit_risk/metrics_calculation.py:172:58#1	ITEM	metrics_calculation.run:sq_overall_default_rate	cast	subquery.item(0, "overall_default_rate")
+credit_risk/metrics_calculation.py:174:20#1	GROUP_BY	metrics_calculation.run:decile_analysis	-	decile_data.group_by("decile", maintain_order=True)
+credit_risk/metrics_calculation.py:175:9#1	FRAME_COLS	metrics_calculation.run:decile_analysis	-	...pd_logistic")), min_pd=sas_compat.sql_min(pl.col("pd_logistic")), max_pd=sas_compat.sql_max(pl.col("pd_logistic")), )
+credit_risk/metrics_calculation.py:176:27#1	AGG	metrics_calculation.run:total_count	agg	pl.len()
+credit_risk/metrics_calculation.py:176:33#1	CAST	metrics_calculation.run:total_count	agg	pl.len().cast(pl.Int64)
+credit_risk/metrics_calculation.py:177:32#1	HELPER_CALL	metrics_calculation.run:defaults	agg	sas_compat.sql_sum(pl.col("default_flag"))
+credit_risk/metrics_calculation.py:178:36#1	HELPER_CALL	metrics_calculation.run:default_rate	agg	sas_compat.sql_mean(pl.col("default_flag"))
+credit_risk/metrics_calculation.py:179:30#1	HELPER_CALL	metrics_calculation.run:avg_pd	agg	sas_compat.sql_mean(pl.col("pd_logistic"))
+credit_risk/metrics_calculation.py:180:30#1	HELPER_CALL	metrics_calculation.run:min_pd	agg	sas_compat.sql_min(pl.col("pd_logistic"))
+credit_risk/metrics_calculation.py:181:30#1	HELPER_CALL	metrics_calculation.run:max_pd	agg	sas_compat.sql_max(pl.col("pd_logistic"))
+credit_risk/metrics_calculation.py:183:9#1	FRAME_COLS	metrics_calculation.run:decile_analysis	-	...l.col("pd_logistic")), max_pd=sas_compat.sql_max(pl.col("pd_logistic")), ) .with_columns(decile=pl.col("decile") + 1)
+credit_risk/metrics_calculation.py:183:29#1	INT_PROMO	metrics_calculation.run:decile	with_columns	pl.col("decile") + 1
+credit_risk/metrics_calculation.py:184:9#1	FRAME_COLS	metrics_calculation.run:decile_analysis	-	...s_compat.div( pl.col("default_rate"), pl.lit(sq_overall_default_rate, pl.Float64) ), # calculated default_rate, A13 )
+credit_risk/metrics_calculation.py:185:36#1	HELPER_CALL	metrics_calculation.run:capture_rate	with_columns	sas_compat.div( pl.col("defaults"), pl.lit(sq_total_defaults, pl.Float64) )
+credit_risk/metrics_calculation.py:186:39#1	LIT	metrics_calculation.run:capture_rate	div<with_columns	pl.lit(sq_total_defaults, pl.Float64)
+credit_risk/metrics_calculation.py:188:28#1	HELPER_CALL	metrics_calculation.run:lift	with_columns	sas_compat.div( pl.col("default_rate"), pl.lit(sq_overall_default_rate, pl.Float64) )
+credit_risk/metrics_calculation.py:189:43#1	LIT	metrics_calculation.run:lift	div<with_columns	pl.lit(sq_overall_default_rate, pl.Float64)
+credit_risk/metrics_calculation.py:192:9#1	SORT	metrics_calculation.run:decile_analysis	-	... pl.lit(sq_overall_default_rate, pl.Float64) ), # calculated default_rate, A13 ) .sort("decile", maintain_order=True)
+credit_risk/metrics_calculation.py:193:9#1	FRAME_COLS	metrics_calculation.run:decile_analysis	-	....select( "decile", "total_count", "defaults", "default_rate", "avg_pd", "min_pd", "max_pd", "capture_rate", "lift", )
+credit_risk/metrics_calculation.py:219:23#1	FRAME_COLS	metrics_calculation.run:into	-	....col("default_flag")), # R§2 SQL aggregates (S10) overall_default_rate=sas_compat.sql_mean(pl.col("default_flag")), )
+credit_risk/metrics_calculation.py:220:34#1	HELPER_CALL	metrics_calculation.run:total_defaults	select	sas_compat.sql_sum(pl.col("default_flag"))
+credit_risk/metrics_calculation.py:221:40#1	HELPER_CALL	metrics_calculation.run:overall_default_rate	select	sas_compat.sql_mean(pl.col("default_flag"))
+credit_risk/metrics_calculation.py:223:21#1	HELPER_CALL	metrics_calculation.run:total_defaults	-	_into_float(cast(float | None, into.item(0, "total_defaults")))
+credit_risk/metrics_calculation.py:223:57#1	ITEM	metrics_calculation.run:total_defaults	cast<_into_float	into.item(0, "total_defaults")
+credit_risk/metrics_calculation.py:224:27#1	HELPER_CALL	metrics_calculation.run:overall_default_rate	-	_into_float(cast(float | None, into.item(0, "overall_default_rate")))
+credit_risk/metrics_calculation.py:224:63#1	ITEM	metrics_calculation.run:overall_default_rate	cast<_into_float	into.item(0, "overall_default_rate")
+credit_risk/metrics_calculation.py:229:24#1	SORT	metrics_calculation.run:cumulative_lift	-	decile_analysis.sort("decile", maintain_order=True)
+credit_risk/metrics_calculation.py:230:9#1	FRAME_COLS	metrics_calculation.run:cumulative_lift	-	...in_order=True) .with_columns( cum_defaults=pl.col("defaults").cum_sum(), cum_count=pl.col("total_count").cum_sum(), )
+credit_risk/metrics_calculation.py:231:44#1	CUMSUM	metrics_calculation.run:cum_defaults	with_columns	pl.col("defaults").cum_sum()
+credit_risk/metrics_calculation.py:232:44#1	CUMSUM	metrics_calculation.run:cum_count	with_columns	pl.col("total_count").cum_sum()
+credit_risk/metrics_calculation.py:234:9#1	FRAME_COLS	metrics_calculation.run:cumulative_lift	-	... cum_lift=sas_compat.div( pl.col("cum_defaults") / pl.col("cum_count"), pl.lit(overall_default_rate, pl.Float64) ), )
+credit_risk/metrics_calculation.py:235:40#1	HELPER_CALL	metrics_calculation.run:cum_capture_rate	with_columns	sas_compat.div(pl.col("cum_defaults"), pl.lit(total_defaults, pl.Float64))
+credit_risk/metrics_calculation.py:235:71#1	LIT	metrics_calculation.run:cum_capture_rate	div<with_columns	pl.lit(total_defaults, pl.Float64)
+credit_risk/metrics_calculation.py:236:32#1	HELPER_CALL	metrics_calculation.run:cum_lift	with_columns	sas_compat.div( pl.col("cum_defaults") / pl.col("cum_count"), pl.lit(overall_default_rate, pl.Float64) )
+credit_risk/metrics_calculation.py:237:16#1	DIV	metrics_calculation.run:cum_lift	div<with_columns	pl.col("cum_defaults") / pl.col("cum_count")
+credit_risk/metrics_calculation.py:237:65#1	LIT	metrics_calculation.run:cum_lift	div<with_columns	pl.lit(overall_default_rate, pl.Float64)
+credit_risk/metrics_calculation.py:247:36#1	FRAME_COLS	metrics_calculation.run:train_bins	-	...rain.with_columns( sas_compat.proc_rank_groups(logit_scored_train.get_column("pd_logistic"), 10).alias("score_bin") )
+credit_risk/metrics_calculation.py:248:19#1	HELPER_CALL	metrics_calculation.run:score_bin	with_columns	sas_compat.proc_rank_groups(logit_scored_train.get_column("pd_logistic"), 10)
+credit_risk/metrics_calculation.py:248:55#1	COLREF	metrics_calculation.run:score_bin	proc_rank_groups<with_columns	logit_scored_train.get_column("pd_logistic")
+credit_risk/metrics_calculation.py:252:19#1	HELPER_CALL	metrics_calculation.run:valid_bin_col	-	...c_rank_apply_groups( logit_scored_train.get_column("pd_logistic"), logit_scored_valid.get_column("pd_logistic"), 10 )
+credit_risk/metrics_calculation.py:253:31#1	COLREF	metrics_calculation.run:valid_bin_col	proc_rank_apply_groups	logit_scored_train.get_column("pd_logistic")
+credit_risk/metrics_calculation.py:253:77#1	COLREF	metrics_calculation.run:valid_bin_col	proc_rank_apply_groups	logit_scored_valid.get_column("pd_logistic")
+credit_risk/metrics_calculation.py:256:24#1	HELPER_CALL	metrics_calculation.run:valid_bin_col	-	sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 10)
+credit_risk/metrics_calculation.py:256:60#1	COLREF	metrics_calculation.run:valid_bin_col	proc_rank_groups	logit_scored_valid.get_column("pd_logistic")
+credit_risk/metrics_calculation.py:258:36#1	FRAME_COLS	metrics_calculation.run:valid_bins	-	logit_scored_valid.with_columns(valid_bin_col.alias("score_bin"))
+credit_risk/metrics_calculation.py:263:19#1	GROUP_BY	metrics_calculation.run:a	-	train_bins.group_by("score_bin", maintain_order=True)
+credit_risk/metrics_calculation.py:263:62#1	FRAME_COLS	metrics_calculation.run:a	-	train_bins.group_by("score_bin", maintain_order=True).agg(cnt=pl.len().cast(pl.Int64))
+credit_risk/metrics_calculation.py:263:73#1	AGG	metrics_calculation.run:cnt	agg	pl.len()
+credit_risk/metrics_calculation.py:263:79#1	CAST	metrics_calculation.run:cnt	agg	pl.len().cast(pl.Int64)
+credit_risk/metrics_calculation.py:264:10#1	FRAME_COLS	metrics_calculation.run:a	-	a.with_columns(train_pct=sas_compat.div(pl.col("cnt"), train_bins.height))
+credit_risk/metrics_calculation.py:264:44#1	HELPER_CALL	metrics_calculation.run:train_pct	with_columns	sas_compat.div(pl.col("cnt"), train_bins.height)
+credit_risk/metrics_calculation.py:264:63#1	LEN	metrics_calculation.run:train_pct	div<with_columns	train_bins.height
+credit_risk/metrics_calculation.py:264:83#1	FRAME_COLS	metrics_calculation.run:a	-	a.with_columns(train_pct=sas_compat.div(pl.col("cnt"), train_bins.height)).drop("cnt")
+credit_risk/metrics_calculation.py:265:19#1	GROUP_BY	metrics_calculation.run:b	-	valid_bins.group_by("score_bin", maintain_order=True)
+credit_risk/metrics_calculation.py:265:62#1	FRAME_COLS	metrics_calculation.run:b	-	valid_bins.group_by("score_bin", maintain_order=True).agg(cnt=pl.len().cast(pl.Int64))
+credit_risk/metrics_calculation.py:265:73#1	AGG	metrics_calculation.run:cnt	agg	pl.len()
+credit_risk/metrics_calculation.py:265:79#1	CAST	metrics_calculation.run:cnt	agg	pl.len().cast(pl.Int64)
+credit_risk/metrics_calculation.py:266:10#1	FRAME_COLS	metrics_calculation.run:b	-	b.with_columns(valid_pct=sas_compat.div(pl.col("cnt"), valid_bins.height))
+credit_risk/metrics_calculation.py:266:44#1	HELPER_CALL	metrics_calculation.run:valid_pct	with_columns	sas_compat.div(pl.col("cnt"), valid_bins.height)
+credit_risk/metrics_calculation.py:266:63#1	LEN	metrics_calculation.run:valid_pct	div<with_columns	valid_bins.height
+credit_risk/metrics_calculation.py:266:83#1	FRAME_COLS	metrics_calculation.run:b	-	b.with_columns(valid_pct=sas_compat.div(pl.col("cnt"), valid_bins.height)).drop("cnt")
+credit_risk/metrics_calculation.py:272:28#1	JOIN	metrics_calculation.run:psi_calculation	-	a.join( b, on="score_bin", how="left", maintain_order="left", nulls_equal=True )
+credit_risk/metrics_calculation.py:274:10#1	FRAME_COLS	metrics_calculation.run:psi_calculation	-	...n="score_bin", how="left", maintain_order="left", nulls_equal=True ).with_columns(pl.col("valid_pct").fill_null(0.0))
+credit_risk/metrics_calculation.py:274:43#1	FILL_NULL	metrics_calculation.run:psi_calculation	with_columns	pl.col("valid_pct").fill_null(0.0)
+credit_risk/metrics_calculation.py:275:20#1	FLOAT_CONV	metrics_calculation.run:share_sum	-	float(psi_calculation.select(pl.col("valid_pct").sum()).item())
+credit_risk/metrics_calculation.py:275:42#1	FRAME_COLS	metrics_calculation.run:share_sum	float	psi_calculation.select(pl.col("valid_pct").sum())
+credit_risk/metrics_calculation.py:275:69#1	AGG	metrics_calculation.run:share_sum	select<float	pl.col("valid_pct").sum()
+credit_risk/metrics_calculation.py:275:76#1	ITEM	metrics_calculation.run:share_sum	float	psi_calculation.select(pl.col("valid_pct").sum()).item()
+credit_risk/metrics_calculation.py:276:11#1	CMP	metrics_calculation.run	-	abs(share_sum - 1.0) > 1e-9
+credit_risk/metrics_calculation.py:276:11#1	UNARY	metrics_calculation.run	-	abs(share_sum - 1.0)
+credit_risk/metrics_calculation.py:277:12#1	RAISE	metrics_calculation.run	-	raise ValueError("--fix-psi-bins: validation shares do not sum to 1")
+credit_risk/metrics_calculation.py:278:42#1	FRAME_COLS	metrics_calculation.run:psi_calculation	-	...pct"), eps).log() - (pl.col("train_pct") - pl.col("valid_pct")) * pl.max_horizontal(pl.col("valid_pct"), eps).log() )
+credit_risk/metrics_calculation.py:280:17#1	HORIZ	metrics_calculation.run:psi_component	with_columns	pl.max_horizontal(pl.col("train_pct"), eps)
+credit_risk/metrics_calculation.py:280:58#1	LOG_EXP_SQRT	metrics_calculation.run:psi_component	with_columns	pl.max_horizontal(pl.col("train_pct"), eps).log()
+credit_risk/metrics_calculation.py:281:63#1	HORIZ	metrics_calculation.run:psi_component	with_columns	pl.max_horizontal(pl.col("valid_pct"), eps)
+credit_risk/metrics_calculation.py:281:104#1	LOG_EXP_SQRT	metrics_calculation.run:psi_component	with_columns	pl.max_horizontal(pl.col("valid_pct"), eps).log()
+credit_risk/metrics_calculation.py:282:10#1	SORT	metrics_calculation.run:psi_calculation	-	...) - pl.col("valid_pct")) * pl.max_horizontal(pl.col("valid_pct"), eps).log() ).sort("score_bin", maintain_order=True)
+credit_risk/metrics_calculation.py:285:14#1	JOIN	metrics_calculation.run:psi_calculation	-	a.join(b, on="score_bin", how="inner", maintain_order="left", nulls_equal=True)
+credit_risk/metrics_calculation.py:286:13#1	FRAME_COLS	metrics_calculation.run:psi_calculation	-	...) - pl.col("valid_pct")) * sas_compat.sas_log(pl.col("train_pct") / pl.col("valid_pct")) # R§2 log; column / column )
+credit_risk/metrics_calculation.py:288:29#1	HELPER_CALL	metrics_calculation.run:psi_component	with_columns	sas_compat.sas_log(pl.col("train_pct") / pl.col("valid_pct"))
+credit_risk/metrics_calculation.py:288:37#1	DIV	metrics_calculation.run:psi_component	sas_log<with_columns	pl.col("train_pct") / pl.col("valid_pct")
+credit_risk/metrics_calculation.py:290:13#1	SORT	metrics_calculation.run:psi_calculation	-	...s_log(pl.col("train_pct") / pl.col("valid_pct")) # R§2 log; column / column ) .sort("score_bin", maintain_order=True)
+credit_risk/metrics_calculation.py:296:34#1	FRAME_COLS	metrics_calculation.run:psi_summary	-	psi_calculation.select(PSI=sas_compat.sql_sum(pl.col("psi_component")))
+credit_risk/metrics_calculation.py:296:56#1	HELPER_CALL	metrics_calculation.run:PSI	select	sas_compat.sql_sum(pl.col("psi_component"))
+credit_risk/metrics_calculation.py:297:30#1	FRAME_COLS	metrics_calculation.run:psi_summary	-	...")) .when(sas_compat.lt(pl.col("PSI"), 0.25)) .then(pl.lit("Some change")) .otherwise(pl.lit("Significant change")) )
+credit_risk/metrics_calculation.py:298:46#1	HELPER_CALL	metrics_calculation.run:PSI_interpretation	when<with_columns	sas_compat.lt(pl.col("PSI"), 0.1)
+credit_risk/metrics_calculation.py:300:25#1	HELPER_CALL	metrics_calculation.run:PSI_interpretation	when<with_columns	sas_compat.lt(pl.col("PSI"), 0.25)
+credit_risk/metrics_calculation.py:309:42#1	FRAME_COLS	metrics_calculation.run:calibration_data	-	...valid.with_columns( sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 20).alias("pred_bin") )
+credit_risk/metrics_calculation.py:310:19#1	HELPER_CALL	metrics_calculation.run:pred_bin	with_columns	sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 20)
+credit_risk/metrics_calculation.py:310:55#1	COLREF	metrics_calculation.run:pred_bin	proc_rank_groups<with_columns	logit_scored_valid.get_column("pd_logistic")
+credit_risk/metrics_calculation.py:317:25#1	GROUP_BY	metrics_calculation.run:calibration_plot	-	calibration_data.group_by("pred_bin", maintain_order=True)
+credit_risk/metrics_calculation.py:318:9#1	FRAME_COLS	metrics_calculation.run:calibration_plot	-	...§2 SQL aggregates (S10) mean_actual=sas_compat.sql_mean(pl.col("default_flag")), bin_count=pl.len().cast(pl.Int64), )
+credit_risk/metrics_calculation.py:319:38#1	HELPER_CALL	metrics_calculation.run:mean_predicted	agg	sas_compat.sql_mean(pl.col("pd_logistic"))
+credit_risk/metrics_calculation.py:320:35#1	HELPER_CALL	metrics_calculation.run:mean_actual	agg	sas_compat.sql_mean(pl.col("default_flag"))
+credit_risk/metrics_calculation.py:321:25#1	AGG	metrics_calculation.run:bin_count	agg	pl.len()
+credit_risk/metrics_calculation.py:321:31#1	CAST	metrics_calculation.run:bin_count	agg	pl.len().cast(pl.Int64)
+credit_risk/metrics_calculation.py:323:9#1	FRAME_COLS	metrics_calculation.run:calibration_plot	-	...fault_flag")), bin_count=pl.len().cast(pl.Int64), ) .select("pred_bin", "mean_predicted", "mean_actual", "bin_count")
+credit_risk/metrics_calculation.py:324:9#1	SORT	metrics_calculation.run:calibration_plot	-	...pl.Int64), ) .select("pred_bin", "mean_predicted", "mean_actual", "bin_count") .sort("pred_bin", maintain_order=True)
+credit_risk/metrics_calculation.py:332:36#1	HELPER_CALL	metrics_calculation.run:validation_summary	-	sas_compat.merge_one_to_one(auc_summary, ks_statistic, psi_summary)
+credit_risk/metrics_calculation.py:333:44#1	FRAME_COLS	metrics_calculation.run:validation_summary	-	....when(sas_compat.ge(pl.col("AUC"), 0.65)) .then(pl.lit("Requires Review")) .otherwise(pl.lit("Needs Improvement")), )
+credit_risk/metrics_calculation.py:336:23#1	HELPER_CALL	metrics_calculation.run:status	when<with_columns	sas_compat.ge(pl.col("AUC"), 0.7)
+credit_risk/metrics_calculation.py:337:25#1	HELPER_CALL	metrics_calculation.run:status	when<with_columns	sas_compat.ge(pl.col("KS_Statistic"), 0.3)
+credit_risk/metrics_calculation.py:338:25#1	HELPER_CALL	metrics_calculation.run:status	when<with_columns	sas_compat.lt(pl.col("PSI"), 0.25)
+credit_risk/metrics_calculation.py:341:25#1	HELPER_CALL	metrics_calculation.run:status	when<with_columns	sas_compat.ge(pl.col("AUC"), 0.65)
+credit_risk/metrics_calculation.py:351:15#1	OOS_CALL	metrics_calculation.run	-	...ation_summary.csv", formats={"AUC": "8.4", "Gini": "8.4", "KS_Statistic": "8.4", "KS_Cutoff": "8.4", "PSI": "8.4"}, )
+credit_risk/metrics_calculation.py:356:15#1	OOS_CALL	metrics_calculation.run	-	sas_compat.write_sas_csv( decile_analysis, output_dir / "decile_analysis.csv", formats=decile_analysis_formats )
+credit_risk/metrics_calculation.py:359:15#1	OOS_CALL	metrics_calculation.run	-	sas_compat.write_sas_csv(threshold_analysis, output_dir / "threshold_analysis.csv", formats={})
+credit_risk/metrics_calculation.py:360:15#1	OOS_CALL	metrics_calculation.run	-	...t.write_sas_csv( ks_statistic, output_dir / "ks_statistic.csv", formats={"KS_Statistic": "8.4", "KS_Cutoff": "8.4"} )
+credit_risk/metrics_calculation.py:363:15#1	OOS_CALL	metrics_calculation.run	-	...sv( calibration_plot, output_dir / "calibration_plot.csv", formats={"mean_predicted": "8.4", "mean_actual": "8.4"}, )
+credit_risk/metrics_calculation.py:373:31#1	FILTER	metrics_calculation.run:at_50	-	threshold_analysis.filter(pl.col("threshold") == 0.5)
+credit_risk/metrics_calculation.py:373:38#1	CMP	metrics_calculation.run:at_50	filter	pl.col("threshold") == 0.5
+credit_risk/metrics_calculation.py:373:66#1	FRAME_COLS	metrics_calculation.run:at_50	-	...": "precision_at_50", "recall": "recall_at_50", "f1_score": "f1_score_at_50", "specificity": "specificity_at_50", } )
+credit_risk/metrics_calculation.py:382:43#1	HELPER_CALL	metrics_calculation.run:model_performance_metrics	-	sas_compat.merge_one_to_one(auc_summary, ks_statistic, psi_summary, at_50)
+credit_risk/metrics_calculation.py:383:58#1	FRAME_COLS	metrics_calculation.run:model_performance_metrics	-	....lit("Logistic Regression"), validation_date=pl.lit(dt.date.today()), dataset=pl.lit("Kaggle Give Me Some Credit"), )
+credit_risk/metrics_calculation.py:385:27#1	LIT	metrics_calculation.run:validation_date	with_columns	pl.lit(dt.date.today())
+credit_risk/metrics_calculation.py:385:39#1	DATE_TODAY	metrics_calculation.run:validation_date	lit<with_columns	dt.date.today()
+credit_risk/metrics_calculation.py:387:6#1	FRAME_COLS	metrics_calculation.run:model_performance_metrics	-	...alidation_date=pl.lit(dt.date.today()), dataset=pl.lit("Kaggle Give Me Some Credit"), ).drop("threshold", "ROCModel")
+credit_risk/metrics_calculation.py:391:15#1	OOS_CALL	metrics_calculation.run	-	...UC": "8.4", "Gini": "8.4", "KS_Statistic": "8.4", "KS_Cutoff": "8.4", "PSI": "8.4", "validation_date": "date9.", }, )
+credit_risk/metrics_calculation.py:410:29#1	CONSTRUCT	metrics_calculation.run:printed_roc_metrics	-	... # D8. on all seven numbers (A20) ] for c in roc_stats.columns }, schema={c: pl.String for c in roc_stats.columns}, )
+credit_risk/metrics_calculation.py:413:26#1	ITEM	metrics_calculation.run:printed_roc_metrics	DataFrame	roc_stats.item(0, c)
+credit_risk/metrics_calculation.py:414:19#1	CMP	metrics_calculation.run:printed_roc_metrics	DataFrame	c == "ROCModel"
+credit_risk/metrics_calculation.py:415:32#1	OOS_CALL	metrics_calculation.run:printed_roc_metrics	DataFrame	sas_compat.sas_d8( cast(float | None, roc_stats.item(0, c)) )
+credit_risk/metrics_calculation.py:416:49#1	ITEM	metrics_calculation.run:printed_roc_metrics	cast<sas_d8<DataFrame	roc_stats.item(0, c)
+credit_risk/metrics_calculation.py:419:21#1	DICT_ORDER	metrics_calculation.run:printed_roc_metrics	DataFrame	roc_stats.columns
+credit_risk/metrics_calculation.py:421:38#1	DICT_ORDER	metrics_calculation.run:printed_roc_metrics	DataFrame	roc_stats.columns
+credit_risk/metrics_calculation.py:423:15#1	OOS_CALL	metrics_calculation.run	-	sas_compat.write_sas_csv(printed_roc_metrics, output_dir / "printed_roc_metrics.csv", formats={})
+credit_risk/metrics_calculation.py:424:15#1	OOS_CALL	metrics_calculation.run	-	..._cumulative_lift.csv", formats={ **decile_analysis_formats, "cum_capture_rate": "percent8.2", "cum_lift": "8.2", }, )
+credit_risk/metrics_calculation.py:433:15#1	OOS_CALL	metrics_calculation.run	-	sas_compat.write_sas_csv(psi_calculation, output_dir / "printed_psi_calculation.csv", formats={})
+credit_risk/predict.py:27:26#1	OOS_CALL	predict.run:test_raw	-	sas_compat.proc_import_csv(data_dir / "cs-test.csv", guessingrows=None)
+credit_risk/predict.py:35:17#1	FRAME_COLS	predict.run:test_raw_clean	-	...nput_best32(pl.col("MonthlyIncome")), NumberOfDependents_num=sas_compat.input_best32(pl.col("NumberOfDependents")), )
+credit_risk/predict.py:36:41#1	OOS_CALL	predict.run:MonthlyIncome_num	with_columns	sas_compat.input_best32(pl.col("MonthlyIncome"))
+credit_risk/predict.py:37:46#1	OOS_CALL	predict.run:NumberOfDependents_num	with_columns	sas_compat.input_best32(pl.col("NumberOfDependents"))
+credit_risk/predict.py:39:9#1	FRAME_COLS	predict.run:test_raw_clean	-	...fDependents_num=sas_compat.input_best32(pl.col("NumberOfDependents")), ) .drop("MonthlyIncome", "NumberOfDependents")
+credit_risk/predict.py:40:9#1	FRAME_COLS	predict.run:test_raw_clean	-	..."NumberOfDependents") .rename({"MonthlyIncome_num": "MonthlyIncome", "NumberOfDependents_num": "NumberOfDependents"})
+credit_risk/predict.py:49:23#1	FILTER	predict.run:test_income_medians	-	test_raw_clean.filter(pl.col("MonthlyIncome").is_not_null())
+credit_risk/predict.py:49:54#1	IS_NULL	predict.run:test_income_medians	filter	pl.col("MonthlyIncome").is_not_null()
+credit_risk/predict.py:50:9#1	FRAME_COLS	predict.run:test_income_medians	-	...en(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4) .otherwise(5) )
+credit_risk/predict.py:51:30#1	CMP	predict.run:age_group	when<with_columns	pl.col("age") < 30
+credit_risk/predict.py:52:13#1	LIT	predict.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1)
+credit_risk/predict.py:53:18#1	CMP	predict.run:age_group	when<with_columns	pl.col("age") < 40
+credit_risk/predict.py:54:13#1	LIT	predict.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1) .when(pl.col("age") < 40) .then(2)
+credit_risk/predict.py:55:18#1	CMP	predict.run:age_group	when<with_columns	pl.col("age") < 50
+credit_risk/predict.py:56:13#1	LIT	predict.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1) .when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3)
+credit_risk/predict.py:57:18#1	CMP	predict.run:age_group	when<with_columns	pl.col("age") < 60
+credit_risk/predict.py:58:13#1	LIT	predict.run:age_group	with_columns	...30) .then(1) .when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4)
+credit_risk/predict.py:59:13#1	LIT	predict.run:age_group	with_columns	...when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4) .otherwise(5)
+credit_risk/predict.py:61:9#1	GROUP_BY	predict.run:test_income_medians	-	...("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4) .otherwise(5) ) .group_by("age_group", maintain_order=True)
+credit_risk/predict.py:62:9#1	FRAME_COLS	predict.run:test_income_medians	-	...n(4) .otherwise(5) ) .group_by("age_group", maintain_order=True) .agg(median_income=pl.col("MonthlyIncome").median())
+credit_risk/predict.py:62:51#1	AGG	predict.run:median_income	agg	pl.col("MonthlyIncome").median()
+credit_risk/predict.py:67:11#1	CMP	predict.run	-	medians is None
+credit_risk/predict.py:68:12#1	RAISE	predict.run	-	raise ValueError("--fix-train-medians requires --medians <income_medians.csv>")
+credit_risk/predict.py:69:33#1	OOS_CALL	predict.run:test_income_medians	-	pl.read_csv( medians, schema_overrides={"age_group": pl.Int32, "median_income": pl.Float64} )
+credit_risk/predict.py:72:11#1	CMP	predict.run	-	set(test_income_medians.get_column("age_group").to_list()) != {1, 2, 3, 4, 5}
+credit_risk/predict.py:72:11#1	SET	predict.run	-	set(test_income_medians.get_column("age_group").to_list())
+credit_risk/predict.py:72:35#1	COLREF	predict.run	set	test_income_medians.get_column("age_group")
+credit_risk/predict.py:72:59#1	TO_LIST	predict.run	set	test_income_medians.get_column("age_group").to_list()
+credit_risk/predict.py:72:73#1	SET	predict.run	-	{1, 2, 3, 4, 5}
+credit_risk/predict.py:73:12#1	RAISE	predict.run	-	raise ValueError(f"{medians}: age_group must cover exactly 1-5")
+credit_risk/predict.py:79:34#1	FRAME_COLS	predict.run:test_cleaned	-	...ompat.flag(pl.col("NumberOfDependents").is_null()), NumberOfDependents=pl.col("NumberOfDependents").fill_null(0.0), )
+credit_risk/predict.py:80:26#1	CMP	predict.run:age_group	when<with_columns	pl.col("age") < 30
+credit_risk/predict.py:81:9#1	LIT	predict.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1)
+credit_risk/predict.py:82:14#1	CMP	predict.run:age_group	when<with_columns	pl.col("age") < 40
+credit_risk/predict.py:83:9#1	LIT	predict.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1) .when(pl.col("age") < 40) .then(2)
+credit_risk/predict.py:84:14#1	CMP	predict.run:age_group	when<with_columns	pl.col("age") < 50
+credit_risk/predict.py:85:9#1	LIT	predict.run:age_group	with_columns	pl.when(pl.col("age") < 30) .then(1) .when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3)
+credit_risk/predict.py:86:14#1	CMP	predict.run:age_group	when<with_columns	pl.col("age") < 60
+credit_risk/predict.py:87:9#1	LIT	predict.run:age_group	with_columns	...30) .then(1) .when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4)
+credit_risk/predict.py:88:9#1	LIT	predict.run:age_group	with_columns	...when(pl.col("age") < 40) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 60) .then(4) .otherwise(5)
+credit_risk/predict.py:89:41#1	HELPER_CALL	predict.run:MonthlyIncome_missing	with_columns	sas_compat.flag(pl.col("MonthlyIncome").is_null())
+credit_risk/predict.py:89:70#1	IS_NULL	predict.run:MonthlyIncome_missing	flag<with_columns	pl.col("MonthlyIncome").is_null()
+credit_risk/predict.py:90:38#1	HELPER_CALL	predict.run:Dependents_missing	with_columns	sas_compat.flag(pl.col("NumberOfDependents").is_null())
+credit_risk/predict.py:90:72#1	IS_NULL	predict.run:Dependents_missing	flag<with_columns	pl.col("NumberOfDependents").is_null()
+credit_risk/predict.py:91:56#1	FILL_NULL	predict.run:NumberOfDependents	with_columns	pl.col("NumberOfDependents").fill_null(0.0)
+credit_risk/predict.py:99:32#1	JOIN	predict.run:test_imputed	-	test_cleaned.join( test_income_medians, on="age_group", how="left", maintain_order="left" )
+credit_risk/predict.py:101:6#1	FRAME_COLS	predict.run:test_imputed	-	...itLinesAndLoans").alias("num_credit_lines"), pl.col("NumberRealEstateLoansOrLines").alias("num_real_estate_loans"), )
+credit_risk/predict.py:104:16#1	CMP	predict.run:monthly_income	when<select	pl.col("MonthlyIncome_missing") == 1
+credit_risk/predict.py:115:9#1	INT_PROMO	predict.run:credit_utilization	select	pl.col("RevolvingUtilizationOfUnsecuredL") * 100
+credit_risk/predict.py:116:9#1	INT_PROMO	predict.run:debt_ratio	select	pl.col("DebtRatio") * 100
+credit_risk/predict.py:125:33#1	FRAME_COLS	predict.run:test_features	-	...as_sum( # INV total_late_payments pl.col("num_late_30_59"), pl.col("num_late_60_89"), pl.col("num_late_90_plus") ), )
+credit_risk/predict.py:126:39#1	HELPER_CALL	predict.run:total_late_payments	with_columns	...t.sas_sum( # INV total_late_payments pl.col("num_late_30_59"), pl.col("num_late_60_89"), pl.col("num_late_90_plus") )
+credit_risk/predict.py:130:34#1	FRAME_COLS	predict.run:test_features	-	...compat.flag(pl.col("num_dependents") >= 3), flag_few_credit_lines=sas_compat.flag(pl.col("num_credit_lines") <= 2), )
+credit_risk/predict.py:132:35#1	HELPER_CALL	predict.run:has_delinquency	with_columns	sas_compat.flag(pl.col("total_late_payments") > 0)
+credit_risk/predict.py:132:40#1	CMP	predict.run:has_delinquency	flag<with_columns	pl.col("total_late_payments") > 0
+credit_risk/predict.py:133:43#1	HELPER_CALL	predict.run:has_serious_delinquency	with_columns	sas_compat.flag(pl.col("num_late_90_plus") > 0)
+credit_risk/predict.py:133:48#1	CMP	predict.run:has_serious_delinquency	flag<with_columns	pl.col("num_late_90_plus") > 0
+credit_risk/predict.py:135:37#1	CMP	predict.run:credit_util_category	when<with_columns	pl.col("credit_utilization") < 30
+credit_risk/predict.py:136:9#1	LIT	predict.run:credit_util_category	with_columns	pl.when(pl.col("credit_utilization") < 30) .then(1)
+credit_risk/predict.py:137:14#1	CMP	predict.run:credit_util_category	when<with_columns	pl.col("credit_utilization") < 50
+credit_risk/predict.py:138:9#1	LIT	predict.run:credit_util_category	with_columns	pl.when(pl.col("credit_utilization") < 30) .then(1) .when(pl.col("credit_utilization") < 50) .then(2)
+credit_risk/predict.py:139:14#1	CMP	predict.run:credit_util_category	when<with_columns	pl.col("credit_utilization") < 75
+credit_risk/predict.py:140:9#1	LIT	predict.run:credit_util_category	with_columns	...") < 30) .then(1) .when(pl.col("credit_utilization") < 50) .then(2) .when(pl.col("credit_utilization") < 75) .then(3)
+credit_risk/predict.py:141:9#1	LIT	predict.run:credit_util_category	with_columns	...(1) .when(pl.col("credit_utilization") < 50) .then(2) .when(pl.col("credit_utilization") < 75) .then(3) .otherwise(4)
+credit_risk/predict.py:143:30#1	CMP	predict.run:debt_category	when<with_columns	pl.col("debt_ratio") < 30
+credit_risk/predict.py:144:9#1	LIT	predict.run:debt_category	with_columns	pl.when(pl.col("debt_ratio") < 30) .then(1)
+credit_risk/predict.py:145:14#1	CMP	predict.run:debt_category	when<with_columns	pl.col("debt_ratio") < 43
+credit_risk/predict.py:146:9#1	LIT	predict.run:debt_category	with_columns	pl.when(pl.col("debt_ratio") < 30) .then(1) .when(pl.col("debt_ratio") < 43) .then(2)
+credit_risk/predict.py:147:14#1	CMP	predict.run:debt_category	when<with_columns	pl.col("debt_ratio") < 60
+credit_risk/predict.py:148:9#1	LIT	predict.run:debt_category	with_columns	....col("debt_ratio") < 30) .then(1) .when(pl.col("debt_ratio") < 43) .then(2) .when(pl.col("debt_ratio") < 60) .then(3)
+credit_risk/predict.py:149:9#1	LIT	predict.run:debt_category	with_columns	...io") < 30) .then(1) .when(pl.col("debt_ratio") < 43) .then(2) .when(pl.col("debt_ratio") < 60) .then(3) .otherwise(4)
+credit_risk/predict.py:152:37#1	CMP	predict.run:income_per_dependent	when<with_columns	pl.col("num_dependents") > 0
+credit_risk/predict.py:153:14#1	DIV	predict.run:income_per_dependent	then<with_columns	pl.col("monthly_income") / (pl.col("num_dependents") + 1)
+credit_risk/predict.py:153:42#1	INT_PROMO	predict.run:income_per_dependent	then<with_columns	pl.col("num_dependents") + 1
+credit_risk/predict.py:156:32#1	DIV	predict.run:credit_lines_per_person	with_columns	pl.col("num_credit_lines") / (pl.col("num_dependents") + 1)
+credit_risk/predict.py:156:62#1	INT_PROMO	predict.run:credit_lines_per_person	with_columns	pl.col("num_dependents") + 1
+credit_risk/predict.py:158:29#1	CMP	predict.run:age_category	when<with_columns	pl.col("age") < 25
+credit_risk/predict.py:159:9#1	LIT	predict.run:age_category	with_columns	pl.when(pl.col("age") < 25) .then(1)
+credit_risk/predict.py:160:14#1	CMP	predict.run:age_category	when<with_columns	pl.col("age") < 35
+credit_risk/predict.py:161:9#1	LIT	predict.run:age_category	with_columns	pl.when(pl.col("age") < 25) .then(1) .when(pl.col("age") < 35) .then(2)
+credit_risk/predict.py:162:14#1	CMP	predict.run:age_category	when<with_columns	pl.col("age") < 50
+credit_risk/predict.py:163:9#1	LIT	predict.run:age_category	with_columns	pl.when(pl.col("age") < 25) .then(1) .when(pl.col("age") < 35) .then(2) .when(pl.col("age") < 50) .then(3)
+credit_risk/predict.py:164:14#1	CMP	predict.run:age_category	when<with_columns	pl.col("age") < 65
+credit_risk/predict.py:165:9#1	LIT	predict.run:age_category	with_columns	...25) .then(1) .when(pl.col("age") < 35) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 65) .then(4)
+credit_risk/predict.py:166:9#1	LIT	predict.run:age_category	with_columns	...when(pl.col("age") < 35) .then(2) .when(pl.col("age") < 50) .then(3) .when(pl.col("age") < 65) .then(4) .otherwise(5)
+credit_risk/predict.py:168:41#1	HELPER_CALL	predict.run:flag_high_utilization	with_columns	sas_compat.flag(pl.col("credit_utilization") > 75)
+credit_risk/predict.py:168:46#1	CMP	predict.run:flag_high_utilization	flag<with_columns	pl.col("credit_utilization") > 75
+credit_risk/predict.py:169:46#1	HELPER_CALL	predict.run:flag_very_high_utilization	with_columns	sas_compat.flag(pl.col("credit_utilization") > 100)
+credit_risk/predict.py:169:51#1	CMP	predict.run:flag_very_high_utilization	flag<with_columns	pl.col("credit_utilization") > 100
+credit_risk/predict.py:170:40#1	HELPER_CALL	predict.run:flag_high_debt_ratio	with_columns	sas_compat.flag(pl.col("debt_ratio") > 43)
+credit_risk/predict.py:170:45#1	CMP	predict.run:flag_high_debt_ratio	flag<with_columns	pl.col("debt_ratio") > 43
+credit_risk/predict.py:171:45#1	HELPER_CALL	predict.run:flag_very_high_debt_ratio	with_columns	sas_compat.flag(pl.col("debt_ratio") > 60)
+credit_risk/predict.py:171:50#1	CMP	predict.run:flag_very_high_debt_ratio	flag<with_columns	pl.col("debt_ratio") > 60
+credit_risk/predict.py:172:45#1	HELPER_CALL	predict.run:flag_recent_late_payments	with_columns	sas_compat.flag(pl.col("num_late_30_59") > 0)
+credit_risk/predict.py:172:50#1	CMP	predict.run:flag_recent_late_payments	flag<with_columns	pl.col("num_late_30_59") > 0
+credit_risk/predict.py:173:44#1	HELPER_CALL	predict.run:flag_serious_delinquency	with_columns	sas_compat.flag(pl.col("num_late_90_plus") > 0)
+credit_risk/predict.py:173:49#1	CMP	predict.run:flag_serious_delinquency	flag<with_columns	pl.col("num_late_90_plus") > 0
+credit_risk/predict.py:174:47#1	HELPER_CALL	predict.run:flag_multiple_delinquencies	with_columns	sas_compat.flag(pl.col("total_late_payments") >= 3)
+credit_risk/predict.py:174:52#1	CMP	predict.run:flag_multiple_delinquencies	flag<with_columns	pl.col("total_late_payments") >= 3
+credit_risk/predict.py:176:35#1	HELPER_CALL	predict.run:flag_low_income	with_columns	sas_compat.flag(sas_compat.lt(pl.col("monthly_income"), 2500))
+credit_risk/predict.py:176:51#1	HELPER_CALL	predict.run:flag_low_income	flag<with_columns	sas_compat.lt(pl.col("monthly_income"), 2500)
+credit_risk/predict.py:177:40#1	HELPER_CALL	predict.run:flag_many_dependents	with_columns	sas_compat.flag(pl.col("num_dependents") >= 3)
+credit_risk/predict.py:177:45#1	CMP	predict.run:flag_many_dependents	flag<with_columns	pl.col("num_dependents") >= 3
+credit_risk/predict.py:178:41#1	HELPER_CALL	predict.run:flag_few_credit_lines	with_columns	sas_compat.flag(pl.col("num_credit_lines") <= 2)
+credit_risk/predict.py:178:46#1	CMP	predict.run:flag_few_credit_lines	flag<with_columns	pl.col("num_credit_lines") <= 2
+credit_risk/predict.py:181:26#1	LIT	predict.run:financial_health	-	pl.lit(100.0)
+credit_risk/predict.py:183:9#1	CMP	predict.run	-	pl.col("credit_utilization") > 30
+credit_risk/predict.py:184:9#1	CMP	predict.run	-	pl.col("credit_utilization") > 75
+credit_risk/predict.py:185:9#1	CMP	predict.run	-	pl.col("debt_ratio") > 43
+credit_risk/predict.py:186:9#1	CMP	predict.run	-	pl.col("has_delinquency") != 0
+credit_risk/predict.py:187:9#1	CMP	predict.run	-	pl.col("num_late_90_plus") > 0
+credit_risk/predict.py:190:34#1	FRAME_COLS	predict.run:test_features	-	..._delinquencies"), pl.col("flag_low_income"), ), financial_health=sas_compat.sas_max(pl.lit(0.0), financial_health), )
+credit_risk/predict.py:191:36#1	HELPER_CALL	predict.run:total_risk_flags	with_columns	...debt_ratio"), pl.col("flag_serious_delinquency"), pl.col("flag_multiple_delinquencies"), pl.col("flag_low_income"), )
+credit_risk/predict.py:198:36#1	HELPER_CALL	predict.run:financial_health	with_columns	sas_compat.sas_max(pl.lit(0.0), financial_health)
+credit_risk/predict.py:198:47#1	LIT	predict.run:financial_health	sas_max<with_columns	pl.lit(0.0)
+credit_risk/predict.py:200:34#1	FRAME_COLS	predict.run:test_features	-	...log(pl.col("num_credit_lines") + 1), log_total_late_payments=sas_compat.sas_log(pl.col("total_late_payments") + 1), )
+credit_risk/predict.py:202:38#1	HELPER_CALL	predict.run:log_monthly_income	with_columns	sas_compat.sas_log(pl.col("monthly_income") + 1)
+credit_risk/predict.py:202:46#1	INT_PROMO	predict.run:log_monthly_income	sas_log<with_columns	pl.col("monthly_income") + 1
+credit_risk/predict.py:203:40#1	HELPER_CALL	predict.run:log_num_credit_lines	with_columns	sas_compat.sas_log(pl.col("num_credit_lines") + 1)
+credit_risk/predict.py:203:48#1	INT_PROMO	predict.run:log_num_credit_lines	sas_log<with_columns	pl.col("num_credit_lines") + 1
+credit_risk/predict.py:204:43#1	HELPER_CALL	predict.run:log_total_late_payments	with_columns	sas_compat.sas_log(pl.col("total_late_payments") + 1)
+credit_risk/predict.py:204:51#1	INT_PROMO	predict.run:log_total_late_payments	sas_log<with_columns	pl.col("total_late_payments") + 1
+credit_risk/predict.py:206:34#1	FRAME_COLS	predict.run:test_features	-	...l("credit_utilization"), pl.lit(200.0)), debt_ratio_capped=sas_compat.sas_min(pl.col("debt_ratio"), pl.lit(500.0)), )
+credit_risk/predict.py:210:48#1	HELPER_CALL	predict.run:utilization_debt_interaction	with_columns	sas_compat.div(pl.col("credit_utilization") * pl.col("debt_ratio"), 100)
+credit_risk/predict.py:211:45#1	HELPER_CALL	predict.run:credit_utilization_capped	with_columns	sas_compat.sas_min(pl.col("credit_utilization"), pl.lit(200.0))
+credit_risk/predict.py:211:86#1	LIT	predict.run:credit_utilization_capped	sas_min<with_columns	pl.lit(200.0)
+credit_risk/predict.py:212:37#1	HELPER_CALL	predict.run:debt_ratio_capped	with_columns	sas_compat.sas_min(pl.col("debt_ratio"), pl.lit(500.0))
+credit_risk/predict.py:212:70#1	LIT	predict.run:debt_ratio_capped	sas_min<with_columns	pl.lit(500.0)
+credit_risk/predict.py:217:17#1	OOS_CALL	predict.run:model	-	json.loads((input_dir / "model.json").read_text())
+credit_risk/predict.py:217:50#1	OOS_CALL	predict.run:model	loads	(input_dir / "model.json").read_text()
+credit_risk/predict.py:218:16#1	FLOAT_CONV	predict.run:intercept	-	float(model["intercept"])
+credit_risk/predict.py:218:22#1	LOOKUP	predict.run:intercept	float	model["intercept"]
+credit_risk/predict.py:219:38#1	STR_CONV	predict.run	-	str(k)
+credit_risk/predict.py:219:46#1	FLOAT_CONV	predict.run	-	float(v)
+credit_risk/predict.py:219:67#1	LOOKUP	predict.run	-	model["coefficients"]
+credit_risk/predict.py:219:89#1	DICT_ORDER	predict.run	-	model["coefficients"].items()
+credit_risk/predict.py:221:41#1	CMP	predict.run:absent	-	k not in test_features.columns
+credit_risk/predict.py:221:50#1	DICT_ORDER	predict.run:absent	-	test_features.columns
+credit_risk/predict.py:223:8#1	RAISE	predict.run	-	raise ValueError(f"model.json coefficient variables absent from the scoring frame: {absent}")
+credit_risk/predict.py:224:25#1	LIT	predict.run:predicted_logit	-	pl.lit(intercept)
+credit_risk/predict.py:226:35#1	DICT_ORDER	predict.run	-	coefficients.items()
+credit_risk/predict.py:228:37#1	FRAME_COLS	predict.run:test_scored_temp	-	test_features.with_columns(predicted_logit=predicted_logit)
+credit_risk/predict.py:232:35#1	FRAME_COLS	predict.run:test_scored	-	...ic: literal / column is column-wise (A13 note) pd_logistic=1 / (1 + sas_compat.sas_exp(-pl.col("predicted_logit"))) )
+credit_risk/predict.py:234:20#1	DIV	predict.run:pd_logistic	with_columns	1 / (1 + sas_compat.sas_exp(-pl.col("predicted_logit")))
+credit_risk/predict.py:234:25#1	INT_PROMO	predict.run:pd_logistic	with_columns	1 + sas_compat.sas_exp(-pl.col("predicted_logit"))
+credit_risk/predict.py:234:40#1	HELPER_CALL	predict.run:pd_logistic	with_columns	sas_compat.sas_exp(-pl.col("predicted_logit"))
+credit_risk/predict.py:235:6#1	FRAME_COLS	predict.run:test_scored	-	...column-wise (A13 note) pd_logistic=1 / (1 + sas_compat.sas_exp(-pl.col("predicted_logit"))) ).drop("predicted_logit")
+credit_risk/predict.py:239:35#1	FRAME_COLS	predict.run:test_predictions	-	...ic=sas_compat.flag(sas_compat.ge(pl.col("pd_logistic"), 0.5)), base_score=pl.lit(600.0), score_range=pl.lit(250.0), )
+credit_risk/predict.py:240:33#1	HELPER_CALL	predict.run:pred_logistic	with_columns	sas_compat.flag(sas_compat.ge(pl.col("pd_logistic"), 0.5))
+credit_risk/predict.py:240:49#1	HELPER_CALL	predict.run:pred_logistic	flag<with_columns	sas_compat.ge(pl.col("pd_logistic"), 0.5)
+credit_risk/predict.py:241:22#1	LIT	predict.run:base_score	with_columns	pl.lit(600.0)
+credit_risk/predict.py:242:23#1	LIT	predict.run:score_range	with_columns	pl.lit(250.0)
+credit_risk/predict.py:244:40#1	FRAME_COLS	predict.run:test_predictions	-	...redit_risk_score=sas_compat.sas_round( pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic")) ) )
+credit_risk/predict.py:246:37#1	HELPER_CALL	predict.run:credit_risk_score	with_columns	sas_compat.sas_round( pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic")) )
+credit_risk/predict.py:247:60#1	INT_PROMO	predict.run:credit_risk_score	sas_round<with_columns	1 - pl.col("pd_logistic")
+credit_risk/predict.py:250:40#1	FRAME_COLS	predict.run:test_predictions	-	...then(pl.lit("D")) .when(sas_compat.ge(pl.col("credit_risk_score"), 550)) .then(pl.lit("E")) .otherwise(pl.lit("F")) )
+credit_risk/predict.py:252:38#1	HELPER_CALL	predict.run:risk_grade	when<with_columns	sas_compat.ge(pl.col("credit_risk_score"), 750)
+credit_risk/predict.py:254:25#1	HELPER_CALL	predict.run:risk_grade	when<with_columns	sas_compat.ge(pl.col("credit_risk_score"), 700)
+credit_risk/predict.py:256:25#1	HELPER_CALL	predict.run:risk_grade	when<with_columns	sas_compat.ge(pl.col("credit_risk_score"), 650)
+credit_risk/predict.py:258:25#1	HELPER_CALL	predict.run:risk_grade	when<with_columns	sas_compat.ge(pl.col("credit_risk_score"), 600)
+credit_risk/predict.py:260:25#1	HELPER_CALL	predict.run:risk_grade	when<with_columns	sas_compat.ge(pl.col("credit_risk_score"), 550)
+credit_risk/predict.py:264:40#1	FRAME_COLS	predict.run:test_predictions	-	...) .when(pl.col("risk_grade") == "C") .then(pl.lit("Review")) .otherwise(pl.lit("Decline")), base_rate=pl.lit(0.05), )
+credit_risk/predict.py:265:52#1	IS_IN	predict.run:recommendation	when<with_columns	pl.col("risk_grade").is_in(["A", "B"])
+credit_risk/predict.py:267:14#1	CMP	predict.run:recommendation	when<with_columns	pl.col("risk_grade") == "C"
+credit_risk/predict.py:270:21#1	LIT	predict.run:base_rate	with_columns	pl.lit(0.05)
+credit_risk/predict.py:272:40#1	FRAME_COLS	predict.run:test_predictions	-	...+ 0.07) .when(pl.col("risk_grade") == "E") .then(pl.col("base_rate") + 0.10) .otherwise(pl.col("base_rate") + 0.15) )
+credit_risk/predict.py:273:30#1	CMP	predict.run:interest_rate	when<with_columns	pl.col("risk_grade") == "A"
+credit_risk/predict.py:275:14#1	CMP	predict.run:interest_rate	when<with_columns	pl.col("risk_grade") == "B"
+credit_risk/predict.py:277:14#1	CMP	predict.run:interest_rate	when<with_columns	pl.col("risk_grade") == "C"
+credit_risk/predict.py:279:14#1	CMP	predict.run:interest_rate	when<with_columns	pl.col("risk_grade") == "D"
+credit_risk/predict.py:281:14#1	CMP	predict.run:interest_rate	when<with_columns	pl.col("risk_grade") == "E"
+credit_risk/predict.py:287:18#1	SET	predict.run:KEEP_KAGGLE	-	{"row_id", "pd_logistic"}
+credit_risk/predict.py:288:41#1	FRAME_COLS	predict.run:kaggle_submission	-	test_predictions.select([c for c in test_predictions.columns if c in KEEP_KAGGLE])
+credit_risk/predict.py:288:60#1	DICT_ORDER	predict.run:kaggle_submission	select	test_predictions.columns
+credit_risk/predict.py:288:88#1	CMP	predict.run:kaggle_submission	select	c in KEEP_KAGGLE
+credit_risk/predict.py:291:16#1	SET	predict.run:KEEP_FULL	-	...edit_utilization", "debt_ratio", "total_late_payments", "num_credit_lines", "financial_health", "total_risk_flags", }
+credit_risk/predict.py:308:45#1	FRAME_COLS	predict.run:test_predictions_full	-	test_predictions.select([c for c in test_predictions.columns if c in KEEP_FULL])
+credit_risk/predict.py:308:64#1	DICT_ORDER	predict.run:test_predictions_full	select	test_predictions.columns
+credit_risk/predict.py:308:92#1	CMP	predict.run:test_predictions_full	select	c in KEEP_FULL
+credit_risk/predict.py:312:15#1	OOS_CALL	predict.run	-	sas_compat.write_sas_csv(kaggle_submission, output_dir / "kaggle_submission.csv", formats={})
+credit_risk/predict.py:315:15#1	OOS_CALL	predict.run	-	....write_sas_csv( test_predictions_full, output_dir / "test_predictions.csv", formats={"interest_rate": "percent8.2"} )
+credit_risk/sas_compat.py:41:0#1	CONST	FloatArray	-	FloatArray = npt.NDArray[np.float64]
+credit_risk/sas_compat.py:41:13#1	LOOKUP	FloatArray	-	npt.NDArray[np.float64]
+credit_risk/sas_compat.py:43:0#1	CONST	Z975	-	Z975: float = 1.959963984540054
+credit_risk/sas_compat.py:46:0#1	CONST	ExprOrNum	-	ExprOrNum = pl.Expr | float | int
+credit_risk/sas_compat.py:52:16#1	TYPE_DISPATCH	_e:return	-	isinstance(c, pl.Expr)
+credit_risk/sas_compat.py:52:47#1	LIT	_e:return	-	pl.lit(c)
+credit_risk/sas_compat.py:57:8#1	HELPER_CALL	_named:n	-	_e(first)
+credit_risk/sas_compat.py:57:23#1	META	_named:n	-	_e(first).meta.output_name(raise_if_undetermined=False)
+credit_risk/sas_compat.py:63:7#1	TYPE_DISPATCH	_has_bare_column	-	isinstance(node, dict)
+credit_risk/sas_compat.py:64:17#1	LOOKUP	_has_bare_column:d	cast	dict[str, object]
+credit_risk/sas_compat.py:65:11#1	CMP	_has_bare_column	-	"Agg" in d
+credit_risk/sas_compat.py:67:11#1	CMP	_has_bare_column	-	"Column" in d
+credit_risk/sas_compat.py:69:19#1	HELPER_CALL	_has_bare_column:return	any	_has_bare_column(v)
+credit_risk/sas_compat.py:69:50#1	DICT_ORDER	_has_bare_column:return	any	d.values()
+credit_risk/sas_compat.py:70:7#1	TYPE_DISPATCH	_has_bare_column	-	isinstance(node, list)
+credit_risk/sas_compat.py:71:19#1	HELPER_CALL	_has_bare_column:return	any	_has_bare_column(v)
+credit_risk/sas_compat.py:71:53#1	LOOKUP	_has_bare_column:return	cast<any	list[object]
+credit_risk/sas_compat.py:77:15#1	HELPER_CALL	_is_scalar:return	-	_has_bare_column(json.loads(e.meta.serialize(format="json")))
+credit_risk/sas_compat.py:77:37#1	OOS_CALL	_is_scalar:return	_has_bare_column	json.loads(e.meta.serialize(format="json"))
+credit_risk/sas_compat.py:77:50#1	META	_is_scalar:return	loads<_has_bare_column	e.meta.serialize(format="json")
+credit_risk/sas_compat.py:82:11#1	FLOAT_CONV	chi2_sf:return	-	float(chi2.sf(x, df))
+credit_risk/sas_compat.py:82:22#1	OOS_CALL	chi2_sf:return	float	chi2.sf(x, df)
+credit_risk/sas_compat.py:89:13#1	HELPER_CALL	lt:xe,ce	-	_e(x)
+credit_risk/sas_compat.py:89:20#1	HELPER_CALL	lt:xe,ce	-	_e(c)
+credit_risk/sas_compat.py:91:19#1	IS_NULL	lt:out	when	xe.is_null()
+credit_risk/sas_compat.py:92:17#1	IS_NULL	lt:out	then	ce.is_not_null()
+credit_risk/sas_compat.py:93:17#1	IS_NULL	lt:out	when	ce.is_null()
+credit_risk/sas_compat.py:94:17#1	LIT	lt:out	then	pl.lit(False)
+credit_risk/sas_compat.py:95:19#1	CMP	lt:out	otherwise	xe < ce
+credit_risk/sas_compat.py:96:9#1	FILL_NULL	lt:out	-	...(xe.is_null()) .then(ce.is_not_null()) .when(ce.is_null()) .then(pl.lit(False)) .otherwise(xe < ce) .fill_null(False)
+credit_risk/sas_compat.py:98:11#1	HELPER_CALL	lt:return	-	_named(x, out)
+credit_risk/sas_compat.py:103:11#1	HELPER_CALL	le:return	-	_named(x, ~lt(_e(c), x))
+credit_risk/sas_compat.py:103:22#1	HELPER_CALL	le:return	_named	lt(_e(c), x)
+credit_risk/sas_compat.py:103:25#1	HELPER_CALL	le:return	lt<_named	_e(c)
+credit_risk/sas_compat.py:108:11#1	HELPER_CALL	gt:return	-	_named(x, lt(_e(c), x))
+credit_risk/sas_compat.py:108:21#1	HELPER_CALL	gt:return	_named	lt(_e(c), x)
+credit_risk/sas_compat.py:108:24#1	HELPER_CALL	gt:return	lt<_named	_e(c)
+credit_risk/sas_compat.py:113:11#1	HELPER_CALL	ge:return	-	_named(x, ~lt(x, c))
+credit_risk/sas_compat.py:113:22#1	HELPER_CALL	ge:return	_named	lt(x, c)
+credit_risk/sas_compat.py:118:13#1	HELPER_CALL	eq:xe,ce	-	_e(x)
+credit_risk/sas_compat.py:118:20#1	HELPER_CALL	eq:xe,ce	-	_e(c)
+credit_risk/sas_compat.py:119:11#1	HELPER_CALL	eq:return	-	_named(x, (xe.is_null() & ce.is_null()) | (xe == ce).fill_null(False))
+credit_risk/sas_compat.py:119:25#1	IS_NULL	eq:return	_named	xe.is_null()
+credit_risk/sas_compat.py:119:40#1	IS_NULL	eq:return	_named	ce.is_null()
+credit_risk/sas_compat.py:119:54#1	CMP	eq:return	_named	xe == ce
+credit_risk/sas_compat.py:119:64#1	FILL_NULL	eq:return	_named	(xe == ce).fill_null(False)
+credit_risk/sas_compat.py:124:11#1	HELPER_CALL	flag:return	-	_named(cond, cond.fill_null(False).cast(pl.Int64))
+credit_risk/sas_compat.py:124:29#1	FILL_NULL	flag:return	_named	cond.fill_null(False)
+credit_risk/sas_compat.py:124:46#1	CAST	flag:return	_named	cond.fill_null(False).cast(pl.Int64)
+credit_risk/sas_compat.py:135:17#1	TO_NUMPY	div:num	-	np.asarray(s.struct.field("a").cast(pl.Float64).to_numpy(), dtype=np.float64)
+credit_risk/sas_compat.py:135:34#1	LOOKUP	div:num	asarray	s.struct.field("a")
+credit_risk/sas_compat.py:135:45#1	CAST	div:num	asarray	s.struct.field("a").cast(pl.Float64)
+credit_risk/sas_compat.py:135:62#1	TO_NUMPY	div:num	asarray	s.struct.field("a").cast(pl.Float64).to_numpy()
+credit_risk/sas_compat.py:136:17#1	TO_NUMPY	div:den	-	np.asarray(s.struct.field("b").cast(pl.Float64).to_numpy(), dtype=np.float64)
+credit_risk/sas_compat.py:136:34#1	LOOKUP	div:den	asarray	s.struct.field("b")
+credit_risk/sas_compat.py:136:45#1	CAST	div:den	asarray	s.struct.field("b").cast(pl.Float64)
+credit_risk/sas_compat.py:136:62#1	TO_NUMPY	div:den	asarray	s.struct.field("b").cast(pl.Float64).to_numpy()
+credit_risk/sas_compat.py:138:19#1	TO_NUMPY	div:q	-	np.asarray(np.divide(num, den), dtype=np.float64)
+credit_risk/sas_compat.py:138:30#1	DIV	div:q	asarray	np.divide(num, den)
+credit_risk/sas_compat.py:139:14#1	FINITE	div:q[~np.isfinite(q)]	-	np.isfinite(q)
+credit_risk/sas_compat.py:140:18#1	CONSTRUCT	div:return	-	pl.Series(q, dtype=pl.Float64, nan_to_null=True)
+credit_risk/sas_compat.py:140:18#1	NAN_TO_NULL	div:return	-	pl.Series(q, dtype=pl.Float64, nan_to_null=True)
+credit_risk/sas_compat.py:142:13#1	HELPER_CALL	div:ae,be	-	_e(a)
+credit_risk/sas_compat.py:142:20#1	HELPER_CALL	div:ae,be	-	_e(b)
+credit_risk/sas_compat.py:143:13#1	MAP_BATCHES	div:out	-	pl.struct(ae.cast(pl.Float64).alias("a"), be.cast(pl.Float64).alias("b"))
+credit_risk/sas_compat.py:143:23#1	CAST	div:a	struct	ae.cast(pl.Float64)
+credit_risk/sas_compat.py:143:55#1	CAST	div:b	struct	be.cast(pl.Float64)
+credit_risk/sas_compat.py:143:84#1	MAP_BATCHES	div:out	-	...pl.Float64).alias("b")).map_batches( run, return_dtype=pl.Float64, returns_scalar=_is_scalar(ae) and _is_scalar(be) )
+credit_risk/sas_compat.py:144:53#1	HELPER_CALL	div:out	map_batches	_is_scalar(ae)
+credit_risk/sas_compat.py:144:72#1	HELPER_CALL	div:out	map_batches	_is_scalar(be)
+credit_risk/sas_compat.py:146:11#1	HELPER_CALL	div:return	-	_named(a, out)
+credit_risk/sas_compat.py:151:10#1	HELPER_CALL	sas_sum:es	-	_e(a)
+credit_risk/sas_compat.py:151:16#1	CAST	sas_sum:es	-	_e(a).cast(pl.Float64)
+credit_risk/sas_compat.py:152:21#1	HORIZ	sas_sum:out	when	pl.all_horizontal([e.is_null() for e in es])
+credit_risk/sas_compat.py:152:39#1	IS_NULL	sas_sum:out	all_horizontal<when	e.is_null()
+credit_risk/sas_compat.py:152:64#1	LIT	sas_sum:out	-	pl.when(pl.all_horizontal([e.is_null() for e in es])).then(None)
+credit_risk/sas_compat.py:152:88#1	HORIZ	sas_sum:out	otherwise	pl.sum_horizontal(es)
+credit_risk/sas_compat.py:153:11#1	HELPER_CALL	sas_sum:return	-	_named(args[0], out)
+credit_risk/sas_compat.py:153:18#1	LOOKUP	sas_sum:return	_named	args[0]
+credit_risk/sas_compat.py:158:11#1	HELPER_CALL	sas_min:return	-	_named(args[0], pl.min_horizontal([_e(a) for a in args]))
+credit_risk/sas_compat.py:158:18#1	LOOKUP	sas_min:return	_named	args[0]
+credit_risk/sas_compat.py:158:30#1	HORIZ	sas_min:return	_named	pl.min_horizontal([_e(a) for a in args])
+credit_risk/sas_compat.py:158:46#1	HELPER_CALL	sas_min:return	min_horizontal<_named	_e(a)
+credit_risk/sas_compat.py:163:11#1	HELPER_CALL	sas_max:return	-	_named(args[0], pl.max_horizontal([_e(a) for a in args]))
+credit_risk/sas_compat.py:163:18#1	LOOKUP	sas_max:return	_named	args[0]
+credit_risk/sas_compat.py:163:30#1	HORIZ	sas_max:return	_named	pl.max_horizontal([_e(a) for a in args])
+credit_risk/sas_compat.py:163:46#1	HELPER_CALL	sas_max:return	max_horizontal<_named	_e(a)
+credit_risk/sas_compat.py:168:9#1	HELPER_CALL	sas_log:xe	-	_e(x)
+credit_risk/sas_compat.py:169:11#1	HELPER_CALL	sas_log:return	-	_named(x, pl.when(xe > 0).then(xe.log()).otherwise(None))
+credit_risk/sas_compat.py:169:29#1	CMP	sas_log:return	when<_named	xe > 0
+credit_risk/sas_compat.py:169:45#1	LOG_EXP_SQRT	sas_log:return	then<_named	xe.log()
+credit_risk/sas_compat.py:169:52#1	LIT	sas_log:return	_named	pl.when(xe > 0).then(xe.log()).otherwise(None)
+credit_risk/sas_compat.py:174:8#1	HELPER_CALL	sas_exp:v	-	_e(x)
+credit_risk/sas_compat.py:174:14#1	CAST	sas_exp:v	-	_e(x).cast(pl.Float64)
+credit_risk/sas_compat.py:174:31#1	LOG_EXP_SQRT	sas_exp:v	-	_e(x).cast(pl.Float64).exp()
+credit_risk/sas_compat.py:175:11#1	HELPER_CALL	sas_exp:return	-	_named(x, pl.when(v.is_finite()).then(v))
+credit_risk/sas_compat.py:175:31#1	FINITE	sas_exp:return	when<_named	v.is_finite()
+credit_risk/sas_compat.py:178:0#1	CONST	_TWO52	-	_TWO52 = 2.0**52
+credit_risk/sas_compat.py:178:9#1	POW	_TWO52	-	2.0**52
+credit_risk/sas_compat.py:179:0#1	CONST	_ROUND_FUZZ	-	_ROUND_FUZZ = 1e-12
+credit_risk/sas_compat.py:186:9#1	HELPER_CALL	sas_round:xf	-	_e(x)
+credit_risk/sas_compat.py:186:15#1	CAST	sas_round:xf	-	_e(x).cast(pl.Float64)
+credit_risk/sas_compat.py:187:11#1	UNARY	sas_round:a	-	xf.abs()
+credit_risk/sas_compat.py:188:11#1	FLOOR_CEIL	sas_round:fl	-	a.floor()
+credit_risk/sas_compat.py:189:9#1	CMP	sas_round:up	-	(a - fl) >= (0.5 - pl.max_horizontal(pl.lit(1.0), a) * _ROUND_FUZZ)
+credit_risk/sas_compat.py:189:31#1	HORIZ	sas_round:up	-	pl.max_horizontal(pl.lit(1.0), a)
+credit_risk/sas_compat.py:189:49#1	LIT	sas_round:up	max_horizontal	pl.lit(1.0)
+credit_risk/sas_compat.py:190:11#1	UNARY	sas_round:r	-	xf.sign()
+credit_risk/sas_compat.py:190:29#1	CAST	sas_round:r	-	up.cast(pl.Float64)
+credit_risk/sas_compat.py:191:11#1	HELPER_CALL	sas_round:return	-	_named(x, pl.when(a >= _TWO52).then(xf).otherwise(r) + 0.0)
+credit_risk/sas_compat.py:191:21#1	ADD_ZERO	sas_round:return	_named	pl.when(a >= _TWO52).then(xf).otherwise(r) + 0.0
+credit_risk/sas_compat.py:191:29#1	CMP	sas_round:return	when<_named	a >= _TWO52
+credit_risk/sas_compat.py:206:9#1	HELPER_CALL	sql_sum:xe	-	_e(x)
+credit_risk/sas_compat.py:207:11#1	HELPER_CALL	sql_sum:return	-	_named(x, pl.when(xe.count() > 0).then(xe.sum()))
+credit_risk/sas_compat.py:207:29#1	CMP	sql_sum:return	when<_named	xe.count() > 0
+credit_risk/sas_compat.py:207:32#1	AGG	sql_sum:return	when<_named	xe.count()
+credit_risk/sas_compat.py:207:53#1	AGG	sql_sum:return	then<_named	xe.sum()
+credit_risk/sas_compat.py:212:9#1	HELPER_CALL	sql_mean:xe	-	_e(x)
+credit_risk/sas_compat.py:213:11#1	HELPER_CALL	sql_mean:return	-	_named(x, pl.when(xe.count() > 0).then(xe.mean()))
+credit_risk/sas_compat.py:213:29#1	CMP	sql_mean:return	when<_named	xe.count() > 0
+credit_risk/sas_compat.py:213:32#1	AGG	sql_mean:return	when<_named	xe.count()
+credit_risk/sas_compat.py:213:53#1	AGG	sql_mean:return	then<_named	xe.mean()
+credit_risk/sas_compat.py:218:9#1	HELPER_CALL	sql_min:xe	-	_e(x)
+credit_risk/sas_compat.py:219:11#1	HELPER_CALL	sql_min:return	-	_named(x, pl.when(xe.count() > 0).then(xe.min()))
+credit_risk/sas_compat.py:219:29#1	CMP	sql_min:return	when<_named	xe.count() > 0
+credit_risk/sas_compat.py:219:32#1	AGG	sql_min:return	when<_named	xe.count()
+credit_risk/sas_compat.py:219:53#1	AGG	sql_min:return	then<_named	xe.min()
+credit_risk/sas_compat.py:224:9#1	HELPER_CALL	sql_max:xe	-	_e(x)
+credit_risk/sas_compat.py:225:11#1	HELPER_CALL	sql_max:return	-	_named(x, pl.when(xe.count() > 0).then(xe.max()))
+credit_risk/sas_compat.py:225:29#1	CMP	sql_max:return	when<_named	xe.count() > 0
+credit_risk/sas_compat.py:225:32#1	AGG	sql_max:return	when<_named	xe.count()
+credit_risk/sas_compat.py:225:53#1	AGG	sql_max:return	then<_named	xe.max()
+credit_risk/sas_compat.py:246:18#1	CONSTRUCT	merge_one_to_one:return	-	pl.DataFrame()
+credit_risk/sas_compat.py:247:8#1	PY_MINMAX	merge_one_to_one:n	-	max(f.height for f in frames)
+credit_risk/sas_compat.py:247:12#1	LEN	merge_one_to_one:n	max	f.height
+credit_risk/sas_compat.py:250:19#1	DICT_ORDER	merge_one_to_one	-	f.iter_columns()
+credit_risk/sas_compat.py:251:24#1	AGG	merge_one_to_one:pad	-	s.len()
+credit_risk/sas_compat.py:252:32#1	CMP	merge_one_to_one:cols[s.name]	-	pad == 0
+credit_risk/sas_compat.py:252:49#1	CONCAT	merge_one_to_one:cols[s.name]	-	pl.concat([s, pl.Series(s.name, [None] * pad, dtype=s.dtype)])
+credit_risk/sas_compat.py:252:63#1	CONSTRUCT	merge_one_to_one:cols[s.name]	concat	pl.Series(s.name, [None] * pad, dtype=s.dtype)
+credit_risk/sas_compat.py:253:14#1	CONSTRUCT	merge_one_to_one:return	-	pl.DataFrame(list(cols.values()))
+credit_risk/sas_compat.py:253:34#1	DICT_ORDER	merge_one_to_one:return	list<DataFrame	cols.values()
+credit_risk/sas_compat.py:613:10#1	AGG	proc_rank_groups:n	-	x.len()
+credit_risk/sas_compat.py:613:20#1	AGG	proc_rank_groups:n	-	x.null_count()
+credit_risk/sas_compat.py:614:10#1	RANK	proc_rank_groups:r	-	x.rank("average", descending=descending)
+credit_risk/sas_compat.py:615:11#1	FLOOR_CEIL	proc_rank_groups:g	-	np.floor(np.divide(np.asarray(r.to_numpy(), dtype=np.float64) * k, n + 1))
+credit_risk/sas_compat.py:615:20#1	DIV	proc_rank_groups:g	floor	np.divide(np.asarray(r.to_numpy(), dtype=np.float64) * k, n + 1)
+credit_risk/sas_compat.py:615:30#1	TO_NUMPY	proc_rank_groups:g	divide<floor	np.asarray(r.to_numpy(), dtype=np.float64)
+credit_risk/sas_compat.py:615:40#1	TO_NUMPY	proc_rank_groups:g	asarray<divide<floor	r.to_numpy()
+credit_risk/sas_compat.py:615:75#1	INT_PROMO	proc_rank_groups:g	divide<floor	n + 1
+credit_risk/sas_compat.py:616:14#1	CONSTRUCT	proc_rank_groups:return	-	pl.Series(x.name, g, dtype=pl.Float64, nan_to_null=True)
+credit_risk/sas_compat.py:616:14#1	NAN_TO_NULL	proc_rank_groups:return	-	pl.Series(x.name, g, dtype=pl.Float64, nan_to_null=True)
+credit_risk/sas_compat.py:616:68#1	CAST	proc_rank_groups:return	-	pl.Series(x.name, g, dtype=pl.Float64, nan_to_null=True).cast(pl.Int64)
+credit_risk/sas_compat.py:624:20#1	DROP_NULLS	proc_rank_apply_groups:ref	-	reference.drop_nulls()
+credit_risk/sas_compat.py:625:13#1	HELPER_CALL	proc_rank_apply_groups:groups	-	proc_rank_groups(ref, k)
+credit_risk/sas_compat.py:626:16#1	CONSTRUCT	proc_rank_apply_groups:starts	-	pl.DataFrame({"g": groups, "v": ref})
+credit_risk/sas_compat.py:626:51#1	GROUP_BY	proc_rank_apply_groups:starts	-	pl.DataFrame({"g": groups, "v": ref}).group_by("g")
+credit_risk/sas_compat.py:626:65#1	FRAME_COLS	proc_rank_apply_groups:starts	-	pl.DataFrame({"g": groups, "v": ref}).group_by("g").agg(lo=pl.col("v").min())
+credit_risk/sas_compat.py:626:84#1	AGG	proc_rank_apply_groups:lo	agg	pl.col("v").min()
+credit_risk/sas_compat.py:626:91#1	SORT	proc_rank_apply_groups:starts	-	pl.DataFrame({"g": groups, "v": ref}).group_by("g").agg(lo=pl.col("v").min()).sort("g")
+credit_risk/sas_compat.py:627:19#1	COLREF	proc_rank_apply_groups:g_arr	-	starts.get_column("g")
+credit_risk/sas_compat.py:627:35#1	TO_NUMPY	proc_rank_apply_groups:g_arr	-	starts.get_column("g").to_numpy()
+credit_risk/sas_compat.py:628:16#1	COLREF	proc_rank_apply_groups:lo	-	starts.get_column("lo")
+credit_risk/sas_compat.py:628:33#1	TO_NUMPY	proc_rank_apply_groups:lo	-	starts.get_column("lo").to_numpy()
+credit_risk/sas_compat.py:629:12#1	TO_NUMPY	proc_rank_apply_groups:xv	-	np.asarray(x.fill_null(np.nan).to_numpy(), dtype=np.float64)
+credit_risk/sas_compat.py:629:22#1	FILL_NULL	proc_rank_apply_groups:xv	asarray	x.fill_null(np.nan)
+credit_risk/sas_compat.py:629:40#1	TO_NUMPY	proc_rank_apply_groups:xv	asarray	x.fill_null(np.nan).to_numpy()
+credit_risk/sas_compat.py:630:10#1	INT_PROMO	proc_rank_apply_groups:idx	-	np.searchsorted(lo, xv, side="right") - 1
+credit_risk/sas_compat.py:630:13#1	SEARCHSORTED	proc_rank_apply_groups:idx	-	np.searchsorted(lo, xv, side="right")
+credit_risk/sas_compat.py:631:13#1	NP_ELEMWISE	proc_rank_apply_groups:out	-	np.where(idx < 0, g_arr[0], g_arr[np.clip(idx, 0, None)])
+credit_risk/sas_compat.py:631:19#1	CMP	proc_rank_apply_groups:out	where	idx < 0
+credit_risk/sas_compat.py:631:28#1	LOOKUP	proc_rank_apply_groups:out	where	g_arr[0]
+credit_risk/sas_compat.py:631:38#1	LOOKUP	proc_rank_apply_groups:out	where	g_arr[np.clip(idx, 0, None)]
+credit_risk/sas_compat.py:631:47#1	NP_ELEMWISE	proc_rank_apply_groups:out	where	np.clip(idx, 0, None)
+credit_risk/sas_compat.py:631:68#1	CAST	proc_rank_apply_groups:out	-	np.where(idx < 0, g_arr[0], g_arr[np.clip(idx, 0, None)]).astype(np.float64)
+credit_risk/sas_compat.py:632:11#1	FINITE	proc_rank_apply_groups:out[np.isnan(xv)]	-	np.isnan(xv)
+credit_risk/sas_compat.py:633:14#1	CONSTRUCT	proc_rank_apply_groups:return	-	pl.Series(x.name, out, dtype=pl.Float64, nan_to_null=True)
+credit_risk/sas_compat.py:633:14#1	NAN_TO_NULL	proc_rank_apply_groups:return	-	pl.Series(x.name, out, dtype=pl.Float64, nan_to_null=True)
+credit_risk/sas_compat.py:633:70#1	CAST	proc_rank_apply_groups:return	-	pl.Series(x.name, out, dtype=pl.Float64, nan_to_null=True).cast(pl.Int64)
+credit_risk/sas_compat.py:637:0#1	DATACLASS	LogisticFit	-	class LogisticFit
+credit_risk/sas_compat.py:656:18#1	TO_NUMPY	_expit:return	-	np.asarray(1.0 / (1.0 + np.exp(-eta)), dtype=np.float64)
+credit_risk/sas_compat.py:656:26#1	DIV	_expit:return	asarray	1.0 / (1.0 + np.exp(-eta))
+credit_risk/sas_compat.py:656:42#1	LOG_EXP_SQRT	_expit:return	asarray	np.exp(-eta)
+credit_risk/sas_compat.py:823:0#1	DATACLASS	RocAssociation	-	class RocAssociation
+credit_risk/sas_compat.py:833:0#1	CONST	_TIE_EPS	-	_TIE_EPS = 1e-8
+credit_risk/sas_compat.py:837:0#1	DATACLASS	_Pairs	-	class _Pairs
+credit_risk/sas_compat.py:848:11#1	CONSTRUCT	_pairs:d	-	pl.DataFrame({"y": y.cast(pl.Float64), "s": score.cast(pl.Float64)})
+credit_risk/sas_compat.py:848:29#1	CAST	_pairs:d	DataFrame	y.cast(pl.Float64)
+credit_risk/sas_compat.py:848:58#1	CAST	_pairs:d	DataFrame	score.cast(pl.Float64)
+credit_risk/sas_compat.py:848:77#1	DROP_NULLS	_pairs:d	-	pl.DataFrame({"y": y.cast(pl.Float64), "s": score.cast(pl.Float64)}).drop_nulls()
+credit_risk/sas_compat.py:849:12#1	TO_NUMPY	_pairs:yy	-	np.asarray(d.get_column("y").to_numpy(), dtype=np.float64)
+credit_risk/sas_compat.py:849:22#1	COLREF	_pairs:yy	asarray	d.get_column("y")
+credit_risk/sas_compat.py:849:38#1	TO_NUMPY	_pairs:yy	asarray	d.get_column("y").to_numpy()
+credit_risk/sas_compat.py:850:12#1	TO_NUMPY	_pairs:ss	-	np.asarray(d.get_column("s").to_numpy(), dtype=np.float64)
+credit_risk/sas_compat.py:850:22#1	COLREF	_pairs:ss	asarray	d.get_column("s")
+credit_risk/sas_compat.py:850:38#1	TO_NUMPY	_pairs:ss	asarray	d.get_column("s").to_numpy()
+credit_risk/sas_compat.py:851:12#1	SORT	_pairs:ev	-	np.sort(ss[yy == 1])
+credit_risk/sas_compat.py:851:17#1	LOOKUP	_pairs:ev	sort	ss[yy == 1]
+credit_risk/sas_compat.py:851:20#1	CMP	_pairs:ev	sort	yy == 1
+credit_risk/sas_compat.py:852:12#1	SORT	_pairs:ne	-	np.sort(ss[yy == 0])
+credit_risk/sas_compat.py:852:17#1	LOOKUP	_pairs:ne	sort	ss[yy == 0]
+credit_risk/sas_compat.py:852:20#1	CMP	_pairs:ne	sort	yy == 0
+credit_risk/sas_compat.py:853:13#1	LEN	_pairs:n1,n0	-	len(ev)
+credit_risk/sas_compat.py:853:22#1	LEN	_pairs:n1,n0	-	len(ne)
+credit_risk/sas_compat.py:854:15#1	SEARCHSORTED	_pairs:lo_ne	-	np.searchsorted(ne, ev - _TIE_EPS, side="left")
+credit_risk/sas_compat.py:855:15#1	SEARCHSORTED	_pairs:le_ne	-	np.searchsorted(ne, ev + _TIE_EPS, side="right")
+credit_risk/sas_compat.py:856:15#1	SEARCHSORTED	_pairs:lo_ev	-	np.searchsorted(ev, ne - _TIE_EPS, side="left")
+credit_risk/sas_compat.py:857:15#1	SEARCHSORTED	_pairs:le_ev	-	np.searchsorted(ev, ne + _TIE_EPS, side="right")
+credit_risk/sas_compat.py:858:11#1	F2I_INT	_pairs:conc	-	int(lo_ne.sum())
+credit_risk/sas_compat.py:858:21#1	AGG	_pairs:conc	int	lo_ne.sum()
+credit_risk/sas_compat.py:859:11#1	F2I_INT	_pairs:tied	-	int((le_ne - lo_ne).sum())
+credit_risk/sas_compat.py:859:31#1	AGG	_pairs:tied	int	(le_ne - lo_ne).sum()
+credit_risk/sas_compat.py:860:10#1	DIV	_pairs:v10	-	(lo_ne + 0.5 * (le_ne - lo_ne)) / max(n0, 1)
+credit_risk/sas_compat.py:860:44#1	PY_MINMAX	_pairs:v10	-	max(n0, 1)
+credit_risk/sas_compat.py:861:10#1	DIV	_pairs:v01	-	((n1 - le_ev) + 0.5 * (le_ev - lo_ev)) / max(n1, 1)
+credit_risk/sas_compat.py:861:51#1	PY_MINMAX	_pairs:v01	-	max(n1, 1)
+credit_risk/sas_compat.py:862:11#1	HELPER_CALL	_pairs:return	-	_Pairs(conc, n1 * n0 - conc - tied, tied, n1, n0, np.asarray(v10), np.asarray(v01))
+credit_risk/sas_compat.py:862:64#1	TO_NUMPY	_pairs:return	_Pairs	np.asarray(v10)
+credit_risk/sas_compat.py:862:81#1	TO_NUMPY	_pairs:return	_Pairs	np.asarray(v01)
+credit_risk/sas_compat.py:866:19#1	CMP	_ratio:return	-	b == 0
+credit_risk/sas_compat.py:866:31#1	DIV	_ratio:return	-	a / b
+credit_risk/sas_compat.py:884:8#1	HELPER_CALL	roc_association:q	-	_pairs(y, score)
+credit_risk/sas_compat.py:887:11#1	HELPER_CALL	roc_association:area	-	_ratio(q.conc + 0.5 * q.tied, p)
+credit_risk/sas_compat.py:889:7#1	CMP	roc_association	-	q.n1 >= 2
+credit_risk/sas_compat.py:889:21#1	CMP	roc_association	-	q.n0 >= 2
+credit_risk/sas_compat.py:890:18#1	LOG_EXP_SQRT	roc_association:se	-	math.sqrt(float(np.var(q.v10, ddof=1)) / q.n1 + float(np.var(q.v01, ddof=1)) / q.n0)
+credit_risk/sas_compat.py:890:23#1	DIV	roc_association:se	sqrt	float(np.var(q.v10, ddof=1)) / q.n1
+credit_risk/sas_compat.py:890:23#1	FLOAT_CONV	roc_association:se	sqrt	float(np.var(q.v10, ddof=1))
+credit_risk/sas_compat.py:890:32#1	AGG	roc_association:se	float<sqrt	np.var(q.v10, ddof=1)
+credit_risk/sas_compat.py:890:61#1	DIV	roc_association:se	sqrt	float(np.var(q.v01, ddof=1)) / q.n0
+credit_risk/sas_compat.py:890:61#1	FLOAT_CONV	roc_association:se	sqrt	float(np.var(q.v01, ddof=1))
+credit_risk/sas_compat.py:890:70#1	AGG	roc_association:se	float<sqrt	np.var(q.v01, ddof=1)
+credit_risk/sas_compat.py:892:8#1	HELPER_CALL	roc_association:r	-	... None or se is None else area + Z975 * se, _ratio(cd, p), _ratio(cd, q.conc + q.disc), _ratio(cd, n * (n - 1) / 2), )
+credit_risk/sas_compat.py:895:16#1	CMP	roc_association:r	RocAssociation	area is None
+credit_risk/sas_compat.py:895:32#1	CMP	roc_association:r	RocAssociation	se is None
+credit_risk/sas_compat.py:896:16#1	CMP	roc_association:r	RocAssociation	area is None
+credit_risk/sas_compat.py:896:32#1	CMP	roc_association:r	RocAssociation	se is None
+credit_risk/sas_compat.py:897:8#1	HELPER_CALL	roc_association:r	RocAssociation	_ratio(cd, p)
+credit_risk/sas_compat.py:898:8#1	HELPER_CALL	roc_association:r	RocAssociation	_ratio(cd, q.conc + q.disc)
+credit_risk/sas_compat.py:899:8#1	HELPER_CALL	roc_association:r	RocAssociation	_ratio(cd, n * (n - 1) / 2)
+credit_risk/sas_compat.py:899:19#1	DIV	roc_association:r	_ratio<RocAssociation	n * (n - 1) / 2
+credit_risk/sas_compat.py:899:24#1	INT_PROMO	roc_association:r	_ratio<RocAssociation	n - 1
+credit_risk/sas_compat.py:901:7#1	CMP	roc_association	-	label is None
+credit_risk/sas_compat.py:903:14#1	CONSTRUCT	roc_association:return	-	... "ROCModel": pl.String, **{k: pl.Float64 for k in "Area StdErr LowerArea UpperArea SomersD Gamma TauA".split()}, }, )
+credit_risk/sas_compat.py:922:0#1	DATACLASS	AssociationTable	-	class AssociationTable
+credit_risk/sas_compat.py:940:8#1	HELPER_CALL	association_table:q	-	_pairs(y, pd)
+credit_risk/sas_compat.py:946:23#1	CMP	association_table:return	-	p == 0
+credit_risk/sas_compat.py:946:35#1	DIV	association_table:return	-	100.0 * a / p
+credit_risk/sas_compat.py:948:11#1	HELPER_CALL	association_table:return	-	...ied), p, _ratio(cd, p), _ratio(cd, q.conc + q.disc), _ratio(cd, n * (n - 1) / 2), _ratio(q.conc + 0.5 * q.tied, p), )
+credit_risk/sas_compat.py:949:8#1	HELPER_CALL	association_table:return	AssociationTable	pct(q.conc)
+credit_risk/sas_compat.py:950:8#1	HELPER_CALL	association_table:return	AssociationTable	pct(q.disc)
+credit_risk/sas_compat.py:951:8#1	HELPER_CALL	association_table:return	AssociationTable	pct(q.tied)
+credit_risk/sas_compat.py:953:8#1	HELPER_CALL	association_table:return	AssociationTable	_ratio(cd, p)
+credit_risk/sas_compat.py:954:8#1	HELPER_CALL	association_table:return	AssociationTable	_ratio(cd, q.conc + q.disc)
+credit_risk/sas_compat.py:955:8#1	HELPER_CALL	association_table:return	AssociationTable	_ratio(cd, n * (n - 1) / 2)
+credit_risk/sas_compat.py:955:19#1	DIV	association_table:return	_ratio<AssociationTable	n * (n - 1) / 2
+credit_risk/sas_compat.py:955:24#1	INT_PROMO	association_table:return	_ratio<AssociationTable	n - 1
+credit_risk/sas_compat.py:956:8#1	HELPER_CALL	association_table:return	AssociationTable	_ratio(q.conc + 0.5 * q.tied, p)
+credit_risk/sas_compat.py:961:13#1	FLOOR_CEIL	_hl_groups:m	-	math.floor(n / g + 0.5)
+credit_risk/sas_compat.py:961:19#1	DIV	_hl_groups:m	floor	n / g
+credit_risk/sas_compat.py:965:11#1	CMP	_hl_groups	-	c == 0
+credit_risk/sas_compat.py:965:22#1	CMP	_hl_groups	-	c < m
+credit_risk/sas_compat.py:965:32#1	CMP	_hl_groups	-	c + math.floor(0.5 * nj) <= m
+credit_risk/sas_compat.py:965:41#1	FLOOR_CEIL	_hl_groups	-	math.floor(0.5 * nj)
+credit_risk/sas_compat.py:971:7#1	CMP	_hl_groups	-	len(groups) > 1
+credit_risk/sas_compat.py:971:7#1	LEN	_hl_groups	-	len(groups)
+credit_risk/sas_compat.py:971:27#1	CMP	_hl_groups	-	groups[-1] <= math.floor(0.05 * n)
+credit_risk/sas_compat.py:971:27#1	LOOKUP	_hl_groups	-	groups[-1]
+credit_risk/sas_compat.py:971:46#1	FLOOR_CEIL	_hl_groups	-	math.floor(0.05 * n)
+credit_risk/sas_compat.py:972:22#1	LOOKUP	_hl_groups:last	-	groups.pop()
+credit_risk/sas_compat.py:987:11#1	CONSTRUCT	hosmer_lemeshow:d	-	pl.DataFrame({"y": y.cast(pl.Float64), "p": pd.cast(pl.Float64)})
+credit_risk/sas_compat.py:987:29#1	CAST	hosmer_lemeshow:d	DataFrame	y.cast(pl.Float64)
+credit_risk/sas_compat.py:987:55#1	CAST	hosmer_lemeshow:d	DataFrame	pd.cast(pl.Float64)
+credit_risk/sas_compat.py:987:74#1	DROP_NULLS	hosmer_lemeshow:d	-	pl.DataFrame({"y": y.cast(pl.Float64), "p": pd.cast(pl.Float64)}).drop_nulls()
+credit_risk/sas_compat.py:988:7#1	CMP	hosmer_lemeshow	-	d.height == 0
+credit_risk/sas_compat.py:988:7#1	LEN	hosmer_lemeshow	-	d.height
+credit_risk/sas_compat.py:998:18#1	CONSTRUCT	hosmer_lemeshow:return	-	pl.DataFrame(schema=dict(zip(cols0, types0, strict=True)))
+credit_risk/sas_compat.py:998:40#1	ZIP	hosmer_lemeshow:return	dict<DataFrame	zip(cols0, types0, strict=True)
+credit_risk/sas_compat.py:998:40#1	ZIP_STRICT	hosmer_lemeshow:return	dict<DataFrame	zip(cols0, types0, strict=True)
+credit_risk/sas_compat.py:999:12#1	TO_NUMPY	hosmer_lemeshow:p0	-	np.asarray(d.get_column("p").to_numpy(), dtype=np.float64)
+credit_risk/sas_compat.py:999:22#1	COLREF	hosmer_lemeshow:p0	asarray	d.get_column("p")
+credit_risk/sas_compat.py:999:38#1	TO_NUMPY	hosmer_lemeshow:p0	asarray	d.get_column("p").to_numpy()
+credit_risk/sas_compat.py:1000:12#1	TO_NUMPY	hosmer_lemeshow:y0	-	np.asarray(d.get_column("y").to_numpy(), dtype=np.float64)
+credit_risk/sas_compat.py:1000:22#1	COLREF	hosmer_lemeshow:y0	asarray	d.get_column("y")
+credit_risk/sas_compat.py:1000:38#1	TO_NUMPY	hosmer_lemeshow:y0	asarray	d.get_column("y").to_numpy()
+credit_risk/sas_compat.py:1001:11#1	SORT	hosmer_lemeshow:o	-	np.argsort(p0, kind="stable")
+credit_risk/sas_compat.py:1002:12#1	LOOKUP	hosmer_lemeshow:p,yy	-	p0[o]
+credit_risk/sas_compat.py:1002:19#1	LOOKUP	hosmer_lemeshow:p,yy	-	y0[o]
+credit_risk/sas_compat.py:1003:8#1	LEN	hosmer_lemeshow:n	-	len(p)
+credit_risk/sas_compat.py:1006:4#1	WHILE	hosmer_lemeshow	-	while i < n: j = int(p.searchsorted(float(p[i]) + 1e-6, side="right")) blocks.append(j - i) i = j
+credit_risk/sas_compat.py:1006:10#1	CMP	hosmer_lemeshow	-	i < n
+credit_risk/sas_compat.py:1007:12#1	F2I_INT	hosmer_lemeshow:j	-	int(p.searchsorted(float(p[i]) + 1e-6, side="right"))
+credit_risk/sas_compat.py:1007:18#1	SEARCHSORTED	hosmer_lemeshow:j	int	p.searchsorted(float(p[i]) + 1e-6, side="right")
+credit_risk/sas_compat.py:1007:31#1	FLOAT_CONV	hosmer_lemeshow:j	searchsorted<int	float(p[i])
+credit_risk/sas_compat.py:1007:37#1	LOOKUP	hosmer_lemeshow:j	float<searchsorted<int	p[i]
+credit_risk/sas_compat.py:1010:16#1	CONCAT	hosmer_lemeshow:starts	-	np.concatenate([[0], np.cumsum(blocks)[:-1]])
+credit_risk/sas_compat.py:1010:34#1	LOOKUP	hosmer_lemeshow:starts	concatenate	np.cumsum(blocks)[:-1]
+credit_risk/sas_compat.py:1010:37#1	CUMSUM	hosmer_lemeshow:starts	concatenate	np.cumsum(blocks)
+credit_risk/sas_compat.py:1010:59#1	CAST	hosmer_lemeshow:starts	-	np.concatenate([[0], np.cumsum(blocks)[:-1]]).astype(np.int64)
+credit_risk/sas_compat.py:1011:11#1	NP_ELEMWISE	hosmer_lemeshow:p	-	np.repeat(p[starts], blocks)
+credit_risk/sas_compat.py:1011:18#1	LOOKUP	hosmer_lemeshow:p	repeat	p[starts]
+credit_risk/sas_compat.py:1012:12#1	HELPER_CALL	hosmer_lemeshow:sizes	-	_hl_groups(blocks, n, 10)
+credit_risk/sas_compat.py:1017:13#1	F2I_INT	hosmer_lemeshow:o1	-	int(yy[start : start + size].sum())
+credit_risk/sas_compat.py:1017:17#1	LOOKUP	hosmer_lemeshow:o1	int	yy[start : start + size]
+credit_risk/sas_compat.py:1017:42#1	AGG	hosmer_lemeshow:o1	int	yy[start : start + size].sum()
+credit_risk/sas_compat.py:1018:13#1	FLOAT_CONV	hosmer_lemeshow:e1	-	float(p[start : start + size].sum())
+credit_risk/sas_compat.py:1018:19#1	LOOKUP	hosmer_lemeshow:e1	float	p[start : start + size]
+credit_risk/sas_compat.py:1018:43#1	AGG	hosmer_lemeshow:e1	float	p[start : start + size].sum()
+credit_risk/sas_compat.py:1022:20#1	CMP	hosmer_lemeshow:chisq	-	chisq is None
+credit_risk/sas_compat.py:1022:37#1	CMP	hosmer_lemeshow:chisq	-	e1 <= 0
+credit_risk/sas_compat.py:1022:48#1	CMP	hosmer_lemeshow:chisq	-	e0 <= 0
+credit_risk/sas_compat.py:1022:69#1	DIV	hosmer_lemeshow:chisq	-	(o1 - e1) ** 2 / e1
+credit_risk/sas_compat.py:1022:69#1	POW	hosmer_lemeshow:chisq	-	(o1 - e1) ** 2
+credit_risk/sas_compat.py:1022:91#1	DIV	hosmer_lemeshow:chisq	-	(o0 - e0) ** 2 / e0
+credit_risk/sas_compat.py:1022:91#1	POW	hosmer_lemeshow:chisq	-	(o0 - e0) ** 2
+credit_risk/sas_compat.py:1025:10#1	INT_PROMO	hosmer_lemeshow:dof	-	len(sizes) - 2
+credit_risk/sas_compat.py:1025:10#1	LEN	hosmer_lemeshow:dof	-	len(sizes)
+credit_risk/sas_compat.py:1026:9#1	HELPER_CALL	hosmer_lemeshow:pv	-	chi2_sf(chisq, dof)
+credit_risk/sas_compat.py:1026:32#1	CMP	hosmer_lemeshow:pv	-	chisq is not None
+credit_risk/sas_compat.py:1026:54#1	CMP	hosmer_lemeshow:pv	-	dof >= 1
+credit_risk/sas_compat.py:1028:15#1	CONSTRUCT	hosmer_lemeshow:table	-	...0]: pl.Int64, cols[1]: pl.Int64, cols[2]: pl.Int64, cols[3]: pl.Float64, cols[4]: pl.Int64, cols[5]: pl.Float64, }, )
+credit_risk/sas_compat.py:1030:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[0]
+credit_risk/sas_compat.py:1030:22#1	LOOKUP	hosmer_lemeshow:table	DataFrame	r[0]
+credit_risk/sas_compat.py:1031:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[1]
+credit_risk/sas_compat.py:1031:22#1	LOOKUP	hosmer_lemeshow:table	DataFrame	r[1]
+credit_risk/sas_compat.py:1032:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[2]
+credit_risk/sas_compat.py:1032:22#1	LOOKUP	hosmer_lemeshow:table	DataFrame	r[2]
+credit_risk/sas_compat.py:1033:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[3]
+credit_risk/sas_compat.py:1033:22#1	LOOKUP	hosmer_lemeshow:table	DataFrame	r[3]
+credit_risk/sas_compat.py:1034:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[4]
+credit_risk/sas_compat.py:1034:22#1	LOOKUP	hosmer_lemeshow:table	DataFrame	r[4]
+credit_risk/sas_compat.py:1035:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[5]
+credit_risk/sas_compat.py:1035:22#1	LOOKUP	hosmer_lemeshow:table	DataFrame	r[5]
+credit_risk/sas_compat.py:1038:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[0]
+credit_risk/sas_compat.py:1039:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[1]
+credit_risk/sas_compat.py:1040:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[2]
+credit_risk/sas_compat.py:1041:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[3]
+credit_risk/sas_compat.py:1042:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[4]
+credit_risk/sas_compat.py:1043:12#1	LOOKUP	hosmer_lemeshow:table	DataFrame	cols[5]
+credit_risk/sas_compat.py:1067:7#1	CMP	classification_table	-	y.ndim == 2
+credit_risk/sas_compat.py:1067:7#1	TYPE_DISPATCH	classification_table	-	y.ndim
+credit_risk/sas_compat.py:1069:7#1	CMP	classification_table	-	fit is not None
+credit_risk/sas_compat.py:1069:31#1	TYPE_DISPATCH	classification_table	-	isinstance(fit, LogisticFit)
+credit_risk/sas_compat.py:1071:7#1	CMP	classification_table	-	pd is not None
+credit_risk/sas_compat.py:1072:15#1	TO_NUMPY	classification_table:p	-	np.asarray(pd, dtype=np.float64)
+credit_risk/sas_compat.py:1073:17#1	LOG_EXP_SQRT	classification_table:eta	-	np.log(p)
+credit_risk/sas_compat.py:1073:29#1	LOG_EXP_SQRT	classification_table:eta	-	np.log1p(-p)
+credit_risk/sas_compat.py:1074:9#1	CMP	classification_table	-	fit is not None
+credit_risk/sas_compat.py:1075:14#1	OOS_CALL	classification_table:eta	-	x @ fit.beta
+credit_risk/sas_compat.py:1076:12#1	HELPER_CALL	classification_table:p	-	_expit(eta)
+credit_risk/sas_compat.py:1078:8#1	RAISE	classification_table	-	raise ValueError("classification_table needs pd or a fit")
+credit_risk/sas_compat.py:1080:18#1	OOS_CALL	classification_table:v	-	np.linalg.inv(x.T @ (x * w[:, None]))
+credit_risk/sas_compat.py:1080:22#1	NP_ELEMWISE	classification_table:v	inv	x.T
+credit_risk/sas_compat.py:1080:22#1	OOS_CALL	classification_table:v	inv	x.T @ (x * w[:, None])
+credit_risk/sas_compat.py:1080:33#1	LOOKUP	classification_table:v	inv	w[:, None]
+credit_risk/sas_compat.py:1081:11#1	OOS_CALL	classification_table:q	-	np.einsum("ij,jk,ik->i", x, v, x)
+credit_risk/sas_compat.py:1083:9#1	HELPER_CALL	classification_table:ps	-	_expit(eta - (y - p) * q / (1.0 - h))
+credit_risk/sas_compat.py:1083:22#1	DIV	classification_table:ps	_expit	(y - p) * q / (1.0 - h)
+credit_risk/sas_compat.py:1084:15#1	FLOOR_CEIL	classification_table:klo	-	math.floor(float(ps.min()) / 0.02)
+credit_risk/sas_compat.py:1084:21#1	DIV	classification_table:klo	floor	float(ps.min()) / 0.02
+credit_risk/sas_compat.py:1084:21#1	FLOAT_CONV	classification_table:klo	floor	float(ps.min())
+credit_risk/sas_compat.py:1084:30#1	AGG	classification_table:klo	float<floor	ps.min()
+credit_risk/sas_compat.py:1085:15#1	FLOOR_CEIL	classification_table:khi	-	math.ceil(float(ps.max()) / 0.02)
+credit_risk/sas_compat.py:1085:20#1	DIV	classification_table:khi	ceil	float(ps.max()) / 0.02
+credit_risk/sas_compat.py:1085:20#1	FLOAT_CONV	classification_table:khi	ceil	float(ps.max())
+credit_risk/sas_compat.py:1085:29#1	AGG	classification_table:khi	float<ceil	ps.max()
+credit_risk/sas_compat.py:1086:14#1	NP_ELEMWISE	classification_table:grid	-	np.round(np.arange(klo, khi + 1) * 0.02, 3)
+credit_risk/sas_compat.py:1086:23#1	NP_ELEMWISE	classification_table:grid	round	np.arange(klo, khi + 1)
+credit_risk/sas_compat.py:1086:35#1	INT_PROMO	classification_table:grid	arange<round	khi + 1
+credit_risk/sas_compat.py:1087:9#1	F2I_INT	classification_table:n1	-	int(y.sum())
+credit_risk/sas_compat.py:1087:15#1	AGG	classification_table:n1	int	y.sum()
+credit_risk/sas_compat.py:1088:9#1	LEN	classification_table:n0	-	len(y)
+credit_risk/sas_compat.py:1091:23#1	CMP	classification_table:return	-	b == 0
+credit_risk/sas_compat.py:1091:35#1	DIV	classification_table:return	-	100.0 * a / b
+credit_risk/sas_compat.py:1101:13#1	CMP	classification_table:pe	-	ps >= z
+credit_risk/sas_compat.py:1102:13#1	F2I_INT	classification_table:ce	-	int(np.count_nonzero(pe & (y == 1)))
+credit_risk/sas_compat.py:1102:20#1	AGG	classification_table:ce	int	np.count_nonzero(pe & (y == 1))
+credit_risk/sas_compat.py:1102:40#1	CMP	classification_table:ce	count_nonzero<int	y == 1
+credit_risk/sas_compat.py:1103:13#1	F2I_INT	classification_table:ie	-	int(np.count_nonzero(pe & (y == 0)))
+credit_risk/sas_compat.py:1103:20#1	AGG	classification_table:ie	int	np.count_nonzero(pe & (y == 0))
+credit_risk/sas_compat.py:1103:40#1	CMP	classification_table:ie	count_nonzero<int	y == 0
+credit_risk/sas_compat.py:1106:12#1	FLOAT_CONV	classification_table	-	float(z)
+credit_risk/sas_compat.py:1111:12#1	HELPER_CALL	classification_table	-	pct(ce + cn, n1 + n0)
+credit_risk/sas_compat.py:1112:12#1	HELPER_CALL	classification_table	-	pct(ce, n1)
+credit_risk/sas_compat.py:1113:12#1	HELPER_CALL	classification_table	-	pct(cn, n0)
+credit_risk/sas_compat.py:1114:12#1	HELPER_CALL	classification_table	-	pct(ie, ce + ie)
+credit_risk/sas_compat.py:1115:12#1	HELPER_CALL	classification_table	-	pct(inn, cn + inn)
+credit_risk/sas_compat.py:1116:12#1	HELPER_CALL	classification_table	-	pct(ce, ce + ie)
+credit_risk/sas_compat.py:1117:12#1	HELPER_CALL	classification_table	-	pct(cn, cn + inn)
+credit_risk/sas_compat.py:1119:20#1	ZIP	classification_table	-	zip(rec, vals, strict=True)
+credit_risk/sas_compat.py:1119:20#1	ZIP_STRICT	classification_table	-	zip(rec, vals, strict=True)
+credit_risk/sas_compat.py:1120:12#1	LOOKUP	classification_table	-	rec[k]
+credit_risk/sas_compat.py:1121:11#1	SET	classification_table:ints	-	{"CorrectEvents", "CorrectNonevents", "IncorrectEvents", "IncorrectNonevents"}
+credit_risk/sas_compat.py:1122:14#1	CONSTRUCT	classification_table:return	-	pl.DataFrame( {k: pl.Series(k, v, dtype=pl.Int64 if k in ints else pl.Float64) for k, v in rec.items()} )
+credit_risk/sas_compat.py:1123:15#1	CONSTRUCT	classification_table:return	DataFrame	pl.Series(k, v, dtype=pl.Int64 if k in ints else pl.Float64)
+credit_risk/sas_compat.py:1123:46#1	CMP	classification_table:return	Series<DataFrame	k in ints
+credit_risk/sas_compat.py:1123:89#1	DICT_ORDER	classification_table:return	DataFrame	rec.items()
+credit_risk/train.py:27:38#1	OOS_CALL	train.run:model_features_train	-	sas_compat.proc_import_csv( input_dir / "model_features_train.csv", guessingrows=None )
+credit_risk/train.py:30:43#1	OOS_CALL	train.run:model_features_validation	-	sas_compat.proc_import_csv( input_dir / "model_features_validation.csv", guessingrows=None )
+credit_risk/train.py:79:29#1	FRAME_COLS	train.run:fit_mask	-	model_features_train.select(pl.all_horizontal(pl.col(*candidates, "default_flag").is_not_null()))
+credit_risk/train.py:79:39#1	HORIZ	train.run:fit_mask	select	pl.all_horizontal(pl.col(*candidates, "default_flag").is_not_null())
+credit_risk/train.py:79:90#1	IS_NULL	train.run:fit_mask	all_horizontal<select	pl.col(*candidates, "default_flag").is_not_null()
+credit_risk/train.py:80:9#1	TO_LIST	train.run:fit_mask	-	model_features_train.select(pl.all_horizontal(pl.col(*candidates, "default_flag").is_not_null())) .to_series()
+credit_risk/train.py:81:9#1	TO_NUMPY	train.run:fit_mask	-	..._features_train.select(pl.all_horizontal(pl.col(*candidates, "default_flag").is_not_null())) .to_series() .to_numpy()
+credit_risk/train.py:83:37#1	FILTER	train.run:fit_frame	-	model_features_train.filter(pl.Series(fit_mask))
+credit_risk/train.py:83:47#1	CONSTRUCT	train.run:fit_frame	filter	pl.Series(fit_mask)
+credit_risk/train.py:84:26#1	OOS_CALL	train.run:stepwise	-	sas_compat.stepwise_logistic(fit_frame, "default_flag", candidates, 0.05, 0.05)
+credit_risk/train.py:87:7#1	CMP	train.run	-	final is None
+credit_risk/train.py:87:24#1	CMP	train.run	-	intercept_only is None
+credit_risk/train.py:88:8#1	RAISE	train.run	-	raise RuntimeError("stepwise_logistic returned no final model")
+credit_risk/train.py:89:12#1	LEN	train.run:n_obs	-	fit_frame.height
+credit_risk/train.py:90:17#1	TO_NUMPY	train.run:y_train	-	np.asarray(fit_frame.get_column("default_flag").to_numpy(), dtype=np.float64)
+credit_risk/train.py:90:35#1	COLREF	train.run:y_train	asarray	fit_frame.get_column("default_flag")
+credit_risk/train.py:90:62#1	TO_NUMPY	train.run:y_train	asarray	fit_frame.get_column("default_flag").to_numpy()
+credit_risk/train.py:92:11#1	FLOAT_CONV	train.run:ybar	-	float(y_train.mean())
+credit_risk/train.py:92:25#1	AGG	train.run:ybar	float	y_train.mean()
+credit_risk/train.py:107:23#1	STR_CONV	train.run	append	str(st.step)
+credit_risk/train.py:108:32#1	CMP	train.run	append	st.entered is None
+credit_risk/train.py:108:56#1	LOOKUP	train.run	append	st.entered[:20]
+credit_risk/train.py:109:32#1	CMP	train.run	append	st.removed is None
+credit_risk/train.py:109:56#1	LOOKUP	train.run	append	st.removed[:20]
+credit_risk/train.py:110:21#1	STR_CONV	train.run	append	str(st.df)
+credit_risk/train.py:111:25#1	STR_CONV	train.run	append	str(st.number_in_model)
+credit_risk/train.py:113:19#1	CMP	train.run	append	st.score_chisq is None
+credit_risk/train.py:113:58#1	OOS_CALL	train.run	append	sas_compat.fmt_wd(st.score_chisq, 10, 4)
+credit_risk/train.py:115:30#1	CMP	train.run	append	st.wald_chisq is None
+credit_risk/train.py:115:68#1	OOS_CALL	train.run	append	sas_compat.fmt_wd(st.wald_chisq, 10, 4)
+credit_risk/train.py:116:34#1	OOS_CALL	train.run	append	sas_compat.sas_pvalue(st.p_value)
+credit_risk/train.py:117:26#1	CONSTRUCT	train.run:stepwise_summary	-	...ved, "DF": ss_df, "NumberInModel": ss_number, "ScoreChiSq": ss_score, "WaldChiSq": ss_wald, "ProbChiSq": ss_prob, } )
+credit_risk/train.py:129:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(stepwise_summary, output_dir / "stepwise_summary.csv", formats={})
+credit_risk/train.py:139:37#1	OOS_CALL	train.run	-	sas_compat.sas_d12_3(m2ll0)
+credit_risk/train.py:140:36#1	OOS_CALL	train.run	-	sas_compat.fmt_wd(m2ll0, 9, 3)
+credit_risk/train.py:160:12#1	INT_PROMO	train.run:q	-	len(names_k) - 1
+credit_risk/train.py:160:12#1	LEN	train.run:q	-	len(names_k)
+credit_risk/train.py:162:17#1	NP_ELEMWISE	train.run:x_k	-	...tack( [ np.ones(n_obs), *[np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64) for c in names_k[1:]], ] )
+credit_risk/train.py:164:19#1	NP_ELEMWISE	train.run:x_k	column_stack	np.ones(n_obs)
+credit_risk/train.py:165:21#1	TO_NUMPY	train.run:x_k	column_stack	np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64)
+credit_risk/train.py:165:39#1	COLREF	train.run:x_k	asarray<column_stack	fit_frame.get_column(c)
+credit_risk/train.py:165:53#1	TO_NUMPY	train.run:x_k	asarray<column_stack	fit_frame.get_column(c).to_numpy()
+credit_risk/train.py:165:92#1	LOOKUP	train.run:x_k	column_stack	names_k[1:]
+credit_risk/train.py:169:23#1	INT_PROMO	train.run	extend	[str(st.step)] * 3
+credit_risk/train.py:169:24#1	STR_CONV	train.run	extend	str(st.step)
+credit_risk/train.py:175:27#1	OOS_CALL	train.run	extend	sas_compat.sas_d12_3(m2ll0 + 2.0)
+credit_risk/train.py:176:27#1	OOS_CALL	train.run	extend	sas_compat.sas_d12_3(m2ll0 + math.log(n_obs))
+credit_risk/train.py:176:50#1	LOG_EXP_SQRT	train.run	sas_d12_3<extend	math.log(n_obs)
+credit_risk/train.py:177:27#1	OOS_CALL	train.run	extend	sas_compat.sas_d12_3(m2ll0)
+credit_risk/train.py:182:27#1	OOS_CALL	train.run	extend	sas_compat.fmt_wd(m2ll + 2.0 * (q + 1), 9, 3)
+credit_risk/train.py:182:48#1	INT_PROMO	train.run	fmt_wd<extend	q + 1
+credit_risk/train.py:183:27#1	OOS_CALL	train.run	extend	sas_compat.fmt_wd(m2ll + (q + 1) * math.log(n_obs), 9, 3)
+credit_risk/train.py:183:42#1	INT_PROMO	train.run	fmt_wd<extend	q + 1
+credit_risk/train.py:183:56#1	LOG_EXP_SQRT	train.run	fmt_wd<extend	math.log(n_obs)
+credit_risk/train.py:184:27#1	OOS_CALL	train.run	extend	sas_compat.fmt_wd(m2ll, 9, 3)
+credit_risk/train.py:189:13#1	NP_ELEMWISE	train.run:u0	-	x_k.T
+credit_risk/train.py:189:13#1	OOS_CALL	train.run:u0	-	x_k.T @ (y_train - ybar)
+credit_risk/train.py:190:36#1	NP_ELEMWISE	train.run:i0	-	x_k.T
+credit_risk/train.py:190:36#1	OOS_CALL	train.run:i0	-	x_k.T @ x_k
+credit_risk/train.py:191:16#1	FLOAT_CONV	train.run:score	-	float(u0 @ np.linalg.solve(i0, u0))
+credit_risk/train.py:191:22#1	OOS_CALL	train.run:score	float	u0 @ np.linalg.solve(i0, u0)
+credit_risk/train.py:191:37#1	OOS_CALL	train.run:score	float	np.linalg.solve(i0, u0)
+credit_risk/train.py:192:18#1	LOOKUP	train.run:b_slope	-	st.fit.beta[1:]
+credit_risk/train.py:193:15#1	FLOAT_CONV	train.run:wald	-	float(b_slope @ np.linalg.solve(st.fit.cov[1:, 1:], b_slope))
+credit_risk/train.py:193:21#1	OOS_CALL	train.run:wald	float	b_slope @ np.linalg.solve(st.fit.cov[1:, 1:], b_slope)
+credit_risk/train.py:193:41#1	OOS_CALL	train.run:wald	float	np.linalg.solve(st.fit.cov[1:, 1:], b_slope)
+credit_risk/train.py:193:47#1	LOOKUP	train.run:wald	solve<float	st.fit.cov[1:, 1:]
+credit_risk/train.py:195:27#1	STR_CONV	train.run	append	str(st.step)
+credit_risk/train.py:197:39#1	OOS_CALL	train.run	append	sas_compat.fmt_wd(stat, 10, 4)
+credit_risk/train.py:198:25#1	STR_CONV	train.run	append	str(q)
+credit_risk/train.py:199:38#1	OOS_CALL	train.run	append	sas_compat.sas_pvalue(sas_compat.chi2_sf(stat, q))
+credit_risk/train.py:199:60#1	OOS_CALL	train.run	sas_pvalue<append	sas_compat.chi2_sf(stat, q)
+credit_risk/train.py:201:31#1	LOG_EXP_SQRT	train.run:cox_snell	-	math.exp(-lr / n_obs)
+credit_risk/train.py:201:35#1	DIV	train.run:cox_snell	exp	-lr / n_obs
+credit_risk/train.py:202:21#1	DIV	train.run:nagelkerke	-	cox_snell / (1.0 - math.exp(-m2ll0 / n_obs))
+credit_risk/train.py:202:45#1	LOG_EXP_SQRT	train.run:nagelkerke	-	math.exp(-m2ll0 / n_obs)
+credit_risk/train.py:202:49#1	DIV	train.run:nagelkerke	exp	-m2ll0 / n_obs
+credit_risk/train.py:203:23#1	STR_CONV	train.run	append	str(st.step)
+credit_risk/train.py:205:37#1	OOS_CALL	train.run	append	sas_compat.fmt_wd(cox_snell, 6, 4)
+credit_risk/train.py:206:37#1	OOS_CALL	train.run	append	sas_compat.sas_d12_3(cox_snell)
+credit_risk/train.py:208:37#1	OOS_CALL	train.run	append	sas_compat.fmt_wd(nagelkerke, 6, 4)
+credit_risk/train.py:209:37#1	OOS_CALL	train.run	append	sas_compat.sas_d12_3(nagelkerke)
+credit_risk/train.py:210:32#1	CONSTRUCT	train.run:printed_fit_statistics	-	...owid, "Criterion": fs_criterion, "Equals": fs_equals, "InterceptOnly": fs_only, "InterceptAndCovariates": fs_cov, } )
+credit_risk/train.py:220:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_fit_statistics, output_dir / "printed_fit_statistics.csv", formats={})
+credit_risk/train.py:221:30#1	CONSTRUCT	train.run:printed_global_tests	-	pl.DataFrame( {"Step": gt_step, "Test": gt_test, "ChiSq": gt_chisq, "DF": gt_df, "ProbChiSq": gt_prob} )
+credit_risk/train.py:224:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_global_tests, output_dir / "printed_global_tests.csv", formats={})
+credit_risk/train.py:225:25#1	CONSTRUCT	train.run:printed_rsquare	-	... "cValue1": rs_cvalue1, "nValue1": rs_nvalue1, "Label2": rs_label2, "cValue2": rs_cvalue2, "nValue2": rs_nvalue2, } )
+credit_risk/train.py:236:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_rsquare, output_dir / "printed_rsquare.csv", formats={})
+credit_risk/train.py:240:46#1	CMP	train.run:final_effects	-	c in final.names
+credit_risk/train.py:241:31#1	LOOKUP	train.run:final_index	-	final.names.index(c)
+credit_risk/train.py:242:16#1	FLOAT_CONV	train.run:intercept	-	float(final.beta[0])
+credit_risk/train.py:242:22#1	LOOKUP	train.run:intercept	float	final.beta[0]
+credit_risk/train.py:243:23#1	FLOAT_CONV	train.run:coefficients	-	float(final.beta[i])
+credit_risk/train.py:243:29#1	LOOKUP	train.run:coefficients	float	final.beta[i]
+credit_risk/train.py:243:56#1	ZIP	train.run:coefficients	-	zip(final_effects, final_index, strict=True)
+credit_risk/train.py:243:56#1	ZIP_STRICT	train.run:coefficients	-	zip(final_effects, final_index, strict=True)
+credit_risk/train.py:244:19#1	LIT	train.run:eta_train	-	pl.lit(intercept)
+credit_risk/train.py:245:29#1	DICT_ORDER	train.run	-	coefficients.items()
+credit_risk/train.py:247:46#1	FRAME_COLS	train.run:logit_scored_train	-	...1 + (-eta_train).exp() ) # R§2 output out= predicted=: pd per training row, final model (no SAS exp() call, S1 n/a) )
+credit_risk/train.py:248:20#1	DIV	train.run:pd_logistic	with_columns	1 / ( 1 + (-eta_train).exp() )
+credit_risk/train.py:250:12#1	INT_PROMO	train.run:pd_logistic	with_columns	1 + (-eta_train).exp()
+credit_risk/train.py:250:29#1	LOG_EXP_SQRT	train.run:pd_logistic	with_columns	(-eta_train).exp()
+credit_risk/train.py:256:36#1	FILTER	train.run:fit_scored	-	logit_scored_train.filter(pl.Series(fit_mask))
+credit_risk/train.py:256:46#1	CONSTRUCT	train.run:fit_scored	filter	pl.Series(fit_mask)
+credit_risk/train.py:260:23#1	HELPER_CALL	train.run:assoc	-	sas_compat.association_table( fit_scored.get_column("default_flag"), fit_scored.get_column("pd_logistic") )
+credit_risk/train.py:261:19#1	COLREF	train.run:assoc	association_table	fit_scored.get_column("default_flag")
+credit_risk/train.py:261:58#1	COLREF	train.run:assoc	association_table	fit_scored.get_column("pd_logistic")
+credit_risk/train.py:263:29#1	CONSTRUCT	train.run:printed_association	-	...omers_d), sas_compat.sas_d12_3(assoc.gamma), sas_compat.sas_d12_3(assoc.tau_a), sas_compat.sas_d12_3(assoc.c), ], } )
+credit_risk/train.py:267:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.fmt_wd(assoc.concordant_pct, 9, 1)
+credit_risk/train.py:268:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.fmt_wd(assoc.discordant_pct, 9, 1)
+credit_risk/train.py:269:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.fmt_wd(assoc.tied_pct, 9, 1)
+credit_risk/train.py:270:16#1	STR_CONV	train.run:printed_association	DataFrame	str(assoc.pairs)
+credit_risk/train.py:273:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.sas_d12_3(assoc.concordant_pct)
+credit_risk/train.py:274:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.sas_d12_3(assoc.discordant_pct)
+credit_risk/train.py:275:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.sas_d12_3(assoc.tied_pct)
+credit_risk/train.py:276:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.sas_d12_3(float(assoc.pairs))
+credit_risk/train.py:276:37#1	FLOAT_CONV	train.run:printed_association	sas_d12_3<DataFrame	float(assoc.pairs)
+credit_risk/train.py:280:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.fmt_wd(assoc.somers_d, 5, 3)
+credit_risk/train.py:281:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.fmt_wd(assoc.gamma, 5, 3)
+credit_risk/train.py:282:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.fmt_wd(assoc.tau_a, 5, 3)
+credit_risk/train.py:283:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.fmt_wd(assoc.c, 5, 3)
+credit_risk/train.py:286:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.sas_d12_3(assoc.somers_d)
+credit_risk/train.py:287:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.sas_d12_3(assoc.gamma)
+credit_risk/train.py:288:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.sas_d12_3(assoc.tau_a)
+credit_risk/train.py:289:27#1	OOS_CALL	train.run:printed_association	DataFrame	sas_compat.sas_d12_3(assoc.c)
+credit_risk/train.py:293:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_association, output_dir / "printed_association.csv", formats={})
+credit_risk/train.py:300:41#1	OOS_CALL	train.run	-	sas_compat.sas_d8(intercept)
+credit_risk/train.py:309:41#1	ZIP	train.run	-	zip(final_index, final_effects, strict=True)
+credit_risk/train.py:309:41#1	ZIP_STRICT	train.run	-	zip(final_index, final_effects, strict=True)
+credit_risk/train.py:310:12#1	FLOAT_CONV	train.run:b	-	float(final.beta[idx])
+credit_risk/train.py:310:18#1	LOOKUP	train.run:b	float	final.beta[idx]
+credit_risk/train.py:311:18#1	LOG_EXP_SQRT	train.run:se	-	math.sqrt(float(final.cov[idx, idx]))
+credit_risk/train.py:311:23#1	FLOAT_CONV	train.run:se	sqrt	float(final.cov[idx, idx])
+credit_risk/train.py:311:29#1	LOOKUP	train.run:se	float<sqrt	final.cov[idx, idx]
+credit_risk/train.py:312:17#1	POW	train.run:wald_b	-	(b / se) ** 2
+credit_risk/train.py:312:18#1	DIV	train.run:wald_b	-	b / se
+credit_risk/train.py:313:11#1	CMP	train.run	-	idx != 0
+credit_risk/train.py:314:31#1	LOOKUP	train.run	append	name[:20]
+credit_risk/train.py:315:42#1	OOS_CALL	train.run	append	sas_compat.sas_d8(b)
+credit_risk/train.py:316:29#1	LOOKUP	train.run	append	name[:20]
+credit_risk/train.py:318:37#1	OOS_CALL	train.run	append	sas_compat.fmt_oddsr(math.exp(b), 8, 3)
+credit_risk/train.py:318:52#1	LOG_EXP_SQRT	train.run	fmt_oddsr<append	math.exp(b)
+credit_risk/train.py:319:39#1	OOS_CALL	train.run	append	sas_compat.fmt_oddsr(math.exp(b - sas_compat.Z975 * se), 8, 3)
+credit_risk/train.py:319:54#1	LOG_EXP_SQRT	train.run	fmt_oddsr<append	math.exp(b - sas_compat.Z975 * se)
+credit_risk/train.py:320:39#1	OOS_CALL	train.run	append	sas_compat.fmt_oddsr(math.exp(b + sas_compat.Z975 * se), 8, 3)
+credit_risk/train.py:320:54#1	LOG_EXP_SQRT	train.run	fmt_oddsr<append	math.exp(b + sas_compat.Z975 * se)
+credit_risk/train.py:321:36#1	OOS_CALL	train.run	append	sas_compat.sas_d8(se)
+credit_risk/train.py:322:34#1	OOS_CALL	train.run	append	sas_compat.fmt_wd(wald_b, 10, 4)
+credit_risk/train.py:323:34#1	OOS_CALL	train.run	append	sas_compat.sas_pvalue(sas_compat.chi2_sf(wald_b, 1))
+credit_risk/train.py:323:56#1	OOS_CALL	train.run	sas_pvalue<append	sas_compat.chi2_sf(wald_b, 1)
+credit_risk/train.py:324:28#1	CONSTRUCT	train.run:model_coefficients	-	...timate, "StdErr": mc_stderr, "WaldChiSq": mc_wald, "ProbChiSq": mc_prob, "_ESTTYPE_": ["MLE"] * len(mc_variable), } )
+credit_risk/train.py:327:26#1	LEN	train.run:model_coefficients	DataFrame	len(mc_variable)
+credit_risk/train.py:332:35#1	LEN	train.run:model_coefficients	DataFrame	len(mc_variable)
+credit_risk/train.py:335:29#1	CONSTRUCT	train.run:printed_odds_ratios	-	pl.DataFrame( {"Effect": or_effect, "OddsRatioEst": or_est, "LowerCL": or_lower, "UpperCL": or_upper} )
+credit_risk/train.py:339:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_odds_ratios, output_dir / "printed_odds_ratios.csv", formats={})
+credit_risk/train.py:344:49#1	HELPER_CALL	train.run:hl_table,hl_chisq,hl_df,hl_p	-	sas_compat.hosmer_lemeshow( fit_scored.get_column("default_flag"), fit_scored.get_column("pd_logistic") )
+credit_risk/train.py:345:19#1	COLREF	train.run:hl_table,hl_chisq,hl_df,hl_p	hosmer_lemeshow	fit_scored.get_column("default_flag")
+credit_risk/train.py:345:58#1	COLREF	train.run:hl_table,hl_chisq,hl_df,hl_p	hosmer_lemeshow	fit_scored.get_column("pd_logistic")
+credit_risk/train.py:347:30#1	CONSTRUCT	train.run:printed_hl_partition	-	... "NoneventsExpected": [ sas_compat.fmt_wd(v, 8, 2) for v in hl_table.get_column("NoneventsExpected").to_list() ], } )
+credit_risk/train.py:349:22#1	STR_CONV	train.run:printed_hl_partition	DataFrame	str(v)
+credit_risk/train.py:349:47#1	COLREF	train.run:printed_hl_partition	DataFrame	hl_table.get_column("Group")
+credit_risk/train.py:349:67#1	TO_LIST	train.run:printed_hl_partition	DataFrame	hl_table.get_column("Group").to_list()
+credit_risk/train.py:350:33#1	OOS_CALL	train.run:printed_hl_partition	DataFrame	sas_compat.fmt_wd(v, 8, 0)
+credit_risk/train.py:350:67#1	COLREF	train.run:printed_hl_partition	DataFrame	hl_table.get_column("Total")
+credit_risk/train.py:350:87#1	TO_LIST	train.run:printed_hl_partition	DataFrame	hl_table.get_column("Total").to_list()
+credit_risk/train.py:352:27#1	OOS_CALL	train.run:printed_hl_partition	DataFrame	sas_compat.fmt_wd(v, 8, 0)
+credit_risk/train.py:352:61#1	COLREF	train.run:printed_hl_partition	DataFrame	hl_table.get_column("EventsObserved")
+credit_risk/train.py:352:90#1	TO_LIST	train.run:printed_hl_partition	DataFrame	hl_table.get_column("EventsObserved").to_list()
+credit_risk/train.py:355:27#1	OOS_CALL	train.run:printed_hl_partition	DataFrame	sas_compat.fmt_wd(v, 8, 2)
+credit_risk/train.py:355:61#1	COLREF	train.run:printed_hl_partition	DataFrame	hl_table.get_column("EventsExpected")
+credit_risk/train.py:355:90#1	TO_LIST	train.run:printed_hl_partition	DataFrame	hl_table.get_column("EventsExpected").to_list()
+credit_risk/train.py:358:27#1	OOS_CALL	train.run:printed_hl_partition	DataFrame	sas_compat.fmt_wd(v, 8, 0)
+credit_risk/train.py:358:61#1	COLREF	train.run:printed_hl_partition	DataFrame	hl_table.get_column("NoneventsObserved")
+credit_risk/train.py:358:93#1	TO_LIST	train.run:printed_hl_partition	DataFrame	hl_table.get_column("NoneventsObserved").to_list()
+credit_risk/train.py:361:27#1	OOS_CALL	train.run:printed_hl_partition	DataFrame	sas_compat.fmt_wd(v, 8, 2)
+credit_risk/train.py:361:61#1	COLREF	train.run:printed_hl_partition	DataFrame	hl_table.get_column("NoneventsExpected")
+credit_risk/train.py:361:93#1	TO_LIST	train.run:printed_hl_partition	DataFrame	hl_table.get_column("NoneventsExpected").to_list()
+credit_risk/train.py:365:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_hl_partition, output_dir / "printed_hl_partition.csv", formats={})
+credit_risk/train.py:366:33#1	CONSTRUCT	train.run:printed_hosmer_lemeshow	-	...hisq, 10, 4)], "DF": [str(hl_df)], "ProbChiSq": [sas_compat.sas_pvalue(hl_p)], "NGroups": [str(hl_table.height)], } )
+credit_risk/train.py:368:33#1	OOS_CALL	train.run:printed_hosmer_lemeshow	DataFrame	sas_compat.fmt_wd(hl_chisq, 10, 4)
+credit_risk/train.py:369:19#1	STR_CONV	train.run:printed_hosmer_lemeshow	DataFrame	str(hl_df)
+credit_risk/train.py:370:37#1	OOS_CALL	train.run:printed_hosmer_lemeshow	DataFrame	sas_compat.sas_pvalue(hl_p)
+credit_risk/train.py:371:24#1	STR_CONV	train.run:printed_hosmer_lemeshow	DataFrame	str(hl_table.height)
+credit_risk/train.py:371:28#1	LEN	train.run:printed_hosmer_lemeshow	str<DataFrame	hl_table.height
+credit_risk/train.py:374:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_hosmer_lemeshow, output_dir / "printed_hosmer_lemeshow.csv", formats={})
+credit_risk/train.py:378:17#1	NP_ELEMWISE	train.run:x_final	-	...( [ np.ones(n_obs), *[np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64) for c in final.names[1:]], ] )
+credit_risk/train.py:380:15#1	NP_ELEMWISE	train.run:x_final	column_stack	np.ones(n_obs)
+credit_risk/train.py:381:17#1	TO_NUMPY	train.run:x_final	column_stack	np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64)
+credit_risk/train.py:381:35#1	COLREF	train.run:x_final	asarray<column_stack	fit_frame.get_column(c)
+credit_risk/train.py:381:49#1	TO_NUMPY	train.run:x_final	asarray<column_stack	fit_frame.get_column(c).to_numpy()
+credit_risk/train.py:381:88#1	LOOKUP	train.run:x_final	column_stack	final.names[1:]
+credit_risk/train.py:385:15#1	LOOKUP	train.run:pd_train	-	np.asarray(logit_scored_train.get_column("pd_logistic").to_numpy(), dtype=np.float64)[fit_mask]
+credit_risk/train.py:385:18#1	TO_NUMPY	train.run:pd_train	-	np.asarray(logit_scored_train.get_column("pd_logistic").to_numpy(), dtype=np.float64)
+credit_risk/train.py:385:45#1	COLREF	train.run:pd_train	asarray	logit_scored_train.get_column("pd_logistic")
+credit_risk/train.py:385:71#1	TO_NUMPY	train.run:pd_train	asarray	logit_scored_train.get_column("pd_logistic").to_numpy()
+credit_risk/train.py:386:24#1	HELPER_CALL	train.run:ctable	-	sas_compat.classification_table(y_train, x_final, pd=pd_train)
+credit_risk/train.py:387:32#1	CONSTRUCT	train.run:printed_classification	-	...le.get_column("PPV").to_list()], "NPV": [sas_compat.fmt_wd(v, 5, 1) for v in ctable.get_column("NPV").to_list()], } )
+credit_risk/train.py:389:37#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 3)
+credit_risk/train.py:389:69#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("ProbLevel")
+credit_risk/train.py:389:93#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("ProbLevel").to_list()
+credit_risk/train.py:391:27#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 0)
+credit_risk/train.py:391:59#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("CorrectEvents")
+credit_risk/train.py:391:87#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("CorrectEvents").to_list()
+credit_risk/train.py:394:27#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 0)
+credit_risk/train.py:394:59#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("CorrectNonevents")
+credit_risk/train.py:394:90#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("CorrectNonevents").to_list()
+credit_risk/train.py:397:27#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 0)
+credit_risk/train.py:397:59#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("IncorrectEvents")
+credit_risk/train.py:397:89#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("IncorrectEvents").to_list()
+credit_risk/train.py:400:27#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 0)
+credit_risk/train.py:400:59#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("IncorrectNonevents")
+credit_risk/train.py:400:92#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("IncorrectNonevents").to_list()
+credit_risk/train.py:402:35#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 1)
+credit_risk/train.py:402:67#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("Correct")
+credit_risk/train.py:402:89#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("Correct").to_list()
+credit_risk/train.py:403:39#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 1)
+credit_risk/train.py:403:71#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("Sensitivity")
+credit_risk/train.py:403:97#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("Sensitivity").to_list()
+credit_risk/train.py:404:39#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 1)
+credit_risk/train.py:404:71#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("Specificity")
+credit_risk/train.py:404:97#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("Specificity").to_list()
+credit_risk/train.py:406:27#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 1)
+credit_risk/train.py:406:59#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("FalsePositive")
+credit_risk/train.py:406:87#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("FalsePositive").to_list()
+credit_risk/train.py:409:27#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 1)
+credit_risk/train.py:409:59#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("FalseNegative")
+credit_risk/train.py:409:87#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("FalseNegative").to_list()
+credit_risk/train.py:411:31#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 1)
+credit_risk/train.py:411:63#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("PPV")
+credit_risk/train.py:411:81#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("PPV").to_list()
+credit_risk/train.py:412:31#1	OOS_CALL	train.run:printed_classification	DataFrame	sas_compat.fmt_wd(v, 5, 1)
+credit_risk/train.py:412:63#1	COLREF	train.run:printed_classification	DataFrame	ctable.get_column("NPV")
+credit_risk/train.py:412:81#1	TO_LIST	train.run:printed_classification	DataFrame	ctable.get_column("NPV").to_list()
+credit_risk/train.py:415:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_classification, output_dir / "printed_classification.csv", formats={})
+credit_risk/train.py:419:13#1	OOS_CALL	train.run	-	json.dump({"intercept": intercept, "coefficients": coefficients}, fh)
+credit_risk/train.py:424:44#1	FRAME_COLS	train.run:logit_scored_train	-	...olumns( pred_logistic=sas_compat.flag( pl.col("pd_logistic") >= 0.5 ) # INV credit_risk_score: MISSING_NEVER, plain )
+credit_risk/train.py:425:33#1	HELPER_CALL	train.run:pred_logistic	with_columns	sas_compat.flag( pl.col("pd_logistic") >= 0.5 )
+credit_risk/train.py:426:12#1	CMP	train.run:pred_logistic	flag<with_columns	pl.col("pd_logistic") >= 0.5
+credit_risk/train.py:433:27#1	GROUP_BY	train.run:confusion_matrix_train	-	logit_scored_train.group_by(["default_flag", "pred_logistic"], maintain_order=True)
+credit_risk/train.py:434:9#1	FRAME_COLS	train.run:confusion_matrix_train	-	logit_scored_train.group_by(["default_flag", "pred_logistic"], maintain_order=True) .agg(COUNT=pl.len().cast(pl.Int64))
+credit_risk/train.py:434:22#1	AGG	train.run:COUNT	agg	pl.len()
+credit_risk/train.py:434:28#1	CAST	train.run:COUNT	agg	pl.len().cast(pl.Int64)
+credit_risk/train.py:435:9#1	SORT	train.run:confusion_matrix_train	-	...aintain_order=True) .agg(COUNT=pl.len().cast(pl.Int64)) .sort(["default_flag", "pred_logistic"], maintain_order=True)
+credit_risk/train.py:436:9#1	FRAME_COLS	train.run:confusion_matrix_train	-	..._logistic"], maintain_order=True) .with_columns(PERCENT=sas_compat.div(100 * pl.col("COUNT"), pl.col("COUNT").sum()))
+credit_risk/train.py:436:41#1	HELPER_CALL	train.run:PERCENT	with_columns	sas_compat.div(100 * pl.col("COUNT"), pl.col("COUNT").sum())
+credit_risk/train.py:436:45#1	INT_PROMO	train.run:PERCENT	div<with_columns	100 * pl.col("COUNT")
+credit_risk/train.py:436:84#1	AGG	train.run:PERCENT	div<with_columns	pl.col("COUNT").sum()
+credit_risk/train.py:444:46#1	FRAME_COLS	train.run:training_metrics	-	...ic") == 1)).sum(), FN=pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 0)).sum(), )
+credit_risk/train.py:445:27#1	FILTER	train.run:TP	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 1))
+credit_risk/train.py:445:35#1	CMP	train.run:TP	filter<select	pl.col("default_flag") == 1
+credit_risk/train.py:445:67#1	CMP	train.run:TP	filter<select	pl.col("pred_logistic") == 1
+credit_risk/train.py:445:98#1	AGG	train.run:TP	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 1)).sum()
+credit_risk/train.py:446:27#1	FILTER	train.run:TN	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 0))
+credit_risk/train.py:446:35#1	CMP	train.run:TN	filter<select	pl.col("default_flag") == 0
+credit_risk/train.py:446:67#1	CMP	train.run:TN	filter<select	pl.col("pred_logistic") == 0
+credit_risk/train.py:446:98#1	AGG	train.run:TN	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 0)).sum()
+credit_risk/train.py:447:27#1	FILTER	train.run:FP	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 1))
+credit_risk/train.py:447:35#1	CMP	train.run:FP	filter<select	pl.col("default_flag") == 0
+credit_risk/train.py:447:67#1	CMP	train.run:FP	filter<select	pl.col("pred_logistic") == 1
+credit_risk/train.py:447:98#1	AGG	train.run:FP	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 1)).sum()
+credit_risk/train.py:448:27#1	FILTER	train.run:FN	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 0))
+credit_risk/train.py:448:35#1	CMP	train.run:FN	filter<select	pl.col("default_flag") == 1
+credit_risk/train.py:448:67#1	CMP	train.run:FN	filter<select	pl.col("pred_logistic") == 0
+credit_risk/train.py:448:98#1	AGG	train.run:FN	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 0)).sum()
+credit_risk/train.py:449:6#1	FRAME_COLS	train.run:training_metrics	-	...then((pl.col("TP") + pl.col("TN")) / (pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN"))) .otherwise(None), )
+credit_risk/train.py:450:32#1	CMP	train.run:train_precision	when<with_columns	(pl.col("TP") + pl.col("FP")) > 0
+credit_risk/train.py:451:14#1	DIV	train.run:train_precision	then<with_columns	pl.col("TP") / (pl.col("TP") + pl.col("FP"))
+credit_risk/train.py:452:9#1	LIT	train.run:train_precision	with_columns	pl.when((pl.col("TP") + pl.col("FP")) > 0) .then(pl.col("TP") / (pl.col("TP") + pl.col("FP"))) .otherwise(None)
+credit_risk/train.py:453:29#1	CMP	train.run:train_recall	when<with_columns	(pl.col("TP") + pl.col("FN")) > 0
+credit_risk/train.py:454:14#1	DIV	train.run:train_recall	then<with_columns	pl.col("TP") / (pl.col("TP") + pl.col("FN"))
+credit_risk/train.py:455:9#1	LIT	train.run:train_recall	with_columns	pl.when((pl.col("TP") + pl.col("FN")) > 0) .then(pl.col("TP") / (pl.col("TP") + pl.col("FN"))) .otherwise(None)
+credit_risk/train.py:456:31#1	CMP	train.run:train_accuracy	when<with_columns	(pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN")) > 0
+credit_risk/train.py:457:14#1	DIV	train.run:train_accuracy	then<with_columns	(pl.col("TP") + pl.col("TN")) / (pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN"))
+credit_risk/train.py:458:9#1	LIT	train.run:train_accuracy	with_columns	...) .then((pl.col("TP") + pl.col("TN")) / (pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN"))) .otherwise(None)
+credit_risk/train.py:460:40#1	FRAME_COLS	train.run:training_metrics	-	...ain_precision") * pl.col("train_recall")) / (pl.col("train_precision") + pl.col("train_recall")) ) .otherwise(None) )
+credit_risk/train.py:462:23#1	HELPER_CALL	train.run:train_f1_score	when<with_columns	sas_compat.gt(pl.col("train_precision") + pl.col("train_recall"), 0)
+credit_risk/train.py:465:12#1	DIV	train.run:train_f1_score	then<with_columns	2 * (pl.col("train_precision") * pl.col("train_recall")) / (pl.col("train_precision") + pl.col("train_recall"))
+credit_risk/train.py:465:12#1	INT_PROMO	train.run:train_f1_score	then<with_columns	2 * (pl.col("train_precision") * pl.col("train_recall"))
+credit_risk/train.py:469:9#1	LIT	train.run:train_f1_score	with_columns	...train_precision") * pl.col("train_recall")) / (pl.col("train_precision") + pl.col("train_recall")) ) .otherwise(None)
+credit_risk/train.py:471:40#1	FRAME_COLS	train.run:training_metrics	-	training_metrics.select( "train_precision", "train_recall", "train_f1_score", "train_accuracy" )
+credit_risk/train.py:473:6#1	CAST	train.run:training_metrics	-	training_metrics.select( "train_precision", "train_recall", "train_f1_score", "train_accuracy" ).cast(pl.Float64)
+credit_risk/train.py:480:19#1	LIT	train.run:eta_valid	-	pl.lit(intercept)
+credit_risk/train.py:481:29#1	DICT_ORDER	train.run	-	coefficients.items()
+credit_risk/train.py:483:56#1	FRAME_COLS	train.run:logit_scored_valid_temp	-	model_features_validation.with_columns(predicted_logit=eta_valid)
+credit_risk/train.py:487:32#1	FRAME_COLS	train.run:logit_scored_valid	-	... pd_logistic=1 / ( 1 + sas_compat.sas_exp(-pl.col("predicted_logit")) ) # R§2 exp(x) -> sas_exp (S1), as predict.py )
+credit_risk/train.py:488:24#1	DIV	train.run:pd_logistic	with_columns	1 / ( 1 + sas_compat.sas_exp(-pl.col("predicted_logit")) )
+credit_risk/train.py:490:16#1	INT_PROMO	train.run:pd_logistic	with_columns	1 + sas_compat.sas_exp(-pl.col("predicted_logit"))
+credit_risk/train.py:490:31#1	HELPER_CALL	train.run:pd_logistic	with_columns	sas_compat.sas_exp(-pl.col("predicted_logit"))
+credit_risk/train.py:493:9#1	FRAME_COLS	train.run:logit_scored_valid	-	...sas_exp (S1), as predict.py ) .with_columns(pred_logistic=sas_compat.flag(sas_compat.ge(pl.col("pd_logistic"), 0.5)))
+credit_risk/train.py:493:47#1	HELPER_CALL	train.run:pred_logistic	with_columns	sas_compat.flag(sas_compat.ge(pl.col("pd_logistic"), 0.5))
+credit_risk/train.py:493:63#1	HELPER_CALL	train.run:pred_logistic	flag<with_columns	sas_compat.ge(pl.col("pd_logistic"), 0.5)
+credit_risk/train.py:494:9#1	FRAME_COLS	train.run:logit_scored_valid	-	...py ) .with_columns(pred_logistic=sas_compat.flag(sas_compat.ge(pl.col("pd_logistic"), 0.5))) .drop("predicted_logit")
+credit_risk/train.py:500:27#1	GROUP_BY	train.run:confusion_matrix	-	logit_scored_valid.group_by(["default_flag", "pred_logistic"], maintain_order=True)
+credit_risk/train.py:501:9#1	FRAME_COLS	train.run:confusion_matrix	-	logit_scored_valid.group_by(["default_flag", "pred_logistic"], maintain_order=True) .agg(COUNT=pl.len().cast(pl.Int64))
+credit_risk/train.py:501:22#1	AGG	train.run:COUNT	agg	pl.len()
+credit_risk/train.py:501:28#1	CAST	train.run:COUNT	agg	pl.len().cast(pl.Int64)
+credit_risk/train.py:502:9#1	SORT	train.run:confusion_matrix	-	...aintain_order=True) .agg(COUNT=pl.len().cast(pl.Int64)) .sort(["default_flag", "pred_logistic"], maintain_order=True)
+credit_risk/train.py:503:9#1	FRAME_COLS	train.run:confusion_matrix	-	..._logistic"], maintain_order=True) .with_columns(PERCENT=sas_compat.div(100 * pl.col("COUNT"), pl.col("COUNT").sum()))
+credit_risk/train.py:503:41#1	HELPER_CALL	train.run:PERCENT	with_columns	sas_compat.div(100 * pl.col("COUNT"), pl.col("COUNT").sum())
+credit_risk/train.py:503:45#1	INT_PROMO	train.run:PERCENT	div<with_columns	100 * pl.col("COUNT")
+credit_risk/train.py:503:84#1	AGG	train.run:PERCENT	div<with_columns	pl.col("COUNT").sum()
+credit_risk/train.py:510:42#1	FRAME_COLS	train.run:validation_metrics	-	...ic") == 1)).sum(), FN=pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 0)).sum(), )
+credit_risk/train.py:511:27#1	FILTER	train.run:TP	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 1))
+credit_risk/train.py:511:35#1	CMP	train.run:TP	filter<select	pl.col("default_flag") == 1
+credit_risk/train.py:511:67#1	CMP	train.run:TP	filter<select	pl.col("pred_logistic") == 1
+credit_risk/train.py:511:98#1	AGG	train.run:TP	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 1)).sum()
+credit_risk/train.py:512:27#1	FILTER	train.run:TN	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 0))
+credit_risk/train.py:512:35#1	CMP	train.run:TN	filter<select	pl.col("default_flag") == 0
+credit_risk/train.py:512:67#1	CMP	train.run:TN	filter<select	pl.col("pred_logistic") == 0
+credit_risk/train.py:512:98#1	AGG	train.run:TN	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 0)).sum()
+credit_risk/train.py:513:27#1	FILTER	train.run:FP	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 1))
+credit_risk/train.py:513:35#1	CMP	train.run:FP	filter<select	pl.col("default_flag") == 0
+credit_risk/train.py:513:67#1	CMP	train.run:FP	filter<select	pl.col("pred_logistic") == 1
+credit_risk/train.py:513:98#1	AGG	train.run:FP	select	pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 1)).sum()
+credit_risk/train.py:514:27#1	FILTER	train.run:FN	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 0))
+credit_risk/train.py:514:35#1	CMP	train.run:FN	filter<select	pl.col("default_flag") == 1
+credit_risk/train.py:514:67#1	CMP	train.run:FN	filter<select	pl.col("pred_logistic") == 0
+credit_risk/train.py:514:98#1	AGG	train.run:FN	select	pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 0)).sum()
+credit_risk/train.py:515:6#1	FRAME_COLS	train.run:validation_metrics	-	...then((pl.col("TP") + pl.col("TN")) / (pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN"))) .otherwise(None), )
+credit_risk/train.py:516:32#1	CMP	train.run:valid_precision	when<with_columns	(pl.col("TP") + pl.col("FP")) > 0
+credit_risk/train.py:517:14#1	DIV	train.run:valid_precision	then<with_columns	pl.col("TP") / (pl.col("TP") + pl.col("FP"))
+credit_risk/train.py:518:9#1	LIT	train.run:valid_precision	with_columns	pl.when((pl.col("TP") + pl.col("FP")) > 0) .then(pl.col("TP") / (pl.col("TP") + pl.col("FP"))) .otherwise(None)
+credit_risk/train.py:519:29#1	CMP	train.run:valid_recall	when<with_columns	(pl.col("TP") + pl.col("FN")) > 0
+credit_risk/train.py:520:14#1	DIV	train.run:valid_recall	then<with_columns	pl.col("TP") / (pl.col("TP") + pl.col("FN"))
+credit_risk/train.py:521:9#1	LIT	train.run:valid_recall	with_columns	pl.when((pl.col("TP") + pl.col("FN")) > 0) .then(pl.col("TP") / (pl.col("TP") + pl.col("FN"))) .otherwise(None)
+credit_risk/train.py:522:31#1	CMP	train.run:valid_accuracy	when<with_columns	(pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN")) > 0
+credit_risk/train.py:523:14#1	DIV	train.run:valid_accuracy	then<with_columns	(pl.col("TP") + pl.col("TN")) / (pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN"))
+credit_risk/train.py:524:9#1	LIT	train.run:valid_accuracy	with_columns	...) .then((pl.col("TP") + pl.col("TN")) / (pl.col("TP") + pl.col("TN") + pl.col("FP") + pl.col("FN"))) .otherwise(None)
+credit_risk/train.py:526:44#1	FRAME_COLS	train.run:validation_metrics	-	...lid_precision") * pl.col("valid_recall")) / (pl.col("valid_precision") + pl.col("valid_recall")) ) .otherwise(None) )
+credit_risk/train.py:528:23#1	HELPER_CALL	train.run:valid_f1_score	when<with_columns	sas_compat.gt(pl.col("valid_precision") + pl.col("valid_recall"), 0)
+credit_risk/train.py:531:12#1	DIV	train.run:valid_f1_score	then<with_columns	2 * (pl.col("valid_precision") * pl.col("valid_recall")) / (pl.col("valid_precision") + pl.col("valid_recall"))
+credit_risk/train.py:531:12#1	INT_PROMO	train.run:valid_f1_score	then<with_columns	2 * (pl.col("valid_precision") * pl.col("valid_recall"))
+credit_risk/train.py:535:9#1	LIT	train.run:valid_f1_score	with_columns	...valid_precision") * pl.col("valid_recall")) / (pl.col("valid_precision") + pl.col("valid_recall")) ) .otherwise(None)
+credit_risk/train.py:537:44#1	FRAME_COLS	train.run:validation_metrics	-	validation_metrics.select( "valid_precision", "valid_recall", "valid_f1_score", "valid_accuracy" )
+credit_risk/train.py:539:6#1	CAST	train.run:validation_metrics	-	validation_metrics.select( "valid_precision", "valid_recall", "valid_f1_score", "valid_accuracy" ).cast(pl.Float64)
+credit_risk/train.py:545:43#1	FRAME_COLS	train.run:risk_scores_train	-	logit_scored_train.with_columns( base_score=pl.lit(600.0), score_range=pl.lit(250.0), )
+credit_risk/train.py:546:22#1	LIT	train.run:base_score	with_columns	pl.lit(600.0)
+credit_risk/train.py:547:23#1	LIT	train.run:score_range	with_columns	pl.lit(250.0)
+credit_risk/train.py:548:6#1	FRAME_COLS	train.run:risk_scores_train	-	... # R§2 round(x), INV credit_risk_score pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic")) ) )
+credit_risk/train.py:549:37#1	HELPER_CALL	train.run:credit_risk_score	with_columns	...d( # R§2 round(x), INV credit_risk_score pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic")) )
+credit_risk/train.py:550:60#1	INT_PROMO	train.run:credit_risk_score	sas_round<with_columns	1 - pl.col("pd_logistic")
+credit_risk/train.py:553:42#1	FRAME_COLS	train.run:risk_scores_train	-	...e") >= 600) .then(pl.lit("D")) .when(pl.col("credit_risk_score") >= 550) .then(pl.lit("E")) .otherwise(pl.lit("F")) )
+credit_risk/train.py:554:27#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 750
+credit_risk/train.py:556:14#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 700
+credit_risk/train.py:558:14#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 650
+credit_risk/train.py:560:14#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 600
+credit_risk/train.py:562:14#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 550
+credit_risk/train.py:566:42#1	FRAME_COLS	train.run:risk_scores_train	-	...) .when(pl.col("risk_grade") == "C") .then(pl.lit("Review")) .otherwise(pl.lit("Decline")), base_rate=pl.lit(0.05), )
+credit_risk/train.py:567:52#1	IS_IN	train.run:recommendation	when<with_columns	pl.col("risk_grade").is_in(["A", "B"])
+credit_risk/train.py:569:14#1	CMP	train.run:recommendation	when<with_columns	pl.col("risk_grade") == "C"
+credit_risk/train.py:572:21#1	LIT	train.run:base_rate	with_columns	pl.lit(0.05)
+credit_risk/train.py:574:42#1	FRAME_COLS	train.run:risk_scores_train	-	...+ 0.07) .when(pl.col("risk_grade") == "E") .then(pl.col("base_rate") + 0.10) .otherwise(pl.col("base_rate") + 0.15) )
+credit_risk/train.py:575:30#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "A"
+credit_risk/train.py:577:14#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "B"
+credit_risk/train.py:579:14#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "C"
+credit_risk/train.py:581:14#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "D"
+credit_risk/train.py:583:14#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "E"
+credit_risk/train.py:589:48#1	FRAME_COLS	train.run:risk_scores_validation	-	logit_scored_valid.with_columns( base_score=pl.lit(600.0), score_range=pl.lit(250.0), )
+credit_risk/train.py:590:22#1	LIT	train.run:base_score	with_columns	pl.lit(600.0)
+credit_risk/train.py:591:23#1	LIT	train.run:score_range	with_columns	pl.lit(250.0)
+credit_risk/train.py:592:6#1	FRAME_COLS	train.run:risk_scores_validation	-	... # R§2 round(x), INV credit_risk_score pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic")) ) )
+credit_risk/train.py:593:37#1	HELPER_CALL	train.run:credit_risk_score	with_columns	...d( # R§2 round(x), INV credit_risk_score pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic")) )
+credit_risk/train.py:594:60#1	INT_PROMO	train.run:credit_risk_score	sas_round<with_columns	1 - pl.col("pd_logistic")
+credit_risk/train.py:597:52#1	FRAME_COLS	train.run:risk_scores_validation	-	...e") >= 600) .then(pl.lit("D")) .when(pl.col("credit_risk_score") >= 550) .then(pl.lit("E")) .otherwise(pl.lit("F")) )
+credit_risk/train.py:598:27#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 750
+credit_risk/train.py:600:14#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 700
+credit_risk/train.py:602:14#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 650
+credit_risk/train.py:604:14#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 600
+credit_risk/train.py:606:14#1	CMP	train.run:risk_grade	when<with_columns	pl.col("credit_risk_score") >= 550
+credit_risk/train.py:610:52#1	FRAME_COLS	train.run:risk_scores_validation	-	...) .when(pl.col("risk_grade") == "C") .then(pl.lit("Review")) .otherwise(pl.lit("Decline")), base_rate=pl.lit(0.05), )
+credit_risk/train.py:611:52#1	IS_IN	train.run:recommendation	when<with_columns	pl.col("risk_grade").is_in(["A", "B"])
+credit_risk/train.py:613:14#1	CMP	train.run:recommendation	when<with_columns	pl.col("risk_grade") == "C"
+credit_risk/train.py:616:21#1	LIT	train.run:base_rate	with_columns	pl.lit(0.05)
+credit_risk/train.py:618:52#1	FRAME_COLS	train.run:risk_scores_validation	-	...+ 0.07) .when(pl.col("risk_grade") == "E") .then(pl.col("base_rate") + 0.10) .otherwise(pl.col("base_rate") + 0.15) )
+credit_risk/train.py:619:30#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "A"
+credit_risk/train.py:621:14#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "B"
+credit_risk/train.py:623:14#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "C"
+credit_risk/train.py:625:14#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "D"
+credit_risk/train.py:627:14#1	CMP	train.run:interest_rate	when<with_columns	pl.col("risk_grade") == "E"
+credit_risk/train.py:638:27#1	HELPER_CALL	train.run:roc_train	-	...n( risk_scores_train.get_column("default_flag"), risk_scores_train.get_column("pd_logistic"), label="Training Set", )
+credit_risk/train.py:639:26#1	COLREF	train.run:roc_train	roc_association	risk_scores_train.get_column("default_flag")
+credit_risk/train.py:640:26#1	COLREF	train.run:roc_train	roc_association	risk_scores_train.get_column("pd_logistic")
+credit_risk/train.py:643:27#1	HELPER_CALL	train.run:roc_valid	-	...es_validation.get_column("default_flag"), risk_scores_validation.get_column("pd_logistic"), label="Validation Set", )
+credit_risk/train.py:644:31#1	COLREF	train.run:roc_valid	roc_association	risk_scores_validation.get_column("default_flag")
+credit_risk/train.py:645:31#1	COLREF	train.run:roc_valid	roc_association	risk_scores_validation.get_column("pd_logistic")
+credit_risk/train.py:658:15#1	OOS_CALL	train.run	-	...ite_sas_csv( risk_scores_train_clean, output_dir / "risk_scores_train.csv", formats={"interest_rate": "percent8.2"} )
+credit_risk/train.py:661:15#1	OOS_CALL	train.run	-	...( risk_scores_validation_clean, output_dir / "risk_scores_validation.csv", formats={"interest_rate": "percent8.2"}, )
+credit_risk/train.py:669:11#1	SET	train.run:keep	-	...rest_rate", "age", "monthly_income", "credit_utilization", "debt_ratio", "total_late_payments", "num_credit_lines", }
+credit_risk/train.py:684:43#1	FRAME_COLS	train.run:final_model_output	-	risk_scores_train.select([c for c in risk_scores_train.columns if c in keep])
+credit_risk/train.py:684:62#1	DICT_ORDER	train.run:final_model_output	select	risk_scores_train.columns
+credit_risk/train.py:684:91#1	CMP	train.run:final_model_output	select	c in keep
+credit_risk/train.py:687:15#1	OOS_CALL	train.run	-	...t.write_sas_csv( final_model_output, output_dir / "final_model_output.csv", formats={"interest_rate": "percent8.2"} )
+credit_risk/train.py:692:31#1	HELPER_CALL	train.run:model_summary	-	...ter(pl.col("ROCModel") == "Validation Set").select(Valid_AUC=pl.col("Area")), training_metrics, validation_metrics, )
+credit_risk/train.py:693:18#1	FILTER	train.run:model_summary	merge_one_to_one	roc_train.filter(pl.col("ROCModel") == "Training Set")
+credit_risk/train.py:693:25#1	CMP	train.run:model_summary	filter<merge_one_to_one	pl.col("ROCModel") == "Training Set"
+credit_risk/train.py:693:63#1	FRAME_COLS	train.run:model_summary	merge_one_to_one	roc_train.filter(pl.col("ROCModel") == "Training Set").select(Train_AUC=pl.col("Area"))
+credit_risk/train.py:694:18#1	FILTER	train.run:model_summary	merge_one_to_one	roc_valid.filter(pl.col("ROCModel") == "Validation Set")
+credit_risk/train.py:694:25#1	CMP	train.run:model_summary	filter<merge_one_to_one	pl.col("ROCModel") == "Validation Set"
+credit_risk/train.py:694:65#1	FRAME_COLS	train.run:model_summary	merge_one_to_one	roc_valid.filter(pl.col("ROCModel") == "Validation Set").select(Valid_AUC=pl.col("Area"))
+credit_risk/train.py:698:34#1	FRAME_COLS	train.run:model_summary	-	...ining_records=pl.lit(105000), # Approximate 70% of 150K validation_records=pl.lit(45000), # Approximate 30% of 150K )
+credit_risk/train.py:700:25#1	LIT	train.run:training_date	with_columns	pl.lit(dt.date.today())
+credit_risk/train.py:700:37#1	DATE_TODAY	train.run:training_date	lit<with_columns	dt.date.today()
+credit_risk/train.py:701:28#1	LIT	train.run:training_records	with_columns	pl.lit(105000)
+credit_risk/train.py:702:30#1	LIT	train.run:validation_records	with_columns	pl.lit(45000)
+credit_risk/train.py:704:19#1	SET	train.run:summary_keep	-	...recall", "train_f1_score", "train_accuracy", "valid_precision", "valid_recall", "valid_f1_score", "valid_accuracy", }
+credit_risk/train.py:720:34#1	FRAME_COLS	train.run:model_summary	-	model_summary.select([c for c in model_summary.columns if c in summary_keep])
+credit_risk/train.py:720:53#1	DICT_ORDER	train.run:model_summary	select	model_summary.columns
+credit_risk/train.py:720:78#1	CMP	train.run:model_summary	select	c in summary_keep
+credit_risk/train.py:723:15#1	OOS_CALL	train.run	-	...ion": "8.4", "valid_recall": "8.4", "valid_f1_score": "8.4", "valid_accuracy": "8.4", "training_date": "date9.", }, )
+credit_risk/train.py:742:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(model_coefficients, output_dir / "model_coefficients.csv", formats={})
+credit_risk/train.py:747:27#1	CONSTRUCT	train.run:printed_roc_train	-	...ROCModel").to_list(), **{c: [sas_compat.sas_d8(v) for v in roc_train.get_column(c).to_list()] for c in roc_cols}, } )
+credit_risk/train.py:749:34#1	COLREF	train.run:printed_roc_train	DataFrame	roc_train.get_column("ROCModel")
+credit_risk/train.py:749:57#1	TO_LIST	train.run:printed_roc_train	DataFrame	roc_train.get_column("ROCModel").to_list()
+credit_risk/train.py:750:30#1	OOS_CALL	train.run:printed_roc_train	DataFrame	sas_compat.sas_d8(v)
+credit_risk/train.py:750:59#1	COLREF	train.run:printed_roc_train	DataFrame	roc_train.get_column(c)
+credit_risk/train.py:750:73#1	TO_LIST	train.run:printed_roc_train	DataFrame	roc_train.get_column(c).to_list()
+credit_risk/train.py:753:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_roc_train, output_dir / "printed_roc_train.csv", formats={})
+credit_risk/train.py:754:32#1	CONSTRUCT	train.run:printed_roc_validation	-	...ROCModel").to_list(), **{c: [sas_compat.sas_d8(v) for v in roc_valid.get_column(c).to_list()] for c in roc_cols}, } )
+credit_risk/train.py:756:34#1	COLREF	train.run:printed_roc_validation	DataFrame	roc_valid.get_column("ROCModel")
+credit_risk/train.py:756:57#1	TO_LIST	train.run:printed_roc_validation	DataFrame	roc_valid.get_column("ROCModel").to_list()
+credit_risk/train.py:757:30#1	OOS_CALL	train.run:printed_roc_validation	DataFrame	sas_compat.sas_d8(v)
+credit_risk/train.py:757:59#1	COLREF	train.run:printed_roc_validation	DataFrame	roc_valid.get_column(c)
+credit_risk/train.py:757:73#1	TO_LIST	train.run:printed_roc_validation	DataFrame	roc_valid.get_column(c).to_list()
+credit_risk/train.py:760:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(printed_roc_validation, output_dir / "printed_roc_validation.csv", formats={})
+credit_risk/train.py:761:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(confusion_matrix_train, output_dir / "printed_confusion_train.csv", formats={})
+credit_risk/train.py:762:15#1	OOS_CALL	train.run	-	sas_compat.write_sas_csv(confusion_matrix, output_dir / "printed_confusion_validation.csv", formats={})

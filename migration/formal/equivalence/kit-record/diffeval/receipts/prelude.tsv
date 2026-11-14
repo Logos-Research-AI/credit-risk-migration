@@ -1,0 +1,155 @@
+primitive	cases	differences	status	note
+Expr.pos	2	0	PASS	output names of 44 expression shapes (column, alias, binary = left operand, literal, len, aggregates, when/then = then branch, horizontal = first operand, map_batches = `a`, litCell) and positional select
+Np.argsortStable	2	0	PASS	
+Np.cumsumInt	2	0	PASS	
+Np.rint	1	0	PASS	40 values: negative and positive exact halves (ties to even), -0.0, tiny negatives, values around 2^52 / 2^53, inf, NaN
+Np.round3	5	0	PASS	former D10: negative values rounding to zero give -0.0; 2,368 grid / random / edge values and 46 negative values and exact halves (x * 1000 exactly half for x = k / 16)
+Np.searchsortedLeft	3	0	PASS	
+Np.searchsortedRight	3	0	PASS	
+Np.sort	2	0	PASS	arrays without zeros of both signs; empty array
+Np.sort(zeros of both signs)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: np.sort with zeros of both signs: np.sort is not stable, Np.sort keeps the input order of -0.0 and 0.0; every other position equal [differs in 1 of 1 cases]
+Np.sum	20	0	PASS	lengths 0..300 (4 arrays), 1000, 2048, 3000, 5000; arrays of zeros of both signs and of -0.0 only
+Np.var1	8	0	PASS	
+abs	1	0	PASS	column without -0.0 (209 rows: null, 0.0, NaN, inf, subnormal, random)
+abs(-0.0)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: polars abs(-0.0) is 0.0; RealLike.abs cannot clear the sign of a zero (the prelude returns -0.0); every other value equal [differs in 1 of 1 cases]
+abs(Int64 input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: stated for Float64 inputs only (RULEBOOK 2.3): polars keeps an integer dtype, the prelude returns Float64; same values [differs in 1 of 1 cases]
+add	7	0	PASS	
+add(Col.null operand)	3	0	PASS	Float64 column +/- pl.lit(None) / a Null column: Float64 nulls
+add(Col.null operand, Int64 / Null other operand)	2	2	KNOWN-LIMIT	DIFF, not a recorded limit (dtype only): Int64 + Null is an Int64 column of nulls in polars and Null + Null is Null; the prelude returns Float64 nulls of the same length [ff/i_add_null, ff/null_add_null] | Null-dtype column outside `wto`: recorded limit, RULEBOOK §6 (amendment D1; found by the regeneration against the frozen preludes; no site of the package reaches it)
+add(frame column kept as scalar)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: a column made by with_columns(w=pl.lit(0.0)) is kept by polars as a scalar (`a + w` leaves -0.0); in the model it is a column of zeros (IEEE: +0.0) [differs in 1 of 1 cases]
+add(scalar zero)	10	0	PASS	former D2: `col + 0.0`, `0.0 + col`, `col + 0`, `expr + 0.0`, `col + (-0.0)`, `col + aggregate(= 0.0)` keep the column (-0.0 stays); 209 rows with every pair of edge values, and 5 rows in dump mode
+add(scalar zero, 0-row frame)	2	0	PASS	0-row frame: empty column of the same dtype
+add(scalar zero, 1-row frame)	7	0	PASS	on a 1-row frame the operands are added by IEEE: -0.0 + 0.0 = +0.0 (float and int zero literal, aggregate, Int64 column)
+add(scalar zero, Boolean operand)	1	0	PASS	Boolean column + 0.0 is the Float64 cast
+add(scalar zero, Int64 operand)	4	0	PASS	Int64 column + 0 / 0 + column stay Int64; + 0.0 / 0.0 + is the Float64 cast
+add(two length-1 operands)	5	0	PASS	two literals / aggregates are added by IEEE (-0.0 + 0.0 = +0.0, -0.0 + -0.0 = -0.0)
+allHorizontal	5	0	PASS	
+and	3	0	PASS	
+and/or(Col.null operand)	2	2	KNOWN-LIMIT	DIFF, not a recorded limit: Boolean & / | pl.lit(None) follows Kleene logic in polars (false & null = false, true | null = true, else null); the prelude returns an EMPTY Boolean column (boolsOf of a Null column is []) [ff/p_and_null, ff/p_or_null] | Null-dtype column outside `wto`: recorded limit, RULEBOOK §6 (amendment D1; found by the regeneration against the frozen preludes; no site of the package reaches it)
+castF64	3	0	PASS	
+castF64(Col.null)	2	0	PASS	cast(pl.Float64) of pl.lit(None) and of a Null column: Float64 nulls
+castF64(frame)	1	0	PASS	
+castF64(frame, Col.null column)	1	0	PASS	frame cast(pl.Float64) turns a Null-dtype column into Float64 nulls
+castI64	2	0	PASS	
+castI64(Col.null)	1	1	KNOWN-LIMIT	DIFF, not a recorded limit (dtype only): pl.lit(None).cast(pl.Int64) is an Int64 null; Expr.castI64 leaves the Null column [ff/null_castI64] | Null-dtype column outside `wto`: recorded limit, RULEBOOK §6 (amendment D1; found by the regeneration against the frozen preludes; no site of the package reaches it)
+cols	1	0	PASS	
+comparison(Col.null operand)	4	0	PASS	Float64 / Int64 column compared with pl.lit(None): Boolean nulls
+comparison(Col.null operand, String)	1	1	KNOWN-LIMIT	DIFF, not a recorded limit: String column == pl.lit(None) is 5 Boolean nulls in polars; the prelude returns an EMPTY Boolean column (cmpBin falls through to asF64, which is [] for a String column) [ff/s_eq_null] | Null-dtype column outside `wto`: recorded limit, RULEBOOK §6 (amendment D1; found by the regeneration against the frozen preludes; no site of the package reaches it)
+concat	2	0	PASS	
+count	27	0	PASS	
+count(Col.null)	1	0	PASS	count of a Null column is 0
+cumSum	6	0	PASS	
+div	8	0	PASS	
+div(Col.null operand)	2	0	PASS	Float64 and Int64 column / Null: Float64 nulls
+drop	1	0	PASS	
+eq	9	0	PASS	
+eq(Boolean operands)	1	0	PASS	
+exp	1	0	PASS	33 values (edges + random): bit-identical; 1-ulp cases were later observed on other values (reviews/B2_r2.md F2; RULEBOOK §6)
+fillNull	7	0	PASS	
+fillNull(Col.null)	5	0	PASS	Null literal / Null column filled with a Float64 literal or column, and a Float64 column filled with pl.lit(None)
+fillNull(Col.null, non-Float64)	7	7	KNOWN-LIMIT	DIFF, not a recorded limit: Col.fillNull has no arm for a Null-dtype operand. pl.lit(None).fill_null(1 | True), a Null column filled with an Int64 column, and an Int64 / Boolean column filled with pl.lit(None) come back Float64 (same values; polars keeps Int / Boolean); with a String operand (lit(None).fill_null('x'), s.fill_null(lit(None))) the prelude returns an EMPTY Float64 column (polars: the String column) [ff/null_fill_i, ff/null_fill_s, ff/null_fill_b, ff/nullcol_fill_icol, ff/i_fill_null, ff/s_fill_null, ff/p_fill_null] | Null-dtype column outside `wto`: recorded limit, RULEBOOK §6 (amendment D1; found by the regeneration against the frozen preludes; no site of the package reaches it)
+filter	8	0	PASS	
+filter(frame)	5	0	PASS	
+filter(frame, Col.null column)	1	0	PASS	frame filter keeps a Null-dtype column
+firstName	1	0	PASS	3 frames
+floor	1	0	PASS	
+floor(Int64 input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: stated for Float64 inputs only (RULEBOOK 2.3): polars keeps an integer dtype, the prelude returns Float64; same values [differs in 1 of 1 cases]
+ge	6	0	PASS	
+getF	1	0	PASS	Float64 column with null and -0.0
+getI	1	0	PASS	
+getS	1	0	PASS	
+group:count	5	0	PASS	
+group:cumSum	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: `cumSum` is stated for select context only (RULEBOOK 2.3): inside group_by().agg polars returns a List column, Expr.cumSum the running sum over the whole frame [differs in 1 of 1 cases]
+group:filter	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: `filter` is stated for select context only (RULEBOOK 2.3): inside group_by().agg Expr.filter ignores the groups (other values) [differs in 1 of 1 cases]
+group:len	5	0	PASS	
+group:mapBatches2	1	0	PASS	
+group:max	5	0	PASS	
+group:max(Int64 input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: stated for Float64 inputs only (RULEBOOK 2.3): polars keeps an integer dtype, the prelude returns Float64; same values [differs in 1 of 1 cases]
+group:max(zeros of opposite sign)	3	2	KNOWN-LIMIT	RULEBOOK §6 recorded limit: zeros of opposite sign: polars returns -0.0 for min and +0.0 for max; no RealLike operation can tell the zeros apart (the prelude returns the first of the equal values) [differs in 2 of 3 cases; the others agree on their input]
+group:mean	5	0	PASS	
+group:median	5	0	PASS	5 groupings, columns without zeros of both signs
+group:median(zeros of both signs)	5	3	KNOWN-LIMIT	RULEBOOK §6 recorded limit: median with zeros of both signs: the prelude sorts stably (-0.0 and 0.0 keep their input order), polars does not; the sign of a zero median can differ; every other value equal [differs in 3 of 5 cases; the others agree on their input]
+group:min	5	0	PASS	
+group:min(Int64 input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: stated for Float64 inputs only (RULEBOOK 2.3): polars keeps an integer dtype, the prelude returns Float64; same values [differs in 1 of 1 cases]
+group:min(zeros of opposite sign)	3	2	KNOWN-LIMIT	RULEBOOK §6 recorded limit: zeros of opposite sign: polars returns -0.0 for min and +0.0 for max; no RealLike operation can tell the zeros apart (the prelude returns the first of the equal values) [differs in 2 of 3 cases; the others agree on their input]
+group:sum	7	0	PASS	4 key shapes (int, string, float with NaN/zeros/null, two keys) + 120 small groups; groups > 128, 1-row, all-null
+groups/groupByAgg	5	0	PASS	
+gt	5	0	PASS	
+height	1	0	PASS	3-row, 1-row and filtered-to-empty frame
+isFinite	2	0	PASS	
+isInF	2	0	PASS	
+isInS	2	0	PASS	
+isNotNull	1	0	PASS	
+isNotNull(Col.null)	2	0	PASS	is_not_null of pl.lit(None) and of a Null-dtype column
+isNull	4	0	PASS	
+isNull(Col.null)	2	0	PASS	is_null of pl.lit(None) and of a Null-dtype column
+itemF	1	0	PASS	frame.item(row, name), item(row, 0) via firstName, item() of a 1x1 frame; null gives none
+itemI	1	0	PASS	Int64 column, with a null
+itemS	1	0	PASS	String column, with a null
+join	6	0	PASS	
+join(Float64 key)	2	0	PASS	float key with NaN, -0.0/0.0 and nulls: equal
+keep	1	0	PASS	
+le	4	0	PASS	
+len	25	0	PASS	
+litCell	7	0	PASS	pl.lit(<date>) = Pl.litCell: with_columns (append, replace), select (broadcast, scalar, positional name `literal`), toTable (the cell itself)
+litNull	1	0	PASS	pl.lit(None) in select: one Null-dtype null
+log	1	0	PASS	33 values (edges + random): bit-identical; 1-ulp cases were later observed on other values (reviews/B2_r2.md F2; RULEBOOK §6)
+lt	6	0	PASS	
+mapBatches2	8	0	PASS	
+max	25	0	PASS	
+max(Int64 input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: stated for Float64 inputs only (RULEBOOK 2.3): polars keeps an integer dtype, the prelude returns Float64; same values [differs in 1 of 1 cases]
+max(zeros of opposite sign)	3	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: zeros of opposite sign: polars returns -0.0 for min and +0.0 for max; no RealLike operation can tell the zeros apart (the prelude returns the first of the equal values) [differs in 1 of 3 cases; the others agree on their input]
+maxHorizontal(full=false)	10	0	PASS	
+maxHorizontal(full=true)	10	0	PASS	N = 2..6
+maxHorizontal(zeros of opposite sign)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: zeros of opposite sign: polars returns -0.0 for min and +0.0 for max; no RealLike operation can tell the zeros apart (the prelude returns the first of the equal values) [differs in 1 of 1 cases]
+mean	25	0	PASS	
+mean(Boolean input)	1	0	PASS	
+mean(Col.null)	1	1	KNOWN-LIMIT	DIFF, not a recorded limit (dtype only): mean of a Null-dtype column is a Null-dtype null in polars; the prelude returns a Float64 null [ff/null_mean] | Null-dtype column outside `wto`: recorded limit, RULEBOOK §6 (amendment D1; found by the regeneration against the frozen preludes; no site of the package reaches it)
+median	25	0	PASS	25 lengths 0..1300 on 5 columns without zeros of both signs
+median(zeros of both signs)	25	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: median with zeros of both signs: the prelude sorts stably (-0.0 and 0.0 keep their input order), polars does not; the sign of a zero median can differ; every other value equal [differs in 1 of 25 cases; the others agree on their input]
+min	25	0	PASS	
+min(Int64 input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: stated for Float64 inputs only (RULEBOOK 2.3): polars keeps an integer dtype, the prelude returns Float64; same values [differs in 1 of 1 cases]
+min(zeros of opposite sign)	3	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: zeros of opposite sign: polars returns -0.0 for min and +0.0 for max; no RealLike operation can tell the zeros apart (the prelude returns the first of the equal values) [differs in 1 of 3 cases; the others agree on their input]
+minHorizontal(full=false)	10	0	PASS	
+minHorizontal(full=true)	10	0	PASS	N = 2..6
+minHorizontal(zeros of opposite sign)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: zeros of opposite sign: polars returns -0.0 for min and +0.0 for max; no RealLike operation can tell the zeros apart (the prelude returns the first of the equal values) [differs in 1 of 1 cases]
+mul	8	0	PASS	
+mul(Col.null operand)	1	0	PASS	Float64 column * Null: Float64 nulls
+mul(Col.null operand, Int64 / Null other operand)	1	1	KNOWN-LIMIT	DIFF, not a recorded limit (dtype only): Int64 * Null is an Int64 column of nulls in polars; the prelude returns Float64 nulls of the same length [ff/i_mul_null] | Null-dtype column outside `wto`: recorded limit, RULEBOOK §6 (amendment D1; found by the regeneration against the frozen preludes; no site of the package reaches it)
+ne	6	0	PASS	
+ne(Boolean operands)	1	0	PASS	
+neg	2	0	PASS	
+not	2	0	PASS	
+ofTable	2	0	PASS	
+or	2	0	PASS	
+rankAverage	16	0	PASS	
+rename	2	0	PASS	
+select	3	0	PASS	
+select(Col.null)	2	0	PASS	select with pl.lit(None): broadcast beside a column, one row alone
+setCol	5	0	PASS	with_columns(series.alias(n)): replace in place (same and other dtype, last column), append (Int64, Boolean)
+sign	1	0	PASS	
+sign(Int64 input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: stated for Float64 inputs only (RULEBOOK 2.3): polars keeps an integer dtype, the prelude returns Float64; same values [differs in 1 of 1 cases]
+sort	8	0	PASS	
+sort(Col.null column)	1	0	PASS	frame sort keeps a Null-dtype column
+sub	6	0	PASS	
+sub(Col.null operand)	2	0	PASS	Float64 column - Null and Null - column: Float64 nulls
+sub(scalar zero)	9	0	PASS	former D2: `col - 0.0`, `col - (-0.0)`, `col - aggregate(= 0.0)` keep the column; `0.0 - col`, `0 - col`, `aggregate - col` negate it
+sub(scalar zero, 0-row frame)	1	0	PASS	0-row frame: empty Float64 column
+sub(scalar zero, 1-row frame)	5	0	PASS	on a 1-row frame IEEE subtraction: -0.0 - 0.0 = -0.0, 0.0 - (-0.0) = +0.0, -0.0 - (-0.0) = +0.0
+sub(scalar zero, Int64 operand)	4	0	PASS	Int64 column - 0 stays Int64, 0 - column is the Int64 negation; `0.0 - column` is the negated Float64 cast (0 gives -0.0)
+sub(two length-1 operands)	5	0	PASS	two literals / aggregates are subtracted by IEEE (-0.0 - 0.0 = -0.0, 0.0 - 0.0 = +0.0)
+sum	26	0	PASS	select context: 25 lengths 0..1300, nulls, all-null, NaN/inf, Int64
+sum(Boolean input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: Boolean input of sum: polars returns an integer dtype, the prelude Float64; same value [differs in 1 of 1 cases]
+sum(Col.null)	1	1	KNOWN-LIMIT	DIFF, not a recorded limit: sum of a Null-dtype column is a Null-dtype null in polars; the prelude returns Float64 0.0 [ff/null_sum] | Null-dtype column outside `wto`: recorded limit, RULEBOOK §6 (amendment D1; found by the regeneration against the frozen preludes; no site of the package reaches it)
+sumHorizontal	2	0	PASS	
+sumHorizontal(Int64 input)	1	1	KNOWN-LIMIT	RULEBOOK §6 recorded limit: stated for Float64 inputs only (RULEBOOK 2.3): polars keeps an integer dtype, the prelude returns Float64; same values [differs in 1 of 1 cases]
+sumHorizontal(full=false)	12	0	PASS	matches POLARS_MAX_THREADS=1, N = 2..6
+sumHorizontal(full=true)	12	0	PASS	matches polars with 2, 3, 4 and 12 threads, N = 2..6, nulls, NaN, inf, -0.0 + null
+sumHorizontal(literal zero / null-literal operand)	5	5	KNOWN-LIMIT	RULEBOOK §6 recorded limit: a literal zero or null-literal operand of sum_horizontal: polars leaves the column unchanged (-0.0 stays), the model adds 0.0 (+0.0) [differs in 5 of 5 cases]
+toTable	4	0	PASS	
+toTable(Col.null)	3	0	PASS	a Null-dtype column crosses the stage boundary as numeric missing cells
+withColumns	4	0	PASS	
+withColumns(Col.null)	2	0	PASS	with_columns(n=pl.lit(None)) appends / replaces by a Null-dtype column of the frame's height
+wto	21	0	PASS	
+wto(litNull branch)	35	0	PASS	former D3: then / otherwise None (Pl.litNull) and a missing otherwise with Int, String, Boolean and Float64 literal and column branches keep the dtype of the other branch; both branches None give a Null-dtype column; chains; 1-row and 0-row frames
+sum(multi-chunk column)	6	2	KNOWN-LIMIT	RULEBOOK §6 recorded limit: multi-chunk columns. Python only: the sum of the same 1000 values differs from the one-chunk sum when the column has 2 chunks (split at [200, 333]; 4 other splits agree); the prelude models one chunk and equals the one-chunk sum

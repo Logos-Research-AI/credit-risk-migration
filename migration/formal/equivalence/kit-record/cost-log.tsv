@@ -1,0 +1,3 @@
+step	timestamp	wall_clock_min	tokens	subagents	model
+1-2	2026-11-10T00:00Z	unknown	unknown	9	claude-fable-5-2 (orchestrator, reviewers, rulebook); sonnet (mechanical add_code)
+3-6	2026-11-10T23:59Z	unknown	unknown	44	claude-fable-5-2 (session model for all agents; sonnet for one mechanical add_code agent)

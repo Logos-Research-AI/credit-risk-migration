@@ -1,0 +1,6 @@
+row_id,default_flag,pd_logistic,risk_grade
+1,0,0.15,A
+2,1,0.25,A
+3,0,0.35,A
+4,1,0.45,A
+5,0,0.5,A

@@ -1,0 +1,18 @@
+unit	cases	differences	status	note	generator	suite
+sas_round	145	0	PASS	11,227 values: null, NaN, ±inf, ±0.0, integers to 2^53+2, k+0.5 ±2 ulps for 21 k up to 2^60, random columns with nulls	migration/diffeval/units/u7927_gen.py	u7927_round
+_pairs	25	0	PASS	408 data sets (group digests): nulls in y / score, ties at _TIE_EPS ±2 ulps at 7 magnitudes, chains, single class, empty	migration/diffeval/units/u7927_gen.py	u7927_pairs
+roc_association	25	0	PASS	816 results, without and with label, same data sets as _pairs	migration/diffeval/units/u7927_gen.py	u7927_pairs
+association_table	25	0	PASS	408 data sets, same as _pairs	migration/diffeval/units/u7927_gen.py	u7927_pairs
+merge_one_to_one	164	29	KNOWN-DIFF	29 XFAIL, all outside the new precondition: 25 lists where a Float64 meets a String or a Date meets Float64/Int64/String under vertical_relaxed (no rendering of a float / a date in α: TODO(port)), 4 where Date meets Boolean and Python raises SchemaError	migration/diffeval/units/u7927_gen.py	u7927_merge
+fe_run_02_income_medians	4	0	PASS	real slice + hand-made frames with null / NaN age and exact thresholds	migration/diffeval/units/c7927_gen.py	c7927_fe
+fe_run_03_cleaned	4	0	PASS	same scenarios	migration/diffeval/units/c7927_gen.py	c7927_fe
+fe_run_05_features	8	0	PASS	full = true / false; null and NaN in every changed comparison, values at each threshold ±1 ulp	migration/diffeval/units/c7927_gen.py	c7927_fe
+fe chain and input checks	12	0	PASS	steps 01, 04 and input tables, chained in Lean	migration/diffeval/units/c7927_gen.py	c7927_fe
+predict_run_02_medians	9	0	PASS	both values of fix_train_medians; null / NaN age	migration/diffeval/units/c7927_gen.py	c7927_pred
+predict_run_03_cleaned	9	0	PASS	same scenarios	migration/diffeval/units/c7927_gen.py	c7927_pred
+predict_run_05_features	18	0	PASS	full = true / false; null and NaN in every changed comparison, thresholds ±1 ulp	migration/diffeval/units/c7927_gen.py	c7927_pred
+predict chain and input checks	27	0	PASS	steps 01, 04 and input tables, chained in Lean	migration/diffeval/units/c7927_gen.py	c7927_pred
+train_run_09_confusion_train	48	0	PASS	real runs + hand-made null default_flag / pred_logistic levels, all rows missing, single level	migration/diffeval/units/r3_gen.py	r3_conf
+train_run_11_confusion_valid	42	0	PASS	same, validation side	migration/diffeval/units/r3_gen.py	r3_conf
+metrics_run_05_cumulative_lift	78	0	PASS	null defaults leading, middle, trailing, in a row, all null; NaN defaults	migration/diffeval/units/r3_gen.py	r3_lift
+metrics_run_06_psi	166	6	KNOWN-DIFF	6 XFAIL: three inputs with fix_psi_bins=True on which Python raises IndexError in proc_rank_apply_groups (no training value), outside the precondition; heights 0, 1, 2, 4999, 5000, 5001 on both sides, both flags	migration/diffeval/units/r3_gen.py	r3_psi, r3_psibig

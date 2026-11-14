@@ -1,0 +1,75 @@
+plant	channel	must	comparer	ok	first_difference
+identical	dump_frame	PASS	PASS	ok	
+one_ulp	dump_frame	FAIL	FAIL	ok	frame.col[0:a][0]: expected 0x3ff8000000000000 (1.5) got 0x3ff8000000000001 (1.5000000000000002)
+neg_zero_vs_zero	dump_frame	FAIL	FAIL	ok	frame.col[0:a][1]: expected 0x0000000000000000 (0.0) got 0x8000000000000000 (-0.0)
+nan_vs_null	dump_frame	FAIL	FAIL	ok	frame.col[0:a][2]: expected 0x7ff8000000000000 (nan) got null
+null_vs_nan	dump_frame	FAIL	FAIL	ok	frame.col[0:a][3]: expected null got 0x7ff8000000000000 (nan)
+int_vs_float64_column	dump_frame	FAIL	FAIL	ok	frame.col[1:i].kind: expected int got f64
+swapped_rows	dump_frame	FAIL	FAIL	ok	frame.col[0:a][0]: expected 0x3ff8000000000000 (1.5) got 0x0000000000000000 (0.0)
+swapped_columns	dump_frame	FAIL	FAIL	ok	frame.columns: expected ['a', 'i', 'b', 's'] got ['i', 'a', 'b', 's']
+renamed_column	dump_frame	FAIL	FAIL	ok	frame.columns: expected ['a', 'i', 'b', 's'] got ['a', 'i', 'B', 's']
+missing_row	dump_frame	FAIL	FAIL	ok	frame.col[0:a].len: expected 4 got 3
+string_differs	dump_frame	FAIL	FAIL	ok	frame.col[3:s][3]: expected 'none' got 'None'
+null_vs_empty_string	dump_frame	FAIL	FAIL	ok	frame.col[3:s][1]: expected None got ''
+bool_differs	dump_frame	FAIL	FAIL	ok	frame.col[2:b][1]: expected None got False
+int_differs	dump_frame	FAIL	FAIL	ok	frame.col[1:i][1]: expected -2 got 2
+identical	dump_table	PASS	PASS	ok	
+one_ulp	dump_table	FAIL	FAIL	ok	table.row[0].cell[0:a]: expected 0x3ff8000000000000 (1.5) got 0x3ff8000000000001 (1.5000000000000002)
+neg_zero_vs_zero	dump_table	FAIL	FAIL	ok	table.row[1].cell[0:a]: expected 0x0000000000000000 (0.0) got 0x8000000000000000 (-0.0)
+nan_vs_null	dump_table	FAIL	FAIL	ok	table.row[2].cell[0:a]: expected 0x7ff8000000000000 (nan) got null
+int_vs_float64_column	dump_table	PASS	PASS	ok	
+swapped_rows	dump_table	FAIL	FAIL	ok	table.row[0].cell[0:a]: expected 0x3ff8000000000000 (1.5) got 0x0000000000000000 (0.0)
+swapped_columns	dump_table	FAIL	FAIL	ok	table.row[0].columns: expected ['a', 'i', 'b', 's'] got ['i', 'a', 'b', 's']
+renamed_column	dump_table	FAIL	FAIL	ok	table.row[0].columns: expected ['a', 'i', 'b', 's'] got ['a', 'i', 'B', 's']
+missing_row	dump_table	FAIL	FAIL	ok	table.height: expected 4 got 3
+identical	dump_col	PASS	PASS	ok	
+one_ulp	dump_col	FAIL	FAIL	ok	col[0]: expected 0x3ff8000000000000 (1.5) got 0x3ff8000000000001 (1.5000000000000002)
+neg_zero_vs_zero	dump_col	FAIL	FAIL	ok	col[1]: expected 0x0000000000000000 (0.0) got 0x8000000000000000 (-0.0)
+nan_vs_null	dump_col	FAIL	FAIL	ok	col[2]: expected 0x7ff8000000000000 (nan) got null
+null_vs_nan	dump_col	FAIL	FAIL	ok	col[3]: expected null got 0x7ff8000000000000 (nan)
+swapped_rows	dump_col	FAIL	FAIL	ok	col[0]: expected 0x3ff8000000000000 (1.5) got 0x0000000000000000 (0.0)
+missing_row	dump_col	FAIL	FAIL	ok	col.len: expected 4 got 3
+int_vs_float64_column	dump_col	FAIL	FAIL	ok	col.kind: expected int got f64
+identical	digest_frame	PASS	PASS	ok	
+one_ulp	digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 433473212361780842
+neg_zero_vs_zero	digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 179391969613733464
+nan_vs_null	digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 10000320129461608618
+int_vs_float64_column	digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 18296923638610342605
+swapped_rows	digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 4367323912658833486
+swapped_columns	digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 12312182249079728106
+renamed_column	digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 8673792222753798693
+missing_row	digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 10239971407977772631
+identical	digest_table	PASS	PASS	ok	
+one_ulp	digest_table	FAIL	FAIL	ok	digest: expected 16307080558644551045 got 13634652689989039215
+neg_zero_vs_zero	digest_table	FAIL	FAIL	ok	digest: expected 16307080558644551045 got 6904274609789348281
+swapped_columns	tokens_frame	FAIL	FAIL	ok	frame.columns: expected ['a', 'i', 'b', 's'] got ['i', 'a', 'b', 's']
+identical	cumsum_digest_frame	PASS	PASS	ok	
+one_ulp	cumsum_digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 433473212361780842
+neg_zero_vs_zero	cumsum_digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 179391969613733464
+nan_vs_null	cumsum_digest_frame	FAIL	FAIL	ok	digest: expected 279622375441043464 got 10000320129461608618
+identical	cumsum_tokens_frame	PASS	PASS	ok	
+one_ulp	cumsum_tokens_frame	FAIL	FAIL	ok	frame.col[0:a][0]: expected 0x3ff8000000000000 (1.5) got 0x3ff8000000000001 (1.5000000000000002)
+null_identical	dump_col	PASS	PASS	ok	
+null_lean_vs_float64_allnull_python	dump_col	FAIL	FAIL	ok	col.kind: expected f64 got null
+float64_allnull_lean_vs_null_python	dump_col	FAIL	FAIL	ok	col.kind: expected null got f64
+null_length_differs	dump_col	FAIL	FAIL	ok	col.len: expected 3 got 2
+null_identical	dump_frame	PASS	PASS	ok	
+null_lean_vs_float64_allnull_python	dump_frame	FAIL	FAIL	ok	frame.col[1:n].kind: expected f64 got null
+float64_allnull_lean_vs_null_python	dump_frame	FAIL	FAIL	ok	frame.col[1:n].kind: expected null got f64
+null_length_differs	dump_frame	FAIL	FAIL	ok	frame.col[0:k].len: expected 3 got 2
+null_identical	digest_col	PASS	PASS	ok	
+null_lean_vs_float64_allnull_python	digest_col	FAIL	FAIL	ok	digest: expected 12380513341899340419 got 7531839824443580584
+float64_allnull_lean_vs_null_python	digest_col	FAIL	FAIL	ok	digest: expected 7531839824443580584 got 12380513341899340419
+null_length_differs	digest_col	FAIL	FAIL	ok	digest: expected 7531839824443580584 got 7531840923955208991
+null_identical	digest_frame	PASS	PASS	ok	
+null_lean_vs_float64_allnull_python	digest_frame	FAIL	FAIL	ok	digest: expected 637792182265506377 got 5943148099992513572
+float64_allnull_lean_vs_null_python	digest_frame	FAIL	FAIL	ok	digest: expected 5943148099992513572 got 637792182265506377
+null_length_differs	digest_frame	FAIL	FAIL	ok	digest: expected 5943148099992513572 got 2109587538821210358
+null_identical	tokens_frame	PASS	PASS	ok	
+null_lean_vs_float64_allnull_python	tokens_frame	FAIL	FAIL	ok	frame.col[1:n].kind: expected f64 got null
+identical	ints	PASS	PASS	ok	
+identical	ints	PASS	PASS	ok	
+null_lean_vs_float64_allnull_python	ints	FAIL	FAIL	ok	int: expected 12380513341899340419 got 7531839824443580584
+int_differs	ints	FAIL	FAIL	ok	int: expected 7 got -7
+identical	digest_frame	PASS	PASS	ok	
+identical	digest_frame	PASS	PASS	ok	
