@@ -195,9 +195,11 @@ data work.credit_features;
     flag_few_credit_lines = (num_credit_lines <= 2);
 
     /* Total risk flags */
-    total_risk_flags = sum(flag_high_utilization, flag_high_debt_ratio,
+    total_risk_flags = sum(flag_high_utilization, flag_very_high_utilization,
+                          flag_high_debt_ratio,
                           flag_serious_delinquency, flag_multiple_delinquencies,
-                          flag_low_income);
+                          flag_low_income, flag_many_dependents,
+                          flag_few_credit_lines);
 
     /* Financial health score (0-100) */
     financial_health = 100;
