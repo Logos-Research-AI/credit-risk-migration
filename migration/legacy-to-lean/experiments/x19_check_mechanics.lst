@@ -1,0 +1,160 @@
+
+                                                           The SAS System                    Saturday, 14 November 2026 18:31:00   1
+
+                                                       The CONTENTS Procedure
+
+               Data Set Name        WORK.X19_DEFAULT                                         Observations          30
+               Member Type          DATA                                                     Variables             6 
+               Engine               V9                                                       Indexes               0 
+               Created              14/11/2026 18:31:39                                      Observation Length    48
+               Last Modified        14/11/2026 18:31:39                                      Deleted Observations  0 
+               Protection                                                                    Compressed            NO
+               Data Set Type                                                                 Sorted                NO
+               Label                                                                                                 
+               Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                            
+               Encoding             utf-8  Unicode (UTF-8)                                                           
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    1                                                                                                       
+First Data Page             1                                                                                                       
+Max Obs per Page            2722                                                                                                    
+Obs in First Data Page      30                                                                                                      
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work6C220001113C_odaws02-euw1.oda.sas.com/SAS_work286A0001113C_                            
+                            odaws02-euw1.oda.sas.com/x19_default.sas7bdat                                                           
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                536892597                                                                                               
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   256KB                                                                                                   
+File Size (bytes)           262144                                                                                                  
+
+
+                                            Alphabetic List of Variables and Attributes
+ 
+                            #    Variable                            Type    Len    Format     Informat
+
+                            3    MonthlyIncome                       Num       8    BEST12.    BEST32. 
+                            5    NumberOfTime30-59DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                            4    NumberOfTimes90DaysLate             Num       8    BEST12.    BEST32. 
+                            6    Other                               Num       8    BEST12.    BEST32. 
+                            1    VAR1                                Num       8    BEST12.    BEST32. 
+                            2    age                                 Num       8    BEST12.    BEST32. 
+
+                                                           The SAS System                    Saturday, 14 November 2026 18:31:00   2
+
+                                                       The CONTENTS Procedure
+
+               Data Set Name        WORK.X19_MAX                                             Observations          30
+               Member Type          DATA                                                     Variables             6 
+               Engine               V9                                                       Indexes               0 
+               Created              14/11/2026 18:31:39                                      Observation Length    80
+               Last Modified        14/11/2026 18:31:39                                      Deleted Observations  0 
+               Protection                                                                    Compressed            NO
+               Data Set Type                                                                 Sorted                NO
+               Label                                                                                                 
+               Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                            
+               Encoding             utf-8  Unicode (UTF-8)                                                           
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    1                                                                                                       
+First Data Page             1                                                                                                       
+Max Obs per Page            1635                                                                                                    
+Obs in First Data Page      30                                                                                                      
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work6C220001113C_odaws02-euw1.oda.sas.com/SAS_                                             
+                            work286A0001113C_odaws02-euw1.oda.sas.com/x19_max.sas7bdat                                              
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                536892605                                                                                               
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   256KB                                                                                                   
+File Size (bytes)           262144                                                                                                  
+
+
+                                            Alphabetic List of Variables and Attributes
+ 
+                            #    Variable                            Type    Len    Format     Informat
+
+                            3    MonthlyIncome                       Char     39    $39.       $39.    
+                            5    NumberOfTime30-59DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                            4    NumberOfTimes90DaysLate             Num       8    BEST12.    BEST32. 
+                            6    Other                               Num       8    BEST12.    BEST32. 
+                            1    VAR1                                Num       8    BEST12.    BEST32. 
+                            2    age                                 Num       8    BEST12.    BEST32. 
+
+                                                           The SAS System                    Saturday, 14 November 2026 18:31:00   3
+
+                                          VAR1                                 age                       MonthlyIncome
+
+                                            24                                  40                                5000
+                                            25                                  40                                5000
+                                            26                                  40                                   .
+                                            27                                  40                                   .
+                                            28                                  40                                   .
+                                            29                                  40                             1234567
+                                            30                                  40                                   1
+
+                       NumberOfTimes90DaysLate    NumberOfTime30-59DaysPastDueNotW                               Other
+
+                                             0                                   1                                   7
+                                             0                                   1                                   7
+                                             0                                   1                                   7
+                                             0                                   1                                   7
+                              0.99999999999999                                   1                                   7
+                                             1                                   1                  1.2345678901234E35
+                                             2                                   1                                   7
+
+                                                           The SAS System                    Saturday, 14 November 2026 18:31:00   4
+
+                                      VAR1                                 age    MonthlyIncome
+
+                                        24                                  40    5000                                   
+                                        25                                  40    5000                                   
+                                        26                                  40    12345abc                               
+                                        27                                  40    abc                                    
+                                        28                                  40    NA                                     
+                                        29                                  40    1234567                                
+                                        30                                  40    1.0000000000000000000000000000000000000
+
+                   NumberOfTimes90DaysLate    NumberOfTime30-59DaysPastDueNotW                               Other
+
+                                         0                                   1                                   7
+                                         0                                   1                                   7
+                                         0                                   1                                   7
+                                         0                                   1                                   7
+                          0.99999999999999                                   1                                   7
+                                         1                                   1                  1.2345678901234E35
+                                         2                                   1                                   7
+
+                                                           The SAS System                    Saturday, 14 November 2026 18:31:00   5
+
+ 
+              VAR1                               Other                              income                              late90
+
+                24                                   7                                5000                                   0
+                25                                   7                                5000                                   0
+                26                                   7                                   .                                   0
+                27                                   7                                   .                                   0
+                28                                   7                                   .                    0.99999999999999
+                29                  1.2345678901234E35                             1234567                                   1
+                30                                   7                                   .                                   2
+
+                late90_                                         old_
+      late30     whole                           old_late90    whole
+
+         1         1                                      0      1  
+         1         1                                      0      1  
+         1         1                                      0      1  
+         1         1                                      0      1  
+         1         0                                      1      1  
+         1         1                                      1      1  
+         1         1                                      2      1  

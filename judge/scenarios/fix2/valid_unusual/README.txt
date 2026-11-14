@@ -1,0 +1,1 @@
+Valid files. Training rows 30-32 have MonthlyIncome blank, '.', 'na'; row 33 has blank NumberOfDependents; rows 34 and 35 have MonthlyIncome -1 and -7.5. Test rows 30 and 31 have MonthlyIncome -1 and -7.5, row 32 blank.

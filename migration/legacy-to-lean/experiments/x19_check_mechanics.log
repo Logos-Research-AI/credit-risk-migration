@@ -1,0 +1,201 @@
+5                                                          The SAS System                        Saturday, 14 November 2026 18:31:00
+
+24         
+25         /* x19: mechanics for the second round of the Q27 / Q14 / Q25 corrections.
+26            (1) a %num macro that takes a numeric column as it is and reads a character column with
+27                BEST32., rejecting text longer than 32 characters; (2) what PROC IMPORT does to
+28                '12345abc' and 'abc' after row 20 with and without guessingrows=max; (3) FDELETE and
+29                FILEEXIST on the server; (4) exp() overflow in the inverse logit; (5) BEST12. of a tiny PSI. */
+30         %let x19_dir = %sysfunc(pathname(work));
+31         
+32         data _null_;
+33             file "&x19_dir/x19.csv";
+34             put 'VAR1,age,MonthlyIncome,NumberOfTimes90DaysLate,NumberOfTime30-59DaysPastDueNotWorse,Other';
+35             do i = 1 to 25;
+36                 put i +(-1) ',40,5000,0,1,7';
+37             end;
+38             put '26,40,12345abc,0,1,7';
+39             put '27,40,abc,0,1,7';
+40             put '28,40,NA,0.99999999999999,1,7';
+41             put '29,40,1234567,1,1,123456789012345678901234567890123456';
+42             put '30,40,1.0000000000000000000000000000000000000,2,1,7';
+43         run;
+44         
+45         proc import datafile="&x19_dir/x19.csv" out=work.x19_default dbms=csv replace;
+46             getnames=yes;
+47         run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name VAR1 is a duplicate.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+48          /**********************************************************************
+49          *   PRODUCT:   SAS
+50          *   VERSION:   9.4
+51          *   CREATOR:   External File Interface
+52          *   DATE:      14NOV26
+53          *   DESC:      Generated SAS Datastep Code
+54          *   TEMPLATE SOURCE:  (None Specified.)
+55          ***********************************************************************/
+56             data WORK.X19_DEFAULT    ;
+57             %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+58             infile '/saswork/SAS_work6C220001113C_odaws02-euw1.oda.sas.com/SAS_work286A0001113C_odaws02-euw1.oda.sas.com/x19.csv'
+58       !  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+59                informat VAR1 best32. ;
+60                informat age best32. ;
+61                informat MonthlyIncome best32. ;
+62                informat NumberOfTimes90DaysLate best32. ;
+63                informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+64                informat Other best32. ;
+65                format VAR1 best12. ;
+66                format age best12. ;
+67                format MonthlyIncome best12. ;
+68                format NumberOfTimes90DaysLate best12. ;
+69                format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+70                format Other best12. ;
+71             input
+72                         VAR1
+73                         age
+74                         MonthlyIncome
+75                         NumberOfTimes90DaysLate
+76                         "NumberOfTime30-59DaysPastDueNotW"N
+77                         Other
+78             ;
+79             if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+80             run;
+RULE:     ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9----+----0                      
+27        26,40,12345abc,0,1,7 20
+VAR1=26 age=40 MonthlyIncome=. NumberOfTimes90DaysLate=0 'NumberOfTime30-59DaysPastDueNotW'n=1 Other=7 _ERROR_=1 _N_=26
+28        27,40,abc,0,1,7 15
+VAR1=27 age=40 MonthlyIncome=. NumberOfTimes90DaysLate=0 'NumberOfTime30-59DaysPastDueNotW'n=1 Other=7 _ERROR_=1 _N_=27
+29        28,40,NA,0.99999999999999,1,7 29
+VAR1=28 age=40 MonthlyIncome=. NumberOfTimes90DaysLate=1 'NumberOfTime30-59DaysPastDueNotW'n=1 Other=7 _ERROR_=1 _N_=28
+Errors detected in submitted DATA step. Examine log.
+30 rows created in WORK.X19_DEFAULT from 
+/saswork/SAS_work6C220001113C_odaws02-euw1.oda.sas.com/SAS_work286A0001113C_odaws02-euw1.oda.sas.com/x19.csv.
+  
+  
+  
+ERROR: Import unsuccessful.  See SAS Log for details.
+81         proc import datafile="&x19_dir/x19.csv" out=work.x19_max dbms=csv replace;
+82             getnames=yes;
+83             guessingrows=max;
+84         run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name VAR1 is a duplicate.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+85          /**********************************************************************
+86          *   PRODUCT:   SAS
+87          *   VERSION:   9.4
+88          *   CREATOR:   External File Interface
+89          *   DATE:      14NOV26
+90          *   DESC:      Generated SAS Datastep Code
+91          *   TEMPLATE SOURCE:  (None Specified.)
+92          ***********************************************************************/
+93             data WORK.X19_MAX    ;
+94             %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+95             infile '/saswork/SAS_work6C220001113C_odaws02-euw1.oda.sas.com/SAS_work286A0001113C_odaws02-euw1.oda.sas.com/x19.csv'
+95       !  delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+96                informat VAR1 best32. ;
+97                informat age best32. ;
+98                informat MonthlyIncome $39. ;
+99                informat NumberOfTimes90DaysLate best32. ;
+100               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+101               informat Other best32. ;
+102               format VAR1 best12. ;
+103               format age best12. ;
+104               format MonthlyIncome $39. ;
+105               format NumberOfTimes90DaysLate best12. ;
+106               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+107               format Other best12. ;
+108            input
+109                        VAR1
+110                        age
+111                        MonthlyIncome  $
+112                        NumberOfTimes90DaysLate
+113                        "NumberOfTime30-59DaysPastDueNotW"N
+114                        Other
+115            ;
+116            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+117            run;
+30 rows created in WORK.X19_MAX from 
+/saswork/SAS_work6C220001113C_odaws02-euw1.oda.sas.com/SAS_work286A0001113C_odaws02-euw1.oda.sas.com/x19.csv.
+  
+  
+  
+118        proc contents data=work.x19_default; run;
+119        proc contents data=work.x19_max; run;
+120        proc print data=work.x19_default(firstobs=24) noobs; format _numeric_ best32.; run;
+121        proc print data=work.x19_max(firstobs=24) noobs; format _numeric_ best32.; run;
+122        
+123        %macro num(v);
+124            %local dsid pos vtype;
+125            %let vtype = ;
+126            %let dsid = %sysfunc(open(work.x19_max));
+127            %let pos = %sysfunc(varnum(&dsid, &v));
+128            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+129            %let dsid = %sysfunc(close(&dsid));
+130            %if &vtype = N %then "&v"n;
+131            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+132        %mend;
+133        
+134        data work.x19_check;
+135            set work.x19_max;
+136            income = %num(MonthlyIncome);
+137            late90 = %num(NumberOfTimes90DaysLate);
+138            late30 = %num(NumberOfTime30-59DaysPastDueNotW);
+139            other = %num(Other);
+140            late90_whole = (late90 >= 0 and late90 = int(late90));
+141            old_late90 = input(cats(NumberOfTimes90DaysLate), ?? best32.);
+142            old_whole = (old_late90 >= 0 and old_late90 = int(old_late90));
+143            keep VAR1 income late90 late30 other late90_whole old_late90 old_whole;
+144        run;
+145        proc print data=work.x19_check(firstobs=24) noobs; format income late90 other old_late90 best32.; run;
+146        
+147        /* (3) delete files */
+148        data _null_;
+149            file "&x19_dir/x19_a.csv"; put 'a';
+150        run;
+151        data _null_;
+152            length fref $8 fname $64;
+153            do fname = 'x19_a.csv', 'x19_not_there.csv';
+154                fref = ' ';
+155                rc1 = filename(fref, cats("&x19_dir/", fname));
+156                ex = fexist(fref);
+157                if ex then rc2 = fdelete(fref);
+158                rc3 = filename(fref);
+159                after = fileexist(cats("&x19_dir/", fname));
+160                put 'X19 DELETE ' fname= rc1= ex= rc2= rc3= after=;
+161            end;
+162        run;
+X19 DELETE fname=x19_a.csv rc1=0 ex=1 rc2=0 rc3=0 after=0
+X19 DELETE fname=x19_not_there.csv rc1=0 ex=0 rc2=0 rc3=0 after=0
+163        
+164        /* (4) inverse logit at extreme logits, (5) tiny PSI printed with BEST12. and 8.4 */
+165        data _null_;
+166            do logit = -800, -700, 0, 700, 800;
+167                pd = 1 / (1 + exp(-logit));
+168                put 'X19 LOGIT ' logit= pd=;
+169            end;
+170            psi = 2e-9;
+171            put 'X19 PSI ' psi= best12. psi= 8.4;
+172            x = log(-1 + 1);
+173            put 'X19 LOG ' x=;
+174        run;
+X19 LOGIT logit=-800 pd=.
+X19 LOGIT logit=-700 pd=9.85968E-305
+X19 LOGIT logit=0 pd=0.5
+X19 LOGIT logit=700 pd=1
+X19 LOGIT logit=800 pd=1
+X19 PSI psi=2E-9 psi=0.0000
+X19 LOG x=.
+logit=800 pd=1 psi=2E-9 x=. _ERROR_=1 _N_=1
+175        
+176        
+177        
+178        
+6                                                          The SAS System                        Saturday, 14 November 2026 18:31:00
+
+179        

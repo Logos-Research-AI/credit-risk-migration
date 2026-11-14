@@ -1,0 +1,202 @@
+[
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "train_outcome_2",
+  "data_dir": "scenarios/fix2/train_outcome_2",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "test_duplicate_id",
+  "data_dir": "scenarios/fix2/test_duplicate_id",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_age_missing",
+  "data_dir": "scenarios/fix2/test_age_missing",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_outcome_2",
+  "data_dir": "scenarios/fix2/test_outcome_2",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_count_fraction",
+  "data_dir": "scenarios/fix2/test_count_fraction",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_income_text",
+  "data_dir": "scenarios/fix2/test_income_text",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_extra_column",
+  "data_dir": "scenarios/fix2/test_extra_column",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "train_age_missing",
+  "data_dir": "scenarios/fix2/train_age_missing",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_duplicate_id",
+  "data_dir": "scenarios/fix2/train_duplicate_id",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_count_fraction",
+  "data_dir": "scenarios/fix2/train_count_fraction",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_count_negative",
+  "data_dir": "scenarios/fix2/train_count_negative",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_count_almost_whole",
+  "data_dir": "scenarios/fix2/train_count_almost_whole",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_dependents_fraction",
+  "data_dir": "scenarios/fix2/train_dependents_fraction",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_income_text_tail",
+  "data_dir": "scenarios/fix2/train_income_text_tail",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_income_text",
+  "data_dir": "scenarios/fix2/train_income_text",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_income_long",
+  "data_dir": "scenarios/fix2/train_income_long",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_no_known_income",
+  "data_dir": "scenarios/fix2/train_no_known_income",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_extra_column",
+  "data_dir": "scenarios/fix2/train_extra_column",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_missing_column",
+  "data_dir": "scenarios/fix2/train_missing_column",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix2/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "valid_unusual",
+  "data_dir": "scenarios/fix2/valid_unusual",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ }
+]
