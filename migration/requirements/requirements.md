@@ -1,6 +1,6 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 3, 2026-11-14. The contradiction and the silences found in draft 1, and the twelve points
+Draft 3, 2026-11-14, signed off. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
 Source: the documentation only, `MODEL_CARD.md` (MC) and `README.md` (RM), cited by line. No
@@ -115,6 +115,15 @@ error, not produce a result.
 | G20 | PSI cuts are nearest-rank deciles; a score equal to a cut goes to the lower bin (see Q25) | 2026-11-14 |
 | G21 | The decile table has ten rows, deciles 1 to 10; the capture sum is required when there is a defaulter (see Q26) | 2026-11-14 |
 | G22 | A risk flag is 0 when its condition does not hold (see Q6) | 2026-11-14 |
+
+| G23 | Q27 with a faulty test file: only the test predictions are withheld; the feature, score and metrics tables of the training file are still produced | 2026-11-14 |
+| G24 | Q11 holds by the form of the interface; whoever presents a program as a pipeline must show its split depends only on the training file and the seed | 2026-11-14 |
+| G25 | Q3 and Q21: the indicator and the prediction are 1 exactly in their case; their value otherwise is only required not to be 1 | 2026-11-14 |
+| G26 | Q22: with an empty class nothing is required of accuracy, precision, recall or F1 either | 2026-11-14 |
+| G27 | Q22: F1 is required only when there is at least one true positive | 2026-11-14 |
+
+**Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
+(58 items, consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
 
 ## 5. Names
 
