@@ -38,7 +38,8 @@ import saspy
 from mutations import MUTATIONS, apply_mutation
 
 JUDGE = Path(__file__).resolve().parent
-REPO = JUDGE.parent
+# the legacy program (scripts and data): legacy/ in the migration repository, the folder itself in a workspace
+REPO = JUDGE.parent / "legacy" if (JUDGE.parent / "legacy").is_dir() else JUDGE.parent
 SCRIPTS = ["feature_engineering.sas", "train.sas", "metrics_calculation.sas", "predict.sas"]
 DATA_FILES = ["cs-training.csv", "cs-test.csv"]
 ORIGINAL_HOME = "/home/u64352077"

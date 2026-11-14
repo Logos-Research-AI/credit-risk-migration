@@ -1,7 +1,7 @@
 [project]
 name = "credit-risk"
 version = "0.1.0"
-description = "Python/polars port of the SAS credit-risk pipeline (structure-preserving; see migration/RULEBOOK.md)"
+description = "Python/polars port of the SAS credit-risk pipeline (structure-preserving; see migration/legacy-to-port/RULEBOOK.md)"
 requires-python = ">=3.13"
 dependencies = [
     "polars==2.1.0",
@@ -22,7 +22,6 @@ packages = ["credit_risk"]
 [tool.ruff]
 line-length = 110
 target-version = "py313"
-extend-exclude = ["judge", "migration"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP"]

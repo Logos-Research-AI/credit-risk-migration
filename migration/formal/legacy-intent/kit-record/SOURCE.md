@@ -1,1 +1,0 @@
-Kit record of the SAS to Lean migration, copied from the `sas` workspace (its `migration/` folder) at workspace commit 6d3d4a2. Left out for size: `runs/` (raw SAS logs, listings and dumps of the evaluation runs), which stays in the workspace.

@@ -21,10 +21,10 @@ Read `informal-spec.md` in full before anything else. This prompt only says how 
 ## What you may read
 
 - `informal-spec.md` here.
-- The SAS side: `/Users/cristophersalvi/GitHub/sas-migration/migration/formal/workspaces/sas` (the `.sas` scripts,
+- The SAS side: `../legacy` (the `.sas` scripts,
   `migration/RULEBOOK.md`, `manifest.tsv`, `open-items.md`, `intent-properties.md`,
   `judge/scenarios/`).
-- The Python side: `/Users/cristophersalvi/GitHub/sas-migration/migration/formal/workspaces/python` (`credit_risk/`,
+- The Python side: `../port` (`credit_risk/`,
   `migration/RULEBOOK.md`, `manifest.tsv`, `inputs/scenarios/`, `migration/diffeval/` for how
   that team built Lean terms from data).
 - The three blueprints, through the `logos-mcp` tools.

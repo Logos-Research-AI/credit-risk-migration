@@ -29,7 +29,7 @@ import numpy as np
 import polars as pl
 
 JUDGE = Path(__file__).resolve().parent
-DATA = JUDGE.parent / "data"
+DATA = JUDGE.parent / "legacy" / "data"
 OUT = JUDGE / "scenarios"
 
 

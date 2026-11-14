@@ -1,13 +1,13 @@
 #!/bin/bash
 # Builds the isolated workspaces for the verification sessions, under
-# migration/formal/workspaces/ (git-ignored). Each holds only what its session may see,
+# migration/workspaces/ (git-ignored). Each holds only what its session may see,
 # and a PreToolUse hook (guard.py) blocks every file of the project outside it.
-# usage: migration/formal/workspaces.sh [name ...]     names: requirements sas python prover
+# usage: migration/workspaces.sh [name ...]     names: requirements legacy port prover
 #        (default: all four; an existing workspace is never overwritten)
 # WORKSPACES_DIR overrides the destination (for testing the script only).
 set -euo pipefail
 F=$(cd "$(dirname "$0")" && pwd)
-SRC=$(cd "$F/../.." && pwd)
+SRC=$(cd "$F/.." && pwd); L=$SRC/legacy
 DST=${WORKSPACES_DIR:-$F/workspaces}
 KIT=$(dirname "$SRC")/logos-migration-kit
 [ -d "$KIT" ] || { echo "kit not found at $KIT"; exit 1; }
@@ -18,7 +18,7 @@ finish() {  # workspace  read_also  deny_blueprints  brief
   local W=$1
   mkdir -p "$W/.claude"
   cp "$F/guard.py" "$W/.claude/guard.py"
-  printf '{\n  "project_root": "../../../..",\n  "read_also": [%s],\n  "deny_blueprints": [%s]\n}\n' "$2" "$3" > "$W/.claude/guard.json"
+  printf '{\n  "project_root": "../../..",\n  "read_also": [%s],\n  "deny_blueprints": [%s]\n}\n' "$2" "$3" > "$W/.claude/guard.json"
   cat > "$W/.claude/settings.json" <<'JSON'
 {
   "hooks": {
@@ -34,7 +34,7 @@ JSON
   cp "$F/$4" "$W/PROMPT.md"
   [ -e "$W/.gitignore" ] || printf '.venv/\n__pycache__/\n' > "$W/.gitignore"
   (cd "$W" && git init -q && git add -A &&
-   git commit -q -m "Workspace snapshot from sas-migration $(cd "$SRC" && git rev-parse --short HEAD)")
+   git commit -q -m "Workspace snapshot from $(basename "$SRC") $(cd "$SRC" && git rev-parse --short HEAD)")
   echo "created $W"
 }
 foundation() { mkdir -p "$1/foundation"; cp "$F/foundation/foundation.pdf" "$F/foundation/foundation.tex" "$1/foundation/"; }
@@ -42,7 +42,7 @@ RULE='Never read a file of the project outside this folder; a hook blocks it, an
 
 build_requirements() {
   local W=$DST/requirements; mkdir -p "$W"; foundation "$W"
-  cp "$SRC/MODEL_CARD.md" "$SRC/README.md" "$F/requirements/requirements.md" "$W/"
+  cp "$L/MODEL_CARD.md" "$L/README.md" "$F/requirements/requirements.md" "$W/"
   cat > "$W/CLAUDE.md" <<MD
 # This workspace: requirements to Lean
 
@@ -57,22 +57,22 @@ MD
   finish "$W" "" "$SAS_BP, $PY_BP" requirements/brief.md
 }
 
-build_sas() {  # the original code, its documentation, real SAS outputs, raw SAS experiments
-  local W=$DST/sas; mkdir -p "$W/judge" "$W/experiments"; foundation "$W"
-  cp "$SRC"/*.sas "$SRC/MODEL_CARD.md" "$SRC/README.md" "$W/"
-  cp -R "$SRC/data" "$W/data"
+build_legacy() {  # the original code, its documentation, real SAS outputs, raw SAS experiments
+  local W=$DST/legacy; mkdir -p "$W/judge" "$W/experiments"; foundation "$W"
+  cp "$L"/*.sas "$L/MODEL_CARD.md" "$L/README.md" "$W/"
+  cp -R "$L/data" "$W/data"
   cp "$SRC/judge/README.md" "$SRC/judge/run_sas.py" "$SRC/judge/known_warnings.txt" \
      "$SRC/judge/pyproject.toml" "$SRC/judge/uv.lock" "$W/judge/"
   cp -R "$SRC/judge/reference" "$W/judge/reference"
   cp -R "$SRC/judge/scenarios" "$W/judge/scenarios"
   # raw SAS programs, logs and listings only: the findings notes discuss the Python port
-  find "$SRC/migration/experiments" -maxdepth 1 \( -name '*.sas' -o -name '*.log' -o -name '*.lst' \) \
+  find "$F/legacy-to-port/experiments" -maxdepth 1 \( -name '*.sas' -o -name '*.log' -o -name '*.lst' \) \
      -exec cp {} "$W/experiments/" \;
   printf 'data/\njudge/reference/\n.venv/\n__pycache__/\nout/\n' > "$W/.gitignore"
   cat > "$W/CLAUDE.md" <<MD
 @$KIT/CLAUDE.md
 
-# This workspace: SAS to Lean
+# This workspace: legacy (SAS) to Lean
 
 Standing rules for every session and subagent here. They override convenience.
 
@@ -86,15 +86,15 @@ Standing rules for every session and subagent here. They override convenience.
 - The shared types are in \`foundation/foundation.pdf\`. Never redefine or work around them.
 - All Lean lives in the blueprint. Never save Lean to a local file.
 MD
-  finish "$W" "" "$PY_BP" legacy-intent/brief-translator.md
+  finish "$W" "" "$PY_BP" legacy-to-lean/brief.md
 }
 
-build_python() {  # the port, its lock file, raw inputs
-  local W=$DST/python; mkdir -p "$W/inputs"; foundation "$W"
-  cp -R "$SRC/credit_risk" "$W/credit_risk"
+build_port() {  # the port, its lock file, raw inputs
+  local W=$DST/port; mkdir -p "$W/inputs"; foundation "$W"
+  cp -R "$SRC/port/credit_risk" "$W/credit_risk"
   find "$W/credit_risk" -name '__pycache__' -type d -prune -exec rm -rf {} +
-  cp "$SRC/pyproject.toml" "$SRC/uv.lock" "$W/"
-  cp -R "$SRC/data" "$W/data"
+  cp "$SRC/port/pyproject.toml" "$SRC/port/uv.lock" "$W/"
+  cp -R "$L/data" "$W/data"
   cp -R "$SRC/judge/scenarios" "$W/inputs/scenarios"
   # the 70/30 split is an input of the port (row ids only)
   python3 - "$SRC/judge/reference/model_features_train.csv" "$W/inputs/split_ids.csv" <<'PY'
@@ -108,7 +108,7 @@ PY
   cat > "$W/CLAUDE.md" <<MD
 @$KIT/CLAUDE.md
 
-# This workspace: Python to Lean
+# This workspace: port (Python) to Lean
 
 Standing rules for every session and subagent here. They override convenience.
 
@@ -124,12 +124,12 @@ Standing rules for every session and subagent here. They override convenience.
 - The shared types are in \`foundation/foundation.pdf\`. Never redefine or work around them.
 - All Lean lives in the blueprint. Never save Lean to a local file.
 MD
-  finish "$W" "" "$SAS_BP" equivalence/brief-translator.md
+  finish "$W" "" "$SAS_BP" port-to-lean/brief.md
 }
 
 build_prover() {
   local W=$DST/prover; mkdir -p "$W"
-  cp "$F/equivalence/informal-spec.md" "$W/"
+  cp "$F/proofs/port-equals-legacy/informal-spec.md" "$W/"
   cat > "$W/CLAUDE.md" <<MD
 # This workspace: equivalence proofs
 
@@ -139,15 +139,15 @@ Standing rules for every session and subagent here. They override convenience.
   \`py-credit-risk-port\`. \`PROMPT.md\` is the brief.
 - Never change an existing item in any blueprint. Never reword a contract. Never add a
   hypothesis the plan does not allow. A disproof is a good result; a weakened proof is not.
-- You may read the two source folders (\`../sas\`, \`../python\`); write only here and in the
+- You may read the two source folders (\`../legacy\`, \`../port\`); write only here and in the
   blueprint. A hook blocks every other file of the project, and that is deliberate.
 - All Lean lives in the blueprint. Never save Lean to a local file.
 MD
-  finish "$W" '"../sas", "../python"' "" equivalence/brief-prover.md
+  finish "$W" '"../legacy", "../port"' "" proofs/port-equals-legacy/brief-prover.md
 }
 
-[ $# -gt 0 ] || set -- requirements sas python prover
+[ $# -gt 0 ] || set -- requirements legacy port prover
 for n in "$@"; do
   [ -e "$DST/$n" ] && { echo "$DST/$n exists; left as it is"; continue; }
-  case $n in requirements|sas|python|prover) "build_$n";; *) echo "unknown workspace: $n"; exit 1;; esac
+  case $n in requirements|legacy|port|prover) "build_$n";; *) echo "unknown workspace: $n"; exit 1;; esac
 done
