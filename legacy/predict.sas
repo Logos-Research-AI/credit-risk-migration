@@ -230,12 +230,13 @@ data work.test_predictions;
     score_range = 250;
     credit_risk_score = base_score + score_range * (1 - pd_logistic);
 
-    /* Assign risk grades */
-    if credit_risk_score >= 750 then risk_grade = 'A';
-    else if credit_risk_score >= 700 then risk_grade = 'B';
-    else if credit_risk_score >= 650 then risk_grade = 'C';
-    else if credit_risk_score >= 600 then risk_grade = 'D';
-    else if credit_risk_score >= 550 then risk_grade = 'E';
+    /* Assign risk grades from the probability (a missing probability is graded F) */
+    if missing(pd_logistic) then risk_grade = 'F';
+    else if pd_logistic < 0.10 then risk_grade = 'A';
+    else if pd_logistic < 0.15 then risk_grade = 'B';
+    else if pd_logistic < 0.25 then risk_grade = 'C';
+    else if pd_logistic < 0.35 then risk_grade = 'D';
+    else if pd_logistic <= 0.50 then risk_grade = 'E';
     else risk_grade = 'F';
 
     /* Recommended actions */
