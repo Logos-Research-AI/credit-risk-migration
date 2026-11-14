@@ -249,35 +249,81 @@ run;
  *****************************************************************************/
 
 /* Compare score distributions between training and validation */
-proc rank data=work.logit_scored_train
-          out=work.train_bins
-          groups=10;
-    var pd_logistic;
-    ranks score_bin;
+
+/* Ten bins cut from the training scores: the nine cuts are the nearest-rank
+   deciles of the training scores (no interpolation) */
+proc sort data=work.logit_scored_train(keep=credit_risk_score)
+          out=work.train_scores_sorted;
+    by credit_risk_score;
 run;
 
-proc rank data=work.logit_scored_valid
-          out=work.valid_bins
-          groups=10;
-    var pd_logistic;
-    ranks score_bin;
+data work.psi_cuts;
+    set work.train_scores_sorted nobs=n_train end=eof;
+    array cut{9};
+    retain cut1-cut9;
+    do k = 1 to 9;
+        if _n_ = ceil(k * n_train / 10) then cut{k} = credit_risk_score;
+    end;
+    if eof then output;
+    keep cut1-cut9;
 run;
+
+/* Place both sets in the same bins; a score equal to a cut belongs to the lower bin */
+data work.train_bins;
+    if _n_ = 1 then set work.psi_cuts;
+    set work.logit_scored_train;
+    array cut{9};
+    score_bin = 0;
+    do k = 1 to 9;
+        if credit_risk_score > cut{k} then score_bin = score_bin + 1;
+    end;
+    drop k cut1-cut9;
+run;
+
+data work.valid_bins;
+    if _n_ = 1 then set work.psi_cuts;
+    set work.logit_scored_valid;
+    array cut{9};
+    score_bin = 0;
+    do k = 1 to 9;
+        if credit_risk_score > cut{k} then score_bin = score_bin + 1;
+    end;
+    drop k cut1-cut9;
+run;
+
+data work.psi_bins;
+    do score_bin = 0 to 9;
+        output;
+    end;
+run;
+
+/* An empty bin is given a share below that of one applicant, the same on both
+   sides, so that a bin filled on one side only adds a positive amount */
+proc sql noprint;
+    select 0.5 / max(t.n, v.n) into :psi_floor trimmed
+    from (select count(*) as n from work.train_bins) t,
+         (select count(*) as n from work.valid_bins) v;
+quit;
 
 /* Calculate PSI */
 proc sql;
     create table work.psi_calculation as
     select
-        a.score_bin,
-        a.train_pct,
-        b.valid_pct,
-        (a.train_pct - b.valid_pct) * log(a.train_pct / b.valid_pct) as psi_component
-    from
+        s.score_bin,
+        coalesce(a.train_pct, 0) as train_pct,
+        coalesce(b.valid_pct, 0) as valid_pct,
+        (max(calculated train_pct, &psi_floor) - max(calculated valid_pct, &psi_floor))
+            * log(max(calculated train_pct, &psi_floor) / max(calculated valid_pct, &psi_floor)) as psi_component
+    from work.psi_bins s
+    left join
         (select score_bin, count(*) / (select count(*) from work.train_bins) as train_pct
          from work.train_bins group by score_bin) a
-    join
+    on s.score_bin = a.score_bin
+    left join
         (select score_bin, count(*) / (select count(*) from work.valid_bins) as valid_pct
          from work.valid_bins group by score_bin) b
-    on a.score_bin = b.score_bin;
+    on s.score_bin = b.score_bin
+    order by s.score_bin;
 
     create table work.psi_summary as
     select sum(psi_component) as PSI format=8.4,

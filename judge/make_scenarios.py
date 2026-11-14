@@ -62,7 +62,10 @@ def synthetic_scores(seed: int, n: int, signal: float, decimals: int, start_id: 
         pd_ = np.clip(np.round(pd_, decimals), 10.0 ** -decimals, None)  # ties; keep pd > 0
     else:
         pd_ = np.clip(np.round(np.round(pd_ / step) * step, 6), step, None)  # grid ties
-    return pl.DataFrame({"row_id": np.arange(start_id, start_id + n), "default_flag": y, "pd_logistic": pd_})
+    # the score of the corrected train.sas (unrounded): metrics_calculation.sas bins it for PSI
+    score = np.round(600 + 250 * (1 - pd_), 6)
+    return pl.DataFrame({"row_id": np.arange(start_id, start_id + n), "default_flag": y, "pd_logistic": pd_,
+                         "credit_risk_score": score})
 
 
 def edge_metrics(name: str, seed: int, signal: float, dec_train: int, dec_valid: int,
