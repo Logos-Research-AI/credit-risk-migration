@@ -1,5 +1,5 @@
 
-                                           Raw Data Summary - Kaggle Give Me Some Credit     Thursday,  5 November 2026 10:06:00   1
+                                           Raw Data Summary - Kaggle Give Me Some Credit     Saturday, 14 November 2026 19:15:00   1
 
                                                         The MEANS Procedure
 
@@ -17,7 +17,7 @@
         NumberOfTime60-89DaysPastDueNotW    150000         0       0.2403867       4.1551794               0      98.0000000
         --------------------------------------------------------------------------------------------------------------------
 
-                                           Raw Data Summary - Kaggle Give Me Some Credit     Thursday,  5 November 2026 10:06:00   2
+                                           Raw Data Summary - Kaggle Give Me Some Credit     Saturday, 14 November 2026 19:15:00   2
 
                                                      The SURVEYSELECT Procedure
 
@@ -31,14 +31,14 @@
                                               Sampling Weight                        0
                                               Output Data Set             CREDIT_SPLIT
 
-                                                  Training Set Summary Statistics            Thursday,  5 November 2026 10:06:00   3
+                                                  Training Set Summary Statistics            Saturday, 14 November 2026 19:15:00   3
 
                                                         The MEANS Procedure
 
                   Variable                      N            Mean         Std Dev         Minimum         Maximum
                   -----------------------------------------------------------------------------------------------
                   age                      105000      52.2893810      14.7538856               0     109.0000000
-                  monthly_income           105000         6285.87         4812.23               0        96668.00
+                  monthly_income           105000         6420.27        12258.76               0      3008750.00
                   credit_utilization       105000     587.4641793        25777.79               0      5070800.00
                   debt_ratio               105000        35472.94       206681.61               0     32966400.00
                   total_late_payments      105000       0.9089048      12.2571588               0     294.0000000
@@ -47,7 +47,7 @@
                   default_flag             105000       0.0667429       0.2495773               0       1.0000000
                   -----------------------------------------------------------------------------------------------
 
-                                                    Training Set - Default Rate              Thursday,  5 November 2026 10:06:00   4
+                                                    Training Set - Default Rate              Saturday, 14 November 2026 19:15:00   4
 
                                                          The FREQ Procedure
 
@@ -57,14 +57,14 @@
                                             0       97992       93.33         97992        93.33  
                                             1        7008        6.67        105000       100.00  
 
-                                                 Validation Set Summary Statistics           Thursday,  5 November 2026 10:06:00   5
+                                                 Validation Set Summary Statistics           Saturday, 14 November 2026 19:15:00   5
 
                                                         The MEANS Procedure
 
                    Variable                     N            Mean         Std Dev         Minimum         Maximum
                    ----------------------------------------------------------------------------------------------
                    age                      45000      52.3088000      14.8138902      21.0000000     103.0000000
-                   monthly_income           45000         6283.07         4893.17               0        97336.00
+                   monthly_income           45000         6458.05        14269.30               0      1794060.00
                    credit_utilization       45000     645.3962665        22995.24               0      2219800.00
                    debt_ratio               45000        34898.17       196851.38               0     32644200.00
                    total_late_payments      45000       0.9705333      12.9408882               0     294.0000000
@@ -73,7 +73,7 @@
                    default_flag             45000       0.0670667       0.2501402               0       1.0000000
                    ----------------------------------------------------------------------------------------------
 
-                                                   Validation Set - Default Rate             Thursday,  5 November 2026 10:06:00   6
+                                                   Validation Set - Default Rate             Saturday, 14 November 2026 19:15:00   6
 
                                                          The FREQ Procedure
 

@@ -1,2183 +1,2211 @@
-37                                                         The SAS System                        Thursday,  5 November 2026 10:14:00
+37                                                         The SAS System                        Saturday, 14 November 2026 19:21:00
 
-919        
-920        /*****************************************************************************
-921         * Credit Risk Scoring Model - Model Training
-922         *
-923         * Purpose: Train logistic regression model for credit default prediction
-924         * Author: Risk Analytics Team
-925         * Date: 2025
-926         *
-927         * Data Source: Kaggle "Give Me Some Credit" competition
-928         *
-929         * This script:
-930         * - Trains logistic regression model with stepwise selection
-931         * - Generates predictions and probability scores
-932         * - Creates risk grades and recommendations
-933         * - Evaluates model performance
-934         * - Exports model results and coefficients
-935         *****************************************************************************/
-936        
-937        /* Define output path */
-938        %let output_path = /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output;
-939        
-940        /*****************************************************************************
-941         * 1. Load Feature-Engineered Data
-942         *****************************************************************************/
-943        
-944        /* Import training features */
-945        proc import datafile="&output_path/model_features_train.csv"
-946            out=work.model_features_train
-947            dbms=csv
-948            replace;
-949            getnames=yes;
-950            guessingrows=max;
-951        run;
+1082       
+1083       /*****************************************************************************
+1084        * Credit Risk Scoring Model - Model Training
+1085        *
+1086        * Purpose: Train logistic regression model for credit default prediction
+1087        * Author: Risk Analytics Team
+1088        * Date: 2025
+1089        *
+1090        * Data Source: Kaggle "Give Me Some Credit" competition
+1091        *
+1092        * This script:
+1093        * - Trains logistic regression model with stepwise selection
+1094        * - Generates predictions and probability scores
+1095        * - Creates risk grades and recommendations
+1096        * - Evaluates model performance
+1097        * - Exports model results and coefficients
+1098        *****************************************************************************/
+1099       
+1100       /* Define output path */
+1101       %let output_path = /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output;
+1102       
+1103       /* Remove the results of an earlier run first: a run that stops leaves no result */
+1104       data _null_;
+1105           length fref $8 fname $64;
+1106           do fname = 'risk_scores_train.csv', 'risk_scores_validation.csv',
+1107                      'final_model_output.csv', 'model_summary.csv', 'model_coefficients.csv';
+1108               fref = ' ';
+1109               if filename(fref, cats("&output_path/", fname)) = 0 then do;
+1110                   if fexist(fref) then rc = fdelete(fref);
+1111                   rc = filename(fref);
+1112               end;
+1113           end;
+1114       run;
+1115       
+1116       /* Stop when the step before did not produce its result */
+1117       data _null_;
+1118           if not fileexist("&output_path/model_features_train.csv")
+1119              or not fileexist("&output_path/model_features_validation.csv") then do;
+1120               put "ERROR: The feature files are not in the output folder: feature engineering did not complete.";
+1121               put "ERROR: Model training stopped. Nothing is exported.";
+1122               abort cancel;
+1123           end;
+1124       run;
+1125       
+1126       /*****************************************************************************
+1127        * 1. Load Feature-Engineered Data
+1128        *****************************************************************************/
+1129       
+1130       /* Import training features */
+1131       proc import datafile="&output_path/model_features_train.csv"
+1132           out=work.model_features_train
+1133           dbms=csv
+1134           replace;
+1135           getnames=yes;
+1136           guessingrows=max;
+1137       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-952         /**********************************************************************
-953         *   PRODUCT:   SAS
-954         *   VERSION:   9.4
-955         *   CREATOR:   External File Interface
-956         *   DATE:      05NOV26
-957         *   DESC:      Generated SAS Datastep Code
-958         *   TEMPLATE SOURCE:  (None Specified.)
-959         ***********************************************************************/
-960            data WORK.MODEL_FEATURES_TRAIN    ;
-961            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-962            infile '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/model_features_train.csv' delimiter = ','
-962      !  MISSOVER DSD lrecl=32767 firstobs=2 ;
-963               informat row_id best32. ;
-964               informat default_flag best32. ;
-965               informat age best32. ;
-966               informat monthly_income best32. ;
-967               informat MonthlyIncome_missing best32. ;
-968               informat num_dependents best32. ;
-969               informat Dependents_missing best32. ;
-970               informat age_group best32. ;
-971               informat num_late_30_59 best32. ;
-972               informat num_late_60_89 best32. ;
-973               informat num_late_90_plus best32. ;
-974               informat credit_utilization best32. ;
-975               informat debt_ratio best32. ;
-976               informat num_credit_lines best32. ;
-977               informat num_real_estate_loans best32. ;
-978               informat total_late_payments best32. ;
-979               informat has_delinquency best32. ;
-980               informat has_serious_delinquency best32. ;
-981               informat credit_util_category best32. ;
-982               informat debt_category best32. ;
-983               informat income_per_dependent best32. ;
-984               informat credit_lines_per_person best32. ;
-985               informat age_category best32. ;
-986               informat flag_high_utilization best32. ;
-987               informat flag_very_high_utilization best32. ;
-988               informat flag_high_debt_ratio best32. ;
-989               informat flag_very_high_debt_ratio best32. ;
-990               informat flag_recent_late_payments best32. ;
-991               informat flag_serious_delinquency best32. ;
-992               informat flag_multiple_delinquencies best32. ;
-993               informat flag_low_income best32. ;
-994               informat flag_many_dependents best32. ;
-995               informat flag_few_credit_lines best32. ;
-996               informat total_risk_flags best32. ;
-997               informat financial_health best32. ;
-998               informat log_monthly_income best32. ;
-999               informat log_num_credit_lines best32. ;
-1000              informat log_total_late_payments best32. ;
-1001              informat age_income_interaction best32. ;
-1002              informat utilization_debt_interaction best32. ;
-1003              informat credit_utilization_capped best32. ;
-1004              informat debt_ratio_capped best32. ;
-1005              format row_id best12. ;
-1006              format default_flag best12. ;
-1007              format age best12. ;
-1008              format monthly_income best12. ;
-1009              format MonthlyIncome_missing best12. ;
-1010              format num_dependents best12. ;
-1011              format Dependents_missing best12. ;
-1012              format age_group best12. ;
-1013              format num_late_30_59 best12. ;
-1014              format num_late_60_89 best12. ;
-1015              format num_late_90_plus best12. ;
-1016              format credit_utilization best12. ;
-1017              format debt_ratio best12. ;
-1018              format num_credit_lines best12. ;
-1019              format num_real_estate_loans best12. ;
-1020              format total_late_payments best12. ;
-1021              format has_delinquency best12. ;
-1022              format has_serious_delinquency best12. ;
-1023              format credit_util_category best12. ;
-1024              format debt_category best12. ;
-1025              format income_per_dependent best12. ;
-1026              format credit_lines_per_person best12. ;
-1027              format age_category best12. ;
-1028              format flag_high_utilization best12. ;
-1029              format flag_very_high_utilization best12. ;
-1030              format flag_high_debt_ratio best12. ;
-1031              format flag_very_high_debt_ratio best12. ;
-1032              format flag_recent_late_payments best12. ;
-1033              format flag_serious_delinquency best12. ;
-1034              format flag_multiple_delinquencies best12. ;
-1035              format flag_low_income best12. ;
-1036              format flag_many_dependents best12. ;
-1037              format flag_few_credit_lines best12. ;
-1038              format total_risk_flags best12. ;
-1039              format financial_health best12. ;
-1040              format log_monthly_income best12. ;
-1041              format log_num_credit_lines best12. ;
-1042              format log_total_late_payments best12. ;
-1043              format age_income_interaction best12. ;
-1044              format utilization_debt_interaction best12. ;
-1045              format credit_utilization_capped best12. ;
-1046              format debt_ratio_capped best12. ;
-1047           input
-1048                       row_id
-1049                       default_flag
-1050                       age
-1051                       monthly_income
-1052                       MonthlyIncome_missing
-1053                       num_dependents
-1054                       Dependents_missing
-1055                       age_group
-1056                       num_late_30_59
-1057                       num_late_60_89
-1058                       num_late_90_plus
-1059                       credit_utilization
-1060                       debt_ratio
-1061                       num_credit_lines
-1062                       num_real_estate_loans
-1063                       total_late_payments
-1064                       has_delinquency
-1065                       has_serious_delinquency
-1066                       credit_util_category
-1067                       debt_category
-1068                       income_per_dependent
-1069                       credit_lines_per_person
-1070                       age_category
-1071                       flag_high_utilization
-1072                       flag_very_high_utilization
-1073                       flag_high_debt_ratio
-1074                       flag_very_high_debt_ratio
-1075                       flag_recent_late_payments
-1076                       flag_serious_delinquency
-1077                       flag_multiple_delinquencies
-1078                       flag_low_income
-1079                       flag_many_dependents
-1080                       flag_few_credit_lines
-1081                       total_risk_flags
-1082                       financial_health
-1083                       log_monthly_income
-1084                       log_num_credit_lines
-1085                       log_total_late_payments
-1086                       age_income_interaction
-1087                       utilization_debt_interaction
-1088                       credit_utilization_capped
-1089                       debt_ratio_capped
-1090           ;
-1091           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-1092           run;
+1138        /**********************************************************************
+1139        *   PRODUCT:   SAS
+1140        *   VERSION:   9.4
+1141        *   CREATOR:   External File Interface
+1142        *   DATE:      14NOV26
+1143        *   DESC:      Generated SAS Datastep Code
+1144        *   TEMPLATE SOURCE:  (None Specified.)
+1145        ***********************************************************************/
+1146           data WORK.MODEL_FEATURES_TRAIN    ;
+1147           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1148           infile '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_features_train.csv' delimiter =
+1148     ! ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+1149              informat row_id best32. ;
+1150              informat default_flag best32. ;
+1151              informat age best32. ;
+1152              informat monthly_income best32. ;
+1153              informat MonthlyIncome_missing best32. ;
+1154              informat num_dependents best32. ;
+1155              informat Dependents_missing best32. ;
+1156              informat age_group best32. ;
+1157              informat num_late_30_59 best32. ;
+1158              informat num_late_60_89 best32. ;
+1159              informat num_late_90_plus best32. ;
+1160              informat credit_utilization best32. ;
+1161              informat debt_ratio best32. ;
+1162              informat num_credit_lines best32. ;
+1163              informat num_real_estate_loans best32. ;
+1164              informat total_late_payments best32. ;
+1165              informat has_delinquency best32. ;
+1166              informat has_serious_delinquency best32. ;
+1167              informat credit_util_category best32. ;
+1168              informat debt_category best32. ;
+1169              informat income_per_dependent best32. ;
+1170              informat credit_lines_per_person best32. ;
+1171              informat age_category best32. ;
+1172              informat flag_high_utilization best32. ;
+1173              informat flag_very_high_utilization best32. ;
+1174              informat flag_high_debt_ratio best32. ;
+1175              informat flag_very_high_debt_ratio best32. ;
+1176              informat flag_recent_late_payments best32. ;
+1177              informat flag_serious_delinquency best32. ;
+1178              informat flag_multiple_delinquencies best32. ;
+1179              informat flag_low_income best32. ;
+1180              informat flag_many_dependents best32. ;
+1181              informat flag_few_credit_lines best32. ;
+1182              informat total_risk_flags best32. ;
+1183              informat financial_health best32. ;
+1184              informat log_monthly_income best32. ;
+1185              informat log_num_credit_lines best32. ;
+1186              informat log_total_late_payments best32. ;
+1187              informat age_income_interaction best32. ;
+1188              informat utilization_debt_interaction best32. ;
+1189              informat credit_utilization_capped best32. ;
+1190              informat debt_ratio_capped best32. ;
+1191              format row_id best12. ;
+1192              format default_flag best12. ;
+1193              format age best12. ;
+1194              format monthly_income best12. ;
+1195              format MonthlyIncome_missing best12. ;
+1196              format num_dependents best12. ;
+1197              format Dependents_missing best12. ;
+1198              format age_group best12. ;
+1199              format num_late_30_59 best12. ;
+1200              format num_late_60_89 best12. ;
+1201              format num_late_90_plus best12. ;
+1202              format credit_utilization best12. ;
+1203              format debt_ratio best12. ;
+1204              format num_credit_lines best12. ;
+1205              format num_real_estate_loans best12. ;
+1206              format total_late_payments best12. ;
+1207              format has_delinquency best12. ;
+1208              format has_serious_delinquency best12. ;
+1209              format credit_util_category best12. ;
+1210              format debt_category best12. ;
+1211              format income_per_dependent best12. ;
+1212              format credit_lines_per_person best12. ;
+1213              format age_category best12. ;
+1214              format flag_high_utilization best12. ;
+1215              format flag_very_high_utilization best12. ;
+1216              format flag_high_debt_ratio best12. ;
+1217              format flag_very_high_debt_ratio best12. ;
+1218              format flag_recent_late_payments best12. ;
+1219              format flag_serious_delinquency best12. ;
+1220              format flag_multiple_delinquencies best12. ;
+1221              format flag_low_income best12. ;
+1222              format flag_many_dependents best12. ;
+1223              format flag_few_credit_lines best12. ;
+1224              format total_risk_flags best12. ;
+1225              format financial_health best12. ;
+1226              format log_monthly_income best12. ;
+1227              format log_num_credit_lines best12. ;
+1228              format log_total_late_payments best12. ;
+1229              format age_income_interaction best12. ;
+1230              format utilization_debt_interaction best12. ;
+1231              format credit_utilization_capped best12. ;
+1232              format debt_ratio_capped best12. ;
+1233           input
+1234                       row_id
+1235                       default_flag
+1236                       age
+1237                       monthly_income
+1238                       MonthlyIncome_missing
+1239                       num_dependents
+1240                       Dependents_missing
+1241                       age_group
+1242                       num_late_30_59
+1243                       num_late_60_89
+1244                       num_late_90_plus
+1245                       credit_utilization
+1246                       debt_ratio
+1247                       num_credit_lines
+1248                       num_real_estate_loans
+1249                       total_late_payments
+1250                       has_delinquency
+1251                       has_serious_delinquency
+1252                       credit_util_category
+1253                       debt_category
+1254                       income_per_dependent
+1255                       credit_lines_per_person
+1256                       age_category
+1257                       flag_high_utilization
+1258                       flag_very_high_utilization
+1259                       flag_high_debt_ratio
+1260                       flag_very_high_debt_ratio
+1261                       flag_recent_late_payments
+1262                       flag_serious_delinquency
+1263                       flag_multiple_delinquencies
+1264                       flag_low_income
+1265                       flag_many_dependents
+1266                       flag_few_credit_lines
+1267                       total_risk_flags
+1268                       financial_health
+1269                       log_monthly_income
+1270                       log_num_credit_lines
+1271                       log_total_late_payments
+1272                       age_income_interaction
+1273                       utilization_debt_interaction
+1274                       credit_utilization_capped
+1275                       debt_ratio_capped
+1276           ;
+1277           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1278           run;
 105000 rows created in WORK.MODEL_FEATURES_TRAIN from 
-/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/model_features_train.csv.
+/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_features_train.csv.
   
   
   
-1093       
-1094       /* Import validation features */
-1095       proc import datafile="&output_path/model_features_validation.csv"
-1096           out=work.model_features_validation
-1097           dbms=csv
-1098           replace;
-1099           getnames=yes;
-1100           guessingrows=max;
-1101       run;
+1279       
+1280       /* Import validation features */
+1281       proc import datafile="&output_path/model_features_validation.csv"
+1282           out=work.model_features_validation
+1283           dbms=csv
+1284           replace;
+1285           getnames=yes;
+1286           guessingrows=max;
+1287       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-1102        /**********************************************************************
-1103        *   PRODUCT:   SAS
-1104        *   VERSION:   9.4
-1105        *   CREATOR:   External File Interface
-1106        *   DATE:      05NOV26
-1107        *   DESC:      Generated SAS Datastep Code
-1108        *   TEMPLATE SOURCE:  (None Specified.)
-1109        ***********************************************************************/
-1110           data WORK.MODEL_FEATURES_VALIDATION    ;
-1111           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-1112           infile '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/model_features_validation.csv' delimiter
-1112     ! = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
-1113              informat row_id best32. ;
-1114              informat default_flag best32. ;
-1115              informat age best32. ;
-1116              informat monthly_income best32. ;
-1117              informat MonthlyIncome_missing best32. ;
-1118              informat num_dependents best32. ;
-1119              informat Dependents_missing best32. ;
-1120              informat age_group best32. ;
-1121              informat num_late_30_59 best32. ;
-1122              informat num_late_60_89 best32. ;
-1123              informat num_late_90_plus best32. ;
-1124              informat credit_utilization best32. ;
-1125              informat debt_ratio best32. ;
-1126              informat num_credit_lines best32. ;
-1127              informat num_real_estate_loans best32. ;
-1128              informat total_late_payments best32. ;
-1129              informat has_delinquency best32. ;
-1130              informat has_serious_delinquency best32. ;
-1131              informat credit_util_category best32. ;
-1132              informat debt_category best32. ;
-1133              informat income_per_dependent best32. ;
-1134              informat credit_lines_per_person best32. ;
-1135              informat age_category best32. ;
-1136              informat flag_high_utilization best32. ;
-1137              informat flag_very_high_utilization best32. ;
-1138              informat flag_high_debt_ratio best32. ;
-1139              informat flag_very_high_debt_ratio best32. ;
-1140              informat flag_recent_late_payments best32. ;
-1141              informat flag_serious_delinquency best32. ;
-1142              informat flag_multiple_delinquencies best32. ;
-1143              informat flag_low_income best32. ;
-1144              informat flag_many_dependents best32. ;
-1145              informat flag_few_credit_lines best32. ;
-1146              informat total_risk_flags best32. ;
-1147              informat financial_health best32. ;
-1148              informat log_monthly_income best32. ;
-1149              informat log_num_credit_lines best32. ;
-1150              informat log_total_late_payments best32. ;
-1151              informat age_income_interaction best32. ;
-1152              informat utilization_debt_interaction best32. ;
-1153              informat credit_utilization_capped best32. ;
-1154              informat debt_ratio_capped best32. ;
-1155              format row_id best12. ;
-1156              format default_flag best12. ;
-1157              format age best12. ;
-1158              format monthly_income best12. ;
-1159              format MonthlyIncome_missing best12. ;
-1160              format num_dependents best12. ;
-1161              format Dependents_missing best12. ;
-1162              format age_group best12. ;
-1163              format num_late_30_59 best12. ;
-1164              format num_late_60_89 best12. ;
-1165              format num_late_90_plus best12. ;
-1166              format credit_utilization best12. ;
-1167              format debt_ratio best12. ;
-1168              format num_credit_lines best12. ;
-1169              format num_real_estate_loans best12. ;
-1170              format total_late_payments best12. ;
-1171              format has_delinquency best12. ;
-1172              format has_serious_delinquency best12. ;
-1173              format credit_util_category best12. ;
-1174              format debt_category best12. ;
-1175              format income_per_dependent best12. ;
-1176              format credit_lines_per_person best12. ;
-1177              format age_category best12. ;
-1178              format flag_high_utilization best12. ;
-1179              format flag_very_high_utilization best12. ;
-1180              format flag_high_debt_ratio best12. ;
-1181              format flag_very_high_debt_ratio best12. ;
-1182              format flag_recent_late_payments best12. ;
-1183              format flag_serious_delinquency best12. ;
-1184              format flag_multiple_delinquencies best12. ;
-1185              format flag_low_income best12. ;
-1186              format flag_many_dependents best12. ;
-1187              format flag_few_credit_lines best12. ;
-1188              format total_risk_flags best12. ;
-1189              format financial_health best12. ;
-1190              format log_monthly_income best12. ;
-1191              format log_num_credit_lines best12. ;
-1192              format log_total_late_payments best12. ;
-1193              format age_income_interaction best12. ;
-1194              format utilization_debt_interaction best12. ;
-1195              format credit_utilization_capped best12. ;
-1196              format debt_ratio_capped best12. ;
-1197           input
-1198                       row_id
-1199                       default_flag
-1200                       age
-1201                       monthly_income
-1202                       MonthlyIncome_missing
-1203                       num_dependents
-1204                       Dependents_missing
-1205                       age_group
-1206                       num_late_30_59
-1207                       num_late_60_89
-1208                       num_late_90_plus
-1209                       credit_utilization
-1210                       debt_ratio
-1211                       num_credit_lines
-1212                       num_real_estate_loans
-1213                       total_late_payments
-1214                       has_delinquency
-1215                       has_serious_delinquency
-1216                       credit_util_category
-1217                       debt_category
-1218                       income_per_dependent
-1219                       credit_lines_per_person
-1220                       age_category
-1221                       flag_high_utilization
-1222                       flag_very_high_utilization
-1223                       flag_high_debt_ratio
-1224                       flag_very_high_debt_ratio
-1225                       flag_recent_late_payments
-1226                       flag_serious_delinquency
-1227                       flag_multiple_delinquencies
-1228                       flag_low_income
-1229                       flag_many_dependents
-1230                       flag_few_credit_lines
-1231                       total_risk_flags
-1232                       financial_health
-1233                       log_monthly_income
-1234                       log_num_credit_lines
-1235                       log_total_late_payments
-1236                       age_income_interaction
-1237                       utilization_debt_interaction
-1238                       credit_utilization_capped
-1239                       debt_ratio_capped
-1240           ;
-1241           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-1242           run;
+1288        /**********************************************************************
+1289        *   PRODUCT:   SAS
+1290        *   VERSION:   9.4
+1291        *   CREATOR:   External File Interface
+1292        *   DATE:      14NOV26
+1293        *   DESC:      Generated SAS Datastep Code
+1294        *   TEMPLATE SOURCE:  (None Specified.)
+1295        ***********************************************************************/
+1296           data WORK.MODEL_FEATURES_VALIDATION    ;
+1297           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1298           infile '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_features_validation.csv'
+1298     ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+1299              informat row_id best32. ;
+1300              informat default_flag best32. ;
+1301              informat age best32. ;
+1302              informat monthly_income best32. ;
+1303              informat MonthlyIncome_missing best32. ;
+1304              informat num_dependents best32. ;
+1305              informat Dependents_missing best32. ;
+1306              informat age_group best32. ;
+1307              informat num_late_30_59 best32. ;
+1308              informat num_late_60_89 best32. ;
+1309              informat num_late_90_plus best32. ;
+1310              informat credit_utilization best32. ;
+1311              informat debt_ratio best32. ;
+1312              informat num_credit_lines best32. ;
+1313              informat num_real_estate_loans best32. ;
+1314              informat total_late_payments best32. ;
+1315              informat has_delinquency best32. ;
+1316              informat has_serious_delinquency best32. ;
+1317              informat credit_util_category best32. ;
+1318              informat debt_category best32. ;
+1319              informat income_per_dependent best32. ;
+1320              informat credit_lines_per_person best32. ;
+1321              informat age_category best32. ;
+1322              informat flag_high_utilization best32. ;
+1323              informat flag_very_high_utilization best32. ;
+1324              informat flag_high_debt_ratio best32. ;
+1325              informat flag_very_high_debt_ratio best32. ;
+1326              informat flag_recent_late_payments best32. ;
+1327              informat flag_serious_delinquency best32. ;
+1328              informat flag_multiple_delinquencies best32. ;
+1329              informat flag_low_income best32. ;
+1330              informat flag_many_dependents best32. ;
+1331              informat flag_few_credit_lines best32. ;
+1332              informat total_risk_flags best32. ;
+1333              informat financial_health best32. ;
+1334              informat log_monthly_income best32. ;
+1335              informat log_num_credit_lines best32. ;
+1336              informat log_total_late_payments best32. ;
+1337              informat age_income_interaction best32. ;
+1338              informat utilization_debt_interaction best32. ;
+1339              informat credit_utilization_capped best32. ;
+1340              informat debt_ratio_capped best32. ;
+1341              format row_id best12. ;
+1342              format default_flag best12. ;
+1343              format age best12. ;
+1344              format monthly_income best12. ;
+1345              format MonthlyIncome_missing best12. ;
+1346              format num_dependents best12. ;
+1347              format Dependents_missing best12. ;
+1348              format age_group best12. ;
+1349              format num_late_30_59 best12. ;
+1350              format num_late_60_89 best12. ;
+1351              format num_late_90_plus best12. ;
+1352              format credit_utilization best12. ;
+1353              format debt_ratio best12. ;
+1354              format num_credit_lines best12. ;
+1355              format num_real_estate_loans best12. ;
+1356              format total_late_payments best12. ;
+1357              format has_delinquency best12. ;
+1358              format has_serious_delinquency best12. ;
+1359              format credit_util_category best12. ;
+1360              format debt_category best12. ;
+1361              format income_per_dependent best12. ;
+1362              format credit_lines_per_person best12. ;
+1363              format age_category best12. ;
+1364              format flag_high_utilization best12. ;
+1365              format flag_very_high_utilization best12. ;
+1366              format flag_high_debt_ratio best12. ;
+1367              format flag_very_high_debt_ratio best12. ;
+1368              format flag_recent_late_payments best12. ;
+1369              format flag_serious_delinquency best12. ;
+1370              format flag_multiple_delinquencies best12. ;
+1371              format flag_low_income best12. ;
+1372              format flag_many_dependents best12. ;
+1373              format flag_few_credit_lines best12. ;
+1374              format total_risk_flags best12. ;
+1375              format financial_health best12. ;
+1376              format log_monthly_income best12. ;
+1377              format log_num_credit_lines best12. ;
+1378              format log_total_late_payments best12. ;
+1379              format age_income_interaction best12. ;
+1380              format utilization_debt_interaction best12. ;
+1381              format credit_utilization_capped best12. ;
+1382              format debt_ratio_capped best12. ;
+1383           input
+1384                       row_id
+1385                       default_flag
+1386                       age
+1387                       monthly_income
+1388                       MonthlyIncome_missing
+1389                       num_dependents
+1390                       Dependents_missing
+1391                       age_group
+1392                       num_late_30_59
+1393                       num_late_60_89
+1394                       num_late_90_plus
+1395                       credit_utilization
+1396                       debt_ratio
+1397                       num_credit_lines
+1398                       num_real_estate_loans
+1399                       total_late_payments
+1400                       has_delinquency
+1401                       has_serious_delinquency
+1402                       credit_util_category
+1403                       debt_category
+1404                       income_per_dependent
+1405                       credit_lines_per_person
+1406                       age_category
+1407                       flag_high_utilization
+1408                       flag_very_high_utilization
+1409                       flag_high_debt_ratio
+1410                       flag_very_high_debt_ratio
+1411                       flag_recent_late_payments
+1412                       flag_serious_delinquency
+1413                       flag_multiple_delinquencies
+1414                       flag_low_income
+1415                       flag_many_dependents
+1416                       flag_few_credit_lines
+1417                       total_risk_flags
+1418                       financial_health
+1419                       log_monthly_income
+1420                       log_num_credit_lines
+1421                       log_total_late_payments
+1422                       age_income_interaction
+1423                       utilization_debt_interaction
+1424                       credit_utilization_capped
+1425                       debt_ratio_capped
+1426           ;
+1427           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1428           run;
 45000 rows created in WORK.MODEL_FEATURES_VALIDATION from 
-/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/model_features_validation.csv.
+/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_features_validation.csv.
   
   
   
-1243       
-1244       /*****************************************************************************
-1245        * 2. Train Logistic Regression Model
-1246        *****************************************************************************/
-1247       
-1248       /* Train logistic regression with stepwise selection */
-1249       proc logistic data=work.model_features_train descending;
-1250           model default_flag =
-1251               /* Core risk metrics */
-1252               credit_utilization_capped debt_ratio_capped
-1253       
-1254               /* Late payment indicators */
-1255               num_late_30_59 num_late_60_89 num_late_90_plus
-1256               total_late_payments has_delinquency has_serious_delinquency
-1257       
-1258               /* Financial metrics */
-1259               age monthly_income log_monthly_income
-1260               num_credit_lines num_real_estate_loans log_num_credit_lines
-1261               num_dependents income_per_dependent credit_lines_per_person
-1262       
-1263               /* Risk flags */
-1264               flag_high_utilization flag_very_high_utilization
-1265               flag_high_debt_ratio flag_very_high_debt_ratio
-1266               flag_recent_late_payments flag_serious_delinquency
-1267               flag_multiple_delinquencies flag_low_income
-1268               flag_many_dependents flag_few_credit_lines
-1269               total_risk_flags
-1270       
-1271               /* Categorical indicators */
-1272               credit_util_category debt_category age_category
-1273       
-1274               /* Composite scores */
-1275               financial_health
-1276       
-1277               /* Interaction features */
-1278               age_income_interaction utilization_debt_interaction
-1279       
-1280               /* Missing value flags */
-1281               MonthlyIncome_missing Dependents_missing
-1282       
-1283           / selection=stepwise slentry=0.05 slstay=0.05
-1284             ctable lackfit rsquare;
-1285       
-1286           /* Output predictions */
-1287           output out=work.logit_scored_train
-1288                  predicted=pd_logistic;
-1289       
-1290           /* Store model for scoring */
-1291           store work.logit_model;
-1292       
-1293           /* Output parameter estimates (coefficients) */
-1294           ods output ModelBuildingSummary=work._j_modelbuildingsummary FitStatistics=work._j_fitstatistics
-1294     ! GlobalTests=work._j_globaltests RSquare=work._j_rsquare Association=work._j_association OddsRatios=work._j_oddsratios
-1294     ! LackFitPartition=work._j_lackfitpartition LackFitChiSq=work._j_lackfitchisq Classification=work._j_classification
-1294     ! ParameterEstimates=work.model_coefficients;
-1295       
-1296           title "Logistic Regression Model - Credit Default Prediction";
-1297       run;
-1298       
-1299       /*****************************************************************************
-1300        * 3. Evaluate Model on Training Data
-1301        *****************************************************************************/
-1302       
-1303       /* Add binary prediction variable */
-1304       data work.logit_scored_train;
-1305           set work.logit_scored_train;
-1306           pred_logistic = (pd_logistic >= 0.5);
-1307       run;
-1308       
-1309       /* Confusion matrix on training set */
-1310       proc freq data=work.logit_scored_train noprint;
-1311           tables default_flag * pred_logistic / out=work.confusion_matrix_train;
-1312       run;
-1313       
-1314       proc print data=work.confusion_matrix_train;
-1315           title "Confusion Matrix - Training Set";
-1316       run;
-1317       
-1318       /* Calculate precision, recall, and F1 score for training set */
-1319       data work.training_metrics;
-1320           set work.confusion_matrix_train end=eof;
-1321           retain TP TN FP FN 0;
-1322       
-1323           if default_flag = 1 and pred_logistic = 1 then TP = count;
-1324           else if default_flag = 0 and pred_logistic = 0 then TN = count;
-1325           else if default_flag = 0 and pred_logistic = 1 then FP = count;
-1326           else if default_flag = 1 and pred_logistic = 0 then FN = count;
-1327       
-1328           if eof then do;
-1329               if (TP + FP) > 0 then train_precision = TP / (TP + FP);
-1330               else train_precision = .;
-1331               if (TP + FN) > 0 then train_recall = TP / (TP + FN);
-1332               else train_recall = .;
-1333               if (train_precision + train_recall) > 0 then train_f1_score = 2 * (train_precision * train_recall) /
-1333     ! (train_precision + train_recall);
-1334               else train_f1_score = .;
-1335               if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN);
-1336               else train_accuracy = .;
-1337               output;
-1338           end;
-1339           keep train_precision train_recall train_f1_score train_accuracy;
-1340       run;
-1341       
-1342       proc print data=work.training_metrics;
-1343           title "Training Set - Performance Metrics";
-1344           format train_precision train_recall train_f1_score train_accuracy 8.4;
-1345       run;
-1346       
-1347       /*****************************************************************************
-1348        * 4. Score Validation Set
-1349        *****************************************************************************/
-1350       
-1351       /* Score validation set with trained model */
-1352       proc plm restore=work.logit_model;
-1353           score data=work.model_features_validation
-1354                 out=work.logit_scored_valid_temp
-1355                 predicted=predicted_logit;
-1356       run;
-1357       
-1358       /* Convert logit to probability */
-1359       data work.logit_scored_valid;
-1360           set work.logit_scored_valid_temp;
-1361       
-1362           /* Apply inverse logit (logistic) function */
-1363           pd_logistic = 1 / (1 + exp(-predicted_logit));
-1364       
-1365           /* Add binary prediction */
-1366           pred_logistic = (pd_logistic >= 0.5);
-1367       
-1368           drop predicted_logit;
-1369       run;
-1370       
-1371       /* Confusion matrix on validation set */
-1372       proc freq data=work.logit_scored_valid noprint;
-1373           tables default_flag * pred_logistic / out=work.confusion_matrix;
-1374       run;
-1375       
-1376       proc print data=work.confusion_matrix;
-1377           title "Confusion Matrix - Validation Set";
-1378       run;
-1379       
-1380       /* Calculate precision, recall, and F1 score for validation set */
-1381       data work.validation_metrics;
-1382           set work.confusion_matrix end=eof;
-1383           retain TP TN FP FN 0;
-1384       
-1385           if default_flag = 1 and pred_logistic = 1 then TP = count;
-1386           else if default_flag = 0 and pred_logistic = 0 then TN = count;
-1387           else if default_flag = 0 and pred_logistic = 1 then FP = count;
-1388           else if default_flag = 1 and pred_logistic = 0 then FN = count;
-1389       
-1390           if eof then do;
-1391               if (TP + FP) > 0 then valid_precision = TP / (TP + FP);
-1392               else valid_precision = .;
-1393               if (TP + FN) > 0 then valid_recall = TP / (TP + FN);
-1394               else valid_recall = .;
-1395               if (valid_precision + valid_recall) > 0 then valid_f1_score = 2 * (valid_precision * valid_recall) /
-1395     ! (valid_precision + valid_recall);
-1396               else valid_f1_score = .;
-1397               if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN);
-1398               else valid_accuracy = .;
-1399               output;
-1400           end;
-1401           keep valid_precision valid_recall valid_f1_score valid_accuracy;
-1402       run;
-1403       
-1404       proc print data=work.validation_metrics;
-1405           title "Validation Set - Performance Metrics";
-1406           format valid_precision valid_recall valid_f1_score valid_accuracy 8.4;
-1407       run;
-1408       
-1409       /*****************************************************************************
-1410        * 5. Create Risk Scores and Grades
-1411        *****************************************************************************/
-1412       
-1413       /* Generate risk scores for training set */
-1414       data work.risk_scores_train;
-1415           set work.logit_scored_train;
-1416       
-1417           /* Convert probability to credit risk score (300-850 scale like FICO) */
-1418           base_score = 600;
-1419           score_range = 250;
-1420           credit_risk_score = round(base_score + score_range * (1 - pd_logistic));
-1421       
-1422           /* Assign risk grades based on score */
-1423           if credit_risk_score >= 750 then risk_grade = 'A';
-1424           else if credit_risk_score >= 700 then risk_grade = 'B';
-1425           else if credit_risk_score >= 650 then risk_grade = 'C';
-1426           else if credit_risk_score >= 600 then risk_grade = 'D';
-1427           else if credit_risk_score >= 550 then risk_grade = 'E';
-1428           else risk_grade = 'F';
 1429       
-1430           /* Recommended actions */
-1431           if risk_grade in ('A', 'B') then recommendation = 'Approve';
-1432           else if risk_grade = 'C' then recommendation = 'Review';
-1433           else recommendation = 'Decline';
-1434       
-1435           /* Suggested interest rate (risk-based pricing) */
-1436           base_rate = 0.05;
-1437           if risk_grade = 'A' then interest_rate = base_rate;
-1438           else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
-1439           else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
-1440           else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
-1441           else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
-1442           else interest_rate = base_rate + 0.15;
+1430       /*****************************************************************************
+1431        * 2. Train Logistic Regression Model
+1432        *****************************************************************************/
+1433       
+1434       /* Train logistic regression with stepwise selection */
+1435       proc logistic data=work.model_features_train descending;
+1436           model default_flag =
+1437               /* Core risk metrics */
+1438               credit_utilization_capped debt_ratio_capped
+1439       
+1440               /* Late payment indicators */
+1441               num_late_30_59 num_late_60_89 num_late_90_plus
+1442               total_late_payments has_delinquency has_serious_delinquency
 1443       
-1444           format interest_rate percent8.2;
-1445       run;
-1446       
-1447       /* Generate risk scores for validation set */
-1448       data work.risk_scores_validation;
-1449           set work.logit_scored_valid;
-1450       
-1451           /* Same scoring logic as training */
-1452           base_score = 600;
-1453           score_range = 250;
-1454           credit_risk_score = round(base_score + score_range * (1 - pd_logistic));
-1455       
-1456           if credit_risk_score >= 750 then risk_grade = 'A';
-1457           else if credit_risk_score >= 700 then risk_grade = 'B';
-1458           else if credit_risk_score >= 650 then risk_grade = 'C';
-1459           else if credit_risk_score >= 600 then risk_grade = 'D';
-1460           else if credit_risk_score >= 550 then risk_grade = 'E';
-1461           else risk_grade = 'F';
+1444               /* Financial metrics */
+1445               age monthly_income log_monthly_income
+1446               num_credit_lines num_real_estate_loans log_num_credit_lines
+1447               num_dependents income_per_dependent credit_lines_per_person
+1448       
+1449               /* Risk flags */
+1450               flag_high_utilization flag_very_high_utilization
+1451               flag_high_debt_ratio flag_very_high_debt_ratio
+1452               flag_recent_late_payments flag_serious_delinquency
+1453               flag_multiple_delinquencies flag_low_income
+1454               flag_many_dependents flag_few_credit_lines
+1455               total_risk_flags
+1456       
+1457               /* Categorical indicators */
+1458               credit_util_category debt_category age_category
+1459       
+1460               /* Composite scores */
+1461               financial_health
 1462       
-1463           if risk_grade in ('A', 'B') then recommendation = 'Approve';
-1464           else if risk_grade = 'C' then recommendation = 'Review';
-1465           else recommendation = 'Decline';
-1466       
-1467           base_rate = 0.05;
-1468           if risk_grade = 'A' then interest_rate = base_rate;
-1469           else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
-1470           else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
-1471           else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
-1472           else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
-1473           else interest_rate = base_rate + 0.15;
-1474       
-1475           format interest_rate percent8.2;
-1476       run;
-1477       
-1478       /* Risk grade distribution */
-1479       proc freq data=work.risk_scores_train;
-1480           tables risk_grade * default_flag / nocol nopercent;
-1481           title "Default Rate by Risk Grade - Training Set";
-1482       run;
-1483       
-1484       proc freq data=work.risk_scores_validation;
-1485           tables risk_grade * default_flag / nocol nopercent;
-1486           title "Default Rate by Risk Grade - Validation Set";
-1487       run;
+1463               /* Interaction features */
+1464               age_income_interaction utilization_debt_interaction
+1465       
+1466               /* Missing value flags */
+1467               MonthlyIncome_missing Dependents_missing
+1468       
+1469           / selection=stepwise slentry=0.05 slstay=0.05
+1470             ctable lackfit rsquare;
+1471       
+1472           /* Output predictions */
+1473           output out=work.logit_scored_train
+1474                  predicted=pd_logistic;
+1475       
+1476           /* Store model for scoring */
+1477           store work.logit_model;
+1478       
+1479           /* Output parameter estimates (coefficients) */
+1480           ods output ModelBuildingSummary=work._j_modelbuildingsummary FitStatistics=work._j_fitstatistics
+1480     ! GlobalTests=work._j_globaltests RSquare=work._j_rsquare Association=work._j_association OddsRatios=work._j_oddsratios
+1480     ! LackFitPartition=work._j_lackfitpartition LackFitChiSq=work._j_lackfitchisq Classification=work._j_classification
+1480     ! ParameterEstimates=work.model_coefficients;
+1481       
+1482           title "Logistic Regression Model - Credit Default Prediction";
+1483       run;
+1484       
+1485       /*****************************************************************************
+1486        * 3. Evaluate Model on Training Data
+1487        *****************************************************************************/
 1488       
-1489       /*****************************************************************************
-1490        * 6. ROC Curve and AUC
-1491        *****************************************************************************/
-1492       
-1493       /* ROC analysis for training set */
-1494       proc logistic data=work.risk_scores_train;
-1495           model default_flag(event='1') = pd_logistic / nofit;
-1496           roc 'Training Set' pred=pd_logistic;
-1497           ods output ROCAssociation=work.roc_train;
-1498           title "ROC Curve - Training Set";
-1499       run;
-1500       
-1501       /* ROC analysis for validation set */
-1502       proc logistic data=work.risk_scores_validation;
-1503           model default_flag(event='1') = pd_logistic / nofit;
-1504           roc 'Validation Set' pred=pd_logistic;
-1505           ods output ROCAssociation=work.roc_valid;
-1506           title "ROC Curve - Validation Set";
-1507       run;
+1489       /* Add binary prediction variable */
+1490       data work.logit_scored_train;
+1491           set work.logit_scored_train;
+1492           pred_logistic = (pd_logistic >= 0.5);
+1493       run;
+1494       
+1495       /* Confusion matrix on training set */
+1496       proc freq data=work.logit_scored_train noprint;
+1497           tables default_flag * pred_logistic / out=work.confusion_matrix_train;
+1498       run;
+1499       
+1500       proc print data=work.confusion_matrix_train;
+1501           title "Confusion Matrix - Training Set";
+1502       run;
+1503       
+1504       /* Calculate precision, recall, and F1 score for training set */
+1505       data work.training_metrics;
+1506           set work.confusion_matrix_train end=eof;
+1507           retain TP TN FP FN 0;
 1508       
-1509       /* Display AUC */
-1510       proc print data=work.roc_train;
-1511           where ROCModel = 'Training Set';
-1512           var Area;
-1513           title "Training Set AUC";
-1514       run;
-1515       
-1516       proc print data=work.roc_valid;
-1517           where ROCModel = 'Validation Set';
-1518           var Area;
-1519           title "Validation Set AUC";
-1520       run;
-1521       
-1522       /*****************************************************************************
-1523        * 7. Export Results
-1524        *****************************************************************************/
-1525       
-1526       /* Clean up training set - drop extra columns from PROC LOGISTIC */
-1527       data work.risk_scores_train_clean;
-1528           set work.risk_scores_train;
-1529           drop IP_: XP_: _FROM_ _INTO_ _LEVEL_;
-1530       run;
+1509           if default_flag = 1 and pred_logistic = 1 then TP = count;
+1510           else if default_flag = 0 and pred_logistic = 0 then TN = count;
+1511           else if default_flag = 0 and pred_logistic = 1 then FP = count;
+1512           else if default_flag = 1 and pred_logistic = 0 then FN = count;
+1513       
+1514           if eof then do;
+1515               if (TP + FP) > 0 then train_precision = TP / (TP + FP);
+1516               else train_precision = .;
+1517               if (TP + FN) > 0 then train_recall = TP / (TP + FN);
+1518               else train_recall = .;
+1519               if (train_precision + train_recall) > 0 then train_f1_score = 2 * (train_precision * train_recall) /
+1519     ! (train_precision + train_recall);
+1520               else train_f1_score = .;
+1521               if (TP + TN + FP + FN) > 0 then train_accuracy = (TP + TN) / (TP + TN + FP + FN);
+1522               else train_accuracy = .;
+1523               output;
+1524           end;
+1525           keep train_precision train_recall train_f1_score train_accuracy;
+1526       run;
+1527       
+1528       proc print data=work.training_metrics;
+1529           title "Training Set - Performance Metrics";
+1530           format train_precision train_recall train_f1_score train_accuracy 8.4;
+1531       run;
+1532       
+1533       /*****************************************************************************
+1534        * 4. Score Validation Set
+1535        *****************************************************************************/
+1536       
+1537       /* Score validation set with trained model */
+1538       proc plm restore=work.logit_model;
+1539           score data=work.model_features_validation
+1540                 out=work.logit_scored_valid_temp
+1541                 predicted=predicted_logit;
+1542       run;
+1543       
+1544       /* Convert logit to probability */
+1545       data work.logit_scored_valid;
+1546           set work.logit_scored_valid_temp;
+1547       
+1548           /* Apply inverse logit (logistic) function */
+1549           pd_logistic = 1 / (1 + exp(-predicted_logit));
+1550       
+1551           /* Add binary prediction */
+1552           pred_logistic = (pd_logistic >= 0.5);
+1553       
+1554           drop predicted_logit;
+1555       run;
+1556       
+1557       /* Confusion matrix on validation set */
+1558       proc freq data=work.logit_scored_valid noprint;
+1559           tables default_flag * pred_logistic / out=work.confusion_matrix;
+1560       run;
+1561       
+1562       proc print data=work.confusion_matrix;
+1563           title "Confusion Matrix - Validation Set";
+1564       run;
+1565       
+1566       /* Calculate precision, recall, and F1 score for validation set */
+1567       data work.validation_metrics;
+1568           set work.confusion_matrix end=eof;
+1569           retain TP TN FP FN 0;
+1570       
+1571           if default_flag = 1 and pred_logistic = 1 then TP = count;
+1572           else if default_flag = 0 and pred_logistic = 0 then TN = count;
+1573           else if default_flag = 0 and pred_logistic = 1 then FP = count;
+1574           else if default_flag = 1 and pred_logistic = 0 then FN = count;
+1575       
+1576           if eof then do;
+1577               if (TP + FP) > 0 then valid_precision = TP / (TP + FP);
+1578               else valid_precision = .;
+1579               if (TP + FN) > 0 then valid_recall = TP / (TP + FN);
+1580               else valid_recall = .;
+1581               if (valid_precision + valid_recall) > 0 then valid_f1_score = 2 * (valid_precision * valid_recall) /
+1581     ! (valid_precision + valid_recall);
+1582               else valid_f1_score = .;
+1583               if (TP + TN + FP + FN) > 0 then valid_accuracy = (TP + TN) / (TP + TN + FP + FN);
+1584               else valid_accuracy = .;
+1585               output;
+1586           end;
+1587           keep valid_precision valid_recall valid_f1_score valid_accuracy;
+1588       run;
+1589       
+1590       proc print data=work.validation_metrics;
+1591           title "Validation Set - Performance Metrics";
+1592           format valid_precision valid_recall valid_f1_score valid_accuracy 8.4;
+1593       run;
+1594       
+1595       /*****************************************************************************
+1596        * 5. Create Risk Scores and Grades
+1597        *****************************************************************************/
+1598       
+1599       /* Generate risk scores for training set */
+1600       data work.risk_scores_train;
+1601           set work.logit_scored_train;
+1602       
+1603           /* Convert probability to credit risk score (300-850 scale like FICO) */
+1604           base_score = 600;
+1605           score_range = 250;
+1606           credit_risk_score = base_score + score_range * (1 - pd_logistic);
+1607       
+1608           /* Assign risk grades from the probability (a missing probability is graded F) */
+1609           if missing(pd_logistic) then risk_grade = 'F';
+1610           else if pd_logistic < 0.10 then risk_grade = 'A';
+1611           else if pd_logistic < 0.15 then risk_grade = 'B';
+1612           else if pd_logistic < 0.25 then risk_grade = 'C';
+1613           else if pd_logistic < 0.35 then risk_grade = 'D';
+1614           else if pd_logistic <= 0.50 then risk_grade = 'E';
+1615           else risk_grade = 'F';
+1616       
+1617           /* Recommended actions */
+1618           if risk_grade in ('A', 'B') then recommendation = 'Approve';
+1619           else if risk_grade = 'C' then recommendation = 'Review';
+1620           else recommendation = 'Decline';
+1621       
+1622           /* Suggested interest rate (risk-based pricing) */
+1623           base_rate = 0.05;
+1624           if risk_grade = 'A' then interest_rate = base_rate;
+1625           else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
+1626           else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
+1627           else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
+1628           else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
+1629           else interest_rate = base_rate + 0.15;
+1630       
+1631           format interest_rate percent8.2;
+1632       run;
+1633       
+1634       /* Generate risk scores for validation set */
+1635       data work.risk_scores_validation;
+1636           set work.logit_scored_valid;
+1637       
+1638           /* Same scoring logic as training */
+1639           base_score = 600;
+1640           score_range = 250;
+1641           credit_risk_score = base_score + score_range * (1 - pd_logistic);
+1642       
+1643           if missing(pd_logistic) then risk_grade = 'F';
+1644           else if pd_logistic < 0.10 then risk_grade = 'A';
+1645           else if pd_logistic < 0.15 then risk_grade = 'B';
+1646           else if pd_logistic < 0.25 then risk_grade = 'C';
+1647           else if pd_logistic < 0.35 then risk_grade = 'D';
+1648           else if pd_logistic <= 0.50 then risk_grade = 'E';
+1649           else risk_grade = 'F';
+1650       
+1651           if risk_grade in ('A', 'B') then recommendation = 'Approve';
+1652           else if risk_grade = 'C' then recommendation = 'Review';
+1653           else recommendation = 'Decline';
+1654       
+1655           base_rate = 0.05;
+1656           if risk_grade = 'A' then interest_rate = base_rate;
+1657           else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
+1658           else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
+1659           else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
+1660           else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
+1661           else interest_rate = base_rate + 0.15;
+1662       
+1663           format interest_rate percent8.2;
+1664       run;
+1665       
+1666       /* Risk grade distribution */
+1667       proc freq data=work.risk_scores_train;
+1668           tables risk_grade * default_flag / nocol nopercent;
+1669           title "Default Rate by Risk Grade - Training Set";
+1670       run;
+1671       
+1672       proc freq data=work.risk_scores_validation;
+1673           tables risk_grade * default_flag / nocol nopercent;
+1674           title "Default Rate by Risk Grade - Validation Set";
+1675       run;
+1676       
+1677       /*****************************************************************************
+1678        * 6. ROC Curve and AUC
+1679        *****************************************************************************/
+1680       
+1681       /* ROC analysis for training set */
+1682       proc logistic data=work.risk_scores_train;
+1683           model default_flag(event='1') = pd_logistic / nofit;
+1684           roc 'Training Set' pred=pd_logistic;
+1685           ods output ROCAssociation=work.roc_train;
+1686           title "ROC Curve - Training Set";
+1687       run;
+1688       
+1689       /* ROC analysis for validation set */
+1690       proc logistic data=work.risk_scores_validation;
+1691           model default_flag(event='1') = pd_logistic / nofit;
+1692           roc 'Validation Set' pred=pd_logistic;
+1693           ods output ROCAssociation=work.roc_valid;
+1694           title "ROC Curve - Validation Set";
+1695       run;
+1696       
+1697       /* Display AUC */
+1698       proc print data=work.roc_train;
+1699           where ROCModel = 'Training Set';
+1700           var Area;
+1701           title "Training Set AUC";
+1702       run;
+1703       
+1704       proc print data=work.roc_valid;
+1705           where ROCModel = 'Validation Set';
+1706           var Area;
+1707           title "Validation Set AUC";
+1708       run;
+1709       
+1710       /*****************************************************************************
+1711        * 7. Export Results
+1712        *****************************************************************************/
+1713       
+1714       /* Clean up training set - drop extra columns from PROC LOGISTIC */
+1715       data work.risk_scores_train_clean;
+1716           set work.risk_scores_train;
+1717           drop IP_: XP_: _FROM_ _INTO_ _LEVEL_;
+1718       run;
 WARNING: The variable 'IP_:'n in the DROP, KEEP, or RENAME list has never been referenced.
 WARNING: The variable 'XP_:'n in the DROP, KEEP, or RENAME list has never been referenced.
 WARNING: The variable _FROM_ in the DROP, KEEP, or RENAME list has never been referenced.
 WARNING: The variable _INTO_ in the DROP, KEEP, or RENAME list has never been referenced.
-1531       
-1532       /* Clean up validation set - drop extra columns */
-1533       data work.risk_scores_validation_clean;
-1534           set work.risk_scores_validation;
-1535           drop IP_: XP_: _FROM_ _INTO_ _LEVEL_;
-1536       run;
+1719       
+1720       /* Clean up validation set - drop extra columns */
+1721       data work.risk_scores_validation_clean;
+1722           set work.risk_scores_validation;
+1723           drop IP_: XP_: _FROM_ _INTO_ _LEVEL_;
+1724       run;
 WARNING: The variable 'IP_:'n in the DROP, KEEP, or RENAME list has never been referenced.
 WARNING: The variable 'XP_:'n in the DROP, KEEP, or RENAME list has never been referenced.
 WARNING: The variable _FROM_ in the DROP, KEEP, or RENAME list has never been referenced.
 WARNING: The variable _INTO_ in the DROP, KEEP, or RENAME list has never been referenced.
 WARNING: The variable _LEVEL_ in the DROP, KEEP, or RENAME list has never been referenced.
-1537       
-1538       /* Export scored training set */
-1539       proc export data=work.risk_scores_train_clean
-1540           outfile="&output_path/risk_scores_train.csv"
-1541           dbms=csv
-1542           replace;
-1543       run;
+1725       
+1726       /* Export scored training set */
+1727       proc export data=work.risk_scores_train_clean
+1728           outfile="&output_path/risk_scores_train.csv"
+1729           dbms=csv
+1730           replace;
+1731       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-1544        /**********************************************************************
-1545        *   PRODUCT:   SAS
-1546        *   VERSION:   9.4
-1547        *   CREATOR:   External File Interface
-1548        *   DATE:      05NOV26
-1549        *   DESC:      Generated SAS Datastep Code
-1550        *   TEMPLATE SOURCE:  (None Specified.)
-1551        ***********************************************************************/
-1552           data _null_;
-1553           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-1554           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-1555           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/risk_scores_train.csv' delimiter=',' DSD
-1555     ! DROPOVER lrecl=32767;
-1556           if _n_ = 1 then        /* write column names or labels */
-1557            do;
-1558              put
-1559                 "row_id"
-1560              ','
-1561                 "default_flag"
-1562              ','
-1563                 "age"
-1564              ','
-1565                 "monthly_income"
-1566              ','
-1567                 "MonthlyIncome_missing"
-1568              ','
-1569                 "num_dependents"
-1570              ','
-1571                 "Dependents_missing"
-1572              ','
-1573                 "age_group"
-1574              ','
-1575                 "num_late_30_59"
-1576              ','
-1577                 "num_late_60_89"
-1578              ','
-1579                 "num_late_90_plus"
-1580              ','
-1581                 "credit_utilization"
-1582              ','
-1583                 "debt_ratio"
-1584              ','
-1585                 "num_credit_lines"
-1586              ','
-1587                 "num_real_estate_loans"
-1588              ','
-1589                 "total_late_payments"
-1590              ','
-1591                 "has_delinquency"
-1592              ','
-1593                 "has_serious_delinquency"
-1594              ','
-1595                 "credit_util_category"
-1596              ','
-1597                 "debt_category"
-1598              ','
-1599                 "income_per_dependent"
-1600              ','
-1601                 "credit_lines_per_person"
-1602              ','
-1603                 "age_category"
-1604              ','
-1605                 "flag_high_utilization"
-1606              ','
-1607                 "flag_very_high_utilization"
-1608              ','
-1609                 "flag_high_debt_ratio"
-1610              ','
-1611                 "flag_very_high_debt_ratio"
-1612              ','
-1613                 "flag_recent_late_payments"
-1614              ','
-1615                 "flag_serious_delinquency"
-1616              ','
-1617                 "flag_multiple_delinquencies"
-1618              ','
-1619                 "flag_low_income"
-1620              ','
-1621                 "flag_many_dependents"
-1622              ','
-1623                 "flag_few_credit_lines"
-1624              ','
-1625                 "total_risk_flags"
-1626              ','
-1627                 "financial_health"
-1628              ','
-1629                 "log_monthly_income"
-1630              ','
-1631                 "log_num_credit_lines"
-1632              ','
-1633                 "log_total_late_payments"
-1634              ','
-1635                 "age_income_interaction"
-1636              ','
-1637                 "utilization_debt_interaction"
-1638              ','
-1639                 "credit_utilization_capped"
-1640              ','
-1641                 "debt_ratio_capped"
-1642              ','
-1643                 "pd_logistic"
-1644              ','
-1645                 "pred_logistic"
-1646              ','
-1647                 "base_score"
-1648              ','
-1649                 "score_range"
-1650              ','
-1651                 "credit_risk_score"
-1652              ','
-1653                 "risk_grade"
-1654              ','
-1655                 "recommendation"
-1656              ','
-1657                 "base_rate"
-1658              ','
-1659                 "interest_rate"
-1660              ;
-1661            end;
-1662          set  WORK.RISK_SCORES_TRAIN_CLEAN   end=EFIEOD;
-1663              format row_id best12. ;
-1664              format default_flag best12. ;
-1665              format age best12. ;
-1666              format monthly_income best12. ;
-1667              format MonthlyIncome_missing best12. ;
-1668              format num_dependents best12. ;
-1669              format Dependents_missing best12. ;
-1670              format age_group best12. ;
-1671              format num_late_30_59 best12. ;
-1672              format num_late_60_89 best12. ;
-1673              format num_late_90_plus best12. ;
-1674              format credit_utilization best12. ;
-1675              format debt_ratio best12. ;
-1676              format num_credit_lines best12. ;
-1677              format num_real_estate_loans best12. ;
-1678              format total_late_payments best12. ;
-1679              format has_delinquency best12. ;
-1680              format has_serious_delinquency best12. ;
-1681              format credit_util_category best12. ;
-1682              format debt_category best12. ;
-1683              format income_per_dependent best12. ;
-1684              format credit_lines_per_person best12. ;
-1685              format age_category best12. ;
-1686              format flag_high_utilization best12. ;
-1687              format flag_very_high_utilization best12. ;
-1688              format flag_high_debt_ratio best12. ;
-1689              format flag_very_high_debt_ratio best12. ;
-1690              format flag_recent_late_payments best12. ;
-1691              format flag_serious_delinquency best12. ;
-1692              format flag_multiple_delinquencies best12. ;
-1693              format flag_low_income best12. ;
-1694              format flag_many_dependents best12. ;
-1695              format flag_few_credit_lines best12. ;
-1696              format total_risk_flags best12. ;
-1697              format financial_health best12. ;
-1698              format log_monthly_income best12. ;
-1699              format log_num_credit_lines best12. ;
-1700              format log_total_late_payments best12. ;
-1701              format age_income_interaction best12. ;
-1702              format utilization_debt_interaction best12. ;
-1703              format credit_utilization_capped best12. ;
-1704              format debt_ratio_capped best12. ;
-1705              format pd_logistic best12. ;
-1706              format pred_logistic best12. ;
-1707              format base_score best12. ;
-1708              format score_range best12. ;
-1709              format credit_risk_score best12. ;
-1710              format risk_grade $1. ;
-1711              format recommendation $7. ;
-1712              format base_rate best12. ;
-1713              format interest_rate percent8.2 ;
-1714            do;
-1715              EFIOUT + 1;
-1716              put row_id @;
-1717              put default_flag @;
-1718              put age @;
-1719              put monthly_income @;
-1720              put MonthlyIncome_missing @;
-1721              put num_dependents @;
-1722              put Dependents_missing @;
-1723              put age_group @;
-1724              put num_late_30_59 @;
-1725              put num_late_60_89 @;
-1726              put num_late_90_plus @;
-1727              put credit_utilization @;
-1728              put debt_ratio @;
-1729              put num_credit_lines @;
-1730              put num_real_estate_loans @;
-1731              put total_late_payments @;
-1732              put has_delinquency @;
-1733              put has_serious_delinquency @;
-1734              put credit_util_category @;
-1735              put debt_category @;
-1736              put income_per_dependent @;
-1737              put credit_lines_per_person @;
-1738              put age_category @;
-1739              put flag_high_utilization @;
-1740              put flag_very_high_utilization @;
-1741              put flag_high_debt_ratio @;
-1742              put flag_very_high_debt_ratio @;
-1743              put flag_recent_late_payments @;
-1744              put flag_serious_delinquency @;
-1745              put flag_multiple_delinquencies @;
-1746              put flag_low_income @;
-1747              put flag_many_dependents @;
-1748              put flag_few_credit_lines @;
-1749              put total_risk_flags @;
-1750              put financial_health @;
-1751              put log_monthly_income @;
-1752              put log_num_credit_lines @;
-1753              put log_total_late_payments @;
-1754              put age_income_interaction @;
-1755              put utilization_debt_interaction @;
-1756              put credit_utilization_capped @;
-1757              put debt_ratio_capped @;
-1758              put pd_logistic @;
-1759              put pred_logistic @;
-1760              put base_score @;
-1761              put score_range @;
-1762              put credit_risk_score @;
-1763              put risk_grade $ @;
-1764              put recommendation $ @;
-1765              put base_rate @;
-1766              put interest_rate ;
-1767              ;
-1768            end;
-1769           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-1770           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-1771           run;
-105000 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/risk_scores_train.csv from 
+1732        /**********************************************************************
+1733        *   PRODUCT:   SAS
+1734        *   VERSION:   9.4
+1735        *   CREATOR:   External File Interface
+1736        *   DATE:      14NOV26
+1737        *   DESC:      Generated SAS Datastep Code
+1738        *   TEMPLATE SOURCE:  (None Specified.)
+1739        ***********************************************************************/
+1740           data _null_;
+1741           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1742           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1743           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/risk_scores_train.csv' delimiter=',' DSD
+1743     ! DROPOVER lrecl=32767;
+1744           if _n_ = 1 then        /* write column names or labels */
+1745            do;
+1746              put
+1747                 "row_id"
+1748              ','
+1749                 "default_flag"
+1750              ','
+1751                 "age"
+1752              ','
+1753                 "monthly_income"
+1754              ','
+1755                 "MonthlyIncome_missing"
+1756              ','
+1757                 "num_dependents"
+1758              ','
+1759                 "Dependents_missing"
+1760              ','
+1761                 "age_group"
+1762              ','
+1763                 "num_late_30_59"
+1764              ','
+1765                 "num_late_60_89"
+1766              ','
+1767                 "num_late_90_plus"
+1768              ','
+1769                 "credit_utilization"
+1770              ','
+1771                 "debt_ratio"
+1772              ','
+1773                 "num_credit_lines"
+1774              ','
+1775                 "num_real_estate_loans"
+1776              ','
+1777                 "total_late_payments"
+1778              ','
+1779                 "has_delinquency"
+1780              ','
+1781                 "has_serious_delinquency"
+1782              ','
+1783                 "credit_util_category"
+1784              ','
+1785                 "debt_category"
+1786              ','
+1787                 "income_per_dependent"
+1788              ','
+1789                 "credit_lines_per_person"
+1790              ','
+1791                 "age_category"
+1792              ','
+1793                 "flag_high_utilization"
+1794              ','
+1795                 "flag_very_high_utilization"
+1796              ','
+1797                 "flag_high_debt_ratio"
+1798              ','
+1799                 "flag_very_high_debt_ratio"
+1800              ','
+1801                 "flag_recent_late_payments"
+1802              ','
+1803                 "flag_serious_delinquency"
+1804              ','
+1805                 "flag_multiple_delinquencies"
+1806              ','
+1807                 "flag_low_income"
+1808              ','
+1809                 "flag_many_dependents"
+1810              ','
+1811                 "flag_few_credit_lines"
+1812              ','
+1813                 "total_risk_flags"
+1814              ','
+1815                 "financial_health"
+1816              ','
+1817                 "log_monthly_income"
+1818              ','
+1819                 "log_num_credit_lines"
+1820              ','
+1821                 "log_total_late_payments"
+1822              ','
+1823                 "age_income_interaction"
+1824              ','
+1825                 "utilization_debt_interaction"
+1826              ','
+1827                 "credit_utilization_capped"
+1828              ','
+1829                 "debt_ratio_capped"
+1830              ','
+1831                 "pd_logistic"
+1832              ','
+1833                 "pred_logistic"
+1834              ','
+1835                 "base_score"
+1836              ','
+1837                 "score_range"
+1838              ','
+1839                 "credit_risk_score"
+1840              ','
+1841                 "risk_grade"
+1842              ','
+1843                 "recommendation"
+1844              ','
+1845                 "base_rate"
+1846              ','
+1847                 "interest_rate"
+1848              ;
+1849            end;
+1850          set  WORK.RISK_SCORES_TRAIN_CLEAN   end=EFIEOD;
+1851              format row_id best12. ;
+1852              format default_flag best12. ;
+1853              format age best12. ;
+1854              format monthly_income best12. ;
+1855              format MonthlyIncome_missing best12. ;
+1856              format num_dependents best12. ;
+1857              format Dependents_missing best12. ;
+1858              format age_group best12. ;
+1859              format num_late_30_59 best12. ;
+1860              format num_late_60_89 best12. ;
+1861              format num_late_90_plus best12. ;
+1862              format credit_utilization best12. ;
+1863              format debt_ratio best12. ;
+1864              format num_credit_lines best12. ;
+1865              format num_real_estate_loans best12. ;
+1866              format total_late_payments best12. ;
+1867              format has_delinquency best12. ;
+1868              format has_serious_delinquency best12. ;
+1869              format credit_util_category best12. ;
+1870              format debt_category best12. ;
+1871              format income_per_dependent best12. ;
+1872              format credit_lines_per_person best12. ;
+1873              format age_category best12. ;
+1874              format flag_high_utilization best12. ;
+1875              format flag_very_high_utilization best12. ;
+1876              format flag_high_debt_ratio best12. ;
+1877              format flag_very_high_debt_ratio best12. ;
+1878              format flag_recent_late_payments best12. ;
+1879              format flag_serious_delinquency best12. ;
+1880              format flag_multiple_delinquencies best12. ;
+1881              format flag_low_income best12. ;
+1882              format flag_many_dependents best12. ;
+1883              format flag_few_credit_lines best12. ;
+1884              format total_risk_flags best12. ;
+1885              format financial_health best12. ;
+1886              format log_monthly_income best12. ;
+1887              format log_num_credit_lines best12. ;
+1888              format log_total_late_payments best12. ;
+1889              format age_income_interaction best12. ;
+1890              format utilization_debt_interaction best12. ;
+1891              format credit_utilization_capped best12. ;
+1892              format debt_ratio_capped best12. ;
+1893              format pd_logistic best12. ;
+1894              format pred_logistic best12. ;
+1895              format base_score best12. ;
+1896              format score_range best12. ;
+1897              format credit_risk_score best12. ;
+1898              format risk_grade $1. ;
+1899              format recommendation $7. ;
+1900              format base_rate best12. ;
+1901              format interest_rate percent8.2 ;
+1902            do;
+1903              EFIOUT + 1;
+1904              put row_id @;
+1905              put default_flag @;
+1906              put age @;
+1907              put monthly_income @;
+1908              put MonthlyIncome_missing @;
+1909              put num_dependents @;
+1910              put Dependents_missing @;
+1911              put age_group @;
+1912              put num_late_30_59 @;
+1913              put num_late_60_89 @;
+1914              put num_late_90_plus @;
+1915              put credit_utilization @;
+1916              put debt_ratio @;
+1917              put num_credit_lines @;
+1918              put num_real_estate_loans @;
+1919              put total_late_payments @;
+1920              put has_delinquency @;
+1921              put has_serious_delinquency @;
+1922              put credit_util_category @;
+1923              put debt_category @;
+1924              put income_per_dependent @;
+1925              put credit_lines_per_person @;
+1926              put age_category @;
+1927              put flag_high_utilization @;
+1928              put flag_very_high_utilization @;
+1929              put flag_high_debt_ratio @;
+1930              put flag_very_high_debt_ratio @;
+1931              put flag_recent_late_payments @;
+1932              put flag_serious_delinquency @;
+1933              put flag_multiple_delinquencies @;
+1934              put flag_low_income @;
+1935              put flag_many_dependents @;
+1936              put flag_few_credit_lines @;
+1937              put total_risk_flags @;
+1938              put financial_health @;
+1939              put log_monthly_income @;
+1940              put log_num_credit_lines @;
+1941              put log_total_late_payments @;
+1942              put age_income_interaction @;
+1943              put utilization_debt_interaction @;
+1944              put credit_utilization_capped @;
+1945              put debt_ratio_capped @;
+1946              put pd_logistic @;
+1947              put pred_logistic @;
+1948              put base_score @;
+1949              put score_range @;
+1950              put credit_risk_score @;
+1951              put risk_grade $ @;
+1952              put recommendation $ @;
+1953              put base_rate @;
+1954              put interest_rate ;
+1955              ;
+1956            end;
+1957           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1958           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1959           run;
+105000 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/risk_scores_train.csv from 
 WORK.RISK_SCORES_TRAIN_CLEAN.
   
   
-1772       
-1773       /* Export scored validation set */
-1774       proc export data=work.risk_scores_validation_clean
-1775           outfile="&output_path/risk_scores_validation.csv"
-1776           dbms=csv
-1777           replace;
-1778       run;
+1960       
+1961       /* Export scored validation set */
+1962       proc export data=work.risk_scores_validation_clean
+1963           outfile="&output_path/risk_scores_validation.csv"
+1964           dbms=csv
+1965           replace;
+1966       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-1779        /**********************************************************************
-1780        *   PRODUCT:   SAS
-1781        *   VERSION:   9.4
-1782        *   CREATOR:   External File Interface
-1783        *   DATE:      05NOV26
-1784        *   DESC:      Generated SAS Datastep Code
-1785        *   TEMPLATE SOURCE:  (None Specified.)
-1786        ***********************************************************************/
-1787           data _null_;
-1788           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-1789           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-1790           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/risk_scores_validation.csv' delimiter=','
-1790     ! DSD DROPOVER lrecl=32767;
-1791           if _n_ = 1 then        /* write column names or labels */
-1792            do;
-1793              put
-1794                 "row_id"
-1795              ','
-1796                 "default_flag"
-1797              ','
-1798                 "age"
-1799              ','
-1800                 "monthly_income"
-1801              ','
-1802                 "MonthlyIncome_missing"
-1803              ','
-1804                 "num_dependents"
-1805              ','
-1806                 "Dependents_missing"
-1807              ','
-1808                 "age_group"
-1809              ','
-1810                 "num_late_30_59"
-1811              ','
-1812                 "num_late_60_89"
-1813              ','
-1814                 "num_late_90_plus"
-1815              ','
-1816                 "credit_utilization"
-1817              ','
-1818                 "debt_ratio"
-1819              ','
-1820                 "num_credit_lines"
-1821              ','
-1822                 "num_real_estate_loans"
-1823              ','
-1824                 "total_late_payments"
-1825              ','
-1826                 "has_delinquency"
-1827              ','
-1828                 "has_serious_delinquency"
-1829              ','
-1830                 "credit_util_category"
-1831              ','
-1832                 "debt_category"
-1833              ','
-1834                 "income_per_dependent"
-1835              ','
-1836                 "credit_lines_per_person"
-1837              ','
-1838                 "age_category"
-1839              ','
-1840                 "flag_high_utilization"
-1841              ','
-1842                 "flag_very_high_utilization"
-1843              ','
-1844                 "flag_high_debt_ratio"
-1845              ','
-1846                 "flag_very_high_debt_ratio"
-1847              ','
-1848                 "flag_recent_late_payments"
-1849              ','
-1850                 "flag_serious_delinquency"
-1851              ','
-1852                 "flag_multiple_delinquencies"
-1853              ','
-1854                 "flag_low_income"
-1855              ','
-1856                 "flag_many_dependents"
-1857              ','
-1858                 "flag_few_credit_lines"
-1859              ','
-1860                 "total_risk_flags"
-1861              ','
-1862                 "financial_health"
-1863              ','
-1864                 "log_monthly_income"
-1865              ','
-1866                 "log_num_credit_lines"
-1867              ','
-1868                 "log_total_late_payments"
-1869              ','
-1870                 "age_income_interaction"
-1871              ','
-1872                 "utilization_debt_interaction"
-1873              ','
-1874                 "credit_utilization_capped"
-1875              ','
-1876                 "debt_ratio_capped"
-1877              ','
-1878                 "pd_logistic"
-1879              ','
-1880                 "pred_logistic"
-1881              ','
-1882                 "base_score"
-1883              ','
-1884                 "score_range"
-1885              ','
-1886                 "credit_risk_score"
-1887              ','
-1888                 "risk_grade"
-1889              ','
-1890                 "recommendation"
-1891              ','
-1892                 "base_rate"
-1893              ','
-1894                 "interest_rate"
-1895              ;
-1896            end;
-1897          set  WORK.RISK_SCORES_VALIDATION_CLEAN   end=EFIEOD;
-1898              format row_id best12. ;
-1899              format default_flag best12. ;
-1900              format age best12. ;
-1901              format monthly_income best12. ;
-1902              format MonthlyIncome_missing best12. ;
-1903              format num_dependents best12. ;
-1904              format Dependents_missing best12. ;
-1905              format age_group best12. ;
-1906              format num_late_30_59 best12. ;
-1907              format num_late_60_89 best12. ;
-1908              format num_late_90_plus best12. ;
-1909              format credit_utilization best12. ;
-1910              format debt_ratio best12. ;
-1911              format num_credit_lines best12. ;
-1912              format num_real_estate_loans best12. ;
-1913              format total_late_payments best12. ;
-1914              format has_delinquency best12. ;
-1915              format has_serious_delinquency best12. ;
-1916              format credit_util_category best12. ;
-1917              format debt_category best12. ;
-1918              format income_per_dependent best12. ;
-1919              format credit_lines_per_person best12. ;
-1920              format age_category best12. ;
-1921              format flag_high_utilization best12. ;
-1922              format flag_very_high_utilization best12. ;
-1923              format flag_high_debt_ratio best12. ;
-1924              format flag_very_high_debt_ratio best12. ;
-1925              format flag_recent_late_payments best12. ;
-1926              format flag_serious_delinquency best12. ;
-1927              format flag_multiple_delinquencies best12. ;
-1928              format flag_low_income best12. ;
-1929              format flag_many_dependents best12. ;
-1930              format flag_few_credit_lines best12. ;
-1931              format total_risk_flags best12. ;
-1932              format financial_health best12. ;
-1933              format log_monthly_income best12. ;
-1934              format log_num_credit_lines best12. ;
-1935              format log_total_late_payments best12. ;
-1936              format age_income_interaction best12. ;
-1937              format utilization_debt_interaction best12. ;
-1938              format credit_utilization_capped best12. ;
-1939              format debt_ratio_capped best12. ;
-1940              format pd_logistic best12. ;
-1941              format pred_logistic best12. ;
-1942              format base_score best12. ;
-1943              format score_range best12. ;
-1944              format credit_risk_score best12. ;
-1945              format risk_grade $1. ;
-1946              format recommendation $7. ;
-1947              format base_rate best12. ;
-1948              format interest_rate percent8.2 ;
-1949            do;
-1950              EFIOUT + 1;
-1951              put row_id @;
-1952              put default_flag @;
-1953              put age @;
-1954              put monthly_income @;
-1955              put MonthlyIncome_missing @;
-1956              put num_dependents @;
-1957              put Dependents_missing @;
-1958              put age_group @;
-1959              put num_late_30_59 @;
-1960              put num_late_60_89 @;
-1961              put num_late_90_plus @;
-1962              put credit_utilization @;
-1963              put debt_ratio @;
-1964              put num_credit_lines @;
-1965              put num_real_estate_loans @;
-1966              put total_late_payments @;
-1967              put has_delinquency @;
-1968              put has_serious_delinquency @;
-1969              put credit_util_category @;
-1970              put debt_category @;
-1971              put income_per_dependent @;
-1972              put credit_lines_per_person @;
-1973              put age_category @;
-1974              put flag_high_utilization @;
-1975              put flag_very_high_utilization @;
-1976              put flag_high_debt_ratio @;
-1977              put flag_very_high_debt_ratio @;
-1978              put flag_recent_late_payments @;
-1979              put flag_serious_delinquency @;
-1980              put flag_multiple_delinquencies @;
-1981              put flag_low_income @;
-1982              put flag_many_dependents @;
-1983              put flag_few_credit_lines @;
-1984              put total_risk_flags @;
-1985              put financial_health @;
-1986              put log_monthly_income @;
-1987              put log_num_credit_lines @;
-1988              put log_total_late_payments @;
-1989              put age_income_interaction @;
-1990              put utilization_debt_interaction @;
-1991              put credit_utilization_capped @;
-1992              put debt_ratio_capped @;
-1993              put pd_logistic @;
-1994              put pred_logistic @;
-1995              put base_score @;
-1996              put score_range @;
-1997              put credit_risk_score @;
-1998              put risk_grade $ @;
-1999              put recommendation $ @;
-2000              put base_rate @;
-2001              put interest_rate ;
-2002              ;
-2003            end;
-2004           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2005           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2006           run;
-45000 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/risk_scores_validation.csv from 
+1967        /**********************************************************************
+1968        *   PRODUCT:   SAS
+1969        *   VERSION:   9.4
+1970        *   CREATOR:   External File Interface
+1971        *   DATE:      14NOV26
+1972        *   DESC:      Generated SAS Datastep Code
+1973        *   TEMPLATE SOURCE:  (None Specified.)
+1974        ***********************************************************************/
+1975           data _null_;
+1976           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1977           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1978           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/risk_scores_validation.csv' delimiter=','
+1978     !  DSD DROPOVER lrecl=32767;
+1979           if _n_ = 1 then        /* write column names or labels */
+1980            do;
+1981              put
+1982                 "row_id"
+1983              ','
+1984                 "default_flag"
+1985              ','
+1986                 "age"
+1987              ','
+1988                 "monthly_income"
+1989              ','
+1990                 "MonthlyIncome_missing"
+1991              ','
+1992                 "num_dependents"
+1993              ','
+1994                 "Dependents_missing"
+1995              ','
+1996                 "age_group"
+1997              ','
+1998                 "num_late_30_59"
+1999              ','
+2000                 "num_late_60_89"
+2001              ','
+2002                 "num_late_90_plus"
+2003              ','
+2004                 "credit_utilization"
+2005              ','
+2006                 "debt_ratio"
+2007              ','
+2008                 "num_credit_lines"
+2009              ','
+2010                 "num_real_estate_loans"
+2011              ','
+2012                 "total_late_payments"
+2013              ','
+2014                 "has_delinquency"
+2015              ','
+2016                 "has_serious_delinquency"
+2017              ','
+2018                 "credit_util_category"
+2019              ','
+2020                 "debt_category"
+2021              ','
+2022                 "income_per_dependent"
+2023              ','
+2024                 "credit_lines_per_person"
+2025              ','
+2026                 "age_category"
+2027              ','
+2028                 "flag_high_utilization"
+2029              ','
+2030                 "flag_very_high_utilization"
+2031              ','
+2032                 "flag_high_debt_ratio"
+2033              ','
+2034                 "flag_very_high_debt_ratio"
+2035              ','
+2036                 "flag_recent_late_payments"
+2037              ','
+2038                 "flag_serious_delinquency"
+2039              ','
+2040                 "flag_multiple_delinquencies"
+2041              ','
+2042                 "flag_low_income"
+2043              ','
+2044                 "flag_many_dependents"
+2045              ','
+2046                 "flag_few_credit_lines"
+2047              ','
+2048                 "total_risk_flags"
+2049              ','
+2050                 "financial_health"
+2051              ','
+2052                 "log_monthly_income"
+2053              ','
+2054                 "log_num_credit_lines"
+2055              ','
+2056                 "log_total_late_payments"
+2057              ','
+2058                 "age_income_interaction"
+2059              ','
+2060                 "utilization_debt_interaction"
+2061              ','
+2062                 "credit_utilization_capped"
+2063              ','
+2064                 "debt_ratio_capped"
+2065              ','
+2066                 "pd_logistic"
+2067              ','
+2068                 "pred_logistic"
+2069              ','
+2070                 "base_score"
+2071              ','
+2072                 "score_range"
+2073              ','
+2074                 "credit_risk_score"
+2075              ','
+2076                 "risk_grade"
+2077              ','
+2078                 "recommendation"
+2079              ','
+2080                 "base_rate"
+2081              ','
+2082                 "interest_rate"
+2083              ;
+2084            end;
+2085          set  WORK.RISK_SCORES_VALIDATION_CLEAN   end=EFIEOD;
+2086              format row_id best12. ;
+2087              format default_flag best12. ;
+2088              format age best12. ;
+2089              format monthly_income best12. ;
+2090              format MonthlyIncome_missing best12. ;
+2091              format num_dependents best12. ;
+2092              format Dependents_missing best12. ;
+2093              format age_group best12. ;
+2094              format num_late_30_59 best12. ;
+2095              format num_late_60_89 best12. ;
+2096              format num_late_90_plus best12. ;
+2097              format credit_utilization best12. ;
+2098              format debt_ratio best12. ;
+2099              format num_credit_lines best12. ;
+2100              format num_real_estate_loans best12. ;
+2101              format total_late_payments best12. ;
+2102              format has_delinquency best12. ;
+2103              format has_serious_delinquency best12. ;
+2104              format credit_util_category best12. ;
+2105              format debt_category best12. ;
+2106              format income_per_dependent best12. ;
+2107              format credit_lines_per_person best12. ;
+2108              format age_category best12. ;
+2109              format flag_high_utilization best12. ;
+2110              format flag_very_high_utilization best12. ;
+2111              format flag_high_debt_ratio best12. ;
+2112              format flag_very_high_debt_ratio best12. ;
+2113              format flag_recent_late_payments best12. ;
+2114              format flag_serious_delinquency best12. ;
+2115              format flag_multiple_delinquencies best12. ;
+2116              format flag_low_income best12. ;
+2117              format flag_many_dependents best12. ;
+2118              format flag_few_credit_lines best12. ;
+2119              format total_risk_flags best12. ;
+2120              format financial_health best12. ;
+2121              format log_monthly_income best12. ;
+2122              format log_num_credit_lines best12. ;
+2123              format log_total_late_payments best12. ;
+2124              format age_income_interaction best12. ;
+2125              format utilization_debt_interaction best12. ;
+2126              format credit_utilization_capped best12. ;
+2127              format debt_ratio_capped best12. ;
+2128              format pd_logistic best12. ;
+2129              format pred_logistic best12. ;
+2130              format base_score best12. ;
+2131              format score_range best12. ;
+2132              format credit_risk_score best12. ;
+2133              format risk_grade $1. ;
+2134              format recommendation $7. ;
+2135              format base_rate best12. ;
+2136              format interest_rate percent8.2 ;
+2137            do;
+2138              EFIOUT + 1;
+2139              put row_id @;
+2140              put default_flag @;
+2141              put age @;
+2142              put monthly_income @;
+2143              put MonthlyIncome_missing @;
+2144              put num_dependents @;
+2145              put Dependents_missing @;
+2146              put age_group @;
+2147              put num_late_30_59 @;
+2148              put num_late_60_89 @;
+2149              put num_late_90_plus @;
+2150              put credit_utilization @;
+2151              put debt_ratio @;
+2152              put num_credit_lines @;
+2153              put num_real_estate_loans @;
+2154              put total_late_payments @;
+2155              put has_delinquency @;
+2156              put has_serious_delinquency @;
+2157              put credit_util_category @;
+2158              put debt_category @;
+2159              put income_per_dependent @;
+2160              put credit_lines_per_person @;
+2161              put age_category @;
+2162              put flag_high_utilization @;
+2163              put flag_very_high_utilization @;
+2164              put flag_high_debt_ratio @;
+2165              put flag_very_high_debt_ratio @;
+2166              put flag_recent_late_payments @;
+2167              put flag_serious_delinquency @;
+2168              put flag_multiple_delinquencies @;
+2169              put flag_low_income @;
+2170              put flag_many_dependents @;
+2171              put flag_few_credit_lines @;
+2172              put total_risk_flags @;
+2173              put financial_health @;
+2174              put log_monthly_income @;
+2175              put log_num_credit_lines @;
+2176              put log_total_late_payments @;
+2177              put age_income_interaction @;
+2178              put utilization_debt_interaction @;
+2179              put credit_utilization_capped @;
+2180              put debt_ratio_capped @;
+2181              put pd_logistic @;
+2182              put pred_logistic @;
+2183              put base_score @;
+2184              put score_range @;
+2185              put credit_risk_score @;
+2186              put risk_grade $ @;
+2187              put recommendation $ @;
+2188              put base_rate @;
+2189              put interest_rate ;
+2190              ;
+2191            end;
+2192           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2193           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2194           run;
+45000 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/risk_scores_validation.csv from 
 WORK.RISK_SCORES_VALIDATION_CLEAN.
   
   
-2007       
-2008       /* Create final model output for reporting */
-2009       data work.final_model_output;
-2010           set work.risk_scores_train;
-2011           keep row_id default_flag pd_logistic credit_risk_score
-2012                risk_grade recommendation interest_rate
-2013                age monthly_income credit_utilization debt_ratio
-2014                total_late_payments num_credit_lines;
-2015       run;
-2016       
-2017       proc export data=work.final_model_output
-2018           outfile="&output_path/final_model_output.csv"
-2019           dbms=csv
-2020           replace;
-2021       run;
+2195       
+2196       /* Create final model output for reporting */
+2197       data work.final_model_output;
+2198           set work.risk_scores_train;
+2199           keep row_id default_flag pd_logistic credit_risk_score
+2200                risk_grade recommendation interest_rate
+2201                age monthly_income credit_utilization debt_ratio
+2202                total_late_payments num_credit_lines;
+2203       run;
+2204       
+2205       proc export data=work.final_model_output
+2206           outfile="&output_path/final_model_output.csv"
+2207           dbms=csv
+2208           replace;
+2209       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2022        /**********************************************************************
-2023        *   PRODUCT:   SAS
-2024        *   VERSION:   9.4
-2025        *   CREATOR:   External File Interface
-2026        *   DATE:      05NOV26
-2027        *   DESC:      Generated SAS Datastep Code
-2028        *   TEMPLATE SOURCE:  (None Specified.)
-2029        ***********************************************************************/
-2030           data _null_;
-2031           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2032           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2033           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/final_model_output.csv' delimiter=',' DSD
-2033     ! DROPOVER lrecl=32767;
-2034           if _n_ = 1 then        /* write column names or labels */
-2035            do;
-2036              put
-2037                 "row_id"
-2038              ','
-2039                 "default_flag"
-2040              ','
-2041                 "age"
-2042              ','
-2043                 "monthly_income"
-2044              ','
-2045                 "credit_utilization"
-2046              ','
-2047                 "debt_ratio"
-2048              ','
-2049                 "num_credit_lines"
-2050              ','
-2051                 "total_late_payments"
-2052              ','
-2053                 "pd_logistic"
-2054              ','
-2055                 "credit_risk_score"
-2056              ','
-2057                 "risk_grade"
-2058              ','
-2059                 "recommendation"
-2060              ','
-2061                 "interest_rate"
-2062              ;
-2063            end;
-2064          set  WORK.FINAL_MODEL_OUTPUT   end=EFIEOD;
-2065              format row_id best12. ;
-2066              format default_flag best12. ;
-2067              format age best12. ;
-2068              format monthly_income best12. ;
-2069              format credit_utilization best12. ;
-2070              format debt_ratio best12. ;
-2071              format num_credit_lines best12. ;
-2072              format total_late_payments best12. ;
-2073              format pd_logistic best12. ;
-2074              format credit_risk_score best12. ;
-2075              format risk_grade $1. ;
-2076              format recommendation $7. ;
-2077              format interest_rate percent8.2 ;
-2078            do;
-2079              EFIOUT + 1;
-2080              put row_id @;
-2081              put default_flag @;
-2082              put age @;
-2083              put monthly_income @;
-2084              put credit_utilization @;
-2085              put debt_ratio @;
-2086              put num_credit_lines @;
-2087              put total_late_payments @;
-2088              put pd_logistic @;
-2089              put credit_risk_score @;
-2090              put risk_grade $ @;
-2091              put recommendation $ @;
-2092              put interest_rate ;
-2093              ;
-2094            end;
-2095           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2096           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2097           run;
-105000 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/final_model_output.csv from 
+2210        /**********************************************************************
+2211        *   PRODUCT:   SAS
+2212        *   VERSION:   9.4
+2213        *   CREATOR:   External File Interface
+2214        *   DATE:      14NOV26
+2215        *   DESC:      Generated SAS Datastep Code
+2216        *   TEMPLATE SOURCE:  (None Specified.)
+2217        ***********************************************************************/
+2218           data _null_;
+2219           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2220           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2221           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/final_model_output.csv' delimiter=',' DSD
+2221     !  DROPOVER lrecl=32767;
+2222           if _n_ = 1 then        /* write column names or labels */
+2223            do;
+2224              put
+2225                 "row_id"
+2226              ','
+2227                 "default_flag"
+2228              ','
+2229                 "age"
+2230              ','
+2231                 "monthly_income"
+2232              ','
+2233                 "credit_utilization"
+2234              ','
+2235                 "debt_ratio"
+2236              ','
+2237                 "num_credit_lines"
+2238              ','
+2239                 "total_late_payments"
+2240              ','
+2241                 "pd_logistic"
+2242              ','
+2243                 "credit_risk_score"
+2244              ','
+2245                 "risk_grade"
+2246              ','
+2247                 "recommendation"
+2248              ','
+2249                 "interest_rate"
+2250              ;
+2251            end;
+2252          set  WORK.FINAL_MODEL_OUTPUT   end=EFIEOD;
+2253              format row_id best12. ;
+2254              format default_flag best12. ;
+2255              format age best12. ;
+2256              format monthly_income best12. ;
+2257              format credit_utilization best12. ;
+2258              format debt_ratio best12. ;
+2259              format num_credit_lines best12. ;
+2260              format total_late_payments best12. ;
+2261              format pd_logistic best12. ;
+2262              format credit_risk_score best12. ;
+2263              format risk_grade $1. ;
+2264              format recommendation $7. ;
+2265              format interest_rate percent8.2 ;
+2266            do;
+2267              EFIOUT + 1;
+2268              put row_id @;
+2269              put default_flag @;
+2270              put age @;
+2271              put monthly_income @;
+2272              put credit_utilization @;
+2273              put debt_ratio @;
+2274              put num_credit_lines @;
+2275              put total_late_payments @;
+2276              put pd_logistic @;
+2277              put credit_risk_score @;
+2278              put risk_grade $ @;
+2279              put recommendation $ @;
+2280              put interest_rate ;
+2281              ;
+2282            end;
+2283           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2284           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2285           run;
+105000 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/final_model_output.csv from 
 WORK.FINAL_MODEL_OUTPUT.
   
   
-2098       
-2099       /* Export model performance summary */
-2100       data work.model_summary;
-2101           merge work.roc_train(where=(ROCModel='Training Set') rename=(Area=Train_AUC))
-2102                 work.roc_valid(where=(ROCModel='Validation Set') rename=(Area=Valid_AUC))
-2103                 work.training_metrics
-2104                 work.validation_metrics;
-2105       
-2106           model_name = "Logistic Regression";
-2107           training_date = today();
-2108           training_records = 105000; /* Approximate 70% of 150K */
-2109           validation_records = 45000; /* Approximate 30% of 150K */
-2110       
-2111           format training_date date9.
-2112                  Train_AUC Valid_AUC
-2113                  train_precision train_recall train_f1_score train_accuracy
-2114                  valid_precision valid_recall valid_f1_score valid_accuracy 8.4;
-2115           keep model_name training_date training_records validation_records
-2116                Train_AUC Valid_AUC
-2117                train_precision train_recall train_f1_score train_accuracy
-2118                valid_precision valid_recall valid_f1_score valid_accuracy;
-2119       run;
+2286       
+2287       /* Export model performance summary */
+2288       data work.model_summary;
+2289           merge work.roc_train(where=(ROCModel='Training Set') rename=(Area=Train_AUC))
+2290                 work.roc_valid(where=(ROCModel='Validation Set') rename=(Area=Valid_AUC))
+2291                 work.training_metrics
+2292                 work.validation_metrics;
+2293       
+2294           model_name = "Logistic Regression";
+2295           training_date = today();
+2296           training_records = 105000; /* Approximate 70% of 150K */
+2297           validation_records = 45000; /* Approximate 30% of 150K */
+2298       
+2299           format training_date date9.
+2300                  Train_AUC Valid_AUC
+2301                  train_precision train_recall train_f1_score train_accuracy
+2302                  valid_precision valid_recall valid_f1_score valid_accuracy 8.4;
+2303           keep model_name training_date training_records validation_records
+2304                Train_AUC Valid_AUC
+2305                train_precision train_recall train_f1_score train_accuracy
+2306                valid_precision valid_recall valid_f1_score valid_accuracy;
+2307       run;
 WARNING: Multiple lengths were specified for the variable ROCModel by input data set(s). This can cause truncation of data.
-2120       
-2121       proc export data=work.model_summary
-2122           outfile="&output_path/model_summary.csv"
-2123           dbms=csv
-2124           replace;
-2125       run;
+2308       
+2309       proc export data=work.model_summary
+2310           outfile="&output_path/model_summary.csv"
+2311           dbms=csv
+2312           replace;
+2313       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2126        /**********************************************************************
-2127        *   PRODUCT:   SAS
-2128        *   VERSION:   9.4
-2129        *   CREATOR:   External File Interface
-2130        *   DATE:      05NOV26
-2131        *   DESC:      Generated SAS Datastep Code
-2132        *   TEMPLATE SOURCE:  (None Specified.)
-2133        ***********************************************************************/
-2134           data _null_;
-2135           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2136           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2137           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/model_summary.csv' delimiter=',' DSD
-2137     ! DROPOVER lrecl=32767;
-2138           if _n_ = 1 then        /* write column names or labels */
-2139            do;
-2140              put
-2141                 "Train_AUC"
-2142              ','
-2143                 "Valid_AUC"
-2144              ','
-2145                 "train_precision"
-2146              ','
-2147                 "train_recall"
-2148              ','
-2149                 "train_f1_score"
-2150              ','
-2151                 "train_accuracy"
-2152              ','
-2153                 "valid_precision"
-2154              ','
-2155                 "valid_recall"
-2156              ','
-2157                 "valid_f1_score"
-2158              ','
-2159                 "valid_accuracy"
-2160              ','
-2161                 "model_name"
-2162              ','
-2163                 "training_date"
-2164              ','
-2165                 "training_records"
-2166              ','
-2167                 "validation_records"
-2168              ;
-2169            end;
-2170          set  WORK.MODEL_SUMMARY   end=EFIEOD;
-2171              format Train_AUC 8.4 ;
-2172              format Valid_AUC 8.4 ;
-2173              format train_precision 8.4 ;
-2174              format train_recall 8.4 ;
-2175              format train_f1_score 8.4 ;
-2176              format train_accuracy 8.4 ;
-2177              format valid_precision 8.4 ;
-2178              format valid_recall 8.4 ;
-2179              format valid_f1_score 8.4 ;
-2180              format valid_accuracy 8.4 ;
-2181              format model_name $19. ;
-2182              format training_date date9. ;
-2183              format training_records best12. ;
-2184              format validation_records best12. ;
-2185            do;
-2186              EFIOUT + 1;
-2187              put Train_AUC @;
-2188              put Valid_AUC @;
-2189              put train_precision @;
-2190              put train_recall @;
-2191              put train_f1_score @;
-2192              put train_accuracy @;
-2193              put valid_precision @;
-2194              put valid_recall @;
-2195              put valid_f1_score @;
-2196              put valid_accuracy @;
-2197              put model_name $ @;
-2198              put training_date @;
-2199              put training_records @;
-2200              put validation_records ;
-2201              ;
-2202            end;
-2203           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2204           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2205           run;
-1 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/model_summary.csv from WORK.MODEL_SUMMARY.
+2314        /**********************************************************************
+2315        *   PRODUCT:   SAS
+2316        *   VERSION:   9.4
+2317        *   CREATOR:   External File Interface
+2318        *   DATE:      14NOV26
+2319        *   DESC:      Generated SAS Datastep Code
+2320        *   TEMPLATE SOURCE:  (None Specified.)
+2321        ***********************************************************************/
+2322           data _null_;
+2323           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2324           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2325           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_summary.csv' delimiter=',' DSD
+2325     ! DROPOVER lrecl=32767;
+2326           if _n_ = 1 then        /* write column names or labels */
+2327            do;
+2328              put
+2329                 "Train_AUC"
+2330              ','
+2331                 "Valid_AUC"
+2332              ','
+2333                 "train_precision"
+2334              ','
+2335                 "train_recall"
+2336              ','
+2337                 "train_f1_score"
+2338              ','
+2339                 "train_accuracy"
+2340              ','
+2341                 "valid_precision"
+2342              ','
+2343                 "valid_recall"
+2344              ','
+2345                 "valid_f1_score"
+2346              ','
+2347                 "valid_accuracy"
+2348              ','
+2349                 "model_name"
+2350              ','
+2351                 "training_date"
+2352              ','
+2353                 "training_records"
+2354              ','
+2355                 "validation_records"
+2356              ;
+2357            end;
+2358          set  WORK.MODEL_SUMMARY   end=EFIEOD;
+2359              format Train_AUC 8.4 ;
+2360              format Valid_AUC 8.4 ;
+2361              format train_precision 8.4 ;
+2362              format train_recall 8.4 ;
+2363              format train_f1_score 8.4 ;
+2364              format train_accuracy 8.4 ;
+2365              format valid_precision 8.4 ;
+2366              format valid_recall 8.4 ;
+2367              format valid_f1_score 8.4 ;
+2368              format valid_accuracy 8.4 ;
+2369              format model_name $19. ;
+2370              format training_date date9. ;
+2371              format training_records best12. ;
+2372              format validation_records best12. ;
+2373            do;
+2374              EFIOUT + 1;
+2375              put Train_AUC @;
+2376              put Valid_AUC @;
+2377              put train_precision @;
+2378              put train_recall @;
+2379              put train_f1_score @;
+2380              put train_accuracy @;
+2381              put valid_precision @;
+2382              put valid_recall @;
+2383              put valid_f1_score @;
+2384              put valid_accuracy @;
+2385              put model_name $ @;
+2386              put training_date @;
+2387              put training_records @;
+2388              put validation_records ;
+2389              ;
+2390            end;
+2391           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2392           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2393           run;
+1 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_summary.csv from 
+WORK.MODEL_SUMMARY.
   
   
-2206       
-2207       /* Export model coefficients */
-2208       proc export data=work.model_coefficients
-2209           outfile="&output_path/model_coefficients.csv"
-2210           dbms=csv
-2211           replace;
-2212       run;
+2394       
+2395       /* Export model coefficients */
+2396       proc export data=work.model_coefficients
+2397           outfile="&output_path/model_coefficients.csv"
+2398           dbms=csv
+2399           replace;
+2400       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2213        /**********************************************************************
-2214        *   PRODUCT:   SAS
-2215        *   VERSION:   9.4
-2216        *   CREATOR:   External File Interface
-2217        *   DATE:      05NOV26
-2218        *   DESC:      Generated SAS Datastep Code
-2219        *   TEMPLATE SOURCE:  (None Specified.)
-2220        ***********************************************************************/
-2221           data _null_;
-2222           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2223           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2224           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/model_coefficients.csv' delimiter=',' DSD
-2224     ! DROPOVER lrecl=32767;
-2225           if _n_ = 1 then        /* write column names or labels */
-2226            do;
-2227              put
-2228                 "Variable"
-2229              ','
-2230                 "DF"
-2231              ','
-2232                 "Estimate"
-2233              ','
-2234                 "StdErr"
-2235              ','
-2236                 "WaldChiSq"
-2237              ','
-2238                 "ProbChiSq"
-2239              ','
-2240                 "_ESTTYPE_"
-2241              ;
-2242            end;
-2243          set  WORK.MODEL_COEFFICIENTS   end=EFIEOD;
-2244              format Variable $20. ;
-2245              format DF 2. ;
-2246              format Estimate d8. ;
-2247              format StdErr d8. ;
-2248              format WaldChiSq 10.4 ;
-2249              format ProbChiSq pvalue6.4 ;
-2250              format _ESTTYPE_ $4. ;
-2251            do;
-2252              EFIOUT + 1;
-2253              put Variable $ @;
-2254              put DF @;
-2255              put Estimate @;
-2256              put StdErr @;
-2257              put WaldChiSq @;
-2258              put ProbChiSq @;
-2259              put _ESTTYPE_ $ ;
-2260              ;
-2261            end;
-2262           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2263           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2264           run;
-19 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/model_coefficients.csv from 
+2401        /**********************************************************************
+2402        *   PRODUCT:   SAS
+2403        *   VERSION:   9.4
+2404        *   CREATOR:   External File Interface
+2405        *   DATE:      14NOV26
+2406        *   DESC:      Generated SAS Datastep Code
+2407        *   TEMPLATE SOURCE:  (None Specified.)
+2408        ***********************************************************************/
+2409           data _null_;
+2410           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2411           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2412           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_coefficients.csv' delimiter=',' DSD
+2412     !  DROPOVER lrecl=32767;
+2413           if _n_ = 1 then        /* write column names or labels */
+2414            do;
+2415              put
+2416                 "Variable"
+2417              ','
+2418                 "DF"
+2419              ','
+2420                 "Estimate"
+2421              ','
+2422                 "StdErr"
+2423              ','
+2424                 "WaldChiSq"
+2425              ','
+2426                 "ProbChiSq"
+2427              ','
+2428                 "_ESTTYPE_"
+2429              ;
+2430            end;
+2431          set  WORK.MODEL_COEFFICIENTS   end=EFIEOD;
+2432              format Variable $20. ;
+2433              format DF 2. ;
+2434              format Estimate d8. ;
+2435              format StdErr d8. ;
+2436              format WaldChiSq 10.4 ;
+2437              format ProbChiSq pvalue6.4 ;
+2438              format _ESTTYPE_ $4. ;
+2439            do;
+2440              EFIOUT + 1;
+2441              put Variable $ @;
+2442              put DF @;
+2443              put Estimate @;
+2444              put StdErr @;
+2445              put WaldChiSq @;
+2446              put ProbChiSq @;
+2447              put _ESTTYPE_ $ ;
+2448              ;
+2449            end;
+2450           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2451           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2452           run;
+16 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_coefficients.csv from 
 WORK.MODEL_COEFFICIENTS.
   
   
-2265       
-2266       %put NOTE: Model training completed successfully;
-2267       %put NOTE: Model stored as work.logit_model;
-2268       %put NOTE: Training set scored: &output_path/risk_scores_train.csv;
-2269       %put NOTE: Validation set scored: &output_path/risk_scores_validation.csv;
-2270       %put NOTE: Model summary: &output_path/model_summary.csv;
-2271       %put NOTE: Model coefficients: &output_path/model_coefficients.csv;
-2272       %put NOTE: Ready for validation metrics calculation;
-2273       proc export data=work._j_modelbuildingsummary outfile="&output_path/stepwise_summary.csv" dbms=csv replace;
-2273     !                                                                                                             run;
+2453       
+2454       %put NOTE: Model training completed successfully;
+2455       %put NOTE: Model stored as work.logit_model;
+2456       %put NOTE: Training set scored: &output_path/risk_scores_train.csv;
+2457       %put NOTE: Validation set scored: &output_path/risk_scores_validation.csv;
+2458       %put NOTE: Model summary: &output_path/model_summary.csv;
+2459       %put NOTE: Model coefficients: &output_path/model_coefficients.csv;
+2460       %put NOTE: Ready for validation metrics calculation;
+2461       proc export data=work._j_modelbuildingsummary outfile="&output_path/stepwise_summary.csv" dbms=csv replace;
+2461     !                                                                                                             run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2274        /**********************************************************************
-2275        *   PRODUCT:   SAS
-2276        *   VERSION:   9.4
-2277        *   CREATOR:   External File Interface
-2278        *   DATE:      05NOV26
-2279        *   DESC:      Generated SAS Datastep Code
-2280        *   TEMPLATE SOURCE:  (None Specified.)
-2281        ***********************************************************************/
-2282           data _null_;
-2283           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2284           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2285           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/stepwise_summary.csv' delimiter=',' DSD
-2285     ! DROPOVER lrecl=32767;
-2286           if _n_ = 1 then        /* write column names or labels */
-2287            do;
-2288              put
-2289                 "Step"
-2290              ','
-2291                 "EffectEntered"
-2292              ','
-2293                 "EffectRemoved"
-2294              ','
-2295                 "DF"
-2296              ','
-2297                 "NumberInModel"
-2298              ','
-2299                 "ScoreChiSq"
-2300              ','
-2301                 "WaldChiSq"
-2302              ','
-2303                 "ProbChiSq"
-2304              ;
-2305            end;
-2306          set  WORK._J_MODELBUILDINGSUMMARY   end=EFIEOD;
-2307              format Step best8. ;
-2308              format EffectEntered $20. ;
-2309              format EffectRemoved $20. ;
-2310              format DF 4. ;
-2311              format NumberInModel best8. ;
-2312              format ScoreChiSq 10.4 ;
-2313              format WaldChiSq 10.4 ;
-2314              format ProbChiSq pvalue6.4 ;
-2315            do;
-2316              EFIOUT + 1;
-2317              put Step @;
-2318              put EffectEntered $ @;
-2319              put EffectRemoved $ @;
-2320              put DF @;
-2321              put NumberInModel @;
-2322              put ScoreChiSq @;
-2323              put WaldChiSq @;
-2324              put ProbChiSq ;
-2325              ;
-2326            end;
-2327           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2328           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2329           run;
-24 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/stepwise_summary.csv from 
+2462        /**********************************************************************
+2463        *   PRODUCT:   SAS
+2464        *   VERSION:   9.4
+2465        *   CREATOR:   External File Interface
+2466        *   DATE:      14NOV26
+2467        *   DESC:      Generated SAS Datastep Code
+2468        *   TEMPLATE SOURCE:  (None Specified.)
+2469        ***********************************************************************/
+2470           data _null_;
+2471           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2472           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2473           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/stepwise_summary.csv' delimiter=',' DSD
+2473     ! DROPOVER lrecl=32767;
+2474           if _n_ = 1 then        /* write column names or labels */
+2475            do;
+2476              put
+2477                 "Step"
+2478              ','
+2479                 "EffectEntered"
+2480              ','
+2481                 "EffectRemoved"
+2482              ','
+2483                 "DF"
+2484              ','
+2485                 "NumberInModel"
+2486              ','
+2487                 "ScoreChiSq"
+2488              ','
+2489                 "WaldChiSq"
+2490              ','
+2491                 "ProbChiSq"
+2492              ;
+2493            end;
+2494          set  WORK._J_MODELBUILDINGSUMMARY   end=EFIEOD;
+2495              format Step best8. ;
+2496              format EffectEntered $20. ;
+2497              format EffectRemoved $20. ;
+2498              format DF 4. ;
+2499              format NumberInModel best8. ;
+2500              format ScoreChiSq 10.4 ;
+2501              format WaldChiSq 10.4 ;
+2502              format ProbChiSq pvalue6.4 ;
+2503            do;
+2504              EFIOUT + 1;
+2505              put Step @;
+2506              put EffectEntered $ @;
+2507              put EffectRemoved $ @;
+2508              put DF @;
+2509              put NumberInModel @;
+2510              put ScoreChiSq @;
+2511              put WaldChiSq @;
+2512              put ProbChiSq ;
+2513              ;
+2514            end;
+2515           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2516           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2517           run;
+19 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/stepwise_summary.csv from 
 WORK._J_MODELBUILDINGSUMMARY.
   
   
-2330       proc export data=work._j_fitstatistics outfile="&output_path/printed_fit_statistics.csv" dbms=csv replace;
-2330     !                                                                                                            run;
+2518       proc export data=work._j_fitstatistics outfile="&output_path/printed_fit_statistics.csv" dbms=csv replace;
+2518     !                                                                                                            run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2331        /**********************************************************************
-2332        *   PRODUCT:   SAS
-2333        *   VERSION:   9.4
-2334        *   CREATOR:   External File Interface
-2335        *   DATE:      05NOV26
-2336        *   DESC:      Generated SAS Datastep Code
-2337        *   TEMPLATE SOURCE:  (None Specified.)
-2338        ***********************************************************************/
-2339           data _null_;
-2340           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2341           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2342           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_fit_statistics.csv' delimiter=','
-2342     ! DSD DROPOVER lrecl=32767;
-2343           if _n_ = 1 then        /* write column names or labels */
-2344            do;
-2345              put
-2346                 "Step"
-2347              ','
-2348                 "RowId"
-2349              ','
-2350                 "Criterion"
-2351              ','
-2352                 "Equals"
-2353              ','
-2354                 "InterceptOnly"
-2355              ','
-2356                 "InterceptAndCovariates"
-2357              ;
-2358            end;
-2359          set  WORK._J_FITSTATISTICS   end=EFIEOD;
-2360              format Step best12. ;
-2361              format RowId $8. ;
-2362              format Criterion $8. ;
-2363              format Equals $1. ;
-2364              format InterceptOnly d12.3 ;
-2365              format InterceptAndCovariates 9.3 ;
-2366            do;
-2367              EFIOUT + 1;
-2368              put Step @;
-2369              put RowId $ @;
-2370              put Criterion $ @;
-2371              put Equals $ @;
-2372              put InterceptOnly @;
-2373              put InterceptAndCovariates ;
-2374              ;
-2375            end;
-2376           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2377           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2378           run;
-73 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_fit_statistics.csv from 
-WORK._J_FITSTATISTICS.
-  
-  
-2379       proc export data=work._j_globaltests outfile="&output_path/printed_global_tests.csv" dbms=csv replace;
-2379     !                                                                                                        run;
-NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
-WORK.PARMS.PARMS.SLIST.
-2380        /**********************************************************************
-2381        *   PRODUCT:   SAS
-2382        *   VERSION:   9.4
-2383        *   CREATOR:   External File Interface
-2384        *   DATE:      05NOV26
-2385        *   DESC:      Generated SAS Datastep Code
-2386        *   TEMPLATE SOURCE:  (None Specified.)
-2387        ***********************************************************************/
-2388           data _null_;
-2389           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2390           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2391           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_global_tests.csv' delimiter=',' DSD
-2391     !  DROPOVER lrecl=32767;
-2392           if _n_ = 1 then        /* write column names or labels */
-2393            do;
-2394              put
-2395                 "Step"
-2396              ','
-2397                 "Test"
-2398              ','
-2399                 "ChiSq"
-2400              ','
-2401                 "DF"
-2402              ','
-2403                 "ProbChiSq"
-2404              ;
-2405            end;
-2406          set  WORK._J_GLOBALTESTS   end=EFIEOD;
-2407              format Step best12. ;
-2408              format Test $16. ;
-2409              format ChiSq 10.4 ;
-2410              format DF 4. ;
-2411              format ProbChiSq pvalue6.4 ;
-2412            do;
-2413              EFIOUT + 1;
-2414              put Step @;
-2415              put Test $ @;
-2416              put ChiSq @;
-2417              put DF @;
-2418              put ProbChiSq ;
-2419              ;
-2420            end;
-2421           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2422           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2423           run;
-72 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_global_tests.csv from 
-WORK._J_GLOBALTESTS.
-  
-  
-2424       proc export data=work._j_rsquare outfile="&output_path/printed_rsquare.csv" dbms=csv replace;
-2424     !                                                                                               run;
-NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
-WORK.PARMS.PARMS.SLIST.
-2425        /**********************************************************************
-2426        *   PRODUCT:   SAS
-2427        *   VERSION:   9.4
-2428        *   CREATOR:   External File Interface
-2429        *   DATE:      05NOV26
-2430        *   DESC:      Generated SAS Datastep Code
-2431        *   TEMPLATE SOURCE:  (None Specified.)
-2432        ***********************************************************************/
-2433           data _null_;
-2434           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2435           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2436           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_rsquare.csv' delimiter=',' DSD
-2436     ! DROPOVER lrecl=32767;
-2437           if _n_ = 1 then        /* write column names or labels */
-2438            do;
-2439              put
-2440                 "Step"
-2441              ','
-2442                 "Label1"
-2443              ','
-2444                 "cValue1"
-2445              ','
-2446                 "nValue1"
-2447              ','
-2448                 "Label2"
-2449              ','
-2450                 "cValue2"
-2451              ','
-2452                 "nValue2"
-2453              ;
-2454            end;
-2455          set  WORK._J_RSQUARE   end=EFIEOD;
-2456              format Step best12. ;
-2457              format Label1 $8. ;
-2458              format cValue1 $6. ;
-2459              format nValue1 d12.3 ;
-2460              format Label2 $21. ;
-2461              format cValue2 $6. ;
-2462              format nValue2 d12.3 ;
-2463            do;
-2464              EFIOUT + 1;
-2465              put Step @;
-2466              put Label1 $ @;
-2467              put cValue1 $ @;
-2468              put nValue1 @;
-2469              put Label2 $ @;
-2470              put cValue2 $ @;
-2471              put nValue2 ;
-2472              ;
-2473            end;
-2474           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2475           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2476           run;
-24 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_rsquare.csv from WORK._J_RSQUARE.
-  
-  
-2477       proc export data=work._j_association outfile="&output_path/printed_association.csv" dbms=csv replace;
-2477     !                                                                                                       run;
-NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
-WORK.PARMS.PARMS.SLIST.
-2478        /**********************************************************************
-2479        *   PRODUCT:   SAS
-2480        *   VERSION:   9.4
-2481        *   CREATOR:   External File Interface
-2482        *   DATE:      05NOV26
-2483        *   DESC:      Generated SAS Datastep Code
-2484        *   TEMPLATE SOURCE:  (None Specified.)
-2485        ***********************************************************************/
-2486           data _null_;
-2487           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2488           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2489           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_association.csv' delimiter=',' DSD
-2489     ! DROPOVER lrecl=32767;
-2490           if _n_ = 1 then        /* write column names or labels */
-2491            do;
-2492              put
-2493                 "Label1"
-2494              ','
-2495                 "cValue1"
-2496              ','
-2497                 "nValue1"
-2498              ','
-2499                 "Label2"
-2500              ','
-2501                 "cValue2"
-2502              ','
-2503                 "nValue2"
-2504              ;
-2505            end;
-2506          set  WORK._J_ASSOCIATION   end=EFIEOD;
-2507              format Label1 $18. ;
-2508              format cValue1 $9. ;
-2509              format nValue1 d12.3 ;
-2510              format Label2 $9. ;
-2511              format cValue2 $5. ;
-2512              format nValue2 d12.3 ;
-2513            do;
-2514              EFIOUT + 1;
-2515              put Label1 $ @;
-2516              put cValue1 $ @;
-2517              put nValue1 @;
-2518              put Label2 $ @;
-2519              put cValue2 $ @;
-2520              put nValue2 ;
-2521              ;
-2522            end;
-2523           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2524           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2525           run;
-4 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_association.csv from 
-WORK._J_ASSOCIATION.
-  
-  
-2526       proc export data=work._j_oddsratios outfile="&output_path/printed_odds_ratios.csv" dbms=csv replace;
-2526     !                                                                                                      run;
-NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
-WORK.PARMS.PARMS.SLIST.
-2527        /**********************************************************************
-2528        *   PRODUCT:   SAS
-2529        *   VERSION:   9.4
-2530        *   CREATOR:   External File Interface
-2531        *   DATE:      05NOV26
-2532        *   DESC:      Generated SAS Datastep Code
-2533        *   TEMPLATE SOURCE:  (None Specified.)
-2534        ***********************************************************************/
-2535           data _null_;
-2536           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2537           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2538           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_odds_ratios.csv' delimiter=',' DSD
-2538     ! DROPOVER lrecl=32767;
-2539           if _n_ = 1 then        /* write column names or labels */
-2540            do;
-2541              put
-2542                 "Effect"
+2519        /**********************************************************************
+2520        *   PRODUCT:   SAS
+2521        *   VERSION:   9.4
+2522        *   CREATOR:   External File Interface
+2523        *   DATE:      14NOV26
+2524        *   DESC:      Generated SAS Datastep Code
+2525        *   TEMPLATE SOURCE:  (None Specified.)
+2526        ***********************************************************************/
+2527           data _null_;
+2528           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2529           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2530           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_fit_statistics.csv' delimiter=','
+2530     !  DSD DROPOVER lrecl=32767;
+2531           if _n_ = 1 then        /* write column names or labels */
+2532            do;
+2533              put
+2534                 "Step"
+2535              ','
+2536                 "RowId"
+2537              ','
+2538                 "Criterion"
+2539              ','
+2540                 "Equals"
+2541              ','
+2542                 "InterceptOnly"
 2543              ','
-2544                 "OddsRatioEst"
-2545              ','
-2546                 "LowerCL"
-2547              ','
-2548                 "UpperCL"
-2549              ;
-2550            end;
-2551          set  WORK._J_ODDSRATIOS   end=EFIEOD;
-2552              format Effect $20. ;
-2553              format OddsRatioEst oddsr8.3 ;
-2554              format LowerCL oddsr8.3 ;
-2555              format UpperCL oddsr8.3 ;
-2556            do;
-2557              EFIOUT + 1;
-2558              put Effect $ @;
-2559              put OddsRatioEst @;
-2560              put LowerCL @;
-2561              put UpperCL ;
+2544                 "InterceptAndCovariates"
+2545              ;
+2546            end;
+2547          set  WORK._J_FITSTATISTICS   end=EFIEOD;
+2548              format Step best12. ;
+2549              format RowId $8. ;
+2550              format Criterion $8. ;
+2551              format Equals $1. ;
+2552              format InterceptOnly d12.3 ;
+2553              format InterceptAndCovariates 9.3 ;
+2554            do;
+2555              EFIOUT + 1;
+2556              put Step @;
+2557              put RowId $ @;
+2558              put Criterion $ @;
+2559              put Equals $ @;
+2560              put InterceptOnly @;
+2561              put InterceptAndCovariates ;
 2562              ;
 2563            end;
 2564           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 2565           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
 2566           run;
-18 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_odds_ratios.csv from 
-WORK._J_ODDSRATIOS.
+58 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_fit_statistics.csv from 
+WORK._J_FITSTATISTICS.
   
   
-2567       proc export data=work._j_lackfitpartition outfile="&output_path/printed_hl_partition.csv" dbms=csv replace;
-2567     !                                                                                                             run;
+2567       proc export data=work._j_globaltests outfile="&output_path/printed_global_tests.csv" dbms=csv replace;
+2567     !                                                                                                        run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
 2568        /**********************************************************************
 2569        *   PRODUCT:   SAS
 2570        *   VERSION:   9.4
 2571        *   CREATOR:   External File Interface
-2572        *   DATE:      05NOV26
+2572        *   DATE:      14NOV26
 2573        *   DESC:      Generated SAS Datastep Code
 2574        *   TEMPLATE SOURCE:  (None Specified.)
 2575        ***********************************************************************/
 2576           data _null_;
 2577           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
 2578           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2579           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_hl_partition.csv' delimiter=',' DSD
-2579     !  DROPOVER lrecl=32767;
+2579           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_global_tests.csv' delimiter=','
+2579     ! DSD DROPOVER lrecl=32767;
 2580           if _n_ = 1 then        /* write column names or labels */
 2581            do;
 2582              put
-2583                 "Group"
+2583                 "Step"
 2584              ','
-2585                 "Total"
+2585                 "Test"
 2586              ','
-2587                 "EventsObserved"
+2587                 "ChiSq"
 2588              ','
-2589                 "EventsExpected"
+2589                 "DF"
 2590              ','
-2591                 "NoneventsObserved"
-2592              ','
-2593                 "NoneventsExpected"
-2594              ;
-2595            end;
-2596          set  WORK._J_LACKFITPARTITION   end=EFIEOD;
-2597              format Group 8. ;
-2598              format Total 8. ;
-2599              format EventsObserved 8. ;
-2600              format EventsExpected 8.2 ;
-2601              format NoneventsObserved 8. ;
-2602              format NoneventsExpected 8.2 ;
-2603            do;
-2604              EFIOUT + 1;
-2605              put Group @;
-2606              put Total @;
-2607              put EventsObserved @;
-2608              put EventsExpected @;
-2609              put NoneventsObserved @;
-2610              put NoneventsExpected ;
-2611              ;
-2612            end;
-2613           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2614           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2615           run;
-10 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_hl_partition.csv from 
+2591                 "ProbChiSq"
+2592              ;
+2593            end;
+2594          set  WORK._J_GLOBALTESTS   end=EFIEOD;
+2595              format Step best12. ;
+2596              format Test $16. ;
+2597              format ChiSq 10.4 ;
+2598              format DF 4. ;
+2599              format ProbChiSq pvalue6.4 ;
+2600            do;
+2601              EFIOUT + 1;
+2602              put Step @;
+2603              put Test $ @;
+2604              put ChiSq @;
+2605              put DF @;
+2606              put ProbChiSq ;
+2607              ;
+2608            end;
+2609           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2610           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2611           run;
+57 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_global_tests.csv from 
+WORK._J_GLOBALTESTS.
+  
+  
+2612       proc export data=work._j_rsquare outfile="&output_path/printed_rsquare.csv" dbms=csv replace;
+2612     !                                                                                               run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+2613        /**********************************************************************
+2614        *   PRODUCT:   SAS
+2615        *   VERSION:   9.4
+2616        *   CREATOR:   External File Interface
+2617        *   DATE:      14NOV26
+2618        *   DESC:      Generated SAS Datastep Code
+2619        *   TEMPLATE SOURCE:  (None Specified.)
+2620        ***********************************************************************/
+2621           data _null_;
+2622           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2623           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2624           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_rsquare.csv' delimiter=',' DSD
+2624     ! DROPOVER lrecl=32767;
+2625           if _n_ = 1 then        /* write column names or labels */
+2626            do;
+2627              put
+2628                 "Step"
+2629              ','
+2630                 "Label1"
+2631              ','
+2632                 "cValue1"
+2633              ','
+2634                 "nValue1"
+2635              ','
+2636                 "Label2"
+2637              ','
+2638                 "cValue2"
+2639              ','
+2640                 "nValue2"
+2641              ;
+2642            end;
+2643          set  WORK._J_RSQUARE   end=EFIEOD;
+2644              format Step best12. ;
+2645              format Label1 $8. ;
+2646              format cValue1 $6. ;
+2647              format nValue1 d12.3 ;
+2648              format Label2 $21. ;
+2649              format cValue2 $6. ;
+2650              format nValue2 d12.3 ;
+2651            do;
+2652              EFIOUT + 1;
+2653              put Step @;
+2654              put Label1 $ @;
+2655              put cValue1 $ @;
+2656              put nValue1 @;
+2657              put Label2 $ @;
+2658              put cValue2 $ @;
+2659              put nValue2 ;
+2660              ;
+2661            end;
+2662           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2663           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2664           run;
+19 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_rsquare.csv from 
+WORK._J_RSQUARE.
+  
+  
+2665       proc export data=work._j_association outfile="&output_path/printed_association.csv" dbms=csv replace;
+2665     !                                                                                                       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+2666        /**********************************************************************
+2667        *   PRODUCT:   SAS
+2668        *   VERSION:   9.4
+2669        *   CREATOR:   External File Interface
+2670        *   DATE:      14NOV26
+2671        *   DESC:      Generated SAS Datastep Code
+2672        *   TEMPLATE SOURCE:  (None Specified.)
+2673        ***********************************************************************/
+2674           data _null_;
+2675           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2676           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2677           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_association.csv' delimiter=','
+2677     ! DSD DROPOVER lrecl=32767;
+2678           if _n_ = 1 then        /* write column names or labels */
+2679            do;
+2680              put
+2681                 "Label1"
+2682              ','
+2683                 "cValue1"
+2684              ','
+2685                 "nValue1"
+2686              ','
+2687                 "Label2"
+2688              ','
+2689                 "cValue2"
+2690              ','
+2691                 "nValue2"
+2692              ;
+2693            end;
+2694          set  WORK._J_ASSOCIATION   end=EFIEOD;
+2695              format Label1 $18. ;
+2696              format cValue1 $9. ;
+2697              format nValue1 d12.3 ;
+2698              format Label2 $9. ;
+2699              format cValue2 $5. ;
+2700              format nValue2 d12.3 ;
+2701            do;
+2702              EFIOUT + 1;
+2703              put Label1 $ @;
+2704              put cValue1 $ @;
+2705              put nValue1 @;
+2706              put Label2 $ @;
+2707              put cValue2 $ @;
+2708              put nValue2 ;
+2709              ;
+2710            end;
+2711           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2712           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2713           run;
+4 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_association.csv from 
+WORK._J_ASSOCIATION.
+  
+  
+2714       proc export data=work._j_oddsratios outfile="&output_path/printed_odds_ratios.csv" dbms=csv replace;
+2714     !                                                                                                      run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+2715        /**********************************************************************
+2716        *   PRODUCT:   SAS
+2717        *   VERSION:   9.4
+2718        *   CREATOR:   External File Interface
+2719        *   DATE:      14NOV26
+2720        *   DESC:      Generated SAS Datastep Code
+2721        *   TEMPLATE SOURCE:  (None Specified.)
+2722        ***********************************************************************/
+2723           data _null_;
+2724           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2725           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2726           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_odds_ratios.csv' delimiter=','
+2726     ! DSD DROPOVER lrecl=32767;
+2727           if _n_ = 1 then        /* write column names or labels */
+2728            do;
+2729              put
+2730                 "Effect"
+2731              ','
+2732                 "OddsRatioEst"
+2733              ','
+2734                 "LowerCL"
+2735              ','
+2736                 "UpperCL"
+2737              ;
+2738            end;
+2739          set  WORK._J_ODDSRATIOS   end=EFIEOD;
+2740              format Effect $20. ;
+2741              format OddsRatioEst oddsr8.3 ;
+2742              format LowerCL oddsr8.3 ;
+2743              format UpperCL oddsr8.3 ;
+2744            do;
+2745              EFIOUT + 1;
+2746              put Effect $ @;
+2747              put OddsRatioEst @;
+2748              put LowerCL @;
+2749              put UpperCL ;
+2750              ;
+2751            end;
+2752           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2753           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2754           run;
+15 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_odds_ratios.csv from 
+WORK._J_ODDSRATIOS.
+  
+  
+2755       proc export data=work._j_lackfitpartition outfile="&output_path/printed_hl_partition.csv" dbms=csv replace;
+2755     !                                                                                                             run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+2756        /**********************************************************************
+2757        *   PRODUCT:   SAS
+2758        *   VERSION:   9.4
+2759        *   CREATOR:   External File Interface
+2760        *   DATE:      14NOV26
+2761        *   DESC:      Generated SAS Datastep Code
+2762        *   TEMPLATE SOURCE:  (None Specified.)
+2763        ***********************************************************************/
+2764           data _null_;
+2765           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2766           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2767           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_hl_partition.csv' delimiter=','
+2767     ! DSD DROPOVER lrecl=32767;
+2768           if _n_ = 1 then        /* write column names or labels */
+2769            do;
+2770              put
+2771                 "Group"
+2772              ','
+2773                 "Total"
+2774              ','
+2775                 "EventsObserved"
+2776              ','
+2777                 "EventsExpected"
+2778              ','
+2779                 "NoneventsObserved"
+2780              ','
+2781                 "NoneventsExpected"
+2782              ;
+2783            end;
+2784          set  WORK._J_LACKFITPARTITION   end=EFIEOD;
+2785              format Group 8. ;
+2786              format Total 8. ;
+2787              format EventsObserved 8. ;
+2788              format EventsExpected 8.2 ;
+2789              format NoneventsObserved 8. ;
+2790              format NoneventsExpected 8.2 ;
+2791            do;
+2792              EFIOUT + 1;
+2793              put Group @;
+2794              put Total @;
+2795              put EventsObserved @;
+2796              put EventsExpected @;
+2797              put NoneventsObserved @;
+2798              put NoneventsExpected ;
+2799              ;
+2800            end;
+2801           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2802           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2803           run;
+10 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_hl_partition.csv from 
 WORK._J_LACKFITPARTITION.
   
   
-2616       proc export data=work._j_lackfitchisq outfile="&output_path/printed_hosmer_lemeshow.csv" dbms=csv replace;
-2616     !                                                                                                            run;
+2804       proc export data=work._j_lackfitchisq outfile="&output_path/printed_hosmer_lemeshow.csv" dbms=csv replace;
+2804     !                                                                                                            run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2617        /**********************************************************************
-2618        *   PRODUCT:   SAS
-2619        *   VERSION:   9.4
-2620        *   CREATOR:   External File Interface
-2621        *   DATE:      05NOV26
-2622        *   DESC:      Generated SAS Datastep Code
-2623        *   TEMPLATE SOURCE:  (None Specified.)
-2624        ***********************************************************************/
-2625           data _null_;
-2626           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2627           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2628           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_hosmer_lemeshow.csv' delimiter=','
-2628     ! DSD DROPOVER lrecl=32767;
-2629           if _n_ = 1 then        /* write column names or labels */
-2630            do;
-2631              put
-2632                 "ChiSq"
-2633              ','
-2634                 "DF"
-2635              ','
-2636                 "ProbChiSq"
-2637              ','
-2638                 "NGroups"
-2639              ;
-2640            end;
-2641          set  WORK._J_LACKFITCHISQ   end=EFIEOD;
-2642              format ChiSq 10.4 ;
-2643              format DF 4. ;
-2644              format ProbChiSq pvalue6.4 ;
-2645              format NGroups best8. ;
-2646            do;
-2647              EFIOUT + 1;
-2648              put ChiSq @;
-2649              put DF @;
-2650              put ProbChiSq @;
-2651              put NGroups ;
-2652              ;
-2653            end;
-2654           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2655           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2656           run;
-1 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_hosmer_lemeshow.csv from 
+2805        /**********************************************************************
+2806        *   PRODUCT:   SAS
+2807        *   VERSION:   9.4
+2808        *   CREATOR:   External File Interface
+2809        *   DATE:      14NOV26
+2810        *   DESC:      Generated SAS Datastep Code
+2811        *   TEMPLATE SOURCE:  (None Specified.)
+2812        ***********************************************************************/
+2813           data _null_;
+2814           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2815           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2816           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_hosmer_lemeshow.csv'
+2816     ! delimiter=',' DSD DROPOVER lrecl=32767;
+2817           if _n_ = 1 then        /* write column names or labels */
+2818            do;
+2819              put
+2820                 "ChiSq"
+2821              ','
+2822                 "DF"
+2823              ','
+2824                 "ProbChiSq"
+2825              ','
+2826                 "NGroups"
+2827              ;
+2828            end;
+2829          set  WORK._J_LACKFITCHISQ   end=EFIEOD;
+2830              format ChiSq 10.4 ;
+2831              format DF 4. ;
+2832              format ProbChiSq pvalue6.4 ;
+2833              format NGroups best8. ;
+2834            do;
+2835              EFIOUT + 1;
+2836              put ChiSq @;
+2837              put DF @;
+2838              put ProbChiSq @;
+2839              put NGroups ;
+2840              ;
+2841            end;
+2842           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2843           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2844           run;
+1 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_hosmer_lemeshow.csv from 
 WORK._J_LACKFITCHISQ.
   
   
-2657       proc export data=work._j_classification outfile="&output_path/printed_classification.csv" dbms=csv replace;
-2657     !                                                                                                             run;
+2845       proc export data=work._j_classification outfile="&output_path/printed_classification.csv" dbms=csv replace;
+2845     !                                                                                                             run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2658        /**********************************************************************
-2659        *   PRODUCT:   SAS
-2660        *   VERSION:   9.4
-2661        *   CREATOR:   External File Interface
-2662        *   DATE:      05NOV26
-2663        *   DESC:      Generated SAS Datastep Code
-2664        *   TEMPLATE SOURCE:  (None Specified.)
-2665        ***********************************************************************/
-2666           data _null_;
-2667           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2668           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2669           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_classification.csv' delimiter=','
-2669     ! DSD DROPOVER lrecl=32767;
-2670           if _n_ = 1 then        /* write column names or labels */
-2671            do;
-2672              put
-2673                 "ProbLevel"
-2674              ','
-2675                 "CorrectEvents"
-2676              ','
-2677                 "CorrectNonevents"
-2678              ','
-2679                 "IncorrectEvents"
-2680              ','
-2681                 "IncorrectNonevents"
-2682              ','
-2683                 "Correct"
-2684              ','
-2685                 "Sensitivity"
-2686              ','
-2687                 "Specificity"
-2688              ','
-2689                 "FalsePositive"
-2690              ','
-2691                 "FalseNegative"
-2692              ','
-2693                 "PPV"
-2694              ','
-2695                 "NPV"
-2696              ;
-2697            end;
-2698          set  WORK._J_CLASSIFICATION   end=EFIEOD;
-2699              format ProbLevel 5.3 ;
-2700              format CorrectEvents 5. ;
-2701              format CorrectNonevents 5. ;
-2702              format IncorrectEvents 5. ;
-2703              format IncorrectNonevents 5. ;
-2704              format Correct 5.1 ;
-2705              format Sensitivity 5.1 ;
-2706              format Specificity 5.1 ;
-2707              format FalsePositive 5.1 ;
-2708              format FalseNegative 5.1 ;
-2709              format PPV 5.1 ;
-2710              format NPV 5.1 ;
-2711            do;
-2712              EFIOUT + 1;
-2713              put ProbLevel @;
-2714              put CorrectEvents @;
-2715              put CorrectNonevents @;
-2716              put IncorrectEvents @;
-2717              put IncorrectNonevents @;
-2718              put Correct @;
-2719              put Sensitivity @;
-2720              put Specificity @;
-2721              put FalsePositive @;
-2722              put FalseNegative @;
-2723              put PPV @;
-2724              put NPV ;
-2725              ;
-2726            end;
-2727           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2728           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2729           run;
-45 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_classification.csv from 
+2846        /**********************************************************************
+2847        *   PRODUCT:   SAS
+2848        *   VERSION:   9.4
+2849        *   CREATOR:   External File Interface
+2850        *   DATE:      14NOV26
+2851        *   DESC:      Generated SAS Datastep Code
+2852        *   TEMPLATE SOURCE:  (None Specified.)
+2853        ***********************************************************************/
+2854           data _null_;
+2855           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2856           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2857           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_classification.csv' delimiter=','
+2857     !  DSD DROPOVER lrecl=32767;
+2858           if _n_ = 1 then        /* write column names or labels */
+2859            do;
+2860              put
+2861                 "ProbLevel"
+2862              ','
+2863                 "CorrectEvents"
+2864              ','
+2865                 "CorrectNonevents"
+2866              ','
+2867                 "IncorrectEvents"
+2868              ','
+2869                 "IncorrectNonevents"
+2870              ','
+2871                 "Correct"
+2872              ','
+2873                 "Sensitivity"
+2874              ','
+2875                 "Specificity"
+2876              ','
+2877                 "FalsePositive"
+2878              ','
+2879                 "FalseNegative"
+2880              ','
+2881                 "PPV"
+2882              ','
+2883                 "NPV"
+2884              ;
+2885            end;
+2886          set  WORK._J_CLASSIFICATION   end=EFIEOD;
+2887              format ProbLevel 5.3 ;
+2888              format CorrectEvents 5. ;
+2889              format CorrectNonevents 5. ;
+2890              format IncorrectEvents 5. ;
+2891              format IncorrectNonevents 5. ;
+2892              format Correct 5.1 ;
+2893              format Sensitivity 5.1 ;
+2894              format Specificity 5.1 ;
+2895              format FalsePositive 5.1 ;
+2896              format FalseNegative 5.1 ;
+2897              format PPV 5.1 ;
+2898              format NPV 5.1 ;
+2899            do;
+2900              EFIOUT + 1;
+2901              put ProbLevel @;
+2902              put CorrectEvents @;
+2903              put CorrectNonevents @;
+2904              put IncorrectEvents @;
+2905              put IncorrectNonevents @;
+2906              put Correct @;
+2907              put Sensitivity @;
+2908              put Specificity @;
+2909              put FalsePositive @;
+2910              put FalseNegative @;
+2911              put PPV @;
+2912              put NPV ;
+2913              ;
+2914            end;
+2915           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2916           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2917           run;
+44 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_classification.csv from 
 WORK._J_CLASSIFICATION.
   
   
-2730       proc export data=work.roc_train outfile="&output_path/printed_roc_train.csv" dbms=csv replace;
-2730     !                                                                                                run;
+2918       proc export data=work.roc_train outfile="&output_path/printed_roc_train.csv" dbms=csv replace;
+2918     !                                                                                                run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2731        /**********************************************************************
-2732        *   PRODUCT:   SAS
-2733        *   VERSION:   9.4
-2734        *   CREATOR:   External File Interface
-2735        *   DATE:      05NOV26
-2736        *   DESC:      Generated SAS Datastep Code
-2737        *   TEMPLATE SOURCE:  (None Specified.)
-2738        ***********************************************************************/
-2739           data _null_;
-2740           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2741           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2742           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_roc_train.csv' delimiter=',' DSD
-2742     ! DROPOVER lrecl=32767;
-2743           if _n_ = 1 then        /* write column names or labels */
-2744            do;
-2745              put
-2746                 "ROCModel"
-2747              ','
-2748                 "Area"
-2749              ','
-2750                 "StdErr"
-2751              ','
-2752                 "LowerArea"
-2753              ','
-2754                 "UpperArea"
-2755              ','
-2756                 "SomersD"
-2757              ','
-2758                 "Gamma"
-2759              ','
-2760                 "TauA"
-2761              ;
-2762            end;
-2763          set  WORK.ROC_TRAIN   end=EFIEOD;
-2764              format ROCModel $12. ;
-2765              format Area d8. ;
-2766              format StdErr d8. ;
-2767              format LowerArea d8. ;
-2768              format UpperArea d8. ;
-2769              format SomersD d8. ;
-2770              format Gamma d8. ;
-2771              format TauA d8. ;
-2772            do;
-2773              EFIOUT + 1;
-2774              put ROCModel $ @;
-2775              put Area @;
-2776              put StdErr @;
-2777              put LowerArea @;
-2778              put UpperArea @;
-2779              put SomersD @;
-2780              put Gamma @;
-2781              put TauA ;
-2782              ;
-2783            end;
-2784           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2785           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2786           run;
-1 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_roc_train.csv from WORK.ROC_TRAIN.
+2919        /**********************************************************************
+2920        *   PRODUCT:   SAS
+2921        *   VERSION:   9.4
+2922        *   CREATOR:   External File Interface
+2923        *   DATE:      14NOV26
+2924        *   DESC:      Generated SAS Datastep Code
+2925        *   TEMPLATE SOURCE:  (None Specified.)
+2926        ***********************************************************************/
+2927           data _null_;
+2928           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2929           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2930           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_roc_train.csv' delimiter=',' DSD
+2930     ! DROPOVER lrecl=32767;
+2931           if _n_ = 1 then        /* write column names or labels */
+2932            do;
+2933              put
+2934                 "ROCModel"
+2935              ','
+2936                 "Area"
+2937              ','
+2938                 "StdErr"
+2939              ','
+2940                 "LowerArea"
+2941              ','
+2942                 "UpperArea"
+2943              ','
+2944                 "SomersD"
+2945              ','
+2946                 "Gamma"
+2947              ','
+2948                 "TauA"
+2949              ;
+2950            end;
+2951          set  WORK.ROC_TRAIN   end=EFIEOD;
+2952              format ROCModel $12. ;
+2953              format Area d8. ;
+2954              format StdErr d8. ;
+2955              format LowerArea d8. ;
+2956              format UpperArea d8. ;
+2957              format SomersD d8. ;
+2958              format Gamma d8. ;
+2959              format TauA d8. ;
+2960            do;
+2961              EFIOUT + 1;
+2962              put ROCModel $ @;
+2963              put Area @;
+2964              put StdErr @;
+2965              put LowerArea @;
+2966              put UpperArea @;
+2967              put SomersD @;
+2968              put Gamma @;
+2969              put TauA ;
+2970              ;
+2971            end;
+2972           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2973           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2974           run;
+1 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_roc_train.csv from 
+WORK.ROC_TRAIN.
   
   
-2787       proc export data=work.roc_valid outfile="&output_path/printed_roc_validation.csv" dbms=csv replace;
-2787     !                                                                                                     run;
+2975       proc export data=work.roc_valid outfile="&output_path/printed_roc_validation.csv" dbms=csv replace;
+2975     !                                                                                                     run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2788        /**********************************************************************
-2789        *   PRODUCT:   SAS
-2790        *   VERSION:   9.4
-2791        *   CREATOR:   External File Interface
-2792        *   DATE:      05NOV26
-2793        *   DESC:      Generated SAS Datastep Code
-2794        *   TEMPLATE SOURCE:  (None Specified.)
-2795        ***********************************************************************/
-2796           data _null_;
-2797           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2798           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2799           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_roc_validation.csv' delimiter=','
-2799     ! DSD DROPOVER lrecl=32767;
-2800           if _n_ = 1 then        /* write column names or labels */
-2801            do;
-2802              put
-2803                 "ROCModel"
-2804              ','
-2805                 "Area"
-2806              ','
-2807                 "StdErr"
-2808              ','
-2809                 "LowerArea"
-2810              ','
-2811                 "UpperArea"
-2812              ','
-2813                 "SomersD"
-2814              ','
-2815                 "Gamma"
-2816              ','
-2817                 "TauA"
-2818              ;
-2819            end;
-2820          set  WORK.ROC_VALID   end=EFIEOD;
-2821              format ROCModel $14. ;
-2822              format Area d8. ;
-2823              format StdErr d8. ;
-2824              format LowerArea d8. ;
-2825              format UpperArea d8. ;
-2826              format SomersD d8. ;
-2827              format Gamma d8. ;
-2828              format TauA d8. ;
-2829            do;
-2830              EFIOUT + 1;
-2831              put ROCModel $ @;
-2832              put Area @;
-2833              put StdErr @;
-2834              put LowerArea @;
-2835              put UpperArea @;
-2836              put SomersD @;
-2837              put Gamma @;
-2838              put TauA ;
-2839              ;
-2840            end;
-2841           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2842           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2843           run;
-1 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_roc_validation.csv from 
+2976        /**********************************************************************
+2977        *   PRODUCT:   SAS
+2978        *   VERSION:   9.4
+2979        *   CREATOR:   External File Interface
+2980        *   DATE:      14NOV26
+2981        *   DESC:      Generated SAS Datastep Code
+2982        *   TEMPLATE SOURCE:  (None Specified.)
+2983        ***********************************************************************/
+2984           data _null_;
+2985           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2986           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2987           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_roc_validation.csv' delimiter=','
+2987     !  DSD DROPOVER lrecl=32767;
+2988           if _n_ = 1 then        /* write column names or labels */
+2989            do;
+2990              put
+2991                 "ROCModel"
+2992              ','
+2993                 "Area"
+2994              ','
+2995                 "StdErr"
+2996              ','
+2997                 "LowerArea"
+2998              ','
+2999                 "UpperArea"
+3000              ','
+3001                 "SomersD"
+3002              ','
+3003                 "Gamma"
+3004              ','
+3005                 "TauA"
+3006              ;
+3007            end;
+3008          set  WORK.ROC_VALID   end=EFIEOD;
+3009              format ROCModel $14. ;
+3010              format Area d8. ;
+3011              format StdErr d8. ;
+3012              format LowerArea d8. ;
+3013              format UpperArea d8. ;
+3014              format SomersD d8. ;
+3015              format Gamma d8. ;
+3016              format TauA d8. ;
+3017            do;
+3018              EFIOUT + 1;
+3019              put ROCModel $ @;
+3020              put Area @;
+3021              put StdErr @;
+3022              put LowerArea @;
+3023              put UpperArea @;
+3024              put SomersD @;
+3025              put Gamma @;
+3026              put TauA ;
+3027              ;
+3028            end;
+3029           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3030           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+3031           run;
+1 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_roc_validation.csv from 
 WORK.ROC_VALID.
   
   
-2844       proc export data=work.confusion_matrix_train outfile="&output_path/printed_confusion_train.csv" dbms=csv replace;
-2844     !                                                                                                                   run;
+3032       proc export data=work.confusion_matrix_train outfile="&output_path/printed_confusion_train.csv" dbms=csv replace;
+3032     !                                                                                                                   run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2845        /**********************************************************************
-2846        *   PRODUCT:   SAS
-2847        *   VERSION:   9.4
-2848        *   CREATOR:   External File Interface
-2849        *   DATE:      05NOV26
-2850        *   DESC:      Generated SAS Datastep Code
-2851        *   TEMPLATE SOURCE:  (None Specified.)
-2852        ***********************************************************************/
-2853           data _null_;
-2854           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2855           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2856           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_confusion_train.csv' delimiter=','
-2856     ! DSD DROPOVER lrecl=32767;
-2857           if _n_ = 1 then        /* write column names or labels */
-2858            do;
-2859              put
-2860                 "default_flag"
-2861              ','
-2862                 "pred_logistic"
-2863              ','
-2864                 "COUNT"
-2865              ','
-2866                 "PERCENT"
-2867              ;
-2868            end;
-2869          set  WORK.CONFUSION_MATRIX_TRAIN   end=EFIEOD;
-2870              format default_flag best12. ;
-2871              format pred_logistic best12. ;
-2872              format COUNT best12. ;
-2873              format PERCENT best12. ;
-2874            do;
-2875              EFIOUT + 1;
-2876              put default_flag @;
-2877              put pred_logistic @;
-2878              put COUNT @;
-2879              put PERCENT ;
-2880              ;
-2881            end;
-2882           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2883           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2884           run;
-4 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_confusion_train.csv from 
+3033        /**********************************************************************
+3034        *   PRODUCT:   SAS
+3035        *   VERSION:   9.4
+3036        *   CREATOR:   External File Interface
+3037        *   DATE:      14NOV26
+3038        *   DESC:      Generated SAS Datastep Code
+3039        *   TEMPLATE SOURCE:  (None Specified.)
+3040        ***********************************************************************/
+3041           data _null_;
+3042           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3043           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+3044           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_confusion_train.csv'
+3044     ! delimiter=',' DSD DROPOVER lrecl=32767;
+3045           if _n_ = 1 then        /* write column names or labels */
+3046            do;
+3047              put
+3048                 "default_flag"
+3049              ','
+3050                 "pred_logistic"
+3051              ','
+3052                 "COUNT"
+3053              ','
+3054                 "PERCENT"
+3055              ;
+3056            end;
+3057          set  WORK.CONFUSION_MATRIX_TRAIN   end=EFIEOD;
+3058              format default_flag best12. ;
+3059              format pred_logistic best12. ;
+3060              format COUNT best12. ;
+3061              format PERCENT best12. ;
+3062            do;
+3063              EFIOUT + 1;
+3064              put default_flag @;
+3065              put pred_logistic @;
+3066              put COUNT @;
+3067              put PERCENT ;
+3068              ;
+3069            end;
+3070           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3071           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+3072           run;
+4 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_confusion_train.csv from 
 WORK.CONFUSION_MATRIX_TRAIN.
   
   
-2885       proc export data=work.confusion_matrix outfile="&output_path/printed_confusion_validation.csv" dbms=csv replace;
-2885     !                                                                                                                  run;
+3073       proc export data=work.confusion_matrix outfile="&output_path/printed_confusion_validation.csv" dbms=csv replace;
+3073     !                                                                                                                  run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-2886        /**********************************************************************
-2887        *   PRODUCT:   SAS
-2888        *   VERSION:   9.4
-2889        *   CREATOR:   External File Interface
-2890        *   DATE:      05NOV26
-2891        *   DESC:      Generated SAS Datastep Code
-2892        *   TEMPLATE SOURCE:  (None Specified.)
-2893        ***********************************************************************/
-2894           data _null_;
-2895           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-2896           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-2897           file '/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_confusion_validation.csv'
-2897     ! delimiter=',' DSD DROPOVER lrecl=32767;
-2898           if _n_ = 1 then        /* write column names or labels */
-2899            do;
-2900              put
-2901                 "default_flag"
-2902              ','
-2903                 "pred_logistic"
-2904              ','
-2905                 "COUNT"
-2906              ','
-2907                 "PERCENT"
-2908              ;
-2909            end;
-2910          set  WORK.CONFUSION_MATRIX   end=EFIEOD;
-2911              format default_flag best12. ;
-2912              format pred_logistic best12. ;
-2913              format COUNT best12. ;
-2914              format PERCENT best12. ;
-2915            do;
-2916              EFIOUT + 1;
-2917              put default_flag @;
-2918              put pred_logistic @;
-2919              put COUNT @;
-2920              put PERCENT ;
-2921              ;
-2922            end;
-2923           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-2924           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-2925           run;
-4 records created in /home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418/output/printed_confusion_validation.csv from 
+3074        /**********************************************************************
+3075        *   PRODUCT:   SAS
+3076        *   VERSION:   9.4
+3077        *   CREATOR:   External File Interface
+3078        *   DATE:      14NOV26
+3079        *   DESC:      Generated SAS Datastep Code
+3080        *   TEMPLATE SOURCE:  (None Specified.)
+3081        ***********************************************************************/
+3082           data _null_;
+3083           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+3084           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+3085           file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_confusion_validation.csv'
+3085     ! delimiter=',' DSD DROPOVER lrecl=32767;
+3086           if _n_ = 1 then        /* write column names or labels */
+3087            do;
+3088              put
+3089                 "default_flag"
+3090              ','
+3091                 "pred_logistic"
+3092              ','
+3093                 "COUNT"
+3094              ','
+3095                 "PERCENT"
+3096              ;
+3097            end;
+3098          set  WORK.CONFUSION_MATRIX   end=EFIEOD;
+3099              format default_flag best12. ;
+3100              format pred_logistic best12. ;
+3101              format COUNT best12. ;
+3102              format PERCENT best12. ;
+3103            do;
+3104              EFIOUT + 1;
+3105              put default_flag @;
+3106              put pred_logistic @;
+3107              put COUNT @;
+3108              put PERCENT ;
+3109              ;
+3110            end;
+3111           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+3112           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+3113           run;
+4 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/printed_confusion_validation.csv from 
 WORK.CONFUSION_MATRIX.
   
   
-2926       
-2927       
-2928       
-2929       
-38                                                         The SAS System                        Thursday,  5 November 2026 10:14:00
+3114       
+3115       
+3116       
+3117       
+38                                                         The SAS System                        Saturday, 14 November 2026 19:21:00
 
-2930       
+3118       

@@ -1,5 +1,5 @@
 {
-  "run_id": "ref_edge_predict",
+  "run_id": "final_edge_predict",
   "mutation": null,
   "scripts": [
     "feature_engineering.sas",
@@ -22,6 +22,6 @@
     "metrics_calculation.sas": [],
     "predict.sas": []
   },
-  "remote_run_root": "/home/u64643823/sasmig/runs/ref_edge_predict-20261105T101418",
-  "wall_clock_s": 324
+  "remote_run_root": "/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144",
+  "wall_clock_s": 342
 }

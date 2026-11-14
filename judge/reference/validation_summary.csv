@@ -1,2 +1,2 @@
 ROCModel,AUC,Gini,KS_Statistic,KS_Cutoff,PSI,PSI_interpretation,model,status
-Logistic Model,0.8564,0.7128,0.5569,0.0664,0.0000,No significant change,Logistic Regression,Production Ready
+Logistic Model,0.8559,0.7118,0.5552,0.0587,0.0004404097,No significant change,Logistic Regression,Production Ready

@@ -1,10 +1,10 @@
 {
-  "run_id": "ref_edge_metrics_b",
+  "run_id": "final_edge_metrics_b",
   "mutation": null,
   "scripts": [
     "metrics_calculation.sas"
   ],
-  "data_dir": "/Users/cristophersalvi/GitHub/sas-migration/data",
+  "data_dir": "/Users/cristophersalvi/GitHub/credit-risk-migration/legacy/data",
   "stage_inputs": "scenarios/edge_metrics_b",
   "sas_version": "9.04.01M9P06052025",
   "errors": {
@@ -13,6 +13,6 @@
   "new_warnings": {
     "metrics_calculation.sas": []
   },
-  "remote_run_root": "/home/u64643823/sasmig/runs/ref_edge_metrics_b-20261105T102017",
-  "wall_clock_s": 28
+  "remote_run_root": "/home/u64643823/sasmig/runs/final_edge_metrics_b-20261114T192207",
+  "wall_clock_s": 18
 }

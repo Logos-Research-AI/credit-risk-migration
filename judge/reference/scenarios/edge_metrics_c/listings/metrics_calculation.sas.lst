@@ -1,5 +1,5 @@
 
-                                                ROC Curve Analysis - Validation Set          Thursday,  5 November 2026 10:56:00   1
+                                                ROC Curve Analysis - Validation Set          Saturday, 14 November 2026 19:22:00   1
 
                                                        The LOGISTIC Procedure
 
@@ -49,19 +49,19 @@
 
                 Logistic Model      0.6973      0.0149      0.6680      0.7266       0.3946      0.4120      0.0820
 
-                                              Model Performance Metrics - AUC and Gini       Thursday,  5 November 2026 10:56:00   2
+                                              Model Performance Metrics - AUC and Gini       Saturday, 14 November 2026 19:22:00   2
 
                                                   ROCModel            AUC        Gini
 
                                                Logistic Model      0.6973      0.3946
 
-                                                    Kolmogorov-Smirnov Statistic             Thursday,  5 November 2026 10:56:00   3
+                                                    Kolmogorov-Smirnov Statistic             Saturday, 14 November 2026 19:22:00   3
 
                                                      KS_Statistic    KS_Cutoff
 
-                                                         0.2959        0.0800 
+                                                         0.2876        0.0800 
 
-                                            Performance Metrics at Different Thresholds      Thursday,  5 November 2026 10:56:00   4
+                                            Performance Metrics at Different Thresholds      Saturday, 14 November 2026 19:22:00   4
 
                           Obs    threshold    accuracy    precision      recall    f1_score    specificity
 
@@ -71,7 +71,7 @@
                            4        0.6         0.8823       .           0.0000       .           1.0000  
                            5        0.7         0.8823       .           0.0000       .           1.0000  
 
-                                           Decile Analysis - Model Lift and Capture Rate     Thursday,  5 November 2026 10:56:00   5
+                                           Decile Analysis - Model Lift and Capture Rate     Saturday, 14 November 2026 19:22:00   5
 
                              total_                default_                                        capture_
             Obs    decile     count    defaults      rate        avg_pd      min_pd      max_pd      rate          lift
@@ -87,26 +87,26 @@
               9       9        291        24         8.25%       0.0300      0.0300      0.0300      6.80%         0.70
              10      10        375         9         2.40%       0.0163      0.0100      0.0200      2.55%         0.20
 
-                                                     Population Stability Index              Thursday,  5 November 2026 10:56:00   6
+                                                     Population Stability Index              Saturday, 14 November 2026 19:22:00   6
 
-                                                        PSI    PSI_interpretation
+                                                          PSI    PSI_interpretation
 
-                                                     0.1790       Some change    
+                                                 0.3078608702    Significant change
 
-                                                      Model Validation Summary               Thursday,  5 November 2026 10:56:00   7
+                                                      Model Validation Summary               Saturday, 14 November 2026 19:22:00   7
 
-     ROCModel          AUC      Gini  KS_Statistic  KS_Cutoff       PSI  PSI_interpretation         model             status
+   ROCModel          AUC      Gini  KS_Statistic  KS_Cutoff           PSI  PSI_interpretation         model             status
 
-  Logistic Model    0.6973    0.3946      0.2959      0.0800     0.1790     Some change      Logistic Regression  Requires Review
+Logistic Model    0.6973    0.3946      0.2876      0.0800   0.3078608702  Significant change  Logistic Regression  Requires Review
 
-                                         Model Performance Metrics - Saved to Output Folder  Thursday,  5 November 2026 10:56:00   8
+                                         Model Performance Metrics - Saved to Output Folder  Saturday, 14 November 2026 19:22:00   8
 
-                                                                                           accuracy_    precision_       recall_
-         AUC        Gini    KS_Statistic    KS_Cutoff         PSI    PSI_interpretation      at_50         at_50           at_50
+                                                                                                    accuracy_    precision_
+              AUC        Gini    KS_Statistic    KS_Cutoff             PSI    PSI_interpretation      at_50         at_50
 
-      0.6973      0.3946        0.2959        0.0800       0.1790       Some change         0.88267         0.6       .008498584
+           0.6973      0.3946        0.2876        0.0800     0.3078608702    Significant change     0.88267         0.6   
 
-    f1_score_    specificity_                           validation_
-      at_50          at_50           model_name            date                 dataset
+            recall_    f1_score_    specificity_                           validation_
+              at_50      at_50          at_50           model_name            date                 dataset
 
-     0.016760       0.99924      Logistic Regression     05NOV2026     Kaggle Give Me Some Credit
+         .008498584     0.016760       0.99924      Logistic Regression     14NOV2026     Kaggle Give Me Some Credit

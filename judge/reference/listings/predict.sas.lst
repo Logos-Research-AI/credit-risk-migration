@@ -1,13 +1,13 @@
 
-                                                      Test Data - Column Check               Thursday,  5 November 2026 10:06:00  27
+                                                      Test Data - Column Check               Saturday, 14 November 2026 19:15:00  27
 
                                                        The CONTENTS Procedure
 
              Data Set Name        WORK.TEST_RAW                                            Observations          101503
              Member Type          DATA                                                     Variables             12    
              Engine               V9                                                       Indexes               0     
-             Created              05/11/2026 10:10:54                                      Observation Length    88    
-             Last Modified        05/11/2026 10:10:54                                      Deleted Observations  0     
+             Created              14/11/2026 19:20:58                                      Observation Length    88    
+             Last Modified        14/11/2026 19:20:58                                      Deleted Observations  0     
              Protection                                                                    Compressed            NO    
              Data Set Type                                                                 Sorted                NO    
              Label                                                                                                     
@@ -23,11 +23,11 @@ First Data Page             1
 Max Obs per Page            1486                                                                                                    
 Obs in First Data Page      1447                                                                                                    
 Number of Data Set Repairs  0                                                                                                       
-Filename                    /saswork/SAS_work032F00017123_odaws01-euw1.oda.sas.com/SAS_                                             
-                            workCFBF00017123_odaws01-euw1.oda.sas.com/test_raw.sas7bdat                                             
+Filename                    /saswork/SAS_work55720001F7CC_odaws02-euw1.oda.sas.com/SAS_                                             
+                            workA3F60001F7CC_odaws02-euw1.oda.sas.com/test_raw.sas7bdat                                             
 Release Created             9.0401M9                                                                                                
 Host Created                Linux                                                                                                   
-Inode Number                536906645                                                                                               
+Inode Number                1074801199                                                                                              
 Access Permission           rw-r--r--                                                                                               
 Owner Name                  u64643823                                                                                               
 File Size                   9MB                                                                                                     
@@ -51,7 +51,7 @@ File Size (bytes)           9175040
                              1    VAR1                                Num       8    BEST12.    BEST32. 
                              4    age                                 Num       8    BEST12.    BEST32. 
 
-                                                      Test Data - Column Check               Thursday,  5 November 2026 10:06:00  28
+                                                      Test Data - Column Check               Saturday, 14 November 2026 19:15:00  28
 
                                                          The PLM Procedure
 
@@ -60,68 +60,70 @@ File Size (bytes)           9175040
                                  Item Store               WORK.LOGIT_MODEL                         
                                  Data Set Created From    WORK.MODEL_FEATURES_TRAIN                
                                  Created By               PROC LOGISTIC                            
-                                 Date Created             05NOV26:10:09:45                         
+                                 Date Created             14NOV26:19:19:56                         
                                  Response Variable        default_flag                             
                                  Link Function            Logit                                    
                                  Distribution             Binary                                   
                                  Class Variable           default_flag                             
-                                 Model Effects            Intercept credit_utilization_c           
-                                                          debt_ratio_capped has_delinquency        
-                                                          has_serious_delinque ...                 
+                                 Model Effects            Intercept debt_ratio_capped              
+                                                          has_delinquency age num_credit_lines     
+                                                          num_real_estate_loan ...                 
 
-                                                 Test Set - Risk Grade Distribution          Thursday,  5 November 2026 10:06:00  29
+                                                 Test Set - Risk Grade Distribution          Saturday, 14 November 2026 19:15:00  29
 
                                                          The FREQ Procedure
 
                                      risk_                             Cumulative    Cumulative
                                      grade    Frequency     Percent     Frequency      Percent
                                      ----------------------------------------------------------
-                                     A           97783       96.34         97783        96.34  
-                                     B            2511        2.47        100294        98.81  
-                                     C            1186        1.17        101480        99.98  
-                                     D              23        0.02        101503       100.00  
+                                     A           86210       84.93         86210        84.93  
+                                     B            4127        4.07         90337        89.00  
+                                     C            4367        4.30         94704        93.30  
+                                     D            2194        2.16         96898        95.46  
+                                     E            2245        2.21         99143        97.67  
+                                     F            2360        2.33        101503       100.00  
 
 
                                                                            Cumulative    Cumulative
                                 recommendation    Frequency     Percent     Frequency      Percent
                                 -------------------------------------------------------------------
-                                Approve             100294       98.81        100294        98.81  
-                                Decline                 23        0.02        100317        98.83  
-                                Review                1186        1.17        101503       100.00  
+                                Approve              90337       89.00         90337        89.00  
+                                Decline               6799        6.70         97136        95.70  
+                                Review                4367        4.30        101503       100.00  
 
-                                                   Test Set - Prediction Summary             Thursday,  5 November 2026 10:06:00  30
+                                                   Test Set - Prediction Summary             Saturday, 14 November 2026 19:15:00  30
 
                                                         The MEANS Procedure
 
                     Variable                  N            Mean         Std Dev         Minimum         Maximum
                     -------------------------------------------------------------------------------------------
-                    pd_logistic          101503       0.0670605       0.1162899    6.791479E-55       0.8488395
-                    credit_risk_score    101503     833.2344463      29.0758954     638.0000000     850.0000000
+                    pd_logistic          101503       0.0670085       0.1159209       0.0051838       0.8498239
+                    credit_risk_score    101503     833.2478651      28.9802252     637.5440161     848.7040595
                     -------------------------------------------------------------------------------------------
 
-                                                    Sample Test Set Predictions              Thursday,  5 November 2026 10:06:00  31
+                                                    Sample Test Set Predictions              Saturday, 14 November 2026 19:15:00  31
 
                                                                       credit_
                                                             pred_      risk_     risk_
                                  row_id    pd_logistic    logistic     score     grade    recommendation
 
-                                  83949      0.31002          0         772        A         Approve    
-                                  83825      0.11467          0         821        A         Approve    
-                                  93207      0.12705          0         818        A         Approve    
-                                  80346      0.61852          1         695        C         Review     
-                                  66404      0.60882          1         698        C         Review     
-                                  65941      0.01930          0         845        A         Approve    
-                                  80303      0.05762          0         836        A         Approve    
-                                  75077      0.42904          0         743        B         Approve    
-                                  85194      0.08822          0         828        A         Approve    
-                                  99042      0.20584          0         799        A         Approve    
-                                 101037      0.02193          0         845        A         Approve    
-                                  91441      0.25032          0         787        A         Approve    
-                                  63721      0.05799          0         836        A         Approve    
-                                  80238      0.05337          0         837        A         Approve    
-                                  70173      0.15833          0         810        A         Approve    
-                                 101234      0.24523          0         789        A         Approve    
-                                  79952      0.38024          0         755        A         Approve    
-                                  95704      0.05924          0         835        A         Approve    
-                                  74455      0.02277          0         844        A         Approve    
-                                  66809      0.05021          0         837        A         Approve    
+                                  83949      0.28313          0       779.218      D         Decline    
+                                  83825      0.13418          0       816.455      B         Approve    
+                                  93207      0.13632          0       815.921      B         Approve    
+                                  80346      0.63522          1       691.194      F         Decline    
+                                  66404      0.64645          1       688.388      F         Decline    
+                                  65941      0.01818          0       845.455      A         Approve    
+                                  80303      0.05303          0       836.742      A         Approve    
+                                  75077      0.44011          0       739.972      E         Decline    
+                                  85194      0.09025          0       827.437      A         Approve    
+                                  99042      0.21643          0       795.894      C         Review     
+                                 101037      0.02078          0       844.805      A         Approve    
+                                  91441      0.23667          0       790.833      C         Review     
+                                  63721      0.05625          0       835.938      A         Approve    
+                                  80238      0.04992          0       837.520      A         Approve    
+                                  70173      0.12806          0       817.985      B         Approve    
+                                 101234      0.25615          0       785.963      D         Decline    
+                                  79952      0.37887          0       755.282      E         Decline    
+                                  95704      0.06324          0       834.191      A         Approve    
+                                  74455      0.02009          0       844.979      A         Approve    
+                                  66809      0.05602          0       835.994      A         Approve    
