@@ -1,0 +1,615 @@
+5                                                          The SAS System                        Saturday, 14 November 2026 20:28:00
+
+24         
+25         /* x21: rules questioned by the reviewers of round 2.
+26            (A) what INPUT(strip(text), ?? best32.) returns for texts that are not [sign]digits[.digits];
+27            (B) the input check on a file whose headers have another capitalisation (AGE, monthlyincome);
+28            (C) the test-file check on a file holding the header line only;
+29            (D) %num on a column the file does not have;
+30            (E) a character VAR1 through the check and through `a.VAR1 as row_id`;
+31            (F) `if _n_ = 1 then set psi_cuts;` when psi_cuts has no row (training score table empty). */
+32         %let x21_dir = %sysfunc(pathname(work));
+33         
+34         /* ---------- (A) ---------- */
+35         data work.x21_a;
+36             length txt $40;
+37             infile datalines truncover dsd dlm='|';
+38             input txt $char40.;
+39             v = ifn(lengthn(strip(txt)) <= 32, input(strip(txt), ?? best32.), .);
+40             put 'X21A [' txt $char20. '] ' v= best32. ' hex=' v hex16.;
+41             datalines;
+X21A [5000                ] v=5000  hex=40B3880000000000
+X21A [5000-1              ] v=.  hex=               .
+X21A [5000+1              ] v=.  hex=               .
+X21A [1+2                 ] v=.  hex=               .
+X21A [1-2                 ] v=.  hex=               .
+X21A [1e3                 ] v=1000  hex=408F400000000000
+X21A [1E3                 ] v=1000  hex=408F400000000000
+X21A [1d2                 ] v=100  hex=4059000000000000
+X21A [1D2                 ] v=100  hex=4059000000000000
+X21A [1e-2                ] v=0.01  hex=3F847AE147AE147B
+X21A [1E+2                ] v=100  hex=4059000000000000
+X21A [1e                  ] v=.  hex=               .
+X21A [1e+                 ] v=.  hex=               .
+X21A [e5                  ] v=.  hex=               .
+X21A [E                   ] v=.  hex=               .
+X21A [d                   ] v=.  hex=               .
+X21A [D                   ] v=.  hex=               .
+X21A [bad                 ] v=.  hex=               .
+X21A [undefined           ] v=.  hex=               .
+X21A [abcde               ] v=.  hex=               .
+X21A [NA                  ] v=.  hex=               .
+X21A [na                  ] v=.  hex=               .
+X21A [.                   ] v=.  hex=               .
+X21A [-                   ] v=.  hex=               .
+X21A [+                   ] v=.  hex=               .
+X21A [--5                 ] v=.  hex=               .
+X21A [+-5                 ] v=.  hex=               .
+X21A [-5                  ] v=-5  hex=C014000000000000
+X21A [+5                  ] v=5  hex=4014000000000000
+X21A [- 5                 ] v=.  hex=               .
+X21A [+ 5                 ] v=.  hex=               .
+X21A [5-                  ] v=.  hex=               .
+X21A [5+                  ] v=.  hex=               .
+X21A [5.                  ] v=5  hex=4014000000000000
+X21A [.5                  ] v=0.5  hex=3FE0000000000000
+X21A [-.5                 ] v=-0.5  hex=BFE0000000000000
+X21A [+.5                 ] v=0.5  hex=3FE0000000000000
+X21A [1.2.3               ] v=.  hex=               .
+X21A [1 2                 ] v=.  hex=               .
+X21A [1 e5                ] v=.  hex=               .
+X21A [1,000               ] v=.  hex=               .
+X21A [$5                  ] v=.  hex=               .
+X21A [5%                  ] v=.  hex=               .
+X21A [0x10                ] v=.  hex=               .
+X21A [1F                  ] v=.  hex=               .
+X21A [1.5e3               ] v=1500  hex=4097700000000000
+X21A [1.5-3               ] v=.  hex=               .
+X21A [.5e1                ] v=5  hex=4014000000000000
+X21A [5.e1                ] v=50  hex=4049000000000000
+X21A [-1e2                ] v=-100  hex=C059000000000000
+X21A [1e400               ] v=.  hex=               .
+X21A [1e-400              ] v=.  hex=               .
+X21A [ 12                 ] v=12  hex=4028000000000000
+X21A [0005                ] v=5  hex=4014000000000000
+X21A [00.50               ] v=0.5  hex=3FE0000000000000
+X21A [1..2                ] v=.  hex=               .
+X21A [1.e                 ] v=.  hex=               .
+X21A [A                   ] v=.  hex=               .
+X21A [Z                   ] v=.  hex=               .
+X21A [._                  ] v=_  hex=               _
+X21A [.A                  ] v=A  hex=               A
+103        ;
+104        run;
+105        
+106        /* ---------- the check of feature_engineering.sas 52-123 and predict.sas 60-130, on a named table,
+107           reporting instead of stopping ---------- */
+108        %macro num(v);
+109            %local dsid pos vtype;
+110            %let vtype = ;
+111            %let dsid = %sysfunc(open(work.&x21_tab));
+112            %let pos = %sysfunc(varnum(&dsid, &v));
+113            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+114            %let dsid = %sysfunc(close(&dsid));
+115            %if &vtype = N %then "&v"n;
+116            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+117        %mend;
+118        
+119        %macro check(tab, kind, label);
+120            %global x21_tab;
+121            %let x21_tab = &tab;
+122            %let columns_ok = 0;
+123            %let bad_rows = 1;
+124            %let duplicate_ids = 1;
+125            %let known_incomes = 0;
+126            proc sql noprint;
+127                select (count(*) = 12 and sum(upcase(name) in
+128                           ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+129                            'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+130                            'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+131                            'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+132                            'NUMBERREALESTATELOANSORLINES')) = 12)
+133                into :columns_ok trimmed
+134                from dictionary.columns
+135                where libname = 'WORK' and memname = "%upcase(&tab)";
+136            quit;
+137            data work.input_check;
+138                set work.&tab;
+139                %if &kind = train %then %do;
+140                bad_row = (missing(VAR1)
+141                    or %num(SeriousDlqin2yrs) not in (0, 1)
+142                %end;
+143                %else %do;
+144                bad_row = (missing(VAR1)
+145                    or (upcase(cats(SeriousDlqin2yrs)) not in ('', '.', 'NA') and
+146                        %num(SeriousDlqin2yrs) not in (0, 1))
+147                %end;
+148                    or missing(%num(age))
+149                    or missing(%num(RevolvingUtilizationOfUnsecuredL))
+150                    or missing(%num(DebtRatio))
+151                    or missing(%num(NumberRealEstateLoansOrLines))
+152                    or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+153                            %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+154                    or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+155                            %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+156                    or not (%num(NumberOfTimes90DaysLate) >= 0 and
+157                            %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+158                    or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+159                            %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+160                    or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+161                    or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+162                    or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+163                        not (%num(NumberOfDependents) >= 0 and
+164                             %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+165                known_income = not missing(%num(MonthlyIncome));
+166                x21_age = %num(age);
+167                x21_income = %num(MonthlyIncome);
+168                put "X21 ROW &label " VAR1= bad_row= known_income= x21_age= x21_income=;
+169                keep VAR1 bad_row known_income;
+170            run;
+171            proc sql noprint;
+172                select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0),
+173                       count(*)
+174                into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed, :x21_n trimmed
+175                from work.input_check;
+176            quit;
+177            %put X21 CHECK &label kind=&kind rows=&x21_n columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids
+177      ! known_incomes=&known_incomes;
+178        %mend;
+179        
+180        %macro imp(file, tab);
+181            proc import datafile="&x21_dir/&file" out=work.&tab dbms=csv replace;
+182                getnames=yes;
+183                guessingrows=max;
+184            run;
+185            proc contents data=work.&tab varnum; title "x21 &tab"; run;
+186        %mend;
+187        
+188        /* ---------- (B) other capitalisation ---------- */
+189        data _null_;
+190            file "&x21_dir/x21_b.csv" lrecl=1000;
+191            put
+191      ! ',seriousdlqin2yrs,RevolvingUtilizationOfUnsecuredLines,AGE,NumberOfTime30-59DaysPastDueNotWorse,DEBTRATIO,monthlyincome,
+191      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+191      ! ,numberofdependents';
+192            put '1,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+193            put '2,0,0.957,40,0,0.12,NA,4,0,0,0,1';
+194            put '3,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+195        run;
+196        %imp(x21_b.csv, x21_b)
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+197         /**********************************************************************
+198         *   PRODUCT:   SAS
+199         *   VERSION:   9.4
+200         *   CREATOR:   External File Interface
+201         *   DATE:      14NOV26
+202         *   DESC:      Generated SAS Datastep Code
+203         *   TEMPLATE SOURCE:  (None Specified.)
+204         ***********************************************************************/
+205            data WORK.X21_B    ;
+206            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+207            infile
+207      ! '/saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_b.csv'
+207      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+208               informat VAR1 best32. ;
+209               informat seriousdlqin2yrs best32. ;
+210               informat RevolvingUtilizationOfUnsecuredL best32. ;
+211               informat AGE best32. ;
+212               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+213               informat DEBTRATIO best32. ;
+214               informat monthlyincome $4. ;
+215               informat NumberOfOpenCreditLinesAndLoans best32. ;
+216               informat NumberOfTimes90DaysLate best32. ;
+217               informat NumberRealEstateLoansOrLines best32. ;
+218               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+219               informat numberofdependents $2. ;
+220               format VAR1 best12. ;
+221               format seriousdlqin2yrs best12. ;
+222               format RevolvingUtilizationOfUnsecuredL best12. ;
+223               format AGE best12. ;
+224               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+225               format DEBTRATIO best12. ;
+226               format monthlyincome $4. ;
+227               format NumberOfOpenCreditLinesAndLoans best12. ;
+228               format NumberOfTimes90DaysLate best12. ;
+229               format NumberRealEstateLoansOrLines best12. ;
+230               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+231               format numberofdependents $2. ;
+232            input
+233                        VAR1
+234                        seriousdlqin2yrs
+235                        RevolvingUtilizationOfUnsecuredL
+236                        AGE
+237                        "NumberOfTime30-59DaysPastDueNotW"N
+238                        DEBTRATIO
+239                        monthlyincome  $
+240                        NumberOfOpenCreditLinesAndLoans
+241                        NumberOfTimes90DaysLate
+242                        NumberRealEstateLoansOrLines
+243                        "NumberOfTime60-89DaysPastDueNotW"N
+244                        numberofdependents  $
+245            ;
+246            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+247            run;
+3 rows created in WORK.X21_B from 
+/saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_b.csv.
+  
+  
+  
+248        %check(x21_b, train, B_case)
+X21 ROW B_case VAR1=1 bad_row=0 known_income=1 x21_age=45 x21_income=9120
+X21 ROW B_case VAR1=2 bad_row=0 known_income=0 x21_age=40 x21_income=.
+X21 ROW B_case VAR1=3 bad_row=0 known_income=1 x21_age=38 x21_income=3042
+X21 CHECK B_case kind=train rows=3 columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=2
+249        
+250        /* ---------- (C) header only, test file ---------- */
+251        data _null_;
+252            file "&x21_dir/x21_c.csv" lrecl=1000;
+253            put
+253      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+253      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+253      ! ,NumberOfDependents';
+254        run;
+255        %imp(x21_c.csv, x21_c)
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Unable to sample external file, no data in first 5 records.
+ERROR: Import unsuccessful.  See SAS Log for details.
+ERROR: File WORK.X21_C.DATA does not exist.
+256        %check(x21_c, test, C_header_only_test)
+ERROR: File WORK.X21_C.DATA does not exist.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: The data set WORK.INPUT_CHECK may be incomplete.  When this step was stopped there were 0 observations and 3 variables.
+WARNING: Data set WORK.INPUT_CHECK was not replaced because this step was stopped.
+X21 CHECK C_header_only_test kind=test rows=3 columns_ok=0 bad_rows=0 duplicate_ids=0 known_incomes=2
+257        %check(x21_c, train, C_header_only_train)
+ERROR: File WORK.X21_C.DATA does not exist.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: Argument 1 to function VARNUM referenced by the %SYSFUNC or %QSYSFUNC macro function is out of range.
+WARNING: The data set WORK.INPUT_CHECK may be incomplete.  When this step was stopped there were 0 observations and 3 variables.
+WARNING: Data set WORK.INPUT_CHECK was not replaced because this step was stopped.
+X21 CHECK C_header_only_train kind=train rows=3 columns_ok=0 bad_rows=0 duplicate_ids=0 known_incomes=2
+WARNING: Apparent symbolic reference SQLOBS not resolved.
+258        %put X21 C syserr=&syserr sqlobs=&sqlobs;
+X21 C syserr=0 sqlobs=&sqlobs
+259        
+260        /* ---------- (D) a column the file does not have ---------- */
+261        data _null_;
+262            file "&x21_dir/x21_d.csv" lrecl=1000;
+263            put
+263      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,Numb
+263      ! erOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,Num
+263      ! berOfDependents';
+264            put '1,1,0.766,2,0.80,9120,13,0,6,0,2';
+265            put '2,0,0.957,0,0.12,NA,4,0,0,0,1';
+266        run;
+267        %imp(x21_d.csv, x21_d)
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+268         /**********************************************************************
+269         *   PRODUCT:   SAS
+270         *   VERSION:   9.4
+271         *   CREATOR:   External File Interface
+272         *   DATE:      14NOV26
+273         *   DESC:      Generated SAS Datastep Code
+274         *   TEMPLATE SOURCE:  (None Specified.)
+275         ***********************************************************************/
+276            data WORK.X21_D    ;
+277            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+278            infile
+278      ! '/saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_d.csv'
+278      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+279               informat VAR1 best32. ;
+280               informat SeriousDlqin2yrs best32. ;
+281               informat RevolvingUtilizationOfUnsecuredL best32. ;
+282               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+283               informat DebtRatio best32. ;
+284               informat MonthlyIncome $4. ;
+285               informat NumberOfOpenCreditLinesAndLoans best32. ;
+286               informat NumberOfTimes90DaysLate best32. ;
+287               informat NumberRealEstateLoansOrLines best32. ;
+288               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+289               informat NumberOfDependents best32. ;
+290               format VAR1 best12. ;
+291               format SeriousDlqin2yrs best12. ;
+292               format RevolvingUtilizationOfUnsecuredL best12. ;
+293               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+294               format DebtRatio best12. ;
+295               format MonthlyIncome $4. ;
+296               format NumberOfOpenCreditLinesAndLoans best12. ;
+297               format NumberOfTimes90DaysLate best12. ;
+298               format NumberRealEstateLoansOrLines best12. ;
+299               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+300               format NumberOfDependents best12. ;
+301            input
+302                        VAR1
+303                        SeriousDlqin2yrs
+304                        RevolvingUtilizationOfUnsecuredL
+305                        "NumberOfTime30-59DaysPastDueNotW"N
+306                        DebtRatio
+307                        MonthlyIncome  $
+308                        NumberOfOpenCreditLinesAndLoans
+309                        NumberOfTimes90DaysLate
+310                        NumberRealEstateLoansOrLines
+311                        "NumberOfTime60-89DaysPastDueNotW"N
+312                        NumberOfDependents
+313            ;
+314            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+315            run;
+2 rows created in WORK.X21_D from 
+/saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_d.csv.
+  
+  
+  
+316        %check(x21_d, test, D_no_age)
+X21 ROW D_no_age VAR1=1 bad_row=1 known_income=1 x21_age=. x21_income=9120
+X21 ROW D_no_age VAR1=2 bad_row=1 known_income=0 x21_age=. x21_income=.
+X21 CHECK D_no_age kind=test rows=2 columns_ok=0 bad_rows=2 duplicate_ids=0 known_incomes=1
+317        
+318        /* ---------- (E) character VAR1 ---------- */
+319        data _null_;
+320            file "&x21_dir/x21_e.csv" lrecl=1000;
+321            put
+321      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+321      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+321      ! ,NumberOfDependents';
+322            put 'A1,NA,0.766,45,2,0.80,9120,13,0,6,0,2';
+323            put 'A2,NA,0.957,40,0,0.12,NA,4,0,0,0,1';
+324            put 'A2,NA,0.957,40,0,0.12,NA,4,0,0,0,1';
+325            put ' ,NA,0.957,40,0,0.12,NA,4,0,0,0,1';
+326        run;
+327        %imp(x21_e.csv, x21_e)
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+328         /**********************************************************************
+329         *   PRODUCT:   SAS
+330         *   VERSION:   9.4
+331         *   CREATOR:   External File Interface
+332         *   DATE:      14NOV26
+333         *   DESC:      Generated SAS Datastep Code
+334         *   TEMPLATE SOURCE:  (None Specified.)
+335         ***********************************************************************/
+336            data WORK.X21_E    ;
+337            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+338            infile
+338      ! '/saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_e.csv'
+338      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+339               informat VAR1 $2. ;
+340               informat SeriousDlqin2yrs $2. ;
+341               informat RevolvingUtilizationOfUnsecuredL best32. ;
+342               informat age best32. ;
+343               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+344               informat DebtRatio best32. ;
+345               informat MonthlyIncome $4. ;
+346               informat NumberOfOpenCreditLinesAndLoans best32. ;
+347               informat NumberOfTimes90DaysLate best32. ;
+348               informat NumberRealEstateLoansOrLines best32. ;
+349               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+350               informat NumberOfDependents best32. ;
+351               format VAR1 $2. ;
+352               format SeriousDlqin2yrs $2. ;
+353               format RevolvingUtilizationOfUnsecuredL best12. ;
+354               format age best12. ;
+355               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+356               format DebtRatio best12. ;
+357               format MonthlyIncome $4. ;
+358               format NumberOfOpenCreditLinesAndLoans best12. ;
+359               format NumberOfTimes90DaysLate best12. ;
+360               format NumberRealEstateLoansOrLines best12. ;
+361               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+362               format NumberOfDependents best12. ;
+363            input
+364                        VAR1  $
+365                        SeriousDlqin2yrs  $
+366                        RevolvingUtilizationOfUnsecuredL
+367                        age
+368                        "NumberOfTime30-59DaysPastDueNotW"N
+369                        DebtRatio
+370                        MonthlyIncome  $
+371                        NumberOfOpenCreditLinesAndLoans
+372                        NumberOfTimes90DaysLate
+373                        NumberRealEstateLoansOrLines
+374                        "NumberOfTime60-89DaysPastDueNotW"N
+375                        NumberOfDependents
+376            ;
+377            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+378            run;
+4 rows created in WORK.X21_E from 
+/saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_e.csv.
+  
+  
+  
+379        %check(x21_e, test, E_char_id)
+X21 ROW E_char_id VAR1=A1 bad_row=0 known_income=1 x21_age=45 x21_income=9120
+X21 ROW E_char_id VAR1=A2 bad_row=0 known_income=0 x21_age=40 x21_income=.
+X21 ROW E_char_id VAR1=A2 bad_row=0 known_income=0 x21_age=40 x21_income=.
+X21 ROW E_char_id VAR1=  bad_row=1 known_income=0 x21_age=40 x21_income=.
+X21 CHECK E_char_id kind=test rows=4 columns_ok=1 bad_rows=1 duplicate_ids=2 known_incomes=1
+380        proc sql;
+381            create table work.x21_e_imputed as
+382            select a.VAR1 as row_id, a.age from work.x21_e a;
+383        quit;
+384        proc contents data=work.x21_e_imputed varnum; title "x21 e imputed"; run;
+385        proc print data=work.x21_e_imputed; run;
+386        
+387        /* ---------- (F) metrics_calculation.sas 278-359 with an empty training score table ---------- */
+388        data work.logit_scored_train;
+389            length default_flag pd_logistic credit_risk_score 8;
+390            stop;
+391        run;
+392        data work.logit_scored_valid;
+393            do credit_risk_score = 600, 700, 800;
+394                default_flag = 0; pd_logistic = 0.1;
+395                output;
+396            end;
+397        run;
+398        proc sort data=work.logit_scored_train(keep=credit_risk_score)
+399                  out=work.train_scores_sorted;
+400            by credit_risk_score;
+401        run;
+402        
+403        data work.psi_cuts;
+404            set work.train_scores_sorted nobs=n_train end=eof;
+405            array cut{9};
+406            retain cut1-cut9;
+407            do k = 1 to 9;
+408                if _n_ = ceil(k * n_train / 10) then cut{k} = credit_risk_score;
+409            end;
+410            if eof then output;
+411            keep cut1-cut9;
+412        run;
+413        
+414        data work.train_bins;
+415            if _n_ = 1 then set work.psi_cuts;
+416            set work.logit_scored_train;
+417            array cut{9};
+418            score_bin = 0;
+419            do k = 1 to 9;
+420                if credit_risk_score > cut{k} then score_bin = score_bin + 1;
+421            end;
+422            drop k cut1-cut9;
+423        run;
+424        
+425        data work.valid_bins;
+426            if _n_ = 1 then set work.psi_cuts;
+427            set work.logit_scored_valid;
+428            array cut{9};
+429            score_bin = 0;
+430            do k = 1 to 9;
+431                if credit_risk_score > cut{k} then score_bin = score_bin + 1;
+432            end;
+433            drop k cut1-cut9;
+434        run;
+435        
+436        data work.psi_bins;
+437            do score_bin = 0 to 9;
+438                output;
+439            end;
+440        run;
+441        
+442        %let psi_floor = unset;
+443        proc sql noprint;
+444            select 0.5 / max(t.n, v.n) into :psi_floor trimmed
+445            from (select count(*) as n from work.train_bins) t,
+446                 (select count(*) as n from work.valid_bins) v;
+447        quit;
+448        %put X21 F psi_floor=[&psi_floor];
+X21 F psi_floor=[.]
+449        
+450        proc sql;
+451            create table work.psi_calculation as
+452            select
+453                s.score_bin,
+454                coalesce(a.train_pct, 0) as train_pct,
+455                coalesce(b.valid_pct, 0) as valid_pct,
+456                (max(calculated train_pct, &psi_floor) - max(calculated valid_pct, &psi_floor))
+457                    * log(max(calculated train_pct, &psi_floor) / max(calculated valid_pct, &psi_floor)) as psi_component
+458            from work.psi_bins s
+459            left join
+460                (select score_bin, count(*) / (select count(*) from work.train_bins) as train_pct
+461                 from work.train_bins group by score_bin) a
+462            on s.score_bin = a.score_bin
+463            left join
+464                (select score_bin, count(*) / (select count(*) from work.valid_bins) as valid_pct
+465                 from work.valid_bins group by score_bin) b
+466            on s.score_bin = b.score_bin
+467            order by s.score_bin;
+468        
+469            create table work.psi_summary as
+470            select sum(psi_component) as PSI format=best12.,
+471                   case
+472                      when calculated PSI < 0.1 then 'No significant change'
+473                      when calculated PSI < 0.25 then 'Some change'
+474                      else 'Significant change'
+475                   end as PSI_interpretation
+476            from work.psi_calculation;
+477        quit;
+478        data _null_;
+479            do ds = 'PSI_CUTS', 'TRAIN_BINS', 'VALID_BINS', 'PSI_CALCULATION', 'PSI_SUMMARY';
+480                dsid = open(cats('work.', ds));
+481                n = attrn(dsid, 'nlobs');
+482                nv = attrn(dsid, 'nvars');
+483                rc = close(dsid);
+484                put 'X21 F ' ds= n= nv=;
+485            end;
+486        run;
+X21 F ds=PSI_CUTS n=0 nv=9
+X21 F ds=TRAIN_BI n=. nv=.
+X21 F ds=VALID_BI n=. nv=.
+X21 F ds=PSI_CALC n=. nv=.
+X21 F ds=PSI_SUMM n=. nv=.
+ds=PSI_SUMM dsid=0 n=. nv=. rc=70021 _ERROR_=1 _N_=1
+487        proc print data=work.psi_calculation; title "x21 F psi_calculation"; run;
+488        proc print data=work.psi_summary; title "x21 F psi_summary"; run;
+489        
+490        
+491        
+492        
+6                                                          The SAS System                        Saturday, 14 November 2026 20:28:00
+
+493        

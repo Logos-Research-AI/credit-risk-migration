@@ -89,3 +89,95 @@ Bit-exact comparator: one ulp in a value, a missing replaced by 0, a value repla
 two rows swapped, a row dropped, two columns reordered: 6 of 6 caught. Printed-value comparator:
 truncated value, flag 1 vs 0, missing vs 0, 0 vs blank, 12th digit off by one are rejected; an
 exact value and a decimal half-way tie are accepted: 7 of 7 as expected (`migration/eval_misc.py`).
+
+---
+
+# Round 2 (2026-11-14): the corrected SAS, rulings G33-G38
+
+Method this round. The local server the round 1 scripts used refused connections, so every
+evaluation went through `eval_decl` of the staging connector on the two sink items
+(`test_predictions_full.evalApply`, `model_performance_metrics.evalApply`, `α = Float`), with the
+input rows written into the call and the comparison either done inside Lean or read off the
+returned values. Consequences, stated plainly: samples are smaller than in round 1; comparison
+is to the printed precision of the SAS CSVs and listings (no HEX16 dumps, so nothing in this
+round is bit-exact evidence); the full 105,000 / 45,000-row KS and PSI of the real run were not
+evaluated in Lean (the three 7,000 / 3,000-row edge scenarios were, two of them in Lean). SAS
+side: `judge/reference/` (corrected outputs), `judge/scenarios/`, and the run folders
+`judge/runs/{final_*, ev_fix_*, ev2_fix_*, ev3_fix_G34_sequence, dbg3_fix_Q27_sequence}`.
+
+## Runs
+
+| Units | Input | SAS side | Cases / rows | Unexplained differences |
+|---|---|---|---|---|
+| credit_raw_columns_ok, num_macro, credit_raw_input_check, credit_raw_check_totals, credit_raw_stop | the faulty row(s) of each fix scenario with context rows: good file, outcome 2, age missing, duplicate id, count 0.5, count -1, count 0.99999999999999, dependents 1.5, `12345abc`, `abc`, 34-digit income, no known income, extra column, missing column, valid_unusual, income 0, income -0.5 | log messages of `dbg3_fix_Q27_sequence` and `ev3_fix_G34_sequence` (columns_ok, bad_rows, duplicate_ids, stopped or not) | 17 | 0 (one explained, below) |
+| test_raw_columns_ok, test_num_macro, test_raw_input_check, test_raw_check_totals, test_raw_stop | good file, duplicate id, age missing, outcome 2, count 0.5, `abc`, extra column, income -1; outcome 1 / NA by reading | `ev_fix_Q27_test`, `dbg2_fix_Q27_test` | 9 | 0 |
+| income_medians, age_groups, income_medians_all, credit_imputed, credit_features (chain from credit_raw_clean) | scenario fix_Q1 (income known in one age group only) | `ev_fix_Q1`: income_medians.csv (1: 5000, 5000; 2-5: blank, 5000), imputed income 5000 with MonthlyIncome_missing = 1, `25*log(5000)` = 212.92983 | all rows of the scenario | 0 |
+| credit_features | 33 rows of `reference/model_features_*.csv` chosen for: income 0, income 1, utilization above 100, 3 or more dependents, 2 or fewer credit lines, 6 or more flags, imputed income, very large debt ratio; rest random | same files: total_risk_flags, age_income_interaction, utilization_debt_interaction, financial_health, log_monthly_income | 33 x 5 | 0 (relative 2e-6) |
+| test_raw_clean, test_cleaned, test_imputed (train_income_medians := reference income_medians.csv), test_features | 20 raw test rows (10 with missing income over the five age groups, 2 with missing dependents) | `reference/test_predictions.csv`: monthly_income, total_risk_flags, financial_health | 20 | 0 |
+| risk_scores_train | 25 reference rows nearest each grade boundary + 3 rows exactly on a boundary (0.10, 0.25, 0.50; by reading and X18) | `reference/risk_scores_train.csv`: score (1e-7), grade, recommendation, rate | 28 | 0 |
+| risk_scores_validation | 25 reference rows | `reference/risk_scores_validation.csv` | 25 | 0 |
+| test_predictions | 25 reference rows incl. pred_logistic; missing probability gives missing score, F, Decline, 0.20, pred 0 (scenario edge_predict) | `reference/test_predictions.csv`, `final_edge_predict` | 25 | 0 |
+| logit_scored_valid_sorted, total_good_bad, ks_calculation, ks_statistic, train_scores_sorted, psi_cuts, train_bins, valid_bins, psi_bins, psi_floor, psi_calculation, psi_summary | fix_Q23_tie | `ev_fix_Q23_tie`: KS 0.5000 at 0.1000; PSI 0.3884, components 0.0495097873 (bins 0-2), 0.0599588344 (bins 4, 5, 7, 8), 0 (3, 6, 9) | whole scenario | 0 |
+| same | fix_Q24 (two rows, same probability, one of each outcome) | `ev_fix_Q24`: one KS row, 0.0000 at 0.4000; PSI 1.9650 | whole | 0 |
+| same | fix_Q25 (tiny) | `ev_fix_Q25`: KS 0 at 0.2; PSI 2.0794 = 2 x 1.0397207708 | whole | 0 |
+| same | edge_metrics_a (7,000 training, 3,000 validation scores) | `final_edge_metrics_a`: KS 0.1168 at 0.0700; PSI 0.0027901142, ten printed bin rows | whole | 0 (Lean 0.116806, 0.002790114228) |
+| same | edge_metrics_c | `final_edge_metrics_c`: KS 0.2876 at 0.0800; PSI 0.3078608702 (bin 9: training share 0, component 0.3023176) | whole | 0 (Lean 0.287562, 0.307860870240) |
+| same | edge_metrics_b | `final_edge_metrics_b`: PSI 6.8121516398 | whole | not run in Lean (input too long for one call); a Python transcription of the same definitions gives 6.81215163984 |
+| train_inputs_stop, metrics_inputs_stop, predict_inputs_stop, income_medians_export, psi_bins, age_groups | none | none | 0 | by reading only |
+
+`best8` (parameter P3) was given the value SAS prints: 0.000071 for the 7,000-row scenarios,
+0.071429 for 7 training rows, 0.25 for 2.
+
+## Differences found and how each was resolved
+
+1. **PSI with an empty bin, first model wrong.** With the exact floor `0.5 / N` the model gave
+   6.80816 on edge_metrics_b where SAS gives 6.8121516398. Cause: `psi_floor` goes through a
+   macro variable, so SAS uses the BEST8. text of it (0.000071, not 0.0000714285...). Modelled
+   with the existing parameter `best8` (R19, P3); a, b and c then agree to all printed digits.
+   Marked `BUG(port)` in `def:psi_floor`. This was a model correction before acceptance, on
+   evidence, not a change made to pass.
+2. **valid_unusual (incomes -1 and -7.5).** `dbg3_fix_Q27_sequence` accepts the file; the Lean
+   reports 2 bad rows and stops. Explained: that run predates ruling G34 (negative income is
+   now rejected); `ev3_fix_G34_sequence`, run on the final SAS, rejects -1 and -0.5, as the Lean
+   does.
+
+## Not covered
+
+- An empty raw file (header only): SAS accepts a test file with no rows; the Lean `columns_ok`
+  reads the column names from the first row, so it answers false. OPEN.
+- Numeric cells in a column PROC IMPORT typed as character with exponent notation (R9
+  precondition), and a MonthlyIncome / NumberOfDependents column typed numeric by PROC IMPORT
+  reaching `credit_raw_clean` (round 1 precondition; the check units handle both types).
+- `logistic_lackfit`: evidence is the pre-correction reference partition; not repeated.
+- Comparator validation was not repeated; comparisons this round were made by reading values or
+  by equality tests written in the call.
+
+# Round 2 review (2026-11-14): defects raised by the reviewers
+
+SAS side: two new experiments, `experiments/x21_review_round2.{sas,log,lst}` and
+`experiments/x22_input_texts_r37.{sas,log}`, run on SAS OnDemand (DEV-011), plus
+`judge/reference/scenarios/edge_metrics_b` and its inputs `judge/scenarios/edge_metrics_b`.
+Lean side: `eval_decl` of the staging connector on `test_predictions_full.evalApply` and
+`model_performance_metrics.evalApply`, `α = Float`, after the corrected items were accepted.
+
+| Units | Input | SAS side | Lean result | Differences |
+|---|---|---|---|---|
+| credit_raw_columns_ok, num_macro, credit_raw_input_check, credit_raw_check_totals, credit_raw_stop | 3 training rows of X21 part B with headers `AGE`, `DEBTRATIO`, `monthlyincome`, `seriousdlqin2yrs`, `numberofdependents` | X21 B: columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=2 | (true, (0, 0, 2), stop false) | 0 |
+| same | same rows, reference headers | same | (true, (0, 0, 2), false) | 0 |
+| same | income of row 1 = `5000-1`, `1+2`, `bad`, `undefined`, `.A` (five tables) | X21 A: each text reads as missing (`.A` as a special missing), so line 100 makes the row bad | (true, (1, 0, 1), true) each | 0 |
+| same | income of row 1 = ` 5. ` | X21 A: `5.` is 5 | (true, (0, 0, 2), false) | 0 |
+| same | table with no row | X21 C: import fails, columns_ok=0, script stops | (false, (0, 0, 0), true) | 0 on the stop decision (SAS leaves bad_rows=1, duplicate_ids=1 from lines 64-65) |
+| test_raw_columns_ok, test_num_macro, test_raw_input_check, test_raw_check_totals, test_raw_stop | X21 part D: two rows, no age column | columns_ok=0 bad_rows=2 duplicate_ids=0 | (false, (2, 0), true), bad_row 1, 1 | 0 |
+| same | X21 part E: ids A1, A2, A2, blank | columns_ok=1 bad_rows=1 duplicate_ids=2; bad_row 0, 0, 0, 1 | (true, (1, 2), true), bad_row 0, 0, 0, 1 | 0 |
+| same | ids A1, A2, valid rows | by X21 E rows 1, 2: bad_row=0 | (true, (0, 0), false) | 0 |
+| same | table with no row | X21 C: columns_ok=0, stops | (false, (0, 0), true) | 0 |
+| test_raw_clean, test_cleaned, test_imputed, test_features, test_predictions, kaggle_submission | the two valid rows with ids A1, A2 | X21 E: row_id is Char holding A1, A2 | row_id "A1", "A2" in test_imputed and in kaggle_submission; incomes 9120 and the group median | 0 |
+| train_scores_sorted, psi_cuts, train_bins, valid_bins, psi_floor (best8 := 0.000071), psi_calculation | edge_metrics_b: all 7,000 training and 3,000 validation scores (given to Lean as value x count, 8 and 333 distinct values) | `printed_psi_calculation.csv`: 0.1647142857 / 0.0873333333 / 0.0490966787; 0.8352857143 / 0.25 / 0.7060377198; bins 2-8 zero; bin 9: 0 / 0.6626666667 / 6.0570172413; PSI 6.8121516398 | the same ten rows to all ten printed digits; left-fold sum 6.8121516398 | 0 |
+| same chain | empty training table, 3 validation rows | X22 F: train_bins 0 rows, valid_bins 0 rows; X21 F: psi_floor `.`, ten rows with shares 0 and component `.`, PSI `.`, 'No significant change' | psi_cuts [], bins empty, floor none, ten rows (0, 0, none) | 0 (psi_summary itself not re-run: its Lean is unchanged and a missing sum reads 'No significant change' by its first test) |
+
+This replaces the round 2 entry "edge_metrics_b: not run in Lean". The earlier "Not covered"
+entry on the header-only file is superseded by X21 part C.
+
+Not evaluated: a full SAS run of the four scripts on a file with `5000-1` or with other
+capitalisation (the experiments run the check code of lines 52-123 / 60-130 copied verbatim
+into a macro, on small files, not the scripts themselves).

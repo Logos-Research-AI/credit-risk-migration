@@ -28,8 +28,8 @@ Lean makes a stated choice and carries `OPEN(port):`; "precondition" means the c
 | O6 | logistic_lackfit | Expected counts, chi-square and p-value are not given | X15C: the printed expected counts are not left-to-right sums of the probabilities | Accumulation used for the expected counts |
 | O7 | logit_scored_train_output (R26) | Terms are added in the order of the parameter table of the fitted model | X15C is not a stepwise fit | Order of accumulation after stepwise selection (table order or entry order); the reference chain passes with table order to printed precision, which cannot separate the two |
 | O8 | logit_scored_train_output | `_LEVEL_` is numeric and placed before pd_logistic | existence only (reference log) | Type and position of `_LEVEL_` (never exported, never read) |
-| O9 | ks_statistic | Rows of the remerged result are in input order | X13 `remerge` lines; SAS does not guarantee it | Only matters when the KS maximum is attained on several rows |
-| O10 | psi_calculation | Rows of the inner join are in ascending key order | X13 `join` lines, staged runs m2, sa, sb, sc; SAS does not guarantee it | Only affects the order of the printed PSI table |
+| O9 | ks_statistic | CLOSED in round 2 by the corrected SAS: the query is now `max(ks_value), min(pd_logistic)` with no remerge, one row whatever the number of rows attaining the maximum | runs `ev_fix_Q23_tie`, `ev_fix_Q24`, `ev_fix_Q25` | none |
+| O10 | psi_calculation | CLOSED in round 2 by the corrected SAS: psi_bins left-joined to the two views with `ORDER BY s.score_bin`; the row order is fixed by the code | `reference/scenarios/edge_metrics_*/printed_psi_calculation.csv` | none |
 | O11 | income_medians (R15) | Even-count median is `lo + (hi - lo) / 2` | one discriminating pair (X14) | A second pair, to rule out a coincidence; incomes are integers, where every candidate agrees |
 
 ## Excluded by precondition (not modelled)
@@ -60,3 +60,44 @@ input on which a unit differs from an observed SAS result.
 The ROCAssociation columns StdErr, LowerArea, UpperArea, SomersD, Gamma, TauA (never read; printed
 only); the CTABLE classification table, RSQUARE and fit statistics (functions of the fit); the
 PERCENT column of PROC FREQ is translated (bit-exact) although never read.
+
+## Round 2 (2026-11-14, corrected SAS)
+
+- `psi_floor` is used through its BEST8. text (0.000071 for 7,000 rows, 4.762E-6 for 105,000): PSI with an empty bin depends on that rounding. Reproduced (parameter `best8`), marked BUG(port). For a ruling.
+- Empty raw file: CLOSED by X21 part C. PROC IMPORT fails on a file holding the header line only, the table is not created, `columns_ok` is 0 and SAS stops; the Lean gives `false` on a table with no row (R39). The earlier statement that SAS accepts a zero-row test file was wrong.
+- Column names: CLOSED for the input-check units by X21 part B (lookups ignore case, R38). Every later unit still reads the exact reference names (A10): a file with other capitalisation passes the check in Lean as in SAS, and the preconditions of the units after it then fail, so nothing is claimed about its outputs.
+- `train_income_medians` (PROC IMPORT of income_medians.csv) is a parameter: nothing in Lean ties it to `income_medians_export`.
+- `def:sasPipeline`, `def:SasLinks` and the theorem items lost their Lean when the changed items were rewritten (expected); the 15 `neg:*` items are no longer in the blueprint (not removed by this role directly). `def:sasPipeline` named `test_income_medians`, which is removed.
+- Lean comments of the items listed in DEV-009 cite pre-correction line numbers.
+- `logistic_lackfit` not re-checked against the corrected reference.
+
+## Round 2 review (2026-11-14, experiments x21, x22)
+
+- `5000-1`, `1+2` and the like: SAS reads them as missing (X21 A); the reviewer's recollection of a
+  letterless exponent does not hold for `INPUT(..., ?? best32.)` on this SAS. The precondition of
+  the two check units now excludes only texts where digits or a point are directly followed by
+  e, E, d or D; `bad`, `undefined`, `NA`, `e5` are covered.
+- Special missing values: `.A`, `._` in a text cell are read by SAS as special missing values
+  (X21 A). `Sas.inputBest` gives the ordinary missing value. In the check units both make the
+  row bad. Where a special missing reaches later arithmetic or comparisons (credit_raw_clean on
+  a file the check would have rejected) the difference `. = .A` (false in SAS) is not modelled.
+- Training ids that are not numbers: the training check accepts them like the test check does,
+  and SAS carries them to row_id as text. `def:credit_imputed` reads VAR1 as a number; the case
+  is now excluded by `def:credit_imputed_precond`. Carrying the cell (as `def:test_imputed` now
+  does) would clear and require resubmitting about 88 dependent items; not done in this step.
+- A numeric MonthlyIncome / NumberOfDependents column (a file with no NA): accepted by the
+  check units, and SAS goes on; `credit_raw_clean_precond` and `test_raw_clean_precond` (U1)
+  still require text cells, so the units after the check claim nothing for such a file.
+- `credit_raw_clean_precond`, `test_raw_clean_precond` keep the wide exclusion (any e, E, d, D).
+- Extra evaluation-only dependencies of `def:test_predictions_full` and
+  `def:model_performance_metrics` (DEV-006) remain: whoever reads dependencies to build
+  `def:sasPipeline` must ignore them. The stale dependency of `train_bins` / `valid_bins` on
+  `decile_data` is removed.
+- Lean comments of `credit_raw_clean`, `income_medians`, `credit_cleaned`, `credit_cleaned_precond`,
+  `confusion_matrix_train`, `training_metrics`, `total_good_bad`, `decile_data`,
+  `decile_analysis`, `total_defaults`, `cumulative_lift` still cite pre-correction line numbers
+  (DEV-012); `test_raw_clean`, `test_cleaned` and their preconditions are corrected.
+- X21 part C also shows what the rest of the script does after a failed import: the DATA step
+  and the second query fail, `bad_rows` and `duplicate_ids` keep the values of lines 63-66 /
+  71-73 (1, 1), and the stop step runs. The Lean totals for an empty table are (0, 0[, 0]); the
+  stop Boolean is the same (true) through `columns_ok`.

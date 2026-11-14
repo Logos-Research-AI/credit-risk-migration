@@ -1,0 +1,228 @@
+
+                                                             x21 x21_b                       Saturday, 14 November 2026 20:28:00   1
+
+                                                       The CONTENTS Procedure
+
+               Data Set Name        WORK.X21_B                                               Observations          3 
+               Member Type          DATA                                                     Variables             12
+               Engine               V9                                                       Indexes               0 
+               Created              14/11/2026 20:29:00                                      Observation Length    88
+               Last Modified        14/11/2026 20:29:00                                      Deleted Observations  0 
+               Protection                                                                    Compressed            NO
+               Data Set Type                                                                 Sorted                NO
+               Label                                                                                                 
+               Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                            
+               Encoding             utf-8  Unicode (UTF-8)                                                           
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    1                                                                                                       
+First Data Page             1                                                                                                       
+Max Obs per Page            1486                                                                                                    
+Obs in First Data Page      3                                                                                                       
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_                                             
+                            work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_b.sas7bdat                                                
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                536912186                                                                                               
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   256KB                                                                                                   
+File Size (bytes)           262144                                                                                                  
+
+
+                                                     Variables in Creation Order
+ 
+                             #    Variable                            Type    Len    Format     Informat
+
+                             1    VAR1                                Num       8    BEST12.    BEST32. 
+                             2    seriousdlqin2yrs                    Num       8    BEST12.    BEST32. 
+                             3    RevolvingUtilizationOfUnsecuredL    Num       8    BEST12.    BEST32. 
+                             4    AGE                                 Num       8    BEST12.    BEST32. 
+                             5    NumberOfTime30-59DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                             6    DEBTRATIO                           Num       8    BEST12.    BEST32. 
+                             7    monthlyincome                       Char      4    $4.        $4.     
+                             8    NumberOfOpenCreditLinesAndLoans     Num       8    BEST12.    BEST32. 
+                             9    NumberOfTimes90DaysLate             Num       8    BEST12.    BEST32. 
+                            10    NumberRealEstateLoansOrLines        Num       8    BEST12.    BEST32. 
+                            11    NumberOfTime60-89DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                            12    numberofdependents                  Char      2    $2.        $2.     
+
+                                                             x21 x21_d                       Saturday, 14 November 2026 20:28:00   2
+
+                                                       The CONTENTS Procedure
+
+               Data Set Name        WORK.X21_D                                               Observations          2 
+               Member Type          DATA                                                     Variables             11
+               Engine               V9                                                       Indexes               0 
+               Created              14/11/2026 20:29:00                                      Observation Length    88
+               Last Modified        14/11/2026 20:29:00                                      Deleted Observations  0 
+               Protection                                                                    Compressed            NO
+               Data Set Type                                                                 Sorted                NO
+               Label                                                                                                 
+               Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                            
+               Encoding             utf-8  Unicode (UTF-8)                                                           
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    1                                                                                                       
+First Data Page             1                                                                                                       
+Max Obs per Page            1486                                                                                                    
+Obs in First Data Page      2                                                                                                       
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_                                             
+                            work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_d.sas7bdat                                                
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                536912191                                                                                               
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   256KB                                                                                                   
+File Size (bytes)           262144                                                                                                  
+
+
+                                                     Variables in Creation Order
+ 
+                             #    Variable                            Type    Len    Format     Informat
+
+                             1    VAR1                                Num       8    BEST12.    BEST32. 
+                             2    SeriousDlqin2yrs                    Num       8    BEST12.    BEST32. 
+                             3    RevolvingUtilizationOfUnsecuredL    Num       8    BEST12.    BEST32. 
+                             4    NumberOfTime30-59DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                             5    DebtRatio                           Num       8    BEST12.    BEST32. 
+                             6    MonthlyIncome                       Char      4    $4.        $4.     
+                             7    NumberOfOpenCreditLinesAndLoans     Num       8    BEST12.    BEST32. 
+                             8    NumberOfTimes90DaysLate             Num       8    BEST12.    BEST32. 
+                             9    NumberRealEstateLoansOrLines        Num       8    BEST12.    BEST32. 
+                            10    NumberOfTime60-89DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                            11    NumberOfDependents                  Num       8    BEST12.    BEST32. 
+
+                                                             x21 x21_e                       Saturday, 14 November 2026 20:28:00   3
+
+                                                       The CONTENTS Procedure
+
+               Data Set Name        WORK.X21_E                                               Observations          4 
+               Member Type          DATA                                                     Variables             12
+               Engine               V9                                                       Indexes               0 
+               Created              14/11/2026 20:29:00                                      Observation Length    80
+               Last Modified        14/11/2026 20:29:00                                      Deleted Observations  0 
+               Protection                                                                    Compressed            NO
+               Data Set Type                                                                 Sorted                NO
+               Label                                                                                                 
+               Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                            
+               Encoding             utf-8  Unicode (UTF-8)                                                           
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    1                                                                                                       
+First Data Page             1                                                                                                       
+Max Obs per Page            1635                                                                                                    
+Obs in First Data Page      4                                                                                                       
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_                                             
+                            work4F6B0001EF37_odaws01-euw1.oda.sas.com/x21_e.sas7bdat                                                
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                536912193                                                                                               
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   256KB                                                                                                   
+File Size (bytes)           262144                                                                                                  
+
+
+                                                     Variables in Creation Order
+ 
+                             #    Variable                            Type    Len    Format     Informat
+
+                             1    VAR1                                Char      2    $2.        $2.     
+                             2    SeriousDlqin2yrs                    Char      2    $2.        $2.     
+                             3    RevolvingUtilizationOfUnsecuredL    Num       8    BEST12.    BEST32. 
+                             4    age                                 Num       8    BEST12.    BEST32. 
+                             5    NumberOfTime30-59DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                             6    DebtRatio                           Num       8    BEST12.    BEST32. 
+                             7    MonthlyIncome                       Char      4    $4.        $4.     
+                             8    NumberOfOpenCreditLinesAndLoans     Num       8    BEST12.    BEST32. 
+                             9    NumberOfTimes90DaysLate             Num       8    BEST12.    BEST32. 
+                            10    NumberRealEstateLoansOrLines        Num       8    BEST12.    BEST32. 
+                            11    NumberOfTime60-89DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                            12    NumberOfDependents                  Num       8    BEST12.    BEST32. 
+
+                                                           x21 e imputed                     Saturday, 14 November 2026 20:28:00   4
+
+                                                       The CONTENTS Procedure
+
+               Data Set Name        WORK.X21_E_IMPUTED                                       Observations          4 
+               Member Type          DATA                                                     Variables             2 
+               Engine               V9                                                       Indexes               0 
+               Created              14/11/2026 20:29:00                                      Observation Length    16
+               Last Modified        14/11/2026 20:29:00                                      Deleted Observations  0 
+               Protection                                                                    Compressed            NO
+               Data Set Type                                                                 Sorted                NO
+               Label                                                                                                 
+               Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                            
+               Encoding             utf-8  Unicode (UTF-8)                                                           
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    1                                                                                                       
+First Data Page             1                                                                                                       
+Max Obs per Page            8126                                                                                                    
+Obs in First Data Page      4                                                                                                       
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work82EF0001EF37_odaws01-euw1.oda.sas.com/SAS_work4F6B0001EF37_                            
+                            odaws01-euw1.oda.sas.com/x21_e_imputed.sas7bdat                                                         
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                536912189                                                                                               
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   256KB                                                                                                   
+File Size (bytes)           262144                                                                                                  
+
+
+                                                    Variables in Creation Order
+ 
+                                        #    Variable    Type    Len    Format     Informat
+
+                                        1    row_id      Char      2    $2.        $2.     
+                                        2    age         Num       8    BEST12.    BEST32. 
+
+                                                           x21 e imputed                     Saturday, 14 November 2026 20:28:00   5
+
+                                                   Obs    row_id             age
+
+                                                    1       A1                45
+                                                    2       A2                40
+                                                    3       A2                40
+                                                    4                         40
+
+                                                       x21 F psi_calculation                 Saturday, 14 November 2026 20:28:00   6
+
+                                                  score_    train_    valid_       psi_
+                                           Obs      bin       pct       pct     component
+
+                                             1       0         0         0          .    
+                                             2       1         0         0          .    
+                                             3       2         0         0          .    
+                                             4       3         0         0          .    
+                                             5       4         0         0          .    
+                                             6       5         0         0          .    
+                                             7       6         0         0          .    
+                                             8       7         0         0          .    
+                                             9       8         0         0          .    
+                                            10       9         0         0          .    
+
+                                                         x21 F psi_summary                   Saturday, 14 November 2026 20:28:00   7
+
+                                            Obs             PSI     PSI_interpretation
+
+                                             1                .    No significant change

@@ -962,3 +962,66 @@ NOT DOCUMENTED / caveats
 
 - None material. (Compound conditions `a < b < c` are documented as `(a<b) and (b<c)`; AND/OR
   results are 1/0, see D2.)
+
+
+---
+
+# Round 2 additions (D16..D23), 2026-11-14
+
+Status of these sections: the documentation pages were **not fetched again in this round** (no
+web access was used); each statement below is the documented behaviour as the translator knows
+it, and each is paired with what a run of the corrected SAS shows (`judge/runs/...`,
+`experiments/x19_check_mechanics.*`). Where only reading supports a rule, the rulebook row says so.
+
+## D16. MISSING function
+`MISSING(expr)` returns 1 when a numeric argument is missing (`.`, `._`, `.A`-`.Z`) and when a
+character argument is blank (only blanks, or length zero); otherwise 0.
+
+## D17. INT function
+`INT(x)` returns the integer part. "If the argument's value is within 1E-12 of an integer, the
+function results in that integer." Otherwise truncation toward zero. `INTZ` is the variant
+without the fuzz.
+
+## D18. CATS function
+`CATS(a, ...)` removes leading and trailing blanks from each argument and concatenates. A numeric
+argument is converted with BESTw. first (the checks here apply it to character cells only; a
+numeric column goes down the other branch of `%num`).
+
+## D19. PROC SQL COUNT(DISTINCT x)
+Counts the distinct nonmissing values of `x`. `COUNT(*)` counts rows.
+
+## D20. PROC SQL COALESCE
+Returns the first argument that is not missing; missing when every argument is missing.
+
+## D21. BY-group processing, FIRST. and LAST.
+With `BY v`, `LAST.v` is 1 on the last observation of each BY group, 0 otherwise. The input must
+be sorted (or indexed) by `v`; a missing value forms its own group, first in ascending order.
+
+## D22. CEIL function; SET with NOBS=
+`CEIL(x)` returns the smallest integer not below `x`; a value within 1E-12 of an integer returns
+that integer. `NOBS=` is set at compile time to the number of observations;
+
+## D23. SET reaching the end of a data set
+A DATA step stops when a SET statement is executed with no observation left to read. A SET on an
+empty data set therefore ends the step on the first iteration, before any OUTPUT.
+
+# Round 2 review additions (2026-11-14)
+
+D21-D23 above were written from memory of the SAS documentation, not fetched. The behaviours
+they were cited for now rest on runs: R35 on `ev_fix_Q23_tie` / `ev_fix_Q24`, R36 on the
+edge_metrics scenarios, R37 on X21 part F and X22 part F.
+
+## X21 `experiments/x21_review_round2` and X22 `experiments/x22_input_texts_r37` (observations)
+
+- INPUT(strip(text), ?? best32.): numbers are `[sign]digits[.digits]` (at least one digit) and
+  exponent notation `mantissa(e|E|d|D)[sign]digits`. Missing: `5000-1`, `5000+1`, `1+2`, `1-2`,
+  `1e`, `1e+`, `e5`, `-e5`, `.e5`, `E`, `d`, `bad`, `undefined`, `NA`, `-`, `+`, `--5`, `- 5`,
+  `5-`, `1.2.3`, `1 2`, `1 e5`, `1,000`, `$5`, `5%`, `0x10`, `1F`, `1.5-3`, `1e400`, `1e-400`,
+  `1e3x`, `1e3.5`, `1e 3`, `1ee3`, `12d`, `12e`, `12.5E`. `.A` and `._` are special missing values.
+- Variable names ignore case in the check (part B).
+- PROC IMPORT (dbms=csv, guessingrows=max) of a header-only file: "Unable to sample external
+  file, no data in first 5 records. ERROR: Import unsuccessful"; no table (part C).
+- %num on an absent column: missing, no error (part D).
+- Character VAR1: check accepts non-blank ids; COUNT(DISTINCT) ignores the blank one;
+  `a.VAR1 as row_id` is Char (part E).
+- `if _n_ = 1 then set <table with 0 rows>;` ends the step with 0 observations written (part F).

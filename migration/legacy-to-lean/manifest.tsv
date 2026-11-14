@@ -1,57 +1,76 @@
 unit	file	line_start	line_end	kind	item_id	upstream	state	precondition	evaluated_against_sas	notes
-credit_raw_clean	feature_engineering.sas	44	56	DATA	def:credit_raw_clean	-	DefinitionFormalized	def:credit_raw_clean_precond	yes, 0 differences	home of core runtime R1-R12; input = PROC IMPORT table (parameter)
-income_medians	feature_engineering.sas	58	73	SQL	def:income_medians	credit_raw_clean	DefinitionFormalized	def:income_medians_precond	rule only (X13, X14); subsets by reviewer	home of R13-R15
-credit_cleaned	feature_engineering.sas	75	94	DATA	def:credit_cleaned	credit_raw_clean	DefinitionFormalized	def:credit_cleaned_precond	yes, 0 differences	
-credit_imputed	feature_engineering.sas	96	120	SQL	def:credit_imputed	credit_cleaned,income_medians	DefinitionFormalized	def:credit_imputed_precond	yes, 0 differences	home of R16 (left join); parameter P1
-credit_features	feature_engineering.sas	126	202	DATA	def:credit_features	credit_imputed	DefinitionFormalized	def:credit_features_precond	yes, 0 differences	
-credit_train_validation	feature_engineering.sas	216	221	DATA	def:credit_train_validation	credit_features	DefinitionFormalized	def:credit_train_validation_precond	no (split is a parameter; reviewed)	input = PROC SURVEYSELECT output (parameter P6); two output data sets
-credit_train_export	feature_engineering.sas	253	258	DATA	def:credit_train_export	credit_train_validation	DefinitionFormalized	-	no (identity)	FORMAT only
-credit_validation_export	feature_engineering.sas	260	264	DATA	def:credit_validation_export	credit_train_validation	DefinitionFormalized	-	no (identity)	FORMAT only
-logit_scored_train_output	train.sas	47	96	LOGISTIC OUTPUT	def:logit_scored_train_output	credit_train_export	DefinitionFormalized	def:logit_scored_train_output_precond	yes, 0 differences	scoring from the fitted model (P4, P5); fit itself out of scope
-logistic_association	train.sas	47	96	LOGISTIC table	def:logistic_association	logit_scored_train_output	DefinitionFormalized	def:logistic_association_precond	yes, 0 differences	Association of predicted probabilities and observed responses
-logistic_lackfit	train.sas	47	96	LOGISTIC table	def:logistic_lackfit	logit_scored_train_output	DefinitionFormalized	def:logistic_lackfit_precond	yes, 0 differences	Hosmer-Lemeshow partition and statistic
-logit_scored_train	train.sas	102	106	DATA	def:logit_scored_train	logit_scored_train_output	DefinitionFormalized	-	yes, 0 differences	
-confusion_matrix_train	train.sas	108	111	FREQ OUT=	def:confusion_matrix_train	logit_scored_train	DefinitionFormalized	-	rule (Sas.freq2) bit-exact	home of R20
-training_metrics	train.sas	117	139	DATA	def:training_metrics	confusion_matrix_train	DefinitionFormalized	def:training_metrics_precond	yes, 0 differences	
-logit_scored_valid_temp	train.sas	150	155	PLM SCORE	def:logit_scored_valid_temp	credit_validation_export	DefinitionFormalized	def:logit_scored_valid_temp_precond	yes, 0 differences	home of R26; P4
-logit_scored_valid	train.sas	157	168	DATA	def:logit_scored_valid	logit_scored_valid_temp	DefinitionFormalized	-	yes, 0 differences	
-confusion_matrix	train.sas	170	173	FREQ OUT=	def:confusion_matrix	logit_scored_valid	DefinitionFormalized	-	rule (Sas.freq2) bit-exact	
-validation_metrics	train.sas	179	201	DATA	def:validation_metrics	confusion_matrix	DefinitionFormalized	def:validation_metrics_precond	yes, 0 differences	
-risk_scores_train	train.sas	212	244	DATA	def:risk_scores_train	logit_scored_train	DefinitionFormalized	-	yes, 0 differences	home of R23 (ROUND)
-risk_scores_validation	train.sas	246	275	DATA	def:risk_scores_validation	logit_scored_valid	DefinitionFormalized	-	yes, 0 differences	
-roc_train	train.sas	292	298	LOGISTIC ROC	def:roc_train	risk_scores_train	DefinitionFormalized	def:roc_train_precond	rule (Sas.rocArea) bit-exact via roc_stats	home of R25
-roc_valid	train.sas	300	306	LOGISTIC ROC	def:roc_valid	risk_scores_validation	DefinitionFormalized	def:roc_valid_precond	rule (Sas.rocArea) bit-exact via roc_stats	
-risk_scores_train_clean	train.sas	325	329	DATA	def:risk_scores_train_clean	risk_scores_train	DefinitionFormalized	-	yes, 0 differences	CSV hand-off risk_scores_train.csv
-risk_scores_validation_clean	train.sas	331	335	DATA	def:risk_scores_validation_clean	risk_scores_validation	DefinitionFormalized	-	yes, 0 differences	CSV hand-off risk_scores_validation.csv
-final_model_output	train.sas	351	358	DATA	def:final_model_output	risk_scores_train	DefinitionFormalized	-	yes, 0 differences	CSV final_model_output.csv
-model_summary	train.sas	366	386	DATA MERGE	def:model_summary	roc_train,roc_valid,training_metrics,validation_metrics	DefinitionFormalized	-	yes, 0 differences	home of R21; P7
-roc_stats	metrics_calculation.sas	47	54	LOGISTIC ROC	def:roc_stats	risk_scores_validation_clean	DefinitionFormalized	def:roc_stats_precond	yes, 0 differences	input = PROC IMPORT table (parameter)
-auc_summary	metrics_calculation.sas	56	64	DATA	def:auc_summary	roc_stats	DefinitionFormalized	-	yes, 0 differences	
-logit_scored_valid_sorted	metrics_calculation.sas	74	77	SORT	def:logit_scored_valid_sorted	risk_scores_validation_clean	DefinitionFormalized	-	yes, 0 differences	PROC SORT in place on work.logit_scored_valid
-total_good_bad	metrics_calculation.sas	79	84	SQL INTO	def:total_good_bad	logit_scored_valid_sorted	DefinitionFormalized	def:total_good_bad_precond	inside ks_calculation	home of R17-R19; macro variables total_good_count, total_bad_count
-ks_calculation	metrics_calculation.sas	86	102	DATA	def:ks_calculation	logit_scored_valid_sorted,total_good_bad	DefinitionFormalized	-	yes, 0 differences	
-ks_statistic	metrics_calculation.sas	104	111	SQL	def:ks_statistic	ks_calculation	DefinitionFormalized	-	yes, 0 differences	remerge
-confusion_metrics	metrics_calculation.sas	121	158	MACRO	def:confusion_metrics_macro	logit_scored_valid_sorted,confusion_matrix_train	DefinitionFormalized	-	yes, 0 differences	three steps per call
-threshold_analysis	metrics_calculation.sas	160	171	MACRO CALLS + DATA	def:threshold_analysis	confusion_metrics	DefinitionFormalized	-	yes, 0 differences	
-decile_data	metrics_calculation.sas	182	188	RANK	def:decile_data	logit_scored_valid_sorted	DefinitionFormalized	def:decile_data_precond	yes, 0 differences	home of R24
-decile_analysis	metrics_calculation.sas	190	206	SQL	def:decile_analysis	decile_data	DefinitionFormalized	-	yes, 0 differences	P2
-total_defaults	metrics_calculation.sas	212	217	SQL INTO	def:total_defaults	decile_data	DefinitionFormalized	-	inside cumulative_lift	macro variables total_defaults, overall_default_rate; P2, P3
-cumulative_lift	metrics_calculation.sas	219	235	DATA	def:cumulative_lift	decile_analysis,total_defaults	DefinitionFormalized	-	yes, 0 differences	
-train_bins	metrics_calculation.sas	249	255	RANK	def:train_bins	risk_scores_train_clean,decile_data	DefinitionFormalized	-	yes, 0 differences	input = PROC IMPORT table (parameter)
-valid_bins	metrics_calculation.sas	257	262	RANK	def:valid_bins	logit_scored_valid_sorted,decile_data	DefinitionFormalized	-	yes, 0 differences	
-psi_calculation	metrics_calculation.sas	264	278	SQL	def:psi_calculation	train_bins,valid_bins	DefinitionFormalized	-	yes, 0 differences	
-psi_summary	metrics_calculation.sas	280	288	SQL	def:psi_summary	psi_calculation	DefinitionFormalized	-	yes, 0 differences	P2
-calibration_data	metrics_calculation.sas	298	304	RANK	def:calibration_data	logit_scored_valid_sorted,decile_data	DefinitionFormalized	-	yes, 0 differences	
-calibration_plot	metrics_calculation.sas	306	316	SQL	def:calibration_plot	calibration_data	DefinitionFormalized	-	yes, 0 differences	P2
-validation_summary	metrics_calculation.sas	330	345	DATA MERGE	def:validation_summary	auc_summary,ks_statistic,psi_summary,model_summary	DefinitionFormalized	-	yes, 0 differences	
-model_performance_metrics	metrics_calculation.sas	390	413	DATA MERGE	def:model_performance_metrics	auc_summary,ks_statistic,psi_summary,threshold_analysis	DefinitionFormalized	-	yes, 0 differences	P7
-test_raw_clean	predict.sas	44	56	DATA	def:test_raw_clean	credit_raw_clean	DefinitionFormalized	def:test_raw_clean_precond	yes, 0 differences	input = PROC IMPORT table (parameter)
-test_income_medians	predict.sas	58	73	SQL	def:test_income_medians	test_raw_clean,income_medians	DefinitionFormalized	def:test_income_medians_precond	rule only	
-test_cleaned	predict.sas	75	94	DATA	def:test_cleaned	test_raw_clean	DefinitionFormalized	def:test_cleaned_precond	yes, 0 differences	
-test_imputed	predict.sas	96	119	SQL	def:test_imputed	test_cleaned,test_income_medians,credit_imputed	DefinitionFormalized	def:test_imputed_precond	yes, 0 differences	P1
-test_features	predict.sas	125	201	DATA	def:test_features	test_imputed	DefinitionFormalized	def:test_features_precond	yes, 0 differences	
-test_scored_temp	predict.sas	207	212	PLM SCORE	def:test_scored_temp	test_features,logit_scored_valid_temp	DefinitionFormalized	def:test_scored_temp_precond	yes, 0 differences	P4
-test_scored	predict.sas	214	222	DATA	def:test_scored	test_scored_temp	DefinitionFormalized	def:test_scored_precond	yes, 0 differences	
-test_predictions	predict.sas	228	262	DATA	def:test_predictions	test_scored,risk_scores_train	DefinitionFormalized	def:test_predictions_precond	yes, 0 differences	
-kaggle_submission	predict.sas	268	272	DATA	def:kaggle_submission	test_predictions	DefinitionFormalized	def:kaggle_submission_precond	yes, 0 differences	CSV kaggle_submission.csv
-test_predictions_full	predict.sas	274	281	DATA	def:test_predictions_full	test_predictions	DefinitionFormalized	-	yes, 0 differences	CSV test_predictions.csv
+num_macro	feature_engineering.sas	49	61	MACRO	def:num_macro	-	DefinitionFormalized	-	round 2 review: 9 training tables incl. texts `5000-1`, `1+2`, `bad`, `undefined`, ` 5. `, `.A`, other capitalisation, empty; 0 differences vs X21/X22	NEW. %num: text or number to number
+credit_raw_columns_ok	feature_engineering.sas	63	79	SQL INTO	def:credit_raw_columns_ok	-	DefinitionFormalized	-	round 2: 17 cases; review: other capitalisation and empty table vs X21 B, C; 0 differences	NEW. macro variable columns_ok; column names read from the first row; no row = no table (R39)
+credit_raw_input_check	feature_engineering.sas	81	107	DATA	def:credit_raw_input_check	num_macro	DefinitionFormalized	def:credit_raw_input_check_precond	round 2: 17 cases; review: 9 tables vs X21 A, B; 0 differences	NEW. home of R30-R32; lookups ignore case (R38)
+credit_raw_check_totals	feature_engineering.sas	109	114	SQL INTO	def:credit_raw_check_totals	credit_raw_input_check	DefinitionFormalized	-	round 2: 17 cases; review: 9 tables; 0 differences	NEW. bad_rows, duplicate_ids, known_incomes; home of R33
+credit_raw_stop	feature_engineering.sas	116	123	DATA _NULL_ ABORT	def:credit_raw_stop	credit_raw_columns_ok,credit_raw_check_totals	DefinitionFormalized	-	round 2: 17 cases; review: 9 tables; 0 differences	NEW. Bool: true = the script stops here and writes nothing
+credit_raw_clean	feature_engineering.sas	134	146	DATA	def:credit_raw_clean	-	DefinitionFormalized	def:credit_raw_clean_precond	unchanged by the corrections; round 1 result stands	home of core runtime R1-R12; input = PROC IMPORT table (parameter); Lean comments cite the old lines 44-56
+income_medians	feature_engineering.sas	148	163	SQL	def:income_medians	credit_raw_clean	DefinitionFormalized	def:income_medians_precond	round 2: fix_Q1 chain, 0 differences	home of R13-R15; Lean comments cite the old lines
+age_groups	feature_engineering.sas	165	171	DATA	def:age_groups	-	DefinitionFormalized	-	round 2: fix_Q1 chain	NEW. the five age groups
+income_medians_all	feature_engineering.sas	173	184	SQL	def:income_medians_all	age_groups,income_medians,credit_raw_clean	DefinitionFormalized	def:income_medians_all_precond	round 2: fix_Q1 chain equals income_medians.csv of ev_fix_Q1	NEW. home of R16 (moved from credit_imputed) and R34
+credit_cleaned	feature_engineering.sas	186	205	DATA	def:credit_cleaned	credit_raw_clean	DefinitionFormalized	def:credit_cleaned_precond	unchanged by the corrections; round 1 result stands	Lean comments cite the old lines
+credit_imputed	feature_engineering.sas	207	231	SQL	def:credit_imputed	credit_cleaned,income_medians_all	DefinitionFormalized	def:credit_imputed_precond	round 2: fix_Q1 chain, 0 differences	CHANGED. median fallback; parameter P1
+credit_features	feature_engineering.sas	237	316	DATA	def:credit_features	credit_imputed	DefinitionFormalized	def:credit_features_precond	round 2: 33 reference rows x 5 changed columns, 0 differences	CHANGED. eight-flag sum, two interactions (G36-G38)
+credit_train_validation	feature_engineering.sas	330	335	DATA	def:credit_train_validation	credit_features	DefinitionFormalized	def:credit_train_validation_precond	round 1: no (split is a parameter; reviewed) (step unchanged by the corrections)	input = PROC SURVEYSELECT output (parameter P6); two output data sets
+credit_train_export	feature_engineering.sas	367	372	DATA	def:credit_train_export	credit_train_validation	DefinitionFormalized	-	round 1: no (identity) (step unchanged by the corrections)	FORMAT only
+credit_validation_export	feature_engineering.sas	374	378	DATA	def:credit_validation_export	credit_train_validation	DefinitionFormalized	-	round 1: no (identity) (step unchanged by the corrections)	FORMAT only
+income_medians_export	feature_engineering.sas	380	385	DATA	def:income_medians_export	income_medians_all	DefinitionFormalized	-	no (identity)	NEW. FORMAT only; CSV hand-off income_medians.csv
+train_inputs_stop	train.sas	34	42	DATA _NULL_ ABORT	def:train_inputs_stop	-	DefinitionFormalized	-	by reading	NEW. file existence is a parameter (P8)
+logit_scored_train_output	train.sas	71	119	LOGISTIC OUTPUT	def:logit_scored_train_output	credit_train_export	DefinitionFormalized	def:logit_scored_train_output_precond	round 1: yes, 0 differences (step unchanged by the corrections)	scoring from the fitted model (P4, P5); fit itself out of scope
+logistic_association	train.sas	71	119	LOGISTIC table	def:logistic_association	logit_scored_train_output	DefinitionFormalized	def:logistic_association_precond	round 1: yes, 0 differences (step unchanged by the corrections)	Association of predicted probabilities and observed responses
+logistic_lackfit	train.sas	71	119	LOGISTIC table	def:logistic_lackfit	logit_scored_train_output	DefinitionFormalized	def:logistic_lackfit_precond	round 1 only; not repeated on the corrected reference	Hosmer-Lemeshow partition and statistic
+logit_scored_train	train.sas	125	129	DATA	def:logit_scored_train	logit_scored_train_output	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	
+confusion_matrix_train	train.sas	131	134	FREQ OUT=	def:confusion_matrix_train	logit_scored_train	DefinitionFormalized	-	round 1: rule (Sas.freq2) bit-exact (step unchanged by the corrections)	home of R20; Lean comments cite the old lines
+training_metrics	train.sas	140	162	DATA	def:training_metrics	confusion_matrix_train	DefinitionFormalized	def:training_metrics_precond	round 1: yes, 0 differences (step unchanged by the corrections)	Lean comments cite the old lines
+logit_scored_valid_temp	train.sas	173	178	PLM SCORE	def:logit_scored_valid_temp	credit_validation_export	DefinitionFormalized	def:logit_scored_valid_temp_precond	round 1: yes, 0 differences (step unchanged by the corrections)	home of R26; P4
+logit_scored_valid	train.sas	180	191	DATA	def:logit_scored_valid	logit_scored_valid_temp	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	
+confusion_matrix	train.sas	193	196	FREQ OUT=	def:confusion_matrix	logit_scored_valid	DefinitionFormalized	-	round 1: rule (Sas.freq2) bit-exact (step unchanged by the corrections)	
+validation_metrics	train.sas	202	224	DATA	def:validation_metrics	confusion_matrix	DefinitionFormalized	def:validation_metrics_precond	round 1: yes, 0 differences (step unchanged by the corrections)	
+risk_scores_train	train.sas	235	268	DATA	def:risk_scores_train	logit_scored_train	DefinitionFormalized	-	round 2: 28 rows, 0 differences	CHANGED. unrounded score, grade on probability; R23 retired
+risk_scores_validation	train.sas	270	300	DATA	def:risk_scores_validation	logit_scored_valid	DefinitionFormalized	-	round 2: 25 rows, 0 differences	CHANGED
+roc_train	train.sas	317	323	LOGISTIC ROC	def:roc_train	risk_scores_train	DefinitionFormalized	def:roc_train_precond	round 1: rule (Sas.rocArea) bit-exact via roc_stats (step unchanged by the corrections)	home of R25
+roc_valid	train.sas	325	331	LOGISTIC ROC	def:roc_valid	risk_scores_validation	DefinitionFormalized	def:roc_valid_precond	round 1: rule (Sas.rocArea) bit-exact via roc_stats (step unchanged by the corrections)	
+risk_scores_train_clean	train.sas	350	354	DATA	def:risk_scores_train_clean	risk_scores_train	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	CSV hand-off risk_scores_train.csv
+risk_scores_validation_clean	train.sas	356	360	DATA	def:risk_scores_validation_clean	risk_scores_validation	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	CSV hand-off risk_scores_validation.csv
+final_model_output	train.sas	376	383	DATA	def:final_model_output	risk_scores_train	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	CSV final_model_output.csv
+model_summary	train.sas	391	411	DATA MERGE	def:model_summary	roc_train,roc_valid,training_metrics,validation_metrics	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	home of R21; P7
+metrics_inputs_stop	metrics_calculation.sas	36	44	DATA _NULL_ ABORT	def:metrics_inputs_stop	-	DefinitionFormalized	-	by reading	NEW. P8
+roc_stats	metrics_calculation.sas	70	77	LOGISTIC ROC	def:roc_stats	risk_scores_validation_clean	DefinitionFormalized	def:roc_stats_precond	round 1: yes, 0 differences (step unchanged by the corrections)	input = PROC IMPORT table (parameter)
+auc_summary	metrics_calculation.sas	79	87	DATA	def:auc_summary	roc_stats	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	
+logit_scored_valid_sorted	metrics_calculation.sas	97	100	SORT	def:logit_scored_valid_sorted	risk_scores_validation_clean	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	PROC SORT in place on work.logit_scored_valid
+total_good_bad	metrics_calculation.sas	102	107	SQL INTO	def:total_good_bad	logit_scored_valid_sorted	DefinitionFormalized	def:total_good_bad_precond	round 1: inside ks_calculation (step unchanged by the corrections)	home of R17-R19; macro variables total_good_count, total_bad_count; Lean comments cite the old lines
+ks_calculation	metrics_calculation.sas	109	127	DATA	def:ks_calculation	logit_scored_valid_sorted,total_good_bad	DefinitionFormalized	-	round 2: 5 scenarios, 0 differences	CHANGED. BY pd_logistic, value only on the last row of a tie group; home of R35
+ks_statistic	metrics_calculation.sas	129	136	SQL	def:ks_statistic	ks_calculation	DefinitionFormalized	-	round 2: 5 scenarios, 0 differences	CHANGED. one row
+confusion_metrics	metrics_calculation.sas	146	183	MACRO	def:confusion_metrics_macro	logit_scored_valid_sorted,confusion_matrix_train	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	three steps per call
+threshold_analysis	metrics_calculation.sas	185	196	MACRO CALLS + DATA	def:threshold_analysis	confusion_metrics	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	
+decile_data	metrics_calculation.sas	207	213	RANK	def:decile_data	logit_scored_valid_sorted	DefinitionFormalized	def:decile_data_precond	round 1: yes, 0 differences (step unchanged by the corrections)	home of R24; Lean comments cite the old lines
+decile_analysis	metrics_calculation.sas	215	231	SQL	def:decile_analysis	decile_data	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	P2; Lean comments cite the old lines
+total_defaults	metrics_calculation.sas	237	242	SQL INTO	def:total_defaults	decile_data	DefinitionFormalized	-	round 1: inside cumulative_lift (step unchanged by the corrections)	macro variables total_defaults, overall_default_rate; P2, P3; Lean comments cite the old lines
+cumulative_lift	metrics_calculation.sas	244	260	DATA	def:cumulative_lift	decile_analysis,total_defaults	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	Lean comments cite the old lines
+train_scores_sorted	metrics_calculation.sas	274	281	SORT	def:train_scores_sorted	risk_scores_train_clean	DefinitionFormalized	-	round 2: 5 scenarios	NEW
+psi_cuts	metrics_calculation.sas	283	292	DATA	def:psi_cuts	train_scores_sorted	DefinitionFormalized	-	round 2: 5 scenarios; review: edge_metrics_b (cuts 800, 825 x 8); 0 differences	NEW. nine cut scores; home of R36
+train_bins	metrics_calculation.sas	294	304	DATA	def:train_bins	psi_cuts,risk_scores_train_clean	DefinitionFormalized	def:train_bins_precond	round 2: 5 scenarios; review: edge_metrics_b (7,000 rows) and empty psi_cuts vs X21 F, X22 F; 0 differences	CHANGED. bins from the training cuts; home of R37
+valid_bins	metrics_calculation.sas	306	315	DATA	def:valid_bins	psi_cuts,logit_scored_valid_sorted	DefinitionFormalized	-	round 2: 5 scenarios; review: edge_metrics_b (3,000 rows, 333 distinct scores) and empty psi_cuts; 0 differences	CHANGED
+psi_bins	metrics_calculation.sas	317	321	DATA	def:psi_bins	-	DefinitionFormalized	-	round 2: 5 scenarios	NEW. bins 0..9
+psi_floor	metrics_calculation.sas	323	329	SQL INTO	def:psi_floor	train_bins,valid_bins	DefinitionFormalized	-	round 2: 5 scenarios; review: edge_metrics_b; empty tables give missing (X21 F); 0 differences	NEW. macro variable = BEST8. text of 0.5/max(n_train,n_valid): parameter P3
+psi_calculation	metrics_calculation.sas	331	349	SQL	def:psi_calculation	psi_bins,train_bins,valid_bins,psi_floor	DefinitionFormalized	-	round 2: 5 scenarios; review: edge_metrics_b in Lean, ten rows equal printed_psi_calculation.csv to 10 digits, PSI 6.8121516398; empty case vs X21 F; 0 differences	CHANGED
+psi_summary	metrics_calculation.sas	351	359	SQL	def:psi_summary	psi_calculation	DefinitionFormalized	-	round 2: 5 scenarios, 0 differences	P2; Lean unchanged (format only)
+calibration_data	metrics_calculation.sas	369	375	RANK	def:calibration_data	logit_scored_valid_sorted,decile_data	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	
+calibration_plot	metrics_calculation.sas	377	387	SQL	def:calibration_plot	calibration_data	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	P2
+validation_summary	metrics_calculation.sas	401	416	DATA MERGE	def:validation_summary	auc_summary,ks_statistic,psi_summary,model_summary	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	
+model_performance_metrics	metrics_calculation.sas	461	484	DATA MERGE	def:model_performance_metrics	auc_summary,ks_statistic,psi_summary,threshold_analysis	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	P7
+predict_inputs_stop	predict.sas	34	42	DATA _NULL_ ABORT	def:predict_inputs_stop	-	DefinitionFormalized	-	by reading	NEW. P8
+test_num_macro	predict.sas	57	69	MACRO	def:test_num_macro	-	DefinitionFormalized	-	round 2: 9 cases; review: absent column, character id vs X21 D, E; 0 differences	NEW
+test_raw_columns_ok	predict.sas	71	86	SQL INTO	def:test_raw_columns_ok	-	DefinitionFormalized	-	round 2: 9 cases; review: missing column, empty table vs X21 C, D; 0 differences	NEW. no row = no table (R39)
+test_raw_input_check	predict.sas	88	114	DATA	def:test_raw_input_check	test_num_macro	DefinitionFormalized	def:test_raw_input_check_precond	round 2: 9 cases; review: 4 tables vs X21 D, E; 0 differences	NEW
+test_raw_check_totals	predict.sas	116	121	SQL INTO	def:test_raw_check_totals	test_raw_input_check	DefinitionFormalized	-	round 2: 9 cases; review: 4 tables (character ids: 1 bad, 2 duplicates) vs X21 E; 0 differences	NEW. bad_rows, duplicate_ids
+test_raw_stop	predict.sas	123	130	DATA _NULL_ ABORT	def:test_raw_stop	test_raw_columns_ok,test_raw_check_totals	DefinitionFormalized	-	round 2: 9 cases; review: 4 tables; 0 differences	NEW
+test_raw_clean	predict.sas	141	153	DATA	def:test_raw_clean	credit_raw_clean	DefinitionFormalized	def:test_raw_clean_precond	round 1: yes, 0 differences (step unchanged by the corrections)	input = PROC IMPORT table (parameter)
+test_cleaned	predict.sas	163	182	DATA	def:test_cleaned	test_raw_clean	DefinitionFormalized	def:test_cleaned_precond	round 1: yes, 0 differences (step unchanged by the corrections)	
+test_imputed	predict.sas	184	207	SQL	def:test_imputed	test_cleaned,income_medians_export	DefinitionFormalized	def:test_imputed_precond	round 2: 20 raw rows; review: character ids A1, A2 carried to row_id and to kaggle_submission (X21 E); 0 differences	CHANGED. medians = imported income_medians.csv (parameter train_income_medians, P6); P1; row_id is the VAR1 cell as it is (R41)
+test_features	predict.sas	213	292	DATA	def:test_features	test_imputed	DefinitionFormalized	def:test_features_precond	round 2: 20 raw rows, 0 differences	CHANGED
+test_scored_temp	predict.sas	298	303	PLM SCORE	def:test_scored_temp	test_features,logit_scored_valid_temp	DefinitionFormalized	def:test_scored_temp_precond	round 1: yes, 0 differences (step unchanged by the corrections)	P4
+test_scored	predict.sas	305	313	DATA	def:test_scored	test_scored_temp	DefinitionFormalized	def:test_scored_precond	round 1: yes, 0 differences (step unchanged by the corrections)	
+test_predictions	predict.sas	319	354	DATA	def:test_predictions	test_scored,risk_scores_train	DefinitionFormalized	def:test_predictions_precond	round 2: 25 rows, 0 differences	CHANGED
+kaggle_submission	predict.sas	360	364	DATA	def:kaggle_submission	test_predictions	DefinitionFormalized	def:kaggle_submission_precond	round 1: yes, 0 differences; review: character row_id carried	CSV kaggle_submission.csv
+test_predictions_full	predict.sas	366	373	DATA	def:test_predictions_full	test_predictions	DefinitionFormalized	-	round 1: yes, 0 differences (step unchanged by the corrections)	CSV test_predictions.csv

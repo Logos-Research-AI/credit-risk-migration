@@ -19,10 +19,11 @@ are visible from `sas-credit-risk-spec`. All your items go in `sas-credit-risk-s
 
 ## What to build
 
-1. **The SAS program as a pipeline.** One definition, `sasPipeline`, of type `CreditRisk.Pipeline`,
+1. **The SAS program as a pipeline.** The SAS program was corrected on the findings of the first round (see `migration/legacy-to-lean/retranslation-report.md` and `manifest.tsv` for the units as they now are); every earlier verdict is void and every contract is decided again. One definition, `sasPipeline`, of type `CreditRisk.Pipeline`,
    assembled from the existing SAS units at the real numbers. It only wires existing units
-   together: no logic of your own, nothing renamed, no unit skipped or reordered. If the item
-   already exists, revise it to match this brief.
+   together: no logic of your own, nothing renamed, no unit skipped or reordered. The item, `SasLinks`, the contracts and their old negations exist from the first round without
+   accepted Lean: restate them against the current units; remove an old `neg:` item rather than
+   reuse it.
    - `features`: the units of `feature_engineering.sas`, from the raw training table to the two
      feature tables (the data sets handed to PROC EXPORT).
    - `fit`: a parameter (the model fit is a later pass).
@@ -35,8 +36,15 @@ are visible from `sas-credit-risk-spec`. All your items go in `sas-credit-risk-s
    - `scoreTest`: the units of `predict.sas`, to `test_predictions.csv`.
    - `metrics`: the units of `metrics_calculation.sas`, to the four metrics tables the
      requirements name.
-   - Errors: a step returns `none` exactly where the SAS Lean says the SAS stops. If the units are
-     total, every step returns `some`.
+   - Errors: a step returns `none` exactly where the SAS Lean says the script stops. Since the
+     SAS was corrected, each script has stop units (Booleans, true = stop): the input checks
+     `credit_raw_stop` and `test_raw_stop`, and `train_inputs_stop`, `metrics_inputs_stop`,
+     `predict_inputs_stop` for a missing input file. A step of the pipeline returns `none` when
+     the stop unit of its script is true, and otherwise `some` of what the units compute. The
+     later units are total and do not look at the Boolean themselves: the wiring must.
+   - `income_medians.csv` is written by `feature_engineering.sas` and read by `predict.sas`:
+     `scoreTest` gets the training medians by running the feature-engineering units that produce
+     them on its raw training table argument.
 
    **Parameters and their links.** Everything the SAS units leave open is a parameter of
    `sasPipeline`. The contracts quantify over all parameter values that satisfy these links, and
@@ -51,7 +59,10 @@ are visible from `sas-credit-risk-spec`. All your items go in `sas-credit-risk-s
    | `arrange` | row order of the PROC SQL joins, which SAS does not fix | a permutation of its argument, as the units' own preconditions say |
    | `split` | PROC SURVEYSELECT (outside the SAS Lean) | returns the rows of its argument in order, each with `Selected` added, 0 or 1; the number selected is within one of 70 % of the rows. Contracts that use the size clause are labelled *conditional on the draw* |
    | `fit` | the model fit (later pass) | every term of the model names a numeric column of the feature table. Labelled *conditional on the fit* where used |
-   | `agg` | PROC SQL SUM and MEAN | the real sum and mean of the list |
+   | the read of `income_medians.csv` in `predict.sas` | a CSV file written by one script and read by the next | the identity on what `feature_engineering.sas` exports |
+| the file-existence Booleans of the `*_inputs_stop` units | whether the previous script left its files | a file exists exactly when the step that writes it returned a result (ruling G36) |
+| `best8` (the PSI floor passes through an 8-character text) | BEST8. formatting | `best8 x` is within 5·10⁻⁸ relative of `x` and positive when `x` is positive; where a contract needs more, say so |
+| `agg` | PROC SQL SUM and MEAN | the real sum and mean of the list |
    | `invLink` | PROC LOGISTIC's own probability | not a parameter of `sasPipeline`; appears only in `score_chains_agree`, as `invLink e = 1 / (1 + exp (-e))` |
 
 2. **One contract per requirement**: theorem items `sas_Q1` … `sas_Q27` (not Q17), each stating

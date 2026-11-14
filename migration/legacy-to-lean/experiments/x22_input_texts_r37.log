@@ -1,0 +1,238 @@
+5                                                          The SAS System                        Saturday, 14 November 2026 20:30:00
+
+24         
+25         /* x22: follow-up of x21. (A) more texts through INPUT(strip(text), ?? best32.): a sign or
+26            nothing before an exponent letter, text after an exponent. (F) row counts of train_bins and
+27            valid_bins when psi_cuts has no row (x21 F showed them only through psi_calculation). */
+28         options notes;
+29         data work.x22_a;
+30             length txt $40;
+31             infile datalines truncover dsd dlm='|';
+32             input txt $char40.;
+33             v = ifn(lengthn(strip(txt)) <= 32, input(strip(txt), ?? best32.), .);
+34             put 'X22A [' txt $char20. '] ' v= best32. ' hex=' v hex16.;
+35             datalines;
+
+X22A [-e5                 ] v=.  hex=               .
+X22A [+d2                 ] v=.  hex=               .
+X22A [-E                  ] v=.  hex=               .
+X22A [+D                  ] v=.  hex=               .
+X22A [e                   ] v=.  hex=               .
+X22A [.e5                 ] v=.  hex=               .
+X22A [-.e5                ] v=.  hex=               .
+X22A [1e3x                ] v=.  hex=               .
+X22A [1e3.5               ] v=.  hex=               .
+X22A [1e 3                ] v=.  hex=               .
+X22A [1ee3                ] v=.  hex=               .
+X22A [1e3e2               ] v=.  hex=               .
+X22A [1d-2                ] v=0.01  hex=3F847AE147AE147B
+X22A [1D+2                ] v=100  hex=4059000000000000
+X22A [2e0                 ] v=2  hex=4000000000000000
+X22A [2e00                ] v=2  hex=4000000000000000
+X22A [1e05                ] v=100000  hex=40F86A0000000000
+X22A [x1e3                ] v=.  hex=               .
+X22A [e1e3                ] v=.  hex=               .
+X22A [-bad                ] v=.  hex=               .
+X22A [+NA                 ] v=.  hex=               .
+X22A [1 000               ] v=.  hex=               .
+X22A [1e--2               ] v=.  hex=               .
+X22A [12d                 ] v=.  hex=               .
+X22A [12e                 ] v=.  hex=               .
+X22A [12.d                ] v=.  hex=               .
+X22A [12.5E               ] v=.  hex=               .
+NOTE: The data set WORK.X22_A has 27 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              553.50k
+      OS Memory           11432.00k
+      Timestamp           14/11/2026 08:30:21 PM
+      Step Count                        2  Switch Count  2
+      Page Faults                       0
+      Page Reclaims                     143
+      Page Swaps                        0
+      Voluntary Context Switches        8
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           264
+      
+
+63         ;
+64         run;
+65         
+66         data work.psi_cuts;
+67             length cut1-cut9 8;
+68             stop;
+69         run;
+
+NOTE: Variable cut1 is uninitialized.
+NOTE: Variable cut2 is uninitialized.
+NOTE: Variable cut3 is uninitialized.
+NOTE: Variable cut4 is uninitialized.
+NOTE: Variable cut5 is uninitialized.
+NOTE: Variable cut6 is uninitialized.
+NOTE: Variable cut7 is uninitialized.
+NOTE: Variable cut8 is uninitialized.
+NOTE: Variable cut9 is uninitialized.
+NOTE: The data set WORK.PSI_CUTS has 0 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              522.59k
+      OS Memory           11432.00k
+      Timestamp           14/11/2026 08:30:21 PM
+      Step Count                        3  Switch Count  2
+      Page Faults                       0
+      Page Reclaims                     81
+      Page Swaps                        0
+      Voluntary Context Switches        8
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           264
+      
+
+70         data work.logit_scored_train;
+71             length default_flag pd_logistic credit_risk_score 8;
+72             stop;
+73         run;
+
+NOTE: Variable default_flag is uninitialized.
+NOTE: Variable pd_logistic is uninitialized.
+NOTE: Variable credit_risk_score is uninitialized.
+NOTE: The data set WORK.LOGIT_SCORED_TRAIN has 0 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              517.06k
+      OS Memory           11432.00k
+      Timestamp           14/11/2026 08:30:21 PM
+      Step Count                        4  Switch Count  2
+      Page Faults                       0
+      Page Reclaims                     78
+      Page Swaps                        0
+      Voluntary Context Switches        8
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           264
+      
+
+74         data work.logit_scored_valid;
+75             do credit_risk_score = 600, 700, 800;
+76                 default_flag = 0; pd_logistic = 0.1;
+77                 output;
+78             end;
+79         run;
+
+NOTE: The data set WORK.LOGIT_SCORED_VALID has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              518.10k
+      OS Memory           11432.00k
+      Timestamp           14/11/2026 08:30:21 PM
+      Step Count                        5  Switch Count  2
+      Page Faults                       0
+      Page Reclaims                     78
+      Page Swaps                        0
+      Voluntary Context Switches        8
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           264
+      
+
+80         data work.train_bins;
+81             if _n_ = 1 then set work.psi_cuts;
+82             set work.logit_scored_train;
+83             array cut{9};
+84             score_bin = 0;
+85             do k = 1 to 9;
+86                 if credit_risk_score > cut{k} then score_bin = score_bin + 1;
+87             end;
+88             drop k cut1-cut9;
+89         run;
+
+NOTE: There were 0 observations read from the data set WORK.PSI_CUTS.
+NOTE: The data set WORK.TRAIN_BINS has 0 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              1165.09k
+      OS Memory           11952.00k
+      Timestamp           14/11/2026 08:30:21 PM
+      Step Count                        6  Switch Count  2
+      Page Faults                       0
+      Page Reclaims                     153
+      Page Swaps                        0
+      Voluntary Context Switches        8
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           272
+      
+
+90         data work.valid_bins;
+91             if _n_ = 1 then set work.psi_cuts;
+92             set work.logit_scored_valid;
+93             array cut{9};
+94             score_bin = 0;
+95             do k = 1 to 9;
+96                 if credit_risk_score > cut{k} then score_bin = score_bin + 1;
+97             end;
+98             drop k cut1-cut9;
+99         run;
+
+NOTE: There were 0 observations read from the data set WORK.PSI_CUTS.
+NOTE: The data set WORK.VALID_BINS has 0 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              1147.29k
+      OS Memory           11952.00k
+      Timestamp           14/11/2026 08:30:21 PM
+      Step Count                        7  Switch Count  2
+      Page Faults                       0
+      Page Reclaims                     153
+      Page Swaps                        0
+      Voluntary Context Switches        9
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           264
+      
+
+100        proc sql noprint;
+101            select count(*) into :x22_nt trimmed from work.train_bins;
+102            select count(*) into :x22_nv trimmed from work.valid_bins;
+103            select count(*) into :x22_nc trimmed from work.psi_cuts;
+104            select count(*) into :x22_nl trimmed from work.logit_scored_valid;
+105        quit;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              5754.25k
+      OS Memory           16812.00k
+      Timestamp           14/11/2026 08:30:21 PM
+      Step Count                        8  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     318
+      Page Swaps                        0
+      Voluntary Context Switches        0
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           0
+      
+
+106        %put X22 F psi_cuts=&x22_nc logit_scored_valid=&x22_nl train_bins=&x22_nt valid_bins=&x22_nv;
+X22 F psi_cuts=0 logit_scored_valid=3 train_bins=0 valid_bins=0
+107        
+108        
+109        
+110        
+6                                                          The SAS System                        Saturday, 14 November 2026 20:30:00
+
+111        
