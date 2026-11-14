@@ -51,7 +51,9 @@
         "migration/legacy-to-port/experiments/*.log",
         "migration/legacy-to-port/experiments/*.lst",
         "migration/foundation/**",
-        "migration/requirements/requirements.md"
+        "migration/requirements/requirements.md",
+        "judge/runs/**",
+        "judge/run_sas_sequence.py"
       ],
       "write": [
         "migration/legacy-to-lean/**"

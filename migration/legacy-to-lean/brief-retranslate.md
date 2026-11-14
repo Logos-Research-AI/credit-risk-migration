@@ -9,7 +9,7 @@ care and the same rules as the original translation (`migration/legacy-to-lean/b
 ## What changed
 
 - `migration/legacy-to-lean/corrections.diff`: every change to the four scripts.
-- `migration/proofs/legacy-meets-requirements/changes.md`: the coding agent's account, per
+- `migration/legacy-to-lean/corrections-account.md`: the coding agent's account, per
   finding, with the SAS runs that show each fix.
 - `judge/reference/` and `judge/reference/scenarios/` now hold the outputs of the corrected SAS.
   Further evidence runs are in `judge/runs/` (`final_*`, `ev*_fix_*`) with inputs under
