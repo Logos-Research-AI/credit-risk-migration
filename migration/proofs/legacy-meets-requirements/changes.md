@@ -161,3 +161,50 @@ New warnings: none in any run.
 - **Q27.** Evidence for the test-file clause does not separate the fix from the setup. ev_fix_Q27_test ran feature_engineering.sas then predict.sas without train.sas, so work.logit_model did not exist and predict.sas could not have written test_predictions.csv or kaggle_submission.csv with or without the check; the absence of those files shows nothing. What the run does show is the log: 'ERROR: cs-test.csv does not meet the input conditions: columns_ok=1 bad_rows=1 duplicate_ids=1.' and the ABORT CANCEL at line 1203. The scenario also puts two faults in one file (repeated id and missing age). No run exercises the other branches: a missing required field or a duplicate id in the training file, a non-whole or negative count, no known income, a wrong column set. Ruling G23's other half (the training-side score and metrics files are still produced) is not shown either, since train.sas and metrics_calculation.sas were not run.
 - **Q9.** Evidence figure is wrong, the fix is not. The account says both identities hold on corrected_real with relative difference below 5e-11. For age_income_interaction I get 4.1e-11 on the 148,366 rows with income above 0. For utilization_debt_interaction 2,381 rows exceed 5e-11 and the largest relative difference is 2.7e-7 (row 46046: 0.00945 x 0.0155812 against the printed product). That is the 12-character printing of small values, not a defect in the statement. The else branch (income not above 0 keeps age * log(income + 1)) departs from the finding's suggested change; it is inside ruling G16 for income 0 (1,634 real rows, value 0), and see the Q14 entry for income at or below -1.
 - **Q1, Q7, Q18, Q23, Q24.** No defect found. Checked on judge/runs/corrected_real: no missing income in 150,000 feature rows; total_risk_flags equals the sum of the eight flags on every row; the 70/30 split has the same row ids as the reference, so the new join table did not move it; grade equals the Q18 band of the published probability on all rows of the four score files; no missing probability. Checked by hand on the scenarios: fix_Q23_tie gives KS 0.5 at 0.1 and 0.3, one row, cutoff 0.1, AUC 0.75; fix_Q24 gives KS 0; fix_Q25 gives 2 x 0.5 x ln(1 / 0.25) ... as printed, 1.0397 per filled bin. All copies named in the brief are changed (feature_engineering.sas and predict.sas for Q7 and Q9; train.sas twice and predict.sas for Q15 and Q18); I found no further copy of the score ladder or the flag sum in legacy/. Experiment x18 runs the predict.sas statements as they stand in the file.
+
+# Round 2 (2026-11-15)
+
+## G34: fixed-and-shown
+
+- **Change.** Ruling G34: a known MonthlyIncome below 0 now makes the file faulty, and the branch of commit 7c3aada for an income of -1 or less is removed. Input check: one added condition `or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)` at /Users/cristophersalvi/GitHub/credit-risk-migration/legacy/feature_engineering.sas line 101 and /Users/cristophersalvi/GitHub/credit-risk-migration/legacy/predict.sas line 109 (plus the comment above each check). Restored `log_monthly_income = log(monthly_income + 1);` at feature_engineering.sas line 304 and predict.sas line 280. Nothing else changed. This change was already committed by the interrupted attempt; I checked the diff and did not alter it.
+- **Copies.** Both copies: feature_engineering.sas (training file check and feature step) and predict.sas (test file check and feature step). train.sas and metrics_calculation.sas hold no copy.
+- **Evidence.** Run ev3_fix_G34_sequence (judge/runs/ev3_fix_G34_sequence, nine steps in one session, inputs in judge/scenarios/fix_G34, made by the interrupted attempt just before the commit; I verified its logs echo the committed check line and not the removed branch). Income 0 (training row 34, test row 30), four scripts: 0 errors, 0 new warnings; training row 34 has monthly_income 0, log_monthly_income 0, age_income_interaction 0; test row 30 is scored (pd 0.0166460757). Training file with income -1 in row 34, and with -0.5: feature_engineering.sas stops with 'ERROR: cs-training.csv does not meet the input conditions: columns_ok=1 bad_rows=1 duplicate_ids=0 known_incomes=2413.' and 'Feature engineering stopped. Nothing is exported.'; its three output files are gone from the output folder afterwards. Test file with income -1 in row 30, and with -0.5: predict.sas stops with 'ERROR: cs-test.csv does not meet the input conditions: columns_ok=1 bad_rows=1 duplicate_ids=0.' and 'Test set scoring stopped. Nothing is exported.'; its two output files are gone. After each rejection the valid input runs again without error.
+- **Commit.** 6d9a855 (G34 change); 6a2e60c (Reference: outputs of the corrected SAS)
+
+## Final runs and the new reference
+
+Reused, not rerun: final_real (real data, four scripts, 333 s), final_edge_predict (scenario edge_predict, four scripts, 342 s), final_edge_metrics_a, final_edge_metrics_b, final_edge_metrics_c (metrics_calculation.sas on the stage inputs, about 18 s each). All under /Users/cristophersalvi/GitHub/credit-risk-migration/judge/runs/.
+
+Why I reused them: each has a run_meta.json holding remote_run_root, which run_sas.py only writes after every download succeeded, so each run is complete. Each started after commit 6d9a855 (19:15:57; the first run started 19:16:00), the working tree is clean, and every source line of the committed scripts appears in the run's log apart from a few long lines the log wraps. The feature_engineering and predict logs show the G34 check line and no longer show the removed branch.
+
+Logs: 0 ERROR lines in all five runs; 0 warnings outside judge/known_warnings.txt (the same seven known kinds as before).
+
+No edge scenario input was rejected by the new income check, so no scenario input was adjusted.
+
+Reference replaced in commit 6a2e60c: judge/reference from final_real, judge/reference/scenarios/edge_predict from final_edge_predict, edge_metrics_a, b, c from final_edge_metrics_a, b, c. Layout as before: CSVs at the top, listings/ with .log, .lst and run_meta.json (for the three edge_metrics folders only .lst and run_meta.json, as before). Every copied file was compared byte for byte with its run file. 115 files, was 113: income_medians.csv is new in reference/ and in reference/scenarios/edge_predict/.
+
+## What changed in the outputs
+
+G34 itself changes no output: every CSV of the five final runs is byte-identical to the corresponding corrected2_* run of round 1 (the real data and the edge scenarios hold no income below 0). So the figures in migration/proofs/legacy-meets-requirements/changes.md, section 'What changed in the outputs', are the figures of the new reference. Spot-checked on final_real: the split is unchanged (same training row ids in the same order as the old reference), validation AUC 0.8559, Gini 0.7118, KS 0.5552 at cutoff 0.0587, PSI 0.0004404097 'No significant change', status 'Production Ready', income medians 2557 / 4666 / 6000 / 6333 / 5313 with overall 5400.
+
+Against the old reference, all 31 existing real-data CSVs differ and income_medians.csv is new. From the round 1 account, which still holds:
+- Model: 15 effects plus intercept (was 18), no income-derived term left; intercept -4.1668 -> -1.7033.
+- AUC: training 0.8592 unchanged, validation 0.8564 -> 0.8559.
+- KS: 0.5569 -> 0.5552.
+- PSI: 0.0000 -> 0.0004404097, now printed in BEST12. instead of 8.4.
+- Grades, training: A 101,160 -> 89,550; B 2,576 -> 4,128; C 1,225 -> 4,278; D 39 -> 2,269; E 0 -> 2,298; F 0 -> 2,477.
+- edge_predict: missing probabilities 5,881 -> 0.
+- edge_metrics PSI: a 0.0906 -> 0.0027901142; b 1.5743 -> 6.8121516398; c 0.1790 -> 0.3078608702.
+
+New warnings: none.
+
+## Problems and open points
+
+- The parity contract was not run and will not pass: the system instruction says `bash migration/legacy-to-port/parity/run_contract.sh out/parity` must pass after my changes, but the round 2 brief says the port no longer matches the corrected SAS, that this is the next stage, and forbids touching port/ and judge/compare.py. I followed the brief. With the reference now replaced, the contract, judge/test_compare.py and judge/validate_judge.py should be expected to fail until the port and comparator are updated.
+- The old judge/reference/listings/run_meta.json carried a hand-added 'warnings_reviewed' block (review of 2026-11-05). The new one is the run's own run_meta.json without that block: I did not copy a review onto a run it was not made for. The warnings in the final runs are the same seven kinds that block listed. Add it back if the layout needs it.
+- judge/scenarios/real_metrics (git-ignored, built by make_scenarios.py as a copy of the reference risk_scores files) still holds the old reference's score files. I did not regenerate it: the brief does not name it. It needs `uv run python make_scenarios.py` before the next staged metrics validation, and that script also rebuilds the other scenarios, so check it leaves them unchanged.
+- The G34 evidence run ev3_fix_G34_sequence finished at 19:15, just before commit 6d9a855 at 19:15:57, so it ran on the working tree rather than on the commit. Its logs match the committed text on the check line and the restored log line, so I did not repeat it.
+- The standing brief named in the system instruction (migration/proofs/port-equals-legacy/brief-coding-agent.md) was not used: the task named migration/proofs/legacy-meets-requirements/brief-coding-agent.md, section 'Round 2', and I carried out that one. No hook blocked any call.
+- Nothing in the G34 ruling or the findings was found to be wrong. The open points of round 1 not covered by rulings G34 to G38 (the exp overflow for a logit near -800 in train.sas and predict.sas) are unchanged.
+
+The reviewing agent found no defect in round 2.
