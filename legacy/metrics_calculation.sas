@@ -101,11 +101,11 @@ data work.ks_calculation;
     ks_value = abs(cum_pct_good - cum_pct_bad);
 run;
 
-/* Find maximum KS */
+/* Find maximum KS (one row: the lowest cutoff when several attain the maximum) */
 proc sql;
     create table work.ks_statistic as
     select max(ks_value) as KS_Statistic format=8.4,
-           pd_logistic as KS_Cutoff format=8.4
+           min(pd_logistic) as KS_Cutoff format=8.4
     from work.ks_calculation
     where ks_value = (select max(ks_value) from work.ks_calculation);
 quit;

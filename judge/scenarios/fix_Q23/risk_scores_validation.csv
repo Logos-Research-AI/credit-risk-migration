@@ -1,0 +1,4 @@
+row_id,default_flag,pd_logistic,credit_risk_score
+101,1,0.4,750
+102,0,0.4,750
+103,1,0.4,750
