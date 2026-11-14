@@ -1,20 +1,22 @@
-# Requirements formalisation report: draft 3
+# Requirements formalisation report: draft 4
 
 Blueprint `credit-risk-requirements`, id `006ff04c-d34c-4a9c-b230-ccd725b1be6f`.
 Shared types from `credit-risk-foundation`, id `02011d57-8b15-43bb-8744-c6646fdfe9ae`.
 Graph: https://platform-staging.logosresearch.ai/view/waad_AzureAd_b85254ea-5bb2-40b8-b836-c90bdf235fc9/006ff04c-d34c-4a9c-b230-ccd725b1be6f
 
-Sources: `/Users/cristophersalvi/GitHub/credit-risk-migration/migration/requirements/requirements.md` (draft 3, rulings G1 to G22) and `/Users/cristophersalvi/GitHub/credit-risk-migration/migration/requirements/brief.md`.
+Sources: `/Users/cristophersalvi/GitHub/credit-risk-migration/migration/requirements/requirements.md` (draft 4, rulings G1 to G33) and `/Users/cristophersalvi/GitHub/credit-risk-migration/migration/requirements/brief.md`.
 
 ## 1. Outcome
 
-- The blueprint now states draft 3: the new interface (G11, G12), rulings G13 to G22, distinct row ids in section 3, and the new requirement Q27.
-- All 58 statements are accepted by the compiler and the judge, and both theorems are proved.
-- No contradiction between requirements was found.
-- One requirement, Q27, cannot be stated as literally worded for a faulty test file (section 5); the reading taken needs the owner's confirmation.
-- The reviewer raised five findings. Two led to corrected statements (Q22, Q25), two to added text (Q21, Q22), and one was kept as is (Q11).
-- Five questions remain for the owner (section 8).
-- The corrections to Q22 and Q25 were made after the review. Nothing in the record shows the independent reviewer re-checked those two corrected statements; they were re-accepted by the Logos judge only.
+- The blueprint now states draft 4: G28 and G29 in the input conditions, G30 in Q12 and Q13, G31 in Q22. G32 leaves Q26 as it was, and G33 changes no requirement.
+- All 59 statements are accepted by the compiler and the judge, and both theorems are proved against the current definitions.
+- No contradiction was found, and nothing in draft 4 failed to be stated.
+- The reviewer raised three findings (Q12, Q13, Q25). All three were accepted and the statements corrected. The reviewer's list of unanswered findings is empty.
+- Two of those corrections go beyond the rulings and need the owner's attention:
+  - Q25 now requires nothing when a set has no score, which is weaker than the accepted draft-3 statement.
+  - Q12 and Q13 now bind every row of the test feature table and every score row with the applicant's id.
+- One new reading may not be what the owner means: "decimal number" in G28 excludes exponent notation.
+- I was not given the detail of any re-check of the three corrected statements by the independent reviewer. I only know that the judge re-accepted them and that the list of open findings handed to me is empty.
 
 ## 2. get_status counts
 
@@ -23,81 +25,59 @@ Read at report time.
 | Field | Value |
 |---|---|
 | verification_approved | true |
-| total_items | 58 |
-| statements_formalized | 58 |
+| total_items | 59 |
+| statements_formalized | 59 |
 | statements_pinned | 0 |
 | statements_to_write | none |
 | proofs_to_write | none |
 | waiting | none |
 | trust layer | Judging |
 
-This agrees with the facts handed over from the consistency step. `get_items` shows 56 definitions in state DefinitionFormalized and 2 theorems in state TheoremProved.
+`get_items` shows 57 definitions in state DefinitionFormalized and 2 theorems in state TheoremProved.
 
-Compared with draft 2 (54 items): four were added (`def:TrainOK`, `def:TestOK`, `def:Fitted`, `def:Q27`) and none removed.
+This agrees with the facts handed over from the consistency step. The update step's status (both proofs to write, verification_approved false) was true at that time and has since been superseded.
+
+Compared with draft 3 (58 items): one item was added (`def:decimal32`) and none removed.
 
 ## 3. Items
 
-All 56 definitions are in state DefinitionFormalized; both theorems are in state TheoremProved. "Change" is relative to the draft-2 blueprint.
+All 57 definitions are DefinitionFormalized; both theorems are TheoremProved. "Change" is relative to the draft-3 blueprint.
 
 ### Interface and input conditions
 
 | Item | Covers | Change |
 |---|---|---|
-| def:Pipeline | Interface (G11, G12, brief item 1): open type Model; features (raw train, seed), fit (training features), score (model, features), scoreTest (model, raw test, raw train), metrics. Each returns Option; none = error | restated |
+| def:Pipeline | Interface (G11, G12): open type Model; features, fit, score, scoreTest, metrics; each returns Option, none = error | unchanged |
 | def:MetricsTables | The four metrics tables of section 5 | unchanged |
-| def:TrainOK | Section 3 conditions on the raw training file, including at least one known income and distinct VAR1 (G14) | new |
-| def:TestOK | Section 3 conditions on the raw test file, including distinct VAR1 (G14) | new |
-| def:InputOK | TrainOK train and TestOK test | restated |
-| def:Fitted | Model of a run (G12): features(train, seed) = some (F1, F2) and fit F1 = some m | new |
+| def:TrainOK | Section 3 on the training file. Earlier conditions kept. G28: each row's column names are a permutation of the twelve raw columns; every value def:num reads satisfies def:decimal32. G29: the three late-payment counts and NumberOfOpenCreditLinesAndLoans are natural numbers; NumberOfDependents is one where present | restated |
+| def:TestOK | Section 3 on the test file, with the same G28 and G29 additions. The outcome may be missing but its column must exist | restated |
+| def:InputOK | TrainOK train and TestOK test | text only (cites G28, G29) |
+| def:Fitted | Model of a run (G12) | unchanged |
 
 ### Auxiliary notions
 
 | Item | Covers | Change |
 |---|---|---|
-| def:num | Numeric cell reading; absent = missing | unchanged |
-| def:str | Text cell reading | unchanged |
-| def:ageGroup | Age groups (G5) | unchanged |
-| def:median | Standard median | unchanged |
-| def:q1Median | Training median of Q1 with the G4 fallback | unchanged |
-| def:rowQ1, rowQ2, rowQ3, rowQ5, rowQ7 | Row rules of Q1, Q2, Q3, Q5, Q7 | unchanged |
-| def:rowQ4 | Row rule of Q4 (G17): percent = 100 x raw, caps 200 and 500; also credit_utilization = 100u and debt_ratio = 100d | restated |
-| def:rowQ6 | Row rule of Q6 (G22, G17, G6): each flag is 1 when its condition holds and 0 when not; thresholds against 100 x raw | restated |
-| def:rowQ8 | Row rule of Q8 (G8) | unchanged |
-| def:rowQ9 | Row rule of Q9 (G16, G17): natural log only when income > 0; uncapped percent values | text only |
-| def:classProbs | Probabilities by class | unchanged |
-| def:confCount | Confusion counts | unchanged |
-| def:somersD | Standard Somers' D | unchanged |
-| def:auc | Standard AUC | unchanged |
-| def:ecdf | Empirical cumulative distribution | unchanged |
-| def:ksStat | KS statistic | unchanged |
-| def:decileCut | Nearest-rank decile cut, no interpolation (G9, G20) | text only |
-| def:psiShare | PSI bin shares; a score equal to a cut goes in the lower bin (G20) | text only |
-| def:outcomeRecorded | default_flag of a score table is the raw outcome, matched by row id (G14) | text only |
+| def:decimal32 | G28: a real that is a plain decimal numeral (optional minus, at least one integer digit, optional point and k fractional digits) of at most 32 characters | new |
+| def:num, def:str | Numeric and text cell reading | unchanged |
+| def:ageGroup, def:median, def:q1Median | Age groups, median, Q1 training median | unchanged |
+| def:rowQ1 to def:rowQ9 | Row rules of Q1 to Q9. G29 changes nothing in rowQ6: `1 <= n` already states "at least one" | unchanged |
+| def:classProbs, def:confCount, def:somersD, def:auc, def:ecdf, def:ksStat | Standard notions behind Q22 to Q24 | unchanged |
+| def:decileCut, def:psiShare | Nearest-rank decile cut and PSI bin shares | unchanged |
+| def:outcomeRecorded | default_flag is the raw outcome, matched by row id | unchanged |
 
 ### Requirements
 
 | Item | Covers | Change |
 |---|---|---|
-| def:Q1, Q2, Q3, Q5, Q7, Q8 | Q1, Q2, Q3, Q5, Q7, Q8 on the feature tables the features step produces | adapted to interface |
-| def:Q4 | Q4 (G17) via def:rowQ4 | restated |
-| def:Q6 | Q6 (G22, G17) via def:rowQ6 | restated |
-| def:Q9 | Q9 (G16, G17) via def:rowQ9 | restated |
-| def:Q10 | Q10 (G15): row ids of F1 ++ F2 are a permutation of VAR1; sizes within one applicant (<= 1) of 0.7 n and 0.3 n | restated |
-| def:Q11 | Q11: same seed, same outcome of the features step | adapted to interface |
-| def:Q12 | Q12 (G13): test predictions equal score(m, Ft) for some Ft obeying the row rules of Q1 to Q9, with the fitted model of the run | restated |
-| def:Q13 | Q13 (G10, G13): same existential table, training medians and 0 dependents | restated |
-| def:Q14, Q15, Q16 | Q14 (G3), Q15, Q16 on the three score tables of the run | adapted to interface |
-| def:Q18 | Q18 (G1, G2) | adapted to interface |
-| def:Q19 | Q19 (G18): rates as fractions | text only |
-| def:Q20 | Q20 | adapted to interface |
-| def:Q21 | Q21: pred_logistic = 1 iff p >= 0.5; text now states that below 0.5 the value is only required not to be 1 | text added after review |
-| def:Q22 | Q22 (G19), validation set: outcome recorded; counts sum to the row count at every threshold; threshold table non-empty and each row names its threshold; accuracy, precision, recall, F1 required only when both classes are present and the metric's own denominator is non-zero (F1: tp != 0) | restated, then corrected after review |
-| def:Q23 | Q23 (G19): with both classes present AUC = standard AUC and Gini = 2 AUC - 1 = Somers' D; nothing required when a class is empty | restated |
-| def:Q24 | Q24 (G19): with both classes present, ks and summary tables non-empty and every KS_Statistic = ksStat; nothing required when a class is empty | restated |
-| def:Q25 | Q25 (G9, G20): (1) if both score tables have a score, the summary table is non-empty; (2) PSI present on every summary row, 0 iff equal shares in all ten bins, positive otherwise | restated, then corrected after review |
-| def:Q26 | Q26 (G21): decile column a permutation of 1..10; lift and capture_rate present; capture sum = 1 when the validation set has a defaulter | restated |
-| def:Q27 | Q27 (G3, G4, G11): (1) InputOK implies every step of the run produces its result; (2) training file not OK implies features = none for every seed; (3) training file OK and test file not OK implies scoreTest with the run's fitted model = none | new |
-| def:Spec | Conjunction of Q1 to Q16 and Q18 to Q27 (26 conjuncts; Q17 withdrawn by G1) | restated |
+| def:Q1 to Q11, Q14 to Q16, Q18 to Q21, Q23, Q24 | As in draft 3. Lean identical, re-accepted after the input conditions changed | unchanged |
+| def:Q12 | Q12 (G13, G30). There are Ft and S with score(m, Ft) = some S, and: (2a) every prediction row has a row of S with its row_id; (2b) every row of S with that row_id agrees with it on pd_logistic, pred_logistic, credit_risk_score, interest_rate (def:num) and risk_grade, recommendation (def:str); (3) every test row has a row in Ft with its id; (4) every row of Ft has a raw test row with its id for which the rules of Q1 to Q6 and Q9 hold, and obeys Q7 and Q8 | restated for G30, then corrected after review |
+| def:Q13 | Q13 (G10, G13, G30). Same shape as Q12; (4) every row of Ft has a raw test row with its id for which a missing income gives the Q1 training median and missing dependents give 0 | restated for G30, then corrected after review |
+| def:Q22 | Q22 (G19, G31). The threshold table must be non-empty only when the validation feature table F2 is non-empty. Everything else as before. The text now cites G26 and G27 for the two readings they confirmed | restated |
+| def:Q25 | Q25 (G9, G20). If both score tables have a present credit_risk_score: the summary table is non-empty, and every summary row has a PSI value that is 0 on equal shares in all ten bins and positive otherwise. If either has none, nothing is required | corrected after review (no ruling) |
+| def:Q26 | Q26 (G21; G32 leaves it unchanged) | unchanged |
+| def:Q27 | Q27. Lean identical. Its meaning follows the new TrainOK and TestOK: a table that is not CSV-shaped (G28) or has non-whole counts (G29) must now be refused | unchanged |
+| def:Spec | Conjunction of Q1 to Q16 and Q18 to Q27 (26 conjuncts) | unchanged |
 
 ### Theorems
 
@@ -106,123 +86,113 @@ All 56 definitions are in state DefinitionFormalized; both theorems are in state
 | thm:consistent | There is a pipeline P with Spec P | TheoremProved |
 | thm:inputOK_satisfiable | There are train and test tables with InputOK train test | TheoremProved |
 
+Both statements are unchanged from draft 3.
+
 ## 4. Readings still taken by the formaliser
 
 These are not settled by a ruling. Each is stated in the text of its item.
 
-1. **Q1 to Q10, Q12 to Q26.** A requirement constrains a step's result when the step produces one (hypothesis "step = some result"). That the result is produced on valid inputs is carried by Q27 alone.
-2. **def:Pipeline.** An error is `none` and carries no message or code. The split is represented by the seed. Fitting takes only the training feature table.
-3. **Q27, which step must fail.** The step that first reads the faulty raw file.
-   - Training file at fault: features(train, seed) = none for every seed, so the run has no result at all.
-   - Only the test file at fault: scoreTest = none for the fitted model of the run.
-   - Nothing is required of scoreTest when the training file is at fault, nor of steps applied to tables that are not those of a run.
-4. **def:TrainOK / def:TestOK.** The outcome is required (0 or 1) in the training file and may be missing only in the test file. "At least one known income" is a condition on the training file.
-5. **def:rowQ4 (Q4, G17).** "The feature columns are in percent" is read as also requiring credit_utilization = 100 x raw and debt_ratio = 100 x raw, not only as fixing the unit of the capped columns. This is stronger than the draft-2 Lean.
-6. **def:rowQ6.** Income and dependents are read in the feature row after Q1 and Q2 (G6). If such a value is absent, nothing is required of the flag. "Late payments in total" is the sum of the three raw counts.
-7. **def:rowQ9.** "Income" is monthly_income of the feature row after Q1; age is the raw age.
-8. **Q10 (G15).** "Within one applicant" is inclusive: |size - share| <= 1.
-9. **Q12.** "Whose rows obey Q1 to Q9" means: every test applicant has a row in Ft, matched by row id, obeying the rules of Q1 to Q6 and Q9 against its raw test row, and every row of Ft obeys Q7 and Q8. Ft may have other rows. Q13's table is chosen independently of Q12's.
-10. **Q21.** "Predicted to default" is pred_logistic = 1. Below 0.5 the value is only required not to be 1.
-11. **Q22.**
-    - Confusion counts are computed from the validation score table, with default_flag equal to the raw outcome.
-    - The count sum holds at every threshold and is not subject to the G19 exemption.
-    - The threshold table is non-empty and each row names its threshold; no particular threshold is required.
-    - "Or a class is empty" is applied to all four metrics: with an empty class nothing is required of accuracy, precision, recall or F1.
-    - F1 is the harmonic mean of precision and recall, required only when tp != 0.
-12. **Q23 (G19).** With an empty class nothing is required, including the relation Gini = 2 AUC - 1 between the reported values. Draft 2 required that relation unconditionally.
-13. **Q24 (G19).** With an empty class nothing is required, including that a KS value is reported and that the two files agree. Draft 2 required both unconditionally.
-14. **Q25.** "Scores" are credit_risk_score. A summary row is required whenever both sets have at least one score, regardless of the classes. The 0/positive rule and the obligation to report apply only when both sets have a score.
-15. **Q26.** Lift and capture_rate are present on all ten rows even with no defaulter (G21 makes only the sum conditional). "The validation set has a defaulter" is read on the validation feature table, matched by row id to a raw training row with outcome 1. Deciles are the real numbers 1 to 10 in a numeric cell.
-16. **Carried over from draft 2.** Age-group boundaries (30 <= a < 40 and so on); the median convention; the Q3 indicator constrained only to be 1 iff missing; grades and recommendations as the strings A to F and Approve, Review, Decline; KS on pd_logistic.
+New in draft 4:
+
+1. **def:decimal32 (G28).** "A decimal number that can be written in at most 32 characters" is a plain positional numeral.
+   - Characters counted: one for a minus sign, the integer digits (at least one), and, if there are k > 0 fractional digits, the point plus k.
+   - No exponent notation: 1e-40 does not qualify. No "+" sign.
+2. **def:TrainOK / def:TestOK (G28), columns.** "The columns of section 5 and no others" is read row by row: the row's column names are a permutation of the twelve raw names. Each appears exactly once; the order is free.
+3. **def:TrainOK / def:TestOK (G28), values.** "Every numeric value" is every value def:num reads in the row. Nothing is required of a cell holding no number. A text cell in MonthlyIncome or NumberOfDependents is still allowed and counts as missing.
+4. **def:TestOK (G28).** The test file must have the SeriousDlqin2yrs column, since section 5 lists it for both raw files. Its value may be missing.
+5. **def:TrainOK / def:TestOK (G29).** "The number of credit lines" is NumberOfOpenCreditLinesAndLoans, not NumberRealEstateLoansOrLines. NumberOfDependents must be a whole number only where present.
+6. **Q12, Q13 (G30), published columns.** They are row_id, pd_logistic, pred_logistic, credit_risk_score, risk_grade, recommendation, interest_rate: the score columns of section 5 without default_flag.
+7. **Q12, Q13 (G30), agreement.** "Agrees on a column" is equality of the value read by def:num or def:str, not equality of the cells.
+8. **Q12, Q13 (G30), "the score of that table's row for the same applicant".** The interface scores whole tables and does not pair rows of S with rows of Ft. So the applicant's score is any row of S with the applicant's row_id: at least one must exist, and all of them must agree with the prediction. Rows of S whose id is no prediction's are unconstrained.
+9. **Q12, Q13, "whose rows obey Q1 to Q9".** Every row of Ft, without exception, is the feature row of some test applicant and obeys the rules against that raw row. Every test applicant has a row in Ft. Ft may hold two rows with one id if both obey the rules. This replaces draft-3 reading 9, under which Ft could have other rows.
+10. **Q13, "the same test feature table as Q12".** Q13's table is still chosen by its own existential. Every witness of Q12 is a witness of Q13.
+11. **Q22 (G31).** "The validation set is empty" is read on the validation feature table F2, as in Q26. Under Q14 this is equivalent to an empty validation score table. G31 removes only the obligation that a threshold row exists: a row reported anyway must still name its threshold. The outcome-record and count-sum conditions are kept.
+12. **Q25, no score in a set.** When the training or the validation score table has no present credit_risk_score, nothing is required: no summary row, no PSI value, no rule on the value. This can only happen for training files of at most three applicants.
+
+Carried over from draft 3 and still not ruled: readings 1, 2, 3 (as far as G23 does not cover it), 4, 5, 6, 7, 8, 12, 13, 15 and 16 of the draft-3 report. In short:
+
+- a requirement constrains a step's result only when the step produces one; Q27 carries the obligation to produce it;
+- an error is `none`, with no message;
+- the outcome is required in the training file and optional in the test file;
+- Q4 also requires credit_utilization = 100 x raw and debt_ratio = 100 x raw;
+- Q6 reads income and dependents after Q1 and Q2; "late payments in total" is the sum of the three raw counts;
+- Q10 "within one applicant" is inclusive;
+- with an empty class, Q23 and Q24 require nothing at all, not even Gini = 2 AUC - 1 or a reported KS;
+- Q26: lift and capture_rate are present on all ten rows even with no defaulter;
+- age-group boundaries, the median convention, grade and recommendation strings, KS on pd_logistic.
+
+Settled since draft 3 and no longer formaliser readings: Q27 with a faulty test file (G23), Q11 (G24), Q3 and Q21 below their case (G25), Q22 "or a class is empty" (G26), Q22 F1 (G27).
 
 ## 5. What could not be formalised as written, and known weaknesses
 
-1. **Q27, faulty test file.** Feature engineering, fitting, scoring and metrics do not receive the test file. By Q27's first sentence, applied to the same training file with a valid test file, they must produce their results. So "produces no result" can only mean "no test predictions" there; the feature, score and metrics tables are still produced. This is what def:Q27 states.
-2. **Q12, Q13 (G13).** The test feature table is not an output. These requirements constrain test feature engineering only as far as the scoring step distinguishes feature tables. The limitation is unchanged from draft 2, now under a ruling.
-3. **Q25, Q26 are weak where the documents define nothing.**
-   - PSI's value is only 0 versus positive.
-   - Lift and individual capture rates are unconstrained.
-   - No rule says which applicants fall in which decile.
-   - PSI, capture_rate and lift must be present even where they are mathematically undefined (no defaulter).
-4. **Q11** holds for every pipeline by construction of the interface (section 6, finding 1).
-5. **Not stated by any requirement:** that the feature files' default_flag, age and num_late_* columns carry the raw values.
+Nothing in draft 4 failed to be stated, and no two requirements contradict each other.
 
-No hook block occurred. No Lean was saved locally.
+Known weaknesses:
+
+1. **Q12, Q13 (G13).** The test feature table is not an output. These requirements constrain test feature engineering only as far as the scoring step distinguishes feature tables on the published columns. G30 narrows the comparison further, to seven columns.
+2. **Q25, Q26 are weak where the documents define nothing.** PSI's value is only 0 versus positive. Lift and individual capture rates are unconstrained. No rule says which applicants fall in which decile. G32 confirms Q26 as written.
+3. **Q25 with an empty set** now requires nothing (section 4, reading 12).
+4. **Q11** holds for every pipeline by the form of the interface (ruled by G24).
+5. **Not stated by any requirement:** that the feature files' default_flag, age and num_late_* columns carry the raw values.
+6. **Item texts not refreshed.** Apart from def:Q22, items whose texts predate G23 to G27 (for example Q21, Q27, Q11) still describe as formaliser readings what those rulings have since confirmed. The Lean is unaffected.
+
+No hook block occurred. No Lean was saved locally. Only the Logos MCP Staging connector was used; a separate server named logos-mcp failed to connect and was not needed.
 
 ## 6. Review findings and answers
 
-An independent reviewer checked the statements against `requirements.md` before the consistency proof was started.
+An independent reviewer checked the changed statements against `requirements.md`.
 
 | # | Item | Kind | Finding | Answer |
 |---|---|---|---|---|
-| 1 | def:Q11 | vacuous | The Lean holds for every Pipeline value, because features is a function of (train, seed). A program whose split depends on the clock breaks Q11 as worded but cannot break def:Q11. | Kept. It cannot be made non-vacuous without changing the interface the brief prescribes. The obligation falls on whoever shows the real program is a function of (train, seed). Open for the owner. |
-| 2 | def:Q21 | unstated reading | Below 0.5 the prediction is only required not to be 1; a row with p = 0.2 and pred_logistic = 7 passes. | Text added: the limitation and the reviewer's row are now in the item. Lean unchanged, since no ruling names the value for "not predicted to default". Open for the owner. |
-| 3 | def:Q22 | unstated reading | The text had dropped "or a class is empty"; the Lean exempted each metric only through its own denominator. | Corrected. The four value conditions are now required only when both classes are present, in addition to the denominator guards. The count sum, the outcome record and the non-empty threshold table stay unconditional. The alternative, stronger reading is named in the text. Open for the owner. |
-| 4 | def:Q22 | unstated reading | F1 is in harmonic-mean form with guard tp != 0; the count form 2tp / (2tp + fp + fn) would require F1 = 0 when tp = 0 and fp + fn > 0. | Text added: the reading and the limitation, with the reviewer's case. Lean unchanged. Open for the owner. |
-| 5 | def:Q25 | vacuous | With an empty summary table no PSI was required; only Q24 forced a summary row, and only with both classes present. | Corrected. New first condition: if both score tables have a score, the summary table is non-empty. The reviewer's case now violates Q25. Remaining limitation, stated in the text: when one set has no score, nothing is required. |
+| 1 | def:Q12 | weaker than text | The G30 restatement asked only that some row of Ft per test applicant obey Q1 to Q6 and Q9, and that some row of S agree with each prediction. Ft could hold a second row with the same row_id that breaks the rules, and the prediction could be the score of that row. | Corrected, text and Lean. Every row of Ft must now obey the rules against a raw test row with its id; every row of S with the prediction's row_id must agree with it. The reviewer's case no longer satisfies Q12. The reviewer's permutation repair was not taken: it would forbid two rule-abiding rows with one id and impose a shape on S that the text does not state. |
+| 2 | def:Q13 | weaker than text | Same gap as Q12, and no condition at all on the other rows of Ft. | Corrected in the same shape. Every row of Ft must have a raw test row with its id for which the median and 0 rules hold. The reviewer's case no longer satisfies Q13. |
+| 3 | def:Q25 | stronger than text | A PSI number was required on every summary row even when a set has no score. A training file of 2 applicants split 2 and 0, with PSI missing, violated the Lean but not the text. | Corrected, text and Lean. The guard "both sets have a score" now stands in front of the whole conclusion. No reading was taken on whether a PSI should be reported in that case: the text is silent, so the statement is too. |
 
-**Still open.** The reviewer's list of unanswered findings is empty. Findings 1 to 4 each end in a question only the owner can settle (section 8). The corrected statements of Q22 and Q25 were re-accepted by the judge, along with def:Spec and the statement of thm:consistent; the record shows no second pass by the independent reviewer on them.
+Dependants of the three corrections:
+
+- **def:Spec** and the statement of **thm:consistent** were resubmitted unchanged and re-accepted.
+- **thm:consistent**: the proof was accepted again with the same witness pipeline. Its Q12 and Q13 parts now use the distinctness of the test row ids; its Q25 part follows the moved guard.
+- **thm:inputOK_satisfiable** was not affected by the findings. Its proof was missing at that point because of G28 and G29, and was written in the consistency step. The answers record labels it "cannot-state"; that label is wrong, the statement was accepted throughout.
+
+**Still open.** The reviewer's list of unanswered findings is empty. I was not given the detail of a second pass by the independent reviewer on the corrected Q12, Q13 and Q25.
 
 ## 7. Consistency
 
-Both theorems are proved against the current draft-3 definitions, after the Q22 and Q25 corrections. The proofs use `open Classical` and no axiom, sorry, native_decide or unsafe. No obstacle was met.
+Both theorems are proved against the current draft-4 definitions, after the three corrections. The proofs contain no axiom, sorry, native_decide or unsafe; the consistency proof opens Classical. No separate axiom audit was run beyond the server's acceptance. No obstacle was met.
 
 ### The witness for thm:consistent
 
-An artificial pipeline defined inside the proof, with Model = Unit.
+The same artificial pipeline as in draft 3, with Model = Unit.
 
-- **features.** If the training table meets TrainOK: one feature row per raw row, split at floor(7n/10) in file order, seed ignored. Otherwise error. Each row has:
-  - row_id and default_flag copied;
-  - income imputed with the Q1 median (age group, falling back to all known incomes) and dependents imputed with 0;
-  - the two missing indicators;
-  - credit_utilization and debt_ratio as raw x 100, with their caps at 200 and 500;
-  - the late-payment sum, the eight flags as 1/0 and their count;
-  - financial_health = 50 (constant) and the two interactions.
-- **fit.** Always succeeds and returns the trivial model.
-- **score.** Always succeeds.
-  - Probability = total_risk_flags / 8, clamped to [0, 1].
-  - Score = 600 + 250 x (1 - p).
-  - Grade by the Q18 bands; recommendation and interest rate by grade.
-  - Prediction = 1 exactly when p >= 0.5.
-- **scoreTest.** If the test table meets TestOK: the same feature map (with training medians) followed by the same scoring. Otherwise error.
-- **metrics.** Always succeeds.
-  - One summary row: AUC = auc, Gini = 2 AUC - 1, KS = ksStat, PSI = 0 if the ten bin shares agree and 1 otherwise.
-  - One ks row.
-  - Ten decile rows: deciles 1 to 10, each with capture_rate 1/10 and lift 1.
-  - One threshold row at 1/2 with the standard formulas.
-
-Proved on the way, for any score table: Somers' D = 2 AUC - 1 when both classes are present; the four confusion counts sum to the row count when every row has an outcome in {0, 1} and a probability.
+- **features.** Error unless TrainOK holds. Otherwise one feature row per raw row as the documents prescribe: imputed income and dependents, missing flags, percent scaling and caps, late-payment total, eight flags and their sum, interactions, financial_health fixed at 50. The split is by position, the first floor(7n/10) rows to training; the seed is ignored.
+- **fit.** Always succeeds.
+- **score.** Probability = total_risk_flags / 8 clamped to [0, 1]; prediction = 1 exactly when p >= 0.5; score = 600 + 250 x (1 - p); grade, rate and recommendation by the documented bands.
+- **scoreTest.** Error unless TestOK holds. Otherwise the same feature engineering with training medians, then the same scoring.
+- **metrics.** Never fails. One summary row with AUC, Gini = 2 AUC - 1, KS, and a PSI that is 0 when the ten bin shares agree and 1 otherwise. One threshold row at 0.5. Ten decile rows with capture rate 1/10 and lift 1.
 
 ### The witness for thm:inputOK_satisfiable
 
-One training row (all fields present, outcome 0, income known) and one test row (outcome, income and dependents missing, everything else present).
+Proved anew for G28 and G29.
 
-### What the witness does not show
+- Training table: three applicants, ids 1 to 3, outcomes 0, 1, 0. One has income and dependents missing. Utilisation and debt ratio are fractional (such as 0.35 and 0.125); one income is 0.235.
+- Test table: two applicants, outcome not recorded, one with income missing, one with utilisation 0.12.
+- Every value is shown to be a decimal within 32 characters and every count a natural number.
 
-- Nothing about the SAS program or a realistic fitted model: the model is trivial and fitting ignores its input.
-- Q11 holds only because the seed is ignored.
-- Q8 holds by a constant (50).
-- Grade C, Review and rate 0.09 are never produced by this pipeline (p takes values k/8, none in [0.15, 0.25)). Those clauses are proved for arbitrary p but not exercised.
-- PSI = 1 when shares differ, capture_rate 1/10 and lift 1 are arbitrary permitted choices. They show how little Q25 and Q26 fix.
-- The feature rows carry only the columns the requirements mention formally. Age, age_group, the raw late counts, num_credit_lines and log_monthly_income are not written.
-- Q27's error clauses are met by testing TrainOK and TestOK classically (non-computably); fit, score and metrics never fail. Nothing is shown about how a real program would detect bad input.
-- The InputOK witness is two single-row tables and says nothing about realistic data.
+### What the witnesses do not show
+
+- Nothing about the SAS program or a realistic model: nothing is fitted and the model carries no information.
+- The split is positional and ignores the seed.
+- financial_health, the decile rows and PSI are constants or a 0/1 indicator. The proof shows that those requirements can be met together, not that a realistic model meets them.
+- The pipeline always emits a threshold row, so the G31 excuse for an empty validation set is not exercised.
+- Q27's error clauses are met by testing TrainOK and TestOK classically. Nothing is shown about how a real program would detect a non-CSV table or a non-whole count.
+- The input witness is a small hand-made table, not real data.
 
 ## 8. Open points for the owner
 
-1. **Q27, faulty test file.** Confirm that "produces no result" means only that no test predictions are produced, while the feature, score and metrics tables still are.
-2. **Q11.** Confirm that the obligation is handed to whoever shows the real program is a function of the raw training table and the seed. The alternative is a ruling that changes the interface, for example making the features step a relation.
-3. **Q21.** Rule whether pred_logistic must be 0 when p < 0.5. As stated, it must only differ from 1.
-4. **Q22, "or a class is empty".** Rule whether the clause exempts accuracy, precision, recall and F1 (the reading taken, which follows the sentence literally) or concerns AUC, Gini and KS only (stronger).
-5. **Q22, F1.** Rule whether F1 = 0 is required when tp = 0 and fp + fn > 0 (count form) or nothing is required there (harmonic-mean form, the reading taken).
+1. **G28, "decimal number".** Confirm that a plain positional numeral is meant. If a value such as 1e-40, written with an exponent, should count as an admissible input, def:decimal32 must be widened; as stated, a file holding it must be refused under Q27.
+2. **Q25, a set with no score.** The accepted draft-3 statement required a PSI value on every summary row regardless. After the review it requires nothing when the training or validation set has no score (training files of at most three applicants). Rule whether a PSI must be reported there, or confirm that nothing is required, as G31 does for the threshold rows.
+3. **Q12, Q13, reading of G30.** Confirm that every row of the test feature table must be a test applicant's and obey the rules, and that every score row with an applicant's id must agree with the prediction. The alternative the reviewer proposed is stricter: the row ids of the test feature table are exactly the test ids, each once.
+4. **G28, columns of the test file.** Confirm that cs-test.csv must contain the SeriousDlqin2yrs column, even if empty. As stated, a test file without that column must be refused.
+5. **G29, "the number of credit lines".** Confirm that NumberOfOpenCreditLinesAndLoans is meant and that NumberRealEstateLoansOrLines is not required to be a whole number.
 
-Also for the owner's attention, without a specific question: the Q4 reading in section 4 item 5 is stronger than draft 2, and Q25 and Q26 remain weak (section 5 item 3).
-
-For the orchestrator: `/Users/cristophersalvi/GitHub/credit-risk-migration/migration/requirements/report.md` still holds the draft-2 report until this text is saved over it.
-
-## Orchestrator's note (2026-11-14)
-
-The report above was returned by the reporting agent and saved by the orchestrator. One correction
-to its section 6: the corrected statements of Q22 and Q25 were re-checked by a second independent
-reviewer (the workflow's re-check step), who found both resolved and no new defect. The reporting
-agent was not given that step's detail.
+For the orchestrator: `/Users/cristophersalvi/GitHub/credit-risk-migration/migration/requirements/report.md` still holds the draft-3 report until this text is saved over it.
