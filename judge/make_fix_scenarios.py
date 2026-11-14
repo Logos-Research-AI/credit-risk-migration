@@ -1,6 +1,6 @@
 """Build the inputs for the second-round evidence of the legacy corrections (Q27 branches,
 Q14 negative income). Inputs only, never code changes. Each scenario is a folder under
-scenarios/fix2/ with cs-training.csv and cs-test.csv. Base: the first 3000 rows of the real
+scenarios/fix2/ with cs-training.csv and cs-test.csv (q25_tiny_psi: stage inputs for the metrics step). Base: the first 3000 rows of the real
 training file and the first 200 rows of the real test file; one thing is changed per scenario.
 
     uv run python make_fix_scenarios.py
@@ -118,6 +118,23 @@ def main() -> None:
           "Valid files. The whole real training file with MonthlyIncome -1 and -7.5 in rows 34 and 35; "
           "the test file of valid_unusual (rows 30 and 31 have MonthlyIncome -1 and -7.5).")
 
+    # --- Q13: medians of incomes longer than the first 20 rows suggest ---
+    a = h.index("age")
+    m = [r[:] for r in rows]
+    for i, r in enumerate(m):
+        if int(r[a]) < 30:
+            r[inc] = "NA"
+        elif i < 20 and len(r[inc]) > 4:
+            r[inc] = "9999"
+    young = [i for i, r in enumerate(m) if int(r[a]) < 30 and i >= 20][:3]
+    for i, value in zip(young, ("10000", "20000", "30000")):
+        m[i][inc] = value
+    mt = changed(changed(changed(test, 1, "age", "25"), 1, "MonthlyIncome", "NA"), 2, "age", "25")
+    write("q13_median_width", (header, m), mt,
+          "Valid files. Training: the first 20 incomes have at most 4 characters; the known incomes "
+          "of the under-30 group are 10000, 20000 and 30000. Test row 1 is under 30 with a missing "
+          "income and must get 20000.")
+
     # --- faulty test files (the training file is valid) ---
     s = {
         "test_age_missing": (changed(test, 30, "age", ""), "Test row 30 has no age."),
@@ -135,5 +152,29 @@ def main() -> None:
         write(name, train, table, "Faulty test file. " + note)
 
 
+def tiny_psi() -> None:
+    """Stage inputs for metrics_calculation.sas: 100,000 training and 100,000 validation rows
+    with the same scores, except one validation applicant moved from the lowest bin to the
+    highest. The shares differ by one applicant in two bins: PSI is about 4e-9."""
+    d = OUT / "q25_tiny_psi"
+    d.mkdir(parents=True, exist_ok=True)
+    n = 100_000
+    for name, start in (("risk_scores_train.csv", 1), ("risk_scores_validation.csv", 200_001)):
+        with open(d / name, "w", newline="") as fh:
+            w = csv.writer(fh, lineterminator="\n")
+            w.writerow(["row_id", "default_flag", "pd_logistic", "credit_risk_score"])
+            for i in range(n):
+                k = i
+                if name == "risk_scores_validation.csv" and i == 0:
+                    k = n  # the lowest score becomes the highest
+                pd_ = round(0.9 - 0.8 * k / n, 6)  # distinct, falling: the score rises with i
+                w.writerow([start + i, int(i % 13 == 0 and pd_ > 0.3), pd_, round(600 + 250 * (1 - pd_), 6)])
+    (d / "README.txt").write_text(
+        "Stage inputs for metrics_calculation.sas (finding Q25, second round). Training and validation "
+        "have the same 100,000 scores except one validation applicant, moved from the lowest bin to the "
+        "highest: the bin shares differ by one applicant in two bins.\n")
+
+
 if __name__ == "__main__":
     main()
+    tiny_psi()

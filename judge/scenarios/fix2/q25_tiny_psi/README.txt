@@ -1,0 +1,1 @@
+Stage inputs for metrics_calculation.sas (finding Q25, second round). Training and validation have the same 100,000 scores except one validation applicant, moved from the lowest bin to the highest: the bin shares differ by one applicant in two bins.

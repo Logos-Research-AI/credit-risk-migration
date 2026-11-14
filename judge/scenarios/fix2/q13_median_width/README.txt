@@ -1,0 +1,1 @@
+Valid files. Training: the first 20 incomes have at most 4 characters; the known incomes of the under-30 group are 10000, 20000 and 30000. Test row 1 is under 30 with a missing income and must get 20000.
