@@ -1,0 +1,298 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{convention}{Convention}
+\newtheorem{remark}{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{Shared foundation for the formal verification of the\\ SAS-to-Python credit-risk migration}
+\author{Blueprint \code{credit-risk-foundation}}
+\date{10 November 2026}
+
+\emergencystretch=3em
+\begin{document}
+\maketitle
+
+\section{Purpose and scope}
+
+Two independent teams translate the same pipeline to Lean: one from the original SAS code, one
+from the Python port. A third then proves or disproves that the two translations behave the
+same. This document is the only material the two translators share. It fixes \emph{types and
+vocabulary}: what a number is, what a table is, and what a missing cell looks like.
+
+It deliberately fixes \emph{no behaviour} of SAS or of Python. How a missing value compares,
+what a division by zero returns, how a value is rounded to an integer, how ties are ranked:
+each translator states these from its own source, in its own blueprint. If this document
+decided them, both translations would inherit the same answer and the equivalence proof would
+prove nothing.
+
+All Lean declarations live in the namespace \code{Tabular}.
+
+\section{Three strengths of result}\label{sec:tiers}
+
+A translated program is written once, for an arbitrary number type $\alpha$ carrying the
+operations of Definition~\ref{def:real_like}. The same Lean text is then read at three types.
+
+\begin{center}
+\begin{tabular}{@{}lp{3.6cm}p{9.4cm}@{}}
+\toprule
+Tier & Statement is about & What a proof establishes \\
+\midrule
+1. Generic & every $\alpha$ with the operations & The two programs apply the same operations
+in the same order. It holds under any rounding, so the outputs agree bit for bit on every
+input, provided each primitive is the same function in both runtimes (see
+Remark~\ref{rem:primitives}). \\
+2. Exact & $\alpha = \R$ & The two programs are mathematically equal, but may compute in a
+different order. Each such result marks a place where floating-point outputs can differ. \\
+3. Rounded & every $\alpha$ with the rounding laws of Definition~\ref{def:rounded_real} & A
+quantitative bound: the outputs differ by at most a stated $\varepsilon$ in binary64. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+A fourth reading, $\alpha = $ Lean's \code{Float} (Definition~\ref{def:real_like_float}),
+carries no theorem. It makes every translation executable, so that it can be run on real rows
+and compared with what SAS or Python actually printed.
+
+\begin{remark}\label{rem:primitives}
+Addition, subtraction, multiplication, division and the square root are fixed by IEEE~754.
+The exponential and the logarithm are not: two conforming runtimes may return results that
+differ in the last bit. A Tier~1 theorem that passes through \code{exp} or \code{log} is
+therefore bit-exact only up to that difference.
+\end{remark}
+
+\section{Numbers}
+
+\begin{definition}[Real-like number type]\label{def:real_like}
+A type $\alpha$ is \emph{real-like} when it carries: the constants $0$ and $1$; addition,
+subtraction, multiplication, division and negation; the cast of a natural number into
+$\alpha$; the reading of a decimal literal (a mantissa, a sign of the exponent and a decimal
+exponent) as an element of $\alpha$; the relations $<$ and $\le$, each decidable; the four
+unary functions $\exp$, $\log$, $\operatorname{sqrt}$ and $\operatorname{floor}$ from $\alpha$
+to $\alpha$; and two Boolean tests, \code{isNaN} and \code{isFinite}. No law is required of any
+of these operations. In Lean this is the class \code{Tabular.RealLike}.
+\end{definition}
+
+\begin{definition}[Absolute value]\label{def:abs}
+For a real-like type $\alpha$ (Definition~\ref{def:real_like}) and $x \in \alpha$, the
+absolute value of $x$ is $-x$ if $x < 0$ and $x$ otherwise. In Lean this is
+\code{Tabular.RealLike.abs}.
+\end{definition}
+
+\begin{definition}[Boolean equality test]\label{def:eqb}
+For a real-like type $\alpha$ (Definition~\ref{def:real_like}) and $x, y \in \alpha$, the
+Boolean equality test of $x$ and $y$ is true exactly when $x \le y$ and $y \le x$. In Lean this
+is \code{Tabular.RealLike.eqb}.
+\end{definition}
+
+\begin{definition}[The real numbers are real-like]\label{def:real_like_real}
+The real numbers $\R$ are a real-like type (Definition~\ref{def:real_like}) with their usual
+constants, field operations, casts and order; a decimal literal is read as the rational number
+it denotes; $\exp$ is the real exponential; $\log$ is the natural logarithm of Mathlib
+(\code{Real.log}); $\operatorname{sqrt}$ is the real square root of Mathlib (\code{Real.sqrt});
+$\operatorname{floor}(x)$ is the greatest integer at most $x$, as a real number; \code{isNaN}
+is constantly false and \code{isFinite} is constantly true. In Lean this is the instance
+\code{Tabular.instRealLikeReal}.
+\end{definition}
+
+\begin{definition}[Machine floats are real-like]\label{def:real_like_float}
+Lean's type \code{Float} of IEEE~754 binary64 numbers is a real-like type
+(Definition~\ref{def:real_like}) with the machine operations: the constants $0$ and $1$,
+\code{Float} addition, subtraction, multiplication, division and negation, \code{Float.ofNat}
+as the cast, \code{Float.ofScientific} for decimal literals, the \code{Float} comparisons $<$
+and $\le$, \code{Float.exp}, \code{Float.log}, \code{Float.sqrt}, \code{Float.floor},
+\code{Float.isNaN} and \code{Float.isFinite}. In Lean this is the instance
+\code{Tabular.instRealLikeFloat}. It is for evaluation only; no theorem is stated about it.
+\end{definition}
+
+\begin{lemma}[Operations of the real instance]\label{lem:real_ops}
+For the real-like structure on $\R$ of Definition~\ref{def:real_like_real} and every real $x$:
+$\exp x$ is \code{Real.exp x}, $\log x$ is \code{Real.log x}, $\operatorname{sqrt} x$ is
+\code{Real.sqrt x}, $\operatorname{floor} x$ is the integer floor $\lfloor x \rfloor$ cast to
+$\R$, the absolute value of Definition~\ref{def:abs} is $|x|$, \code{isNaN x} is false and
+\code{isFinite x} is true.
+\end{lemma}
+\begin{proof}
+Each of the first four equalities and the last two hold by definition of the instance. For the
+absolute value, split on $x < 0$: then $|x| = -x$; otherwise $0 \le x$ and $|x| = x$.
+\end{proof}
+
+\begin{lemma}[Equality test on the reals]\label{lem:eqb_real}
+For real numbers $x$ and $y$, with the real-like structure of
+Definition~\ref{def:real_like_real}, the Boolean equality test of Definition~\ref{def:eqb} is
+true if and only if $x = y$.
+\end{lemma}
+\begin{proof}
+The test is true exactly when $x \le y$ and $y \le x$, which is $x = y$ by antisymmetry.
+\end{proof}
+
+\begin{convention}[Out-of-domain arguments]\label{conv:domain}
+On $\R$, Mathlib's total functions return a conventional value outside their domain:
+$x / 0 = 0$, $\log 0 = 0$, $\log x = \log |x|$ for $x < 0$, $\operatorname{sqrt} x = 0$ for
+$x < 0$, and $\exp$ never overflows. None of these is what SAS or IEEE arithmetic does. A
+translation must therefore never rely on them. Every division, logarithm, square root and
+exponential in a translation is either (i) guarded in the Lean text by the same test the
+source performs, with the source's own result on the failing branch, or (ii) covered by a
+contract precondition stating that the argument is in the domain. Where the source tests
+whether a result is finite (overflow), the translation applies \code{isFinite} to the result;
+on $\R$ that test is always true, on \code{Float} it is the machine test.
+\end{convention}
+
+\section{Rounding laws}
+
+Definition~\ref{def:rounded_real} restates, with the operations of
+Definition~\ref{def:real_like}, the class \code{NumpyLean.Spec.RoundedReal} of the LogosNumpy
+library (commit \code{043bf11}, file \code{proofs/NumpyLeanProofs/Rounded.lean}). That library
+proves the laws for its bit-level model of IEEE binary64 arithmetic. The Logos server does not
+load that library, so the binary64 instance is not re-checked here: a Tier~3 theorem is proved
+for every type satisfying the laws, and its application to binary64 rests on the LogosNumpy
+proof. No law is stated for $\exp$, $\log$, $\operatorname{floor}$ or decimal literals; a
+Tier~3 contract that needs one states it as a hypothesis.
+
+\begin{definition}[Real-like type with rounding laws]\label{def:rounded_real}
+A \emph{rounded real-like type} is a real-like type $\alpha$ (Definition~\ref{def:real_like})
+together with a value map $\operatorname{toReal} : \alpha \to \R$ and three real constants
+$u$ (the unit roundoff), $\eta$ (the least positive subnormal) and $m$ (the least positive
+normal), such that the following hold. Call $x \in \alpha$ \emph{finite} when
+\code{isFinite x} is true.
+\begin{enumerate}
+\item $0 \le u \le 1/2$, $0 \le \eta$ and $\eta = 2\,u\,m$.
+\item $0$ and $1$ are finite, $\operatorname{toReal} 0 = 0$ and $\operatorname{toReal} 1 = 1$.
+\item If $x$ is finite then \code{isNaN x} is false, $-x$ is finite and
+$\operatorname{toReal}(-x) = -\operatorname{toReal} x$.
+\item Addition and subtraction: if $x$, $y$ and $x \pm y$ are finite, there is a real $\delta$
+with $|\delta| \le u$ and
+$\operatorname{toReal}(x \pm y) = (\operatorname{toReal} x \pm \operatorname{toReal} y)(1 + \delta)$.
+\item If $x$, $y$ and $x + y$ are finite, then $\operatorname{toReal}(x + y) = 0$ if and only
+if $\operatorname{toReal} x + \operatorname{toReal} y = 0$.
+\item Sterbenz: if $x$ and $y$ are finite and
+$\operatorname{toReal} y / 2 \le \operatorname{toReal} x \le 2 \operatorname{toReal} y$, then
+$x - y$ is finite and
+$\operatorname{toReal}(x - y) = \operatorname{toReal} x - \operatorname{toReal} y$.
+\item Multiplication: if $x$, $y$ and $x y$ are finite, there are reals $\delta, \varepsilon$
+with $|\delta| \le u$, $|\varepsilon| \le \eta / 2$, $\delta \varepsilon = 0$ and
+$\operatorname{toReal}(x y) = \operatorname{toReal} x \cdot \operatorname{toReal} y \cdot (1 + \delta) + \varepsilon$.
+If moreover $m \le |\operatorname{toReal} x \cdot \operatorname{toReal} y|$, there is a real
+$\delta$ with $|\delta| \le u$ and
+$\operatorname{toReal}(x y) = \operatorname{toReal} x \cdot \operatorname{toReal} y \cdot (1 + \delta)$.
+\item Division: the same two statements as for multiplication, with $x / y$ in place of $x y$
+and $\operatorname{toReal} x / \operatorname{toReal} y$ in place of the product, under the
+additional hypothesis $\operatorname{toReal} y \ne 0$.
+\item Casts: if the cast of $n \in \N$ is finite, there is a real $\delta$ with
+$|\delta| \le u$ and $\operatorname{toReal}(n) = n (1 + \delta)$; if $n\,u \le 1$, the cast of
+$n$ is finite and $\operatorname{toReal}(n) = n$.
+\item Order: for finite $x$ and $y$, $x < y$ if and only if
+$\operatorname{toReal} x < \operatorname{toReal} y$, and $x \le y$ if and only if
+$\operatorname{toReal} x \le \operatorname{toReal} y$.
+\item Square root: if $x$ is finite and $0 \le \operatorname{toReal} x$, then
+$\operatorname{sqrt} x$ is finite and there are reals $\delta, \varepsilon$ with
+$|\delta| \le u$, $|\varepsilon| \le \eta/2$, $\delta\varepsilon = 0$ and
+$\operatorname{toReal}(\operatorname{sqrt} x) = \sqrt{\operatorname{toReal} x}\,(1 + \delta) + \varepsilon$.
+\end{enumerate}
+In Lean this is the class \code{Tabular.RoundedReal}.
+\end{definition}
+
+\begin{definition}[The real numbers satisfy the rounding laws]\label{def:rounded_real_real}
+The real numbers, with the real-like structure of Definition~\ref{def:real_like_real}, are a
+rounded real-like type (Definition~\ref{def:rounded_real}) with
+$\operatorname{toReal}$ the identity and $u = \eta = m = 0$. In Lean this is the instance
+\code{Tabular.instRoundedRealReal}.
+\end{definition}
+
+\begin{lemma}[The real instance is exact]\label{lem:rounded_real_exact}
+For the rounded structure on $\R$ of Definition~\ref{def:rounded_real_real}:
+$\operatorname{toReal} x = x$ for every real $x$, the unit roundoff $u$ is $0$ and the least
+subnormal $\eta$ is $0$.
+\end{lemma}
+\begin{proof}
+By definition of the instance.
+\end{proof}
+
+\begin{theorem}[Exact arithmetic when the roundoff is zero]\label{thm:exact_of_u_zero}
+Let $\alpha$ be a rounded real-like type (Definition~\ref{def:rounded_real}) with $u = 0$ and
+$\eta = 0$, and let $x, y \in \alpha$ be finite. If $x + y$ is finite then
+$\operatorname{toReal}(x + y) = \operatorname{toReal} x + \operatorname{toReal} y$. If $x - y$
+is finite then
+$\operatorname{toReal}(x - y) = \operatorname{toReal} x - \operatorname{toReal} y$. If $x y$ is
+finite then
+$\operatorname{toReal}(x y) = \operatorname{toReal} x \cdot \operatorname{toReal} y$. If
+$\operatorname{toReal} y \ne 0$ and $x / y$ is finite then
+$\operatorname{toReal}(x / y) = \operatorname{toReal} x / \operatorname{toReal} y$.
+\end{theorem}
+\begin{proof}
+Each law of Definition~\ref{def:rounded_real} gives $\delta$ with $|\delta| \le u = 0$, hence
+$\delta = 0$, and for the product and the quotient $\varepsilon$ with
+$|\varepsilon| \le \eta/2 = 0$, hence $\varepsilon = 0$. Substituting gives the four
+equalities. So a Tier~3 bound specialises to a Tier~2 equality.
+\end{proof}
+
+\section{Tables}
+
+A table here is the content of one CSV hand-off file of the pipeline, or of one dataset in
+memory: named columns in a fixed order, and rows in a fixed order. This is the type at which
+the two translations are compared. Inside a stage, each translator may use any intermediate
+representation it finds faithful to its source.
+
+\begin{definition}[Cell]\label{def:cell}
+Over a number type $\alpha$, a \emph{cell} is either a numeric cell holding an optional element
+of $\alpha$, or a text cell holding an optional string. The absent option stands for a missing
+value (the SAS numeric missing value, a null in a Python data frame). In Lean this is the
+inductive type \code{Tabular.Cell} with constructors \code{num} and \code{str}.
+\end{definition}
+
+\begin{definition}[Row]\label{def:row}
+Over a number type $\alpha$, a \emph{row} is a list of pairs of a column name (a string) and a
+cell (Definition~\ref{def:cell}), in column order. In Lean this is \code{Tabular.Row}.
+\end{definition}
+
+\begin{definition}[Table]\label{def:table}
+Over a number type $\alpha$, a \emph{table} is a list of rows (Definition~\ref{def:row}), in
+row order. In Lean this is \code{Tabular.Table}.
+\end{definition}
+
+\begin{definition}[Reading a column of a row]\label{def:row_get}
+For a row $r$ (Definition~\ref{def:row}) and a column name $c$, the value of $r$ at $c$ is the
+cell of the first pair of $r$ whose name is $c$, and is absent when $r$ has no such pair. In
+Lean this is \code{Tabular.Row.get}.
+\end{definition}
+
+\begin{definition}[Writing a column of a row]\label{def:row_set}
+For a row $r$ (Definition~\ref{def:row}), a column name $c$ and a cell $v$
+(Definition~\ref{def:cell}): if some pair of $r$ has name $c$, the result is $r$ with the cell
+of every pair named $c$ replaced by $v$; otherwise it is $r$ with the pair $(c, v)$ appended at
+the end. In Lean this is \code{Tabular.Row.set}.
+\end{definition}
+
+\begin{lemma}[Reading after writing]\label{lem:row_get_set}
+Let $r$ be a row (Definition~\ref{def:row}), $c$ a column name and $v$ a cell. Reading
+(Definition~\ref{def:row_get}) column $c$ of the row obtained by writing
+(Definition~\ref{def:row_set}) $v$ at $c$ gives $v$. For every column name $c' \ne c$, reading
+$c'$ after that write gives the same result as reading $c'$ in $r$.
+\end{lemma}
+\begin{proof}
+By induction on $r$. For the empty row the write appends $(c, v)$, whose name is $c$ and is not
+$c'$. For a row $(d, w) :: r'$, split on whether $d = c$ and on whether a pair named $c$ occurs
+in $r'$; in each case the first pair named $c$ after the write holds $v$, and pairs with other
+names are unchanged and keep their positions relative to one another.
+\end{proof}
+
+\begin{convention}[What the table type does not decide]\label{conv:tables}
+Numeric columns of both languages are cells over the same $\alpha$; a Python integer column is
+represented by casts of integers. Printed formats (\code{BEST12.}, fixed decimals) are not
+part of a table. Whether two tables are compared up to row order, and by which key, is stated
+in each equivalence contract, not here.
+\end{convention}
+
+\end{document}

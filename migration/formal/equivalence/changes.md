@@ -1,7 +1,7 @@
 # Changes made on the formal-verification findings
 
-Work list: `sas-migration-formal/prover/findings-for-code.md` (read 2026-11-12), under the brief
-`formal/prompts/python-fixes.md`. Base commit `143ddf2`; all commits are on branch `initial`.
+Work list: `migration/formal/workspaces/prover/findings-for-code.md` (read 2026-11-12), under the brief
+`migration/formal/equivalence/brief-coding-agent.md`. Base commit `143ddf2`; all commits are on branch `initial`.
 Line numbers under "old" are those of `143ddf2`; under "new" those of the head of the branch.
 
 ## Summary
@@ -312,7 +312,7 @@ change, every other cell is identical) and the finding's example. No code change
 - `eq` has a call site. The inventory row already said so; the wrong statements were the
   docstring of `sas_compat.eq` (117, corrected) and the rulebook's "Helper verification (A31)"
   sentence (amendment `FV-R4` queued; it also covers `le`, which has two sites since P4 and P5).
-- `intent-properties.md`, T4 ("within 1e-8"), exists only in `sas-migration-formal/sas/migration/`,
+- `intent-properties.md`, T4 ("within 1e-8"), exists only in `migration/formal/workspaces/sas/migration/`,
   outside this repository and outside what the brief lets me open. It is not corrected. When it
   is, it should state the rule and the constant given under P1, not R25's.
 - Also corrected, same subject: `judge/README.md` described SAS's tie rule as "differ by
