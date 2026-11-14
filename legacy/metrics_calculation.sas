@@ -326,7 +326,7 @@ proc sql;
     order by s.score_bin;
 
     create table work.psi_summary as
-    select sum(psi_component) as PSI format=8.4,
+    select sum(psi_component) as PSI format=best12.,
            case
               when calculated PSI < 0.1 then 'No significant change'
               when calculated PSI < 0.25 then 'Some change'
