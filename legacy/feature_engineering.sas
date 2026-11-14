@@ -30,6 +30,7 @@ proc import datafile="&data_path/cs-training.csv"
     dbms=csv
     replace;
     getnames=yes;
+    guessingrows=max;
 run;
 
 /* Check the input conditions: stop with an error before anything is exported */
