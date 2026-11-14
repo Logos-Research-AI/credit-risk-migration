@@ -277,7 +277,8 @@ data work.credit_features;
     financial_health = max(0, financial_health);
 
     /* Log transformations for skewed variables (add 1 to handle zeros) */
-    log_monthly_income = log(monthly_income + 1);
+    if monthly_income > -1 then log_monthly_income = log(monthly_income + 1);
+    else log_monthly_income = 0;
     log_num_credit_lines = log(num_credit_lines + 1);
     log_total_late_payments = log(total_late_payments + 1);
 
