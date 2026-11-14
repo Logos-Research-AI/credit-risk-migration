@@ -1,0 +1,47 @@
+[
+ {
+  "label": "income_zero",
+  "data_dir": "scenarios/fix_G34/income_zero",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "train_income_minus_1",
+  "data_dir": "scenarios/fix_G34/train_income_minus_1",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "income_zero",
+  "data_dir": "scenarios/fix_G34/income_zero",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_income_minus_half",
+  "data_dir": "scenarios/fix_G34/train_income_minus_half",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "income_zero",
+  "data_dir": "scenarios/fix_G34/income_zero",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "test_income_minus_1",
+  "data_dir": "scenarios/fix_G34/test_income_minus_1",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "income_zero",
+  "data_dir": "scenarios/fix_G34/income_zero",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_income_minus_half",
+  "data_dir": "scenarios/fix_G34/test_income_minus_half",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "income_zero",
+  "data_dir": "scenarios/fix_G34/income_zero",
+  "scripts": "predict.sas"
+ }
+]

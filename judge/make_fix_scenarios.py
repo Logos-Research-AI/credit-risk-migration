@@ -9,6 +9,7 @@ training file and the first 200 rows of the real test file; one thing is changed
 from __future__ import annotations
 
 import csv
+import json
 from pathlib import Path
 
 JUDGE = Path(__file__).resolve().parent
@@ -175,6 +176,37 @@ def tiny_psi() -> None:
         "highest: the bin shares differ by one applicant in two bins.\n")
 
 
+def g34() -> None:
+    """Ruling G34: a known income is zero or more. Inputs under scenarios/fix_G34/, same base as
+    fix2 (first 3000 training rows, first 200 test rows), one cell changed per file."""
+    global OUT
+    keep, OUT = OUT, JUDGE / "scenarios" / "fix_G34"
+    train = read("cs-training.csv", 3000)
+    test = read("cs-test.csv", 200)
+    zero = changed(train, 34, "MonthlyIncome", "0")
+    zero_t = changed(test, 30, "MonthlyIncome", "0")
+    write("income_zero", zero, zero_t,
+          "Valid files. Training row 34 and test row 30 have MonthlyIncome = 0.")
+    write("train_income_minus_1", changed(train, 34, "MonthlyIncome", "-1"), zero_t,
+          "Faulty training file. Training row 34 has MonthlyIncome = -1.")
+    write("train_income_minus_half", changed(train, 34, "MonthlyIncome", "-0.5"), zero_t,
+          "Faulty training file. Training row 34 has MonthlyIncome = -0.5.")
+    write("test_income_minus_1", zero, changed(test, 30, "MonthlyIncome", "-1"),
+          "Faulty test file. Test row 30 has MonthlyIncome = -1.")
+    write("test_income_minus_half", zero, changed(test, 30, "MonthlyIncome", "-0.5"),
+          "Faulty test file. Test row 30 has MonthlyIncome = -0.5.")
+    four = "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+    d = "scenarios/fix_G34/"
+    plan = [("income_zero", four), ("train_income_minus_1", "feature_engineering.sas"),
+            ("income_zero", "feature_engineering.sas"), ("train_income_minus_half", "feature_engineering.sas"),
+            ("income_zero", four), ("test_income_minus_1", "predict.sas"), ("income_zero", "predict.sas"),
+            ("test_income_minus_half", "predict.sas"), ("income_zero", "predict.sas")]
+    (OUT / "plan.json").write_text(json.dumps(
+        [{"label": label, "data_dir": d + label, "scripts": scripts} for label, scripts in plan], indent=1) + "\n")
+    OUT = keep
+
+
 if __name__ == "__main__":
     main()
     tiny_psi()
+    g34()

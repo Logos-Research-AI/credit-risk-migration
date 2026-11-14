@@ -86,7 +86,8 @@ proc sql noprint;
 quit;
 
 /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
-   the outcome, where present, is 0 or 1; the counts are whole numbers, zero or more */
+   the outcome, where present, is 0 or 1; the counts are whole numbers, zero or more;
+   a known MonthlyIncome is zero or more */
 data work.input_check;
     set work.test_raw;
     bad_row = (missing(VAR1)
@@ -105,6 +106,7 @@ data work.input_check;
         or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
                 %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
         or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+        or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
         or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
             not (%num(NumberOfDependents) >= 0 and
                  %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
@@ -275,8 +277,7 @@ data work.test_features;
     financial_health = max(0, financial_health);
 
     /* Log transformations */
-    if monthly_income > -1 then log_monthly_income = log(monthly_income + 1);
-    else log_monthly_income = 0;
+    log_monthly_income = log(monthly_income + 1);
     log_num_credit_lines = log(num_credit_lines + 1);
     log_total_late_payments = log(total_late_payments + 1);
 
