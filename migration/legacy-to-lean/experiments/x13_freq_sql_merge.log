@@ -1,0 +1,207 @@
+9                                                          The SAS System                         Tuesday, 10 November 2026 13:52:00
+
+505        
+506        /* X13: PROC FREQ OUT= with missing levels; PROC SQL aggregates, grouping order, remerge,
+507           join with missing keys and row order, median; one-to-one MERGE corner cases. */
+508        data f; input a b @@; datalines;
+510        ;
+511        proc freq data=f noprint; tables a * b / out=fo; run;
+512        data _null_; set fo; put "X13 freq " a= b= count= percent= hex16. percent= best32.; run;
+X13 freq a=. b=. COUNT=1 PERCENT=. PERCENT=.
+X13 freq a=. b=1 COUNT=1 PERCENT=. PERCENT=.
+X13 freq a=0 b=0 COUNT=4 PERCENT=4049000000000000 PERCENT=50
+X13 freq a=0 b=1 COUNT=1 PERCENT=4029000000000000 PERCENT=12.5
+X13 freq a=1 b=. COUNT=1 PERCENT=. PERCENT=.
+X13 freq a=1 b=0 COUNT=1 PERCENT=4029000000000000 PERCENT=12.5
+X13 freq a=1 b=1 COUNT=2 PERCENT=4039000000000000 PERCENT=25
+513        data f2; input a b @@; datalines;
+515        ;
+516        proc freq data=f2 noprint; tables a * b / out=fo2; run;
+517        data _null_; set fo2; put "X13 freq2 " a= b= count= percent=; run;
+X13 freq2 a=1 b=1 COUNT=3 PERCENT=100
+518        /* 3 of 7 and 5 of 13: 100*c/N vs c/N*100 differ in the last bit */
+519        data f3; do i = 1 to 7; a = (i <= 1); b = 0; output; end; run;
+520        proc freq data=f3 noprint; tables a * b / out=fo3; run;
+521        data _null_; set fo3; put "X13 freq3 " a= b= count= percent= hex16.; run;
+X13 freq3 a=0 b=0 COUNT=6 PERCENT=40556DB6DB6DB6DC
+X13 freq3 a=1 b=0 COUNT=1 PERCENT=402C924924924925
+522        data f4; do i = 1 to 13; a = (i <= 5); b = 0; output; end; run;
+523        proc freq data=f4 noprint; tables a * b / out=fo4; run;
+524        data _null_; set fo4; put "X13 freq4 " a= b= count= percent= hex16.; run;
+X13 freq4 a=0 b=0 COUNT=8 PERCENT=404EC4EC4EC4EC4F
+X13 freq4 a=1 b=0 COUNT=5 PERCENT=40433B13B13B13B1
+525        
+526        /* SQL aggregates with missing; grouping order from unsorted input; sum order inside a group */
+527        data s; input g x y; id = _n_; datalines;
+538        ;
+539        proc sql;
+540          create table sg as select g, count(*) as n, sum(x) as sx, mean(x) as mx, min(x) as mnx, max(x) as mxx,
+541             sum(y) as sy, mean(y) as my, sum(y = 0) as n0, sum(y = 1) as n1, median(x) as medx
+542          from s group by g;
+543        quit;
+544        data _null_; set sg; put "X13 sqlgrp " g= n= sx= hex16. mx= hex16. mnx= mxx= sy= my= hex16. n0= n1= medx= hex16.; run;
+X13 sqlgrp g=. n=2 sx=4028000000000000 mx=4018000000000000 mnx=5 mxx=7 sy=1 my=3FE0000000000000 n0=1 n1=1 medx=4018000000000000
+X13 sqlgrp g=1 n=3 sx=3FE3333333333334 mx=3FC9999999999999 mnx=0.1 mxx=0.3 sy=1 my=3FD5555555555555 n0=2 n1=1 medx=3FC999999999999A
+X13 sqlgrp g=2 n=4 sx=4000000000000000 mx=0000000000000000 mnx=-1E16 mxx=1E16 sy=2 my=3FE5555555555555 n0=1 n1=2
+medx=3FF0000000000000
+X13 sqlgrp g=3 n=1 sx=. mx=. mnx=. mxx=. sy=. my=. n0=0 n1=0 medx=.
+545        /* reversed input: does the group sum depend on input order? */
+546        proc sort data=s out=srev; by descending id; run;
+547        proc sql;
+547      !           create table sg2 as select g, sum(x) as sx, mean(x) as mx from srev group by g;
+547      !                                                                                           quit;
+548        data _null_; set sg2; put "X13 sqlgrp_rev " g= sx= hex16. mx= hex16.; run;
+X13 sqlgrp_rev g=. sx=4028000000000000 mx=4018000000000000
+X13 sqlgrp_rev g=1 sx=3FE3333333333333 mx=3FC9999999999999
+X13 sqlgrp_rev g=2 sx=3FF0000000000000 mx=3FF0000000000000
+X13 sqlgrp_rev g=3 sx=. mx=.
+549        proc sql noprint;
+550          select sum(y = 0), sum(y = 1), sum(y), mean(y), count(*) into :n0, :n1, :sy, :my, :cnt from s;
+551        quit;
+552        %put X13 into n0=[&n0] n1=[&n1] sy=[&sy] my=[&my] cnt=[&cnt];
+X13 into n0=[       4] n1=[       4] sy=[       4] my=[     0.5] cnt=[      10]
+553        /* remerge with ties: row order of the result */
+554        data k; input ks pd; id = _n_; datalines;
+561        ;
+562        proc sql;
+562      !           create table kso as select max(ks) as KS_Statistic, pd as KS_Cutoff, id from k
+563           where ks = (select max(ks) from k);
+563      !                                        quit;
+564        data _null_; set kso; put "X13 remerge " KS_Statistic= KS_Cutoff= id=; run;
+X13 remerge KS_Statistic=0.5 KS_Cutoff=0.4 id=2
+X13 remerge KS_Statistic=0.5 KS_Cutoff=0.2 id=4
+X13 remerge KS_Statistic=0.5 KS_Cutoff=0.6 id=5
+565        data km; ks = .; pd = 0.1; output; ks = .; pd = 0.2; output; run;
+566        proc sql;
+566      !           create table kmo as select max(ks) as KS_Statistic, pd as KS_Cutoff from km
+567           where ks = (select max(ks) from km);
+567      !                                         quit;
+568        data _null_; set kmo; put "X13 remerge_allmiss " KS_Statistic= KS_Cutoff=; run;
+X13 remerge_allmiss KS_Statistic=. KS_Cutoff=0.1
+X13 remerge_allmiss KS_Statistic=. KS_Cutoff=0.2
+569        /* joins: missing keys match; row order */
+570        data ja; input bin p; datalines;
+576        ;
+577        data jb; input bin q; datalines;
+582        ;
+583        proc sql;
+584          create table jo as select a.bin, a.p, b.q, (a.p - b.q) * log(a.p / b.q) as comp
+585            from (select bin, p from ja) a join (select bin, q from jb) b on a.bin = b.bin;
+586          create table js as select sum(comp) as PSI format=8.4,
+587             case when calculated PSI < 0.1 then 'No significant change'
+588                  when calculated PSI < 0.25 then 'Some change' else 'Significant change' end as interp
+589             from jo;
+590          create table je as select sum(comp) as PSI format=8.4,
+591             case when calculated PSI < 0.1 then 'No significant change'
+592                  when calculated PSI < 0.25 then 'Some change' else 'Significant change' end as interp
+593             from jo where bin > 100;
+594        quit;
+595        data _null_; set jo; put "X13 join " bin= p= q= comp= hex16.; run;
+X13 join bin=. p=0.05 q=0.2 comp=3FCA9DE9FEC5DF20
+X13 join bin=0 p=0.2 q=0.1 comp=3FB1BE9BFF2E94BF
+X13 join bin=2 p=0.2 q=0.4 comp=3FC1BE9BFF2E94BF
+596        data _null_; set js; put "X13 psisum " PSI= hex16. interp=; run;
+X13 psisum PSI=3FDA9DE9FEC5DF20 interp=Significant change
+597        data _null_; set je; put "X13 psisum_empty " PSI= interp=; run;
+X13 psisum_empty PSI=. interp=No significant change
+598        /* left join order: 40 rows, keys 1..5 unsorted */
+599        data la; do id = 1 to 40; key = mod(id * 7, 5) + 1; if id in (13, 29) then key = .; output; end; run;
+600        data lb; do key = 1 to 4; med = key * 100; output; end; run;
+601        proc sql;
+601      !           create table lo as select a.id, a.key, b.med from la a left join lb b on a.key = b.key;
+601      !                                                                                                   quit;
+602        data _null_; set lo; put "X13 leftjoin " id= key= med=; run;
+X13 leftjoin id=13 key=. med=.
+X13 leftjoin id=29 key=. med=.
+X13 leftjoin id=10 key=1 med=100
+X13 leftjoin id=20 key=1 med=100
+X13 leftjoin id=40 key=1 med=100
+X13 leftjoin id=15 key=1 med=100
+X13 leftjoin id=5 key=1 med=100
+X13 leftjoin id=35 key=1 med=100
+X13 leftjoin id=25 key=1 med=100
+X13 leftjoin id=30 key=1 med=100
+X13 leftjoin id=28 key=2 med=200
+X13 leftjoin id=3 key=2 med=200
+X13 leftjoin id=18 key=2 med=200
+X13 leftjoin id=23 key=2 med=200
+X13 leftjoin id=38 key=2 med=200
+X13 leftjoin id=33 key=2 med=200
+X13 leftjoin id=8 key=2 med=200
+X13 leftjoin id=31 key=3 med=300
+X13 leftjoin id=26 key=3 med=300
+X13 leftjoin id=6 key=3 med=300
+X13 leftjoin id=11 key=3 med=300
+X13 leftjoin id=21 key=3 med=300
+X13 leftjoin id=36 key=3 med=300
+X13 leftjoin id=1 key=3 med=300
+X13 leftjoin id=16 key=3 med=300
+X13 leftjoin id=14 key=4 med=400
+X13 leftjoin id=24 key=4 med=400
+X13 leftjoin id=39 key=4 med=400
+X13 leftjoin id=9 key=4 med=400
+X13 leftjoin id=19 key=4 med=400
+X13 leftjoin id=4 key=4 med=400
+X13 leftjoin id=34 key=4 med=400
+X13 leftjoin id=7 key=5 med=.
+X13 leftjoin id=27 key=5 med=.
+X13 leftjoin id=12 key=5 med=.
+X13 leftjoin id=22 key=5 med=.
+X13 leftjoin id=37 key=5 med=.
+X13 leftjoin id=2 key=5 med=.
+X13 leftjoin id=17 key=5 med=.
+X13 leftjoin id=32 key=5 med=.
+603        /* SQL division by zero, log of zero */
+604        proc sql;
+604      !           create table dz as select 1 / 0 as a, log(0) as b, 0.1 / 0.1 as c from lb(obs=1);
+604      !                                                                                             quit;
+605        data _null_; set dz; put "X13 sqlarith " a= b= c=; run;
+X13 sqlarith a=. b=. c=1
+606        /* mean of 0/1 flag over all rows + division by scalar subquery */
+607        proc sql;
+607      !           create table dq as select g, sum(y) / (select sum(y) from s) as cap, mean(y) / (select mean(y) from s) as lift
+608           from s group by g order by g;
+608      !                                  quit;
+609        data _null_; set dq; put "X13 subq " g= cap= hex16. lift= hex16.; run;
+X13 subq g=. cap=3FD0000000000000 lift=3FF0000000000000
+X13 subq g=1 cap=3FD0000000000000 lift=3FE5555555555555
+X13 subq g=2 cap=3FE0000000000000 lift=3FF5555555555555
+X13 subq g=3 cap=. lift=.
+610        
+611        /* MERGE: where= selecting no rows; 2-row middle dataset; length after merge */
+612        data m1; length ROCModel $14; ROCModel = 'Logistic Model'; AUC = 0.8; Gini = 0.6; run;
+613        data m2; KS = 0.5; cut = 0.1; output; KS = 0.5; cut = 0.2; output; run;
+614        data m3; PSI = 0.01; length interp $21; interp = 'No significant change'; run;
+615        data m4; threshold = 0.4; acc = 1; output; threshold = 0.6; acc = 2; output; run;
+616        data mm; merge m1 m2 m3 m4(where=(threshold = 0.5));
+617          length model $20 status $20; model = "Logistic Regression";
+618          if AUC >= 0.7 and KS >= 0.3 and PSI < 0.25 then status = "Production Ready";
+619          else if AUC >= 0.65 then status = "Requires Review"; else status = "Needs Improvement";
+620        run;
+621        data _null_; set mm; put "X13 merge " ROCModel= AUC= Gini= KS= cut= PSI= interp= threshold= acc= model= status=; run;
+X13 merge ROCModel=Logistic Model AUC=0.8 Gini=0.6 KS=0.5 cut=0.1 PSI=0.01 interp=No significant change threshold=. acc=.
+model=Logistic Regression status=Production Ready
+X13 merge ROCModel=  AUC=. Gini=. KS=0.5 cut=0.2 PSI=. interp=  threshold=. acc=. model=Logistic Regression status=Needs Improvement
+622        data m0; set m1; if 0; run;
+623        data mm0; merge m0 m3; x = 1; run;
+624        data _null_; set mm0; put "X13 merge_empty " ROCModel= AUC= PSI= x=; run;
+X13 merge_empty ROCModel=  AUC=. PSI=0.01 x=1
+625        /* character length from first assignment */
+626        data ch; g = 'C'; if g in ('A', 'B') then rec = 'Approve'; else if g = 'C' then rec = 'Review'; else rec = 'Decline';
+627          l = lengthc(rec); put "X13 char rec=[" rec $char7. "] l=" l; run;
+X13 char rec=[Review ] l=7
+628        /* retain without initial value + sum statement with missing */
+629        data rt; input d t; datalines;
+633        ;
+634        data _null_; set rt; retain cd cc; if _n_ = 1 then do; cd = d; cc = t; end; else do; cd + d; cc + t; end;
+635          put "X13 retain " _n_= cd= cc=; run;
+X13 retain _N_=1 cd=. cc=5
+X13 retain _N_=2 cd=3 cc=5
+X13 retain _N_=3 cd=5 cc=9
+636        
+637        
+638        
+639        
+10                                                         The SAS System                         Tuesday, 10 November 2026 13:52:00
+
+640        

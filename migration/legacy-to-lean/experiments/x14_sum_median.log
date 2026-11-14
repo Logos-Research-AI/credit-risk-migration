@@ -1,0 +1,31 @@
+5                                                          The SAS System                         Tuesday, 10 November 2026 13:58:00
+
+24         
+25         /* X14: association order of the SUM function; PROC SQL MEDIAN with an even count on values
+26            where (a+b)/2 and a+(b-a)/2 differ; MIN/MAX. */
+27         data _null_;
+28           s1 = sum(1e16, 1, -1e16, 1); s2 = sum(1, 1e16, -1e16, 1); s3 = sum(1, 1, 1e16, -1e16); s4 = sum(0.1, 0.2, 0.3); s5 =
+28       ! sum(0.3, 0.2, 0.1);
+29           s6 = sum(., 0.1, ., 0.2, 0.3); s7 = sum(1e16, ., 1, 1);
+30           put "X14 sum " s1= hex16. s2= hex16. s3= hex16. s4= hex16. s5= hex16. s6= hex16. s7= hex16.;
+31           t = 0.1; t + 0.2; t + 0.3; put "X14 sumstmt " t= hex16.;
+32         run;
+X14 sum s1=3FF0000000000000 s2=3FF0000000000000 s3=4000000000000000 s4=3FE3333333333334 s5=3FE3333333333333 s6=3FE3333333333334
+s7=4341C37937E08000
+X14 sumstmt t=3FE3333333333334
+33         data md; input g x; datalines;
+42         ;
+43         proc sql;
+43       !           create table mo as select g, median(x) as med from md group by g;
+43       !                                                                             quit;
+44         data _null_; set mo; put "X14 median " g= med= hex16. med= best32.; run;
+X14 median g=1 med=40AFB3170A3D70A3 med=4057.545
+X14 median g=2 med=4010000000000000 med=4
+X14 median g=3 med=4010000000000000 med=4
+45         
+46         
+47         
+48         
+6                                                          The SAS System                         Tuesday, 10 November 2026 13:58:00
+
+49         

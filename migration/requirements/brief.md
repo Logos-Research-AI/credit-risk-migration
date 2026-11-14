@@ -15,11 +15,13 @@ requirement bent toward what the code happens to do is worthless.
 
 ## What you may read
 
-- This folder: `requirements.md` (the requirements, with the owner's rulings), `MODEL_CARD.md` and
-  `README.md` (the documents they come from), `foundation/` (the shared types).
+- `migration/requirements/requirements.md` (the requirements, with the owner's rulings),
+  `legacy/MODEL_CARD.md` and `legacy/README.md` (the documents they come from),
+  `migration/foundation/` (the shared types).
+- You work from the project root as the agent `requirements-formaliser`.
 - The Logos blueprints `credit-risk-requirements` (yours) and `credit-risk-foundation` (shared).
 
-Nothing else: no file outside this folder (a hook blocks it), no other
+Nothing else (a hook blocks it): no other file of the project, no other
 blueprint. The README names four `.sas` scripts; do not look for them.
 
 ## Target
@@ -28,7 +30,7 @@ All Lean lives in the blueprint, through the Logos tools; never save Lean to a l
 even as scratch. Trust layer: Judging, the default. This is not a code blueprint: every item is a
 definition or a theorem added with `add_item`, with the requirement's text as its informal text.
 
-Use the shared foundation (`foundation/foundation.pdf`): tables are `Tabular.Table`, numbers are
+Use the shared foundation (`migration/foundation/foundation.pdf`): tables are `Tabular.Table`, numbers are
 the real numbers. Check first that `Tabular.RealLike` is visible from your blueprint; if not,
 stop and tell me.
 
@@ -66,6 +68,6 @@ stop and tell me.
 
 ## Report
 
-`report.md` in this folder, and the same in your last message: the items with their state; every
+`migration/requirements/report.md`, and the same in your last message: the items with their state; every
 reading you had to take; anything in the documentation that could not be formalised as written;
 what the consistency witness is and what it does not show; the counts from `get_status`.

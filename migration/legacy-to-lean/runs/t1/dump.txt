@@ -1,0 +1,64 @@
+DUMP model_coefficients Variable=Intercept DF=1 Estimate=-4.1668 StdErr=0.2600 WaldChiSq=256.8819 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=credit_utilization_c DF=1 Estimate=0.00250 StdErr=0.00124 WaldChiSq=4.0708 ProbChiSq=0.0436 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=debt_ratio_capped DF=1 Estimate=-0.00079 StdErr=0.000121 WaldChiSq=43.3730 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=has_delinquency DF=1 Estimate=1.1886 StdErr=0.0679 WaldChiSq=306.4002 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=has_serious_delinque DF=1 Estimate=0.4592 StdErr=0.0778 WaldChiSq=34.8033 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=log_monthly_income DF=1 Estimate=0.1381 StdErr=0.0176 WaldChiSq=61.6791 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=num_real_estate_loan DF=1 Estimate=0.0653 StdErr=0.0131 WaldChiSq=24.7068 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=num_dependents DF=1 Estimate=0.0744 StdErr=0.0155 WaldChiSq=22.9964 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=income_per_dependent DF=1 Estimate=-0.00003 StdErr=6.42E-6 WaldChiSq=20.3787 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=credit_lines_per_per DF=1 Estimate=0.0391 StdErr=0.00389 WaldChiSq=100.7755 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=flag_high_utilizatio DF=1 Estimate=-0.2205 StdErr=0.0600 WaldChiSq=13.5304 ProbChiSq=0.0002 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=flag_very_high_utili DF=1 Estimate=0.5058 StdErr=0.0652 WaldChiSq=60.2197 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=flag_very_high_debt_ DF=1 Estimate=0.2987 StdErr=0.0521 WaldChiSq=32.8732 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=flag_recent_late_pay DF=1 Estimate=-0.1819 StdErr=0.0507 WaldChiSq=12.8801 ProbChiSq=0.0003 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=flag_multiple_delinq DF=1 Estimate=0.9514 StdErr=0.0445 WaldChiSq=456.0765 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=flag_few_credit_line DF=1 Estimate=0.2411 StdErr=0.0484 WaldChiSq=24.7915 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=credit_util_category DF=1 Estimate=0.3921 StdErr=0.0438 WaldChiSq=80.1125 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=financial_health DF=1 Estimate=-0.00964 StdErr=0.00211 WaldChiSq=20.8569 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMP model_coefficients Variable=age_income_interacti DF=1 Estimate=-0.00215 StdErr=0.000139 WaldChiSq=238.3124 ProbChiSq=<.0001 _ESTTYPE_=MLE
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=C010AAD23F4B38C4 StdErr=3FD0A37D9CB98325 WaldChiSq=40700E1C50B361AE ProbChiSq=34149B7285975400
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3F6474AF42A775A1 StdErr=3F5446EB702F4F8B WaldChiSq=4010488AB73A2559 ProbChiSq=3FA6569C1937A184
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=BF4A02CB9DB08F8C StdErr=3F1F98A5FD1D7F60 WaldChiSq=4045AFBE40994F74 ProbChiSq=3DC8DECED377F500
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FF3046A76DED337 StdErr=3FB1620832B2A2E1 WaldChiSq=407326672F7E0BAC ProbChiSq=31D6ED1C0B197A00
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FDD6423790C609C StdErr=3FB3ED9935FF0409 WaldChiSq=404166D40D99EC7B ProbChiSq=3E2F54D961738800
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FC1ABD0735F4D61 StdErr=3F9200239BDCD1B5 WaldChiSq=404ED6EE393677D1 ProbChiSq=3CF2348F82DA2600
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FB0BA0334C8A5B7 StdErr=3F8AEBBF2AB8340E WaldChiSq=4038B4F3887940C1 ProbChiSq=3EA66582629809C0
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FB309C6B4F8AA27 StdErr=3F8FC2A6C4BE335A WaldChiSq=4036FF1625E9AEF7 ProbChiSq=3EBB3AD56C8D4040
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=BEFE6449B26CC41B StdErr=3EDAEDF182206844 WaldChiSq=403460F0AE5E5E9A ProbChiSq=3EDAA5E7ACA8B3E0
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FA4009C02A63ACD StdErr=3F6FE1644F69114F WaldChiSq=405931A134E5C29D ProbChiSq=3B28E8EAA8F66680
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=BFCC3A4E4C542A30 StdErr=3FAEB22A1C1E9EBE WaldChiSq=402B0F8FBF5CBA8F ProbChiSq=3F2EC44258C01920
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FE02F3B6736FDCC StdErr=3FB0AF4CAEE98070 WaldChiSq=404E1C1E68AD34DE ProbChiSq=3D031AAE07803400
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FD31E8FA8B4B3C8 StdErr=3FAAAD662654478E WaldChiSq=40406FC6592DEE5E ProbChiSq=3E451FD6C1B47200
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=BFC7496E0F9EAC95 StdErr=3FA9F453DEEB72B5 WaldChiSq=4029C29ABF0EA7DF ProbChiSq=3F35C3A8FF5E3EC0
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FEE71E391693569 StdErr=3FA6CF3A09AF6BF5 WaldChiSq=407C81396F8F78F0 ProbChiSq=2B1339763BE5CE00
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FCEDACE1CCA8A88 StdErr=3FA8C98E988C3BD9 WaldChiSq=4038CAA186238224 ProbChiSq=3EA56F0C1BB70820
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=3FD918C22267EDC2 StdErr=3FA66E712B6A3CD2 WaldChiSq=40540733502FAF72 ProbChiSq=3C1A18F363B98C00
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=BF83BCCBB741F1C9 StdErr=3F61498B8645C0A0 WaldChiSq=4034DB5E62D9A76B ProbChiSq=3ED4C1FD5E7180E0
+DUMPX model_coefficients DF=3FF0000000000000 Estimate=BF61A20CEE21E180 StdErr=3F224691DFD1369F WaldChiSq=406DC9FED5B4D34C ProbChiSq=34EC207A719E6B00
+DUMP confusion_matrix_train default_flag=0 pred_logistic=0 COUNT=96957 PERCENT=92.34
+DUMP confusion_matrix_train default_flag=0 pred_logistic=1 COUNT=1035 PERCENT=0.9857142857
+DUMP confusion_matrix_train default_flag=1 pred_logistic=0 COUNT=5590 PERCENT=5.3238095238
+DUMP confusion_matrix_train default_flag=1 pred_logistic=1 COUNT=1418 PERCENT=1.3504761905
+DUMPX confusion_matrix_train default_flag=0000000000000000 pred_logistic=0000000000000000 COUNT=40F7ABD000000000 PERCENT=405715C28F5C28F6
+DUMPX confusion_matrix_train default_flag=0000000000000000 pred_logistic=3FF0000000000000 COUNT=40902C0000000000 PERCENT=3FEF8AF8AF8AF8B0
+DUMPX confusion_matrix_train default_flag=3FF0000000000000 pred_logistic=0000000000000000 COUNT=40B5D60000000000 PERCENT=40154B94B94B94B9
+DUMPX confusion_matrix_train default_flag=3FF0000000000000 pred_logistic=3FF0000000000000 COUNT=4096280000000000 PERCENT=3FF59B8CEC01F352
+DUMP confusion_matrix default_flag=0 pred_logistic=0 COUNT=41523 PERCENT=92.273333333
+DUMP confusion_matrix default_flag=0 pred_logistic=1 COUNT=459 PERCENT=1.02
+DUMP confusion_matrix default_flag=1 pred_logistic=0 COUNT=2412 PERCENT=5.36
+DUMP confusion_matrix default_flag=1 pred_logistic=1 COUNT=606 PERCENT=1.3466666667
+DUMPX confusion_matrix default_flag=0000000000000000 pred_logistic=0000000000000000 COUNT=40E4466000000000 PERCENT=4057117E4B17E4B1
+DUMPX confusion_matrix default_flag=0000000000000000 pred_logistic=3FF0000000000000 COUNT=407CB00000000000 PERCENT=3FF051EB851EB852
+DUMPX confusion_matrix default_flag=3FF0000000000000 pred_logistic=0000000000000000 COUNT=40A2D80000000000 PERCENT=401570A3D70A3D71
+DUMPX confusion_matrix default_flag=3FF0000000000000 pred_logistic=3FF0000000000000 COUNT=4082F00000000000 PERCENT=3FF58BF258BF258C
+DUMP training_metrics train_precision=0.5780676722 train_recall=0.2023401826 train_f1_score=0.2997568967 train_accuracy=0.9369047619
+DUMPX training_metrics train_precision=3FE27F87C6646571 train_recall=3FC9E64879921E65 train_f1_score=3FD32F378D0E4283 train_accuracy=3FEDFB1FB1FB1FB2
+DUMP validation_metrics valid_precision=0.5690140845 valid_recall=0.2007952286 valid_f1_score=0.2968405584 valid_accuracy=0.9362
+DUMPX validation_metrics valid_precision=3FE2355D067D79DF valid_recall=3FC9B3A876135708 valid_f1_score=3FD2FF6F8AA0A284 valid_accuracy=3FEDF559B3D07C85
+DUMP roc_train ROCModel=Training Set Area=0.8592 StdErr=0.00234 LowerArea=0.8546 UpperArea=0.8638 SomersD=0.7184 Gamma=0.7184 TauA=0.0895
+DUMPX roc_train Area=3FEB7EBCB8A777E6 StdErr=3F632F69D33D1474 LowerArea=3FEB59228728EF50 UpperArea=3FEBA456EA26007C SomersD=3FE6FD79714EEFCC Gamma=3FE6FD7A0E9309BB TauA=3FB6E9970FFE319D
+DUMP roc_valid ROCModel=Validation Set Area=0.8564 StdErr=0.00357 LowerArea=0.8494 UpperArea=0.8634 SomersD=0.7128 Gamma=0.7128 TauA=0.0892
+DUMPX roc_valid Area=3FEB67CF080376BC StdErr=3F6D42F32152ACF6 LowerArea=3FEB2E750A25073B UpperArea=3FEBA12905E1E63D SomersD=3FE6CF9E1006ED78 Gamma=3FE6CF9EA70D9F0B TauA=3FB6D62B408B10B8
+DUMP model_summary Train_AUC=0.8592 Valid_AUC=0.8564 train_precision=0.5781 train_recall=0.2023 train_f1_score=0.2998 train_accuracy=0.9369 valid_precision=0.5690 valid_recall=0.2008 valid_f1_score=0.2968 valid_accuracy=0.9362
+DUMPX model_summary Train_AUC=3FEB7EBCB8A777E6 Valid_AUC=3FEB67CF080376BC train_precision=3FE27F87C6646571 train_recall=3FC9E64879921E65 train_f1_score=3FD32F378D0E4283 train_accuracy=3FEDFB1FB1FB1FB2 valid_precision=3FE2355D067D79DF

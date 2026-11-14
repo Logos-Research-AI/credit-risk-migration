@@ -1,0 +1,41 @@
+5                                                          The SAS System                         Tuesday, 10 November 2026 13:50:00
+
+24         
+25         /* X10 probe: connectivity + missing-value comparison and arithmetic basics. */
+26         data _null_;
+27           m = .;
+28           a = (m < 2500); b = (m > 0); c = (m >= 3); d = (m <= 2); e = (m = .); f = (m > .);
+29           put "X10 cmp lt=" a " gt=" b " ge=" c " le=" d " eq=" e " gtmiss=" f;
+30           if m then t = 1; else t = 0; put "X10 truth_missing=" t;
+31           z = 0; if z then t = 1; else t = 0; put "X10 truth_zero=" t;
+32           n = -0.5; if n then t = 1; else t = 0; put "X10 truth_neg=" t;
+33           s1 = sum(., ., .); s2 = sum(1, ., 2); s3 = sum(., 0); put "X10 sum " s1= s2= s3=;
+34           mn1 = min(., 200); mn2 = min(., .); mx1 = max(0, .); mx2 = max(., .); put "X10 minmax " mn1= mn2= mx1= mx2=;
+35           p1 = m + 1; p2 = m * 100; p3 = 1 / 0; p4 = 0 / 0; p5 = m / 0; p6 = 5 / m; put "X10 arith " p1= p2= p3= p4= p5= p6=;
+36           l1 = log(0); l2 = log(-1); l3 = log(m); l4 = log(1); put "X10 log " l1= l2= l3= l4=;
+37           big = 1e308; o1 = big * 10; o2 = big + big; o3 = exp(710); o4 = exp(709); o5 = exp(-1000); o6 = 1 / (1 + exp(1000)); o7
+37       !  = -big - big; o8 = big / 1e-10;
+38           put "X10 overflow " o1= o2= o3= o4= o5= o6= o7= o8=;
+39           ab1 = abs(m); ab2 = abs(-3); put "X10 abs " ab1= ab2=;
+40           r1 = round(m); put "X10 roundmiss " r1=;
+41         run;
+X10 cmp lt=1  gt=0  ge=0  le=1  eq=1  gtmiss=0
+X10 truth_missing=0
+X10 truth_zero=0
+X10 truth_neg=1
+X10 sum s1=. s2=3 s3=0
+X10 minmax mn1=200 mn2=. mx1=0 mx2=.
+X10 arith p1=. p2=. p3=. p4=. p5=. p6=.
+X10 log l1=. l2=. l3=. l4=0
+X10 overflow o1=. o2=. o3=. o4=8.218407E307 o5=0 o6=. o7=. o8=.
+X10 abs ab1=. ab2=3
+X10 roundmiss r1=.
+m=. a=1 b=0 c=0 d=1 e=1 f=0 t=1 z=0 n=-0.5 s1=. s2=3 s3=0 mn1=200 mn2=. mx1=0 mx2=. p1=. p2=. p3=. p4=. p5=. p6=. l1=. l2=. l3=.
+l4=0 big=1E308 o1=. o2=. o3=. o4=8.218407E307 o5=0 o6=. o7=. o8=. ab1=. ab2=3 r1=. _ERROR_=1 _N_=1
+42         
+43         
+44         
+45         
+6                                                          The SAS System                         Tuesday, 10 November 2026 13:50:00
+
+46         

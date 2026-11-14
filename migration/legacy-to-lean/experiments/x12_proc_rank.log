@@ -1,0 +1,106 @@
+7                                                          The SAS System                         Tuesday, 10 November 2026 13:52:00
+
+60         
+61         /* X12: PROC RANK GROUPS= : group formula at exact boundaries, default ties, DESCENDING,
+62            missing values, output order. Cases chosen where floor((r*k)/(n+1)) and
+63            floor(r*(k/(n+1))) differ in binary64 (n=244: r=24.5,49,73.5,98,147,171.5,196; n=153,k=20: r=38.5,77,115.5). */
+64         data a; input v @@; id = _n_; datalines;
+309        ;
+310        proc rank data=a out=ra10 groups=10; var v; ranks g; run;
+311        proc rank data=a out=ra20 groups=20; var v; ranks g; run;
+312        proc rank data=a out=rad10 groups=10 descending; var v; ranks g; run;
+313        proc rank data=a out=rar; var v; ranks r; run;
+314        data _null_; merge ra10(rename=(g=g10)) ra20(rename=(g=g20)) rad10(rename=(g=gd10)) rar;
+315          if id in (24,25,26,48,49,50,73,74,75,98,99,147,148,171,172,173,196,197,220,221,244,1) then
+316            put "X12A " id= v= r= g10= g20= gd10=;
+317        run;
+X12A id=1 v=1 r=1 g10=0 g20=0 gd10=9
+X12A id=24 v=24 r=24.5 g10=1 g20=2 gd10=9
+X12A id=25 v=24 r=24.5 g10=1 g20=2 gd10=9
+X12A id=26 v=26 r=26 g10=1 g20=2 gd10=8
+X12A id=48 v=48 r=48 g10=1 g20=3 gd10=8
+X12A id=49 v=49 r=49 g10=2 g20=4 gd10=8
+X12A id=50 v=50 r=50 g10=2 g20=4 gd10=7
+X12A id=73 v=73 r=73.5 g10=3 g20=6 gd10=7
+X12A id=74 v=73 r=73.5 g10=3 g20=6 gd10=7
+X12A id=75 v=75 r=75 g10=3 g20=6 gd10=6
+X12A id=98 v=98 r=98 g10=4 g20=8 gd10=6
+X12A id=99 v=99 r=99 g10=4 g20=8 gd10=5
+X12A id=147 v=147 r=147 g10=6 g20=12 gd10=4
+X12A id=148 v=148 r=148 g10=6 g20=12 gd10=3
+X12A id=171 v=171 r=171.5 g10=7 g20=14 gd10=3
+X12A id=172 v=171 r=171.5 g10=7 g20=14 gd10=3
+X12A id=173 v=173 r=173 g10=7 g20=14 gd10=2
+X12A id=196 v=196 r=196 g10=8 g20=16 gd10=2
+X12A id=197 v=197 r=197 g10=8 g20=16 gd10=1
+X12A id=220 v=220 r=220 g10=8 g20=17 gd10=1
+X12A id=221 v=221 r=221 g10=9 g20=18 gd10=0
+X12A id=244 v=244 r=244 g10=9 g20=19 gd10=0
+318        data c; input v @@; id = _n_; datalines;
+472        ;
+473        proc rank data=c out=rc20 groups=20; var v; ranks g; run;
+474        proc rank data=c out=rcr; var v; ranks r; run;
+475        data _null_; merge rc20 rcr; if id in (37,38,39,40,76,77,78,115,116,117) then put "X12C " id= v= r= g=; run;
+X12C id=37 v=37 r=37 g=4
+X12C id=38 v=38 r=38.5 g=5
+X12C id=39 v=38 r=38.5 g=5
+X12C id=40 v=40 r=40 g=5
+X12C id=76 v=76 r=76 g=9
+X12C id=77 v=77 r=77 g=10
+X12C id=78 v=78 r=78 g=10
+X12C id=115 v=115 r=115.5 g=15
+X12C id=116 v=115 r=115.5 g=15
+X12C id=117 v=117 r=117 g=15
+476        /* B: small, unsorted input, ties, missing values */
+477        data b; input v @@; id = _n_; datalines;
+479        ;
+480        proc rank data=b out=rb10 groups=10; var v; ranks g; run;
+481        proc rank data=b out=rbd10 groups=10 descending; var v; ranks g; run;
+482        proc rank data=b out=rb4 groups=4; var v; ranks g; run;
+483        proc rank data=b out=rbr; var v; ranks r; run;
+484        proc rank data=b out=rbrd descending; var v; ranks r; run;
+485        data _null_; merge rb10(rename=(g=g10)) rbd10(rename=(g=gd10)) rb4(rename=(g=g4)) rbr rbrd(rename=(r=rd));
+486          put "X12B " id= v= r= rd= g10= gd10= g4=;
+487        run;
+X12B id=1 v=0.3 r=6 rd=7 g10=4 gd10=5 g4=1
+X12B id=2 v=0.1 r=1.5 rd=11.5 g10=1 gd10=8 g4=0
+X12B id=3 v=. r=. rd=. g10=. gd10=. g4=.
+X12B id=4 v=0.2 r=4 rd=9 g10=3 gd10=6 g4=1
+X12B id=5 v=0.2 r=4 rd=9 g10=3 gd10=6 g4=1
+X12B id=6 v=0.5 r=8 rd=5 g10=6 gd10=3 g4=2
+X12B id=7 v=0.4 r=7 rd=6 g10=5 gd10=4 g4=2
+X12B id=8 v=0.2 r=4 rd=9 g10=3 gd10=6 g4=1
+X12B id=9 v=. r=. rd=. g10=. gd10=. g4=.
+X12B id=10 v=0.1 r=1.5 rd=11.5 g10=1 gd10=8 g4=0
+X12B id=11 v=0.9 r=12 rd=1 g10=9 gd10=0 g4=3
+X12B id=12 v=0.7 r=10 rd=3 g10=7 gd10=2 g4=3
+X12B id=13 v=0.6 r=9 rd=4 g10=6 gd10=3 g4=2
+X12B id=14 v=0.8 r=11 rd=2 g10=8 gd10=1 g4=3
+488        /* all values equal; single row; all missing */
+489        data e1; do id = 1 to 7; v = 0.5; output; end; run;
+490        proc rank data=e1 out=re1 groups=10; var v; ranks g; run;
+491        data _null_; set re1; put "X12E1 " id= v= g=; run;
+X12E1 id=1 v=0.5 g=5
+X12E1 id=2 v=0.5 g=5
+X12E1 id=3 v=0.5 g=5
+X12E1 id=4 v=0.5 g=5
+X12E1 id=5 v=0.5 g=5
+X12E1 id=6 v=0.5 g=5
+X12E1 id=7 v=0.5 g=5
+492        data e2; id = 1; v = 0.3; run;
+493        proc rank data=e2 out=re2 groups=10; var v; ranks g; run;
+494        data _null_; set re2; put "X12E2 " id= v= g=; run;
+X12E2 id=1 v=0.3 g=5
+495        data e3; do id = 1 to 3; v = .; output; end; run;
+496        proc rank data=e3 out=re3 groups=10; var v; ranks g; run;
+497        data _null_; set re3; put "X12E3 " id= v= g=; run;
+X12E3 id=1 v=. g=.
+X12E3 id=2 v=. g=.
+X12E3 id=3 v=. g=.
+498        
+499        
+500        
+501        
+8                                                          The SAS System                         Tuesday, 10 November 2026 13:52:00
+
+502        

@@ -1,0 +1,112 @@
+
+                                                ROC Curve Analysis - Validation Set           Tuesday, 10 November 2026 14:56:00   1
+
+                                                       The LOGISTIC Procedure
+
+                                                         Model Information
+
+                                       Data Set                      WORK.LOGIT_SCORED_VALID
+                                       Response Variable             default_flag           
+                                       Number of Response Levels     2                      
+                                       Model                         binary logit           
+                                       Optimization Technique        Fisher's scoring       
+
+
+                                              Number of Observations Read         260
+                                              Number of Observations Used         260
+
+
+                                                          Response Profile
+ 
+                                               Ordered                          Total
+                                                 Value     default_flag     Frequency
+
+                                                     1     0                      236
+                                                     2     1                       24
+
+                                              Probability modeled is default_flag='1'.
+
+
+                                                Score Test for Global Null Hypothesis
+ 
+                                                 Chi-Square       DF     Pr > ChiSq
+
+                                                     0.3258        1         0.5681
+
+
+                                                     ROC Model: Logistic Model
+
+                                                       ROC Model Information
+
+                                             ROC Contrast Coefficients     pd_logistic
+
+
+                                                    ROC Association Statistics
+ 
+                                  --------------- Mann-Whitney ---------------
+                                              Standard          95% Wald
+                ROC Model             Area       Error      Confidence Limits     Somers' D       Gamma       Tau-a
+
+                Logistic Model      0.5200      0.0657      0.3913      0.6488       0.0401      0.0403     0.00674
+
+                                              Model Performance Metrics - AUC and Gini        Tuesday, 10 November 2026 14:56:00   2
+
+                                                  ROCModel            AUC        Gini
+
+                                               Logistic Model      0.5200      0.0401
+
+                                                    Kolmogorov-Smirnov Statistic              Tuesday, 10 November 2026 14:56:00   3
+
+                                                     KS_Statistic    KS_Cutoff
+
+                                                         0.1476        0.1580 
+
+                                            Performance Metrics at Different Thresholds       Tuesday, 10 November 2026 14:56:00   4
+
+                          Obs    threshold    accuracy    precision      recall    f1_score    specificity
+
+                           1        0.3         0.8923      0.1667       0.0417      0.0667       0.9788  
+                           2        0.4         0.9038      0.0000       0.0000       .           0.9958  
+                           3        0.5         0.9077       .           0.0000       .           1.0000  
+                           4        0.6         0.9077       .           0.0000       .           1.0000  
+                           5        0.7         0.9077       .           0.0000       .           1.0000  
+
+                                           Decile Analysis - Model Lift and Capture Rate      Tuesday, 10 November 2026 14:56:00   5
+
+                             total_                default_                                        capture_
+            Obs    decile     count    defaults      rate        avg_pd      min_pd      max_pd      rate          lift
+
+              1       1        26          3        11.54%       0.2663      0.1890      0.4530     12.50%         1.25
+              2       2        26          4        15.38%       0.1656      0.1480      0.1880     16.67%         1.67
+              3       3        26          0         0.00%       0.1315      0.1180      0.1460      0.00%         0.00
+              4       4        26          3        11.54%       0.1065      0.0970      0.1170     12.50%         1.25
+              5       5        26          1         3.85%       0.0862      0.0790      0.0960      4.17%         0.42
+              6       6        26          3        11.54%       0.0698      0.0600      0.0780     12.50%         1.25
+              7       7        25          4        16.00%       0.0515      0.0450      0.0590     16.67%         1.73
+              8       8        28          1         3.57%       0.0380      0.0310      0.0440      4.17%         0.39
+              9       9        25          4        16.00%       0.0272      0.0230      0.0300     16.67%         1.73
+             10      10        26          1         3.85%       0.0140      0.0060      0.0210      4.17%         0.42
+
+                                                     Population Stability Index               Tuesday, 10 November 2026 14:56:00   6
+
+                                                        PSI    PSI_interpretation
+
+                                                     1.6077    Significant change
+
+                                                      Model Validation Summary                Tuesday, 10 November 2026 14:56:00   7
+
+    ROCModel          AUC      Gini  KS_Statistic  KS_Cutoff       PSI  PSI_interpretation         model              status
+
+ Logistic Model    0.5200    0.0401      0.1476      0.1580     1.6077  Significant change  Logistic Regression  Needs Improvement
+
+                                         Model Performance Metrics - Saved to Output Folder   Tuesday, 10 November 2026 14:56:00   8
+
+                                                                                                  accuracy_    precision_
+                AUC        Gini    KS_Statistic    KS_Cutoff         PSI    PSI_interpretation      at_50         at_50
+
+             0.5200      0.0401        0.1476        0.1580       1.6077    Significant change     0.90769          .    
+
+           recall_    f1_score_    specificity_                           validation_
+            at_50       at_50          at_50           model_name            date                 dataset
+
+              0           .              1         Logistic Regression     10NOV2026     Kaggle Give Me Some Credit

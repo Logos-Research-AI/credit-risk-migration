@@ -34,30 +34,39 @@ On this project stage 3, and one pass of stage 4, were done before stages 1 and 
 
 - `legacy-to-port/`, `legacy-to-lean/`, `port-to-lean/`: one kit record per migration (rulebook,
   inventory, manifest, reviews, evaluation). The two Lean ones also hold the translator's brief
-  and are copied from the translator's workspace (`SOURCE.md` says at which commit).
+  (`SOURCE.md` says where the record came from).
 - `requirements/`: `requirements.md` with the owner's rulings, the formaliser's brief, its report.
 - `proofs/legacy-meets-requirements/`, `proofs/port-equals-legacy/`: the contracts to prove
   (`informal-spec.md`), the prover's and coding agent's briefs, and what came back (`reports/`,
   `changes.md`).
 - `audit/`: the orchestrator's audit, and later the write-up.
 - `foundation/`: the types every blueprint shares (`credit-risk-foundation`).
-- `workspaces/` (git-ignored): one folder per independent session, built by `workspaces.sh`.
-  A session is started inside its workspace and told "Read PROMPT.md and carry it out".
-- `guard.py`: the hook installed in every workspace. It blocks any tool call that touches a
-  file of the project outside the workspace, or opens a blueprint the workspace must not see.
-  This is what keeps the two translations independent.
+
+## Agents and isolation
+
+The work is done by sub-agents of one orchestrator session, launched from workflows, so every
+agent can be watched with Claude Code's own views (`/workflows`, the agent map in VS Code). No
+separate sessions or folders are used.
+
+- `.claude/agents/`: one definition per role.
+- `.claude/hooks/guard.py` with `.claude/hooks/roles.json`: a hook that runs before every tool
+  call of every sub-agent and applies its role's rule: which project files it may read and
+  write, and which blueprints it may not open. A sub-agent with no role gets the strictest
+  rule. This is what keeps the two translations independent.
 
 Records written before 2026-11-14 cite paths as they were then: the legacy files and
 `credit_risk/` at the repository root, the legacy-to-port record directly in `migration/`, and
-workspaces named `sas` and `python` under `sas-migration-formal/`.
+translators working in separate folders named `sas` and `python` (later `legacy` and `port`).
 
-## Sessions
+## Roles
 
-| Workspace | Does | Sees |
+| Agent | Does | Sees |
 |---|---|---|
-| `requirements` | formalises the requirements, proves them consistent | the documentation only |
-| `legacy` | migrates the SAS to Lean, with the kit | the SAS, its outputs, the documentation |
-| `port` | migrates the port to Lean, with the kit | the Python only |
-| `prover` | states and proves or disproves the contracts | both workspaces (read only), both blueprints |
+| `requirements-formaliser` | formalises the requirements, proves them consistent | the documentation only |
+| `legacy-translator` | migrates the SAS to Lean, with the kit | `legacy/`, SAS outputs in `judge/`, its own record |
+| `port-translator` | migrates the port to Lean, with the kit | `port/`, raw data, its own record |
+| `prover` | states and proves or disproves the contracts | everything, read only; all blueprints |
+| `coding-agent` | fixes code on the prover's findings | all code and records; no blueprint |
 
-The coding agent, which fixes code on the prover's findings, works in the project itself.
+The orchestrator (the main session) writes the briefs, launches the agents, checks profiles,
+audits, and stops at the human gates. It never translates or proves.

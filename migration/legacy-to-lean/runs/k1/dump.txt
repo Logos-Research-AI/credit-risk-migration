@@ -1,0 +1,107 @@
+DUMP roc_stats ROCModel=Logistic Model Area=0.7500 StdErr=0.3536 LowerArea=0.0570 UpperArea=1.0000 SomersD=0.5000 Gamma=0.5000 TauA=0.3333
+DUMPX roc_stats Area=3FE8000000000000 StdErr=3FD6A09E667F3BCD LowerArea=3FAD35682F044D54 UpperArea=3FF0000000000000 SomersD=3FE0000000000000 Gamma=3FE0000000000000 TauA=3FD5555555555555
+DUMP auc_summary ROCModel=Logistic Model AUC=0.7500 Gini=0.5000
+DUMPX auc_summary AUC=3FE8000000000000 Gini=3FE0000000000000
+DUMP logit_scored_valid row_id=1 default_flag=0 pd_logistic=0.1 risk_grade=A
+DUMP logit_scored_valid row_id=2 default_flag=1 pd_logistic=0.2 risk_grade=A
+DUMP logit_scored_valid row_id=3 default_flag=0 pd_logistic=0.3 risk_grade=A
+DUMP logit_scored_valid row_id=4 default_flag=1 pd_logistic=0.4 risk_grade=A
+DUMPX logit_scored_valid row_id=3FF0000000000000 default_flag=0000000000000000 pd_logistic=3FB999999999999A
+DUMPX logit_scored_valid row_id=4000000000000000 default_flag=3FF0000000000000 pd_logistic=3FC999999999999A
+DUMPX logit_scored_valid row_id=4008000000000000 default_flag=0000000000000000 pd_logistic=3FD3333333333333
+DUMPX logit_scored_valid row_id=4010000000000000 default_flag=3FF0000000000000 pd_logistic=3FD999999999999A
+DUMP ks_calculation row_id=1 default_flag=0 pd_logistic=0.1 risk_grade=A cum_good=1 cum_bad=0 cum_pct_good=0.5 cum_pct_bad=0 ks_value=0.5
+DUMP ks_calculation row_id=2 default_flag=1 pd_logistic=0.2 risk_grade=A cum_good=1 cum_bad=1 cum_pct_good=0.5 cum_pct_bad=0.5 ks_value=0
+DUMP ks_calculation row_id=3 default_flag=0 pd_logistic=0.3 risk_grade=A cum_good=2 cum_bad=1 cum_pct_good=1 cum_pct_bad=0.5 ks_value=0.5
+DUMP ks_calculation row_id=4 default_flag=1 pd_logistic=0.4 risk_grade=A cum_good=2 cum_bad=2 cum_pct_good=1 cum_pct_bad=1 ks_value=0
+DUMPX ks_calculation row_id=3FF0000000000000 default_flag=0000000000000000 pd_logistic=3FB999999999999A cum_good=3FF0000000000000 cum_bad=0000000000000000 cum_pct_good=3FE0000000000000 cum_pct_bad=0000000000000000 ks_value=3FE0000000000000
+DUMPX ks_calculation row_id=4000000000000000 default_flag=3FF0000000000000 pd_logistic=3FC999999999999A cum_good=3FF0000000000000 cum_bad=3FF0000000000000 cum_pct_good=3FE0000000000000 cum_pct_bad=3FE0000000000000 ks_value=0000000000000000
+DUMPX ks_calculation row_id=4008000000000000 default_flag=0000000000000000 pd_logistic=3FD3333333333333 cum_good=4000000000000000 cum_bad=3FF0000000000000 cum_pct_good=3FF0000000000000 cum_pct_bad=3FE0000000000000 ks_value=3FE0000000000000
+DUMPX ks_calculation row_id=4010000000000000 default_flag=3FF0000000000000 pd_logistic=3FD999999999999A cum_good=4000000000000000 cum_bad=4000000000000000 cum_pct_good=3FF0000000000000 cum_pct_bad=3FF0000000000000 ks_value=0000000000000000
+DUMP ks_statistic KS_Statistic=0.5000 KS_Cutoff=0.1000
+DUMP ks_statistic KS_Statistic=0.5000 KS_Cutoff=0.3000
+DUMPX ks_statistic KS_Statistic=3FE0000000000000 KS_Cutoff=3FB999999999999A
+DUMPX ks_statistic KS_Statistic=3FE0000000000000 KS_Cutoff=3FD3333333333333
+DUMP threshold_analysis threshold=0.3 accuracy=0.5 precision=0.5 recall=0.5 f1_score=0.5 specificity=0.5
+DUMP threshold_analysis threshold=0.4 accuracy=0.75 precision=1 recall=0.5 f1_score=0.6666666667 specificity=1
+DUMP threshold_analysis threshold=0.5 accuracy=0.5 precision=. recall=0 f1_score=. specificity=1
+DUMP threshold_analysis threshold=0.6 accuracy=0.5 precision=. recall=0 f1_score=. specificity=1
+DUMP threshold_analysis threshold=0.7 accuracy=0.5 precision=. recall=0 f1_score=. specificity=1
+DUMPX threshold_analysis threshold=3FD3333333333333 accuracy=3FE0000000000000 precision=3FE0000000000000 recall=3FE0000000000000 f1_score=3FE0000000000000 specificity=3FE0000000000000
+DUMPX threshold_analysis threshold=3FD999999999999A accuracy=3FE8000000000000 precision=3FF0000000000000 recall=3FE0000000000000 f1_score=3FE5555555555555 specificity=3FF0000000000000
+DUMPX threshold_analysis threshold=3FE0000000000000 accuracy=3FE0000000000000 precision=. recall=0000000000000000 f1_score=. specificity=3FF0000000000000
+DUMPX threshold_analysis threshold=3FE3333333333333 accuracy=3FE0000000000000 precision=. recall=0000000000000000 f1_score=. specificity=3FF0000000000000
+DUMPX threshold_analysis threshold=3FE6666666666666 accuracy=3FE0000000000000 precision=. recall=0000000000000000 f1_score=. specificity=3FF0000000000000
+DUMP decile_data row_id=1 default_flag=0 pd_logistic=0.1 risk_grade=A decile=8
+DUMP decile_data row_id=2 default_flag=1 pd_logistic=0.2 risk_grade=A decile=6
+DUMP decile_data row_id=3 default_flag=0 pd_logistic=0.3 risk_grade=A decile=4
+DUMP decile_data row_id=4 default_flag=1 pd_logistic=0.4 risk_grade=A decile=2
+DUMPX decile_data row_id=3FF0000000000000 default_flag=0000000000000000 pd_logistic=3FB999999999999A decile=4020000000000000
+DUMPX decile_data row_id=4000000000000000 default_flag=3FF0000000000000 pd_logistic=3FC999999999999A decile=4018000000000000
+DUMPX decile_data row_id=4008000000000000 default_flag=0000000000000000 pd_logistic=3FD3333333333333 decile=4010000000000000
+DUMPX decile_data row_id=4010000000000000 default_flag=3FF0000000000000 pd_logistic=3FD999999999999A decile=4000000000000000
+DUMP decile_analysis decile=3 total_count=1 defaults=1 default_rate=100.0% avg_pd=0.4000 min_pd=0.4000 max_pd=0.4000 capture_rate=50.00% lift=2.00
+DUMP decile_analysis decile=5 total_count=1 defaults=0 default_rate=0.00% avg_pd=0.3000 min_pd=0.3000 max_pd=0.3000 capture_rate=0.00% lift=0.00
+DUMP decile_analysis decile=7 total_count=1 defaults=1 default_rate=100.0% avg_pd=0.2000 min_pd=0.2000 max_pd=0.2000 capture_rate=50.00% lift=2.00
+DUMP decile_analysis decile=9 total_count=1 defaults=0 default_rate=0.00% avg_pd=0.1000 min_pd=0.1000 max_pd=0.1000 capture_rate=0.00% lift=0.00
+DUMPX decile_analysis decile=4008000000000000 total_count=3FF0000000000000 defaults=3FF0000000000000 default_rate=3FF0000000000000 avg_pd=3FD999999999999A min_pd=3FD999999999999A max_pd=3FD999999999999A capture_rate=3FE0000000000000 lift=4000000000000000
+DUMPX decile_analysis decile=4014000000000000 total_count=3FF0000000000000 defaults=0000000000000000 default_rate=0000000000000000 avg_pd=3FD3333333333333 min_pd=3FD3333333333333 max_pd=3FD3333333333333 capture_rate=0000000000000000 lift=0000000000000000
+DUMPX decile_analysis decile=401C000000000000 total_count=3FF0000000000000 defaults=3FF0000000000000 default_rate=3FF0000000000000 avg_pd=3FC999999999999A min_pd=3FC999999999999A max_pd=3FC999999999999A capture_rate=3FE0000000000000 lift=4000000000000000
+DUMPX decile_analysis decile=4022000000000000 total_count=3FF0000000000000 defaults=0000000000000000 default_rate=0000000000000000 avg_pd=3FB999999999999A min_pd=3FB999999999999A max_pd=3FB999999999999A capture_rate=0000000000000000 lift=0000000000000000
+DUMP cumulative_lift decile=3 total_count=1 defaults=1 default_rate=100.0% avg_pd=0.4000 min_pd=0.4000 max_pd=0.4000 capture_rate=50.00% lift=2.00 cum_defaults=1 cum_count=1 cum_capture_rate=50.00% cum_lift=2.00
+DUMP cumulative_lift decile=5 total_count=1 defaults=0 default_rate=0.00% avg_pd=0.3000 min_pd=0.3000 max_pd=0.3000 capture_rate=0.00% lift=0.00 cum_defaults=1 cum_count=2 cum_capture_rate=50.00% cum_lift=1.00
+DUMP cumulative_lift decile=7 total_count=1 defaults=1 default_rate=100.0% avg_pd=0.2000 min_pd=0.2000 max_pd=0.2000 capture_rate=50.00% lift=2.00 cum_defaults=2 cum_count=3 cum_capture_rate=100.0% cum_lift=1.33
+DUMP cumulative_lift decile=9 total_count=1 defaults=0 default_rate=0.00% avg_pd=0.1000 min_pd=0.1000 max_pd=0.1000 capture_rate=0.00% lift=0.00 cum_defaults=2 cum_count=4 cum_capture_rate=100.0% cum_lift=1.00
+DUMPX cumulative_lift decile=4008000000000000 total_count=3FF0000000000000 defaults=3FF0000000000000 default_rate=3FF0000000000000 avg_pd=3FD999999999999A min_pd=3FD999999999999A max_pd=3FD999999999999A capture_rate=3FE0000000000000 lift=4000000000000000 cum_defaults=3FF0000000000000 cum_count=3FF0000000000000 cum_capture_rate=3FE0000000000000 cum_lift=4000000000000000
+DUMPX cumulative_lift decile=4014000000000000 total_count=3FF0000000000000 defaults=0000000000000000 default_rate=0000000000000000 avg_pd=3FD3333333333333 min_pd=3FD3333333333333 max_pd=3FD3333333333333 capture_rate=0000000000000000 lift=0000000000000000 cum_defaults=3FF0000000000000 cum_count=4000000000000000 cum_capture_rate=3FE0000000000000 cum_lift=3FF0000000000000
+DUMPX cumulative_lift decile=401C000000000000 total_count=3FF0000000000000 defaults=3FF0000000000000 default_rate=3FF0000000000000 avg_pd=3FC999999999999A min_pd=3FC999999999999A max_pd=3FC999999999999A capture_rate=3FE0000000000000 lift=4000000000000000 cum_defaults=4000000000000000 cum_count=4008000000000000 cum_capture_rate=3FF0000000000000 cum_lift=3FF5555555555555
+DUMPX cumulative_lift decile=4022000000000000 total_count=3FF0000000000000 defaults=0000000000000000 default_rate=0000000000000000 avg_pd=3FB999999999999A min_pd=3FB999999999999A max_pd=3FB999999999999A capture_rate=0000000000000000 lift=0000000000000000 cum_defaults=4000000000000000 cum_count=4010000000000000 cum_capture_rate=3FF0000000000000 cum_lift=3FF0000000000000
+DUMP train_bins row_id=1 default_flag=0 pd_logistic=0.15 risk_grade=A score_bin=1
+DUMP train_bins row_id=2 default_flag=1 pd_logistic=0.25 risk_grade=A score_bin=3
+DUMP train_bins row_id=3 default_flag=0 pd_logistic=0.35 risk_grade=A score_bin=5
+DUMP train_bins row_id=4 default_flag=1 pd_logistic=0.45 risk_grade=A score_bin=6
+DUMP train_bins row_id=5 default_flag=0 pd_logistic=0.5 risk_grade=A score_bin=8
+DUMPX train_bins row_id=3FF0000000000000 default_flag=0000000000000000 pd_logistic=3FC3333333333333 score_bin=3FF0000000000000
+DUMPX train_bins row_id=4000000000000000 default_flag=3FF0000000000000 pd_logistic=3FD0000000000000 score_bin=4008000000000000
+DUMPX train_bins row_id=4008000000000000 default_flag=0000000000000000 pd_logistic=3FD6666666666666 score_bin=4014000000000000
+DUMPX train_bins row_id=4010000000000000 default_flag=3FF0000000000000 pd_logistic=3FDCCCCCCCCCCCCD score_bin=4018000000000000
+DUMPX train_bins row_id=4014000000000000 default_flag=0000000000000000 pd_logistic=3FE0000000000000 score_bin=4020000000000000
+DUMP valid_bins row_id=1 default_flag=0 pd_logistic=0.1 risk_grade=A score_bin=2
+DUMP valid_bins row_id=2 default_flag=1 pd_logistic=0.2 risk_grade=A score_bin=4
+DUMP valid_bins row_id=3 default_flag=0 pd_logistic=0.3 risk_grade=A score_bin=6
+DUMP valid_bins row_id=4 default_flag=1 pd_logistic=0.4 risk_grade=A score_bin=8
+DUMPX valid_bins row_id=3FF0000000000000 default_flag=0000000000000000 pd_logistic=3FB999999999999A score_bin=4000000000000000
+DUMPX valid_bins row_id=4000000000000000 default_flag=3FF0000000000000 pd_logistic=3FC999999999999A score_bin=4010000000000000
+DUMPX valid_bins row_id=4008000000000000 default_flag=0000000000000000 pd_logistic=3FD3333333333333 score_bin=4018000000000000
+DUMPX valid_bins row_id=4010000000000000 default_flag=3FF0000000000000 pd_logistic=3FD999999999999A score_bin=4020000000000000
+DUMP psi_calculation score_bin=6 train_pct=0.2 valid_pct=0.25 psi_component=0.0111571776
+DUMP psi_calculation score_bin=8 train_pct=0.2 valid_pct=0.25 psi_component=0.0111571776
+DUMPX psi_calculation score_bin=4018000000000000 train_pct=3FC999999999999A valid_pct=3FD0000000000000 psi_component=3F86D99306154818
+DUMPX psi_calculation score_bin=4020000000000000 train_pct=3FC999999999999A valid_pct=3FD0000000000000 psi_component=3F86D99306154818
+DUMP psi_summary PSI=0.0223 PSI_interpretation=No significant change
+DUMPX psi_summary PSI=3F96D99306154818
+DUMP calibration_data row_id=1 default_flag=0 pd_logistic=0.1 risk_grade=A pred_bin=4
+DUMP calibration_data row_id=2 default_flag=1 pd_logistic=0.2 risk_grade=A pred_bin=8
+DUMP calibration_data row_id=3 default_flag=0 pd_logistic=0.3 risk_grade=A pred_bin=12
+DUMP calibration_data row_id=4 default_flag=1 pd_logistic=0.4 risk_grade=A pred_bin=16
+DUMPX calibration_data row_id=3FF0000000000000 default_flag=0000000000000000 pd_logistic=3FB999999999999A pred_bin=4010000000000000
+DUMPX calibration_data row_id=4000000000000000 default_flag=3FF0000000000000 pd_logistic=3FC999999999999A pred_bin=4020000000000000
+DUMPX calibration_data row_id=4008000000000000 default_flag=0000000000000000 pd_logistic=3FD3333333333333 pred_bin=4028000000000000
+DUMPX calibration_data row_id=4010000000000000 default_flag=3FF0000000000000 pd_logistic=3FD999999999999A pred_bin=4030000000000000
+DUMP calibration_plot pred_bin=4 mean_predicted=0.1000 mean_actual=0.0000 bin_count=1
+DUMP calibration_plot pred_bin=8 mean_predicted=0.2000 mean_actual=1.0000 bin_count=1
+DUMP calibration_plot pred_bin=12 mean_predicted=0.3000 mean_actual=0.0000 bin_count=1
+DUMP calibration_plot pred_bin=16 mean_predicted=0.4000 mean_actual=1.0000 bin_count=1
+DUMPX calibration_plot pred_bin=4010000000000000 mean_predicted=3FB999999999999A mean_actual=0000000000000000 bin_count=3FF0000000000000
+DUMPX calibration_plot pred_bin=4020000000000000 mean_predicted=3FC999999999999A mean_actual=3FF0000000000000 bin_count=3FF0000000000000
+DUMPX calibration_plot pred_bin=4028000000000000 mean_predicted=3FD3333333333333 mean_actual=0000000000000000 bin_count=3FF0000000000000
+DUMPX calibration_plot pred_bin=4030000000000000 mean_predicted=3FD999999999999A mean_actual=3FF0000000000000 bin_count=3FF0000000000000
+DUMP validation_summary ROCModel=Logistic Model AUC=0.7500 Gini=0.5000 KS_Statistic=0.5000 KS_Cutoff=0.1000 PSI=0.0223 PSI_interpretation=No significant change model=Logistic Regression status=Production Ready
+DUMP validation_summary ROCModel=  AUC=. Gini=. KS_Statistic=0.5000 KS_Cutoff=0.3000 PSI=. PSI_interpretation=  model=Logistic Regression status=Needs Improvement
+DUMPX validation_summary AUC=3FE8000000000000 Gini=3FE0000000000000 KS_Statistic=3FE0000000000000 KS_Cutoff=3FB999999999999A PSI=3F96D99306154818
+DUMPX validation_summary AUC=. Gini=. KS_Statistic=3FE0000000000000 KS_Cutoff=3FD3333333333333 PSI=.
+DUMP model_performance_metrics AUC=0.7500 Gini=0.5000 KS_Statistic=0.5000 KS_Cutoff=0.1000 PSI=0.0223 PSI_interpretation=No significant change accuracy_at_50=0.5 precision_at_50=. recall_at_50=0 f1_score_at_50=. specificity_at_50=1 model_name=Logistic Regression validation_date=10NOV2026 dataset=Kaggle Give Me Some Credit
+DUMP model_performance_metrics AUC=. Gini=. KS_Statistic=0.5000 KS_Cutoff=0.3000 PSI=. PSI_interpretation=  accuracy_at_50=. precision_at_50=. recall_at_50=. f1_score_at_50=. specificity_at_50=. model_name=Logistic Regression validation_date=10NOV2026 dataset=Kaggle Give Me Some Credit
+DUMPX model_performance_metrics AUC=3FE8000000000000 Gini=3FE0000000000000 KS_Statistic=3FE0000000000000 KS_Cutoff=3FB999999999999A PSI=3F96D99306154818 accuracy_at_50=3FE0000000000000 precision_at_50=. recall_at_50=0000000000000000 f1_score_at_50=. specificity_at_50=3FF0000000000000 validation_date=40D7D90000000000
+DUMPX model_performance_metrics AUC=. Gini=. KS_Statistic=3FE0000000000000 KS_Cutoff=3FD3333333333333 PSI=. accuracy_at_50=. precision_at_50=. recall_at_50=. f1_score_at_50=. specificity_at_50=. validation_date=40D7D90000000000
+DUMPM total_good_count=[       2] total_bad_count=[       2] total_defaults=[       2] overall_default_rate=[     0.5]

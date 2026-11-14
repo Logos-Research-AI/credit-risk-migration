@@ -1,5 +1,11 @@
 # Python to Lean: translate the port into the Logos blueprint `py-credit-risk-port`
 
+> **Paths.** This brief was written when each translator worked in a folder of its own. You now
+> work from the project root, as the agent `port-translator`, and a hook enforces what you may touch.
+> Read the paths below as follows: `migration/…` means `migration/port-to-lean/…` (your kit record);
+> `credit_risk/`, `pyproject.toml` and `uv.lock` are in `port/`; `data/` is `legacy/data/`; `inputs/scenarios/` is `judge/scenarios/` and `inputs/split_ids.csv` is `migration/port-to-lean/inputs/split_ids.csv`; `foundation/` means `migration/foundation/`. "This workspace" means those places.
+> There is no `settings.json` of your own to mind.
+
 ## What this is for
 
 The Python package `credit_risk/` is a port of a SAS credit-risk pipeline. We are now verifying

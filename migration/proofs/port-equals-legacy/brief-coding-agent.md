@@ -9,7 +9,7 @@ places where they differ on inputs the judge never exercised. Your job is to act
 findings.
 
 The findings are in
-`migration/workspaces/prover/findings-for-code.md`. That file is
+`migration/proofs/port-equals-legacy/reports/findings-for-code.md`. That file is
 your work list. Each entry gives the function, the smallest input that shows the difference, what
 SAS gives, what Python gives, and a kind.
 
@@ -19,14 +19,14 @@ Reading that file:
   here, and `sas/x.sas` is `legacy/x.sas` here. The code is identical, so its line numbers are valid as
   of commit `143ddf2`; they shift as you edit.
 - "SAS rulebook" there means
-  `migration/workspaces/legacy/migration/RULEBOOK.md`, written by the
+  `migration/legacy-to-lean/RULEBOOK.md`, written by the
   team that studied SAS's behaviour. You may read it, and `experiments/` and
   `migration/evidence/` next to it, as evidence of what SAS does. It is not this repository's
   `migration/legacy-to-port/RULEBOOK.md`.
 - Act only on the sections `port-differs-from-sas`, `fix-defect` and `record-inaccurate`. The
   sections "Specification gaps", "Proved equal to SAS" and "Open" are for someone else.
 
-Read nothing else under `migration/workspaces/`, and do not open any Logos blueprint: the Lean is
+Do not open any Logos blueprint: the Lean is
 not your concern, and the people who translate your code to Lean must see only what the code
 does.
 

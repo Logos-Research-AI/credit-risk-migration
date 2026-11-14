@@ -1,5 +1,9 @@
 # Prove or disprove that the Python port behaves as the SAS original
 
+> **Paths.** You work from the project root as the agent `prover`. Where this brief names a file
+> without a folder (`report.md`, `findings-for-code.md`, `ROUND2.md`), it is in
+> `migration/proofs/port-equals-legacy/reports/` or `migration/proofs/port-equals-legacy/rounds/`; write new reports to `reports/`.
+
 ## What this is for
 
 A SAS credit-risk pipeline was ported to Python. Two separate teams translated each side to
@@ -20,11 +24,11 @@ Read `informal-spec.md` in full before anything else. This prompt only says how 
 
 ## What you may read
 
-- `informal-spec.md` here.
-- The SAS side: `../legacy` (the `.sas` scripts,
+- `migration/proofs/port-equals-legacy/informal-spec.md`.
+- The SAS side: `legacy/` and its Lean record `migration/legacy-to-lean/` (the `.sas` scripts,
   `migration/RULEBOOK.md`, `manifest.tsv`, `open-items.md`, `intent-properties.md`,
   `judge/scenarios/`).
-- The Python side: `../port` (`credit_risk/`,
+- The Python side: `port/` and its Lean record `migration/port-to-lean/` (`credit_risk/`,
   `migration/RULEBOOK.md`, `manifest.tsv`, `inputs/scenarios/`, `migration/diffeval/` for how
   that team built Lean terms from data).
 - The three blueprints, through the `logos-mcp` tools.

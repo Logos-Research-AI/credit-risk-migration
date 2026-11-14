@@ -1,0 +1,71 @@
+5                                                          The SAS System                         Tuesday, 10 November 2026 13:52:00
+
+24         
+25         /* X11: where does one-argument ROUND switch from rounding down to rounding up below a
+26            half-integer m? Bisect on doubles; print the smallest x < m that still rounds up. */
+27         data _null_;
+28           array ms{9} _temporary_ (0.5 2.5 100.5 600.5 712.5 849.5 1000000.5 1e9 4.5e12);
+29           do i = 1 to 9;
+30             m = ms{i}; if i = 8 then m = 1e9 + 0.5; if i = 9 then m = 4.5e12 + 0.5;
+31             up = round(m);
+32             lo = m - m * 1e-6; hi = m;
+33             do j = 1 to 200;
+34               mid = (lo + hi) / 2;
+35               if mid = lo or mid = hi then leave;
+36               if round(mid) = up then hi = mid; else lo = mid;
+37             end;
+38             gap = m - hi; rel = gap / m;
+39             put "X11 m=" m best32. " up=" up best32. " thr=" hi hex16. " m_hex=" m hex16. " gap=" gap e12. " rel=" rel e12.;
+40           end;
+41           /* negative side and exact halves */
+42           x = -2.5; r = round(x); put "X11 neg " x= r=;
+43           x = -712.49999999999989; r = round(x); put "X11 neg " x= best32. r=;
+44           x = 0.49999999999999994; r = round(x); put "X11 below_half " x= hex16. r=;
+45           x = 0.4999999999999; r = round(x); put "X11 below_half13 " r=;
+46           x = 0.499999999999; r = round(x); put "X11 below_half12 " r=;
+47           x = 0.49999999999; r = round(x); put "X11 below_half11 " r=;
+48           /* the pipeline expression */
+49           do pd = 0.002, 0.25, 0.5, 0.998, 1, 0, 1 - 0.5/250, 1 - 1.5/250, 0.75;
+50             s = round(600 + 250 * (1 - pd)); put "X11 score pd=" pd best32. " s=" s best32.;
+51           end;
+52         run;
+X11 m=                             0.5 up=                               1 thr=3FDFFFFFFFFFDCCF m_hex=3FE0000000000000 gap=
+ 5.00100E-13 rel= 1.00020E-12
+X11 m=                             2.5 up=                               3 thr=4003FFFFFFFFEA03 m_hex=4004000000000000 gap=
+ 2.49978E-12 rel= 9.99911E-13
+X11 m=                           100.5 up=                             101 thr=40591FFFFFFFE460 m_hex=4059200000000000 gap=
+ 1.00499E-10 rel= 9.99992E-13
+X11 m=                           600.5 up=                             601 thr=4082C3FFFFFFEB5E m_hex=4082C40000000000 gap=
+ 6.00494E-10 rel= 9.99990E-13
+X11 m=                           712.5 up=                             713 thr=408643FFFFFFE785 m_hex=4086440000000000 gap=
+ 7.12475E-10 rel= 9.99965E-13
+X11 m=                           849.5 up=                             850 thr=408A8BFFFFFFE2D0 m_hex=408A8C0000000000 gap=
+ 8.49468E-10 rel= 9.99962E-13
+X11 m=                       1000000.5 up=                         1000001 thr=412E8480FFFFDE72 m_hex=412E848100000000 gap=
+ 1.00001E-06 rel= 1.00001E-12
+X11 m=                    1000000000.5 up=                      1000000001 thr=41CDCD65003FFFF8 m_hex=41CDCD6500400000 gap=
+ 9.53674E-07 rel= 9.53674E-16
+X11 m=                 4500000000000.5 up=                   4500000000001 thr=42905EF39B200200 m_hex=42905EF39B200200 gap=
+ 0.00000E+00 rel= 0.00000E+00
+X11 neg x=-2.5 r=-3
+X11 neg x=-712.5 r=-713
+X11 below_half x=3FDFFFFFFFFFFFFF r=1
+X11 below_half13 r=1
+X11 below_half12 r=0
+X11 below_half11 r=0
+X11 score pd=                           0.002 s=                             850
+X11 score pd=                            0.25 s=                             788
+X11 score pd=                             0.5 s=                             725
+X11 score pd=                           0.998 s=                             601
+X11 score pd=                               1 s=                             600
+X11 score pd=                               0 s=                             850
+X11 score pd=                           0.998 s=                             601
+X11 score pd=                           0.994 s=                             602
+X11 score pd=                            0.75 s=                             663
+53         
+54         
+55         
+56         
+6                                                          The SAS System                         Tuesday, 10 November 2026 13:52:00
+
+57         
