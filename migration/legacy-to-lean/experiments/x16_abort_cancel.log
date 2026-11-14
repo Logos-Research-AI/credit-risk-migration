@@ -1,0 +1,15 @@
+5                                                          The SAS System                        Saturday, 14 November 2026 18:03:00
+
+24         
+25         /* x16: what does ABORT CANCEL do in a DATA step when the program is submitted through saspy (IOM)?
+26            Expected for the Q27 fix: the rest of the submission is cancelled, the session survives. */
+27         data work.x16_before; x = 1; run;
+28         
+29         data _null_;
+30             put "ERROR: Input validation failed (x16 test).";
+31             abort cancel;
+32         run;
+ERROR: Input validation failed (x16 test).
+ERROR: Execution terminated by an ABORT CANCEL statement at line 31 column 5.
+_ERROR_=1 _N_=1
+33         

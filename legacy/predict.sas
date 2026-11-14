@@ -32,6 +32,70 @@ proc import datafile="&data_path/cs-test.csv"
     guessingrows=max;
 run;
 
+/* Check the input conditions: stop with an error before anything is exported */
+%macro num(v);
+    input(cats(&v), ?? best32.)
+%mend;
+
+%let columns_ok = 0;
+%let bad_rows = 1;
+%let duplicate_ids = 1;
+
+proc sql noprint;
+    /* The expected columns and no others */
+    select (count(*) = 12 and sum(upcase(name) in
+               ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+                'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+                'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+                'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+                'NUMBERREALESTATELOANSORLINES')) = 12)
+    into :columns_ok trimmed
+    from dictionary.columns
+    where libname = 'WORK' and memname = 'TEST_RAW';
+quit;
+
+/* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+   the outcome, where present, is 0 or 1; the counts are whole numbers, zero or more */
+data work.input_check;
+    set work.test_raw;
+    bad_row = (missing(VAR1)
+        or (upcase(cats(SeriousDlqin2yrs)) not in ('', '.', 'NA') and
+            %num(SeriousDlqin2yrs) not in (0, 1))
+        or missing(%num(age))
+        or missing(%num(RevolvingUtilizationOfUnsecuredL))
+        or missing(%num(DebtRatio))
+        or missing(%num(NumberRealEstateLoansOrLines))
+        or not (%num("NumberOfTime30-59DaysPastDueNotW"n) >= 0 and
+                %num("NumberOfTime30-59DaysPastDueNotW"n) = int(%num("NumberOfTime30-59DaysPastDueNotW"n)))
+        or not (%num("NumberOfTime60-89DaysPastDueNotW"n) >= 0 and
+                %num("NumberOfTime60-89DaysPastDueNotW"n) = int(%num("NumberOfTime60-89DaysPastDueNotW"n)))
+        or not (%num(NumberOfTimes90DaysLate) >= 0 and
+                %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+        or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+                %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+        or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+        or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+            not (%num(NumberOfDependents) >= 0 and
+                 %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+    keep VAR1 bad_row;
+run;
+
+/* Bad rows, repeated row ids */
+proc sql noprint;
+    select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1)
+    into :bad_rows trimmed, :duplicate_ids trimmed
+    from work.input_check;
+quit;
+
+data _null_;
+    if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 then do;
+        put "ERROR: cs-test.csv does not meet the input conditions: "
+            "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids..";
+        put "ERROR: Test set scoring stopped. Nothing is exported.";
+        abort cancel;
+    end;
+run;
+
 /* Check if import succeeded */
 proc contents data=work.test_raw;
     title "Test Data - Column Check";

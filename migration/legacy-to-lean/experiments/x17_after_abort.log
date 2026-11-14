@@ -1,0 +1,13 @@
+6                                                          The SAS System                        Saturday, 14 November 2026 18:03:00
+
+36         
+37         /* x17: submitted in the same session right after x16: is the session alive, and was the step after the ABORT run? */
+38         %put X17 EXIST_BEFORE=%sysfunc(exist(work.x16_before)) EXIST_AFTER=%sysfunc(exist(work.x16_after));
+X17 EXIST_BEFORE=1 EXIST_AFTER=0
+39         
+40         
+41         
+42         
+7                                                          The SAS System                        Saturday, 14 November 2026 18:03:00
+
+43         
