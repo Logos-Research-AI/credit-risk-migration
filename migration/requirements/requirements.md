@@ -1,7 +1,7 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 4, 2026-11-15. Draft 3 was signed off on 2026-11-14; draft 4 adds rulings G28 to G32, made
-after the requirements were checked against the SAS program. The contradiction and the silences found in draft 1, and the twelve points
+Draft 5, 2026-11-15. Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G38,
+made after the requirements were checked against the SAS program and the program was corrected. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
 Source: the documentation only, `MODEL_CARD.md` (MC) and `README.md` (RM), cited by line. No
@@ -88,7 +88,8 @@ the requirements are stated for raw inputs in which:
   and every numeric value is a decimal number that can be written in at most 32 characters
   (ruling G28);
 - the three late-payment counts, the number of dependents and the number of credit lines are
-  whole numbers, zero or more (ruling G29).
+  whole numbers, zero or more (ruling G29);
+- a known `MonthlyIncome` is zero or more (ruling G34).
 
 On such inputs Q1 and Q2 leave no missing value, so no later requirement has to say what a
 missing value does. A pipeline that meets an input outside these conditions must stop with an
@@ -134,6 +135,12 @@ error, not produce a result.
 | G31 | Q22 requires no threshold row when the validation set is empty | 2026-11-15 |
 | G32 | Q26 stands as written, including with tied scores and small validation sets | 2026-11-15 |
 | G33 | The SAS program is to be corrected where it was proved to violate Q1, Q7, Q9, Q13, Q14, Q15, Q18, Q23, Q24, Q25 and Q27, by the smallest change that meets the requirement. For Q15 the rounding of the score is removed | 2026-11-15 |
+
+| G34 | A known income is zero or more (section 3); a file with a negative income is rejected | 2026-11-15 |
+| G35 | PSI with an empty bin: the SAS program's rule stands (an empty bin is given the share 0.5 divided by the size of the larger set). Q25 itself is unchanged: it fixes only whether PSI is 0 or positive | 2026-11-15 |
+| G36 | "Produces no result" (Q27) is met by each script removing its own earlier output files when it starts | 2026-11-15 |
+| G37 | The raw files are imported reading every row to size the columns, so no present value is cut | 2026-11-15 |
+| G38 | The published files hold 12 characters per number. Requirements that relate two published columns (Q15, Q18) are about the values computed, and hold between printed values only to that precision; printed formats are a later pass | 2026-11-15 |
 
 **Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
 (58 items, consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).

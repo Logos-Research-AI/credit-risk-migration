@@ -59,3 +59,24 @@ commit. Then: the run ids of the full runs, what changed in the real-data output
 `judge/reference/` (which files, roughly how much: the model coefficients, the grade
 distribution, AUC, KS, PSI), any new warning, anything you could not fix or could not show, and
 anything in the findings you found to be wrong.
+
+## Round 2 (2026-11-15): after the owner's rulings on your report
+
+Your account of round 1 is in `migration/proofs/legacy-meets-requirements/changes.md`. The owner
+accepted the empty-bin share of PSI (G35), the removal of earlier outputs (G36), the wider import
+(G37) and the printing tolerance (G38). One thing changes, under the finding name **G34**:
+
+1. **Income is zero or more (ruling G34).** Add to the input check of `feature_engineering.sas` and
+   `predict.sas`: a known `MonthlyIncome` below 0 makes the file faulty. Then remove the branch
+   you added for an income of -1 or less (commit 7c3aada: `log_monthly_income` and, through it,
+   the else branch's effect): restore `log_monthly_income = log(monthly_income + 1)` as it was in
+   both scripts. Keep everything else. Show both on a small input (a file with income -1 is
+   rejected; income 0 still runs).
+2. **Final runs.** Run the corrected program on the real data and the edge scenarios again
+   (new run ids). If an existing edge scenario input is now rejected by the input check, say so
+   and adjust the scenario's input minimally so that it still reaches the branch it was built for.
+3. **Replace the reference.** The owner has read the report: replace `judge/reference/` (and
+   `judge/reference/scenarios/`) with the final runs, in the same layout as now (CSVs, listings,
+   `run_meta.json`), so the judge compares against the corrected SAS. Commit it separately
+   (`Reference: outputs of the corrected SAS`). Do not change `judge/compare.py`, `port/` or the
+   documents; those belong to the next stage.
