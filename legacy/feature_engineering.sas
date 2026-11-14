@@ -216,8 +216,9 @@ data work.credit_features;
     log_total_late_payments = log(total_late_payments + 1);
 
     /* Interaction features */
-    age_income_interaction = age * log_monthly_income;
-    utilization_debt_interaction = credit_utilization * debt_ratio / 100;
+    if monthly_income > 0 then age_income_interaction = age * log(monthly_income);
+    else age_income_interaction = age * log_monthly_income;
+    utilization_debt_interaction = credit_utilization * debt_ratio;
 
     /* Cap extreme outliers in credit_utilization and debt_ratio */
     credit_utilization_capped = min(credit_utilization, 200);
