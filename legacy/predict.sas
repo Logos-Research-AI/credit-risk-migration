@@ -55,22 +55,13 @@ data work.test_raw_clean;
            NumberOfDependents_num = NumberOfDependents;
 run;
 
-/* Calculate income medians by age group from test data */
-proc sql;
-    create table work.test_income_medians as
-    select
-        case
-            when age < 30 then 1
-            when age < 40 then 2
-            when age < 50 then 3
-            when age < 60 then 4
-            else 5
-        end as age_group,
-        median(MonthlyIncome) as median_income
-    from work.test_raw_clean
-    where MonthlyIncome is not missing
-    group by calculated age_group;
-quit;
+/* Read the training income medians by age group (exported by feature_engineering.sas) */
+proc import datafile="&output_path/income_medians.csv"
+    out=work.train_income_medians
+    dbms=csv
+    replace;
+    getnames=yes;
+run;
 
 data work.test_cleaned;
     set work.test_raw_clean;
@@ -114,7 +105,7 @@ proc sql;
         a.NumberOfOpenCreditLinesAndLoans as num_credit_lines,
         a.NumberRealEstateLoansOrLines as num_real_estate_loans
     from work.test_cleaned a
-    left join work.test_income_medians b
+    left join work.train_income_medians b
     on a.age_group = b.age_group;
 quit;
 

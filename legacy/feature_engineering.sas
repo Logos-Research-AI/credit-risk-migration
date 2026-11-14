@@ -287,6 +287,19 @@ data work.credit_validation_export;
     format _numeric_ best12.;
 run;
 
+/* Export the training income medians (per age group, and overall):
+   predict.sas imputes the test set from them */
+data work.income_medians_export;
+    set work.income_medians_all;
+    format median_income overall_median_income best32.;
+run;
+
+proc export data=work.income_medians_export
+    outfile="&output_path/income_medians.csv"
+    dbms=csv
+    replace;
+run;
+
 /* Export training set */
 proc export data=work.credit_train_export
     outfile="&output_path/model_features_train.csv"
