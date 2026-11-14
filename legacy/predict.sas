@@ -90,7 +90,7 @@ proc sql;
     select
         a.VAR1 as row_id,
         a.age,
-        case when a.MonthlyIncome_missing = 1 then b.median_income
+        case when a.MonthlyIncome_missing = 1 then coalesce(b.median_income, b.overall_median_income)
              else a.MonthlyIncome
         end as monthly_income,
         a.MonthlyIncome_missing,
