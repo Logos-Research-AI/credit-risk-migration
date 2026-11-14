@@ -1,6 +1,7 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 3, 2026-11-14, signed off. The contradiction and the silences found in draft 1, and the twelve points
+Draft 4, 2026-11-15. Draft 3 was signed off on 2026-11-14; draft 4 adds rulings G28 to G32, made
+after the requirements were checked against the SAS program. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
 Source: the documentation only, `MODEL_CARD.md` (MC) and `README.md` (RM), cited by line. No
@@ -36,8 +37,8 @@ data.
 
 | # | Requirement | Source |
 |---|---|---|
-| Q12 | The test set receives the same feature engineering as the training set. No test feature file is published, so this reads: the test predictions are the scores of some test feature table whose rows obey Q1 to Q9 (ruling G13) | RM 163 |
-| Q13 | Missing values in the test set are handled consistently with training: a missing test income is replaced by the training median of Q1 for the applicant's age group, and missing dependents by 0 (ruling G10) | RM 164 |
+| Q12 | The test set receives the same feature engineering as the training set. No test feature file is published, so this reads: there is a test feature table whose rows obey Q1 to Q9, and each row of the test predictions agrees with the score of that table's row for the same applicant on every column the test predictions file publishes (rulings G13, G30) | RM 163 |
+| Q13 | Missing values in the test set are handled consistently with training: a missing test income is replaced by the training median of Q1 for the applicant's age group, and missing dependents by 0 (ruling G10). It is read through the same test feature table as Q12, compared on the published columns (ruling G30) | RM 164 |
 | Q14 | Every applicant, in the training, validation and test sets, receives a probability in [0, 1], a score, a grade, a recommendation and a prediction. There is no unscored applicant (ruling G3) | RM 165-166, MC 157 |
 
 ### Score, grades and decisions
@@ -56,7 +57,7 @@ data.
 
 | # | Requirement | Source |
 |---|---|---|
-| Q22 | Accuracy, precision, recall and F1 are the standard functions of the confusion counts, and the four counts sum to the number of scored applicants. These, and the AUC, Gini and KS of Q23 and Q24, are computed on the validation set; where a denominator is zero or a class is empty, nothing is required of the value (ruling G19) | MC 72-76, MC 91-98 |
+| Q22 | Accuracy, precision, recall and F1 are the standard functions of the confusion counts, and the four counts sum to the number of scored applicants. These, and the AUC, Gini and KS of Q23 and Q24, are computed on the validation set; where a denominator is zero or a class is empty, nothing is required of the value (ruling G19). When the validation set is empty, no threshold row is required either (ruling G31) | MC 72-76, MC 91-98 |
 | Q23 | Gini = 2 × AUC − 1, and Somers' D equals Gini | RM 136, MC 69-70 |
 | Q24 | KS is the maximum separation between the cumulative distributions of defaulters and non-defaulters: one number per run | RM 137 |
 | Q25 | PSI measures the shift between the training and validation score distributions. Ten bins are cut from the training scores and the validation scores are placed in the same bins. PSI is 0 when the two sets have the same share in every bin and positive otherwise. The cuts are the nearest-rank deciles of the training scores, without interpolation, and a score equal to a cut belongs to the lower bin (rulings G9, G20) | RM 141, MC 100-102 |
@@ -82,7 +83,12 @@ the requirements are stated for raw inputs in which:
 - only `MonthlyIncome` and `NumberOfDependents` may be missing; every other field is present;
 - the training data has at least one known income;
 - the outcome, where present, is 0 or 1;
-- the row ids (`VAR1`) are distinct within each raw file (ruling G14).
+- the row ids (`VAR1`) are distinct within each raw file (ruling G14);
+- the raw files are tables a CSV file can hold: they have the columns of section 5 and no others,
+  and every numeric value is a decimal number that can be written in at most 32 characters
+  (ruling G28);
+- the three late-payment counts, the number of dependents and the number of credit lines are
+  whole numbers, zero or more (ruling G29).
 
 On such inputs Q1 and Q2 leave no missing value, so no later requirement has to say what a
 missing value does. A pipeline that meets an input outside these conditions must stop with an
@@ -121,6 +127,13 @@ error, not produce a result.
 | G25 | Q3 and Q21: the indicator and the prediction are 1 exactly in their case; their value otherwise is only required not to be 1 | 2026-11-14 |
 | G26 | Q22: with an empty class nothing is required of accuracy, precision, recall or F1 either | 2026-11-14 |
 | G27 | Q22: F1 is required only when there is at least one true positive | 2026-11-14 |
+
+| G28 | The input conditions cover only tables a CSV file can hold (section 3) | 2026-11-15 |
+| G29 | Counts are whole numbers, zero or more (section 3). "At least one 90-day delinquency" and "more than none" then say the same | 2026-11-15 |
+| G30 | Q12 and Q13 compare the test predictions with the scores of the test feature table on the published columns only, applicant by applicant | 2026-11-15 |
+| G31 | Q22 requires no threshold row when the validation set is empty | 2026-11-15 |
+| G32 | Q26 stands as written, including with tied scores and small validation sets | 2026-11-15 |
+| G33 | The SAS program is to be corrected where it was proved to violate Q1, Q7, Q9, Q13, Q14, Q15, Q18, Q23, Q24, Q25 and Q27, by the smallest change that meets the requirement. For Q15 the rounding of the score is removed | 2026-11-15 |
 
 **Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
 (58 items, consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
