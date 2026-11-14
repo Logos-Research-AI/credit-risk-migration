@@ -43,6 +43,8 @@ On this project stage 3, and one pass of stage 4, were done before stages 1 and 
 - `foundation/`: the types every blueprint shares (`credit-risk-foundation`).
 - `workspaces/` (git-ignored): one folder per independent session, built by `workspaces.sh`.
   A session is started inside its workspace and told "Read PROMPT.md and carry it out".
+- `watch.py`: shows a session live, read-only: `migration/watch.py requirements` prints what the
+  agent says, every tool call and every result as they happen. It writes nothing.
 - `guard.py`: the hook installed in every workspace. It blocks any tool call that touches a
   file of the project outside the workspace, or opens a blueprint the workspace must not see.
   This is what keeps the two translations independent.
