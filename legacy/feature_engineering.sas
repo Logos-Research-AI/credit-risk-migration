@@ -72,6 +72,27 @@ proc sql;
     group by calculated age_group;
 quit;
 
+/* One row per age group, with the median of all known incomes:
+   the fallback for an age group that has no known income */
+data work.age_groups;
+    do age_group = 1 to 5;
+        output;
+    end;
+run;
+
+proc sql;
+    create table work.income_medians_all as
+    select
+        g.age_group,
+        m.median_income,
+        (select median(MonthlyIncome) from work.credit_raw_clean
+         where MonthlyIncome is not missing) as overall_median_income
+    from work.age_groups g
+    left join work.income_medians m
+    on g.age_group = m.age_group
+    order by g.age_group;
+quit;
+
 data work.credit_cleaned;
     set work.credit_raw_clean;
 
@@ -100,7 +121,7 @@ proc sql;
         a.VAR1 as row_id,
         a.SeriousDlqin2yrs as default_flag,
         a.age,
-        case when a.MonthlyIncome_missing = 1 then b.median_income
+        case when a.MonthlyIncome_missing = 1 then coalesce(b.median_income, b.overall_median_income)
              else a.MonthlyIncome
         end as monthly_income,
         a.MonthlyIncome_missing,
@@ -115,7 +136,7 @@ proc sql;
         a.NumberOfOpenCreditLinesAndLoans as num_credit_lines,
         a.NumberRealEstateLoansOrLines as num_real_estate_loans
     from work.credit_cleaned a
-    left join work.income_medians b
+    left join work.income_medians_all b
     on a.age_group = b.age_group;
 quit;
 
