@@ -160,4 +160,20 @@ By a coding agent, on the second review's defect D1; real SAS runs `judge/runs/e
   commit (outputs for files with applicants are unchanged; the reference logs echo the earlier
   source). A header followed by a blank line is rejected with 5 ERROR lines from PROC IMPORT; not
   compared with the earlier code.
-- A reviewer who did not make the change is checking 697eed5.
+- Counts corrected by the reviewer: the copy is absent after 47 inspected steps (not 45); 15
+  steps are labelled good and 24 steps with applicants give identical predictions (not 17).
+
+## Review of 697eed5 (2026-11-15): no defect
+
+By a reviewer who did not make the change; no new SAS run.
+
+- The three `NA` names are exactly the columns later code reads as text; every other column is
+  imported numeric, the row id included; confirmed in the log of a reversed-order run.
+- Verdicts on one-line files are, step for step, those of 56e52f7 (19 header variants).
+- Files with applicants: the new code is not reached; 24 accepted steps give byte-identical
+  predictions.
+- Deleting the eleven tables is safe: each is rebuilt before use, the fitted model is kept, and
+  nothing stale can reach the two exports for a one-line file.
+- Settled by reading only, not run on SAS: a header whose empty row-id name is not first (by
+  reading rejected, with or without applicants, as before; whether such a file is valid is the
+  owner's), `"MonthlyIncome"x`, a file with a byte order mark.
