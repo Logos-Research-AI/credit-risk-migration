@@ -122,3 +122,28 @@ anything else, revise `sasPipeline` and `SasLinks` to the units as they now are:
 Every contract is to be proved or disproved on the Lean as it now stands. A proof or disproof kept
 from an earlier round counts only if the blueprint still accepts it. The negation items of earlier
 rounds are gone; state a negation afresh where a contract is false.
+
+## Round 4 (2026-11-15): the scoring step carries no file check; two more corrections
+
+**Wiring of `score` (corrects part 1).** Round 3 left Q12 and Q13 undecided because `score` was
+wired with the input-file stop of `train.sas` (`train_inputs_stop`), so `score m F` returned
+`none` on any table `F` that is not a feature file of some run. That is an artefact of the
+wiring: the requirements apply `score` to tables that are no file of a run (the test feature
+table of Q12 and Q13). From now on:
+
+- `score m F` is the validation scoring chain alone, applied to `F`. It carries no stop.
+- The input-file stop of `train.sas` belongs to `fit`, the step that reads the files: the
+  pipeline's `fit` returns `none` when `train_inputs_stop` is true on the file-existence Booleans
+  of its feature table, and `some` of the `fit` parameter otherwise. Link (8) is unchanged.
+- Nothing else in the wiring changes. Revise `def:sasPipeline` to this, have it accepted, and say
+  in your result exactly which lines changed.
+
+**The legacy code was corrected again** on the two disproofs of round 3 (rulings G44 and G45 in
+the requirements): `predict.sas` now scores a test file that has its header and no applicant,
+writing the prediction files with header lines only; `metrics_calculation.sas` now reports
+capture rate 0 and lift 0 on every decile when the validation set has no defaulter. The Lean of
+the changed units was brought up to date (see `manifest.tsv`).
+
+Every contract is decided again on the Lean as it now stands. A proof kept from round 3 counts
+only if the blueprint still accepts it; where it was cleared, its draft and the shared `lem:`
+items of round 3 are the place to start, not a blank page.

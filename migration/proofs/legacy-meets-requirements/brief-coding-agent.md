@@ -109,3 +109,24 @@ are proved. The owner approved four more corrections (rulings G40 to G43). Act o
 
 Same rules as before: smallest change, every copy, one commit per finding, no change to `port/`,
 `judge/compare.py` or the documents.
+
+## Round 4 (2026-11-15): after the third proving round
+
+Two contracts were disproved and checked; the owner approved both corrections (rulings G44 and
+G45). The findings are in
+`migration/proofs/legacy-meets-requirements/reports/findings-for-legacy-round3.md`. Act on these
+only:
+
+1. **Q27 (G44).** `predict.sas` scores a test file that has its header and no applicant: the
+   prediction files are written with header lines only. A file with a wrong header and no data
+   line is still rejected. Show both on real SAS.
+2. **Q26 (G45).** In `metrics_calculation.sas`, capture rate and lift are 0 on every decile when
+   the validation set has no defaulter. Look for the same division in the cumulative lift table
+   and say what you did there. Show it on a validation set with no defaulter.
+3. **Final runs and reference**, as in rounds 2 and 3: real data and the edge scenarios under new
+   run ids, logs checked, then replace `judge/reference/` (separate commit) and say what changed
+   in the outputs. In this round the corrections are made by one agent per finding and this step
+   is done once, afterwards, by the integration step.
+
+Same rules as before: smallest change, every copy, one commit per finding, no change to `port/`,
+`judge/compare.py` or the documents.

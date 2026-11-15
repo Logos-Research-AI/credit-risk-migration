@@ -1,6 +1,6 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 5, 2026-11-15. Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
+Draft 5, 2026-11-15, with rulings G44 and G45 added the same day (they confirm readings already formalised; no requirement changes). Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
 made after the requirements were checked against the SAS program and the program was corrected. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
@@ -149,6 +149,8 @@ error, not produce a result.
 | G41 | The SAS program is to be corrected on Q26: the decile table always has ten rows; a decile that receives no applicant reports count 0, capture rate 0 and lift 0. Q26 itself is unchanged | 2026-11-15 |
 | G42 | The SAS program is to be corrected on Q27: the row id must be a number in both raw files | 2026-11-15 |
 | G43 | The PSI floor of G35 is carried at full precision, not through an 8-character text | 2026-11-15 |
+| G44 | A test file with its header and no applicant is a valid input (section 3 asks no row of the test file). The SAS program is to be corrected on Q27: scoring such a file produces the prediction files with their header lines only | 2026-11-15 |
+| G45 | The SAS program is to be corrected on Q26: when the validation set has no defaulter, capture rate and lift are 0 on every decile, as on an empty decile (G41). Q26 itself is unchanged | 2026-11-15 |
 
 **Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
 (58 items at that date, 59 since draft 4; consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
