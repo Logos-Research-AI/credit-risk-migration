@@ -1,4 +1,4 @@
-35                                                         The SAS System                        Saturday, 14 November 2026 19:21:00
+35                                                         The SAS System                          Sunday, 15 November 2026 07:26:00
 
 192        
 193        /*****************************************************************************
@@ -20,8 +20,8 @@
 209         *****************************************************************************/
 210        
 211        /* Define base paths */
-212        %let data_path = /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/data;
-213        %let output_path = /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output;
+212        %let data_path = /home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/data;
+213        %let output_path = /home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/output;
 214        
 215        /* Remove the results of an earlier run first: a run that stops leaves no result */
 216        data _null_;
@@ -59,14 +59,14 @@ Problems were detected with provided names.  See LOG.
 241         *   PRODUCT:   SAS
 242         *   VERSION:   9.4
 243         *   CREATOR:   External File Interface
-244         *   DATE:      14NOV26
+244         *   DATE:      15NOV26
 245         *   DESC:      Generated SAS Datastep Code
 246         *   TEMPLATE SOURCE:  (None Specified.)
 247         ***********************************************************************/
 248            data WORK.CREDIT_RAW    ;
 249            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-250            infile '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/data/cs-training.csv' delimiter = ',' MISSOVER
-250      !  DSD lrecl=32767 firstobs=2 ;
+250            infile '/home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/data/cs-training.csv' delimiter = ','
+250      ! MISSOVER DSD lrecl=32767 firstobs=2 ;
 251               informat VAR1 best32. ;
 252               informat SeriousDlqin2yrs best32. ;
 253               informat RevolvingUtilizationOfUnsecuredL best32. ;
@@ -107,7 +107,7 @@ Problems were detected with provided names.  See LOG.
 288            ;
 289            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 290            run;
-150000 rows created in WORK.CREDIT_RAW from /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/data/cs-training.csv.
+150000 rows created in WORK.CREDIT_RAW from /home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/data/cs-training.csv.
   
   
   
@@ -149,7 +149,7 @@ Problems were detected with provided names.  See LOG.
 326           a known MonthlyIncome is zero or more */
 327        data work.input_check;
 328            set work.credit_raw;
-329            bad_row = (missing(VAR1)
+329            bad_row = (missing(%num(VAR1))
 330                or %num(SeriousDlqin2yrs) not in (0, 1)
 331                or missing(%num(age))
 332                or missing(%num(RevolvingUtilizationOfUnsecuredL))
@@ -522,14 +522,14 @@ WORK.PARMS.PARMS.SLIST.
 636         *   PRODUCT:   SAS
 637         *   VERSION:   9.4
 638         *   CREATOR:   External File Interface
-639         *   DATE:      14NOV26
+639         *   DATE:      15NOV26
 640         *   DESC:      Generated SAS Datastep Code
 641         *   TEMPLATE SOURCE:  (None Specified.)
 642         ***********************************************************************/
 643            data _null_;
 644            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
 645            %let _EFIREC_ = 0;     /* clear export record count macro variable */
-646            file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/income_medians.csv' delimiter=',' DSD
+646            file '/home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/output/income_medians.csv' delimiter=',' DSD
 646      ! DROPOVER lrecl=32767;
 647            if _n_ = 1 then        /* write column names or labels */
 648             do;
@@ -555,7 +555,7 @@ WORK.PARMS.PARMS.SLIST.
 668            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 669            if EFIEOD then call symputx('_EFIREC_',EFIOUT);
 670            run;
-5 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/income_medians.csv from 
+5 records created in /home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/output/income_medians.csv from 
 WORK.INCOME_MEDIANS_EXPORT.
   
   
@@ -572,14 +572,14 @@ WORK.PARMS.PARMS.SLIST.
 679         *   PRODUCT:   SAS
 680         *   VERSION:   9.4
 681         *   CREATOR:   External File Interface
-682         *   DATE:      14NOV26
+682         *   DATE:      15NOV26
 683         *   DESC:      Generated SAS Datastep Code
 684         *   TEMPLATE SOURCE:  (None Specified.)
 685         ***********************************************************************/
 686            data _null_;
 687            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
 688            %let _EFIREC_ = 0;     /* clear export record count macro variable */
-689            file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_features_train.csv' delimiter=','
+689            file '/home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/output/model_features_train.csv' delimiter=','
 689      ! DSD DROPOVER lrecl=32767;
 690            if _n_ = 1 then        /* write column names or labels */
 691             do;
@@ -761,7 +761,7 @@ WORK.PARMS.PARMS.SLIST.
 867            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 868            if EFIEOD then call symputx('_EFIREC_',EFIOUT);
 869            run;
-105000 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_features_train.csv from 
+105000 records created in /home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/output/model_features_train.csv from 
 WORK.CREDIT_TRAIN_EXPORT.
   
   
@@ -778,14 +778,14 @@ WORK.PARMS.PARMS.SLIST.
 878         *   PRODUCT:   SAS
 879         *   VERSION:   9.4
 880         *   CREATOR:   External File Interface
-881         *   DATE:      14NOV26
+881         *   DATE:      15NOV26
 882         *   DESC:      Generated SAS Datastep Code
 883         *   TEMPLATE SOURCE:  (None Specified.)
 884         ***********************************************************************/
 885            data _null_;
 886            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
 887            %let _EFIREC_ = 0;     /* clear export record count macro variable */
-888            file '/home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_features_validation.csv'
+888            file '/home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/output/model_features_validation.csv'
 888      ! delimiter=',' DSD DROPOVER lrecl=32767;
 889            if _n_ = 1 then        /* write column names or labels */
 890             do;
@@ -967,7 +967,7 @@ WORK.PARMS.PARMS.SLIST.
 1066           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 1067           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
 1068           run;
-45000 records created in /home/u64643823/sasmig/runs/final_edge_predict-20261114T192144/output/model_features_validation.csv from 
+45000 records created in /home/u64643823/sasmig/runs/final3_edge_predict-20261115T072645/output/model_features_validation.csv from 
 WORK.CREDIT_VALIDATION_EXPORT.
   
   
@@ -981,6 +981,6 @@ WORK.CREDIT_VALIDATION_EXPORT.
 1076       
 1077       
 1078       
-36                                                         The SAS System                        Saturday, 14 November 2026 19:21:00
+36                                                         The SAS System                          Sunday, 15 November 2026 07:26:00
 
 1079       
