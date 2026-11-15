@@ -104,3 +104,21 @@ One entry per requirement that is not proved, with a kind:
 - `interface-mismatch`: the requirement cannot be stated on the SAS as it is.
 - `needs-ruling`: the requirement is ambiguous on a case the SAS reaches; say which case.
 - `open`: neither proved nor disproved; say what is missing.
+
+## Round 3 (2026-11-15): what changed in the legacy Lean
+
+The legacy code was corrected again (exact AUC, always ten decile rows, numeric row id, PSI floor
+at full precision; rulings G40 to G43 in the requirements) and its Lean brought up to date. Before
+anything else, revise `sasPipeline` and `SasLinks` to the units as they now are:
+
+- `psi_floor` no longer takes a `best8` argument;
+- `auc_summary` takes `auc_pairs` instead of `roc_stats` (`roc_stats` is read by no unit now);
+- `decile_analysis` takes `decile_list` before `decile_data`;
+- `test_raw_input_check` no longer depends on `credit_raw_input_check`;
+- the two input checks count a row as bad when its id does not read as a number;
+- on a table without the id column the check units return rows `bad_row, VAR1 (missing number)[, known_income]`;
+- `Sas.sameValue` compares text cells with trailing blanks removed.
+
+Every contract is to be proved or disproved on the Lean as it now stands. A proof or disproof kept
+from an earlier round counts only if the blueprint still accepts it. The negation items of earlier
+rounds are gone; state a negation afresh where a contract is false.
