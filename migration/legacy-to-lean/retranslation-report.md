@@ -261,3 +261,20 @@ Open:
   any capitalisation; SAS is case-insensitive there. Pre-existing.
 - Neither update has been reviewed by an agent that did not write it. To do before the pipeline
   is revised.
+
+### Review of the metrics_calculation.sas update (2026-11-15): no behavioural defect
+
+By a translator who did not write it, by reading (its two `eval_decl` calls failed with an
+output-schema error, so the "0 differences" above is not independently reproduced).
+
+- `def:decile_analysis` and `def:cumulative_lift` do what lines 248-279 and 292-314 do: the
+  coalesce on a missing quotient and on an unmatched decile, 0/0 and x/0 giving missing, the two
+  `> 0` tests on 0 and on a missing macro value, the branch order, the running sums across empty
+  deciles, the columns and their order. Traced by hand on `ev6_fix_Q26_nodefaulter`.
+- Record problems, not behaviour:
+  - the items' informal text (`statement_text`) still holds the SAS source from before G45, so
+    text and Lean disagree; with trust layers off nothing checks this;
+  - `def:total_defaults` cites old line numbers in its comment;
+  - two SAS rules have no direct run behind them: overflow in a PROC SQL quotient gives missing
+    (evidence is from a DATA step; unreachable with 0/1 flags), and `INTO` storing `.` for a
+    missing aggregate.
