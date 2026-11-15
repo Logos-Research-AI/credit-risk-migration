@@ -5,22 +5,53 @@ Every sub-agent runs in the orchestrator's session, so one hook decides what eac
 The hook is told the calling agent's type; roles.json says, per type, which project files it
 may read and write and which Logos blueprints it may not open. A sub-agent of any other type
 gets the strictest rule ("*"). The main session (the orchestrator) is not restricted.
+
+In an agent team the hook is told a teammate's name, not its type. A teammate therefore takes the
+role its name starts with: "prover-3" is a prover. The hook holds the lead to that convention (a
+teammate named after a role must be created from that role's definition, and the reverse), and a
+teammate may message only the lead and teammates of its own role.
 Exit 2 blocks the call and shows the reason to the agent.
 """
 import fnmatch, json, os, re, sys
 
+LEAD = ("main", "team-lead")
 ev = json.load(sys.stdin)
-role_name = ev.get("agent_type")
-if not role_name and not ev.get("agent_id"):
+here = os.path.dirname(os.path.realpath(__file__))
+cfg = json.load(open(os.path.join(here, "roles.json")))
+
+
+def role_of(name):
+    """The role a name stands for: the name itself, or the longest role it starts with, as in prover-3."""
+    if not name:
+        return None
+    if name in cfg["roles"]:
+        return name if name != "*" else None
+    hits = [r for r in cfg["roles"] if r != "*" and name.startswith(r + "-")]
+    return max(hits, key=len) if hits else None
+
+
+def block(label, reason):
+    print(f"Blocked by the isolation rule for {label}: {reason}. "
+          "This is deliberate; do not work around it.", file=sys.stderr)
+    sys.exit(2)
+
+
+agent_name = ev.get("agent_type")
+role_name = role_of(agent_name)
+if ev.get("tool_name") == "Agent":  # whoever starts an agent: a name and a definition must agree on the role
+    ti = ev.get("tool_input") or {}
+    named, typed = role_of(ti.get("name")), role_of(ti.get("subagent_type"))
+    if ti.get("name") and named != typed:
+        block("agent names", f'an agent named "{ti["name"]}" stands for the role {named or "none"} but is being created '
+              f'from the definition {ti.get("subagent_type") or "none"}; name a teammate <role>-<number> and create it from that role')
+if not agent_name and not ev.get("agent_id"):
     sys.exit(0)  # main session
 
 
 def main():
-    here = os.path.dirname(os.path.realpath(__file__))
     project = os.path.dirname(os.path.dirname(here))
-    cfg = json.load(open(os.path.join(here, "roles.json")))
-    role = cfg["roles"].get(role_name) or cfg["roles"]["*"]
-    label = role_name if role_name in cfg["roles"] else f"{role_name or 'unnamed agent'} (no role)"
+    role = cfg["roles"][role_name] if role_name else cfg["roles"]["*"]
+    label = (agent_name if agent_name == role_name else f"{agent_name} ({role_name})") if role_name else f"{agent_name or 'unnamed agent'} (no role)"
     copies = [os.path.realpath(os.path.join(project, p)) for p in cfg.get("legacy_copies_outside", [])]
     denied_bp = {v for k in role["deny_blueprints"] for v in cfg["blueprints"][k]}
     open_read = role["read"] == ["**"]
@@ -89,15 +120,17 @@ def main():
         for t in words:
             if t == ".." or "/" in t or t.startswith("~") or t.startswith(".claude"):
                 reasons.append(bad(re.split(r"[*?\[{]", t)[0] or ".", ".claude" in t, base))
+    elif tool == "SendMessage":
+        to = ti.get("to") or ""
+        if to not in LEAD and (not role_name or role_of(to) != role_name):
+            reasons.append(f"this agent may message only the lead and agents of its own role, not {to or 'everyone'}")
     elif tool.startswith("mcp__"):
         hit = [v for v in ti.values() if isinstance(v, str) and v in denied_bp]
         if hit:
             reasons.append(f"blueprint {hit[0]} is not for this role")
     reasons = [r for r in reasons if r]
     if reasons:
-        print(f"Blocked by the isolation rule for {label}: {reasons[0]}. "
-              "This is deliberate; do not work around it.", file=sys.stderr)
-        sys.exit(2)
+        block(label, reasons[0])
 
 
 try:
