@@ -25,12 +25,36 @@ import saspy
 from run_sas import ALLOWLIST, DATA_FILES, JUDGE, REPO, SCRIPTS, instrument, redirect_paths, warnings_in
 
 
+# Observation only, submitted after a step's scripts: the files then in the session's WORK
+# folder (tables and any other file) and the size of the test file as it lies on the server.
+INSPECT = """data _null_;
+    length fref $8 name $256 size $32;
+    fref = ' ';
+    rc = filename(fref, "%sysfunc(pathname(work))");
+    did = dopen(fref);
+    do i = 1 to dnum(did);
+        name = dread(did, i);
+        put 'INSPECT work ' name;
+    end;
+    rc = dclose(did);
+    rc = filename(fref, "@DATA@/cs-test.csv");
+    fid = fopen(fref, 'i', 1, 'b');
+    size = finfo(fid, 'File Size (bytes)');
+    put 'INSPECT size ' size;
+    rc = fclose(fid);
+    rc = filename(fref);
+run;
+"""
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-id", required=True)
     ap.add_argument("--plan", type=Path, required=True)
     ap.add_argument("--profile", default="oda_eu")
     ap.add_argument("--no-download", action="store_true", help="record the listing only")
+    ap.add_argument("--inspect", action="store_true",
+                    help="after each step, record the files in the WORK folder and the size of the uploaded cs-test.csv")
     args = ap.parse_args()
 
     plan = json.loads(args.plan.read_text())
@@ -72,6 +96,12 @@ def main() -> int:
                 (step_dir / f"{name}.lst").write_text(res["LST"])
                 rec["errors"][name] = [ln for ln in res["LOG"].splitlines() if ln.startswith("ERROR")]
                 rec["new_warnings"][name] = sorted({x for x in warnings_in(res["LOG"]) if x not in known})
+            if args.inspect:
+                res = sas.submit(INSPECT.replace("@DATA@", data_dir))
+                (step_dir / "inspect.log").write_text(res["LOG"])
+                found = [ln[8:].strip() for ln in res["LOG"].splitlines() if ln.startswith("INSPECT ")]
+                rec["work_folder"] = sorted(x[5:] for x in found if x.startswith("work "))
+                rec["cs_test_bytes"] = next((x[5:] for x in found if x.startswith("size ")), None)
             files = sorted(f for f in sas.dirlist(out_dir) if f.endswith(".csv"))
             rec["output_folder"] = {}
             for f in files:
