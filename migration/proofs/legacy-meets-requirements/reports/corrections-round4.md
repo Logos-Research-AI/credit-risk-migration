@@ -135,3 +135,29 @@ make the change, read 56e52f7 and its evidence and made one SAS run
   not recorded as it lay on the server; no header-only run was made in a fresh SAS session.
 - Files with applicants: no change in behaviour found. The thirteen-name asymmetry does not break
   G44 (a 13-name header is invalid under section 3).
+
+## Fix of D1 (2026-11-15), commit 697eed5
+
+By a coding agent, on the second review's defect D1; real SAS runs `judge/runs/ev10_fix_Q27_*`.
+
+- **Change**, `legacy/predict.sas`: lines 61-66, the made-up applicant under the copied header is
+  chosen by name, not by position (`NA` under SeriousDlqin2yrs, MonthlyIncome and
+  NumberOfDependents, `1` under every other name; names compared after upcasing and keeping only
+  letters, digits and underscore). Lines 80-87, in `%import_test`: when the file has one line, the
+  eleven tables an earlier scoring left in WORK are deleted before the import.
+- **Reordered headers** (`ev10_fix_Q27_column_order`, three orders): with 200 applicants each is
+  accepted with predictions identical to the good file; with no applicant each gives header-only
+  prediction files; 0 ERROR, 0 new WARNING.
+- **Fresh session** (`ev10_fix_Q27_fresh_header_only`, `ev10_fix_Q27_fresh_perm_only`): four
+  scripts, header-only prediction files, 0 ERROR, 0 new WARNING.
+- **Earlier cases unchanged**: header_only accepted; wrong_name, eleven_names, duplicate_name,
+  thirteen_names with no applicant rejected with no prediction file; CR LF and no line end
+  accepted. The 19 header variants give the same verdicts as at 56e52f7.
+- **Good 200-row file**: identical predictions in all 17 good steps.
+- **Temporary copy**: absent from the WORK folder after every step (45 steps), shown by a new
+  `--inspect` option of `judge/run_sas_sequence.py` (commit fadfdd2; no change without the flag).
+- **Not done**: `judge/reference/` not regenerated and the real-data run not repeated after this
+  commit (outputs for files with applicants are unchanged; the reference logs echo the earlier
+  source). A header followed by a blank line is rejected with 5 ERROR lines from PROC IMPORT; not
+  compared with the earlier code.
+- A reviewer who did not make the change is checking 697eed5.

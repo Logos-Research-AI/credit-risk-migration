@@ -55,3 +55,33 @@ checks, and the PSI floor at full precision. The diff since your last update is
 and `judge/reference/` holds the newest outputs. Do the same work as above for these changes
 only. Your earlier account is `retranslation-report.md`. While you are editing them anyway,
 bring the informal text of each item you touch in line with the current SAS lines.
+
+## Third update (2026-11-15): round 4 corrections
+
+The SAS was corrected again on two findings (rulings G44 and G45 in
+`migration/requirements/requirements.md`). The changes to the four scripts since the second
+update are in `migration/legacy-to-lean/corrections-round4.diff` (commits a9acbf5, 5913e11,
+56e52f7, 697eed5). Bring the Lean of the units those lines touch up to date, and nothing else.
+
+- **`metrics_calculation.sas` (G45).** In the decile table, capture rate and lift are coalesced to
+  0 (lines 261-262), so a validation set with no defaulter gives 0 on every decile. The
+  cumulative lift table got the same rule (lines 305-312): cumulative capture rate 0 on every
+  row; cumulative lift 0 from the first decile that holds an applicant, missing before it.
+  Evidence: `judge/runs/ev6_fix_Q26_nodefaulter` (and `ev6_fix_Q26_small_unchanged`,
+  `ev6_fix_Q26_ties_unchanged` for the cases that must not change).
+- **`predict.sas` (G44).** A test file with its header and no applicant is now scored: the import
+  yields an empty `test_raw` with the columns the header names, whatever their order, the input
+  check passes, and both prediction tables are empty. What the Lean must capture is the
+  behaviour on tables, not the mechanism: the made-up applicant, the temporary copy and the
+  deletion of earlier WORK tables are file-system and session effects and are not translated;
+  say so in the items' comments. The import itself stays a parameter of the later pass. Check
+  every unit of the test chain on the empty table: the checks, the imputation and its join with
+  the medians, the features, the scoring, the two exported tables. Evidence:
+  `judge/runs/ev10_fix_Q27_emptytest`, `ev10_fix_Q27_fresh_header_only`,
+  `ev10_fix_Q27_column_order`, `ev10_fix_Q27_emptytest_badheader`.
+
+Each of you has one script. Edit only items that cover lines of your script. Do not edit the
+shared record files (manifest, rulebook, receipt, open items): return what should go into them.
+If your work needs a change to an item of another script, do not make it: report it. After a
+change, items that depend on it may need resubmitting unchanged; do that for your script's items
+and report the others.
