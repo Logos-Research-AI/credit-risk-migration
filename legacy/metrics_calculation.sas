@@ -76,12 +76,38 @@ proc logistic data=work.logit_scored_valid;
     title "ROC Curve Analysis - Validation Set";
 run;
 
-/* Extract and display AUC */
+/* Calculate and display AUC: the exact pairwise AUC of the validation probabilities.
+   A defaulter/non-defaulter pair is concordant when the defaulter's probability is
+   higher, and tied only when the two probabilities are equal */
+proc sql;
+    create table work.auc_pairs as
+    select pd_logistic,
+           sum(default_flag = 1) as n_bad,
+           sum(default_flag = 0) as n_good
+    from work.logit_scored_valid
+    where not missing(pd_logistic)
+    group by pd_logistic
+    order by pd_logistic;
+quit;
+
 data work.auc_summary;
-    set work.roc_stats;
-    where ROCModel = 'Logistic Model';
-    AUC = Area;
-    Gini = 2 * Area - 1;
+    length ROCModel $14;
+    set work.auc_pairs end=eof;
+    retain concordant tied cum_good cum_bad 0;
+
+    concordant + n_bad * cum_good;
+    tied + n_bad * n_good;
+    cum_good + n_good;
+    cum_bad + n_bad;
+
+    if eof then do;
+        ROCModel = 'Logistic Model';
+        if cum_bad * cum_good > 0 then do;
+            AUC = (concordant + tied / 2) / (cum_bad * cum_good);
+            Gini = 2 * AUC - 1;
+        end;
+        output;
+    end;
     keep ROCModel AUC Gini;
     format AUC Gini 8.4;
 run;
