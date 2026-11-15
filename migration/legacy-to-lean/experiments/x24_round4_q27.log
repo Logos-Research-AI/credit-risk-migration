@@ -1,0 +1,3215 @@
+X24 RUN saspy=5.110.0 (uv run --with saspy, not pinned to the judge's) python=3.12.12 profile=oda_eu sasver=9.04.01M9P06052025
+
+5                                                          The SAS System                          Sunday, 15 November 2026 12:45:00
+
+24         
+25         %put X24 SYSVLONG=&sysvlong VALIDVARNAME=%sysfunc(getoption(validvarname));
+X24 SYSVLONG=9.04.01M9P060525 VALIDVARNAME=ANY
+26         %put X24WORK=%sysfunc(pathname(work));
+X24WORK=/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com
+27         
+28         
+29         
+6                                                          The SAS System                          Sunday, 15 November 2026 12:45:00
+
+30         
+7                                                          The SAS System                          Sunday, 15 November 2026 12:45:00
+
+33         
+34         /* ================= X24 SUBMISSION A ================= */
+35         proc datasets lib=work nolist; delete credit_raw input_check; quit;
+36         %let data_path = %sysfunc(pathname(work));
+37         data _null_;
+38             file "&data_path/cs-training.csv" lrecl=1000;
+39             put
+39       ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,AGE,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+39       ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+39       ! ,NumberOfDependents';
+40             put '1,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+41         run;
+42         data _null_;
+43             infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+44             input;
+45             put "X24 A FILE [" _infile_ +(-1) "] " n=;
+46         run;
+X24 A FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,AGE,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 A FILE [1,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+47         /* X24 A: feature_engineering.sas, verbatim from here */
+48         proc import datafile="&data_path/cs-training.csv"
+49             out=work.credit_raw
+50             dbms=csv
+51             replace;
+52             getnames=yes;
+53             guessingrows=max;
+54         run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+55          /**********************************************************************
+56          *   PRODUCT:   SAS
+57          *   VERSION:   9.4
+58          *   CREATOR:   External File Interface
+59          *   DATE:      15NOV26
+60          *   DESC:      Generated SAS Datastep Code
+61          *   TEMPLATE SOURCE:  (None Specified.)
+62          ***********************************************************************/
+63             data WORK.CREDIT_RAW    ;
+64             %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+65             infile
+65       ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+65       ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+66                informat VAR1 best32. ;
+67                informat SeriousDlqin2yrs best32. ;
+68                informat RevolvingUtilizationOfUnsecuredL best32. ;
+69                informat AGE best32. ;
+70                informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+71                informat DebtRatio best32. ;
+72                informat MonthlyIncome best32. ;
+73                informat NumberOfOpenCreditLinesAndLoans best32. ;
+74                informat NumberOfTimes90DaysLate best32. ;
+75                informat NumberRealEstateLoansOrLines best32. ;
+76                informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+77                informat NumberOfDependents best32. ;
+78                format VAR1 best12. ;
+79                format SeriousDlqin2yrs best12. ;
+80                format RevolvingUtilizationOfUnsecuredL best12. ;
+81                format AGE best12. ;
+82                format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+83                format DebtRatio best12. ;
+84                format MonthlyIncome best12. ;
+85                format NumberOfOpenCreditLinesAndLoans best12. ;
+86                format NumberOfTimes90DaysLate best12. ;
+87                format NumberRealEstateLoansOrLines best12. ;
+88                format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+89                format NumberOfDependents best12. ;
+90             input
+91                         VAR1
+92                         SeriousDlqin2yrs
+93                         RevolvingUtilizationOfUnsecuredL
+94                         AGE
+95                         "NumberOfTime30-59DaysPastDueNotW"N
+96                         DebtRatio
+97                         MonthlyIncome
+98                         NumberOfOpenCreditLinesAndLoans
+99                         NumberOfTimes90DaysLate
+100                        NumberRealEstateLoansOrLines
+101                        "NumberOfTime60-89DaysPastDueNotW"N
+102                        NumberOfDependents
+103            ;
+104            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+105            run;
+1 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+106        
+107        
+108        /* X24 observation (not in the script): the imported table */
+109        %macro x24_show(v);
+110            %local dsid pos vtype;
+111            %let vtype = none;
+112            %let dsid = %sysfunc(open(work.credit_raw));
+113            %if &dsid > 0 %then %do;
+114                %let pos = %sysfunc(varnum(&dsid, &v));
+115                %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+116                %let dsid = %sysfunc(close(&dsid));
+117            %end;
+118            %if &vtype = N %then %do; put "X24 A &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+119            %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 A &v character [" "&v"n +(-1) "] " x24_len=; %end;
+120            %else %do; put "X24 A &v absent"; %end;
+121        %mend;
+122        title "x24 A work.credit_raw";
+123        proc contents data=work.credit_raw varnum; run;
+124        proc print data=work.credit_raw; format _numeric_ best32.; run;
+125        data _null_;
+126            set work.credit_raw;
+127            put "X24 A ROW " _n_= (_all_)(=);
+128            %x24_show(VAR1)
+129            %x24_show(age)
+130            %x24_show(DebtRatio)
+131            %x24_show(NumberOfDependents)
+132        run;
+X24 A ROW _N_=1 'VAR1'n=1 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'AGE'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2
+X24 A VAR1 numeric                                1 hex=3FF0000000000000
+X24 A age numeric                               45 hex=4046800000000000
+X24 A DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 A NumberOfDependents numeric                                2 hex=4000000000000000
+133        /* X24 end of observation */
+134        /* Check the input conditions: stop with an error before anything is exported */
+135        /* The numeric value of a raw column: a numeric column as it is; a character column
+136           read as a number, missing when the text is no number or is longer than 32 characters */
+137        %macro num(v);
+138            %local dsid pos vtype;
+139            %let vtype = ;
+140            %let dsid = %sysfunc(open(work.credit_raw));
+141            %let pos = %sysfunc(varnum(&dsid, &v));
+142            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+143            %let dsid = %sysfunc(close(&dsid));
+144            %if &vtype = N %then "&v"n;
+145            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+146        %mend;
+147        
+148        %let columns_ok = 0;
+149        %let bad_rows = 1;
+150        %let duplicate_ids = 1;
+151        %let known_incomes = 0;
+152        
+153        proc sql noprint;
+154            /* The expected columns and no others */
+155            select (count(*) = 12 and sum(upcase(name) in
+156                       ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+157                        'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+158                        'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+159                        'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+160                        'NUMBERREALESTATELOANSORLINES')) = 12)
+161            into :columns_ok trimmed
+162            from dictionary.columns
+163            where libname = 'WORK' and memname = 'CREDIT_RAW';
+164        quit;
+165        
+166        /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+167           the outcome is 0 or 1; the counts are whole numbers, zero or more;
+168           a known MonthlyIncome is zero or more */
+169        data work.input_check;
+170            set work.credit_raw;
+171            bad_row = (missing(%num(VAR1))
+172                or %num(SeriousDlqin2yrs) not in (0, 1)
+173                or missing(%num(age))
+174                or missing(%num(RevolvingUtilizationOfUnsecuredL))
+175                or missing(%num(DebtRatio))
+176                or missing(%num(NumberRealEstateLoansOrLines))
+177                or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+178                        %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+179                or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+180                        %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+181                or not (%num(NumberOfTimes90DaysLate) >= 0 and
+182                        %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+183                or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+184                        %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+185                or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+186                or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+187                or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+188                    not (%num(NumberOfDependents) >= 0 and
+189                         %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+190            known_income = not missing(%num(MonthlyIncome));
+191            keep VAR1 bad_row known_income;
+192        run;
+193        
+194        /* Bad rows, repeated row ids, known incomes */
+195        proc sql noprint;
+196            select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+197            into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+198            from work.input_check;
+199        quit;
+200        
+201        
+202        /* X24 observation (not in the script): the totals */
+203        %put X24 A TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 A TOTALS columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=1
+204        proc print data=work.input_check; title "x24 A work.input_check"; run;
+205        /* X24 end of observation */
+206        data _null_;
+207            if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+208                put "ERROR: cs-training.csv does not meet the input conditions: "
+209                    "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+210                put "ERROR: Feature engineering stopped. Nothing is exported.";
+211                abort cancel;
+212            end;
+213        run;
+214        /* X24 A: end of the script's statements */
+215        data work.x24_after_A; run;
+216        
+217        
+218        
+219        
+8                                                          The SAS System                          Sunday, 15 November 2026 12:45:00
+
+220        
+9                                                          The SAS System                          Sunday, 15 November 2026 12:45:00
+
+223        
+224        /* ================= X24 SUBMISSION B ================= */
+225        %put X24 A STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_A));
+X24 A STEP_AFTER_STOP_RAN=1
+226        proc datasets lib=work nolist; delete credit_raw input_check; quit;
+227        %let data_path = %sysfunc(pathname(work));
+228        data _null_;
+229            file "&data_path/cs-training.csv" lrecl=1000;
+230            put
+230      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+230      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+230      ! ,NumberOfDependents';
+231            put '1,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+232            put '2,0,0.957,40,0,0.12345678901234567890123456789012345,NA,4,0,0,0,1';
+233            put '3,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+234        run;
+235        data _null_;
+236            infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+237            input;
+238            put "X24 B FILE [" _infile_ +(-1) "] " n=;
+239        run;
+X24 B FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 B FILE [1,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+X24 B FILE [2,0,0.957,40,0,0.12345678901234567890123456789012345,NA,4,0,0,0,] n=65
+X24 B FILE [3,0,0.658,38,1,0.08,3042,2,1,0,0,N] n=35
+240        /* X24 B: feature_engineering.sas, verbatim from here */
+241        proc import datafile="&data_path/cs-training.csv"
+242            out=work.credit_raw
+243            dbms=csv
+244            replace;
+245            getnames=yes;
+246            guessingrows=max;
+247        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+248         /**********************************************************************
+249         *   PRODUCT:   SAS
+250         *   VERSION:   9.4
+251         *   CREATOR:   External File Interface
+252         *   DATE:      15NOV26
+253         *   DESC:      Generated SAS Datastep Code
+254         *   TEMPLATE SOURCE:  (None Specified.)
+255         ***********************************************************************/
+256            data WORK.CREDIT_RAW    ;
+257            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+258            infile
+258      ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+258      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+259               informat VAR1 best32. ;
+260               informat SeriousDlqin2yrs best32. ;
+261               informat RevolvingUtilizationOfUnsecuredL best32. ;
+262               informat age best32. ;
+263               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+264               informat DebtRatio best32. ;
+265               informat MonthlyIncome $4. ;
+266               informat NumberOfOpenCreditLinesAndLoans best32. ;
+267               informat NumberOfTimes90DaysLate best32. ;
+268               informat NumberRealEstateLoansOrLines best32. ;
+269               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+270               informat NumberOfDependents $2. ;
+271               format VAR1 best12. ;
+272               format SeriousDlqin2yrs best12. ;
+273               format RevolvingUtilizationOfUnsecuredL best12. ;
+274               format age best12. ;
+275               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+276               format DebtRatio best12. ;
+277               format MonthlyIncome $4. ;
+278               format NumberOfOpenCreditLinesAndLoans best12. ;
+279               format NumberOfTimes90DaysLate best12. ;
+280               format NumberRealEstateLoansOrLines best12. ;
+281               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+282               format NumberOfDependents $2. ;
+283            input
+284                        VAR1
+285                        SeriousDlqin2yrs
+286                        RevolvingUtilizationOfUnsecuredL
+287                        age
+288                        "NumberOfTime30-59DaysPastDueNotW"N
+289                        DebtRatio
+290                        MonthlyIncome  $
+291                        NumberOfOpenCreditLinesAndLoans
+292                        NumberOfTimes90DaysLate
+293                        NumberRealEstateLoansOrLines
+294                        "NumberOfTime60-89DaysPastDueNotW"N
+295                        NumberOfDependents  $
+296            ;
+297            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+298            run;
+3 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+299        
+300        
+301        /* X24 observation (not in the script): the imported table */
+302        %macro x24_show(v);
+303            %local dsid pos vtype;
+304            %let vtype = none;
+305            %let dsid = %sysfunc(open(work.credit_raw));
+306            %if &dsid > 0 %then %do;
+307                %let pos = %sysfunc(varnum(&dsid, &v));
+308                %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+309                %let dsid = %sysfunc(close(&dsid));
+310            %end;
+311            %if &vtype = N %then %do; put "X24 B &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+312            %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 B &v character [" "&v"n +(-1) "] " x24_len=; %end;
+313            %else %do; put "X24 B &v absent"; %end;
+314        %mend;
+315        title "x24 B work.credit_raw";
+316        proc contents data=work.credit_raw varnum; run;
+317        proc print data=work.credit_raw; format _numeric_ best32.; run;
+318        data _null_;
+319            set work.credit_raw;
+320            put "X24 B ROW " _n_= (_all_)(=);
+321            %x24_show(VAR1)
+322            %x24_show(age)
+323            %x24_show(DebtRatio)
+324            %x24_show(NumberOfDependents)
+325        run;
+X24 B ROW _N_=1 'VAR1'n=1 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'age'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2
+X24 B VAR1 numeric                                1 hex=3FF0000000000000
+X24 B age numeric                               45 hex=4046800000000000
+X24 B DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 B NumberOfDependents character [2] x24_len=1
+X24 B ROW _N_=2 'VAR1'n=2 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.957 'age'n=40 NumberOfTime30-59DaysPastDueNotW=0
+'DebtRatio'n=0.123456789 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=1
+X24 B VAR1 numeric                                2 hex=4000000000000000
+X24 B age numeric                               40 hex=4044000000000000
+X24 B DebtRatio numeric                 0.12345678901234 hex=3FBF9ADD3746F65F
+X24 B NumberOfDependents character [1] x24_len=1
+X24 B ROW _N_=3 'VAR1'n=3 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.658 'age'n=38 NumberOfTime30-59DaysPastDueNotW=1
+'DebtRatio'n=0.08 MonthlyIncome=3042 NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=1 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=NA
+X24 B VAR1 numeric                                3 hex=4008000000000000
+X24 B age numeric                               38 hex=4043000000000000
+X24 B DebtRatio numeric                             0.08 hex=3FB47AE147AE147B
+X24 B NumberOfDependents character [NA] x24_len=2
+326        /* X24 end of observation */
+327        /* Check the input conditions: stop with an error before anything is exported */
+328        /* The numeric value of a raw column: a numeric column as it is; a character column
+329           read as a number, missing when the text is no number or is longer than 32 characters */
+330        %macro num(v);
+331            %local dsid pos vtype;
+332            %let vtype = ;
+333            %let dsid = %sysfunc(open(work.credit_raw));
+334            %let pos = %sysfunc(varnum(&dsid, &v));
+335            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+336            %let dsid = %sysfunc(close(&dsid));
+337            %if &vtype = N %then "&v"n;
+338            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+339        %mend;
+340        
+341        %let columns_ok = 0;
+342        %let bad_rows = 1;
+343        %let duplicate_ids = 1;
+344        %let known_incomes = 0;
+345        
+346        proc sql noprint;
+347            /* The expected columns and no others */
+348            select (count(*) = 12 and sum(upcase(name) in
+349                       ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+350                        'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+351                        'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+352                        'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+353                        'NUMBERREALESTATELOANSORLINES')) = 12)
+354            into :columns_ok trimmed
+355            from dictionary.columns
+356            where libname = 'WORK' and memname = 'CREDIT_RAW';
+357        quit;
+358        
+359        /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+360           the outcome is 0 or 1; the counts are whole numbers, zero or more;
+361           a known MonthlyIncome is zero or more */
+362        data work.input_check;
+363            set work.credit_raw;
+364            bad_row = (missing(%num(VAR1))
+365                or %num(SeriousDlqin2yrs) not in (0, 1)
+366                or missing(%num(age))
+367                or missing(%num(RevolvingUtilizationOfUnsecuredL))
+368                or missing(%num(DebtRatio))
+369                or missing(%num(NumberRealEstateLoansOrLines))
+370                or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+371                        %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+372                or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+373                        %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+374                or not (%num(NumberOfTimes90DaysLate) >= 0 and
+375                        %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+376                or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+377                        %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+378                or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+379                or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+380                or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+381                    not (%num(NumberOfDependents) >= 0 and
+382                         %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+383            known_income = not missing(%num(MonthlyIncome));
+384            keep VAR1 bad_row known_income;
+385        run;
+386        
+387        /* Bad rows, repeated row ids, known incomes */
+388        proc sql noprint;
+389            select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+390            into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+391            from work.input_check;
+392        quit;
+393        
+394        
+395        /* X24 observation (not in the script): the totals */
+396        %put X24 B TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 B TOTALS columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=2
+397        proc print data=work.input_check; title "x24 B work.input_check"; run;
+398        /* X24 end of observation */
+399        data _null_;
+400            if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+401                put "ERROR: cs-training.csv does not meet the input conditions: "
+402                    "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+403                put "ERROR: Feature engineering stopped. Nothing is exported.";
+404                abort cancel;
+405            end;
+406        run;
+407        /* X24 B: end of the script's statements */
+408        data work.x24_after_B; run;
+409        
+410        
+411        
+412        
+10                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+413        
+11                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+416        
+417        /* ================= X24 SUBMISSION C ================= */
+418        %put X24 B STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_B));
+X24 B STEP_AFTER_STOP_RAN=1
+419        proc datasets lib=work nolist; delete credit_raw input_check; quit;
+420        %let data_path = %sysfunc(pathname(work));
+421        data _null_;
+422            file "&data_path/cs-training.csv" lrecl=1000;
+423            put
+423      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+423      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+423      ! ,NumberOfDependents';
+424            put '1,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+425            put '2,0,0.957,"45",0,0.12,NA,4,0,0,0,1';
+426            put '3,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+427        run;
+428        data _null_;
+429            infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+430            input;
+431            put "X24 C FILE [" _infile_ +(-1) "] " n=;
+432        run;
+X24 C FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 C FILE [1,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+X24 C FILE [2,0,0.957,"45",0,0.12,NA,4,0,0,0,] n=34
+X24 C FILE [3,0,0.658,38,1,0.08,3042,2,1,0,0,N] n=35
+433        /* X24 C: feature_engineering.sas, verbatim from here */
+434        proc import datafile="&data_path/cs-training.csv"
+435            out=work.credit_raw
+436            dbms=csv
+437            replace;
+438            getnames=yes;
+439            guessingrows=max;
+440        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+441         /**********************************************************************
+442         *   PRODUCT:   SAS
+443         *   VERSION:   9.4
+444         *   CREATOR:   External File Interface
+445         *   DATE:      15NOV26
+446         *   DESC:      Generated SAS Datastep Code
+447         *   TEMPLATE SOURCE:  (None Specified.)
+448         ***********************************************************************/
+449            data WORK.CREDIT_RAW    ;
+450            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+451            infile
+451      ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+451      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+452               informat VAR1 best32. ;
+453               informat SeriousDlqin2yrs best32. ;
+454               informat RevolvingUtilizationOfUnsecuredL best32. ;
+455               informat age $4. ;
+456               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+457               informat DebtRatio best32. ;
+458               informat MonthlyIncome $4. ;
+459               informat NumberOfOpenCreditLinesAndLoans best32. ;
+460               informat NumberOfTimes90DaysLate best32. ;
+461               informat NumberRealEstateLoansOrLines best32. ;
+462               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+463               informat NumberOfDependents $2. ;
+464               format VAR1 best12. ;
+465               format SeriousDlqin2yrs best12. ;
+466               format RevolvingUtilizationOfUnsecuredL best12. ;
+467               format age $4. ;
+468               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+469               format DebtRatio best12. ;
+470               format MonthlyIncome $4. ;
+471               format NumberOfOpenCreditLinesAndLoans best12. ;
+472               format NumberOfTimes90DaysLate best12. ;
+473               format NumberRealEstateLoansOrLines best12. ;
+474               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+475               format NumberOfDependents $2. ;
+476            input
+477                        VAR1
+478                        SeriousDlqin2yrs
+479                        RevolvingUtilizationOfUnsecuredL
+480                        age  $
+481                        "NumberOfTime30-59DaysPastDueNotW"N
+482                        DebtRatio
+483                        MonthlyIncome  $
+484                        NumberOfOpenCreditLinesAndLoans
+485                        NumberOfTimes90DaysLate
+486                        NumberRealEstateLoansOrLines
+487                        "NumberOfTime60-89DaysPastDueNotW"N
+488                        NumberOfDependents  $
+489            ;
+490            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+491            run;
+3 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+492        
+493        
+494        /* X24 observation (not in the script): the imported table */
+495        %macro x24_show(v);
+496            %local dsid pos vtype;
+497            %let vtype = none;
+498            %let dsid = %sysfunc(open(work.credit_raw));
+499            %if &dsid > 0 %then %do;
+500                %let pos = %sysfunc(varnum(&dsid, &v));
+501                %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+502                %let dsid = %sysfunc(close(&dsid));
+503            %end;
+504            %if &vtype = N %then %do; put "X24 C &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+505            %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 C &v character [" "&v"n +(-1) "] " x24_len=; %end;
+506            %else %do; put "X24 C &v absent"; %end;
+507        %mend;
+508        title "x24 C work.credit_raw";
+509        proc contents data=work.credit_raw varnum; run;
+510        proc print data=work.credit_raw; format _numeric_ best32.; run;
+511        data _null_;
+512            set work.credit_raw;
+513            put "X24 C ROW " _n_= (_all_)(=);
+514            %x24_show(VAR1)
+515            %x24_show(age)
+516            %x24_show(DebtRatio)
+517            %x24_show(NumberOfDependents)
+518        run;
+X24 C ROW _N_=1 'VAR1'n=1 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'age'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2
+X24 C VAR1 numeric                                1 hex=3FF0000000000000
+X24 C age character [45] x24_len=2
+X24 C DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 C NumberOfDependents character [2] x24_len=1
+X24 C ROW _N_=2 'VAR1'n=2 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.957 'age'n=45 NumberOfTime30-59DaysPastDueNotW=0
+'DebtRatio'n=0.12 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=1
+X24 C VAR1 numeric                                2 hex=4000000000000000
+X24 C age character [45] x24_len=2
+X24 C DebtRatio numeric                             0.12 hex=3FBEB851EB851EB8
+X24 C NumberOfDependents character [1] x24_len=1
+X24 C ROW _N_=3 'VAR1'n=3 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.658 'age'n=38 NumberOfTime30-59DaysPastDueNotW=1
+'DebtRatio'n=0.08 MonthlyIncome=3042 NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=1 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=NA
+X24 C VAR1 numeric                                3 hex=4008000000000000
+X24 C age character [38] x24_len=2
+X24 C DebtRatio numeric                             0.08 hex=3FB47AE147AE147B
+X24 C NumberOfDependents character [NA] x24_len=2
+519        /* X24 end of observation */
+520        /* Check the input conditions: stop with an error before anything is exported */
+521        /* The numeric value of a raw column: a numeric column as it is; a character column
+522           read as a number, missing when the text is no number or is longer than 32 characters */
+523        %macro num(v);
+524            %local dsid pos vtype;
+525            %let vtype = ;
+526            %let dsid = %sysfunc(open(work.credit_raw));
+527            %let pos = %sysfunc(varnum(&dsid, &v));
+528            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+529            %let dsid = %sysfunc(close(&dsid));
+530            %if &vtype = N %then "&v"n;
+531            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+532        %mend;
+533        
+534        %let columns_ok = 0;
+535        %let bad_rows = 1;
+536        %let duplicate_ids = 1;
+537        %let known_incomes = 0;
+538        
+539        proc sql noprint;
+540            /* The expected columns and no others */
+541            select (count(*) = 12 and sum(upcase(name) in
+542                       ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+543                        'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+544                        'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+545                        'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+546                        'NUMBERREALESTATELOANSORLINES')) = 12)
+547            into :columns_ok trimmed
+548            from dictionary.columns
+549            where libname = 'WORK' and memname = 'CREDIT_RAW';
+550        quit;
+551        
+552        /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+553           the outcome is 0 or 1; the counts are whole numbers, zero or more;
+554           a known MonthlyIncome is zero or more */
+555        data work.input_check;
+556            set work.credit_raw;
+557            bad_row = (missing(%num(VAR1))
+558                or %num(SeriousDlqin2yrs) not in (0, 1)
+559                or missing(%num(age))
+560                or missing(%num(RevolvingUtilizationOfUnsecuredL))
+561                or missing(%num(DebtRatio))
+562                or missing(%num(NumberRealEstateLoansOrLines))
+563                or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+564                        %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+565                or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+566                        %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+567                or not (%num(NumberOfTimes90DaysLate) >= 0 and
+568                        %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+569                or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+570                        %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+571                or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+572                or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+573                or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+574                    not (%num(NumberOfDependents) >= 0 and
+575                         %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+576            known_income = not missing(%num(MonthlyIncome));
+577            keep VAR1 bad_row known_income;
+578        run;
+579        
+580        /* Bad rows, repeated row ids, known incomes */
+581        proc sql noprint;
+582            select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+583            into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+584            from work.input_check;
+585        quit;
+586        
+587        
+588        /* X24 observation (not in the script): the totals */
+589        %put X24 C TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 C TOTALS columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=2
+590        proc print data=work.input_check; title "x24 C work.input_check"; run;
+591        /* X24 end of observation */
+592        data _null_;
+593            if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+594                put "ERROR: cs-training.csv does not meet the input conditions: "
+595                    "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+596                put "ERROR: Feature engineering stopped. Nothing is exported.";
+597                abort cancel;
+598            end;
+599        run;
+600        /* X24 C: end of the script's statements */
+601        data work.x24_after_C; run;
+602        
+603        
+604        
+605        
+12                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+606        
+13                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+609        
+610        /* ================= X24 SUBMISSION C2 ================= */
+611        %put X24 C STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_C));
+X24 C STEP_AFTER_STOP_RAN=1
+612        proc datasets lib=work nolist; delete credit_raw input_check; quit;
+613        %let data_path = %sysfunc(pathname(work));
+614        data _null_;
+615            file "&data_path/cs-training.csv" lrecl=1000;
+616            put
+616      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+616      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+616      ! ,NumberOfDependents';
+617            put '1,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+618            put '2,0,0.957,4.5e1,0,0.12,NA,4,0,0,0,1';
+619            put '3,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+620        run;
+621        data _null_;
+622            infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+623            input;
+624            put "X24 C2 FILE [" _infile_ +(-1) "] " n=;
+625        run;
+X24 C2 FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 C2 FILE [1,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+X24 C2 FILE [2,0,0.957,4.5e1,0,0.12,NA,4,0,0,0,] n=35
+X24 C2 FILE [3,0,0.658,38,1,0.08,3042,2,1,0,0,N] n=35
+626        /* X24 C2: feature_engineering.sas, verbatim from here */
+627        proc import datafile="&data_path/cs-training.csv"
+628            out=work.credit_raw
+629            dbms=csv
+630            replace;
+631            getnames=yes;
+632            guessingrows=max;
+633        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+634         /**********************************************************************
+635         *   PRODUCT:   SAS
+636         *   VERSION:   9.4
+637         *   CREATOR:   External File Interface
+638         *   DATE:      15NOV26
+639         *   DESC:      Generated SAS Datastep Code
+640         *   TEMPLATE SOURCE:  (None Specified.)
+641         ***********************************************************************/
+642            data WORK.CREDIT_RAW    ;
+643            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+644            infile
+644      ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+644      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+645               informat VAR1 best32. ;
+646               informat SeriousDlqin2yrs best32. ;
+647               informat RevolvingUtilizationOfUnsecuredL best32. ;
+648               informat age best32. ;
+649               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+650               informat DebtRatio best32. ;
+651               informat MonthlyIncome $4. ;
+652               informat NumberOfOpenCreditLinesAndLoans best32. ;
+653               informat NumberOfTimes90DaysLate best32. ;
+654               informat NumberRealEstateLoansOrLines best32. ;
+655               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+656               informat NumberOfDependents $2. ;
+657               format VAR1 best12. ;
+658               format SeriousDlqin2yrs best12. ;
+659               format RevolvingUtilizationOfUnsecuredL best12. ;
+660               format age best12. ;
+661               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+662               format DebtRatio best12. ;
+663               format MonthlyIncome $4. ;
+664               format NumberOfOpenCreditLinesAndLoans best12. ;
+665               format NumberOfTimes90DaysLate best12. ;
+666               format NumberRealEstateLoansOrLines best12. ;
+667               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+668               format NumberOfDependents $2. ;
+669            input
+670                        VAR1
+671                        SeriousDlqin2yrs
+672                        RevolvingUtilizationOfUnsecuredL
+673                        age
+674                        "NumberOfTime30-59DaysPastDueNotW"N
+675                        DebtRatio
+676                        MonthlyIncome  $
+677                        NumberOfOpenCreditLinesAndLoans
+678                        NumberOfTimes90DaysLate
+679                        NumberRealEstateLoansOrLines
+680                        "NumberOfTime60-89DaysPastDueNotW"N
+681                        NumberOfDependents  $
+682            ;
+683            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+684            run;
+3 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+685        
+686        
+687        /* X24 observation (not in the script): the imported table */
+688        %macro x24_show(v);
+689            %local dsid pos vtype;
+690            %let vtype = none;
+691            %let dsid = %sysfunc(open(work.credit_raw));
+692            %if &dsid > 0 %then %do;
+693                %let pos = %sysfunc(varnum(&dsid, &v));
+694                %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+695                %let dsid = %sysfunc(close(&dsid));
+696            %end;
+697            %if &vtype = N %then %do; put "X24 C2 &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+698            %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 C2 &v character [" "&v"n +(-1) "] " x24_len=; %end
+698      ! ;
+699            %else %do; put "X24 C2 &v absent"; %end;
+700        %mend;
+701        title "x24 C2 work.credit_raw";
+702        proc contents data=work.credit_raw varnum; run;
+703        proc print data=work.credit_raw; format _numeric_ best32.; run;
+704        data _null_;
+705            set work.credit_raw;
+706            put "X24 C2 ROW " _n_= (_all_)(=);
+707            %x24_show(VAR1)
+708            %x24_show(age)
+709            %x24_show(DebtRatio)
+710            %x24_show(NumberOfDependents)
+711        run;
+X24 C2 ROW _N_=1 'VAR1'n=1 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'age'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2
+X24 C2 VAR1 numeric                                1 hex=3FF0000000000000
+X24 C2 age numeric                               45 hex=4046800000000000
+X24 C2 DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 C2 NumberOfDependents character [2] x24_len=1
+X24 C2 ROW _N_=2 'VAR1'n=2 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.957 'age'n=45 NumberOfTime30-59DaysPastDueNotW=0
+'DebtRatio'n=0.12 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=1
+X24 C2 VAR1 numeric                                2 hex=4000000000000000
+X24 C2 age numeric                               45 hex=4046800000000000
+X24 C2 DebtRatio numeric                             0.12 hex=3FBEB851EB851EB8
+X24 C2 NumberOfDependents character [1] x24_len=1
+X24 C2 ROW _N_=3 'VAR1'n=3 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.658 'age'n=38 NumberOfTime30-59DaysPastDueNotW=1
+'DebtRatio'n=0.08 MonthlyIncome=3042 NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=1 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=NA
+X24 C2 VAR1 numeric                                3 hex=4008000000000000
+X24 C2 age numeric                               38 hex=4043000000000000
+X24 C2 DebtRatio numeric                             0.08 hex=3FB47AE147AE147B
+X24 C2 NumberOfDependents character [NA] x24_len=2
+712        /* X24 end of observation */
+713        /* Check the input conditions: stop with an error before anything is exported */
+714        /* The numeric value of a raw column: a numeric column as it is; a character column
+715           read as a number, missing when the text is no number or is longer than 32 characters */
+716        %macro num(v);
+717            %local dsid pos vtype;
+718            %let vtype = ;
+719            %let dsid = %sysfunc(open(work.credit_raw));
+720            %let pos = %sysfunc(varnum(&dsid, &v));
+721            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+722            %let dsid = %sysfunc(close(&dsid));
+723            %if &vtype = N %then "&v"n;
+724            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+725        %mend;
+726        
+727        %let columns_ok = 0;
+728        %let bad_rows = 1;
+729        %let duplicate_ids = 1;
+730        %let known_incomes = 0;
+731        
+732        proc sql noprint;
+733            /* The expected columns and no others */
+734            select (count(*) = 12 and sum(upcase(name) in
+735                       ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+736                        'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+737                        'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+738                        'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+739                        'NUMBERREALESTATELOANSORLINES')) = 12)
+740            into :columns_ok trimmed
+741            from dictionary.columns
+742            where libname = 'WORK' and memname = 'CREDIT_RAW';
+743        quit;
+744        
+745        /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+746           the outcome is 0 or 1; the counts are whole numbers, zero or more;
+747           a known MonthlyIncome is zero or more */
+748        data work.input_check;
+749            set work.credit_raw;
+750            bad_row = (missing(%num(VAR1))
+751                or %num(SeriousDlqin2yrs) not in (0, 1)
+752                or missing(%num(age))
+753                or missing(%num(RevolvingUtilizationOfUnsecuredL))
+754                or missing(%num(DebtRatio))
+755                or missing(%num(NumberRealEstateLoansOrLines))
+756                or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+757                        %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+758                or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+759                        %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+760                or not (%num(NumberOfTimes90DaysLate) >= 0 and
+761                        %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+762                or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+763                        %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+764                or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+765                or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+766                or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+767                    not (%num(NumberOfDependents) >= 0 and
+768                         %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+769            known_income = not missing(%num(MonthlyIncome));
+770            keep VAR1 bad_row known_income;
+771        run;
+772        
+773        /* Bad rows, repeated row ids, known incomes */
+774        proc sql noprint;
+775            select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+776            into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+777            from work.input_check;
+778        quit;
+779        
+780        
+781        /* X24 observation (not in the script): the totals */
+782        %put X24 C2 TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 C2 TOTALS columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=2
+783        proc print data=work.input_check; title "x24 C2 work.input_check"; run;
+784        /* X24 end of observation */
+785        data _null_;
+786            if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+787                put "ERROR: cs-training.csv does not meet the input conditions: "
+788                    "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+789                put "ERROR: Feature engineering stopped. Nothing is exported.";
+790                abort cancel;
+791            end;
+792        run;
+793        /* X24 C2: end of the script's statements */
+794        data work.x24_after_C2; run;
+795        
+796        
+797        
+798        
+14                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+799        
+15                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+802        
+803        /* ================= X24 SUBMISSION D ================= */
+804        %put X24 C2 STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_C2));
+X24 C2 STEP_AFTER_STOP_RAN=1
+805        proc datasets lib=work nolist; delete credit_raw input_check; quit;
+806        %let data_path = %sysfunc(pathname(work));
+807        data _null_;
+808            file "&data_path/cs-training.csv" lrecl=1000;
+809            put
+809      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+809      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+809      ! ,NumberOfDependents';
+810            put '7,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+811            put '07,0,0.957,40,0,0.12,NA,4,0,0,0,1';
+812            put '8,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+813        run;
+814        data _null_;
+815            infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+816            input;
+817            put "X24 D FILE [" _infile_ +(-1) "] " n=;
+818        run;
+X24 D FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 D FILE [7,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+X24 D FILE [07,0,0.957,40,0,0.12,NA,4,0,0,0,] n=33
+X24 D FILE [8,0,0.658,38,1,0.08,3042,2,1,0,0,N] n=35
+819        /* X24 D: feature_engineering.sas, verbatim from here */
+820        proc import datafile="&data_path/cs-training.csv"
+821            out=work.credit_raw
+822            dbms=csv
+823            replace;
+824            getnames=yes;
+825            guessingrows=max;
+826        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+827         /**********************************************************************
+828         *   PRODUCT:   SAS
+829         *   VERSION:   9.4
+830         *   CREATOR:   External File Interface
+831         *   DATE:      15NOV26
+832         *   DESC:      Generated SAS Datastep Code
+833         *   TEMPLATE SOURCE:  (None Specified.)
+834         ***********************************************************************/
+835            data WORK.CREDIT_RAW    ;
+836            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+837            infile
+837      ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+837      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+838               informat VAR1 best32. ;
+839               informat SeriousDlqin2yrs best32. ;
+840               informat RevolvingUtilizationOfUnsecuredL best32. ;
+841               informat age best32. ;
+842               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+843               informat DebtRatio best32. ;
+844               informat MonthlyIncome $4. ;
+845               informat NumberOfOpenCreditLinesAndLoans best32. ;
+846               informat NumberOfTimes90DaysLate best32. ;
+847               informat NumberRealEstateLoansOrLines best32. ;
+848               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+849               informat NumberOfDependents $2. ;
+850               format VAR1 best12. ;
+851               format SeriousDlqin2yrs best12. ;
+852               format RevolvingUtilizationOfUnsecuredL best12. ;
+853               format age best12. ;
+854               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+855               format DebtRatio best12. ;
+856               format MonthlyIncome $4. ;
+857               format NumberOfOpenCreditLinesAndLoans best12. ;
+858               format NumberOfTimes90DaysLate best12. ;
+859               format NumberRealEstateLoansOrLines best12. ;
+860               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+861               format NumberOfDependents $2. ;
+862            input
+863                        VAR1
+864                        SeriousDlqin2yrs
+865                        RevolvingUtilizationOfUnsecuredL
+866                        age
+867                        "NumberOfTime30-59DaysPastDueNotW"N
+868                        DebtRatio
+869                        MonthlyIncome  $
+870                        NumberOfOpenCreditLinesAndLoans
+871                        NumberOfTimes90DaysLate
+872                        NumberRealEstateLoansOrLines
+873                        "NumberOfTime60-89DaysPastDueNotW"N
+874                        NumberOfDependents  $
+875            ;
+876            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+877            run;
+3 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+878        
+879        
+880        /* X24 observation (not in the script): the imported table */
+881        %macro x24_show(v);
+882            %local dsid pos vtype;
+883            %let vtype = none;
+884            %let dsid = %sysfunc(open(work.credit_raw));
+885            %if &dsid > 0 %then %do;
+886                %let pos = %sysfunc(varnum(&dsid, &v));
+887                %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+888                %let dsid = %sysfunc(close(&dsid));
+889            %end;
+890            %if &vtype = N %then %do; put "X24 D &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+891            %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 D &v character [" "&v"n +(-1) "] " x24_len=; %end;
+892            %else %do; put "X24 D &v absent"; %end;
+893        %mend;
+894        title "x24 D work.credit_raw";
+895        proc contents data=work.credit_raw varnum; run;
+896        proc print data=work.credit_raw; format _numeric_ best32.; run;
+897        data _null_;
+898            set work.credit_raw;
+899            put "X24 D ROW " _n_= (_all_)(=);
+900            %x24_show(VAR1)
+901            %x24_show(age)
+902            %x24_show(DebtRatio)
+903            %x24_show(NumberOfDependents)
+904        run;
+X24 D ROW _N_=1 'VAR1'n=7 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'age'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2
+X24 D VAR1 numeric                                7 hex=401C000000000000
+X24 D age numeric                               45 hex=4046800000000000
+X24 D DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 D NumberOfDependents character [2] x24_len=1
+X24 D ROW _N_=2 'VAR1'n=7 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.957 'age'n=40 NumberOfTime30-59DaysPastDueNotW=0
+'DebtRatio'n=0.12 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=1
+X24 D VAR1 numeric                                7 hex=401C000000000000
+X24 D age numeric                               40 hex=4044000000000000
+X24 D DebtRatio numeric                             0.12 hex=3FBEB851EB851EB8
+X24 D NumberOfDependents character [1] x24_len=1
+X24 D ROW _N_=3 'VAR1'n=8 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.658 'age'n=38 NumberOfTime30-59DaysPastDueNotW=1
+'DebtRatio'n=0.08 MonthlyIncome=3042 NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=1 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=NA
+X24 D VAR1 numeric                                8 hex=4020000000000000
+X24 D age numeric                               38 hex=4043000000000000
+X24 D DebtRatio numeric                             0.08 hex=3FB47AE147AE147B
+X24 D NumberOfDependents character [NA] x24_len=2
+905        /* X24 end of observation */
+906        /* Check the input conditions: stop with an error before anything is exported */
+907        /* The numeric value of a raw column: a numeric column as it is; a character column
+908           read as a number, missing when the text is no number or is longer than 32 characters */
+909        %macro num(v);
+910            %local dsid pos vtype;
+911            %let vtype = ;
+912            %let dsid = %sysfunc(open(work.credit_raw));
+913            %let pos = %sysfunc(varnum(&dsid, &v));
+914            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+915            %let dsid = %sysfunc(close(&dsid));
+916            %if &vtype = N %then "&v"n;
+917            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+918        %mend;
+919        
+920        %let columns_ok = 0;
+921        %let bad_rows = 1;
+922        %let duplicate_ids = 1;
+923        %let known_incomes = 0;
+924        
+925        proc sql noprint;
+926            /* The expected columns and no others */
+927            select (count(*) = 12 and sum(upcase(name) in
+928                       ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+929                        'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+930                        'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+931                        'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+932                        'NUMBERREALESTATELOANSORLINES')) = 12)
+933            into :columns_ok trimmed
+934            from dictionary.columns
+935            where libname = 'WORK' and memname = 'CREDIT_RAW';
+936        quit;
+937        
+938        /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+939           the outcome is 0 or 1; the counts are whole numbers, zero or more;
+940           a known MonthlyIncome is zero or more */
+941        data work.input_check;
+942            set work.credit_raw;
+943            bad_row = (missing(%num(VAR1))
+944                or %num(SeriousDlqin2yrs) not in (0, 1)
+945                or missing(%num(age))
+946                or missing(%num(RevolvingUtilizationOfUnsecuredL))
+947                or missing(%num(DebtRatio))
+948                or missing(%num(NumberRealEstateLoansOrLines))
+949                or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+950                        %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+951                or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+952                        %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+953                or not (%num(NumberOfTimes90DaysLate) >= 0 and
+954                        %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+955                or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+956                        %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+957                or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+958                or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+959                or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+960                    not (%num(NumberOfDependents) >= 0 and
+961                         %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+962            known_income = not missing(%num(MonthlyIncome));
+963            keep VAR1 bad_row known_income;
+964        run;
+965        
+966        /* Bad rows, repeated row ids, known incomes */
+967        proc sql noprint;
+968            select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+969            into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+970            from work.input_check;
+971        quit;
+972        
+973        
+974        /* X24 observation (not in the script): the totals */
+975        %put X24 D TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 D TOTALS columns_ok=1 bad_rows=0 duplicate_ids=1 known_incomes=2
+976        proc print data=work.input_check; title "x24 D work.input_check"; run;
+977        /* X24 end of observation */
+978        data _null_;
+979            if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+980                put "ERROR: cs-training.csv does not meet the input conditions: "
+981                    "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+982                put "ERROR: Feature engineering stopped. Nothing is exported.";
+983                abort cancel;
+984            end;
+985        run;
+ERROR: cs-training.csv does not meet the input conditions: columns_ok=1 bad_rows=0 duplicate_ids=1 known_incomes=2.
+ERROR: Feature engineering stopped. Nothing is exported.
+ERROR: Execution terminated by an ABORT CANCEL statement at line 983 column 9.
+_ERROR_=1 _N_=1
+986        
+16                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+989        
+990        /* ================= X24 SUBMISSION D2 ================= */
+991        %put X24 D STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_D));
+X24 D STEP_AFTER_STOP_RAN=0
+992        proc datasets lib=work nolist; delete credit_raw input_check; quit;
+993        %let data_path = %sysfunc(pathname(work));
+994        data _null_;
+995            file "&data_path/cs-training.csv" lrecl=1000;
+996            put
+996      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+996      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+996      ! ,NumberOfDependents';
+997            put '7,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+998            put '7.0,0,0.957,40,0,0.12,NA,4,0,0,0,1';
+999            put '8,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+1000       run;
+1001       data _null_;
+1002           infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+1003           input;
+1004           put "X24 D2 FILE [" _infile_ +(-1) "] " n=;
+1005       run;
+X24 D2 FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 D2 FILE [7,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+X24 D2 FILE [7.0,0,0.957,40,0,0.12,NA,4,0,0,0,] n=34
+X24 D2 FILE [8,0,0.658,38,1,0.08,3042,2,1,0,0,N] n=35
+1006       /* X24 D2: feature_engineering.sas, verbatim from here */
+1007       proc import datafile="&data_path/cs-training.csv"
+1008           out=work.credit_raw
+1009           dbms=csv
+1010           replace;
+1011           getnames=yes;
+1012           guessingrows=max;
+1013       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+1014        /**********************************************************************
+1015        *   PRODUCT:   SAS
+1016        *   VERSION:   9.4
+1017        *   CREATOR:   External File Interface
+1018        *   DATE:      15NOV26
+1019        *   DESC:      Generated SAS Datastep Code
+1020        *   TEMPLATE SOURCE:  (None Specified.)
+1021        ***********************************************************************/
+1022           data WORK.CREDIT_RAW    ;
+1023           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1024           infile
+1024     ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+1024     ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+1025              informat VAR1 best32. ;
+1026              informat SeriousDlqin2yrs best32. ;
+1027              informat RevolvingUtilizationOfUnsecuredL best32. ;
+1028              informat age best32. ;
+1029              informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+1030              informat DebtRatio best32. ;
+1031              informat MonthlyIncome $4. ;
+1032              informat NumberOfOpenCreditLinesAndLoans best32. ;
+1033              informat NumberOfTimes90DaysLate best32. ;
+1034              informat NumberRealEstateLoansOrLines best32. ;
+1035              informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+1036              informat NumberOfDependents $2. ;
+1037              format VAR1 best12. ;
+1038              format SeriousDlqin2yrs best12. ;
+1039              format RevolvingUtilizationOfUnsecuredL best12. ;
+1040              format age best12. ;
+1041              format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+1042              format DebtRatio best12. ;
+1043              format MonthlyIncome $4. ;
+1044              format NumberOfOpenCreditLinesAndLoans best12. ;
+1045              format NumberOfTimes90DaysLate best12. ;
+1046              format NumberRealEstateLoansOrLines best12. ;
+1047              format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+1048              format NumberOfDependents $2. ;
+1049           input
+1050                       VAR1
+1051                       SeriousDlqin2yrs
+1052                       RevolvingUtilizationOfUnsecuredL
+1053                       age
+1054                       "NumberOfTime30-59DaysPastDueNotW"N
+1055                       DebtRatio
+1056                       MonthlyIncome  $
+1057                       NumberOfOpenCreditLinesAndLoans
+1058                       NumberOfTimes90DaysLate
+1059                       NumberRealEstateLoansOrLines
+1060                       "NumberOfTime60-89DaysPastDueNotW"N
+1061                       NumberOfDependents  $
+1062           ;
+1063           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1064           run;
+3 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+1065       
+1066       
+1067       /* X24 observation (not in the script): the imported table */
+1068       %macro x24_show(v);
+1069           %local dsid pos vtype;
+1070           %let vtype = none;
+1071           %let dsid = %sysfunc(open(work.credit_raw));
+1072           %if &dsid > 0 %then %do;
+1073               %let pos = %sysfunc(varnum(&dsid, &v));
+1074               %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1075               %let dsid = %sysfunc(close(&dsid));
+1076           %end;
+1077           %if &vtype = N %then %do; put "X24 D2 &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+1078           %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 D2 &v character [" "&v"n +(-1) "] " x24_len=; %end
+1078     ! ;
+1079           %else %do; put "X24 D2 &v absent"; %end;
+1080       %mend;
+1081       title "x24 D2 work.credit_raw";
+1082       proc contents data=work.credit_raw varnum; run;
+1083       proc print data=work.credit_raw; format _numeric_ best32.; run;
+1084       data _null_;
+1085           set work.credit_raw;
+1086           put "X24 D2 ROW " _n_= (_all_)(=);
+1087           %x24_show(VAR1)
+1088           %x24_show(age)
+1089           %x24_show(DebtRatio)
+1090           %x24_show(NumberOfDependents)
+1091       run;
+X24 D2 ROW _N_=1 'VAR1'n=7 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'age'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2
+X24 D2 VAR1 numeric                                7 hex=401C000000000000
+X24 D2 age numeric                               45 hex=4046800000000000
+X24 D2 DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 D2 NumberOfDependents character [2] x24_len=1
+X24 D2 ROW _N_=2 'VAR1'n=7 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.957 'age'n=40 NumberOfTime30-59DaysPastDueNotW=0
+'DebtRatio'n=0.12 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=1
+X24 D2 VAR1 numeric                                7 hex=401C000000000000
+X24 D2 age numeric                               40 hex=4044000000000000
+X24 D2 DebtRatio numeric                             0.12 hex=3FBEB851EB851EB8
+X24 D2 NumberOfDependents character [1] x24_len=1
+X24 D2 ROW _N_=3 'VAR1'n=8 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.658 'age'n=38 NumberOfTime30-59DaysPastDueNotW=1
+'DebtRatio'n=0.08 MonthlyIncome=3042 NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=1 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=NA
+X24 D2 VAR1 numeric                                8 hex=4020000000000000
+X24 D2 age numeric                               38 hex=4043000000000000
+X24 D2 DebtRatio numeric                             0.08 hex=3FB47AE147AE147B
+X24 D2 NumberOfDependents character [NA] x24_len=2
+1092       /* X24 end of observation */
+1093       /* Check the input conditions: stop with an error before anything is exported */
+1094       /* The numeric value of a raw column: a numeric column as it is; a character column
+1095          read as a number, missing when the text is no number or is longer than 32 characters */
+1096       %macro num(v);
+1097           %local dsid pos vtype;
+1098           %let vtype = ;
+1099           %let dsid = %sysfunc(open(work.credit_raw));
+1100           %let pos = %sysfunc(varnum(&dsid, &v));
+1101           %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1102           %let dsid = %sysfunc(close(&dsid));
+1103           %if &vtype = N %then "&v"n;
+1104           %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+1105       %mend;
+1106       
+1107       %let columns_ok = 0;
+1108       %let bad_rows = 1;
+1109       %let duplicate_ids = 1;
+1110       %let known_incomes = 0;
+1111       
+1112       proc sql noprint;
+1113           /* The expected columns and no others */
+1114           select (count(*) = 12 and sum(upcase(name) in
+1115                      ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+1116                       'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+1117                       'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+1118                       'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+1119                       'NUMBERREALESTATELOANSORLINES')) = 12)
+1120           into :columns_ok trimmed
+1121           from dictionary.columns
+1122           where libname = 'WORK' and memname = 'CREDIT_RAW';
+1123       quit;
+1124       
+1125       /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+1126          the outcome is 0 or 1; the counts are whole numbers, zero or more;
+1127          a known MonthlyIncome is zero or more */
+1128       data work.input_check;
+1129           set work.credit_raw;
+1130           bad_row = (missing(%num(VAR1))
+1131               or %num(SeriousDlqin2yrs) not in (0, 1)
+1132               or missing(%num(age))
+1133               or missing(%num(RevolvingUtilizationOfUnsecuredL))
+1134               or missing(%num(DebtRatio))
+1135               or missing(%num(NumberRealEstateLoansOrLines))
+1136               or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+1137                       %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+1138               or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+1139                       %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+1140               or not (%num(NumberOfTimes90DaysLate) >= 0 and
+1141                       %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+1142               or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+1143                       %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+1144               or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+1145               or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+1146               or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+1147                   not (%num(NumberOfDependents) >= 0 and
+1148                        %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+1149           known_income = not missing(%num(MonthlyIncome));
+1150           keep VAR1 bad_row known_income;
+1151       run;
+1152       
+1153       /* Bad rows, repeated row ids, known incomes */
+1154       proc sql noprint;
+1155           select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+1156           into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+1157           from work.input_check;
+1158       quit;
+1159       
+1160       
+1161       /* X24 observation (not in the script): the totals */
+1162       %put X24 D2 TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 D2 TOTALS columns_ok=1 bad_rows=0 duplicate_ids=1 known_incomes=2
+1163       proc print data=work.input_check; title "x24 D2 work.input_check"; run;
+1164       /* X24 end of observation */
+1165       data _null_;
+1166           if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+1167               put "ERROR: cs-training.csv does not meet the input conditions: "
+1168                   "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+1169               put "ERROR: Feature engineering stopped. Nothing is exported.";
+1170               abort cancel;
+1171           end;
+1172       run;
+ERROR: cs-training.csv does not meet the input conditions: columns_ok=1 bad_rows=0 duplicate_ids=1 known_incomes=2.
+ERROR: Feature engineering stopped. Nothing is exported.
+ERROR: Execution terminated by an ABORT CANCEL statement at line 1170 column 9.
+_ERROR_=1 _N_=1
+1173       
+17                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1176       
+1177       /* ================= X24 SUBMISSION D3 ================= */
+1178       %put X24 D2 STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_D2));
+X24 D2 STEP_AFTER_STOP_RAN=0
+1179       proc datasets lib=work nolist; delete credit_raw input_check; quit;
+1180       %let data_path = %sysfunc(pathname(work));
+1181       data _null_;
+1182           file "&data_path/cs-training.csv" lrecl=1000;
+1183           put
+1183     ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+1183     ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+1183     ! ,NumberOfDependents';
+1184           put '7,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+1185           put '+7,0,0.957,40,0,0.12,NA,4,0,0,0,1';
+1186           put '8,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+1187       run;
+1188       data _null_;
+1189           infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+1190           input;
+1191           put "X24 D3 FILE [" _infile_ +(-1) "] " n=;
+1192       run;
+X24 D3 FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 D3 FILE [7,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+X24 D3 FILE [+7,0,0.957,40,0,0.12,NA,4,0,0,0,] n=33
+X24 D3 FILE [8,0,0.658,38,1,0.08,3042,2,1,0,0,N] n=35
+1193       /* X24 D3: feature_engineering.sas, verbatim from here */
+1194       proc import datafile="&data_path/cs-training.csv"
+1195           out=work.credit_raw
+1196           dbms=csv
+1197           replace;
+1198           getnames=yes;
+1199           guessingrows=max;
+1200       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+1201        /**********************************************************************
+1202        *   PRODUCT:   SAS
+1203        *   VERSION:   9.4
+1204        *   CREATOR:   External File Interface
+1205        *   DATE:      15NOV26
+1206        *   DESC:      Generated SAS Datastep Code
+1207        *   TEMPLATE SOURCE:  (None Specified.)
+1208        ***********************************************************************/
+1209           data WORK.CREDIT_RAW    ;
+1210           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1211           infile
+1211     ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+1211     ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+1212              informat VAR1 best32. ;
+1213              informat SeriousDlqin2yrs best32. ;
+1214              informat RevolvingUtilizationOfUnsecuredL best32. ;
+1215              informat age best32. ;
+1216              informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+1217              informat DebtRatio best32. ;
+1218              informat MonthlyIncome $4. ;
+1219              informat NumberOfOpenCreditLinesAndLoans best32. ;
+1220              informat NumberOfTimes90DaysLate best32. ;
+1221              informat NumberRealEstateLoansOrLines best32. ;
+1222              informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+1223              informat NumberOfDependents $2. ;
+1224              format VAR1 best12. ;
+1225              format SeriousDlqin2yrs best12. ;
+1226              format RevolvingUtilizationOfUnsecuredL best12. ;
+1227              format age best12. ;
+1228              format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+1229              format DebtRatio best12. ;
+1230              format MonthlyIncome $4. ;
+1231              format NumberOfOpenCreditLinesAndLoans best12. ;
+1232              format NumberOfTimes90DaysLate best12. ;
+1233              format NumberRealEstateLoansOrLines best12. ;
+1234              format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+1235              format NumberOfDependents $2. ;
+1236           input
+1237                       VAR1
+1238                       SeriousDlqin2yrs
+1239                       RevolvingUtilizationOfUnsecuredL
+1240                       age
+1241                       "NumberOfTime30-59DaysPastDueNotW"N
+1242                       DebtRatio
+1243                       MonthlyIncome  $
+1244                       NumberOfOpenCreditLinesAndLoans
+1245                       NumberOfTimes90DaysLate
+1246                       NumberRealEstateLoansOrLines
+1247                       "NumberOfTime60-89DaysPastDueNotW"N
+1248                       NumberOfDependents  $
+1249           ;
+1250           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1251           run;
+3 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+1252       
+1253       
+1254       /* X24 observation (not in the script): the imported table */
+1255       %macro x24_show(v);
+1256           %local dsid pos vtype;
+1257           %let vtype = none;
+1258           %let dsid = %sysfunc(open(work.credit_raw));
+1259           %if &dsid > 0 %then %do;
+1260               %let pos = %sysfunc(varnum(&dsid, &v));
+1261               %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1262               %let dsid = %sysfunc(close(&dsid));
+1263           %end;
+1264           %if &vtype = N %then %do; put "X24 D3 &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+1265           %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 D3 &v character [" "&v"n +(-1) "] " x24_len=; %end
+1265     ! ;
+1266           %else %do; put "X24 D3 &v absent"; %end;
+1267       %mend;
+1268       title "x24 D3 work.credit_raw";
+1269       proc contents data=work.credit_raw varnum; run;
+1270       proc print data=work.credit_raw; format _numeric_ best32.; run;
+1271       data _null_;
+1272           set work.credit_raw;
+1273           put "X24 D3 ROW " _n_= (_all_)(=);
+1274           %x24_show(VAR1)
+1275           %x24_show(age)
+1276           %x24_show(DebtRatio)
+1277           %x24_show(NumberOfDependents)
+1278       run;
+X24 D3 ROW _N_=1 'VAR1'n=7 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'age'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2
+X24 D3 VAR1 numeric                                7 hex=401C000000000000
+X24 D3 age numeric                               45 hex=4046800000000000
+X24 D3 DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 D3 NumberOfDependents character [2] x24_len=1
+X24 D3 ROW _N_=2 'VAR1'n=7 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.957 'age'n=40 NumberOfTime30-59DaysPastDueNotW=0
+'DebtRatio'n=0.12 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=1
+X24 D3 VAR1 numeric                                7 hex=401C000000000000
+X24 D3 age numeric                               40 hex=4044000000000000
+X24 D3 DebtRatio numeric                             0.12 hex=3FBEB851EB851EB8
+X24 D3 NumberOfDependents character [1] x24_len=1
+X24 D3 ROW _N_=3 'VAR1'n=8 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.658 'age'n=38 NumberOfTime30-59DaysPastDueNotW=1
+'DebtRatio'n=0.08 MonthlyIncome=3042 NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=1 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=NA
+X24 D3 VAR1 numeric                                8 hex=4020000000000000
+X24 D3 age numeric                               38 hex=4043000000000000
+X24 D3 DebtRatio numeric                             0.08 hex=3FB47AE147AE147B
+X24 D3 NumberOfDependents character [NA] x24_len=2
+1279       /* X24 end of observation */
+1280       /* Check the input conditions: stop with an error before anything is exported */
+1281       /* The numeric value of a raw column: a numeric column as it is; a character column
+1282          read as a number, missing when the text is no number or is longer than 32 characters */
+1283       %macro num(v);
+1284           %local dsid pos vtype;
+1285           %let vtype = ;
+1286           %let dsid = %sysfunc(open(work.credit_raw));
+1287           %let pos = %sysfunc(varnum(&dsid, &v));
+1288           %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1289           %let dsid = %sysfunc(close(&dsid));
+1290           %if &vtype = N %then "&v"n;
+1291           %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+1292       %mend;
+1293       
+1294       %let columns_ok = 0;
+1295       %let bad_rows = 1;
+1296       %let duplicate_ids = 1;
+1297       %let known_incomes = 0;
+1298       
+1299       proc sql noprint;
+1300           /* The expected columns and no others */
+1301           select (count(*) = 12 and sum(upcase(name) in
+1302                      ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+1303                       'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+1304                       'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+1305                       'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+1306                       'NUMBERREALESTATELOANSORLINES')) = 12)
+1307           into :columns_ok trimmed
+1308           from dictionary.columns
+1309           where libname = 'WORK' and memname = 'CREDIT_RAW';
+1310       quit;
+1311       
+1312       /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+1313          the outcome is 0 or 1; the counts are whole numbers, zero or more;
+1314          a known MonthlyIncome is zero or more */
+1315       data work.input_check;
+1316           set work.credit_raw;
+1317           bad_row = (missing(%num(VAR1))
+1318               or %num(SeriousDlqin2yrs) not in (0, 1)
+1319               or missing(%num(age))
+1320               or missing(%num(RevolvingUtilizationOfUnsecuredL))
+1321               or missing(%num(DebtRatio))
+1322               or missing(%num(NumberRealEstateLoansOrLines))
+1323               or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+1324                       %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+1325               or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+1326                       %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+1327               or not (%num(NumberOfTimes90DaysLate) >= 0 and
+1328                       %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+1329               or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+1330                       %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+1331               or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+1332               or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+1333               or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+1334                   not (%num(NumberOfDependents) >= 0 and
+1335                        %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+1336           known_income = not missing(%num(MonthlyIncome));
+1337           keep VAR1 bad_row known_income;
+1338       run;
+1339       
+1340       /* Bad rows, repeated row ids, known incomes */
+1341       proc sql noprint;
+1342           select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+1343           into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+1344           from work.input_check;
+1345       quit;
+1346       
+1347       
+1348       /* X24 observation (not in the script): the totals */
+1349       %put X24 D3 TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 D3 TOTALS columns_ok=1 bad_rows=0 duplicate_ids=1 known_incomes=2
+1350       proc print data=work.input_check; title "x24 D3 work.input_check"; run;
+1351       /* X24 end of observation */
+1352       data _null_;
+1353           if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+1354               put "ERROR: cs-training.csv does not meet the input conditions: "
+1355                   "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+1356               put "ERROR: Feature engineering stopped. Nothing is exported.";
+1357               abort cancel;
+1358           end;
+1359       run;
+ERROR: cs-training.csv does not meet the input conditions: columns_ok=1 bad_rows=0 duplicate_ids=1 known_incomes=2.
+ERROR: Feature engineering stopped. Nothing is exported.
+ERROR: Execution terminated by an ABORT CANCEL statement at line 1357 column 9.
+_ERROR_=1 _N_=1
+1360       
+18                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1363       
+1364       /* ================= X24 SUBMISSION E ================= */
+1365       %put X24 D3 STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_D3));
+X24 D3 STEP_AFTER_STOP_RAN=0
+1366       proc datasets lib=work nolist; delete credit_raw input_check; quit;
+1367       %let data_path = %sysfunc(pathname(work));
+1368       data _null_;
+1369           file "&data_path/cs-training.csv" lrecl=1000;
+1370           put
+1370     ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+1370     ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+1370     ! ,NumberOfDependents';
+1371           put '1,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+1372           put '2,0,0.957,40,0,0.12,NA,4,0,0,0,1,9';
+1373           put '3,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+1374       run;
+1375       data _null_;
+1376           infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+1377           input;
+1378           put "X24 E FILE [" _infile_ +(-1) "] " n=;
+1379       run;
+X24 E FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 E FILE [1,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+X24 E FILE [2,0,0.957,40,0,0.12,NA,4,0,0,0,1,] n=34
+X24 E FILE [3,0,0.658,38,1,0.08,3042,2,1,0,0,N] n=35
+1380       /* X24 E: feature_engineering.sas, verbatim from here */
+1381       proc import datafile="&data_path/cs-training.csv"
+1382           out=work.credit_raw
+1383           dbms=csv
+1384           replace;
+1385           getnames=yes;
+1386           guessingrows=max;
+1387       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Number of names found is less than number of variables found. 
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+1388        /**********************************************************************
+1389        *   PRODUCT:   SAS
+1390        *   VERSION:   9.4
+1391        *   CREATOR:   External File Interface
+1392        *   DATE:      15NOV26
+1393        *   DESC:      Generated SAS Datastep Code
+1394        *   TEMPLATE SOURCE:  (None Specified.)
+1395        ***********************************************************************/
+1396           data WORK.CREDIT_RAW    ;
+1397           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1398           infile
+1398     ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+1398     ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+1399              informat VAR1 best32. ;
+1400              informat SeriousDlqin2yrs best32. ;
+1401              informat RevolvingUtilizationOfUnsecuredL best32. ;
+1402              informat age best32. ;
+1403              informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+1404              informat DebtRatio best32. ;
+1405              informat MonthlyIncome $4. ;
+1406              informat NumberOfOpenCreditLinesAndLoans best32. ;
+1407              informat NumberOfTimes90DaysLate best32. ;
+1408              informat NumberRealEstateLoansOrLines best32. ;
+1409              informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+1410              informat NumberOfDependents $2. ;
+1411              informat VAR13 best32. ;
+1412              format VAR1 best12. ;
+1413              format SeriousDlqin2yrs best12. ;
+1414              format RevolvingUtilizationOfUnsecuredL best12. ;
+1415              format age best12. ;
+1416              format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+1417              format DebtRatio best12. ;
+1418              format MonthlyIncome $4. ;
+1419              format NumberOfOpenCreditLinesAndLoans best12. ;
+1420              format NumberOfTimes90DaysLate best12. ;
+1421              format NumberRealEstateLoansOrLines best12. ;
+1422              format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+1423              format NumberOfDependents $2. ;
+1424              format VAR13 best12. ;
+1425           input
+1426                       VAR1
+1427                       SeriousDlqin2yrs
+1428                       RevolvingUtilizationOfUnsecuredL
+1429                       age
+1430                       "NumberOfTime30-59DaysPastDueNotW"N
+1431                       DebtRatio
+1432                       MonthlyIncome  $
+1433                       NumberOfOpenCreditLinesAndLoans
+1434                       NumberOfTimes90DaysLate
+1435                       NumberRealEstateLoansOrLines
+1436                       "NumberOfTime60-89DaysPastDueNotW"N
+1437                       NumberOfDependents  $
+1438                       VAR13
+1439           ;
+1440           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1441           run;
+3 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+1442       
+1443       
+1444       /* X24 observation (not in the script): the imported table */
+1445       %macro x24_show(v);
+1446           %local dsid pos vtype;
+1447           %let vtype = none;
+1448           %let dsid = %sysfunc(open(work.credit_raw));
+1449           %if &dsid > 0 %then %do;
+1450               %let pos = %sysfunc(varnum(&dsid, &v));
+1451               %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1452               %let dsid = %sysfunc(close(&dsid));
+1453           %end;
+1454           %if &vtype = N %then %do; put "X24 E &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+1455           %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 E &v character [" "&v"n +(-1) "] " x24_len=; %end;
+1456           %else %do; put "X24 E &v absent"; %end;
+1457       %mend;
+1458       title "x24 E work.credit_raw";
+1459       proc contents data=work.credit_raw varnum; run;
+1460       proc print data=work.credit_raw; format _numeric_ best32.; run;
+1461       data _null_;
+1462           set work.credit_raw;
+1463           put "X24 E ROW " _n_= (_all_)(=);
+1464           %x24_show(VAR1)
+1465           %x24_show(age)
+1466           %x24_show(DebtRatio)
+1467           %x24_show(NumberOfDependents)
+1468       run;
+X24 E ROW _N_=1 'VAR1'n=1 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'age'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2 VAR13=.
+X24 E VAR1 numeric                                1 hex=3FF0000000000000
+X24 E age numeric                               45 hex=4046800000000000
+X24 E DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 E NumberOfDependents character [2] x24_len=1
+X24 E ROW _N_=2 'VAR1'n=2 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.957 'age'n=40 NumberOfTime30-59DaysPastDueNotW=0
+'DebtRatio'n=0.12 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=1 VAR13=9
+X24 E VAR1 numeric                                2 hex=4000000000000000
+X24 E age numeric                               40 hex=4044000000000000
+X24 E DebtRatio numeric                             0.12 hex=3FBEB851EB851EB8
+X24 E NumberOfDependents character [1] x24_len=1
+X24 E ROW _N_=3 'VAR1'n=3 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.658 'age'n=38 NumberOfTime30-59DaysPastDueNotW=1
+'DebtRatio'n=0.08 MonthlyIncome=3042 NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=1 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=NA VAR13=.
+X24 E VAR1 numeric                                3 hex=4008000000000000
+X24 E age numeric                               38 hex=4043000000000000
+X24 E DebtRatio numeric                             0.08 hex=3FB47AE147AE147B
+X24 E NumberOfDependents character [NA] x24_len=2
+1469       /* X24 end of observation */
+1470       /* Check the input conditions: stop with an error before anything is exported */
+1471       /* The numeric value of a raw column: a numeric column as it is; a character column
+1472          read as a number, missing when the text is no number or is longer than 32 characters */
+1473       %macro num(v);
+1474           %local dsid pos vtype;
+1475           %let vtype = ;
+1476           %let dsid = %sysfunc(open(work.credit_raw));
+1477           %let pos = %sysfunc(varnum(&dsid, &v));
+1478           %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1479           %let dsid = %sysfunc(close(&dsid));
+1480           %if &vtype = N %then "&v"n;
+1481           %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+1482       %mend;
+1483       
+1484       %let columns_ok = 0;
+1485       %let bad_rows = 1;
+1486       %let duplicate_ids = 1;
+1487       %let known_incomes = 0;
+1488       
+1489       proc sql noprint;
+1490           /* The expected columns and no others */
+1491           select (count(*) = 12 and sum(upcase(name) in
+1492                      ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+1493                       'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+1494                       'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+1495                       'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+1496                       'NUMBERREALESTATELOANSORLINES')) = 12)
+1497           into :columns_ok trimmed
+1498           from dictionary.columns
+1499           where libname = 'WORK' and memname = 'CREDIT_RAW';
+1500       quit;
+1501       
+1502       /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+1503          the outcome is 0 or 1; the counts are whole numbers, zero or more;
+1504          a known MonthlyIncome is zero or more */
+1505       data work.input_check;
+1506           set work.credit_raw;
+1507           bad_row = (missing(%num(VAR1))
+1508               or %num(SeriousDlqin2yrs) not in (0, 1)
+1509               or missing(%num(age))
+1510               or missing(%num(RevolvingUtilizationOfUnsecuredL))
+1511               or missing(%num(DebtRatio))
+1512               or missing(%num(NumberRealEstateLoansOrLines))
+1513               or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+1514                       %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+1515               or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+1516                       %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+1517               or not (%num(NumberOfTimes90DaysLate) >= 0 and
+1518                       %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+1519               or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+1520                       %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+1521               or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+1522               or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+1523               or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+1524                   not (%num(NumberOfDependents) >= 0 and
+1525                        %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+1526           known_income = not missing(%num(MonthlyIncome));
+1527           keep VAR1 bad_row known_income;
+1528       run;
+1529       
+1530       /* Bad rows, repeated row ids, known incomes */
+1531       proc sql noprint;
+1532           select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+1533           into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+1534           from work.input_check;
+1535       quit;
+1536       
+1537       
+1538       /* X24 observation (not in the script): the totals */
+1539       %put X24 E TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 E TOTALS columns_ok=0 bad_rows=0 duplicate_ids=0 known_incomes=2
+1540       proc print data=work.input_check; title "x24 E work.input_check"; run;
+1541       /* X24 end of observation */
+1542       data _null_;
+1543           if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+1544               put "ERROR: cs-training.csv does not meet the input conditions: "
+1545                   "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+1546               put "ERROR: Feature engineering stopped. Nothing is exported.";
+1547               abort cancel;
+1548           end;
+1549       run;
+ERROR: cs-training.csv does not meet the input conditions: columns_ok=0 bad_rows=0 duplicate_ids=0 known_incomes=2.
+ERROR: Feature engineering stopped. Nothing is exported.
+ERROR: Execution terminated by an ABORT CANCEL statement at line 1547 column 9.
+_ERROR_=1 _N_=1
+1550       
+19                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1553       
+1554       /* ================= X24 SUBMISSION E2 ================= */
+1555       %put X24 E STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_E));
+X24 E STEP_AFTER_STOP_RAN=0
+1556       proc datasets lib=work nolist; delete credit_raw input_check; quit;
+1557       %let data_path = %sysfunc(pathname(work));
+1558       data _null_;
+1559           file "&data_path/cs-training.csv" lrecl=1000;
+1560           put
+1560     ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+1560     ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+1560     ! ,NumberOfDependents';
+1561           put '1,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+1562           put '2,0,0.957,40,0,0.12,NA,4,0,0,0';
+1563           put '3,0,0.658,38,1,0.08,3042,2,1,0,0,NA';
+1564       run;
+1565       data _null_;
+1566           infile "&data_path/cs-training.csv" lrecl=1000 length=n;
+1567           input;
+1568           put "X24 E2 FILE [" _infile_ +(-1) "] " n=;
+1569       run;
+X24 E2 FILE [
+,SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,NumberOfOpen
+CreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependent] 
+n=260
+X24 E2 FILE [1,1,0.766,45,2,0.80,9120,13,0,6,0,] n=35
+X24 E2 FILE [2,0,0.957,40,0,0.12,NA,4,0,0,] n=30
+X24 E2 FILE [3,0,0.658,38,1,0.08,3042,2,1,0,0,N] n=35
+1570       /* X24 E2: feature_engineering.sas, verbatim from here */
+1571       proc import datafile="&data_path/cs-training.csv"
+1572           out=work.credit_raw
+1573           dbms=csv
+1574           replace;
+1575           getnames=yes;
+1576           guessingrows=max;
+1577       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+1578        /**********************************************************************
+1579        *   PRODUCT:   SAS
+1580        *   VERSION:   9.4
+1581        *   CREATOR:   External File Interface
+1582        *   DATE:      15NOV26
+1583        *   DESC:      Generated SAS Datastep Code
+1584        *   TEMPLATE SOURCE:  (None Specified.)
+1585        ***********************************************************************/
+1586           data WORK.CREDIT_RAW    ;
+1587           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1588           infile
+1588     ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv'
+1588     ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+1589              informat VAR1 best32. ;
+1590              informat SeriousDlqin2yrs best32. ;
+1591              informat RevolvingUtilizationOfUnsecuredL best32. ;
+1592              informat age best32. ;
+1593              informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+1594              informat DebtRatio best32. ;
+1595              informat MonthlyIncome $4. ;
+1596              informat NumberOfOpenCreditLinesAndLoans best32. ;
+1597              informat NumberOfTimes90DaysLate best32. ;
+1598              informat NumberRealEstateLoansOrLines best32. ;
+1599              informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+1600              informat NumberOfDependents $2. ;
+1601              format VAR1 best12. ;
+1602              format SeriousDlqin2yrs best12. ;
+1603              format RevolvingUtilizationOfUnsecuredL best12. ;
+1604              format age best12. ;
+1605              format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+1606              format DebtRatio best12. ;
+1607              format MonthlyIncome $4. ;
+1608              format NumberOfOpenCreditLinesAndLoans best12. ;
+1609              format NumberOfTimes90DaysLate best12. ;
+1610              format NumberRealEstateLoansOrLines best12. ;
+1611              format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+1612              format NumberOfDependents $2. ;
+1613           input
+1614                       VAR1
+1615                       SeriousDlqin2yrs
+1616                       RevolvingUtilizationOfUnsecuredL
+1617                       age
+1618                       "NumberOfTime30-59DaysPastDueNotW"N
+1619                       DebtRatio
+1620                       MonthlyIncome  $
+1621                       NumberOfOpenCreditLinesAndLoans
+1622                       NumberOfTimes90DaysLate
+1623                       NumberRealEstateLoansOrLines
+1624                       "NumberOfTime60-89DaysPastDueNotW"N
+1625                       NumberOfDependents  $
+1626           ;
+1627           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1628           run;
+3 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/cs-training.csv.
+  
+  
+  
+1629       
+1630       
+1631       /* X24 observation (not in the script): the imported table */
+1632       %macro x24_show(v);
+1633           %local dsid pos vtype;
+1634           %let vtype = none;
+1635           %let dsid = %sysfunc(open(work.credit_raw));
+1636           %if &dsid > 0 %then %do;
+1637               %let pos = %sysfunc(varnum(&dsid, &v));
+1638               %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1639               %let dsid = %sysfunc(close(&dsid));
+1640           %end;
+1641           %if &vtype = N %then %do; put "X24 E2 &v numeric " "&v"n best32. " hex=" "&v"n hex16.; %end;
+1642           %else %if &vtype = C %then %do; x24_len = lengthn("&v"n); put "X24 E2 &v character [" "&v"n +(-1) "] " x24_len=; %end
+1642     ! ;
+1643           %else %do; put "X24 E2 &v absent"; %end;
+1644       %mend;
+1645       title "x24 E2 work.credit_raw";
+1646       proc contents data=work.credit_raw varnum; run;
+1647       proc print data=work.credit_raw; format _numeric_ best32.; run;
+1648       data _null_;
+1649           set work.credit_raw;
+1650           put "X24 E2 ROW " _n_= (_all_)(=);
+1651           %x24_show(VAR1)
+1652           %x24_show(age)
+1653           %x24_show(DebtRatio)
+1654           %x24_show(NumberOfDependents)
+1655       run;
+X24 E2 ROW _N_=1 'VAR1'n=1 SeriousDlqin2yrs=1 RevolvingUtilizationOfUnsecuredL=0.766 'age'n=45 NumberOfTime30-59DaysPastDueNotW=2
+'DebtRatio'n=0.8 MonthlyIncome=9120 NumberOfOpenCreditLinesAndLoans=13 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=6
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=2
+X24 E2 VAR1 numeric                                1 hex=3FF0000000000000
+X24 E2 age numeric                               45 hex=4046800000000000
+X24 E2 DebtRatio numeric                              0.8 hex=3FE999999999999A
+X24 E2 NumberOfDependents character [2] x24_len=1
+X24 E2 ROW _N_=2 'VAR1'n=2 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.957 'age'n=40 NumberOfTime30-59DaysPastDueNotW=0
+'DebtRatio'n=0.12 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n= 
+X24 E2 VAR1 numeric                                2 hex=4000000000000000
+X24 E2 age numeric                               40 hex=4044000000000000
+X24 E2 DebtRatio numeric                             0.12 hex=3FBEB851EB851EB8
+X24 E2 NumberOfDependents character [ ] x24_len=0
+X24 E2 ROW _N_=3 'VAR1'n=3 SeriousDlqin2yrs=0 RevolvingUtilizationOfUnsecuredL=0.658 'age'n=38 NumberOfTime30-59DaysPastDueNotW=1
+'DebtRatio'n=0.08 MonthlyIncome=3042 NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=1 NumberRealEstateLoansOrLines=0
+NumberOfTime60-89DaysPastDueNotW=0 'NumberOfDependents'n=NA
+X24 E2 VAR1 numeric                                3 hex=4008000000000000
+X24 E2 age numeric                               38 hex=4043000000000000
+X24 E2 DebtRatio numeric                             0.08 hex=3FB47AE147AE147B
+X24 E2 NumberOfDependents character [NA] x24_len=2
+1656       /* X24 end of observation */
+1657       /* Check the input conditions: stop with an error before anything is exported */
+1658       /* The numeric value of a raw column: a numeric column as it is; a character column
+1659          read as a number, missing when the text is no number or is longer than 32 characters */
+1660       %macro num(v);
+1661           %local dsid pos vtype;
+1662           %let vtype = ;
+1663           %let dsid = %sysfunc(open(work.credit_raw));
+1664           %let pos = %sysfunc(varnum(&dsid, &v));
+1665           %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1666           %let dsid = %sysfunc(close(&dsid));
+1667           %if &vtype = N %then "&v"n;
+1668           %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+1669       %mend;
+1670       
+1671       %let columns_ok = 0;
+1672       %let bad_rows = 1;
+1673       %let duplicate_ids = 1;
+1674       %let known_incomes = 0;
+1675       
+1676       proc sql noprint;
+1677           /* The expected columns and no others */
+1678           select (count(*) = 12 and sum(upcase(name) in
+1679                      ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+1680                       'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+1681                       'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+1682                       'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+1683                       'NUMBERREALESTATELOANSORLINES')) = 12)
+1684           into :columns_ok trimmed
+1685           from dictionary.columns
+1686           where libname = 'WORK' and memname = 'CREDIT_RAW';
+1687       quit;
+1688       
+1689       /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+1690          the outcome is 0 or 1; the counts are whole numbers, zero or more;
+1691          a known MonthlyIncome is zero or more */
+1692       data work.input_check;
+1693           set work.credit_raw;
+1694           bad_row = (missing(%num(VAR1))
+1695               or %num(SeriousDlqin2yrs) not in (0, 1)
+1696               or missing(%num(age))
+1697               or missing(%num(RevolvingUtilizationOfUnsecuredL))
+1698               or missing(%num(DebtRatio))
+1699               or missing(%num(NumberRealEstateLoansOrLines))
+1700               or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+1701                       %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+1702               or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+1703                       %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+1704               or not (%num(NumberOfTimes90DaysLate) >= 0 and
+1705                       %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+1706               or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+1707                       %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+1708               or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+1709               or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+1710               or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+1711                   not (%num(NumberOfDependents) >= 0 and
+1712                        %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+1713           known_income = not missing(%num(MonthlyIncome));
+1714           keep VAR1 bad_row known_income;
+1715       run;
+1716       
+1717       /* Bad rows, repeated row ids, known incomes */
+1718       proc sql noprint;
+1719           select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+1720           into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+1721           from work.input_check;
+1722       quit;
+1723       
+1724       
+1725       /* X24 observation (not in the script): the totals */
+1726       %put X24 E2 TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes;
+X24 E2 TOTALS columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=2
+1727       proc print data=work.input_check; title "x24 E2 work.input_check"; run;
+1728       /* X24 end of observation */
+1729       data _null_;
+1730           if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+1731               put "ERROR: cs-training.csv does not meet the input conditions: "
+1732                   "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+1733               put "ERROR: Feature engineering stopped. Nothing is exported.";
+1734               abort cancel;
+1735           end;
+1736       run;
+1737       /* X24 E2: end of the script's statements */
+1738       data work.x24_after_E2; run;
+1739       
+1740       
+1741       
+1742       
+20                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1743       
+21                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1746       
+1747       /* ================= X24 SUBMISSION END ================= */
+1748       %put X24 E2 STEP_AFTER_STOP_RAN=%sysfunc(exist(work.x24_after_E2));
+X24 E2 STEP_AFTER_STOP_RAN=1
+1749       
+1750       
+1751       
+1752       
+22                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1753       
+23                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1756       
+1757       /* ================= X24 SUBMISSION A_FULL_SETUP ================= */
+1758       options dlcreatedir;
+1759       libname _mk
+1759     ! "/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_data"; libname
+1759     !  libname _mk
+1759     ! "/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out"; libname
+1759     ! _mk clear;
+1760       ods listing gpath="/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com";
+1761       data _null_;
+1762           file
+1762     ! "/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_data/cs-trainin
+1762     ! g.csv" lrecl=1000;
+1763           put
+1763     ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,AGE,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+1763     ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+1763     ! ,NumberOfDependents';
+1764           put '1,1,0.766,45,2,0.80,9120,13,0,6,0,2';
+1765       run;
+1766       
+1767       
+1768       
+1769       
+24                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1770       
+25                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+1773       
+1774       /* ================= X24 SUBMISSION A_FULL_SCRIPT (feature_engineering.sas, paths redirected) ================= */
+1775       /*****************************************************************************
+1776        * Credit Risk Scoring Model - Feature Engineering
+1777        *
+1778        * Purpose: Load Kaggle "Give Me Some Credit" data and create features
+1779        * Author: Risk Analytics Team
+1780        * Date: 2025
+1781        *
+1782        * Data Source: Kaggle "Give Me Some Credit" competition
+1783        * https://www.kaggle.com/c/GiveMeSomeCredit
+1784        *
+1785        * This script:
+1786        * - Loads cs-training.csv from data/ directory
+1787        * - Handles missing values
+1788        * - Creates derived features and risk indicators
+1789        * - Splits into training (70%) and validation (30%) sets
+1790        * - Exports engineered features for modeling
+1791        *****************************************************************************/
+1792       
+1793       /* Define base paths */
+1794       %let data_path =
+1794     ! /saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_data;
+1795       %let output_path =
+1795     ! /saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out;
+1796       
+1797       /* Remove the results of an earlier run first: a run that stops leaves no result */
+1798       data _null_;
+1799           length fref $8 fname $64;
+1800           do fname = 'income_medians.csv', 'model_features_train.csv',
+1801                      'model_features_validation.csv';
+1802               fref = ' ';
+1803               if filename(fref, cats("&output_path/", fname)) = 0 then do;
+1804                   if fexist(fref) then rc = fdelete(fref);
+1805                   rc = filename(fref);
+1806               end;
+1807           end;
+1808       run;
+1809       
+1810       /*****************************************************************************
+1811        * 1. Load Kaggle Training Data
+1812        *****************************************************************************/
+1813       
+1814       /* Import Kaggle training data */
+1815       proc import datafile="&data_path/cs-training.csv"
+1816           out=work.credit_raw
+1817           dbms=csv
+1818           replace;
+1819           getnames=yes;
+1820           guessingrows=max;
+1821       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+1822        /**********************************************************************
+1823        *   PRODUCT:   SAS
+1824        *   VERSION:   9.4
+1825        *   CREATOR:   External File Interface
+1826        *   DATE:      15NOV26
+1827        *   DESC:      Generated SAS Datastep Code
+1828        *   TEMPLATE SOURCE:  (None Specified.)
+1829        ***********************************************************************/
+1830           data WORK.CREDIT_RAW    ;
+1831           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1832           infile
+1832     ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_data/cs-trainin
+1832     ! g.csv' delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+1833              informat VAR1 best32. ;
+1834              informat SeriousDlqin2yrs best32. ;
+1835              informat RevolvingUtilizationOfUnsecuredL best32. ;
+1836              informat AGE best32. ;
+1837              informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+1838              informat DebtRatio best32. ;
+1839              informat MonthlyIncome best32. ;
+1840              informat NumberOfOpenCreditLinesAndLoans best32. ;
+1841              informat NumberOfTimes90DaysLate best32. ;
+1842              informat NumberRealEstateLoansOrLines best32. ;
+1843              informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+1844              informat NumberOfDependents best32. ;
+1845              format VAR1 best12. ;
+1846              format SeriousDlqin2yrs best12. ;
+1847              format RevolvingUtilizationOfUnsecuredL best12. ;
+1848              format AGE best12. ;
+1849              format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+1850              format DebtRatio best12. ;
+1851              format MonthlyIncome best12. ;
+1852              format NumberOfOpenCreditLinesAndLoans best12. ;
+1853              format NumberOfTimes90DaysLate best12. ;
+1854              format NumberRealEstateLoansOrLines best12. ;
+1855              format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+1856              format NumberOfDependents best12. ;
+1857           input
+1858                       VAR1
+1859                       SeriousDlqin2yrs
+1860                       RevolvingUtilizationOfUnsecuredL
+1861                       AGE
+1862                       "NumberOfTime30-59DaysPastDueNotW"N
+1863                       DebtRatio
+1864                       MonthlyIncome
+1865                       NumberOfOpenCreditLinesAndLoans
+1866                       NumberOfTimes90DaysLate
+1867                       NumberRealEstateLoansOrLines
+1868                       "NumberOfTime60-89DaysPastDueNotW"N
+1869                       NumberOfDependents
+1870           ;
+1871           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1872           run;
+1 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_data/cs-training.csv.
+  
+  
+  
+1873       
+1874       /* Check the input conditions: stop with an error before anything is exported */
+1875       /* The numeric value of a raw column: a numeric column as it is; a character column
+1876          read as a number, missing when the text is no number or is longer than 32 characters */
+1877       %macro num(v);
+1878           %local dsid pos vtype;
+1879           %let vtype = ;
+1880           %let dsid = %sysfunc(open(work.credit_raw));
+1881           %let pos = %sysfunc(varnum(&dsid, &v));
+1882           %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+1883           %let dsid = %sysfunc(close(&dsid));
+1884           %if &vtype = N %then "&v"n;
+1885           %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+1886       %mend;
+1887       
+1888       %let columns_ok = 0;
+1889       %let bad_rows = 1;
+1890       %let duplicate_ids = 1;
+1891       %let known_incomes = 0;
+1892       
+1893       proc sql noprint;
+1894           /* The expected columns and no others */
+1895           select (count(*) = 12 and sum(upcase(name) in
+1896                      ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+1897                       'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+1898                       'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+1899                       'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+1900                       'NUMBERREALESTATELOANSORLINES')) = 12)
+1901           into :columns_ok trimmed
+1902           from dictionary.columns
+1903           where libname = 'WORK' and memname = 'CREDIT_RAW';
+1904       quit;
+1905       
+1906       /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+1907          the outcome is 0 or 1; the counts are whole numbers, zero or more;
+1908          a known MonthlyIncome is zero or more */
+1909       data work.input_check;
+1910           set work.credit_raw;
+1911           bad_row = (missing(%num(VAR1))
+1912               or %num(SeriousDlqin2yrs) not in (0, 1)
+1913               or missing(%num(age))
+1914               or missing(%num(RevolvingUtilizationOfUnsecuredL))
+1915               or missing(%num(DebtRatio))
+1916               or missing(%num(NumberRealEstateLoansOrLines))
+1917               or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+1918                       %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+1919               or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+1920                       %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+1921               or not (%num(NumberOfTimes90DaysLate) >= 0 and
+1922                       %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+1923               or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+1924                       %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+1925               or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+1926               or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+1927               or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+1928                   not (%num(NumberOfDependents) >= 0 and
+1929                        %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+1930           known_income = not missing(%num(MonthlyIncome));
+1931           keep VAR1 bad_row known_income;
+1932       run;
+1933       
+1934       /* Bad rows, repeated row ids, known incomes */
+1935       proc sql noprint;
+1936           select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+1937           into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+1938           from work.input_check;
+1939       quit;
+1940       
+1941       data _null_;
+1942           if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+1943               put "ERROR: cs-training.csv does not meet the input conditions: "
+1944                   "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+1945               put "ERROR: Feature engineering stopped. Nothing is exported.";
+1946               abort cancel;
+1947           end;
+1948       run;
+1949       
+1950       /* Display basic statistics */
+1951       proc means data=work.credit_raw n nmiss mean std min max;
+1952           title "Raw Data Summary - Kaggle Give Me Some Credit";
+1953       run;
+1954       
+1955       /*****************************************************************************
+1956        * 2. Data Cleaning and Missing Value Handling
+1957        *****************************************************************************/
+1958       
+1959       /* First convert MonthlyIncome to numeric if needed */
+1960       data work.credit_raw_clean;
+1961           set work.credit_raw;
+1962       
+1963           /* Convert to numeric - input function handles character to numeric */
+1964           MonthlyIncome_num = input(MonthlyIncome, best32.);
+1965           NumberOfDependents_num = input(NumberOfDependents, best32.);
+1966       
+1967           /* Keep the numeric versions, drop character if they exist */
+1968           drop MonthlyIncome NumberOfDependents;
+1969           rename MonthlyIncome_num = MonthlyIncome
+1970                  NumberOfDependents_num = NumberOfDependents;
+1971       run;
+1972       
+1973       /* Calculate income medians by age group for imputation */
+1974       proc sql;
+1975           create table work.income_medians as
+1976           select
+1977               case
+1978                   when age < 30 then 1
+1979                   when age < 40 then 2
+1980                   when age < 50 then 3
+1981                   when age < 60 then 4
+1982                   else 5
+1983               end as age_group,
+1984               median(MonthlyIncome) as median_income
+1985           from work.credit_raw_clean
+1986           where MonthlyIncome is not missing
+1987           group by calculated age_group;
+1988       quit;
+1989       
+1990       /* One row per age group, with the median of all known incomes:
+1991          the fallback for an age group that has no known income */
+1992       data work.age_groups;
+1993           do age_group = 1 to 5;
+1994               output;
+1995           end;
+1996       run;
+1997       
+1998       proc sql;
+1999           create table work.income_medians_all as
+2000           select
+2001               g.age_group,
+2002               m.median_income,
+2003               (select median(MonthlyIncome) from work.credit_raw_clean
+2004                where MonthlyIncome is not missing) as overall_median_income
+2005           from work.age_groups g
+2006           left join work.income_medians m
+2007           on g.age_group = m.age_group
+2008           order by g.age_group;
+2009       quit;
+2010       
+2011       data work.credit_cleaned;
+2012           set work.credit_raw_clean;
+2013       
+2014           /* Create age group for income imputation */
+2015           if age < 30 then age_group = 1;
+2016           else if age < 40 then age_group = 2;
+2017           else if age < 50 then age_group = 3;
+2018           else if age < 60 then age_group = 4;
+2019           else age_group = 5;
+2020       
+2021           /* Handle missing values - create flags */
+2022           if missing(MonthlyIncome) then MonthlyIncome_missing = 1;
+2023           else MonthlyIncome_missing = 0;
+2024       
+2025           if missing(NumberOfDependents) then do;
+2026               NumberOfDependents = 0;
+2027               Dependents_missing = 1;
+2028           end;
+2029           else Dependents_missing = 0;
+2030       run;
+2031       
+2032       /* Merge and impute income - rename columns in SQL */
+2033       proc sql;
+2034           create table work.credit_imputed as
+2035           select
+2036               a.VAR1 as row_id,
+2037               a.SeriousDlqin2yrs as default_flag,
+2038               a.age,
+2039               case when a.MonthlyIncome_missing = 1 then coalesce(b.median_income, b.overall_median_income)
+2040                    else a.MonthlyIncome
+2041               end as monthly_income,
+2042               a.MonthlyIncome_missing,
+2043               a.NumberOfDependents as num_dependents,
+2044               a.Dependents_missing,
+2045               a.age_group,
+2046               a."NumberOfTime30-59DaysPastDueNotW"n as num_late_30_59,
+2047               a."NumberOfTime60-89DaysPastDueNotW"n as num_late_60_89,
+2048               a.NumberOfTimes90DaysLate as num_late_90_plus,
+2049               a.RevolvingUtilizationOfUnsecuredL * 100 as credit_utilization,
+2050               a.DebtRatio * 100 as debt_ratio,
+2051               a.NumberOfOpenCreditLinesAndLoans as num_credit_lines,
+2052               a.NumberRealEstateLoansOrLines as num_real_estate_loans
+2053           from work.credit_cleaned a
+2054           left join work.income_medians_all b
+2055           on a.age_group = b.age_group;
+2056       quit;
+2057       
+2058       /*****************************************************************************
+2059        * 3. Feature Engineering
+2060        *****************************************************************************/
+2061       
+2062       data work.credit_features;
+2063           set work.credit_imputed;
+2064       
+2065           /* Total late payments across all categories */
+2066           total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus);
+2067       
+2068           /* Has any delinquency indicator */
+2069           has_delinquency = (total_late_payments > 0);
+2070       
+2071           /* Has serious delinquency (90+ days) */
+2072           has_serious_delinquency = (num_late_90_plus > 0);
+2073       
+2074           /* Credit utilization categories */
+2075           if credit_utilization < 30 then credit_util_category = 1; /* Low */
+2076           else if credit_utilization < 50 then credit_util_category = 2; /* Medium */
+2077           else if credit_utilization < 75 then credit_util_category = 3; /* High */
+2078           else credit_util_category = 4; /* Very High */
+2079       
+2080           /* Debt ratio categories */
+2081           if debt_ratio < 30 then debt_category = 1; /* Low */
+2082           else if debt_ratio < 43 then debt_category = 2; /* Medium */
+2083           else if debt_ratio < 60 then debt_category = 3; /* High */
+2084           else debt_category = 4; /* Very High */
+2085       
+2086           /* Income per dependent (handle division by zero) */
+2087           if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
+2088           else income_per_dependent = monthly_income;
+2089       
+2090           /* Credit lines per person in household */
+2091           credit_lines_per_person = num_credit_lines / (num_dependents + 1);
+2092       
+2093           /* Age categories for risk assessment */
+2094           if age < 25 then age_category = 1; /* Young */
+2095           else if age < 35 then age_category = 2; /* Young Adult */
+2096           else if age < 50 then age_category = 3; /* Middle Age */
+2097           else if age < 65 then age_category = 4; /* Mature */
+2098           else age_category = 5; /* Senior */
+2099       
+2100           /* Risk flags */
+2101           flag_high_utilization = (credit_utilization > 75);
+2102           flag_very_high_utilization = (credit_utilization > 100);
+2103           flag_high_debt_ratio = (debt_ratio > 43);
+2104           flag_very_high_debt_ratio = (debt_ratio > 60);
+2105           flag_recent_late_payments = (num_late_30_59 > 0);
+2106           flag_serious_delinquency = (num_late_90_plus > 0);
+2107           flag_multiple_delinquencies = (total_late_payments >= 3);
+2108           flag_low_income = (monthly_income < 2500);
+2109           flag_many_dependents = (num_dependents >= 3);
+2110           flag_few_credit_lines = (num_credit_lines <= 2);
+2111       
+2112           /* Total risk flags */
+2113           total_risk_flags = sum(flag_high_utilization, flag_very_high_utilization,
+2114                                 flag_high_debt_ratio,
+2115                                 flag_serious_delinquency, flag_multiple_delinquencies,
+2116                                 flag_low_income, flag_many_dependents,
+2117                                 flag_few_credit_lines);
+2118       
+2119           /* Financial health score (0-100) */
+2120           financial_health = 100;
+2121           if credit_utilization > 30 then financial_health = financial_health - 15;
+2122           if credit_utilization > 75 then financial_health = financial_health - 15;
+2123           if debt_ratio > 43 then financial_health = financial_health - 20;
+2124           if has_delinquency then financial_health = financial_health - 20;
+2125           if num_late_90_plus > 0 then financial_health = financial_health - 30;
+2126           financial_health = max(0, financial_health);
+2127       
+2128           /* Log transformations for skewed variables (add 1 to handle zeros) */
+2129           log_monthly_income = log(monthly_income + 1);
+2130           log_num_credit_lines = log(num_credit_lines + 1);
+2131           log_total_late_payments = log(total_late_payments + 1);
+2132       
+2133           /* Interaction features */
+2134           if monthly_income > 0 then age_income_interaction = age * log(monthly_income);
+2135           else age_income_interaction = age * log_monthly_income;
+2136           utilization_debt_interaction = credit_utilization * debt_ratio;
+2137       
+2138           /* Cap extreme outliers in credit_utilization and debt_ratio */
+2139           credit_utilization_capped = min(credit_utilization, 200);
+2140           debt_ratio_capped = min(debt_ratio, 500);
+2141       run;
+2142       
+2143       /*****************************************************************************
+2144        * 4. Split into Training and Validation Sets (70/30)
+2145        *****************************************************************************/
+2146       
+2147       /* Set random seed for reproducibility */
+2148       proc surveyselect data=work.credit_features
+2149                         out=work.credit_split
+2150                         samprate=0.7
+2151                         seed=42
+2152                         outall;
+2153       run;
+2154       
+2155       data work.credit_train work.credit_validation;
+2156           set work.credit_split;
+2157           if selected = 1 then output work.credit_train;
+2158           else output work.credit_validation;
+2159           drop selected;
+2160       run;
+2161       
+2162       /*****************************************************************************
+2163        * 5. Summary Statistics
+2164        *****************************************************************************/
+2165       
+2166       proc means data=work.credit_train n mean std min max;
+2167           var age monthly_income credit_utilization debt_ratio total_late_payments
+2168               num_credit_lines num_real_estate_loans default_flag;
+2169           title "Training Set Summary Statistics";
+2170       run;
+2171       
+2172       proc freq data=work.credit_train;
+2173           tables default_flag;
+2174           title "Training Set - Default Rate";
+2175       run;
+2176       
+2177       proc means data=work.credit_validation n mean std min max;
+2178           var age monthly_income credit_utilization debt_ratio total_late_payments
+2179               num_credit_lines num_real_estate_loans default_flag;
+2180           title "Validation Set Summary Statistics";
+2181       run;
+2182       
+2183       proc freq data=work.credit_validation;
+2184           tables default_flag;
+2185           title "Validation Set - Default Rate";
+2186       run;
+2187       
+2188       /*****************************************************************************
+2189        * 6. Export Engineered Features
+2190        *****************************************************************************/
+2191       
+2192       /* Ensure all variables are numeric before export */
+2193       data work.credit_train_export;
+2194           set work.credit_train;
+2195           /* Force numeric format for all variables */
+2196           format _numeric_ best12.;
+2197       run;
+2198       
+2199       data work.credit_validation_export;
+2200           set work.credit_validation;
+2201           /* Force numeric format for all variables */
+2202           format _numeric_ best12.;
+2203       run;
+2204       
+2205       /* Export the training income medians (per age group, and overall):
+2206          predict.sas imputes the test set from them */
+2207       data work.income_medians_export;
+2208           set work.income_medians_all;
+2209           format median_income overall_median_income best32.;
+2210       run;
+2211       
+2212       proc export data=work.income_medians_export
+2213           outfile="&output_path/income_medians.csv"
+2214           dbms=csv
+2215           replace;
+2216       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+2217        /**********************************************************************
+2218        *   PRODUCT:   SAS
+2219        *   VERSION:   9.4
+2220        *   CREATOR:   External File Interface
+2221        *   DATE:      15NOV26
+2222        *   DESC:      Generated SAS Datastep Code
+2223        *   TEMPLATE SOURCE:  (None Specified.)
+2224        ***********************************************************************/
+2225           data _null_;
+2226           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2227           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2228           file
+2228     ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out/income_medi
+2228     ! ans.csv' delimiter=',' DSD DROPOVER lrecl=32767;
+2229           if _n_ = 1 then        /* write column names or labels */
+2230            do;
+2231              put
+2232                 "age_group"
+2233              ','
+2234                 "median_income"
+2235              ','
+2236                 "overall_median_income"
+2237              ;
+2238            end;
+2239          set  WORK.INCOME_MEDIANS_EXPORT   end=EFIEOD;
+2240              format age_group best12. ;
+2241              format median_income best32. ;
+2242              format overall_median_income best32. ;
+2243            do;
+2244              EFIOUT + 1;
+2245              put age_group @;
+2246              put median_income @;
+2247              put overall_median_income ;
+2248              ;
+2249            end;
+2250           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2251           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2252           run;
+5 records created in 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out/income_medians.csv 
+from WORK.INCOME_MEDIANS_EXPORT.
+  
+  
+2253       
+2254       /* Export training set */
+2255       proc export data=work.credit_train_export
+2256           outfile="&output_path/model_features_train.csv"
+2257           dbms=csv
+2258           replace;
+2259       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+2260        /**********************************************************************
+2261        *   PRODUCT:   SAS
+2262        *   VERSION:   9.4
+2263        *   CREATOR:   External File Interface
+2264        *   DATE:      15NOV26
+2265        *   DESC:      Generated SAS Datastep Code
+2266        *   TEMPLATE SOURCE:  (None Specified.)
+2267        ***********************************************************************/
+2268           data _null_;
+2269           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2270           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2271           file
+2271     ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out/model_featu
+2271     ! res_train.csv' delimiter=',' DSD DROPOVER lrecl=32767;
+2272           if _n_ = 1 then        /* write column names or labels */
+2273            do;
+2274              put
+2275                 "row_id"
+2276              ','
+2277                 "default_flag"
+2278              ','
+2279                 "AGE"
+2280              ','
+2281                 "monthly_income"
+2282              ','
+2283                 "MonthlyIncome_missing"
+2284              ','
+2285                 "num_dependents"
+2286              ','
+2287                 "Dependents_missing"
+2288              ','
+2289                 "age_group"
+2290              ','
+2291                 "num_late_30_59"
+2292              ','
+2293                 "num_late_60_89"
+2294              ','
+2295                 "num_late_90_plus"
+2296              ','
+2297                 "credit_utilization"
+2298              ','
+2299                 "debt_ratio"
+2300              ','
+2301                 "num_credit_lines"
+2302              ','
+2303                 "num_real_estate_loans"
+2304              ','
+2305                 "total_late_payments"
+2306              ','
+2307                 "has_delinquency"
+2308              ','
+2309                 "has_serious_delinquency"
+2310              ','
+2311                 "credit_util_category"
+2312              ','
+2313                 "debt_category"
+2314              ','
+2315                 "income_per_dependent"
+2316              ','
+2317                 "credit_lines_per_person"
+2318              ','
+2319                 "age_category"
+2320              ','
+2321                 "flag_high_utilization"
+2322              ','
+2323                 "flag_very_high_utilization"
+2324              ','
+2325                 "flag_high_debt_ratio"
+2326              ','
+2327                 "flag_very_high_debt_ratio"
+2328              ','
+2329                 "flag_recent_late_payments"
+2330              ','
+2331                 "flag_serious_delinquency"
+2332              ','
+2333                 "flag_multiple_delinquencies"
+2334              ','
+2335                 "flag_low_income"
+2336              ','
+2337                 "flag_many_dependents"
+2338              ','
+2339                 "flag_few_credit_lines"
+2340              ','
+2341                 "total_risk_flags"
+2342              ','
+2343                 "financial_health"
+2344              ','
+2345                 "log_monthly_income"
+2346              ','
+2347                 "log_num_credit_lines"
+2348              ','
+2349                 "log_total_late_payments"
+2350              ','
+2351                 "age_income_interaction"
+2352              ','
+2353                 "utilization_debt_interaction"
+2354              ','
+2355                 "credit_utilization_capped"
+2356              ','
+2357                 "debt_ratio_capped"
+2358              ;
+2359            end;
+2360          set  WORK.CREDIT_TRAIN_EXPORT   end=EFIEOD;
+2361              format row_id best12. ;
+2362              format default_flag best12. ;
+2363              format AGE best12. ;
+2364              format monthly_income best12. ;
+2365              format MonthlyIncome_missing best12. ;
+2366              format num_dependents best12. ;
+2367              format Dependents_missing best12. ;
+2368              format age_group best12. ;
+2369              format num_late_30_59 best12. ;
+2370              format num_late_60_89 best12. ;
+2371              format num_late_90_plus best12. ;
+2372              format credit_utilization best12. ;
+2373              format debt_ratio best12. ;
+2374              format num_credit_lines best12. ;
+2375              format num_real_estate_loans best12. ;
+2376              format total_late_payments best12. ;
+2377              format has_delinquency best12. ;
+2378              format has_serious_delinquency best12. ;
+2379              format credit_util_category best12. ;
+2380              format debt_category best12. ;
+2381              format income_per_dependent best12. ;
+2382              format credit_lines_per_person best12. ;
+2383              format age_category best12. ;
+2384              format flag_high_utilization best12. ;
+2385              format flag_very_high_utilization best12. ;
+2386              format flag_high_debt_ratio best12. ;
+2387              format flag_very_high_debt_ratio best12. ;
+2388              format flag_recent_late_payments best12. ;
+2389              format flag_serious_delinquency best12. ;
+2390              format flag_multiple_delinquencies best12. ;
+2391              format flag_low_income best12. ;
+2392              format flag_many_dependents best12. ;
+2393              format flag_few_credit_lines best12. ;
+2394              format total_risk_flags best12. ;
+2395              format financial_health best12. ;
+2396              format log_monthly_income best12. ;
+2397              format log_num_credit_lines best12. ;
+2398              format log_total_late_payments best12. ;
+2399              format age_income_interaction best12. ;
+2400              format utilization_debt_interaction best12. ;
+2401              format credit_utilization_capped best12. ;
+2402              format debt_ratio_capped best12. ;
+2403            do;
+2404              EFIOUT + 1;
+2405              put row_id @;
+2406              put default_flag @;
+2407              put AGE @;
+2408              put monthly_income @;
+2409              put MonthlyIncome_missing @;
+2410              put num_dependents @;
+2411              put Dependents_missing @;
+2412              put age_group @;
+2413              put num_late_30_59 @;
+2414              put num_late_60_89 @;
+2415              put num_late_90_plus @;
+2416              put credit_utilization @;
+2417              put debt_ratio @;
+2418              put num_credit_lines @;
+2419              put num_real_estate_loans @;
+2420              put total_late_payments @;
+2421              put has_delinquency @;
+2422              put has_serious_delinquency @;
+2423              put credit_util_category @;
+2424              put debt_category @;
+2425              put income_per_dependent @;
+2426              put credit_lines_per_person @;
+2427              put age_category @;
+2428              put flag_high_utilization @;
+2429              put flag_very_high_utilization @;
+2430              put flag_high_debt_ratio @;
+2431              put flag_very_high_debt_ratio @;
+2432              put flag_recent_late_payments @;
+2433              put flag_serious_delinquency @;
+2434              put flag_multiple_delinquencies @;
+2435              put flag_low_income @;
+2436              put flag_many_dependents @;
+2437              put flag_few_credit_lines @;
+2438              put total_risk_flags @;
+2439              put financial_health @;
+2440              put log_monthly_income @;
+2441              put log_num_credit_lines @;
+2442              put log_total_late_payments @;
+2443              put age_income_interaction @;
+2444              put utilization_debt_interaction @;
+2445              put credit_utilization_capped @;
+2446              put debt_ratio_capped ;
+2447              ;
+2448            end;
+2449           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2450           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2451           run;
+1 records created in 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out/model_features_train.cs
+v from WORK.CREDIT_TRAIN_EXPORT.
+  
+  
+2452       
+2453       /* Export validation set */
+2454       proc export data=work.credit_validation_export
+2455           outfile="&output_path/model_features_validation.csv"
+2456           dbms=csv
+2457           replace;
+2458       run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+2459        /**********************************************************************
+2460        *   PRODUCT:   SAS
+2461        *   VERSION:   9.4
+2462        *   CREATOR:   External File Interface
+2463        *   DATE:      15NOV26
+2464        *   DESC:      Generated SAS Datastep Code
+2465        *   TEMPLATE SOURCE:  (None Specified.)
+2466        ***********************************************************************/
+2467           data _null_;
+2468           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+2469           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+2470           file
+2470     ! '/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out/model_featu
+2470     ! res_validation.csv' delimiter=',' DSD DROPOVER lrecl=32767;
+2471           if _n_ = 1 then        /* write column names or labels */
+2472            do;
+2473              put
+2474                 "row_id"
+2475              ','
+2476                 "default_flag"
+2477              ','
+2478                 "AGE"
+2479              ','
+2480                 "monthly_income"
+2481              ','
+2482                 "MonthlyIncome_missing"
+2483              ','
+2484                 "num_dependents"
+2485              ','
+2486                 "Dependents_missing"
+2487              ','
+2488                 "age_group"
+2489              ','
+2490                 "num_late_30_59"
+2491              ','
+2492                 "num_late_60_89"
+2493              ','
+2494                 "num_late_90_plus"
+2495              ','
+2496                 "credit_utilization"
+2497              ','
+2498                 "debt_ratio"
+2499              ','
+2500                 "num_credit_lines"
+2501              ','
+2502                 "num_real_estate_loans"
+2503              ','
+2504                 "total_late_payments"
+2505              ','
+2506                 "has_delinquency"
+2507              ','
+2508                 "has_serious_delinquency"
+2509              ','
+2510                 "credit_util_category"
+2511              ','
+2512                 "debt_category"
+2513              ','
+2514                 "income_per_dependent"
+2515              ','
+2516                 "credit_lines_per_person"
+2517              ','
+2518                 "age_category"
+2519              ','
+2520                 "flag_high_utilization"
+2521              ','
+2522                 "flag_very_high_utilization"
+2523              ','
+2524                 "flag_high_debt_ratio"
+2525              ','
+2526                 "flag_very_high_debt_ratio"
+2527              ','
+2528                 "flag_recent_late_payments"
+2529              ','
+2530                 "flag_serious_delinquency"
+2531              ','
+2532                 "flag_multiple_delinquencies"
+2533              ','
+2534                 "flag_low_income"
+2535              ','
+2536                 "flag_many_dependents"
+2537              ','
+2538                 "flag_few_credit_lines"
+2539              ','
+2540                 "total_risk_flags"
+2541              ','
+2542                 "financial_health"
+2543              ','
+2544                 "log_monthly_income"
+2545              ','
+2546                 "log_num_credit_lines"
+2547              ','
+2548                 "log_total_late_payments"
+2549              ','
+2550                 "age_income_interaction"
+2551              ','
+2552                 "utilization_debt_interaction"
+2553              ','
+2554                 "credit_utilization_capped"
+2555              ','
+2556                 "debt_ratio_capped"
+2557              ;
+2558            end;
+2559          set  WORK.CREDIT_VALIDATION_EXPORT   end=EFIEOD;
+2560              format row_id best12. ;
+2561              format default_flag best12. ;
+2562              format AGE best12. ;
+2563              format monthly_income best12. ;
+2564              format MonthlyIncome_missing best12. ;
+2565              format num_dependents best12. ;
+2566              format Dependents_missing best12. ;
+2567              format age_group best12. ;
+2568              format num_late_30_59 best12. ;
+2569              format num_late_60_89 best12. ;
+2570              format num_late_90_plus best12. ;
+2571              format credit_utilization best12. ;
+2572              format debt_ratio best12. ;
+2573              format num_credit_lines best12. ;
+2574              format num_real_estate_loans best12. ;
+2575              format total_late_payments best12. ;
+2576              format has_delinquency best12. ;
+2577              format has_serious_delinquency best12. ;
+2578              format credit_util_category best12. ;
+2579              format debt_category best12. ;
+2580              format income_per_dependent best12. ;
+2581              format credit_lines_per_person best12. ;
+2582              format age_category best12. ;
+2583              format flag_high_utilization best12. ;
+2584              format flag_very_high_utilization best12. ;
+2585              format flag_high_debt_ratio best12. ;
+2586              format flag_very_high_debt_ratio best12. ;
+2587              format flag_recent_late_payments best12. ;
+2588              format flag_serious_delinquency best12. ;
+2589              format flag_multiple_delinquencies best12. ;
+2590              format flag_low_income best12. ;
+2591              format flag_many_dependents best12. ;
+2592              format flag_few_credit_lines best12. ;
+2593              format total_risk_flags best12. ;
+2594              format financial_health best12. ;
+2595              format log_monthly_income best12. ;
+2596              format log_num_credit_lines best12. ;
+2597              format log_total_late_payments best12. ;
+2598              format age_income_interaction best12. ;
+2599              format utilization_debt_interaction best12. ;
+2600              format credit_utilization_capped best12. ;
+2601              format debt_ratio_capped best12. ;
+2602            do;
+2603              EFIOUT + 1;
+2604              put row_id @;
+2605              put default_flag @;
+2606              put AGE @;
+2607              put monthly_income @;
+2608              put MonthlyIncome_missing @;
+2609              put num_dependents @;
+2610              put Dependents_missing @;
+2611              put age_group @;
+2612              put num_late_30_59 @;
+2613              put num_late_60_89 @;
+2614              put num_late_90_plus @;
+2615              put credit_utilization @;
+2616              put debt_ratio @;
+2617              put num_credit_lines @;
+2618              put num_real_estate_loans @;
+2619              put total_late_payments @;
+2620              put has_delinquency @;
+2621              put has_serious_delinquency @;
+2622              put credit_util_category @;
+2623              put debt_category @;
+2624              put income_per_dependent @;
+2625              put credit_lines_per_person @;
+2626              put age_category @;
+2627              put flag_high_utilization @;
+2628              put flag_very_high_utilization @;
+2629              put flag_high_debt_ratio @;
+2630              put flag_very_high_debt_ratio @;
+2631              put flag_recent_late_payments @;
+2632              put flag_serious_delinquency @;
+2633              put flag_multiple_delinquencies @;
+2634              put flag_low_income @;
+2635              put flag_many_dependents @;
+2636              put flag_few_credit_lines @;
+2637              put total_risk_flags @;
+2638              put financial_health @;
+2639              put log_monthly_income @;
+2640              put log_num_credit_lines @;
+2641              put log_total_late_payments @;
+2642              put age_income_interaction @;
+2643              put utilization_debt_interaction @;
+2644              put credit_utilization_capped @;
+2645              put debt_ratio_capped ;
+2646              ;
+2647            end;
+2648           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+2649           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+2650           run;
+0 records created in 
+/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out/model_features_validati
+on.csv from WORK.CREDIT_VALIDATION_EXPORT.
+  
+  
+2651       
+2652       %put NOTE: Feature engineering completed successfully;
+2653       %put NOTE: Training set: exported to &output_path/model_features_train.csv;
+2654       %put NOTE: Validation set: exported to &output_path/model_features_validation.csv;
+2655       %put NOTE: Missing value imputation completed;
+2656       %put NOTE: Ready for model training;
+2657       
+2658       
+2659       
+2660       
+26                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+2661       
+27                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+2664       
+2665       /* ================= X24 SUBMISSION A_FULL_AFTER ================= */
+2666       %put X24 A_FULL AFTER syscc=&syscc columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids
+2666     ! known_incomes=&known_incomes;
+X24 A_FULL AFTER syscc=5 columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=1
+2667       data _null_;
+2668           length fname $200 line $2000;
+2669           rc = filename('x24d',
+2669     ! "/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out");
+2670           did = dopen('x24d');
+2671           n = dnum(did);
+2672           put 'X24 A_FULL OUTPUT_FOLDER files=' n;
+2673           do i = 1 to n;
+2674               fname = dread(did, i);
+2675               put 'X24 A_FULL OUTPUT_FILE ' fname;
+2676           end;
+2677           rc = dclose(did);
+2678       run;
+X24 A_FULL OUTPUT_FOLDER files=3
+X24 A_FULL OUTPUT_FILE income_medians.csv
+X24 A_FULL OUTPUT_FILE model_features_train.csv
+X24 A_FULL OUTPUT_FILE model_features_validation.csv
+2679       %macro x24_dump(f);
+2680           %if
+2680     ! %sysfunc(fileexist(/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x
+2680     ! 24_out/&f)) %then %do;
+2681               data _null_;
+2682                   infile
+2682     ! "/saswork/SAS_workE16800019070_odaws01-euw1.oda.sas.com/SAS_work0FCF00019070_odaws01-euw1.oda.sas.com/x24_out/&f"
+2682     ! lrecl=5000 length=n;
+2683                   input;
+2684                   put "X24 A_FULL &f [" _infile_ +(-1) "]";
+2685               run;
+2686           %end;
+2687           %else %put X24 A_FULL &f DOES NOT EXIST;
+2688       %mend;
+2689       %x24_dump(income_medians.csv)
+X24 A_FULL income_medians.csv [age_group,median_income,overall_median_incom]
+X24 A_FULL income_medians.csv [1,,912]
+X24 A_FULL income_medians.csv [2,,912]
+X24 A_FULL income_medians.csv [3,9120,912]
+X24 A_FULL income_medians.csv [4,,912]
+X24 A_FULL income_medians.csv [5,,912]
+2690       %x24_dump(model_features_train.csv)
+X24 A_FULL model_features_train.csv [
+row_id,default_flag,AGE,monthly_income,MonthlyIncome_missing,num_dependents,Dependents_missing,age_group,num_late_30_59,num_late_60_
+89,num_late_90_plus,credit_utilization,debt_ratio,num_credit_lines,num_real_estate_loans,total_late_payments,has_delinquency,has_ser
+ious_delinquency,credit_util_category,debt_category,income_per_dependent,credit_lines_per_person,age_category,flag_high_utilization,
+flag_very_high_utilization,flag_high_debt_ratio,flag_very_high_debt_ratio,flag_recent_late_payments,flag_serious_delinquency,flag_mu
+ltiple_delinquencies,flag_low_income,flag_many_dependents,flag_few_credit_lines,total_risk_flags,financial_health,log_monthly_income
+,log_num_credit_lines,log_total_late_payments,age_income_interaction,utilization_debt_interaction,credit_utilization_capped,debt_rat
+io_cappe]
+X24 A_FULL model_features_train.csv [
+1,1,45,9120,0,2,0,3,2,0,0,76.6,80,13,6,2,1,0,4,4,3040,4.3333333333,3,1,0,1,1,1,0,0,0,0,0,2,30,9.1183347262,2.6390573296,1.0986122887
+,410.32012874,6128,76.6,8]
+2691       %x24_dump(model_features_validation.csv)
+X24 A_FULL model_features_validation.csv [
+row_id,default_flag,AGE,monthly_income,MonthlyIncome_missing,num_dependents,Dependents_missing,age_group,num_late_30_59,num_late_60_
+89,num_late_90_plus,credit_utilization,debt_ratio,num_credit_lines,num_real_estate_loans,total_late_payments,has_delinquency,has_ser
+ious_delinquency,credit_util_category,debt_category,income_per_dependent,credit_lines_per_person,age_category,flag_high_utilization,
+flag_very_high_utilization,flag_high_debt_ratio,flag_very_high_debt_ratio,flag_recent_late_payments,flag_serious_delinquency,flag_mu
+ltiple_delinquencies,flag_low_income,flag_many_dependents,flag_few_credit_lines,total_risk_flags,financial_health,log_monthly_income
+,log_num_credit_lines,log_total_late_payments,age_income_interaction,utilization_debt_interaction,credit_utilization_capped,debt_rat
+io_cappe]
+2692       
+2693       
+2694       
+2695       
+28                                                         The SAS System                          Sunday, 15 November 2026 12:45:00
+
+2696       
