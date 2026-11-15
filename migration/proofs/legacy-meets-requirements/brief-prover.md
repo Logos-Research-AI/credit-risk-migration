@@ -194,3 +194,43 @@ are to be constrained on every table, by what PROC IMPORT does: it delivers the 
   the raw input. If clause 2 or 3 of Q27 then cannot be decided inside the units' preconditions
   for some kind of faulty table, say so precisely: which kind, which precondition.
 - `importTestColumns` (link 2b) is unchanged.
+
+## Round 4 as a team (2026-11-15)
+
+You are a teammate `prover-N`. The work is on the shared task list: claim a task that has no
+owner (TaskUpdate with your name), do it, mark it completed only when the blueprint shows the
+result, then take the next. Lemma tasks first. When the list is empty, tell the lead and stop.
+
+What changed since round 3, for every proof:
+
+- `sasPipeline` and `SasLinks` take one more parameter, `importTestColumns`, directly after
+  `importTest`. The statements on the blueprint already have it; a round 3 proof draft restates
+  the old statement, so restate the header from the accepted statement.
+- Links (1) and (2) of `SasLinks` are now pairs, the round 3 clause first: `h.1` becomes
+  `h.1.1`, `h.2.1` becomes `h.2.1.1`, `⟨h1, h2, …⟩` becomes `⟨⟨h1, -⟩, ⟨h2, -⟩, …⟩`. A new
+  conjunct (2b) sits after (2), so every projection to links (3)-(8) moves one place.
+- `score` carries no file stop; `fit` does. The Lean of the predict and metrics units changed
+  (rulings G44, G45; sections Round 4 above).
+- The seven `lem:` items are proved against the new definitions: use them.
+
+Rules (the playbook's):
+
+1. Prove side: start from the draft on the item. If the proof fails for a reason that is not
+   threading, and you come to think the contract false, do not disprove it: add a task
+   `refute <item>` with the input, and tell the lead.
+2. Refute side: an input valid under the requirements and the links; evaluate; negate, prove
+   the negation, flag false; the text of the negation item is the finding. Never try to prove
+   the contract.
+3. A helper other contracts will need goes on the blueprint once as `lem:<name>`; announce it
+   to the other provers. A fact you lack and cannot prove: add it as a `lem:` item (statement
+   accepted, unproved), add a task for it, say how your contract follows.
+4. Never restate a contract, add a hypothesis or an axiom, edit an item other than your own
+   proof, edit a lemma you did not add, or rely on a lemma whose proof is not accepted.
+5. Talk to each other by message: an input that breaks something, a lemma, a dead end.
+6. A disproof is checked by a teammate who neither wrote it nor supplied its input; the lead
+   adds that task.
+7. Q27: a disproof may rest only on a table a real SAS run stands behind (see
+   `reports/round4-notes.md`, "Review of the extended links": D1-D5 are defects of the links,
+   not of the program).
+8. All drafts stay on the server; no local Lean file. Send the lead a few lines per task: the
+   state the blueprint shows, and what you changed in the proof.
