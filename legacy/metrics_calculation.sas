@@ -238,22 +238,43 @@ proc rank data=work.logit_scored_valid
     ranks decile;
 run;
 
-/* Calculate lift by decile */
+/* Always ten rows, deciles 1 to 10 */
+data work.decile_list;
+    do decile = 1 to 10;
+        output;
+    end;
+run;
+
+/* Calculate lift by decile; a decile that receives no applicant has
+   count 0, capture rate 0 and lift 0 */
 proc sql;
     create table work.decile_analysis as
     select
-        decile + 1 as decile,
-        count(*) as total_count,
-        sum(default_flag) as defaults,
-        mean(default_flag) as default_rate format=percent8.2,
-        mean(pd_logistic) as avg_pd format=8.4,
-        min(pd_logistic) as min_pd format=8.4,
-        max(pd_logistic) as max_pd format=8.4,
-        sum(default_flag) / (select sum(default_flag) from work.decile_data) as capture_rate format=percent8.2,
-        (calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift format=8.2
-    from work.decile_data
-    group by decile
-    order by decile;
+        l.decile,
+        coalesce(d.total_count, 0) as total_count,
+        coalesce(d.defaults, 0) as defaults,
+        d.default_rate format=percent8.2,
+        d.avg_pd format=8.4,
+        d.min_pd format=8.4,
+        d.max_pd format=8.4,
+        case when d.decile is null then 0 else d.capture_rate end as capture_rate format=percent8.2,
+        case when d.decile is null then 0 else d.lift end as lift format=8.2
+    from work.decile_list l
+    left join
+        (select
+            decile + 1 as decile,
+            count(*) as total_count,
+            sum(default_flag) as defaults,
+            mean(default_flag) as default_rate,
+            mean(pd_logistic) as avg_pd,
+            min(pd_logistic) as min_pd,
+            max(pd_logistic) as max_pd,
+            sum(default_flag) / (select sum(default_flag) from work.decile_data) as capture_rate,
+            (calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift
+         from work.decile_data
+         group by decile) d
+    on l.decile = d.decile
+    order by l.decile;
 quit;
 
 proc print data=work.decile_analysis;
@@ -281,7 +302,8 @@ data work.cumulative_lift;
     end;
 
     cum_capture_rate = cum_defaults / &total_defaults;
-    cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
+    /* No cumulative lift while the deciles so far are empty */
+    if cum_count > 0 then cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
     format cum_capture_rate percent8.2 cum_lift 8.2;
 run;
 
