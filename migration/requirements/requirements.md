@@ -67,7 +67,7 @@ data.
 
 | # | Requirement | Source |
 |---|---|---|
-| Q27 | On an input that meets the conditions of section 3, every step produces its result. On an input that does not, the pipeline stops with an error and produces no result (rulings G3, G4, G11) | section 3 |
+| Q27 | On an input that meets the conditions of section 3, every step produces its result. On an input that does not, the pipeline stops with an error and produces no result (rulings G3, G4, G11), except that nothing is demanded when the only fault is a number written with more than 32 characters (ruling G47) | section 3 |
 
 ## 2. Reported figures, not requirements
 
@@ -90,11 +90,15 @@ the requirements are stated for raw inputs in which:
 - the three late-payment counts, the number of dependents and the number of credit lines are
   whole numbers, zero or more (ruling G29);
 - a known `MonthlyIncome` is zero or more (ruling G34);
-- no field holds a text value: each is a number or missing (ruling G39).
+- no field holds a text value: each is a number or missing (ruling G39). A field is a number
+  whenever it reads as one, however it is written (ruling G48); row ids are compared as numbers;
+- column names are those of section 5 exactly, capitalisation included (ruling G46);
+- a row shorter than the header has its missing trailing fields blank (ruling G49).
 
 On such inputs Q1 and Q2 leave no missing value, so no later requirement has to say what a
 missing value does. A pipeline that meets an input outside these conditions must stop with an
-error, not produce a result.
+error, not produce a result. The one exception is a number written with more than 32 characters:
+when that is the only fault, nothing is demanded (ruling G47).
 
 ## 4. Rulings
 
@@ -151,6 +155,11 @@ error, not produce a result.
 | G43 | The PSI floor of G35 is carried at full precision, not through an 8-character text | 2026-11-15 |
 | G44 | A test file with its header and no applicant is a valid input (section 3 asks no row of the test file). The SAS program is to be corrected on Q27: scoring such a file produces the prediction files with their header lines only | 2026-11-15 |
 | G45 | The SAS program is to be corrected on Q26: when the validation set has no defaulter, capture rate and lift are 0 on every decile, as on an empty decile (G41). Q26 itself is unchanged | 2026-11-15 |
+
+| G46 | Column names are matched exactly, capitalisation included (section 5). The SAS program is to be corrected on Q27: a raw file whose header differs from the names of section 5 in capitalisation is rejected | 2026-11-15 |
+| G47 | A number written with more than 32 characters does not meet the input conditions (G28 stands), but Q27 does not demand a stop for it: when that is a file's only fault, what the pipeline does is not constrained (it may stop, or read the number to the nearest value it can hold) | 2026-11-15 |
+| G48 | A field is a number whenever it reads as one: quotes around it, leading zeros, a plus sign and exponent notation are ways of writing a number, not text. G39 forbids only fields that do not read as a number and are not missing. Row ids are compared as numbers (G14, G42): `7`, `07` and `"7.0"` are the same id. The SAS program is to be corrected on Q27 where it counts such ids as distinct | 2026-11-15 |
+| G49 | A data row with fewer fields than the header has its missing trailing fields blank, and is judged like any other row: accepted if every blank field may be missing, rejected otherwise. A row with more fields than the header does not meet the input conditions | 2026-11-15 |
 
 **Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
 (58 items at that date, 59 since draft 4; consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
