@@ -1,0 +1,21 @@
+[
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good", "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"},
+ {"label": "single_quote_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/single_quote_rows", "scripts": "predict.sas"},
+ {"label": "single_quote_only", "data_dir": "scenarios/fix_Q27_emptytest_badheader/single_quote_only", "scripts": "predict.sas"},
+ {"label": "double_quote_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/double_quote_rows", "scripts": "predict.sas"},
+ {"label": "double_quote_only", "data_dir": "scenarios/fix_Q27_emptytest_badheader/double_quote_only", "scripts": "predict.sas"},
+ {"label": "text_after_quote_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/text_after_quote_rows", "scripts": "predict.sas"},
+ {"label": "text_after_quote_only", "data_dir": "scenarios/fix_Q27_emptytest_badheader/text_after_quote_only", "scripts": "predict.sas"},
+ {"label": "open_quote_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/open_quote_rows", "scripts": "predict.sas"},
+ {"label": "open_quote_only", "data_dir": "scenarios/fix_Q27_emptytest_badheader/open_quote_only", "scripts": "predict.sas"},
+ {"label": "duplicate_name_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/duplicate_name_rows", "scripts": "predict.sas"},
+ {"label": "duplicate_name_only", "data_dir": "scenarios/fix_Q27_emptytest_badheader/duplicate_name_only", "scripts": "predict.sas"},
+ {"label": "long_name_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/long_name_rows", "scripts": "predict.sas"},
+ {"label": "long_name_only", "data_dir": "scenarios/fix_Q27_emptytest_badheader/long_name_only", "scripts": "predict.sas"},
+ {"label": "thirteen_names_full_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/thirteen_names_full_rows", "scripts": "predict.sas"},
+ {"label": "thirteen_names_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/thirteen_names_rows", "scripts": "predict.sas"},
+ {"label": "thirteen_names_only", "data_dir": "scenarios/fix_Q27_emptytest_badheader/thirteen_names_only", "scripts": "predict.sas"},
+ {"label": "leading_blank_rows", "data_dir": "scenarios/fix_Q27_emptytest_badheader/leading_blank_rows", "scripts": "predict.sas"},
+ {"label": "leading_blank_only", "data_dir": "scenarios/fix_Q27_emptytest_badheader/leading_blank_only", "scripts": "predict.sas"},
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good", "scripts": "predict.sas"}
+]

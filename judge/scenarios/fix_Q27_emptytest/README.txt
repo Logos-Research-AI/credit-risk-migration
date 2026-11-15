@@ -7,3 +7,6 @@ header_only (predict.sas must write kaggle_submission.csv and test_predictions.c
 header lines only, no ERROR); good again.
 plan_crlf.json: good (four scripts); crlf_good (predict.sas); crlf_header_only (predict.sas).
 The files were written by hand (head -1, sed), not by make_fix_scenarios.py.
+header_only_noterminator: the header line with no line end after it (260 bytes).
+plan_noterminator.json: good (four scripts); header_only_noterminator (predict.sas);
+crlf_header_only (predict.sas, last, so the uploaded file stays on the server to be measured).
