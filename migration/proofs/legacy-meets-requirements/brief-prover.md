@@ -168,3 +168,29 @@ items of round 3 are the place to start, not a blank page.
 - When there is no test table at all (the import failed), do not rely on the totals of the input
   check being `(0, 0)`: the stop is true there because the column check fails, and that is all
   the SAS evidence supports.
+
+**The import links cover every table (owner's decision, 2026-11-15; replaces the "only on tables
+that meet `TrainOK` / `TestOK`" wording of links (1) and (2)).** With the imports free on faulty
+tables, clauses 2 and 3 of Q27 (the pipeline stops on an invalid input) were false by
+construction: an import that turns a faulty file into a valid one satisfied the links. The imports
+are to be constrained on every table, by what PROC IMPORT does: it delivers the file as it is.
+
+- On **every** raw table, `importTrain` / `importTest` keep the rows, their order, the column
+  names and every cell's content: a number is delivered as the same number, in the cell kind the
+  first SAS unit reads (a number, or for the columns SAS reads as text a text that reads back to
+  it with `Sas.inputBest`); a text is delivered as the same text; a missing value as the one
+  missing the first SAS unit reads. The clauses (a) to (c) of the round 3 links, which say this
+  for valid tables, are the model: generalise them, do not replace them, and keep what they give
+  on valid tables exactly as it is, so that the round 3 proofs still go through.
+- A column that holds a text anywhere is a character column in SAS, so the numbers of that
+  column may be delivered as texts that read back to them. Allow that; do not allow anything
+  else to change.
+- **Do not assume the conclusion.** The link says what the import delivers. It must not say that
+  the checks fail on a faulty table: that is for the SAS units to do and for the contract to
+  prove.
+- **Preconditions.** On valid tables the links assert the first unit's precondition, as before.
+  On faulty tables assert a unit precondition only where it is a fact about what PROC IMPORT
+  delivers from any file, and say which and on what evidence; never assert one that restricts
+  the raw input. If clause 2 or 3 of Q27 then cannot be decided inside the units' preconditions
+  for some kind of faulty table, say so precisely: which kind, which precondition.
+- `importTestColumns` (link 2b) is unchanged.
