@@ -1,0 +1,8 @@
+[
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"},
+ {"label": "crlf_good", "data_dir": "scenarios/fix_Q27_emptytest/crlf_good",
+  "scripts": "predict.sas"},
+ {"label": "crlf_header_only", "data_dir": "scenarios/fix_Q27_emptytest/crlf_header_only",
+  "scripts": "predict.sas"}
+]

@@ -45,14 +45,62 @@ run;
  * 1. Load Kaggle Test Data
  *****************************************************************************/
 
-/* Import test data */
-proc import datafile="&data_path/cs-test.csv"
-    out=work.test_raw
-    dbms=csv
-    replace;
-    getnames=yes;
-    guessingrows=max;
+/* How many lines the test file has (counted up to two), and whether its first line
+   holds the twelve column names, read as PROC IMPORT names them */
+%let test_lines = 0;
+%let test_header_ok = 0;
+
+data _null_;
+    infile "&data_path/cs-test.csv" lrecl=32767 truncover obs=2;
+    length line $32767 name $32;
+    array expected{12} $32 _temporary_
+        ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+         'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+         'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+         'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+         'NUMBERREALESTATELOANSORLINES');
+    array found{12} _temporary_;
+    input line $char32767.;
+    if _n_ = 1 then do;
+        header_ok = (countw(line, ',', 'mq') = 12);
+        do i = 1 to 12 while (header_ok);
+            name = upcase(dequote(strip(scan(line, i, ',', 'mq'))));
+            if name = ' ' then name = cats('VAR', i);
+            k = whichc(name, of expected{*});
+            if k = 0 then header_ok = 0;
+            else if found{k} = 1 then header_ok = 0;
+            else found{k} = 1;
+        end;
+        call symputx('test_header_ok', header_ok);
+    end;
+    call symputx('test_lines', _n_);
 run;
+
+/* Import test data. PROC IMPORT cannot read a file that has its header line and no
+   applicant: such a file gives an empty table with the twelve columns instead */
+%macro import_test;
+    %if &test_lines = 1 and &test_header_ok = 1 %then %do;
+        data work.test_raw;
+            length VAR1 8 SeriousDlqin2yrs $1 RevolvingUtilizationOfUnsecuredL 8 age 8
+                   "NumberOfTime30-59DaysPastDueNotW"n 8 DebtRatio 8 MonthlyIncome $7
+                   NumberOfOpenCreditLinesAndLoans 8 NumberOfTimes90DaysLate 8
+                   NumberRealEstateLoansOrLines 8 "NumberOfTime60-89DaysPastDueNotW"n 8
+                   NumberOfDependents $2;
+            call missing(of _all_);
+            stop;
+        run;
+    %end;
+    %else %do;
+        proc import datafile="&data_path/cs-test.csv"
+            out=work.test_raw
+            dbms=csv
+            replace;
+            getnames=yes;
+            guessingrows=max;
+        run;
+    %end;
+%mend;
+%import_test
 
 /* Check the input conditions: stop with an error before anything is exported */
 /* The numeric value of a raw column: a numeric column as it is; a character column

@@ -1,0 +1,16 @@
+[
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"},
+ {"label": "wrong_name", "data_dir": "scenarios/fix_Q27_emptytest_badheader/wrong_name",
+  "scripts": "predict.sas"},
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good",
+  "scripts": "predict.sas"},
+ {"label": "eleven_names", "data_dir": "scenarios/fix_Q27_emptytest_badheader/eleven_names",
+  "scripts": "predict.sas"},
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good",
+  "scripts": "predict.sas"},
+ {"label": "blank_line", "data_dir": "scenarios/fix_Q27_emptytest_badheader/blank_line",
+  "scripts": "predict.sas"},
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good",
+  "scripts": "predict.sas"}
+]
