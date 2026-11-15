@@ -1,7 +1,7 @@
 # SAS to Lean: translate the original pipeline into the Logos blueprint `sas-credit-risk-spec`
 
 > **Paths.** This brief was written when each translator worked in a folder of its own. You now
-> work from the project root, as the agent `legacy-translator`, and a hook enforces what you may touch.
+> work from the project root, as the agent `lean-translator`, and a hook enforces what you may touch.
 > Read the paths below as follows: `migration/…` means `migration/legacy-to-lean/…` (your kit record);
 > the `.sas` scripts, `MODEL_CARD.md`, `README.md` and `data/` are in `legacy/`; `judge/` is `judge/`; `experiments/` means `migration/legacy-to-lean/experiments/` and the raw SAS files in `migration/legacy-to-port/experiments/`; `foundation/` means `migration/foundation/`. "This workspace" means those places.
 > There is no `settings.json` of your own to mind.

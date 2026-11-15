@@ -63,7 +63,7 @@ translators working in separate folders named `sas` and `python` (later `legacy`
 | Agent | Does | Sees |
 |---|---|---|
 | `requirements-formaliser` | formalises the requirements, proves them consistent | the documentation only |
-| `legacy-translator` | migrates the SAS to Lean, with the kit | `legacy/`, SAS outputs in `judge/`, its own record |
+| `lean-translator` | migrates the SAS to Lean, with the kit | `legacy/`, SAS outputs in `judge/`, its own record |
 | `port-translator` | migrates the port to Lean, with the kit | `port/`, raw data, its own record |
 | `prover` | states and proves or disproves the contracts | everything, read only; all blueprints |
 | `coding-agent` | fixes code on the prover's findings | all code and records; no blueprint |
