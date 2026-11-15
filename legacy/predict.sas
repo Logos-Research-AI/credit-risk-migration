@@ -90,7 +90,7 @@ quit;
    a known MonthlyIncome is zero or more */
 data work.input_check;
     set work.test_raw;
-    bad_row = (missing(VAR1)
+    bad_row = (missing(%num(VAR1))
         or (upcase(cats(SeriousDlqin2yrs)) not in ('', '.', 'NA') and
             %num(SeriousDlqin2yrs) not in (0, 1))
         or missing(%num(age))

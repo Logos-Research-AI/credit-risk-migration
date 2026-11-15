@@ -1,0 +1,27 @@
+[
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix_Q27_textid/good",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "train_text_id",
+  "data_dir": "scenarios/fix_Q27_textid/train_text_id",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix_Q27_textid/good",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "test_text_id",
+  "data_dir": "scenarios/fix_Q27_textid/test_text_id",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix_Q27_textid/good",
+  "scripts": "predict.sas"
+ }
+]
