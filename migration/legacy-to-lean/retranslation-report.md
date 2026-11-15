@@ -162,3 +162,52 @@ Files are in /Users/cristophersalvi/GitHub/credit-risk-migration/migration/legac
 - Hook: the documented experiment invocation (`uv run --project judge ...`) was refused because it names `judge`. I ran x23 as recorded in DEV-011 (`uv run --no-project --with saspy python run_experiment.py ...`), reading nothing of `judge/`. To be confirmed (DEV-016).
 
 Receipt: /Users/cristophersalvi/GitHub/credit-risk-migration/migration/legacy-to-lean/diffeval-receipt.md, section "Round 3 review (2026-11-15): defects raised by the reviewers". SAS side: /Users/cristophersalvi/GitHub/credit-risk-migration/migration/legacy-to-lean/experiments/x23_review_round3.sas (.log, .lst). Lean side: eval_decl on test_predictions_full.evalApply at α = Float, 8 id tables through both check chains, input_check rows read in full. Unexplained differences: 0. Four of the eight tables have a SAS run of the training check in x23 (parts G, H, I, J), two of them also of the test check (G, H); one has the earlier run ev4_fix_Q27_textid; three are by rule only.
+
+
+## Third update (round 4 SAS corrections, G44 and G45), 2026-11-15
+
+Two translators at once, one per script, started with the Agent tool (no workflow). Accounts as
+returned.
+
+### metrics_calculation.sas (G45)
+
+| Item | Source lines | Change | Accepted | Evaluated |
+|---|---|---|---|---|
+| `def:decile_analysis` | 248-279 (was 248-278) | `capture_rate` and `lift` are `coalesce(value, 0)` instead of the test on a missing `d.decile` | yes | 4 runs, 0 differences |
+| `def:cumulative_lift` | 292-314 (was 291-308) | `cum_capture_rate` is the quotient when the total defaults are above 0, else 0; `cum_lift` is the quotient when the overall default rate is above 0, else 0, and missing while `cum_count` is not above 0 | yes | 4 runs, 0 differences |
+| `def:total_defaults` | 285-290 (was 284-289) | not touched; lines moved by one | still accepted | inside `cumulative_lift` |
+| `def:model_performance_metrics` | 518-541 (was 512-535) | cleared by the change; resubmitted unchanged | yes | used as the evaluation harness |
+
+Signatures unchanged.
+
+Evaluation (`eval_decl`, Float, both tables in full, ten rows each, values at 6 decimals against
+the printed SAS values):
+
+- `fix_Q26_nodefaulter` against `ev6_fix_Q26_nodefaulter`: capture rate 0 and lift 0 on every
+  decile; cumulative capture rate 0 on all rows; cumulative lift blank on deciles 1-2 and 0 from
+  decile 3. 0 differences.
+- `fix_Q26_small`, `fix_Q26_ties` against the `ev6_*_unchanged` runs, and `fix_Q23_alldefaulters`
+  against `ev5_fix_Q23_alldefaulters`: as before the change. 0 differences.
+- Empty validation table: by reading only (R3, R22), not run on SAS.
+
+Rules: R34 (COALESCE) extended to the two new uses, with `ev6_fix_Q26_nodefaulter` as evidence;
+R43 amended (the decile table no longer tests `d.decile IS NULL`); R6 and R3 gain the same run as
+evidence. Proposed DEV-017: `write_code` on `def:decile_analysis` cleared 37 items; line ranges of
+the later metrics units moved (+1, then +6).
+
+For the prover: no change of arguments or results. `decile_analysis`: `capture_rate` and `lift`
+are never missing. `cumulative_lift`: `cum_capture_rate` is 0 when the total is not above 0;
+`cum_lift` is missing exactly when `cum_count` is not above 0.
+
+Cleared and left for the prover: `def:sasPipeline`, `def:SasLinks`, the five `lem:` items that
+depend on them, `thm:score_chains_agree` and all 25 contracts.
+
+Open:
+- The items' source references were not updated (`update_item_source` replaces the whole
+  reference and the existing path convention could not be read back). Spans to set are above;
+  twelve later units moved by +6.
+- Lean comments of units not rewritten still cite earlier line numbers (as DEV-015).
+- The missing-total branch of `cumulative_lift` (`if . > 0`) is translated by R3 only.
+- Trust layers are off on the blueprint: the evaluation is the only check of the Lean against
+  the source.
+- The blueprint went from 144 to 142 items during the work; this translator removed nothing.
