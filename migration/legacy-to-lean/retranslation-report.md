@@ -211,3 +211,53 @@ Open:
 - Trust layers are off on the blueprint: the evaluation is the only check of the Lean against
   the source.
 - The blueprint went from 144 to 142 items during the work; this translator removed nothing.
+
+### predict.sas (G44)
+
+All 26 predict.sas items accepted (25 existing, 1 new). One real change:
+
+- **`def:test_raw_columns_ok`** has a new first argument, `test_raw_columns : List String`. A
+  table of the foundation carries its column names in its rows, so a table with no row has no
+  columns; SAS now has an empty `test_raw` with twelve columns (accepted) and an empty one with a
+  wrong header (rejected), which the table alone cannot tell apart. With a row, the names are
+  read from the first row as before and the new argument is ignored. With no row, the names are
+  `test_raw_columns`, the column names PROC IMPORT gave; `[]` means the import failed and there
+  is no table. It is part of the import parameter (P6).
+- **New item `def:test_raw_columns_ok_precond`**: the names are distinct up to capitalisation, as
+  in any SAS data set.
+- Every other unit: definition unchanged, comment line numbers moved by +57. Every unit after
+  the check is a map over rows and gives `[]` on `[]`; no precondition excluded the empty table.
+- Not translated (stated in the item's comment): lines 48-112, the line count, the header copy
+  with the made-up applicant, the deletion of earlier WORK tables, the removal of the copy.
+
+Stop on a one-line file, Lean against SAS (`ev10_fix_Q27_*`), 0 differences: twelve names in
+Kaggle, permuted, swapped and reversed order: no stop; `years` for `age`, eleven names, no table
+(header plus a blank line), a twelfth name `VAR12`: stop. Twelve names in another capitalisation:
+no stop, by the `upcase` in the query, not run.
+
+With applicants (4 rows of `fix_Q27_column_order/perm_rows`, Kaggle and permuted order): every
+non-model column, grades, recommendations and rates equal, identical in both orders; `pd_logistic`
+differs from the 5th decimal because the coefficients given to the Lean are the 4-decimal printed
+ones (explained). The id tables of the second update give the same results as before.
+
+Rules: R45 new (a header-only test file); R39 narrowed to the training check; P6 extended with the
+column names; lines 48-112 added to the out-of-scope list.
+
+For the prover:
+- `def:sasPipeline` calls `test_raw_columns_ok` and needs the extra argument. `importTest` cannot
+  supply it, since a header-only raw file is also `[]`: a second import parameter is needed (for
+  instance `importTestColumns : Table ℝ → List String`), with its link in `SasLinks`.
+- With the check passing on an empty table, `scoreTest` now returns `some []` where it returned
+  `none`. `thm:sas_Q27` is affected.
+
+Open:
+- **The header lines of the two empty exports cannot be expressed**: the Lean result is `[]`,
+  which carries no columns. They are stated in comments only. Fixing this needs a header in the
+  foundation's table type.
+- Item source references not updated (same reason as for the metrics script).
+- The row counts of the intermediate tables on a header-only file are inferred, not observed
+  (the logs print no NOTE lines).
+- `test_raw_clean` and `test_imputed` read three columns by exact name while the check accepts
+  any capitalisation; SAS is case-insensitive there. Pre-existing.
+- Neither update has been reviewed by an agent that did not write it. To do before the pipeline
+  is revised.

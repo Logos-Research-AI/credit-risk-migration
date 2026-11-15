@@ -147,3 +147,21 @@ the changed units was brought up to date (see `manifest.tsv`).
 Every contract is decided again on the Lean as it now stands. A proof kept from round 3 counts
 only if the blueprint still accepts it; where it was cleared, its draft and the shared `lem:`
 items of round 3 are the place to start, not a blank page.
+
+**Changes in the Lean units for round 4** (third update; details in
+`migration/legacy-to-lean/retranslation-report.md`, section "Third update"):
+
+- `test_raw_columns_ok` has a new first argument `test_raw_columns : List String`, the column
+  names PROC IMPORT gave the test table; it is read only when the table has no row, and `[]`
+  means there is no table. It has a precondition, `test_raw_columns_ok_precond` (names distinct
+  up to capitalisation). `sasPipeline` therefore needs one more parameter beside `importTest`,
+  for those names, and `SasLinks` one more link: on a test table meeting `TestOK` the names are
+  the twelve column names of section 5 of the requirements, distinct, in any order. Like the
+  other import links it says nothing outside `TestOK`.
+- With the check passing on an empty test table, `scoreTest` returns `some []`.
+- `decile_analysis`: `capture_rate` and `lift` are never missing. `cumulative_lift`:
+  `cum_capture_rate` is 0 when the total of defaults is not above 0; `cum_lift` is missing
+  exactly when `cum_count` is not above 0. No signature changed there.
+- A table with no row carries no column names in this foundation. If a requirement speaks of the
+  columns of an empty output, say so in your result as an interface mismatch: do not work
+  around it.
