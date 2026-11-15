@@ -1,4 +1,4 @@
-35                                                         The SAS System                          Sunday, 15 November 2026 07:26:00
+35                                                         The SAS System                          Sunday, 15 November 2026 10:39:00
 
 192        
 193        /*****************************************************************************
@@ -20,8 +20,8 @@
 209         *****************************************************************************/
 210        
 211        /* Define base paths */
-212        %let data_path = /home/u64643823/sasmig/runs/final3_real-20261115T072645/data;
-213        %let output_path = /home/u64643823/sasmig/runs/final3_real-20261115T072645/output;
+212        %let data_path = /home/u64643823/sasmig/runs/final4_real-20261115T103922/data;
+213        %let output_path = /home/u64643823/sasmig/runs/final4_real-20261115T103922/output;
 214        
 215        /* Remove the results of an earlier run first: a run that stops leaves no result */
 216        data _null_;
@@ -65,7 +65,7 @@ Problems were detected with provided names.  See LOG.
 247         ***********************************************************************/
 248            data WORK.CREDIT_RAW    ;
 249            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-250            infile '/home/u64643823/sasmig/runs/final3_real-20261115T072645/data/cs-training.csv' delimiter = ',' MISSOVER DSD
+250            infile '/home/u64643823/sasmig/runs/final4_real-20261115T103922/data/cs-training.csv' delimiter = ',' MISSOVER DSD
 250      ! lrecl=32767 firstobs=2 ;
 251               informat VAR1 best32. ;
 252               informat SeriousDlqin2yrs best32. ;
@@ -107,7 +107,7 @@ Problems were detected with provided names.  See LOG.
 288            ;
 289            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 290            run;
-150000 rows created in WORK.CREDIT_RAW from /home/u64643823/sasmig/runs/final3_real-20261115T072645/data/cs-training.csv.
+150000 rows created in WORK.CREDIT_RAW from /home/u64643823/sasmig/runs/final4_real-20261115T103922/data/cs-training.csv.
   
   
   
@@ -529,7 +529,7 @@ WORK.PARMS.PARMS.SLIST.
 643            data _null_;
 644            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
 645            %let _EFIREC_ = 0;     /* clear export record count macro variable */
-646            file '/home/u64643823/sasmig/runs/final3_real-20261115T072645/output/income_medians.csv' delimiter=',' DSD DROPOVER
+646            file '/home/u64643823/sasmig/runs/final4_real-20261115T103922/output/income_medians.csv' delimiter=',' DSD DROPOVER
 646      ! lrecl=32767;
 647            if _n_ = 1 then        /* write column names or labels */
 648             do;
@@ -555,7 +555,7 @@ WORK.PARMS.PARMS.SLIST.
 668            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 669            if EFIEOD then call symputx('_EFIREC_',EFIOUT);
 670            run;
-5 records created in /home/u64643823/sasmig/runs/final3_real-20261115T072645/output/income_medians.csv from 
+5 records created in /home/u64643823/sasmig/runs/final4_real-20261115T103922/output/income_medians.csv from 
 WORK.INCOME_MEDIANS_EXPORT.
   
   
@@ -579,7 +579,7 @@ WORK.PARMS.PARMS.SLIST.
 686            data _null_;
 687            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
 688            %let _EFIREC_ = 0;     /* clear export record count macro variable */
-689            file '/home/u64643823/sasmig/runs/final3_real-20261115T072645/output/model_features_train.csv' delimiter=',' DSD
+689            file '/home/u64643823/sasmig/runs/final4_real-20261115T103922/output/model_features_train.csv' delimiter=',' DSD
 689      ! DROPOVER lrecl=32767;
 690            if _n_ = 1 then        /* write column names or labels */
 691             do;
@@ -761,7 +761,7 @@ WORK.PARMS.PARMS.SLIST.
 867            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 868            if EFIEOD then call symputx('_EFIREC_',EFIOUT);
 869            run;
-105000 records created in /home/u64643823/sasmig/runs/final3_real-20261115T072645/output/model_features_train.csv from 
+105000 records created in /home/u64643823/sasmig/runs/final4_real-20261115T103922/output/model_features_train.csv from 
 WORK.CREDIT_TRAIN_EXPORT.
   
   
@@ -785,7 +785,7 @@ WORK.PARMS.PARMS.SLIST.
 885            data _null_;
 886            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
 887            %let _EFIREC_ = 0;     /* clear export record count macro variable */
-888            file '/home/u64643823/sasmig/runs/final3_real-20261115T072645/output/model_features_validation.csv' delimiter=',' DSD
+888            file '/home/u64643823/sasmig/runs/final4_real-20261115T103922/output/model_features_validation.csv' delimiter=',' DSD
 888      !  DROPOVER lrecl=32767;
 889            if _n_ = 1 then        /* write column names or labels */
 890             do;
@@ -967,7 +967,7 @@ WORK.PARMS.PARMS.SLIST.
 1066           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 1067           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
 1068           run;
-45000 records created in /home/u64643823/sasmig/runs/final3_real-20261115T072645/output/model_features_validation.csv from 
+45000 records created in /home/u64643823/sasmig/runs/final4_real-20261115T103922/output/model_features_validation.csv from 
 WORK.CREDIT_VALIDATION_EXPORT.
   
   
@@ -981,6 +981,6 @@ WORK.CREDIT_VALIDATION_EXPORT.
 1076       
 1077       
 1078       
-36                                                         The SAS System                          Sunday, 15 November 2026 07:26:00
+36                                                         The SAS System                          Sunday, 15 November 2026 10:39:00
 
 1079       

@@ -1,5 +1,5 @@
 
-                                       Logistic Regression Model - Credit Default Prediction   Sunday, 15 November 2026 07:26:00   7
+                                       Logistic Regression Model - Credit Default Prediction   Sunday, 15 November 2026 10:39:00   7
 
                                                        The LOGISTIC Procedure
 
@@ -977,7 +977,7 @@
                               0.840      0  97991      1   7008     93.3     0.0   100.0    0.0   93.3
                               0.860      0  97992      0   7008     93.3     0.0   100.0     .    93.3
 
-                                                  Confusion Matrix - Training Set              Sunday, 15 November 2026 07:26:00   8
+                                                  Confusion Matrix - Training Set              Sunday, 15 November 2026 10:39:00   8
 
                                                                  pred_
                                         Obs    default_flag    logistic    COUNT    PERCENT
@@ -987,14 +987,14 @@
                                          3                1        0        5591     5.3248
                                          4                1        1        1417     1.3495
 
-                                                 Training Set - Performance Metrics            Sunday, 15 November 2026 07:26:00   9
+                                                 Training Set - Performance Metrics            Sunday, 15 November 2026 10:39:00   9
 
                                                 train_        train_     train_      train_
                                         Obs    precision      recall    f1_score    accuracy
 
                                          1       0.5721       0.2022      0.2988      0.9367
 
-                                                 Training Set - Performance Metrics            Sunday, 15 November 2026 07:26:00  10
+                                                 Training Set - Performance Metrics            Sunday, 15 November 2026 10:39:00  10
 
                                                          The PLM Procedure
 
@@ -1003,7 +1003,7 @@
                                  Item Store               WORK.LOGIT_MODEL                         
                                  Data Set Created From    WORK.MODEL_FEATURES_TRAIN                
                                  Created By               PROC LOGISTIC                            
-                                 Date Created             15NOV26:07:30:46                         
+                                 Date Created             15NOV26:10:43:15                         
                                  Response Variable        default_flag                             
                                  Link Function            Logit                                    
                                  Distribution             Binary                                   
@@ -1012,7 +1012,7 @@
                                                           has_delinquency age num_credit_lines     
                                                           num_real_estate_loan ...                 
 
-                                                 Confusion Matrix - Validation Set             Sunday, 15 November 2026 07:26:00  11
+                                                 Confusion Matrix - Validation Set             Sunday, 15 November 2026 10:39:00  11
 
                                                                  pred_
                                         Obs    default_flag    logistic    COUNT    PERCENT
@@ -1022,14 +1022,14 @@
                                          3                1        0        2412     5.3600
                                          4                1        1         606     1.3467
 
-                                                Validation Set - Performance Metrics           Sunday, 15 November 2026 07:26:00  12
+                                                Validation Set - Performance Metrics           Sunday, 15 November 2026 10:39:00  12
 
                                                 valid_        valid_     valid_      valid_
                                         Obs    precision      recall    f1_score    accuracy
 
                                          1       0.5679       0.2008      0.2967      0.9362
 
-                                             Default Rate by Risk Grade - Training Set         Sunday, 15 November 2026 07:26:00  13
+                                             Default Rate by Risk Grade - Training Set         Sunday, 15 November 2026 10:39:00  13
 
                                                          The FREQ Procedure
 
@@ -1060,7 +1060,7 @@
                                                 ---------+--------+--------+
                                                 Total       97992     7008   105000
 
-                                            Default Rate by Risk Grade - Validation Set        Sunday, 15 November 2026 07:26:00  14
+                                            Default Rate by Risk Grade - Validation Set        Sunday, 15 November 2026 10:39:00  14
 
                                                          The FREQ Procedure
 
@@ -1091,7 +1091,7 @@
                                                 ---------+--------+--------+
                                                 Total       41982     3018    45000
 
-                                                      ROC Curve - Training Set                 Sunday, 15 November 2026 07:26:00  15
+                                                      ROC Curve - Training Set                 Sunday, 15 November 2026 10:39:00  15
 
                                                        The LOGISTIC Procedure
 
@@ -1141,7 +1141,7 @@
 
                  Training Set      0.8592     0.00234      0.8546      0.8638       0.7183      0.7184      0.0895
 
-                                                     ROC Curve - Validation Set                Sunday, 15 November 2026 07:26:00  16
+                                                     ROC Curve - Validation Set                Sunday, 15 November 2026 10:39:00  16
 
                                                        The LOGISTIC Procedure
 
@@ -1191,13 +1191,13 @@
 
                 Validation Set      0.8559     0.00358      0.8489      0.8629       0.7118      0.7118      0.0891
 
-                                                          Training Set AUC                     Sunday, 15 November 2026 07:26:00  17
+                                                          Training Set AUC                     Sunday, 15 November 2026 10:39:00  17
 
                                                           Obs        Area
 
                                                            1       0.8592
 
-                                                         Validation Set AUC                    Sunday, 15 November 2026 07:26:00  18
+                                                         Validation Set AUC                    Sunday, 15 November 2026 10:39:00  18
 
                                                           Obs        Area
 
