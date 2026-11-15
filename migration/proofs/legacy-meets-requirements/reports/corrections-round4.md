@@ -112,3 +112,26 @@ None. The program ran with both corrections together without error, so no script
 - No experiment x24/x25 was written: in the previous step the hook refused writes to migration/legacy-to-lean/experiments/; I did not try again or work around it.
 - Q26, as before: the cumulative lift table is not covered by a requirement; I gave it the G45 rule, which changes printed_cumulative_lift.csv when there is no defaulter.
 - The task names migration/proofs/legacy-meets-requirements/brief-coding-agent.md while the standing instructions name the port-equals-legacy brief; I followed the task (Round 4, items 1 and 2). No hook block was met in this step.
+
+## Second review, of commit 56e52f7 (2026-11-15)
+
+The workflow reviewed the Q27 change once, before it was rewritten. A second reviewer, who did not
+make the change, read 56e52f7 and its evidence and made one SAS run
+(`judge/runs/rev8_review_Q27_column_order`).
+
+- **D1 (new, shown on SAS). A header-only test file whose columns are not in Kaggle's order is
+  not scored correctly.** The made-up applicant under the copied header gives the column types by
+  position, not by name. Section 3 does not fix the column order, so such a file is valid.
+  - Columns 2 and 3 swapped, no applicant: `ERROR: Expression using multiplication (*) requires
+    numeric types` in the imputation step; the script does not stop; in a session that already
+    holds tables from an earlier step, both prediction files are rewritten from those tables. With
+    the 200 applicants under the same header the file is accepted and scored as before.
+  - `age` and `MonthlyIncome` swapped, no applicant: the header-only files are written, with an
+    ERROR and a new WARNING from the scoring step.
+- **D2 (already put to the owner).** One-line files with `'age'`, text after a closing quote, an
+  unclosed quote, or a name differing only after character 32 are accepted. The same headers are
+  accepted with applicants; this predates the round.
+- **D3 (evidence gaps).** No run shows the temporary copy removed; the file without a line end is
+  not recorded as it lay on the server; no header-only run was made in a fresh SAS session.
+- Files with applicants: no change in behaviour found. The thirteen-name asymmetry does not break
+  G44 (a 13-name header is invalid under section 3).
