@@ -80,3 +80,32 @@ accepted the empty-bin share of PSI (G35), the removal of earlier outputs (G36),
    `run_meta.json`), so the judge compares against the corrected SAS. Commit it separately
    (`Reference: outputs of the corrected SAS`). Do not change `judge/compare.py`, `port/` or the
    documents; those belong to the next stage.
+
+## Round 3 (2026-11-15): after the second proving round
+
+The corrected SAS was re-translated and all requirements decided again
+(`migration/proofs/legacy-meets-requirements/reports/findings-for-legacy-round2.md`). Nineteen
+are proved. The owner approved four more corrections (rulings G40 to G43). Act on these only:
+
+1. **Q23 (G40).** The validation summary's AUC must be the exact pairwise AUC of the validation
+   probabilities: (concordant pairs + half the exactly tied pairs) / (defaulters x
+   non-defaulters), with Gini = 2 x AUC - 1. Compute it from exact comparisons of `pd_logistic`
+   in `metrics_calculation.sas`; do not read `Area` from PROC LOGISTIC's ROCAssociation for the
+   summary. Leave the PROC LOGISTIC ROC step itself in place where its printed output is used.
+   Show it on an input with probabilities closer than 1e-8 but different.
+2. **Q26 (G41).** `decile_analysis` always has ten rows, deciles 1 to 10; a decile that receives
+   no applicant reports count 0, capture rate 0 and lift 0 (and whatever other columns the table
+   has, 0 or missing as fits; say which). Show it on a validation set of fewer than ten rows and
+   on one with heavily tied probabilities.
+3. **Q27 (G42).** The row id must be a number: `missing(%num(VAR1))` in the input check of both
+   `predict.sas` and `feature_engineering.sas`. Show a text id rejected in each.
+4. **PSI floor (G43).** The floor for an empty bin reaches the PSI calculation as an 8-character
+   text (it is 4.762E-6 for 105,000 rows, not 0.5/105000). Carry it at full precision.
+5. **Seed evidence for Q11.** No code change: run `feature_engineering.sas` twice on the same
+   file in separate sessions and record whether the split is identical (row ids and order).
+6. **Final runs and reference**, as in round 2: real data and the edge scenarios under new run
+   ids, logs checked, then replace `judge/reference/` (separate commit) and say what changed in
+   the outputs.
+
+Same rules as before: smallest change, every copy, one commit per finding, no change to `port/`,
+`judge/compare.py` or the documents.

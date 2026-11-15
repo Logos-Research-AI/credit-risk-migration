@@ -1,6 +1,6 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 5, 2026-11-15. Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G39,
+Draft 5, 2026-11-15. Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
 made after the requirements were checked against the SAS program and the program was corrected. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
@@ -144,6 +144,11 @@ error, not produce a result.
 | G38 | The published files hold 12 characters per number. Requirements that relate two published columns (Q15, Q18) are about the values computed, and hold between printed values only to that precision; printed formats are a later pass | 2026-11-15 |
 
 | G39 | A raw file with a text value in any field does not meet the input conditions; "missing" means absent, as section 1 says | 2026-11-15 |
+
+| G40 | The SAS program is to be corrected on Q23: the AUC is computed from exact comparisons of the probabilities, not taken from a procedure that treats near-equal probabilities as tied | 2026-11-15 |
+| G41 | The SAS program is to be corrected on Q26: the decile table always has ten rows; a decile that receives no applicant reports count 0, capture rate 0 and lift 0. Q26 itself is unchanged | 2026-11-15 |
+| G42 | The SAS program is to be corrected on Q27: the row id must be a number in both raw files | 2026-11-15 |
+| G43 | The PSI floor of G35 is carried at full precision, not through an 8-character text | 2026-11-15 |
 
 **Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
 (58 items at that date, 59 since draft 4; consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
