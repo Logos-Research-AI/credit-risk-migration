@@ -246,7 +246,8 @@ data work.decile_list;
 run;
 
 /* Calculate lift by decile; a decile that receives no applicant has
-   count 0, capture rate 0 and lift 0 */
+   count 0, capture rate 0 and lift 0; with no defaulter in the validation set
+   capture rate and lift are 0 on every decile */
 proc sql;
     create table work.decile_analysis as
     select
@@ -257,8 +258,8 @@ proc sql;
         d.avg_pd format=8.4,
         d.min_pd format=8.4,
         d.max_pd format=8.4,
-        case when d.decile is null then 0 else d.capture_rate end as capture_rate format=percent8.2,
-        case when d.decile is null then 0 else d.lift end as lift format=8.2
+        coalesce(d.capture_rate, 0) as capture_rate format=percent8.2,
+        coalesce(d.lift, 0) as lift format=8.2
     from work.decile_list l
     left join
         (select
@@ -301,9 +302,14 @@ data work.cumulative_lift;
         cum_count + total_count;
     end;
 
-    cum_capture_rate = cum_defaults / &total_defaults;
+    /* With no defaulter in the validation set both are 0, as in the decile table */
+    if &total_defaults > 0 then cum_capture_rate = cum_defaults / &total_defaults;
+    else cum_capture_rate = 0;
     /* No cumulative lift while the deciles so far are empty */
-    if cum_count > 0 then cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
+    if cum_count > 0 then do;
+        if &overall_default_rate > 0 then cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
+        else cum_lift = 0;
+    end;
     format cum_capture_rate percent8.2 cum_lift 8.2;
 run;
 
