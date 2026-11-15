@@ -370,11 +370,14 @@ run;
 
 /* An empty bin is given a share below that of one applicant, the same on both
    sides, so that a bin filled on one side only adds a positive amount */
+/* The size of the larger set is carried as a whole number and the share is computed
+   where it is used, so it is not cut to the 8 characters of a macro variable */
 proc sql noprint;
-    select 0.5 / max(t.n, v.n) into :psi_floor trimmed
+    select max(t.n, v.n) format=32. into :psi_rows trimmed
     from (select count(*) as n from work.train_bins) t,
          (select count(*) as n from work.valid_bins) v;
 quit;
+%let psi_floor = (0.5 / &psi_rows);
 
 /* Calculate PSI */
 proc sql;
