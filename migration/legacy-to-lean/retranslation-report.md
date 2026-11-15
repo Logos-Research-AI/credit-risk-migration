@@ -278,3 +278,28 @@ output-schema error, so the "0 differences" above is not independently reproduce
   - two SAS rules have no direct run behind them: overflow in a PROC SQL quotient gives missing
     (evidence is from a DATA step; unreachable with 0/1 flags), and `INTO` storing `.` for a
     missing aggregate.
+
+### Review of the predict.sas update (2026-11-15): no defect
+
+By a translator who did not write it; nine `eval_decl` cases on `def:test_raw_columns_ok`, one on
+the totals, and every step's log under `judge/runs/ev10_fix_Q27_*`.
+
+- With rows, the names come from the first row and the new argument is ignored. With no row, the
+  Lean is the SAS condition literally (twelve names, each upper-cased in the expected list,
+  `VAR1` and the 32-character name included): the twelve names accepted; `years` for `age`,
+  eleven names, a twelfth `VAR12`, thirteen names rejected, as on SAS.
+- `[]` for "no table" agrees with a failed import (header plus a blank line).
+- `def:test_imputed`, `def:test_scored_temp`, `def:test_predictions` match their source lines and
+  give `[]` on `[]` (by reading; `eval_decl` on them returned a tool error). No unit adds a row
+  on an empty input.
+- The precondition is not needed for agreement with the SAS query; it is needed only to conclude
+  "exactly the twelve columns", and holds of every SAS data set.
+- For the prover: when there is no test table at all, do not rely on the totals `(0, 0)`. In the
+  cited SAS step they come from a check table left by the previous step; in a fresh session they
+  would probably stay at their initial 1 and 1 (not run). The stop is true either way.
+- Not run on SAS: twelve names in another capitalisation with no row; a zero-byte or missing
+  test file.
+- Not checked: the other eighteen predict.sas items, and the claim that they changed in comment
+  line numbers only.
+- Hook: a shell call touching `judge/scenarios/` was refused for this role although its rules
+  allow scenarios; to look at.

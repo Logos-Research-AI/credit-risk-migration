@@ -165,3 +165,6 @@ items of round 3 are the place to start, not a blank page.
 - A table with no row carries no column names in this foundation. If a requirement speaks of the
   columns of an empty output, say so in your result as an interface mismatch: do not work
   around it.
+- When there is no test table at all (the import failed), do not rely on the totals of the input
+  check being `(0, 0)`: the stop is true there because the column check fails, and that is all
+  the SAS evidence supports.
