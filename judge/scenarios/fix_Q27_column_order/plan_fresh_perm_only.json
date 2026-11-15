@@ -1,0 +1,3 @@
+[
+ {"label": "perm_only", "data_dir": "scenarios/fix_Q27_column_order/perm_only", "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"}
+]

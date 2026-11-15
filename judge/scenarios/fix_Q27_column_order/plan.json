@@ -1,0 +1,12 @@
+[
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good", "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"},
+ {"label": "perm_rows", "data_dir": "scenarios/fix_Q27_column_order/perm_rows", "scripts": "predict.sas"},
+ {"label": "perm_only", "data_dir": "scenarios/fix_Q27_column_order/perm_only", "scripts": "predict.sas"},
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good", "scripts": "predict.sas"},
+ {"label": "ageswap_rows", "data_dir": "scenarios/fix_Q27_column_order/ageswap_rows", "scripts": "predict.sas"},
+ {"label": "ageswap_only", "data_dir": "scenarios/fix_Q27_column_order/ageswap_only", "scripts": "predict.sas"},
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good", "scripts": "predict.sas"},
+ {"label": "reversed_rows", "data_dir": "scenarios/fix_Q27_column_order/reversed_rows", "scripts": "predict.sas"},
+ {"label": "reversed_only", "data_dir": "scenarios/fix_Q27_column_order/reversed_only", "scripts": "predict.sas"},
+ {"label": "good", "data_dir": "scenarios/fix_Q27_emptytest/good", "scripts": "predict.sas"}
+]

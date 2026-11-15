@@ -46,7 +46,9 @@ run;
  *****************************************************************************/
 
 /* How many lines the test file has (counted up to two). The first line is copied to the
-   work folder with one made-up applicant under it: a value for every name, the same line end */
+   work folder with one made-up applicant under it: a value for every name, chosen by the
+   name and not by its place (NA under the three names that may hold NA, a number under
+   every other), the same line end */
 %let test_lines = 0;
 %let header_copy = %sysfunc(pathname(work))/cs-test-header.csv;
 
@@ -56,9 +58,11 @@ data _null_;
     input;
     if _n_ = 1 then do;
         put _infile_;
-        put '1,NA,0.5,40,0,0.5,NA,5,0,1,0,NA' @;
-        do i = 13 to countc(_infile_, ',') + 1;
-            put ',0' @;
+        do i = 1 to countc(_infile_, ',') + 1;
+            if i > 1 then put ',' @;
+            if upcase(compress(scan(_infile_, i, ',', 'm'), , 'kn')) in
+               ('SERIOUSDLQIN2YRS', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS') then put 'NA' @;
+            else put '1' @;
         end;
         if len > 0 then if char(_infile_, len) = '0D'x then put '0D'x @;
         put;
@@ -68,11 +72,19 @@ run;
 
 /* Import test data. PROC IMPORT cannot read a file that has its header line and no
    applicant: PROC IMPORT then reads the copy, so the columns are named as it names them,
-   and the made-up applicant is removed, which leaves an empty table */
+   and the made-up applicant is removed, which leaves an empty table. The tables an earlier
+   scoring left in the session are removed first: a step that fails finds no table to use */
 %macro import_test;
     %local source;
     %let source = &data_path/cs-test.csv;
-    %if &test_lines = 1 %then %let source = &header_copy;
+    %if &test_lines = 1 %then %do;
+        %let source = &header_copy;
+        proc datasets library=work nolist nowarn;
+            delete test_raw input_check test_raw_clean test_cleaned test_imputed
+                   test_features test_scored_temp test_scored test_predictions
+                   kaggle_submission test_predictions_full;
+        quit;
+    %end;
     proc import datafile="&source"
         out=work.test_raw
         dbms=csv
