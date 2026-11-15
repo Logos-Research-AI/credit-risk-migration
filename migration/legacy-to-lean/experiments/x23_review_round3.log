@@ -1,0 +1,428 @@
+5                                                          The SAS System                          Sunday, 15 November 2026 08:07:00
+
+24         
+25         /* x23: rules questioned by the reviewers of round 3 (second update).
+26            (G) the check steps of feature_engineering.sas 81-114 and predict.sas 88-121 on a table that
+27                has no VAR1 column: which variables does work.input_check have, in which order, and what
+28                are the totals;
+29            (H) COUNT(DISTINCT VAR1) on a character id column whose texts read as numbers:
+30                '7', '07', '7.0', '+7', a value with a leading blank, values of different stored padding;
+31            (I) what PROC IMPORT stores for id texts with leading or trailing blanks in the CSV;
+32            (J) a CSV whose id texts all read as numbers: is the column character or numeric. */
+33         %let x23_dir = %sysfunc(pathname(work));
+34         options validvarname=any;
+35         
+36         %macro num(v);
+37             %local dsid pos vtype;
+38             %let vtype = ;
+39             %let dsid = %sysfunc(open(work.&x23_tab));
+40             %let pos = %sysfunc(varnum(&dsid, &v));
+41             %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+42             %let dsid = %sysfunc(close(&dsid));
+43             %if &vtype = N %then "&v"n;
+44             %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+45         %mend;
+46         
+47         %macro check(tab, kind, label);
+48             %global x23_tab;
+49             %let x23_tab = &tab;
+50             %let bad_rows = 1;
+51             %let duplicate_ids = 1;
+52             %let known_incomes = 0;
+53             data work.input_check;
+54                 set work.&tab;
+55                 %if &kind = train %then %do;
+56                 bad_row = (missing(%num(VAR1))
+57                     or %num(SeriousDlqin2yrs) not in (0, 1)
+58                 %end;
+59                 %else %do;
+60                 bad_row = (missing(%num(VAR1))
+61                     or (upcase(cats(SeriousDlqin2yrs)) not in ('', '.', 'NA') and
+62                         %num(SeriousDlqin2yrs) not in (0, 1))
+63                 %end;
+64                     or missing(%num(age))
+65                     or missing(%num(RevolvingUtilizationOfUnsecuredL))
+66                     or missing(%num(DebtRatio))
+67                     or missing(%num(NumberRealEstateLoansOrLines))
+68                     or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+69                             %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+70                     or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+71                             %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+72                     or not (%num(NumberOfTimes90DaysLate) >= 0 and
+73                             %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+74                     or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+75                             %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+76                     or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+77                     or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+78                     or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+79                         not (%num(NumberOfDependents) >= 0 and
+80                              %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+81                 %if &kind = train %then %do;
+82                 known_income = not missing(%num(MonthlyIncome));
+83                 keep VAR1 bad_row known_income;
+84                 %end;
+85                 %else %do;
+86                 keep VAR1 bad_row;
+87                 %end;
+88             run;
+89             proc contents data=work.input_check varnum; title "x23 input_check &label"; run;
+90             proc print data=work.input_check; title "x23 input_check &label"; run;
+91             data _null_;
+92                 set work.input_check;
+93                 length x23_t $1;
+94                 x23_t = vtype(VAR1);
+95                 x23_l = vlength(VAR1);
+96                 put "X23 ROW &label " _n_= x23_t= x23_l= bad_row= 'VAR1=[' VAR1 +(-1) ']';
+97             run;
+98             proc sql noprint;
+99                 select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), count(*), count(distinct VAR1)
+100                into :bad_rows trimmed, :duplicate_ids trimmed, :x23_n trimmed, :x23_d trimmed
+101                from work.input_check;
+102            quit;
+103            %put X23 CHECK &label kind=&kind rows=&x23_n distinct=&x23_d bad_rows=&bad_rows duplicate_ids=&duplicate_ids;
+104        %mend;
+105        
+106        /* ---------- (G) no VAR1 column ---------- */
+107        data _null_;
+108            file "&x23_dir/x23_g.csv" lrecl=1000;
+109            put
+109      ! 'SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,N
+109      ! umberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,
+109      ! NumberOfDependents';
+110            put '0,0.766,45,2,0.80,9120,13,0,6,0,2';
+111            put '0,0.957,40,0,0.12,2600,4,0,0,0,1';
+112        run;
+113        proc import datafile="&x23_dir/x23_g.csv" out=work.x23_g dbms=csv replace;
+114            getnames=yes;
+115            guessingrows=max;
+116        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+117         /**********************************************************************
+118         *   PRODUCT:   SAS
+119         *   VERSION:   9.4
+120         *   CREATOR:   External File Interface
+121         *   DATE:      15NOV26
+122         *   DESC:      Generated SAS Datastep Code
+123         *   TEMPLATE SOURCE:  (None Specified.)
+124         ***********************************************************************/
+125            data WORK.X23_G    ;
+126            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+127            infile
+127      ! '/saswork/SAS_workE0FF0001C724_odaws01-euw1.oda.sas.com/SAS_workBBC50001C724_odaws01-euw1.oda.sas.com/x23_g.csv'
+127      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+128               informat SeriousDlqin2yrs best32. ;
+129               informat RevolvingUtilizationOfUnsecuredL best32. ;
+130               informat age best32. ;
+131               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+132               informat DebtRatio best32. ;
+133               informat MonthlyIncome best32. ;
+134               informat NumberOfOpenCreditLinesAndLoans best32. ;
+135               informat NumberOfTimes90DaysLate best32. ;
+136               informat NumberRealEstateLoansOrLines best32. ;
+137               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+138               informat NumberOfDependents best32. ;
+139               format SeriousDlqin2yrs best12. ;
+140               format RevolvingUtilizationOfUnsecuredL best12. ;
+141               format age best12. ;
+142               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+143               format DebtRatio best12. ;
+144               format MonthlyIncome best12. ;
+145               format NumberOfOpenCreditLinesAndLoans best12. ;
+146               format NumberOfTimes90DaysLate best12. ;
+147               format NumberRealEstateLoansOrLines best12. ;
+148               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+149               format NumberOfDependents best12. ;
+150            input
+151                        SeriousDlqin2yrs
+152                        RevolvingUtilizationOfUnsecuredL
+153                        age
+154                        "NumberOfTime30-59DaysPastDueNotW"N
+155                        DebtRatio
+156                        MonthlyIncome
+157                        NumberOfOpenCreditLinesAndLoans
+158                        NumberOfTimes90DaysLate
+159                        NumberRealEstateLoansOrLines
+160                        "NumberOfTime60-89DaysPastDueNotW"N
+161                        NumberOfDependents
+162            ;
+163            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+164            run;
+2 rows created in WORK.X23_G from 
+/saswork/SAS_workE0FF0001C724_odaws01-euw1.oda.sas.com/SAS_workBBC50001C724_odaws01-euw1.oda.sas.com/x23_g.csv.
+  
+  
+  
+165        proc contents data=work.x23_g varnum; title "x23 g"; run;
+166        %check(x23_g, train, G_no_var1_train)
+X23 ROW G_no_var1_train _N_=1 x23_t=N x23_l=8 bad_row=1 VAR1=[.]
+X23 ROW G_no_var1_train _N_=2 x23_t=N x23_l=8 bad_row=1 VAR1=[.]
+X23 CHECK G_no_var1_train kind=train rows=2 distinct=0 bad_rows=2 duplicate_ids=2
+167        %check(x23_g, test, G_no_var1_test)
+X23 ROW G_no_var1_test _N_=1 x23_t=N x23_l=8 bad_row=1 VAR1=[.]
+X23 ROW G_no_var1_test _N_=2 x23_t=N x23_l=8 bad_row=1 VAR1=[.]
+X23 CHECK G_no_var1_test kind=test rows=2 distinct=0 bad_rows=2 duplicate_ids=2
+168        
+169        /* ---------- (H) character ids that read as numbers ---------- */
+170        data work.x23_h;
+171            length VAR1 $8;
+172            SeriousDlqin2yrs = 0; RevolvingUtilizationOfUnsecuredL = 0.5; age = 40;
+173            'NumberOfTime30-59DaysPastDueNotW'n = 0; DebtRatio = 0.1; MonthlyIncome = 1000;
+174            NumberOfOpenCreditLinesAndLoans = 1; NumberOfTimes90DaysLate = 0;
+175            NumberRealEstateLoansOrLines = 0; 'NumberOfTime60-89DaysPastDueNotW'n = 0;
+176            NumberOfDependents = 0;
+177            do VAR1 = '7', '07', '7.0', '+7', ' 7', '7', '8'; output; end;
+178        run;
+179        %check(x23_h, train, H_char_ids_train)
+X23 ROW H_char_ids_train _N_=1 x23_t=C x23_l=8 bad_row=0 VAR1=[7]
+X23 ROW H_char_ids_train _N_=2 x23_t=C x23_l=8 bad_row=0 VAR1=[07]
+X23 ROW H_char_ids_train _N_=3 x23_t=C x23_l=8 bad_row=0 VAR1=[7.0]
+X23 ROW H_char_ids_train _N_=4 x23_t=C x23_l=8 bad_row=0 VAR1=[+7]
+X23 ROW H_char_ids_train _N_=5 x23_t=C x23_l=8 bad_row=0 VAR1=[7]
+X23 ROW H_char_ids_train _N_=6 x23_t=C x23_l=8 bad_row=0 VAR1=[7]
+X23 ROW H_char_ids_train _N_=7 x23_t=C x23_l=8 bad_row=0 VAR1=[8]
+X23 CHECK H_char_ids_train kind=train rows=7 distinct=6 bad_rows=0 duplicate_ids=1
+180        %check(x23_h, test, H_char_ids_test)
+X23 ROW H_char_ids_test _N_=1 x23_t=C x23_l=8 bad_row=0 VAR1=[7]
+X23 ROW H_char_ids_test _N_=2 x23_t=C x23_l=8 bad_row=0 VAR1=[07]
+X23 ROW H_char_ids_test _N_=3 x23_t=C x23_l=8 bad_row=0 VAR1=[7.0]
+X23 ROW H_char_ids_test _N_=4 x23_t=C x23_l=8 bad_row=0 VAR1=[+7]
+X23 ROW H_char_ids_test _N_=5 x23_t=C x23_l=8 bad_row=0 VAR1=[7]
+X23 ROW H_char_ids_test _N_=6 x23_t=C x23_l=8 bad_row=0 VAR1=[7]
+X23 ROW H_char_ids_test _N_=7 x23_t=C x23_l=8 bad_row=0 VAR1=[8]
+X23 CHECK H_char_ids_test kind=test rows=7 distinct=6 bad_rows=0 duplicate_ids=1
+181        proc sql;
+182            title "x23 H distinct values";
+183            select distinct quote(VAR1) as v, put(VAR1, $hex16.) as hex from work.x23_h;
+184            select count(distinct VAR1) as d_raw, count(distinct strip(VAR1)) as d_strip,
+185                   count(distinct input(strip(VAR1), ?? best32.)) as d_num
+                                                         _
+                                                         22
+                                                         200
+ERROR 22-322: Expecting a format name.  
+ERROR 200-322: The symbol is not recognized and will be ignored.
+186            from work.x23_h;
+187        quit;
+188        /* the same text kept in columns of different length, stacked: is '7' in $2 the same id as '7' in $8 */
+189        data work.x23_h2; length VAR1 $2; VAR1 = '7'; output; run;
+190        data work.x23_h3; set work.x23_h(keep=VAR1 where=(VAR1 = '7')) work.x23_h2; run;
+191        proc sql noprint;
+192            select count(*), count(distinct VAR1) into :x23_n trimmed, :x23_d trimmed from work.x23_h3;
+193        quit;
+194        %put X23 H padding rows=&x23_n distinct=&x23_d;
+X23 H padding rows=3 distinct=1
+195        data _null_;
+196            a = '7'; b = '7   ';
+197            same = (a = b);
+198            put 'X23 H compare ' same=;
+199        run;
+X23 H compare same=1
+200        
+201        /* ---------- (I) PROC IMPORT of id texts with blanks ---------- */
+202        data _null_;
+203            file "&x23_dir/x23_i.csv" lrecl=1000;
+204            put
+204      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+204      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+204      ! ,NumberOfDependents';
+205            put '7,0,0.766,45,2,0.80,9120,13,0,6,0,2';
+206            put ' 7,0,0.957,40,0,0.12,2600,4,0,0,0,1';
+207            put '7 ,0,0.957,40,0,0.12,2600,4,0,0,0,1';
+208            put '" 7",0,0.957,40,0,0.12,2600,4,0,0,0,1';
+209            put '"7 ",0,0.957,40,0,0.12,2600,4,0,0,0,1';
+210            put '07,0,0.957,40,0,0.12,2600,4,0,0,0,1';
+211            put 'A9,0,0.957,40,0,0.12,2600,4,0,0,0,1';
+212        run;
+213        proc import datafile="&x23_dir/x23_i.csv" out=work.x23_i dbms=csv replace;
+214            getnames=yes;
+215            guessingrows=max;
+216        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+217         /**********************************************************************
+218         *   PRODUCT:   SAS
+219         *   VERSION:   9.4
+220         *   CREATOR:   External File Interface
+221         *   DATE:      15NOV26
+222         *   DESC:      Generated SAS Datastep Code
+223         *   TEMPLATE SOURCE:  (None Specified.)
+224         ***********************************************************************/
+225            data WORK.X23_I    ;
+226            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+227            infile
+227      ! '/saswork/SAS_workE0FF0001C724_odaws01-euw1.oda.sas.com/SAS_workBBC50001C724_odaws01-euw1.oda.sas.com/x23_i.csv'
+227      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+228               informat VAR1 $4. ;
+229               informat SeriousDlqin2yrs best32. ;
+230               informat RevolvingUtilizationOfUnsecuredL best32. ;
+231               informat age best32. ;
+232               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+233               informat DebtRatio best32. ;
+234               informat MonthlyIncome best32. ;
+235               informat NumberOfOpenCreditLinesAndLoans best32. ;
+236               informat NumberOfTimes90DaysLate best32. ;
+237               informat NumberRealEstateLoansOrLines best32. ;
+238               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+239               informat NumberOfDependents best32. ;
+240               format VAR1 $4. ;
+241               format SeriousDlqin2yrs best12. ;
+242               format RevolvingUtilizationOfUnsecuredL best12. ;
+243               format age best12. ;
+244               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+245               format DebtRatio best12. ;
+246               format MonthlyIncome best12. ;
+247               format NumberOfOpenCreditLinesAndLoans best12. ;
+248               format NumberOfTimes90DaysLate best12. ;
+249               format NumberRealEstateLoansOrLines best12. ;
+250               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+251               format NumberOfDependents best12. ;
+252            input
+253                        VAR1  $
+254                        SeriousDlqin2yrs
+255                        RevolvingUtilizationOfUnsecuredL
+256                        age
+257                        "NumberOfTime30-59DaysPastDueNotW"N
+258                        DebtRatio
+259                        MonthlyIncome
+260                        NumberOfOpenCreditLinesAndLoans
+261                        NumberOfTimes90DaysLate
+262                        NumberRealEstateLoansOrLines
+263                        "NumberOfTime60-89DaysPastDueNotW"N
+264                        NumberOfDependents
+265            ;
+266            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+267            run;
+7 rows created in WORK.X23_I from 
+/saswork/SAS_workE0FF0001C724_odaws01-euw1.oda.sas.com/SAS_workBBC50001C724_odaws01-euw1.oda.sas.com/x23_i.csv.
+  
+  
+  
+268        proc contents data=work.x23_i varnum; title "x23 i"; run;
+269        data _null_;
+270            set work.x23_i;
+271            hex = put(VAR1, $hex12.);
+272            put 'X23 I ' _n_= 'VAR1=[' VAR1 $char6. '] ' hex=;
+273        run;
+X23 I _N_=1 VAR1=[7     ] hex=37202020
+X23 I _N_=2 VAR1=[7     ] hex=37202020
+X23 I _N_=3 VAR1=[7     ] hex=37202020
+X23 I _N_=4 VAR1=[7     ] hex=37202020
+X23 I _N_=5 VAR1=[7     ] hex=37202020
+X23 I _N_=6 VAR1=[07    ] hex=30372020
+X23 I _N_=7 VAR1=[A9    ] hex=41392020
+274        %check(x23_i, train, I_import_blanks)
+X23 ROW I_import_blanks _N_=1 x23_t=C x23_l=4 bad_row=0 VAR1=[7]
+X23 ROW I_import_blanks _N_=2 x23_t=C x23_l=4 bad_row=0 VAR1=[7]
+X23 ROW I_import_blanks _N_=3 x23_t=C x23_l=4 bad_row=0 VAR1=[7]
+X23 ROW I_import_blanks _N_=4 x23_t=C x23_l=4 bad_row=0 VAR1=[7]
+X23 ROW I_import_blanks _N_=5 x23_t=C x23_l=4 bad_row=0 VAR1=[7]
+X23 ROW I_import_blanks _N_=6 x23_t=C x23_l=4 bad_row=0 VAR1=[07]
+X23 ROW I_import_blanks _N_=7 x23_t=C x23_l=4 bad_row=1 VAR1=[A9]
+X23 CHECK I_import_blanks kind=train rows=7 distinct=3 bad_rows=1 duplicate_ids=4
+275        
+276        /* ---------- (J) every id text reads as a number ---------- */
+277        data _null_;
+278            file "&x23_dir/x23_j.csv" lrecl=1000;
+279            put
+279      ! ',SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,DebtRatio,MonthlyIncome,
+279      ! NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse
+279      ! ,NumberOfDependents';
+280            put '7,0,0.766,45,2,0.80,9120,13,0,6,0,2';
+281            put '" 7",0,0.957,40,0,0.12,2600,4,0,0,0,1';
+282            put '07,0,0.957,40,0,0.12,2600,4,0,0,0,1';
+283            put '7.0,0,0.957,40,0,0.12,2600,4,0,0,0,1';
+284            put '+7,0,0.957,40,0,0.12,2600,4,0,0,0,1';
+285        run;
+286        proc import datafile="&x23_dir/x23_j.csv" out=work.x23_j dbms=csv replace;
+287            getnames=yes;
+288            guessingrows=max;
+289        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+290         /**********************************************************************
+291         *   PRODUCT:   SAS
+292         *   VERSION:   9.4
+293         *   CREATOR:   External File Interface
+294         *   DATE:      15NOV26
+295         *   DESC:      Generated SAS Datastep Code
+296         *   TEMPLATE SOURCE:  (None Specified.)
+297         ***********************************************************************/
+298            data WORK.X23_J    ;
+299            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+300            infile
+300      ! '/saswork/SAS_workE0FF0001C724_odaws01-euw1.oda.sas.com/SAS_workBBC50001C724_odaws01-euw1.oda.sas.com/x23_j.csv'
+300      ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+301               informat VAR1 $4. ;
+302               informat SeriousDlqin2yrs best32. ;
+303               informat RevolvingUtilizationOfUnsecuredL best32. ;
+304               informat age best32. ;
+305               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+306               informat DebtRatio best32. ;
+307               informat MonthlyIncome best32. ;
+308               informat NumberOfOpenCreditLinesAndLoans best32. ;
+309               informat NumberOfTimes90DaysLate best32. ;
+310               informat NumberRealEstateLoansOrLines best32. ;
+311               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+312               informat NumberOfDependents best32. ;
+313               format VAR1 $4. ;
+314               format SeriousDlqin2yrs best12. ;
+315               format RevolvingUtilizationOfUnsecuredL best12. ;
+316               format age best12. ;
+317               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+318               format DebtRatio best12. ;
+319               format MonthlyIncome best12. ;
+320               format NumberOfOpenCreditLinesAndLoans best12. ;
+321               format NumberOfTimes90DaysLate best12. ;
+322               format NumberRealEstateLoansOrLines best12. ;
+323               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+324               format NumberOfDependents best12. ;
+325            input
+326                        VAR1  $
+327                        SeriousDlqin2yrs
+328                        RevolvingUtilizationOfUnsecuredL
+329                        age
+330                        "NumberOfTime30-59DaysPastDueNotW"N
+331                        DebtRatio
+332                        MonthlyIncome
+333                        NumberOfOpenCreditLinesAndLoans
+334                        NumberOfTimes90DaysLate
+335                        NumberRealEstateLoansOrLines
+336                        "NumberOfTime60-89DaysPastDueNotW"N
+337                        NumberOfDependents
+338            ;
+339            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+340            run;
+5 rows created in WORK.X23_J from 
+/saswork/SAS_workE0FF0001C724_odaws01-euw1.oda.sas.com/SAS_workBBC50001C724_odaws01-euw1.oda.sas.com/x23_j.csv.
+  
+  
+  
+341        proc contents data=work.x23_j varnum; title "x23 j"; run;
+342        %check(x23_j, train, J_import_number_texts)
+X23 ROW J_import_number_texts _N_=1 x23_t=C x23_l=4 bad_row=0 VAR1=[7]
+X23 ROW J_import_number_texts _N_=2 x23_t=C x23_l=4 bad_row=0 VAR1=[7]
+X23 ROW J_import_number_texts _N_=3 x23_t=C x23_l=4 bad_row=0 VAR1=[07]
+X23 ROW J_import_number_texts _N_=4 x23_t=C x23_l=4 bad_row=0 VAR1=[7.0]
+X23 ROW J_import_number_texts _N_=5 x23_t=C x23_l=4 bad_row=0 VAR1=[+7]
+X23 CHECK J_import_number_texts kind=train rows=5 distinct=4 bad_rows=0 duplicate_ids=1
+343        
+344        
+345        
+346        
+6                                                          The SAS System                          Sunday, 15 November 2026 08:07:00
+
+347        

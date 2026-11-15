@@ -181,3 +181,87 @@ entry on the header-only file is superseded by X21 part C.
 Not evaluated: a full SAS run of the four scripts on a file with `5000-1` or with other
 capitalisation (the experiments run the check code of lines 52-123 / 60-130 copied verbatim
 into a macro, on small files, not the scripts themselves).
+
+# Round 3 (2026-11-15): rulings G40 to G43
+
+SAS side: the outputs of the corrected scripts in `judge/runs/` (`ev4_fix_Q23_near`,
+`ev4_fix_Q26_small`, `ev4_fix_Q26_ties`, `ev4_fix_G43`, `ev5_fix_Q23_nodefaulter`,
+`ev5_fix_Q23_alldefaulters`, `ev4_fix_Q27_textid`) and `judge/reference/scenarios/edge_metrics_a`,
+`b`, `c`; inputs in `judge/scenarios/`. No new SAS run was made by this role.
+Lean side: `eval_decl` of the staging connector on `model_performance_metrics.evalApply` and
+`test_predictions_full.evalApply`, `α = Float`, after every item was accepted. Numbers were read
+back rounded to 10 decimals and compared with the printed SAS values (BEST12., `8.4`,
+`percent8.2`, `8.2`); counts, text and missing-ness exactly. `agg` (P2) was a left fold;
+`best8` of `total_defaults` (P3) was given the 6-decimal default rate of each set (DEV-014).
+
+Chain evaluated in one expression per scenario: `logit_scored_valid_sorted`, `auc_pairs`,
+`auc_summary`, `decile_data`, `decile_list`, `decile_analysis`, `total_defaults`,
+`cumulative_lift`, `train_scores_sorted`, `psi_cuts`, `train_bins`, `valid_bins`, `psi_floor`,
+`psi_bins`, `psi_calculation`, `psi_summary`, `total_good_bad`, `ks_calculation`, `ks_statistic`,
+`validation_summary`, and (fix scenarios only) `model_performance_metrics` with an empty
+threshold table.
+
+| Scenario (rows valid / train) | SAS (run) | Lean | Differences |
+|---|---|---|---|
+| fix_Q23_near (6 / 7) | AUC 0.8125, Gini 0.6250; ten decile rows; cum_lift blank on decile 1; PSI 0.8105177204; 'Requires Review' | auc_pairs 5 rows (0.300000000001 and 0.300000000005 separate); 0.8125, 0.625; the ten decile rows, ten cumulative rows and ten PSI rows equal; 0.8105177204; same status | 0 |
+| fix_Q26_small (7 / 7) | 0.6667, 0.3333; deciles 1, 5, 10 read 0,0,,,,,0.00%,0.00; capture 33.33% in 2, 4, 8; PSI 0.4129102511 | the same in every cell (lift 2.3333, cum_lift 2.33, 1.17, 1.56, 1.56, 1.17, 0.93, 1.17, 1.00, 1.00) | 0 |
+| fix_Q26_ties (40 / 7) | 0.7344, 0.4688; decile 2: 10, 5, 62.50%, 2.50; decile 7: 30, 3, 37.50%, 0.50; others 0; PSI 2.6545660903 | 0.734375, 0.46875; the same rows; 2.6545660903 | 0 |
+| fix_G43 (3 / 21) | 0.5000, 0.0000; cum_lift blank on deciles 1 and 2; empty-bin component 0.0990210258; PSI 1.897344887; 'Needs Improvement' | the same; PSI 1.8973448870 | 0 |
+| fix_Q23_nodefaulter (4 / 7) | AUC, Gini, KS blank; filled deciles with capture rate and lift blank, empty ones 0; cum_capture_rate and cum_lift blank on all rows; PSI 0.7653750663; 'Needs Improvement' | the same in every cell | 0 |
+| fix_Q23_alldefaulters (4 / 7) | AUC, Gini, KS blank; capture 25%, 50%, 25%, lift 1.00; PSI 0.7653750663 | the same | 0 |
+| edge_metrics_a (3,000 / 7,000) | 0.5775, 0.1551; ten decile rows; cumulative rows; ten PSI rows; PSI 0.0027901142; KS 0.1168 at 0.0700 | 0.5775375837, 0.1550751673; all rows equal at printed precision; 0.0027901142 | 0 |
+| edge_metrics_c (3,000 / 7,000) | 0.6973, 0.3946; PSI 0.3075776761 (bin 9: 0.3020344087); KS 0.2876 at 0.0800 | 0.6973215709, 0.3946431419; all rows equal; 0.3075776761 | 0 |
+| edge_metrics_b, PSI only (bin counts 1153 / 5847 and 262 / 750 / 1988 taken from `printed_psi_calculation.csv`) | bin 9: 0.6626666667, 6.0530257775; PSI 6.8081601761 | floor 0.00007142857142857; the ten rows equal; 6.8081601761 | 0 |
+| both bin tables empty | not run in round 3 (X21 F, round 2: floor `.`, shares 0, component `.`) | floor none, ten rows (0, 0, none) | 0 |
+| empty validation table | not run on SAS | auc_pairs and auc_summary empty; ten decile rows of zeros; summary row with ROCModel, AUC, Gini, KS missing | by reading only |
+
+Input checks (`credit_raw_columns_ok`, `num_macro`, `credit_raw_input_check`,
+`credit_raw_check_totals`, `credit_raw_stop`, and the five test-file units; one table of valid
+data columns, the id column varied; outcome 0 for training, missing for test):
+
+| Ids | SAS | Lean, training (columns_ok, (bad, dup, known), stop, bad_row) | Lean, test | Differences |
+|---|---|---|---|---|
+| text `1`, `2`, `A34` | `ev4_fix_Q27_textid` step 02 (3,000 rows, id A34 on row 34): columns_ok=1 bad_rows=1 duplicate_ids=0, stopped; step 04 (test, A30): columns_ok=1 bad_rows=1 duplicate_ids=0, stopped | (true, (1, 0, 3), true, 0 0 1) | (true, (1, 0), true, 0 0 1) | 0 |
+| numbers 1, 2, 3 | steps 01, 03, 05 (valid files): the scripts run | (true, (0, 0, 3), false) | (true, (0, 0), false) | 0 |
+| text `1`, ` 2 `, `3` | not run | (true, (0, 0, 3), false) | (true, (0, 0), false) | by rule R9 |
+| numbers 1, missing, 3 | not run | (true, (1, 1, 3), true) | (true, (1, 1), true) | by rule |
+| text `A1`, `A2`, `A2`, blank | X21 E predates G42 (it had bad_rows=1) | (true, (4, 2, 4), true) | (true, (4, 2), true) | not comparable |
+| text `1`, blank, 33 digits | not run | (true, (2, 1, 3), true) | (true, (2, 1), true) | by rule |
+| numbers 1, 1, 2 | not run in round 3 | (true, (0, 1, 3), true) | (true, (0, 1), true) | by rule R33 |
+
+Totals: 8 scenarios through the metrics chain (about 260 table rows compared), 1 PSI-only
+case, 7 id tables through both check chains. Unexplained differences: 0.
+
+Not done in this round:
+- The real validation set (45,000 rows) and edge_metrics_b (493 distinct rows) were not put
+  through `auc_pairs` / `auc_summary` in Lean (input too long for a call). The real
+  `decile_analysis.csv` is byte-identical to the one evaluated in round 1.
+- `model_performance_metrics` was run with an empty threshold table (its threshold columns are
+  unchanged and were not re-run).
+- No bit-level comparison: SAS full-precision dumps of the corrected script were not made.
+- A SAS run with every validation probability missing (auc_summary with no row), and a
+  character id column holding number texts, do not exist.
+- The comparator scripts of round 1 were not used; values were compared by reading.
+
+# Round 3 review (2026-11-15): defects raised by the reviewers
+
+SAS side: `experiments/x23_review_round3` (.sas, .log, .lst), the check steps of
+feature_engineering.sas 81-114 and predict.sas 88-121 copied onto named tables. Lean side:
+`eval_decl` on `test_predictions_full.evalApply`, `α = Float`, after the changed items were
+accepted; one table of valid data columns (outcome 0), the id column varied; both chains
+(`*_input_check`, `*_columns_ok`, `*_check_totals`, `*_stop`). Rows of `input_check` were read
+in full (variable names, order, values).
+
+| Ids | SAS (X23) | Lean, training (rows; columns_ok, (bad, dup, known), stop) | Lean, test | Differences |
+|---|---|---|---|---|
+| no id column, 2 rows | part G, both checks: variables bad_row, VAR1 (Num), known_income; rows 1, ., 1; bad_rows=2, duplicate_ids=2 | rows (bad_row 1, VAR1 ., known_income 1); false, (2, 2, 2), true | rows (bad_row 1, VAR1 .); false, (2, 2), true | 0 |
+| text `7`, `07`, `7.0`, `+7`, ` 7`, `7`, `8` | part H, both checks: bad_rows=0, 6 distinct, duplicate_ids=1 | (0, 1, 7), true | (0, 1), true | 0 |
+| text `7` five times, `07`, `A9` (what PROC IMPORT stores for 7, ` 7`, `7 `, " 7", "7 ", 07, A9) | part I, training check: bad_rows=1, 3 distinct, duplicate_ids=4 | (1, 4, 7), true | (1, 4), true | 0 |
+| text `7`, `7`, `07`, `7.0`, `+7` (imported 7, " 7", 07, 7.0, +7; column Char $4) | part J, training check: bad_rows=0, 4 distinct, duplicate_ids=1 | (0, 1, 5), true | (0, 1), true | 0 |
+| text `7`, `7 ` (a cell carrying a trailing blank) | cannot occur in a SAS column; `7` = `7   ` is true, and `7` stored in $2 and in $8 is one value (part H) | (0, 1, 2), true (before the correction: duplicate_ids 0, no stop) | (0, 1), true | 0 |
+| text `1`, `2`, `A34` | `ev4_fix_Q27_textid`: bad_rows=1, duplicate_ids=0, stopped | (1, 0, 3), true | (1, 0), true | 0 |
+| numbers 1, 1, 2, missing, 3 | not run | (1, 2, 5), true | (1, 2), true | by rule R33 |
+| text `1`, `2`, `3` | not run | (0, 0, 3), false | (0, 0), false | by rule |
+
+Unexplained differences: 0. Parts I and J were run with the training check only (the test
+check differs in the outcome condition alone). Ids beyond 2^53 were not run.

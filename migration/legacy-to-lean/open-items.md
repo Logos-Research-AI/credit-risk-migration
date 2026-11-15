@@ -101,3 +101,53 @@ PERCENT column of PROC FREQ is translated (bit-exact) although never read.
   and the second query fail, `bad_rows` and `duplicate_ids` keep the values of lines 63-66 /
   71-73 (1, 1), and the stop step runs. The Lean totals for an empty table are (0, 0[, 0]); the
   stop Boolean is the same (true) through `columns_ok`.
+
+## Round 3 (2026-11-15, rulings G40 to G43)
+
+- P3 no longer applies to `psi_floor` (R42): the round 2 entry "psi_floor is used through its
+  BEST8. text" is closed by the corrected SAS. `total_defaults` keeps `best8`: the SAS still
+  passes `&overall_default_rate` as 8-character text into `cum_lift` (BUG(port) kept; it reaches
+  only work.cumulative_lift, which is charted and not exported).
+- `auc_summary` with no row (every validation probability missing, or an empty validation
+  table): modelled from R22 (a DATA step with no input row writes nothing); not run on SAS. The
+  summaries then have ROCModel, AUC and Gini missing.
+- The summary AUC (`auc_summary`) and the printed ROC table (`roc_stats`, still translated, now
+  read by no unit) can differ on probabilities closer than about 1e-8: 0.8125 against 0.6875 on
+  fix_Q23_near. `model_summary` (train.sas) still takes Train_AUC and Valid_AUC from PROC
+  LOGISTIC (`roc_train`, `roc_valid`). Both are what the SAS does; for the owner.
+- One class only in the validation set: PROC LOGISTIC raises an error and creates no
+  ROCAssociation table (ev5 runs), and SAS goes on. `roc_stats_precond` (U4) already excludes
+  the case for `roc_stats`; no other unit reads that table any more.
+- Row ids: a character id column whose texts all read as numbers passes the check and is
+  compared as text by COUNT(DISTINCT) in the Lean (`7` and `07` are two ids). Not run on SAS
+  (OPEN(port) in `def:credit_raw_check_totals`). Ids beyond 2^53 that are equal as binary64 count
+  as duplicates in the Lean as in SAS's arithmetic; not run.
+- Exponent notation in an id text (`1e3`) is now excluded by the two check preconditions (VAR1
+  added to their column list), like the other columns (R9).
+- Stale comments, not corrected because the items were not otherwise touched:
+  `def:credit_imputed_precond`, `def:kaggle_submission_precond` and `def:test_imputed` still say
+  the check accepts ids that are not numbers (true before G42). Their Lean is still right: a
+  character id column that passes the check is carried as text. The metrics units listed in
+  DEV-015 cite earlier line numbers in their comments; manifest and source references are current.
+- `def:model_performance_metrics` and `def:test_predictions_full` keep their evaluation-only
+  dependencies (DEV-006).
+- `def:sasPipeline`, `def:SasLinks` and every theorem lost their Lean (expected). For the
+  prover: `psi_floor` lost its `best8` argument; `auc_summary` now takes `auc_pairs` (new unit,
+  from the unsorted validation table) instead of `roc_stats`; `decile_analysis` takes
+  `decile_list` (new unit) before `decile_data`; `test_raw_input_check` no longer depends on
+  `credit_raw_input_check`.
+
+## Round 3 review (2026-11-15, experiment x23)
+
+- CLOSED: a table without the id column. The check step creates VAR1 as a missing number and
+  KEEP writes it (variables bad_row, VAR1, known_income, in this order; X23 part G). The two
+  check units now do the same. The totals and the stop Boolean were already right.
+- CLOSED: COUNT(DISTINCT VAR1) on a character id column that passes the check. Run on SAS
+  (X23 parts H, I, J): the ids are compared as texts, trailing blanks apart, so `7`, `07`,
+  `7.0`, `+7` are four ids. The Lean already did this; `Sas.sameValue` now removes trailing
+  blanks itself instead of relying on the convention of R12. The `OPEN(port)` marker in
+  `def:credit_raw_check_totals` is removed. This supersedes the "Row ids" entry of round 3 above.
+- Still not run: ids beyond 2^53.
+- For the owner: a file whose ids are `7` and `07` (or `7.0`, `+7`) passes both checks as two
+  different ids although they read as the same number (G42 asks that the id be a number; it
+  does not say which comparison decides a repeated id). The Lean follows the SAS.
