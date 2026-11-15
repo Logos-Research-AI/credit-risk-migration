@@ -82,3 +82,42 @@ is for the SAS checks to do and for the contract to prove. Recorded in `brief-pr
   use link (1) as an implication from `TrainOK`; the witness imports of `lem:sas_links_sat` are
   proved to deliver rows only on valid tables, so the extended links need new work there, not
   only the new parameter.
+
+## The extended links: accepted, lemmas restored, statements back
+
+`def:SasLinks` revision 744271cb: links (1) and (2) are each `(round 3 clause) ∧ (∀ raw,
+deliveredTable raw (import raw))`; (2b), (3)-(8) and `def:sasPipeline` untouched. All 26
+contracts and `thm:score_chains_agree` resubmitted unchanged and accepted. All seven shared
+lemmas proved; `lem:sas_links_sat` and `lem:sasLinks_witness` with a two-case witness (round 3
+delivery on valid tables, delivery as it is elsewhere), so the links are satisfiable
+(machine-checked).
+
+## Review of the extended links (a prover that did not write them)
+
+Sound: rows, order, cell count and names kept; `[]` to `[]`; no conclusion assumed; satisfiable;
+text agrees with the Lean. The round 3 clauses could not be compared word for word (no item
+history), only indirectly.
+
+Defects, all on tables outside `TrainOK` / `TestOK` (so they touch only clauses 2 and 3 of Q27):
+
+- D1. A text cell is delivered with its leading blanks; PROC IMPORT removes them (x23 parts I,
+  J). Ids `"7"` and `" 7"` escape the duplicate check in the Lean; SAS stops. Correction: deliver
+  the text trimmed.
+- D2. One column may be delivered with mixed kinds (`num 7`, `str "7"`, `str "8"`); a SAS column
+  has one type. Correction: one kind per column, where every number of the column has a text.
+- D3. Tables whose rows do not have the same columns: delivered as they are, the checks read the
+  first row only, no stop. No CSV file is such a table.
+- D4. Names are kept where PROC IMPORT changes them (a repeated name becomes `VAR12`); the two
+  text columns are recognised by exact name, SAS by any capitalisation (x21 part B).
+- D5. A column empty in every row is character in SAS (`SeriousDlqin2yrs` in the real test
+  file); the links say numeric missing. The checks treat both alike.
+
+Not corrected now, on purpose: a correction clears every statement and proof again, and Q27 has
+a disproof that depends on none of these: a header in other capitalisation (`AGE`) fails
+`TrainOK` (exact names) and SAS accepts it (x21 part B: `columns_ok=1`, `bad_rows=0`). In this
+round a disproof of Q27 may rest only on a table a real SAS run stands behind; tables of the
+kinds D1-D3 are not accepted. D1-D5 are corrected before Q27 can be proved.
+
+For the owner, after the round: O1 what a raw text cell is (`07`, `+7`, `" 7"`: number or
+text?), with one SAS run to settle what makes the id column character; O2 tables that are not
+rectangular; O3 capitalisation of column names; O4 the all-empty column.
