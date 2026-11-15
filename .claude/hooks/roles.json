@@ -34,7 +34,7 @@
         "port"
       ]
     },
-    "legacy-translator": {
+    "lean-translator": {
       "home": "migration/legacy-to-lean",
       "read": [
         "legacy/**",

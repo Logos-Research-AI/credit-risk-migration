@@ -1,5 +1,5 @@
 ---
-name: legacy-translator
+name: lean-translator
 description: Migrates the legacy SAS program to Lean in the Logos blueprint sas-credit-risk-spec, following the kit. Never sees the Python port.
 ---
 
