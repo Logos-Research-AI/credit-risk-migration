@@ -1,0 +1,157 @@
+diff --git a/legacy/feature_engineering.sas b/legacy/feature_engineering.sas
+index afbb722..b80f47b 100644
+--- a/legacy/feature_engineering.sas
++++ b/legacy/feature_engineering.sas
+@@ -83,7 +83,7 @@ quit;
+    a known MonthlyIncome is zero or more */
+ data work.input_check;
+     set work.credit_raw;
+-    bad_row = (missing(VAR1)
++    bad_row = (missing(%num(VAR1))
+         or %num(SeriousDlqin2yrs) not in (0, 1)
+         or missing(%num(age))
+         or missing(%num(RevolvingUtilizationOfUnsecuredL))
+diff --git a/legacy/metrics_calculation.sas b/legacy/metrics_calculation.sas
+index 6fab7e8..0d391cc 100644
+--- a/legacy/metrics_calculation.sas
++++ b/legacy/metrics_calculation.sas
+@@ -76,12 +76,38 @@ proc logistic data=work.logit_scored_valid;
+     title "ROC Curve Analysis - Validation Set";
+ run;
+ 
+-/* Extract and display AUC */
++/* Calculate and display AUC: the exact pairwise AUC of the validation probabilities.
++   A defaulter/non-defaulter pair is concordant when the defaulter's probability is
++   higher, and tied only when the two probabilities are equal */
++proc sql;
++    create table work.auc_pairs as
++    select pd_logistic,
++           sum(default_flag = 1) as n_bad,
++           sum(default_flag = 0) as n_good
++    from work.logit_scored_valid
++    where not missing(pd_logistic)
++    group by pd_logistic
++    order by pd_logistic;
++quit;
++
+ data work.auc_summary;
+-    set work.roc_stats;
+-    where ROCModel = 'Logistic Model';
+-    AUC = Area;
+-    Gini = 2 * Area - 1;
++    length ROCModel $14;
++    set work.auc_pairs end=eof;
++    retain concordant tied cum_good cum_bad 0;
++
++    concordant + n_bad * cum_good;
++    tied + n_bad * n_good;
++    cum_good + n_good;
++    cum_bad + n_bad;
++
++    if eof then do;
++        ROCModel = 'Logistic Model';
++        if cum_bad * cum_good > 0 then do;
++            AUC = (concordant + tied / 2) / (cum_bad * cum_good);
++            Gini = 2 * AUC - 1;
++        end;
++        output;
++    end;
+     keep ROCModel AUC Gini;
+     format AUC Gini 8.4;
+ run;
+@@ -212,22 +238,43 @@ proc rank data=work.logit_scored_valid
+     ranks decile;
+ run;
+ 
+-/* Calculate lift by decile */
++/* Always ten rows, deciles 1 to 10 */
++data work.decile_list;
++    do decile = 1 to 10;
++        output;
++    end;
++run;
++
++/* Calculate lift by decile; a decile that receives no applicant has
++   count 0, capture rate 0 and lift 0 */
+ proc sql;
+     create table work.decile_analysis as
+     select
+-        decile + 1 as decile,
+-        count(*) as total_count,
+-        sum(default_flag) as defaults,
+-        mean(default_flag) as default_rate format=percent8.2,
+-        mean(pd_logistic) as avg_pd format=8.4,
+-        min(pd_logistic) as min_pd format=8.4,
+-        max(pd_logistic) as max_pd format=8.4,
+-        sum(default_flag) / (select sum(default_flag) from work.decile_data) as capture_rate format=percent8.2,
+-        (calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift format=8.2
+-    from work.decile_data
+-    group by decile
+-    order by decile;
++        l.decile,
++        coalesce(d.total_count, 0) as total_count,
++        coalesce(d.defaults, 0) as defaults,
++        d.default_rate format=percent8.2,
++        d.avg_pd format=8.4,
++        d.min_pd format=8.4,
++        d.max_pd format=8.4,
++        case when d.decile is null then 0 else d.capture_rate end as capture_rate format=percent8.2,
++        case when d.decile is null then 0 else d.lift end as lift format=8.2
++    from work.decile_list l
++    left join
++        (select
++            decile + 1 as decile,
++            count(*) as total_count,
++            sum(default_flag) as defaults,
++            mean(default_flag) as default_rate,
++            mean(pd_logistic) as avg_pd,
++            min(pd_logistic) as min_pd,
++            max(pd_logistic) as max_pd,
++            sum(default_flag) / (select sum(default_flag) from work.decile_data) as capture_rate,
++            (calculated default_rate) / (select mean(default_flag) from work.decile_data) as lift
++         from work.decile_data
++         group by decile) d
++    on l.decile = d.decile
++    order by l.decile;
+ quit;
+ 
+ proc print data=work.decile_analysis;
+@@ -255,7 +302,8 @@ data work.cumulative_lift;
+     end;
+ 
+     cum_capture_rate = cum_defaults / &total_defaults;
+-    cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
++    /* No cumulative lift while the deciles so far are empty */
++    if cum_count > 0 then cum_lift = (cum_defaults / cum_count) / &overall_default_rate;
+     format cum_capture_rate percent8.2 cum_lift 8.2;
+ run;
+ 
+@@ -322,11 +370,14 @@ run;
+ 
+ /* An empty bin is given a share below that of one applicant, the same on both
+    sides, so that a bin filled on one side only adds a positive amount */
++/* The size of the larger set is carried as a whole number and the share is computed
++   where it is used, so it is not cut to the 8 characters of a macro variable */
+ proc sql noprint;
+-    select 0.5 / max(t.n, v.n) into :psi_floor trimmed
++    select max(t.n, v.n) format=32. into :psi_rows trimmed
+     from (select count(*) as n from work.train_bins) t,
+          (select count(*) as n from work.valid_bins) v;
+ quit;
++%let psi_floor = (0.5 / &psi_rows);
+ 
+ /* Calculate PSI */
+ proc sql;
+diff --git a/legacy/predict.sas b/legacy/predict.sas
+index f8ff111..6d0db2f 100644
+--- a/legacy/predict.sas
++++ b/legacy/predict.sas
+@@ -90,7 +90,7 @@ quit;
+    a known MonthlyIncome is zero or more */
+ data work.input_check;
+     set work.test_raw;
+-    bad_row = (missing(VAR1)
++    bad_row = (missing(%num(VAR1))
+         or (upcase(cats(SeriousDlqin2yrs)) not in ('', '.', 'NA') and
+             %num(SeriousDlqin2yrs) not in (0, 1))
+         or missing(%num(age))

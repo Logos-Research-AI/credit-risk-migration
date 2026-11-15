@@ -208,3 +208,112 @@ New warnings: none.
 - Nothing in the G34 ruling or the findings was found to be wrong. The open points of round 1 not covered by rulings G34 to G38 (the exp overflow for a logit near -800 in train.sas and predict.sas) are unchanged.
 
 The reviewing agent found no defect in round 2.
+
+# Round 3 (2026-11-15)
+
+## Q23: fixed-and-shown
+
+- **Change.** No SAS change in this pass. Standing change (commit 3428731): /Users/cristophersalvi/GitHub/credit-risk-migration/legacy/metrics_calculation.sas lines 79-113 compute the summary AUC exactly. A PROC SQL groups the validation rows by pd_logistic (rows with a missing probability left out), and a DATA step sets AUC = (concordant + tied / 2) / (defaulters x non-defaulters) and Gini = 2 x AUC - 1. The PROC LOGISTIC ROC step (lines 70-77) stays, as the brief says; its table is only printed, and exported by the harness as printed_roc_metrics.csv.
+
+Review defects:
+1. Printed Somers' D (lines 70-77): not changed, needs the owner. The reviewer is right: on fix_Q23_near the summary Gini is 0.6250 and the printed Somers' D is 0.3750, so 'Somers' D equals Gini' fails if the printed table counts. The brief says to leave the ROC step in place.
+2. model_summary.csv Valid_AUC and Train_AUC (train.sas lines 326-329, 393-394): not changed, needs the owner. The reviewer is right that Valid_AUC can disagree with the summary AUC on near-tied probabilities. The brief and G40 name only the validation summary.
+3. Evidence limit (12-character export): correct, no change. The summary AUC is exact for the probabilities as published in risk_scores_validation.csv, not as computed in train.sas. Two computed probabilities that differ beyond 12 characters still reach metrics_calculation.sas as a tie.
+4. One-class claim not shown by a run: now shown, see evidence. The zero-row case is still by reading only.
+- **Copies.** One place in metrics_calculation.sas, feeding validation_summary.csv and model_performance_metrics.csv. Left alone, both awaiting the owner: the printed ROCAssociation table in the same script (Area, Somers' D) and Train_AUC / Valid_AUC in train.sas.
+- **Evidence.** New in this pass, both on the committed scripts with metrics_calculation.sas on stage inputs:
+- ev5_fix_Q23_nodefaulter (judge/scenarios/fix_Q23_nodefaulter: 4 validation rows, none a defaulter).
+- ev5_fix_Q23_alldefaulters (judge/scenarios/fix_Q23_alldefaulters: 4 rows, all defaulters).
+In both, validation_summary.csv has one row, 'Logistic Model,,,,0.1000,0.7653750663,Significant change,Logistic Regression,Needs Improvement': AUC, Gini and KS are empty. model_performance_metrics.csv has AUC and Gini empty.
+Each log has 3 errors, none from the new statements: 'ERROR: All observations have the same response. No statistics are computed.' from the kept PROC LOGISTIC step, and two from the harness export of the missing work.roc_stats, so printed_roc_metrics.csv is not written. New warnings: 'Output ROCAssociation was not created' in both, and 'Y=CUM_LIFT is invalid' from the chart in the no-defaulter run. All six metrics CSVs are still exported.
+
+Standing: ev4_fix_Q23_near gives AUC 0.8125 and Gini 0.6250 (6.5 / 8) in the summary, against Area 0.6875 and Somers' D 0.3750 in printed_roc_metrics.csv. On the real data AUC is 0.8559 and Gini 0.7118.
+
+Not shown by a run: a validation set where every pd_logistic is missing. By reading, auc_pairs is then empty, auc_summary has no row, and the summary row comes from the KS and PSI tables with ROCModel, AUC and Gini empty.
+- **Commit.** 3428731 (fix); ccec3da (the two one-class evidence scenarios, no SAS change)
+
+## Q26: fixed-and-shown
+
+- **Change.** No change in this pass; the reviewer found no defect. Standing change: metrics_calculation.sas lines 241-278 build deciles 1 to 10 and left-join the grouped query to them. An empty decile has total_count 0, defaults 0, capture_rate 0 and lift 0; default_rate, avg_pd, min_pd and max_pd are missing. Line 306 guards cum_lift against an empty leading decile.
+- **Copies.** One place in metrics_calculation.sas (decile_analysis.csv), plus the guard in the cumulative-lift step. calibration_plot is not touched: no requirement or ruling names it.
+- **Evidence.** Unchanged. ev4_fix_Q26_small (7 rows): ten rows; deciles 1, 5 and 10 read 0,0,,,,,0.00%,0.00; the three defaulters sit in deciles 2, 4 and 8 with capture 33.33% each. ev4_fix_Q26_ties (40 rows, two distinct probabilities): decile 2 has 10 rows, capture 62.50%, lift 2.50; decile 7 has 30 rows, capture 37.50%, lift 0.50; the other eight are 0 / 0.00% / 0.00. Both 0 errors, 0 new warnings. The real decile_analysis.csv is byte-identical to the previous reference.
+- **Commit.** ad9c945
+
+## Q27: fixed-and-shown
+
+- **Change.** No change in this pass. Standing change: `missing(%num(VAR1))` replaces `missing(VAR1)` at /Users/cristophersalvi/GitHub/credit-risk-migration/legacy/feature_engineering.sas line 86 and /Users/cristophersalvi/GitHub/credit-risk-migration/legacy/predict.sas line 93.
+
+Review defects:
+1. The texts `NA` and `.` are still accepted as missing in MonthlyIncome, NumberOfDependents and the test outcome, against G39 read literally: not changed, needs a ruling. The real cs-training.csv has 29,731 lines containing NA, so enforcing G39 literally rejects the real data.
+2. Two ids that are distinct decimals but equal as doubles (9007199254740992 and 9007199254740993) are reported as duplicates: pre-existing and not changed. The reviewer's arithmetic is right; I did not run it. No ruling covers ids beyond 2^53.
+3. An id column typed as character with two spellings of one number passing as distinct: the reviewer marks it unverified. I did not test it and changed nothing.
+- **Copies.** Both copies: feature_engineering.sas (training file) and predict.sas (test file).
+- **Evidence.** Unchanged. ev4_fix_Q27_textid, five steps in one session. Training row with id A34: feature_engineering.sas stops with 'columns_ok=1 bad_rows=1 duplicate_ids=0 known_incomes=2413', and income_medians.csv and both model_features files are gone. Test row with id A30: predict.sas stops with 'columns_ok=1 bad_rows=1 duplicate_ids=0', and test_predictions.csv and kaggle_submission.csv are gone. The valid files restore all of them in the following steps.
+- **Commit.** a6c0b02
+
+## PSI floor (G43): fixed-and-shown
+
+- **Change.** No change in this pass; the reviewer found no defect in the fix. Standing change: metrics_calculation.sas lines 371-380 carry the size of the larger set as a whole number and define `%let psi_floor = (0.5 / &psi_rows);`, so the division is done in double precision where the floor is used.
+
+Review remark, not changed and for the owner: lines 285-288 pass `mean(default_flag)` through the macro variable `&overall_default_rate` as 8-character text, and line 306 divides by it for cum_lift. This is the same kind of truncation, but G43 names only the PSI floor. It reaches only work.cumulative_lift, which feeds the chart and the harness file printed_cumulative_lift.csv at two decimals, and no published metrics file.
+- **Copies.** One place in metrics_calculation.sas for the PSI floor. One same-class copy left alone: `&overall_default_rate` in the cumulative-lift chart step.
+- **Evidence.** Unchanged. ev4_fix_G43 (21 training rows, 3 validation rows, eight validation bins empty) publishes PSI 1.897344887. Recomputed outside SAS, the full-precision floor gives 1.89734488697 and the truncated floor 0.02381 gives 1.89732817747. The reviewer recomputed the same two values independently.
+- **Commit.** 3e6dfa6
+
+## Q11 seed evidence: fixed-and-shown
+
+- **Change.** No code change. The reviewer found no defect.
+- **Copies.** Not applicable.
+- **Evidence.** Unchanged. feature_engineering.sas on the same real cs-training.csv in three separate sessions (final3_real, ev4_Q11_seed_fe, final3_edge_predict) gives byte-identical model_features_train.csv (105,000 rows) and model_features_validation.csv (45,000 rows), also identical to the previous reference. Limit: this is agreement of 4 runs, not a proof; judge/README.md records one earlier run in 17 whose split differed.
+- **Commit.** none (no change)
+
+## Final runs and the new reference
+
+No SAS script changed in this pass, so the full runs and the reference stand as they were and were not repeated. All runs are under /Users/cristophersalvi/GitHub/credit-risk-migration/judge/runs/, which is git-ignored and exists only in this working copy.
+
+Full runs, on the committed scripts (legacy at 3e6dfa6, unchanged since):
+- final3_real: real data, four scripts. 0 errors, 0 new warnings, 32 CSVs.
+- final3_edge_predict: four scripts. 0 errors, 0 new warnings.
+- final3_edge_metrics_a, final3_edge_metrics_b, final3_edge_metrics_c: metrics_calculation.sas on stage inputs. 0 errors, 0 new warnings.
+
+New evidence runs in this pass (metrics_calculation.sas on stage inputs, 17 and 18 s):
+- ev5_fix_Q23_nodefaulter
+- ev5_fix_Q23_alldefaulters
+Each has 3 errors, all from the kept PROC LOGISTIC ROC step on a one-class set and the harness export of its missing table.
+
+Earlier evidence runs: ev4_fix_Q23_near, ev4_fix_Q26_small, ev4_fix_Q26_ties, ev4_fix_G43, ev4_fix_Q27_textid, ev4_Q11_seed_fe.
+
+Reference: commit 3eca5a3, unchanged. The new commit ccec3da adds only judge/scenarios/fix_Q23_nodefaulter and judge/scenarios/fix_Q23_alldefaulters.
+
+## What changed in the outputs
+
+None in this pass: no script changed, so no output changed.
+
+Standing changes against the reference before round 3 (commit 6a2e60c):
+- Real data: 30 of 32 CSVs byte-identical. model_summary.csv and model_performance_metrics.csv differ only in the date stamp. Coefficients, grade distribution, AUC 0.8559, Gini 0.7118, KS 0.5552 at cutoff 0.0587, PSI 0.0004404097 and status 'Production Ready' are unchanged.
+- edge_predict: the same two files, date only.
+- edge_metrics_a: model_performance_metrics.csv, date only.
+- edge_metrics_b: PSI 6.8121516398 -> 6.8081601761, in validation_summary.csv, model_performance_metrics.csv and printed_psi_calculation.csv. Interpretation and status unchanged.
+- edge_metrics_c: PSI 0.3078608702 -> 0.3075776761, same three files. Still 'Significant change', 'Requires Review'.
+- AUC, Gini, KS and the ten-row decile tables are unchanged in all five runs. No new warning, no CSV format change.
+
+## Problems and open points
+
+- Owner decision needed, Q23 printed table: on near-tied probabilities the printed Somers' D (PROC LOGISTIC, metrics_calculation.sas lines 70-77, exported as printed_roc_metrics.csv) differs from the summary Gini (0.3750 against 0.6250 on fix_Q23_near). Q23 says 'Somers' D equals Gini'; the brief says to leave the ROC step in place. I changed nothing. If the printed table counts, the step must be removed or its Somers' D replaced by the exact value.
+- Owner decision needed, Q23 in train.sas: model_summary.csv Train_AUC and Valid_AUC still come from PROC LOGISTIC's ROCAssociation (lines 326-329, 393-394), so Valid_AUC can disagree with validation_summary.csv AUC on near-tied probabilities. The brief and G40 name only the validation summary. I changed nothing.
+- Q23 limit, confirmed: the summary AUC is exact for the 12-character probabilities that train.sas exports, not for the computed ones. A defaulter at 0.5000000000001 and a non-defaulter at 0.5 as computed reach the summary as a tie. Removing this would mean widening the export in train.sas, which no ruling asks for.
+- Q23 one-class runs: the script does not run clean on a one-class validation set. The kept PROC LOGISTIC step raises 'ERROR: All observations have the same response', and there are two new warnings (ROCAssociation not created; Y=CUM_LIFT invalid when there is no defaulter). The six CSVs are still exported, with AUC, Gini and KS empty. G19 requires nothing of the values. Status reads 'Needs Improvement' because missing AUC fails both thresholds.
+- Q23 zero-row case not run: when every pd_logistic is missing, auc_summary has no row and the summary row comes from the KS and PSI tables with ROCModel, AUC and Gini empty. This is by reading only; a file with an all-missing probability column would be imported as text and break earlier steps.
+- Ruling needed, Q27 and G39: the input checks accept the texts `NA` and `.` as missing in MonthlyIncome, NumberOfDependents and the test outcome. Enforcing G39 literally would reject the real cs-training.csv (29,731 lines with NA). Unchanged.
+- Q27, pre-existing: two ids that are distinct decimals but equal as doubles (beyond 2^53) are rejected as duplicates. Agreed by arithmetic, not run, not changed. The reviewer's second point (an id column typed as character with two spellings of one number) is untested.
+- G43 same-class copy left alone: `&overall_default_rate` (metrics_calculation.sas lines 285-288, used at line 306) is carried as 8-character text. It affects only cum_lift in the chart and printed_cumulative_lift.csv, not a published metrics file. G43 names only the PSI floor, so I did not change it; the same two-line pattern as the PSI fix would do it if the owner wants it.
+- The parity contract does not pass: `bash migration/legacy-to-port/parity/run_contract.sh out/parity` fails because the port is still the port of the uncorrected SAS. The system instruction says it must pass; the round 3 brief forbids touching port/ and judge/compare.py, and I followed the brief. I did not rerun it in this pass, since nothing it reads changed.
+- The standing brief named in the system instruction (migration/proofs/port-equals-legacy/brief-coding-agent.md) was not used; the task named migration/proofs/legacy-meets-requirements/brief-coding-agent.md, section 'Round 3'.
+- Q26, choices of mine for the columns G41 does not name: an empty decile has total_count 0 and defaults 0, with default_rate, avg_pd, min_pd and max_pd missing. A row with a missing probability no longer gets a decile row of its own. With no defaulter in the validation set, a filled decile's capture rate and lift are missing (0/0) while an empty decile's are 0; ev5_fix_Q23_nodefaulter is such a set, though I did not inspect its decile file.
+- PSI floor: if both score files are empty the floor is still a division by zero, as before.
+- The Q27 and G43 evidence runs (ev4_fix_Q27_textid, ev4_fix_G43) ran on the working tree just before their commits. Their logs echo the committed lines and I did not repeat them.
+- Q11: the evidence is 4 identical splits in 4 sessions. It cannot rule out the drift that judge/README.md records once in 17 earlier runs.
+- The Q23 and Q26 witnesses were not replayed through the whole pipeline; the evidence is metrics_calculation.sas on stage inputs, where both defects sit.
+- judge/README.md, judge/mutations.py and judge/scenarios/real_metrics remain out of date, as in round 2. judge/test_compare.py and judge/validate_judge.py were not run.
+- The reference run_meta.json files are the runs' own, without the hand-added 'warnings_reviewed' block of the original reference.
+- Commits are on branch `initial`, the default branch, where the workflow's earlier commits are. Nothing was pushed. No hook blocked any call. The logos-mcp and ide servers failed to connect; neither was needed.

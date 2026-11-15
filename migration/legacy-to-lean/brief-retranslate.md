@@ -44,3 +44,14 @@ Return as text: every item changed or added with the SAS lines it covers; how "s
 modelled; rules added to the rulebook with their evidence; the differential-evaluation receipt
 for this round; open parameters; anything in the corrected SAS that looks wrong or that you could
 not model.
+
+## Second update (round 3 of the corrections)
+
+The SAS was corrected again on four points (rulings G40 to G43): the exact AUC in
+`metrics_calculation.sas`, the ten-row decile table, the numeric row-id check in both input
+checks, and the PSI floor at full precision. The diff since your last update is
+`migration/legacy-to-lean/corrections-round3.diff`; the account is the section "Round 3" of
+`corrections-account.md`; the evidence runs are `ev4_*`, `ev5_*` and `final3_*` in `judge/runs/`,
+and `judge/reference/` holds the newest outputs. Do the same work as above for these changes
+only. Your earlier account is `retranslation-report.md`. While you are editing them anyway,
+bring the informal text of each item you touch in line with the current SAS lines.
