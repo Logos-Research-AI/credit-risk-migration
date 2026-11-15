@@ -58,3 +58,27 @@ not the program's. Rescuing them needs a link on faulty tables: a decision on th
 the owner.
 
 Minor: `manifest.tsv` still lists `test_raw_columns_ok` at predict.sas 71-86 with the R39 note.
+
+## Owner's decision on the import links (2026-11-15): they cover every table
+
+Put to the owner as the finding above. Decision: option A. Links (1) and (2) are extended to
+every raw table: the import delivers a file as it is (rows, order, column names, cell contents;
+a number may arrive as text that reads back to the same number), and the clauses for valid
+tables are kept as they were. The links must not say that a check fails on a faulty table: that
+is for the SAS checks to do and for the contract to prove. Recorded in `brief-prover.md`
+(commit 22c4b03). A prover is revising `def:SasLinks` on that brief; a second prover reviews it.
+
+## State before that revision
+
+- Contracts: all 26 and `thm:score_chains_agree` were restated after the first revision of the
+  pipeline, with the new parameter `importTestColumns` and nothing else changed. The revision of
+  `def:SasLinks` clears them again; they are resubmitted unchanged.
+- Shared lemmas after the first revision: `lem:sas_feature_rows`, `lem:sas_features_some`,
+  `lem:sas_split_sat`, `lem:sas_links_sat` statement and proof accepted; `lem:sasLinks_witness`
+  statement accepted, proof not started (it is the proof of `lem:sas_links_sat` with the reads
+  written `fun t => t`). `lem:sas_features_row_total` and `lem:sas_score_rows` were never
+  cleared. Witness for `importTestColumns`: the constant list of the twelve names of link (2b).
+- What the extension will ask of the lemmas: `lem:sas_feature_rows` and `lem:sas_features_some`
+  use link (1) as an implication from `TrainOK`; the witness imports of `lem:sas_links_sat` are
+  proved to deliver rows only on valid tables, so the extended links need new work there, not
+  only the new parameter.
