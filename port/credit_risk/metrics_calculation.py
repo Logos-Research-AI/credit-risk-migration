@@ -78,7 +78,7 @@ def confusion_metrics(
     return confusion, conf_matrix, metrics
 
 
-def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> None:
+def run(input_dir: Path, output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)  # R§4, S12
 
     # metrics_calculation.sas:28-41 PROC IMPORT of the scored data
@@ -249,58 +249,75 @@ def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> Non
 
     # listing-only: PROC SGPLOT cumulative_lift (cumulative lift by decile)
 
-    # metrics_calculation.sas:250-262 PROC RANK groups=10 (each set ranked separately)
-    # R§2 PROC RANK; BUG(port): judge/reference risk_scores_*: every score_bin has
-    # train_pct = valid_pct = 0.1 -> psi_component 0, PSI 0.0000 (each set ranked into its own deciles)
-    train_bins = logit_scored_train.with_columns(
-        sas_compat.proc_rank_groups(logit_scored_train.get_column("pd_logistic"), 10).alias("score_bin")
+    # metrics_calculation.sas:332-346 psi_cuts: the nine nearest-rank deciles of the training scores
+    # R§2 PROC SORT (missing first); row ceil(k * n_train / 10) of the sorted scores, k = 1..9. An empty
+    # training set leaves psi_cuts without a row
+    train_scores_sorted = logit_scored_train.select("credit_risk_score").sort(
+        "credit_risk_score", maintain_order=True
     )
-    # FIXED(post-parity, flag --fix-psi-bins): validation rows take the TRAINING decile cut-points
-    valid_bin_col = (
-        sas_compat.proc_rank_apply_groups(
-            logit_scored_train.get_column("pd_logistic"), logit_scored_valid.get_column("pd_logistic"), 10
-        )
-        if fix_psi_bins
-        else sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 10)
-    )
-    valid_bins = logit_scored_valid.with_columns(valid_bin_col.alias("score_bin"))
+    n_train = train_scores_sorted.height
+    psi_cuts = [
+        cast(float | None, train_scores_sorted.item(-(-k * n_train // 10) - 1, 0))
+        for k in range(1, 10)
+        if n_train > 0
+    ]
 
-    # metrics_calculation.sas:265-278 psi_calculation
-    # INV work.psi_calculation / psi_summary: shares = div(count, n) after aggregation (A7, A13); inner
-    # join (A26)
+    # metrics_calculation.sas:349-369 train_bins / valid_bins: both sets in the training bins; a score
+    # equal to a cut belongs to the lower bin (SAS >, missing smallest). `if _n_ = 1 then set psi_cuts`
+    # ends the step at once when psi_cuts has no row: both tables are then empty
+    score_bin = pl.lit(0, pl.Int64)
+    for cut in psi_cuts:
+        score_bin = score_bin + sas_compat.flag(
+            sas_compat.gt(pl.col("credit_risk_score"), pl.lit(cut, pl.Float64))
+        )
+    train_bins = (logit_scored_train if psi_cuts else logit_scored_train.clear()).with_columns(
+        score_bin=score_bin
+    )
+    valid_bins = (logit_scored_valid if psi_cuts else logit_scored_valid.clear()).with_columns(
+        score_bin=score_bin
+    )
+
+    # metrics_calculation.sas:371-375 psi_bins: always ten rows, bins 0 to 9
+    psi_bins = pl.DataFrame({"score_bin": list(range(10))}, schema={"score_bin": pl.Int64})
+
+    # metrics_calculation.sas:381-386 &psi_rows (whole number, format 32.) and &psi_floor = (0.5 / &psi_rows)
+    # SQL division by 0 is missing (no row on either side)
+    psi_rows = max(train_bins.height, valid_bins.height)
+    psi_floor = pl.lit(0.5 / psi_rows if psi_rows > 0 else None, pl.Float64)
+
+    # metrics_calculation.sas:389-406 psi_calculation
+    # INV work.psi_calculation / psi_summary: shares = div(count, n) after aggregation (A7, A13); left
+    # joins from psi_bins, an empty bin has share 0 and enters the component at the floor (SAS max ignores
+    # missing)
     a = train_bins.group_by("score_bin", maintain_order=True).agg(cnt=pl.len().cast(pl.Int64))
     a = a.with_columns(train_pct=sas_compat.div(pl.col("cnt"), train_bins.height)).drop("cnt")
     b = valid_bins.group_by("score_bin", maintain_order=True).agg(cnt=pl.len().cast(pl.Int64))
     b = b.with_columns(valid_pct=sas_compat.div(pl.col("cnt"), valid_bins.height)).drop("cnt")
-    if fix_psi_bins:
-        # FIXED(post-parity, flag --fix-psi-bins): left join from the TRAINING bins; a training bin with no
-        # validation rows keeps valid_pct = 0 (printed as 0) and enters the log term floored at eps (ln of 0
-        # is undefined). eps is below every non-zero share (>= 1/n): only a share of exactly 0 is raised (D1)
-        eps = min(1e-4, 0.5 / max(train_bins.height, 1), 0.5 / max(valid_bins.height, 1))
-        psi_calculation = a.join(
-            b, on="score_bin", how="left", maintain_order="left", nulls_equal=True
-        ).with_columns(pl.col("valid_pct").fill_null(0.0))
-        share_sum = float(psi_calculation.select(pl.col("valid_pct").sum()).item())
-        if abs(share_sum - 1.0) > 1e-9:
-            raise ValueError("--fix-psi-bins: validation shares do not sum to 1")
-        psi_calculation = psi_calculation.with_columns(
-            psi_component=(pl.col("train_pct") - pl.col("valid_pct"))
-            * pl.max_horizontal(pl.col("train_pct"), eps).log()
-            - (pl.col("train_pct") - pl.col("valid_pct")) * pl.max_horizontal(pl.col("valid_pct"), eps).log()
-        ).sort("score_bin", maintain_order=True)
-    else:
-        psi_calculation = (
-            a.join(b, on="score_bin", how="inner", maintain_order="left", nulls_equal=True)
-            .with_columns(
-                psi_component=(pl.col("train_pct") - pl.col("valid_pct"))
-                * sas_compat.sas_log(pl.col("train_pct") / pl.col("valid_pct"))  # R§2 log; column / column
-            )
-            .sort("score_bin", maintain_order=True)  # ascending score_bin (INV printed_psi_calculation.csv)
+    psi_calculation = (
+        psi_bins.join(a, on="score_bin", how="left", maintain_order="left")
+        .join(b, on="score_bin", how="left", maintain_order="left")
+        .with_columns(
+            train_pct=pl.col("train_pct").fill_null(0.0),  # coalesce(a.train_pct, 0)
+            valid_pct=pl.col("valid_pct").fill_null(0.0),  # coalesce(b.valid_pct, 0)
         )
+        .with_columns(
+            psi_component=(
+                sas_compat.sas_max(pl.col("train_pct"), psi_floor)
+                - sas_compat.sas_max(pl.col("valid_pct"), psi_floor)
+            )
+            * sas_compat.sas_log(  # R§2 log
+                sas_compat.div(
+                    sas_compat.sas_max(pl.col("train_pct"), psi_floor),
+                    sas_compat.sas_max(pl.col("valid_pct"), psi_floor),
+                )
+            )
+        )
+        .sort("score_bin", maintain_order=True)  # order by s.score_bin
+    )
 
-    # metrics_calculation.sas:280-287 psi_summary
-    # R§2 SQL aggregates (S10): PSI is missing over an empty join; INV work.psi_calculation / psi_summary
-    # (S11)
+    # metrics_calculation.sas:408-415 psi_summary (PSI format best12.: published unrounded)
+    # R§2 SQL aggregates (S10): PSI is missing when every component is missing; INV work.psi_calculation /
+    # psi_summary (S11)
     psi_summary = psi_calculation.select(PSI=sas_compat.sql_sum(pl.col("psi_component")))
     psi_summary = psi_summary.with_columns(
         PSI_interpretation=pl.when(sas_compat.lt(pl.col("PSI"), 0.1))
@@ -359,7 +376,7 @@ def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> Non
     sas_compat.write_sas_csv(
         validation_summary,
         output_dir / "validation_summary.csv",
-        formats={"AUC": "8.4", "Gini": "8.4", "KS_Statistic": "8.4", "KS_Cutoff": "8.4", "PSI": "8.4"},
+        formats={"AUC": "8.4", "Gini": "8.4", "KS_Statistic": "8.4", "KS_Cutoff": "8.4", "PSI": "best12."},
     )
     sas_compat.write_sas_csv(
         decile_analysis, output_dir / "decile_analysis.csv", formats=decile_analysis_formats
@@ -404,7 +421,7 @@ def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> Non
             "Gini": "8.4",
             "KS_Statistic": "8.4",
             "KS_Cutoff": "8.4",
-            "PSI": "8.4",
+            "PSI": "best12.",
             "validation_date": "date9.",
         },
     )
@@ -451,12 +468,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Credit risk model validation (metrics_calculation.sas)")
     parser.add_argument("--input-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument(
-        "--fix-psi-bins",
-        action="store_true",
-        help="post-parity fix: PSI bins validation on the training decile cut-points",
-    )
     args = parser.parse_args()
-    run(args.input_dir, args.output_dir, fix_psi_bins=args.fix_psi_bins)
+    run(args.input_dir, args.output_dir)
 
 # PORT STATUS: confidence=high todos=0
