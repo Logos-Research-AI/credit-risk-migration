@@ -29,7 +29,7 @@ import math
 import re
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
-from decimal import ROUND_HALF_UP, Context, Decimal
+from decimal import ROUND_DOWN, ROUND_HALF_UP, Context, Decimal
 from pathlib import Path
 from typing import cast, overload
 
@@ -347,6 +347,29 @@ def _best_below_one(x: float, w: int) -> str:
     return _best_e(x, w)
 
 
+def _best32(x: float) -> str:
+    """BEST32. text of a non-zero finite value (experiments X09, X11: 613 values, all reproduced).
+    A whole number prints every digit of the double (12345678901234567 -> '12345678901234568').
+    Otherwise |x| * (1 + 2**-52) is CUT, not rounded, to 15 - (number of integer digits) decimals,
+    16 characters before the sign, trailing zeros stripped: 1234567.123456789 -> '1234567.12345678',
+    2/3 -> '0.66666666666666', 2499.9999999999995 -> '2500', 0.1 + 0.7 -> '0.8'. Below 1e-5 the
+    15-digit form (A18) is cut to 14 digits in E-notation (2.8933077716502265e-08 ->
+    '2.8933077716502E-8'). Not measured: a whole number of more than 21 digits."""
+    sign = "-" if x < 0 else ""
+    ax = abs(x)
+    if ax == math.floor(ax):
+        return sign + str(int(ax))
+    if ax >= 1e-5:
+        xp = ax * (1 + 2.0**-52)
+        dec = max(15 - len(str(int(xp))), 0)
+        q = Decimal(xp).quantize(Decimal(1).scaleb(-dec), rounding=ROUND_DOWN, context=_CTX)
+        return sign + _strip_zeros(f"{q:f}")
+    d15 = _sig15(x)
+    exp = d15.adjusted()
+    mant = d15.scaleb(-exp).quantize(Decimal(1).scaleb(-13), rounding=ROUND_DOWN, context=_CTX)
+    return sign + _strip_zeros(f"{mant:f}") + f"E{exp}"
+
+
 def sas_best(x: float | None, w: int) -> str:
     """BESTw. text. Plain notation rounded half up from the value's 15-significant-digit form
     (A18); at w = 12 E-notation for 0 < |x| < 1e-5 with the mantissa rounded to fill w characters and
@@ -356,13 +379,16 @@ def sas_best(x: float | None, w: int) -> str:
     At other widths a value below 1 prints in E-notation when plain notation cannot show it within w
     (experiment X05: 0.000015 -> BEST6 '15E-6', BEST8 and BEST12 '0.000015').
     RESOLVED (post-parity): X06 fixes the BEST8/BEST6 cells below 1 and above 1e11 (see _best_e).
-    Still unverified: a w too small to show any digit (-100 at w=3 gives '-1E2'); BEST32 of integers
-    over 15 digits (X06 input32 prints them exactly; out of scope, unused).
+    Still unverified: a w too small to show any digit (-100 at w=3 gives '-1E2').
+    At w = 32 (the medians of income_medians.csv) the text is `_best32`: more than 15 digits for a
+    whole number, a cut and not a rounding otherwise (X09, X11).
     Non-finite -> ''."""
     if x is None or not math.isfinite(x):
         return ""
     if x == 0:
         return "0"
+    if w == 32:
+        return _best32(x)
     ax = abs(x)
     if w != 12 and ax < 1:
         return _best_below_one(x, w)
