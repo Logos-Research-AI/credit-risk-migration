@@ -22,6 +22,25 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # train.sas:19 %let output_path -> input_dir (features) and output_dir (exports)  # INV &output_path
 
+    # train.sas:21-32 Q27 (b40a55d): remove the results of an earlier run first
+    for fname in (
+        "risk_scores_train.csv",
+        "risk_scores_validation.csv",
+        "final_model_output.csv",
+        "model_summary.csv",
+        "model_coefficients.csv",
+    ):
+        (output_dir / fname).unlink(missing_ok=True)
+
+    # train.sas:34-42 Q27 (b40a55d): stop when the step before did not produce its result
+    if (
+        not (input_dir / "model_features_train.csv").exists()
+        or not (input_dir / "model_features_validation.csv").exists()
+    ):
+        print("ERROR: The feature files are not in the output folder: feature engineering did not complete.")
+        print("ERROR: Model training stopped. Nothing is exported.")
+        raise ValueError("Model training stopped. Nothing is exported.")
+
     # train.sas:49-64 PROC IMPORT of the two feature files
     # R§2 PROC IMPORT, INV work.model_features_train: guessingrows=max -> None, all 42 columns Float64
     model_features_train = sas_compat.proc_import_csv(
