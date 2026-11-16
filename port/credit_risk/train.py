@@ -177,6 +177,16 @@ def run(input_dir: Path, output_dir: Path) -> None:
     for st in stepwise.steps:
         names_k = st.fit.names
         q = len(names_k) - 1  # effects in the model, intercept not counted
+        if q == 0:
+            # a step that removes the last variable: SAS prints for it what it prints for step 0, the
+            # one -2 Log L line, and no global tests or R-square row (small-inputs.md (e))
+            fs_step.append(str(st.step))
+            fs_rowid.append("M2LOGL0")
+            fs_criterion.append("-2 Log L")
+            fs_equals.append("=")
+            fs_only.append(sas_compat.sas_d12_3(m2ll0))
+            fs_cov.append(sas_compat.fmt_wd(m2ll0, 9, 3))
+            continue
         m2ll = -2.0 * st.fit.loglik
         x_k = np.column_stack(
             [
