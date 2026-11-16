@@ -9,8 +9,8 @@ Rulings built in: G53 (valid input only), G54 (a present `MonthlyIncome` or `Num
 is written in at most 12 characters; it reaches these texts through `TrainOK` and `TestOK`), G55
 (the equality is stated for one read-back shared by both sides; the requirements are carried over
 at the identity). Marks `[D3]` to `[D9]` show where a decision is applied (all settled on
-2026-11-16 as recommended); `[R1]` to `[R6]` where a real run of the port is still owed before the clause
-may be stated (plan, section 2.5).
+2026-11-16 as recommended); the runs R1 to R6 the plan asked for (section 2.5) are now recorded as rules H8 to H14 of
+RULEBOOK 2.8 (`migration/port-to-lean/`, version 5), cited clause by clause.
 
 Vocabulary. A *read-back* is a function from the table a script writes to the table the next
 script gets from the file. The *port parameters* are one record `py`; the *SAS parameters* are the
@@ -41,7 +41,8 @@ The parameters `py` are:
   files, the medians file, the coefficients file, the two score files (one flag each for the
   score files, so six functions if counted singly);
 - the model file: a function from the model train returns to the intercept and coefficient list
-  predict parses from `model.json`. `[R4]`
+  predict parses from `model.json` (the identity by rule H11; kept as a parameter so that the
+  condition is visible).
 
 The fields:
 
@@ -84,47 +85,93 @@ Each clause names the observation it rests on (RULEBOOK section 2.8 of
 numpy routines, `fsum`, `today` or `full`.
 
 1. **Reading a number from text.** `input_best32` returns, for a text column, a number column of
-   the same height whose every cell is what `Sas.inputBest` reads from the text, and missing for
-   a missing text. (Shape: G27 (c). Values: `[R1]`.)
-2. **The 12-character round trip.** For every number that can be written in at most 12
-   characters, `input_best32` of the `sas_best12` text of the number is the number; a missing
-   value gives a missing value. (Ruling G54; SAS half shown by experiment x25; port half `[R2]`.)
+   the same height. For a text of at most 32 characters made of digits with at most one point,
+   the cell is the number written. For a missing text, an empty or blank text, `.` and `NA`, the
+   cell is missing. Nothing is asked for any other text. (Rule H8, experiment E12; shape: G27
+   (c). That `Sas.inputBest` reads the same on these texts is then a lemma about the SAS helper,
+   not a condition here.)
+2. **The 12-character round trip.** For every number, zero or more, that is written in at most
+   12 characters in the sense of the requirements (`CreditRisk.decimal12`), `input_best32` of
+   the `sas_best12` text of the number is the number; a missing value gives a missing value.
+   (Rule H9, experiments E12 and E12b; ruling G54; SAS half: experiment x25.) See the note on
+   G54 below.
 3. **The training import.** On a table meeting `TrainOK`, `importTrain` returns a frame: one row
    per raw row, in order; the twelve column names of the requirements in one order for all rows;
    the ten columns other than `MonthlyIncome` and `NumberOfDependents` numeric, holding the value
    of the raw cell; each of those two columns, as a whole, either numeric (missing for a missing
-   value) or text (the text reads, by `Sas.inputBest`, as the value of the raw cell; a missing
-   value is a missing text or a text SAS takes for missing). (H1, H2, H7.)
+   value) or text (a text of clause 1 that reads as the value of the raw cell; a missing value
+   is one of the missing forms of clause 1). (Rules H1, H2, H7.)
 4. **The test import.** On a table meeting `TestOK`, `importTest` returns a header and a frame
-   with the same properties, `SeriousDlqin2yrs` being text and missing throughout when no outcome
-   is stated; on a table with no row, the twelve names, text exactly under `SeriousDlqin2yrs`,
-   `MonthlyIncome`, `NumberOfDependents`, and no row. (H1, H2, H3, H7. A test file whose outcome
-   column mixes `NA` with 0 or 1: `[R5]`.)
-5. **The split.** For every seed and list of ids: the split table has one numeric column
-   `row_id`; its ids are distinct and are among the ids given; their number is seven tenths of
-   the number of ids, rounded up. (`[R3]` for the file of the reference run; the count is held by
-   link, `[D9]`.)
+   with the same properties. `SeriousDlqin2yrs` is, as a whole column, numeric (when every
+   stated cell is 0 or 1) or text (when all are missing, or one is written `NA`); the predict
+   units are to be shown, by a lemma on the units, not to read it. On a table with no row: the
+   twelve names, text exactly under `SeriousDlqin2yrs`, `MonthlyIncome`, `NumberOfDependents`,
+   and no row. (Rules H1, H2, H3, H7; the outcome column: H12; the header-only file: H13 (d).)
+5. **The split.** For every seed and list of ids, the split table has one numeric column
+   `row_id` (rule H10: only that column of the file is read; a row is a training row exactly
+   when its id is listed, both sets keep the order of the file, and together they are every row
+   once; an id listed twice or the id of no row has no effect). Held by link, not by a run
+   (decision D9): the ids listed are distinct ids among those given, and their number is seven
+   tenths of the number of ids, rounded up. (The real file `inputs/split_ids.csv` is the SAS
+   draw for the 150,000 real rows; on a shorter file it does not have that count: H10 gives
+   2 and 1 for the first three rows.)
 6. **The fit.** For every table: the final effects of the stepwise result are distinct names
    among the 36 candidates, and the result has the shape steps 01 and 04 ask for. The fit is
-   taken to return a result (a fit that does not converge is outside this model, `[D3]`).
+   taken to return a result (decision D3; no rule: the real fit raises when it does not
+   converge, H13 (a) to (c), and the smallest file on which it converges is not known).
 7. **Files exist when written.** Each existence flag is true exactly when the producing step
    returned a result: the feature flags on every table, the medians flag on every training table
    for which the feature-engineering steps return, the coefficients flag on every model, the
-   score flags on every table. (H7.)
+   score flags on every table. (Rule H7; H10: feature engineering writes its three files for
+   every size of file from one row.)
 8. **Read-backs keep the shape.** Each read-back returns a table with the same number of rows in
    the same order, each row with the same column names in the same order; a numeric cell of a
    column listed here stays numeric, and a missing one missing: all 42 feature columns; the
    three medians columns; `row_id`, `default_flag`, `pd_logistic` and `credit_risk_score` of the
-   score files. Nothing is asked of the values, nor of the other score columns. (H4, H5, H6: the
-   real readers keep this shape and change values to 12 characters; ruling G55 leaves the values
-   free.)
-9. **The model file.** The intercept and coefficients predict parses are those of the model
-   train returned. (`[R4]`.)
-10. **Counts as text.** For every whole number n, zero or more, that a count of rows of a valid
-    run can be: `parse_float` of `sas_best n 8` is what the SAS unit `total_good_bad` makes of n
-    by its own BEST8. rule, and the text is not empty; the text of a missing value is empty.
-    (`[D4]`: stated against the SAS rule, with no bound of 10^8, if a run confirms the two rules
-    agree at and beyond 10^8; otherwise the bound returns and the decision goes to the owner.)
+   score files. Nothing is asked of the values, nor of the other score columns. (Rules H4, H5,
+   H6: the real readers keep this shape and change values to 12 characters; ruling G55 leaves
+   the values free. A file with no row is read as text columns, H13 (a): the clause says nothing
+   there, since a table with no row has no cell.)
+9. **The model file.** The intercept and the (name, coefficient) list predict parses are those
+   of the model train returned, in the same order. (Rule H11, experiment E14: bit for bit.)
+10. **Counts as text.** For every whole number n with 0 ≤ n < 10^8, `parse_float` of
+    `sas_best n 8` is n and the text is not empty; the text of a missing value is empty. (Rule
+    H14, experiment E17.) **Decision D4 is reopened by H14**: see the note below.
+
+**Note on G54 and H9.** H9 finds one shape of 12 characters that the round trip changes: a point
+first, then 11 digits, the 11th not 0. The requirements count the 0 before the point
+(`CreditRisk.decimal12`, as `decimal32`: "at least one digit is written before the decimal
+point"), so such a value needs 13 characters, has no shorter writing, and is not valid input.
+Every non-negative `decimal12` value has a writing with a digit first and at most 12 characters,
+and H9 reports no change on any such text (integers of every length to 12, every position of the
+point, `0.` and up to 10 digits, leading and trailing zeros, values below 1e-5). So G54 as
+formalised is enough on the port side, and its boundary is tight: the first shape outside it
+does change. Two limits. H9 is a finding on samples of doubles; clause 2 states it for every
+such real number, as a link. H9 tested no negative number; clause 2 asks none (incomes are zero
+or more, dependents whole numbers).
+
+**Note on D4 and H14.** D4 was decided as "no bound of 10^8, the port's round trip linked to the
+SAS unit's own rule, if a run confirms the two agree at and beyond 10^8". They do not. The SAS
+Lean unit `total_good_bad` counts exactly, and puts "fewer than 10^8 rows" in its precondition
+(SAS rule R19); the port's real function rounds a count from 10^8 to five significant digits
+(H14). So without a bound the condition would be false of the real port, and with the bound
+(clause 10 as now written) the KS contract E9 cannot be proved for a validation set with 10^8
+or more rows of one outcome. This is the case D4 said goes to the owner. The SAS program does
+the same 8-character round trip, so the SAS verification has the same unstated limit. My
+recommendation: a ruling like G54, "a raw file has fewer than 10^8 rows", in the input
+conditions; nothing changes in either program.
+
+**Note on an empty validation set (H13).** On the Lean side the case exists. `InputOK` allows a
+training file of one, two or three rows; with clause 5 (and clause (5) of `SasLinks`) seven
+tenths rounded up is then every row, so the validation set has no row; the fit is a parameter
+taken to return (clause 6), and `thm:sas_Q27` says the SAS pipeline then produces every result.
+The real port's train stage raises there, after fitting, and writes none of its exports (H13
+(a)). The Lean of the port has no "raise": its units are total and the case is excluded by the
+stage's precondition. So `pyPipeline` cannot show this difference in an equality contract; it
+shows in the coverage contract of the train stage (informal specification v3, section 4), which
+is false on such an input. That is a difference, to be fixed in the port, not a case to assume
+away. (What the real programs do on files this small is a separate question: the real fit did
+not converge on 20 rows.)
 
 **For the reviewer** (each clause against the port, both ways): too strong makes the proofs
 unsound, too loose lets a disproof rest on something the port never does. In particular clause 8:

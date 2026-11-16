@@ -356,6 +356,12 @@ by the lead as recommended, two of them with the owner's answer:
 - D8: the shape lemma for Q12 and Q13 lives in the port blueprint.
 - D9: the size of the split is held by link, as a condition on the port's split parameter.
 
+**D4 reopened the same day by rule H14** (port RULEBOOK 2.8): the port's count round trip
+rounds from 10^8, the SAS Lean counts exactly under a precondition of fewer than 10^8 rows, so
+the two do not agree beyond the bound and the decision goes to the owner, as D4 provided.
+Recommended: a ruling that a raw file has fewer than 10^8 rows. See `definitions-v3-draft.md`,
+notes after `PyLinks`.
+
 The list below is kept as written before the decisions.
 
 - **D1. Files read back.** `SasLinks` (3) takes every read-back as the identity. The port's is

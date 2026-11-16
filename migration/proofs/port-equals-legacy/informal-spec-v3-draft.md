@@ -98,8 +98,12 @@ real one.
 
 ## 4. Coverage of the stage preconditions
 
-A contract of section 2 assumes no precondition of the port. Separately, one contract per stage
-says the port's own stated precondition holds where a valid run takes it:
+The Lean of the port has no way to say "the Python raises": its units are total, and a case
+where the program raises is excluded by the unit's precondition (RULEBOOK of the port, section
+1). A contract of section 2 assumes no precondition, so by itself it does not say the real
+stage completes. **The claim for a stage is therefore the pair**: its equality contracts and its
+coverage contract. One contract per stage says the port's own stated precondition holds where a
+valid run takes it:
 
 | # | On | Statement |
 |---|---|---|
@@ -108,13 +112,19 @@ says the port's own stated precondition holds where a valid run takes it:
 | G3 | `run_py_py` | likewise for the predict stage |
 | G4 | `run_py` | likewise for the metrics stage |
 
-`[D3]`: no exception is written into these. Where a valid input falls outside a precondition (a
-validation table with no row, a test table with no row, a final model with no effect), the
-coverage contract is disproved with that input and reported; whether the equality contract still
-holds there is settled by the equality contract itself. The precondition of the train stage also
-carries conditions on the printed steps (Hosmer-Lemeshow, classification table) that depend on
-the numpy parameters: G2 is stated for the part that concerns the compared files, and the rest
-is reported as not covered.
+`[D3]`: no exception is written into these. Where a valid input falls outside a precondition,
+the coverage contract is disproved with that input: a difference, fixed in the port.
+
+Known before proving (rule H13 of the port's RULEBOOK 2.8): **G2 is expected to fail.** A valid
+training file of one, two or three rows puts every row in the training set (seven tenths,
+rounded up), the fit is a parameter taken to return, and the SAS pipeline produces every result
+(`thm:sas_Q27`); the port's train stage raises on a validation file with no row and writes none
+of its exports. A header-only test file is not such a case: the port completes (H13 (d)), so G3
+is expected to hold there.
+
+The precondition of the train stage also carries conditions on the printed steps
+(Hosmer-Lemeshow, classification table) that depend on the numpy parameters: G2 is stated for
+the part that concerns the compared files, and the rest is reported as not covered.
 
 ## 5. Outputs outside the interface `[D5]`
 
@@ -199,7 +209,9 @@ lemmas are `lem:` items (plan section 4.3).
 1. The requirements change of G54 formalised, and the owner's refresh of both profiles; then the
    profile check again, including the state of the 46 kept theorems.
 2. (Done 2026-11-16: decisions D3 to D9 are settled.)
-3. The runs R1 to R6 of the plan (section 2.5) on the port: `PyLinks` 1, 2, 4, 5, 9 and 10 each
-   name the run they wait for.
+3. (Done 2026-11-16: the runs are rules H8 to H14 of the port's RULEBOOK 2.8; each clause of
+   `PyLinks` cites its rule.) Open from them: decision D4 goes back to the owner (H14: the
+   port rounds a count from 10^8; the SAS Lean counts exactly under a precondition of fewer
+   than 10^8 rows), and the port's train stage on an empty validation set (H13).
 4. Review of the three definitions: wiring, and each condition against the port in both
    directions.
