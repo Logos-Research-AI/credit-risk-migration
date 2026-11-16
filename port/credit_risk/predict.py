@@ -181,10 +181,10 @@ def run(
         print("ERROR: Test set scoring stopped. Nothing is exported.")
         raise ValueError("Test set scoring stopped. Nothing is exported.")
 
-    # predict.sas:36-38
+    # predict.sas:189-192
     # listing-only: PROC CONTENTS of test_raw
 
-    # predict.sas:45-56 DATA test_raw_clean
+    # predict.sas:198-210 DATA test_raw_clean
     # INV work.test_raw_clean; R§2 input(s, best32.) (S2); keep/drop/rename
     # input(v, best32.) reads text: a column imported as numeric (no row holds NA or other text) is
     # first written as BEST12. text, so a number that needs more than 12 characters is changed
@@ -221,7 +221,7 @@ def run(
         }
     )
 
-    # predict.sas:75-94 DATA test_cleaned
+    # predict.sas:220-239 DATA test_cleaned
     # INV age_group; INV MonthlyIncome_missing
     # INV NumberOfDependents / Dependents_missing
     # R§2 `data out; set in;` -- Dependents_missing and the imputation both read the pre-imputation column
@@ -270,20 +270,20 @@ def run(
         pl.col("NumberRealEstateLoansOrLines").alias("num_real_estate_loans"),
     )
 
-    # predict.sas:125-201 DATA test_features
+    # predict.sas:270-349 DATA test_features
     # (duplicated feature engineering stays duplicated, R§0). Split into successive with_columns
     # wherever a statement reads a variable assigned earlier in the step (R§2 data step).
-    # predict.sas:129
+    # predict.sas:274
     test_features = test_imputed.with_columns(
         total_late_payments=sas_compat.sas_sum(  # INV total_late_payments
             pl.col("num_late_30_59"), pl.col("num_late_60_89"), pl.col("num_late_90_plus")
         ),
     )
     test_features = test_features.with_columns(
-        # predict.sas:132-135 INV has_delinquency / has_serious_delinquency (plain: MISSING_NEVER)
+        # predict.sas:276-280 INV has_delinquency / has_serious_delinquency (plain: MISSING_NEVER)
         has_delinquency=sas_compat.flag(pl.col("total_late_payments") > 0),
         has_serious_delinquency=sas_compat.flag(pl.col("num_late_90_plus") > 0),
-        # predict.sas:138-141 INV credit_util_category; SAS comparisons in the three chains (finding P5)
+        # predict.sas:282-286 INV credit_util_category; SAS comparisons in the three chains (finding P5)
         credit_util_category=pl.when(sas_compat.lt(pl.col("credit_utilization"), 30))
         .then(1)
         .when(sas_compat.lt(pl.col("credit_utilization"), 50))
@@ -291,7 +291,7 @@ def run(
         .when(sas_compat.lt(pl.col("credit_utilization"), 75))
         .then(3)
         .otherwise(4),
-        # predict.sas:144-147 INV debt_category
+        # predict.sas:288-292 INV debt_category
         debt_category=pl.when(sas_compat.lt(pl.col("debt_ratio"), 30))
         .then(1)
         .when(sas_compat.lt(pl.col("debt_ratio"), 43))
@@ -299,14 +299,14 @@ def run(
         .when(sas_compat.lt(pl.col("debt_ratio"), 60))
         .then(3)
         .otherwise(4),
-        # predict.sas:150-151 INV log_monthly_income / age_income_interaction / income_per_dependent
+        # predict.sas:294-296 INV log_monthly_income / age_income_interaction / income_per_dependent
         # num_dependents never missing, so plain comparison; null monthly_income propagates
         income_per_dependent=pl.when(pl.col("num_dependents") > 0)
         .then(pl.col("monthly_income") / (pl.col("num_dependents") + 1))
         .otherwise(pl.col("monthly_income")),
-        # predict.sas:154 INV credit_lines_per_person (divisor >= 1, plain `/`)
+        # predict.sas:298-299 INV credit_lines_per_person (divisor >= 1, plain `/`)
         credit_lines_per_person=pl.col("num_credit_lines") / (pl.col("num_dependents") + 1),
-        # predict.sas:157-161 INV age_category
+        # predict.sas:301-306 INV age_category
         age_category=pl.when(sas_compat.lt(pl.col("age"), 25))
         .then(1)
         .when(sas_compat.lt(pl.col("age"), 35))
@@ -316,7 +316,7 @@ def run(
         .when(sas_compat.lt(pl.col("age"), 65))
         .then(4)
         .otherwise(5),
-        # predict.sas:164-173 risk flags; INV flag_* (plain comparisons, MISSING_NEVER)
+        # predict.sas:308-318 risk flags; INV flag_* (plain comparisons, MISSING_NEVER)
         flag_high_utilization=sas_compat.flag(pl.col("credit_utilization") > 75),
         flag_very_high_utilization=sas_compat.flag(pl.col("credit_utilization") > 100),
         flag_high_debt_ratio=sas_compat.flag(pl.col("debt_ratio") > 43),
@@ -329,7 +329,7 @@ def run(
         flag_many_dependents=sas_compat.flag(pl.col("num_dependents") >= 3),
         flag_few_credit_lines=sas_compat.flag(sas_compat.le(pl.col("num_credit_lines"), 2)),
     )
-    # predict.sas:176-187 INV total_risk_flags, INV financial_health (A30: one nested expression)
+    # predict.sas:320-334 INV total_risk_flags, INV financial_health (A30: one nested expression)
     financial_health = pl.lit(100.0)
     for cond, k in (
         (pl.col("credit_utilization") > 30, 15.0),
@@ -354,13 +354,13 @@ def run(
         financial_health=sas_compat.sas_max(pl.lit(0.0), financial_health),
     )
     test_features = test_features.with_columns(
-        # predict.sas:190-192 INV log_* (R§2 log)
+        # predict.sas:336-339 INV log_* (R§2 log)
         log_monthly_income=sas_compat.sas_log(pl.col("monthly_income") + 1),
         log_num_credit_lines=sas_compat.sas_log(pl.col("num_credit_lines") + 1),
         log_total_late_payments=sas_compat.sas_log(pl.col("total_late_payments") + 1),
     )
     test_features = test_features.with_columns(
-        # predict.sas:195-200
+        # predict.sas:341-348
         # Q9 (10f447e): age * log(income) when income is above 0, else age * log(income + 1)
         age_income_interaction=pl.when(pl.col("monthly_income") > 0)
         .then(pl.col("age") * sas_compat.sas_log(pl.col("monthly_income")))
@@ -371,7 +371,7 @@ def run(
         debt_ratio_capped=sas_compat.sas_min(pl.col("debt_ratio"), pl.lit(500.0)),
     )
 
-    # predict.sas:208-212 PROC PLM restore ... score predicted=predicted_logit
+    # predict.sas:355-360 PROC PLM restore ... score predicted=predicted_logit
     # INV work.test_scored (pd_logistic); R§2 store/restore: model.json from input_dir (R§4, A27)
     model = json.loads((input_dir / "model.json").read_text())
     intercept = float(model["intercept"])
@@ -386,14 +386,14 @@ def run(
         predicted_logit = predicted_logit + pl.col(name) * beta  # null if any x_i null
     test_scored_temp = test_features.with_columns(predicted_logit=predicted_logit)
 
-    # predict.sas:215-222 DATA test_scored
+    # predict.sas:362-370 DATA test_scored
     # R§2 exp(x): sas_exp, overflow -> missing (S1); divisor is a column and is >= 1, plain `/`
     test_scored = test_scored_temp.with_columns(
         # R§2 arithmetic: literal / column is column-wise (A13 note)
         pd_logistic=1 / (1 + sas_compat.sas_exp(-pl.col("predicted_logit")))
     ).drop("predicted_logit")
 
-    # predict.sas:228-262 DATA test_predictions
+    # predict.sas:376-411 DATA test_predictions
     # INV credit_risk_score / risk_grade / recommendation / interest_rate / pred_logistic (MISSING_NULLABLE)
     test_predictions = test_scored.with_columns(
         pred_logistic=sas_compat.flag(sas_compat.ge(pl.col("pd_logistic"), 0.5)),
@@ -442,11 +442,11 @@ def run(
         .otherwise(pl.col("base_rate") + 0.15)
     )  # format interest_rate percent8.2 -> applied at export below (R§2 format attach)
 
-    # predict.sas:269-272 DATA kaggle_submission; R§2 keep keeps input column order (A12)
+    # predict.sas:417-421 DATA kaggle_submission; R§2 keep keeps input column order (A12)
     KEEP_KAGGLE = {"row_id", "pd_logistic"}
     kaggle_submission = test_predictions.select([c for c in test_predictions.columns if c in KEEP_KAGGLE])
 
-    # predict.sas:275-281 DATA test_predictions_full
+    # predict.sas:423-430 DATA test_predictions_full
     KEEP_FULL = {
         "row_id",
         "pd_logistic",
@@ -468,23 +468,23 @@ def run(
         [c for c in test_predictions.columns if c in KEEP_FULL]
     ).rename({"age": age_name})  # SAS names are case-blind and keep the spelling of the test file
 
-    # predict.sas:288-292 PROC EXPORT kaggle_submission
+    # predict.sas:436-441 PROC EXPORT kaggle_submission
     # R§2 PROC EXPORT; INV kaggle_submission.csv
     sas_compat.write_sas_csv(kaggle_submission, output_dir / "kaggle_submission.csv", formats={})
-    # predict.sas:295-299 PROC EXPORT test_predictions_full
+    # predict.sas:443-448 PROC EXPORT test_predictions_full
     # R§2 PROC EXPORT; INV test_predictions.csv
     sas_compat.write_sas_csv(
         test_predictions_full, output_dir / "test_predictions.csv", formats={"interest_rate": "percent8.2"}
     )
 
-    # predict.sas:302-305
+    # predict.sas:450-454
     # listing-only: PROC FREQ risk_grade recommendation
-    # predict.sas:307-310
+    # predict.sas:456-459
     # listing-only: PROC MEANS pd_logistic credit_risk_score
-    # predict.sas:313-316
+    # predict.sas:461-465
     # listing-only: PROC PRINT first 20 rows of test_predictions_full
 
-    # predict.sas:318-321 %put (INV &data_path / &output_path)
+    # predict.sas:467-470 %put (INV &data_path / &output_path)
     print("NOTE: Test set scoring completed successfully")
     print(f"NOTE: Kaggle submission file: {output_dir / 'kaggle_submission.csv'}")
     print(f"NOTE: Full predictions: {output_dir / 'test_predictions.csv'}")
