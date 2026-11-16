@@ -49,3 +49,26 @@ them in `cleared`); that is expected: do NOT restore cleared items other than th
 names (the orchestrator restores the rest at the end). The carrier `def:zz_carrier` no longer
 exists: use the carrier item your brief names (same identity function, same use). Judging is on:
 `write_code` the new source of a unit first, then `write_statement` its Lean.
+
+
+UPDATE 2026-11-16 (update after the verification round; this block overrides anything above it).
+- Workspace: the project root `/Users/cristophersalvi/GitHub/credit-risk-migration`. The package is
+  `port/credit_risk/`; raw data `legacy/data/`; edge inputs `judge/scenarios/`; this kit record
+  `migration/port-to-lean/` (RULEBOOK.md, manifest.tsv, diffeval/, experiments/); foundation
+  `migration/foundation/`. You write only in `migration/port-to-lean/`. No version-control commands
+  at all (a hook refuses any shell command that contains the tool's name, even inside text).
+  Shell commands start with `cd migration/port-to-lean &&`; Python runs as
+  `PYTHONPATH=../../port uv run --project ../../port python <script under migration/port-to-lean>`.
+  Refer to files by paths relative to `migration/port-to-lean`, never through `../migration/...`.
+- Read `RULEBOOK.md` whole; §2.7 (batch 7) holds where it differs from an earlier section. Your
+  task and the real port run to evaluate against are in `update-after-verification.md`, section 3.
+- Never open, read, search or grep a `thm:`, `neg:` or `def:wf_*` item. `grep` / `search` only with
+  an exact or prefix query on the name of a `def:` code item or a `_precond` item.
+- The polars prelude is read with
+  `read_scratch(item_id="def:ExprOrNum", part="statement", start_line=…, end_line=…)` (807 lines;
+  `get_items` refuses it as too large).
+- Carriers: `def:zz_carrier_s` (sas_compat), `_f` (feature engineering), `_p` (predict), `_m`
+  (metrics), `_t` (train). Use the one of your group.
+- Order on a changed unit: `write_code` the new source, then `write_statement`. For a new unit:
+  `add_code` with `file_path` and the line range, then `write_statement`; then `add_precond`.
+  Do not restore cleared items your task does not name; report the `cleared` list.

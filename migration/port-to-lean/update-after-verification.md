@@ -174,7 +174,17 @@ operations go in as local helpers of the unit that needs them (rulebook amendmen
 
 ## 3. Tasks
 
-Decisions needed before T1-T12 start (T0):
+T0 is done (2026-11-16). The four questions below were decided by the lead: (1) `Option`, `none` =
+stopped; (2) yes, `Option` parameters; (3) foundation unchanged, the predict import parameter
+delivers column names and rows separately, empty metrics scores stay excluded by precondition;
+(4) yes. The rules are RULEBOOK v5 §2.7 (G1-G20), with evidence in `experiments/e07_batch7.py`;
+carriers `def:zz_carrier_s/_f/_p/_m/_t` are in the blueprint; the brief for translators is
+`prompts/common.md` (last block). New unit names: `def:fe_run_00_input_check`,
+`def:predict_run_00_input_check`, `def:_groups`, `def:_SE_EPS`, `def:_SQRTBIG`; the medians of all
+groups block is `def:fe_run_02b_medians_all`. One point awaits confirmation: DEV-013, the predict
+result as triples `(file, column names, table)`.
+
+Questions as put before T0:
 
 1. Shape of a `run` result when the run stops. Now `List (String × Tabular.Table α)`. Proposal:
    keep the type, a stopped run returns `[]`, and each `run` item states in its text the names it

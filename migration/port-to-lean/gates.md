@@ -117,3 +117,23 @@ steps 05/06 (+ `metrics_run_06_psi_precond`). 22 cleared dependent `def:` items 
 Lean; line comments shifted for train.py). Source ranges updated on 27 items. Receipt:
 `diffeval/receipts/units_7927af7.tsv` (809 cases, 35 differences, all outside preconditions).
 Rulebook amendments: batch 6. Harness items `def:zz_carrier_p/_f/_t` added and removed.
+
+## Update after the verification round (2026-11-16)
+
+Plan: `update-after-verification.md`. Baseline of the comparison: the Python source stored in each
+blueprint item, against `port/credit_risk` on disk (this role reads no commit history).
+
+Decisions by the lead (2026-11-16):
+1. A stopped run is `none`; a completed run is `some files` (`Option`).
+2. A failed import or an absent file is an `Option` parameter; the stop is inside the function.
+3. The foundation is not changed. A test file with a header and no applicant is valid input
+   (ruling G44) and is defined: the import parameter of predict delivers the column names and the
+   rows separately. Empty training scores in metrics are not valid input: excluded by precondition,
+   stated in the item text.
+4. The raw-bytes header probe of predict (:42-63) is part of the import parameter; the item text
+   says what the parameter stands for.
+5. `grep` only on this blueprint's `def:` code and precondition items; no translator opens a theorem.
+
+T0 done 2026-11-16: RULEBOOK v5 (§2.7; batch 7 in `amendments.md`), experiment E07
+(`experiments/e07_batch7.py`, output beside it), five carrier items
+(`def:zz_carrier_s/_f/_p/_m/_t`) accepted. Open for the lead: DEV-013 (predict result as triples).

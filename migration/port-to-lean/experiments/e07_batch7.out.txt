@@ -1,0 +1,96 @@
+== strings
+strip_chars(' '): ['12', '\t12', 'NA', '', None, 'na', '.', 'é', 'ß', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '11111111111111111111111111111111', '\xa012']
+strip_chars()   : ['12', '12', 'NA', '', None, 'na', '.', 'é', 'ß', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '11111111111111111111111111111111', '12']
+len_chars: [5, 3, 4, 0, None, 2, 2, 3, 1, 33, 34, 3]
+len_chars dtype: Schema({'t': UInt32})
+len_chars <= 32: [True, True, True, True, None, True, True, True, True, False, True, True]
+to_uppercase: ['  12 ', '\t12', ' NA ', '', None, 'NA', '. ', ' É ', 'SS', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', ' 11111111111111111111111111111111 ', '\xa012']
+python upper: ['SS', 'É', 'I', 'AGE']
+fill_null(''): ['  12 ', '\t12', ' NA ', '', '', 'na', '. ', ' é ', 'ß', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', ' 11111111111111111111111111111111 ', '\xa012']
+stated: [True, True, False, False, False, False, False, True, True, True, True, True]
+is_in strings null: [True, None, False]
+when(len<=32).then(x) name: Schema({'t': Float64})
+input_best32 on stripped: [12.0, 12.0, None, None, None, None, None, None, None, None, 1.1111111111111112e+31, 12.0]
+== is_in floats, floor/ceil, count_ok
+is_in([0.0,1.0]): [True, True, True, False, None, False, False, False, False, False, False, False, False]
+~is_in.fill_null(False): [False, False, False, True, True, True, True, True, True, True, True, True, True]
+is_in on Int64 col: RAISES InvalidOperationError: 'is_in' cannot check for Int64 values in List(Float64) data.
+Hint: Before version 2.0, Polars would perform this check b
+ceil bits: [0, 9223372036854775808, 4607182418800017408, 4611686018427387904, None, 9221120237041090560, 4607182418800017408, 9223372036854775808, 13830554455654793216, 4613937818241073152, 9218868437227405312, 18442240474082181120, 9094988921128908188]
+-floor(-x) bits: [0, 9223372036854775808, 4607182418800017408, 4611686018427387904, None, 9221120237041090560, 4607182418800017408, 9223372036854775808, 13830554455654793216, 4613937818241073152, 9218868437227405312, 18442240474082181120, 9094988921128908188]
+floor bits: [0, 9223372036854775808, 4607182418800017408, 4611686018427387904, None, 9221120237041090560, 0, 13830554455654793216, 13835058055282163712, 4613937818241073152, 9218868437227405312, 18442240474082181120, 9094988921128908188]
+count_ok: [True, True, True, True, False, True, False, False, False, True, True, False, True]
+ceil of Int64 col dtype: Schema({'x': Int64, 'f': Int64})
+== n_unique / drop_nulls
+n_unique float: 3
+n_unique float with nulls kept: 2
+n_unique str: 3
+n_unique empty: 0
+sum of Int64 flag col: (2, 0)
+== coalesce vs fill_null
+coalesce: [4607182418800017408, 4620693217682128896, 9221120237041090560, None, 9223372036854775808]
+fill_null: [4607182418800017408, 4620693217682128896, 9221120237041090560, None, 9223372036854775808]
+coalesce name: ['a']
+coalesce f64,null-f64 all null col: [1.0, None]
+== shift / ne_missing / int_range
+shift(-1): [None, 0.1, 0.1, 0.2, nan, nan, 0.0, -0.0, 0.3, None]
+ne_missing(shift(-1)): [False, True, False, True, True, False, True, False, True, True]
+last flag: [False, True, False, True, True, False, True, False, True, True]
+last flag empty frame: []
+last flag 1 row: [True]
+when(last).then(abs) on empty: Schema({'p': Float64, 'v': Float64})
+int_range dtype: Schema({'literal': Int64})
+== head / clear / item negative
+head(0) cols: ((0, 1), Schema({'p': Float64}))
+head(min(h,1)): (1, 1)
+clear: ((0, 1), Schema({'p': Float64}))
+clear.with_columns(lit+flag): Schema({'p': Float64, 'score_bin': Int64})
+lit(0,Int64)+flag on rows: [0, 0, 1, 1, 2, 2, 2, 1, 1, 2]
+with_columns(score_bin=lit(0,Int64)) no cuts: Schema({'p': Float64, 'score_bin': Int64})
+sorted: [None, 1.0, 2.0, 3.0, nan]
+item(-1,0), item(0,0), item(-5,0): (nan, None, None)
+nearest-rank idx n=5: [0, 0, 1, 1, 2, 2, 3, 3, 4]
+nearest-rank idx n=1: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+floor div negatives: [-1, -1, -2, 0]
+== join with left_on expression
+join cols/schema: Schema({'VAR1': Float64, 'age_group': Int32, 'age_group_right': Float64, 'median_income': Float64, 'overall_median_income': Float64})
+join rows: [(1.0, 1, 1.0, 10.0, 33.0), (2.0, 2, 2.0, None, 33.0), (3.0, 5, 5.0, 50.0, 33.0), (4.0, 3, 3.0, 30.0, 33.0)]
+join dup/missing keys: [(1.0, 1, 1.0, 10.0, 33.0), (1.0, 1, 1.0, 11.0, 33.0), (2.0, 2, None, None, None), (3.0, 5, None, None, None), (4.0, 3, None, None, None)]
+join string key: RAISES SchemaError: datatypes of join keys don't match - `age_group`: f64 on left does not match `age_group`: str on right (and no other typ
+join clash: ['VAR1', 'age_group', 'age_group_right', 'median_income', 'overall_median_income', 'VAR1_right']
+left join Int32 on Int32, keep right cols: [(1, 6.0), (2, None), (3, 5.0), (4, None), (5, None)]
+lit(median, Float64) broadcast: [(1, 2.5), (2, 2.5)]
+Series.median none: None
+== fill_null on joined columns
+fill_null schema: Schema({'decile': Int64, 'total_count': Int64, 'defaults': Float64, 'capture_rate': Float64})
+fill_null rows: [(1, 0, 0.0, 0.0), (2, 7, 3.0, 0.5), (3, 0, 0.0, 0.0)]
+fill_null(0) keeps NaN: [nan, 0.0]
+cum_sum of filled Int64 / Float64: [(0, 0.0), (7, 3.0), (7, 3.0)]
+== group agg of flag sums, cum_sum arithmetic, frame cast
+auc_pairs: (Schema({'pd': Float64, 'n_bad': Int64, 'n_good': Int64}), [(0.1, 0, 1), (0.2, 1, 1), (nan, 1, 0)])
+auc_totals: (Schema({'concordant': Float64, 'tied': Float64, 'cum_good': Float64, 'cum_bad': Float64}), [(3.0, 1.0, 2.0, 2.0)])
+auc_totals on empty pairs: ((1, 2), [(0.0, 0.0)])
+when(prod>0).then(..) / with_columns(lit str) / select / head(0): Schema({'ROCModel': String, 'AUC': Float64, 'Gini': Float64})
+== map_elements(sas_best12)
+map_elements: ['1.2345679E12', None, '5', '', '0.3', '0', '1E20']
+values passed: [1234567890123.0, 5.0, nan, 0.30000000000000004, -0.0, 1e+20]
+name kept: ['v']
+on Int64 column: python type passed: ['int', None]
+empty frame: Schema({'v': Float64})
+== numpy ** 2, math.fsum, builtin max/min
+np array ** 2 == x * x (bits) mismatches: 0
+(arr - c) ** 2 .tolist() == python (x-c)*(x-c) mismatches: 0
+fsum vs left fold vs np.sum (bits): (4647263329107156590, 4647263329107156588, 4647263329107156589)
+fsum [] / [nan] / [inf,-inf]: (0.0, nan)
+fsum inf,-inf: RAISES ValueError: -inf + inf in fsum
+max(a,0.0): -0.0, nan, 0.3, -1: [-0.0, nan, 0.3, 0.0]
+min(a,1.0): nan, 1.5, 0.3: [nan, 1.0, 0.3]
+_SE_EPS, _SQRTBIG, _TIE_EPS hex: ('0x1.f400000000000p-44', '0x1.0000000000087p+512', '0x1.6a09e667f3bcep-27', '1.1102230246251565e-13', '1.3407807929943e+154')
+0.5/int, int/int: (0.16666666666666666, 3.5)
+== lit(None, Float64).alias; rename identity; select alias
+with_columns(lit None f64): Schema({'AGE': Float64, 'x': String, 'q': Float64, 'x2': Float64})
+rename identity+case: ['age', 'x']
+rename to duplicate: RAISES DuplicateError: column 'age' is duplicate
+select alias list: ['age']
+select([]) on frame: (0, 0)
+schema test: (False, True)

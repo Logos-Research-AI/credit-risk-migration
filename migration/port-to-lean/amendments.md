@@ -62,3 +62,17 @@
 | F2 | user brief | §2.2 float literals | `_TIE_EPS = math.nextafter(math.sqrt(2.0**-53), 1.0)` is one binary64 value | a constant the code computes as one specific binary64 value is written as that exact value: an integer (NatCast) divided by a power of two, or its exact decimal |
 | F3 | implementers | §2.3 / §2.4 silent | `Expr.forward_fill`, `.filter(mask).sum()` in `with_columns`, `Series.slice`, `concat(how="vertical_relaxed")` (36 dtype pairs run on polars 2.1.0), integer `np.sort` / `np.searchsorted`, `gg[i] = g`, 3-argument `min`, `float / int` | translated as local helpers with evaluation evidence (`diffeval/receipts/units_7927af7.tsv`) |
 | F4 | implementer | §6 limit "padding a Null-dtype column in `merge_one_to_one`" | the unit no longer goes through `Col.append` | limit no longer applies to this unit; new limits: Float64 to String and Date casts under vertical_relaxed (TODO(port), excluded by precondition) |
+
+## Batch 7 — applied 2026-11-16 as RULEBOOK v5, §2.7 (the port as changed on 2026-11-16; preludes still frozen)
+| # | Source | Rule indicted / silence | Evidence | Change |
+|---|---|---|---|---|
+| G1 | lead, decision 1 | §2.6 result of a `run`; §1 "raise → precondition" for the designed stops | the port prints ERROR and raises `ValueError` after removing earlier results | result is `Option`; the stop is inside the function |
+| G2 | scoping | removal of earlier result files | `unlink(missing_ok=True)` loops | stated in the `run` item's comment, with what `none` implies |
+| G3 | lead, decision 2 | inputs that may be absent | `exists()` tests, `try` around the import | `Option` parameters, table in §2.7 |
+| G4 | lead, decisions 3 and 4 | zero-row test file; header probe | ruling G44: a header-only test file is valid input; `Pl.ofTable [] = []` | `cs_test : Option (List (String × Bool) × Table α)`; predict result as triples (DEV-013, to be confirmed) |
+| G5 | scoping | input checks; Unicode case mapping | E07: `"ß".upper()` is `SS`, polars the same | one unit per check; ASCII by precondition |
+| G6–G13 | scoping | polars calls not in the prelude | E07 | local helpers with the stated behaviour |
+| G14–G17 | scoping | `//`, `math.fsum`, array `** 2`, builtin `max`/`min` with a float | E07 | `Int.fdiv`; parameter `fsum`; `x * x`; written out |
+| G18 | scoping | `_SE_EPS`, `_SQRTBIG` | E07 hex values | exact quotient; decimal literal |
+| G19 | scoping | medians file written and read | port | parameter `income_medians` replaces `medians` |
+| G20 | harness | carriers | five carrier items added 2026-11-16 | one per group |

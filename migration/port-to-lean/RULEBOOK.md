@@ -1,6 +1,6 @@
 # Translation Rulebook — Python (polars 2.1.0, numpy 2.5.4) → Lean 4, blueprint `py-credit-risk-port`
 
-**Version 4** (2026-11-10: batch 3 = C1–C3 after the run reviews; batch 1 = A1–A14 after the stress test; batch 2 = B1–B14 after the first reviews; all listed in `migration/amendments.md`). **The preludes are frozen** (B13).
+**Version 5** (2026-11-16: batch 7 = G1–G20 for the port as changed on 2026-11-16, §2.7; where §2.7 differs from an earlier section, §2.7 holds). Version 4 (2026-11-10: batch 3 = C1–C3 after the run reviews; batch 1 = A1–A14 after the stress test; batch 2 = B1–B14 after the first reviews; all listed in `migration/amendments.md`). **The preludes are frozen** (B13).
 
 > The meta-rule: if two agents could answer a question differently, the answer goes in this file.
 > Read-only inside any loop. Implementers, reviewers and fixers cite it and never edit it.
@@ -17,10 +17,13 @@ Read this whole document before writing any Lean.
   looks wrong. Do not tidy, simplify, reorder, merge duplicated code or fix anything.
 - **Never translate a comment or docstring.** They say what SAS does; they are the claims under
   test. Translate the code. Settle doubt by running the Python (`uv run python ...`).
-- Isolation: never read `/Users/cristophersalvi/GitHub/sas-migration` or
-  `/Users/cristophersalvi/GitHub/sas-migration-formal/sas`; never look for SAS code or outputs;
-  never open a Logos blueprint other than `py-credit-risk-port` and `credit-risk-foundation`.
-- All Lean lives in the blueprint (`logos-mcp` tools). No local Lean files.
+- Isolation: never look for SAS code or its outputs anywhere; read only `port/`, `legacy/data/`,
+  `judge/scenarios/`, `migration/port-to-lean/`, `migration/foundation/`; never open a Logos
+  blueprint other than `py-credit-risk-port` and `credit-risk-foundation`. Inside
+  `py-credit-risk-port`, never open, search or grep a `thm:`, `neg:` or `def:wf_*` item (they are
+  another team's and mention the other side); restrict every `grep` / `search` to `def:` code items
+  and their `_precond` items, with an exact or prefix query on the name you want.
+- All Lean lives in the blueprint (`Logos MCP Staging` connector only, blueprint opened by id). No local Lean files.
 - A unit is done when `write_statement` reports it accepted, not before. The in-loop referee is
   the server: it compiles and judges every statement (kit Step 4 dissolved into Step 3).
 - Never change trust layers. Never edit an item you were not assigned. **Never edit
@@ -192,8 +195,9 @@ report it so that the rule is added here (UNKNOWN rule).
 
 ### 2.6 Stage boundaries and the `run` functions
 
-- A `run` becomes a function from its input tables (`Tabular.Table α`), flags (`Bool`) and
-  explicit parameters (§3) to `List (String × Tabular.Table α)`: the `(file name, table)` pairs
+- A `run` becomes a function from its inputs (§2.7 G1–G4: optional tables, explicit parameters
+  §3) to `Option (List (String × Tabular.Table α))` (predict: §2.7 G4): `none` when the step
+  stops and exports nothing, `some files` with the `(file name, table)` pairs
   in the order the code writes them. The file name is the last path component
   (`"model_features_train.csv"`). The `formats=` map is not part of the result.
 - `sas_compat.proc_import_csv(path, …)` → the table parameter (the frame as imported: first
@@ -205,6 +209,154 @@ report it so that the rule is added here (UNKNOWN rule).
   later ranges use; the `run` item composes them in source order. Dependencies follow the calls.
 - Column names are exactly the strings in the code. Column order is what the code produces.
 - **Empty and malformed tables.** `Pl.ofTable [] = []` has no columns, so a zero-row input cannot be modelled: every `run` (and every step that receives an input table) requires in its precondition that each input table is non-empty, that all its rows have the same column names in the same order with the same cell kind per column, that the names are distinct, and that each column the code reads is present with the kind the code needs. Recorded limit.
+
+### 2.7 Batch 7 (2026-11-16): stops, optional inputs, and the library calls new to the port
+
+Decisions of the lead (2026-11-16) are marked DECISION. Evidence: `experiments/e07_batch7.py`,
+output `experiments/e07_batch7.out.txt` (E07).
+
+**G1. A stopped run (DECISION).** Each `run` returns `Option (…)`: `none` means the step stopped
+and exported nothing, `some files` that it completed. The stop is inside the function, at the
+point where the port prints its ERROR lines and raises `ValueError` (the "stop when the step
+before did not produce its result" tests and the two input checks). It is no longer a precondition.
+Any other raise (polars errors, the `RuntimeError` of train, the `ValueError` on `model.json`
+variables) stays a precondition as before (§1 Errors).
+
+**G2. Removal of earlier results.** The `unlink(missing_ok=True)` loop at the top of each `run`
+has no value in the result. The `run` item states it in a comment that lists the file names in
+source order and says what follows: when the result is `none`, none of those files exists after
+the run. Files of the stage that are not in the loop (the `printed_*.csv`, `stepwise_summary.csv`,
+`model.json`) are not removed; say so in the same comment.
+
+**G3. Optional inputs (DECISION).** A file that may be absent, or an import that may fail, is an
+`Option` parameter in the position of the Python path parameter (rule C2):
+
+| Stage | Python | Parameter | `none` stands for |
+|---|---|---|---|
+| feature engineering | `proc_import_csv(data_dir / "cs-training.csv", guessingrows=None)` in `try` (:35-39) | `cs_training : Option (Tabular.Table α)` | the import raised `OSError`, `ValueError` or `PolarsError` (an absent file included) |
+| train | `exists()` tests (:36-42), then the two imports | `model_features_train model_features_validation : Option (Tabular.Table α)` | the file does not exist. An existing file on which the import raises is outside the model: say so in the item text |
+| metrics | `exists()` tests (:96-102), then the two imports | `risk_scores_validation risk_scores_train : Option (Tabular.Table α)` (order of the imports, :106-107) | the file does not exist; same remark |
+| predict | `income_medians.exists()` (:31), import (:211) | `income_medians : Option (Tabular.Table α)` | the file does not exist |
+| predict | `(input_dir / "model_coefficients.csv").exists()` (:31) | `model_coefficients_exists : Bool` | — (the file is only tested, never read; `model.json` stays `intercept`, `coefficients`) |
+| predict | header probe and import (:42-79) | `cs_test : Option (List (String × Bool) × Tabular.Table α)` | `test_raw is None`: the import raised |
+
+`some []` (an import that returned no row) is allowed where the code then stops by itself
+(feature engineering: `known_incomes < 1`); elsewhere a zero-row table stays excluded by
+precondition (§2.6), with the `-- narrowing:` comment. In metrics, empty score files are not valid
+input (DECISION): keep the exclusion and say in the item text that empty training or validation
+scores are excluded by precondition, not modelled.
+
+**G4. The predict import parameter and a test file with a header and no applicant (DECISION).**
+`cs_test = some (header, rows)` stands for everything lines 42-79 of `predict.py` produce:
+`header` is the list of the columns of `test_raw` in order, each with `true` when polars typed the
+column String and `false` when it typed it numeric (Float64); `rows` are the data rows. For a file
+with one line (`test_lines == 1`) the frame is the import of the made-up copy, cleared: `header`
+has the names and kinds of that import (text under the three names that hold `NA`, numeric under
+the others) and `rows = []`. The unit builds `test_raw : Pl.Frame α` from the pair with a local
+helper: one column per header entry, `.str` or `.f64` by its flag, values from `rows` by name
+(`Pl.Frame` can hold columns of length 0; `Tabular.Table` cannot, which is why the header is its
+own value). The precondition states that every row has exactly the header's names in order with
+the header's kinds, and that the header names are distinct. The item text must say exactly this,
+with the line range 42-79, so that the conditions on the parameter can be checked against real runs.
+Consequence for the result (conservative choice of the orchestrator, DEV-013, to be confirmed by
+the lead): predict writes files that can have a header and no row, so each file of `def:run_py_py`
+is a triple `(file name, column names in order, table)`:
+`Option (List (String × List String × Tabular.Table α))`. The other three stages keep pairs.
+
+**G5. Input checks.** The checks (feature engineering :43-128, predict :82-182) are one unit each,
+`def:fe_run_00_input_check` and `def:predict_run_00_input_check`, added with `add_code` on those
+line ranges. They take the optional raw input and return what later lines use: the Boolean
+"stop" (the test of :121 / :176) and the frame the steps continue with (`credit_raw` / `test_raw`
+after the case-blind renaming; predict also `age_name`). The counters are plain `Int`.
+Python `str.upper()` / `str.lower()` on column names and polars `str.to_uppercase()` on cells are
+full Unicode case mappings (E07: `ß` → `SS`); Lean's `String.toUpper` / `toLower` change ASCII
+letters only. Use them, and state in the precondition that the column names and the text cells of
+the checked columns are ASCII (`-- narrowing:` comment). `raw.schema[v] != pl.String` is a match on
+the column kind (`.str` or not).
+
+**G6. Strings in expressions.** Not in the prelude: write local `let` helpers (rule F1) that build
+a `Pl.Expr α` with an explicit `eval`, the `name` of the input expression and `ser := Pl.node [e.ser]`.
+
+| Python | Behaviour (E07) |
+|---|---|
+| `e.str.strip_chars(" ")` | removes U+0020 only, at both ends; a tab or U+00A0 stays; null stays null |
+| `e.str.len_chars()` | number of Unicode scalar values (`String.length`), an integer column; null stays null; `<= 32` on it is null for null |
+| `e.str.to_uppercase()` | G5 (ASCII by precondition); null stays null |
+| `e.fill_null("")` | `e.fillNull (Pl.litS "")` (prelude) |
+| `e.is_in(["", ".", "NA"])` | `e.isInS [...]` (prelude; null gives null) |
+| `e.is_in([0.0, 1.0])` on a Float64 column | `e.isInF [some 0.0, some 1.0]` (prelude; `-0.0` matches, NaN does not, null gives null). On an Int64 column polars raises: the precondition states Float64 or String for the checked columns (what the import produces) |
+| `sas_compat.input_best32(text)` on a String expression | the parameter `input_best32` applied to that expression |
+
+**G7. `floor`, `ceil`.** `x.ceil()` on Float64 is `(x.neg.floor).neg` (bit-identical on the E07
+values, signed zeros and infinities included; `RealLike` has no `ceil`).
+
+**G8. `n_unique`, `drop_nulls`, `sum` of a Series.** `s.drop_nulls().n_unique()`: the number of
+distinct non-null values, where all NaN are one value and `-0.0` equals `0.0` for floats
+(`Pl.Val.keyEq`) and strings are compared exactly. Plain list code. `int(col.sum())` of an Int64
+column: exact integer sum, 0 when empty.
+
+**G9. `pl.coalesce(a, b)`** on two Float64 columns is `a.fillNull b` (E07: bit-identical, NaN is
+not null, name of `a`).
+
+**G10. Last row of a run of equal values** (`metrics_run_02_ks`). `e.shift(-1)`: the next row's
+value, null on the last row. `a.ne_missing(b)`: never null; false when both are null or both
+equal in the total order (NaN equals NaN, `-0.0` equals `0.0`), true otherwise.
+`pl.int_range(pl.len()) == pl.len() - 1`: true on the last row only; an empty frame gives an empty
+column. Local helper returning the Boolean column; it is only used as a `when` condition.
+
+**G11. Frame helpers not in the prelude** (plain code on `Pl.Frame`, each a local `let`):
+`df.head(k)` = `df.takeRows (List.range (min k df.height))`; `df.clear()` = `df.takeRows []`
+(names and kinds kept, height 0); `df.item(i, 0)` with a negative `i` counts from the end
+(`item(-1, 0)` is the last row); `frame.select([pl.col(n).alias(m), …])` = the listed columns
+renamed, in list order; `pl.lit(None, dtype=pl.Float64).alias(c)` = `(Pl.litOptF none).alias c`;
+`df.rename` to a name that already exists raises `DuplicateError` (precondition).
+`fill_null(0)` keeps the column's dtype (Int64 stays Int64, Float64 gets `0.0`; NaN is not filled):
+`e.fillNull (Pl.litI 0)` (the prelude casts for a Float64 column).
+
+**G12. `pl.col(v).map_elements(sas_compat.sas_best12, return_dtype=pl.String)`.** A null is not
+passed to the function and stays null; every other value, NaN included, is passed (E07). Local
+helper: a `.str` column `v.map (fun o => o.map (fun x => sas_best12 (some x)))`, name of the input.
+The parameter keeps the Python signature `Option α → String`. The branch is taken when the column
+is not String (G5 kind test); the precondition states Float64 for that case.
+
+**G13. Join with a key expression** (`predict_run_04_imputed`):
+`l.join(r, left_on=pl.col("age_group").cast(pl.Float64), right_on="age_group", how="left", maintain_order="left")`.
+Result columns (E07): all left columns, then the right key as `age_group_right` (null on an
+unmatched row), then the other right columns (suffix `_right` on a clash). Rows as the prelude's
+left join: left order, one row per matching right row in right order, null keys never match. A
+String right key raises `SchemaError` (precondition: the imported `age_group` is numeric). Write a
+local helper with the same list code as `Pl.Frame.join`, keeping the right key column.
+The plain joins on an Int32 / Int64 key (`age_groups` with `income_medians`, `decile_list`,
+`psi_bins`) are the prelude's `join`.
+
+**G14. Integer arithmetic.** Python `//` is floor division: `Int.fdiv`. `-(-k * n // 10) - 1`
+is written with the same operations in the same order. `0.5 / n` with an `int` n is
+`(0.5 : α) / Pl.ofInt n`. `max(a, b)` / `min(a, b)` on `int` are plain `Int` max / min.
+
+**G15. `math.fsum`** is the correctly rounded sum; it is not a left fold (E07: three different
+results for fsum, a left fold and `np.sum` on 1000 values). Explicit parameter `fsum : List α → α`
+(§3). It raises on `inf + -inf`; not reachable from squared deviations of finite values.
+
+**G16. `**` on a numpy array.** `(arr - c) ** 2` is `x * x` on every element (E07: 0 mismatches on
+400,000 values, also after `.tolist()`); write `(v - c) * (v - c)`. `pow2` (§3) stays for `**` on a
+Python float.
+
+**G17. Builtin `max` / `min` with a float literal.** `max(x, 0.0)` returns `x` unless `0.0 > x`
+(so `-0.0` and NaN are returned unchanged); `min(x, 1.0)` returns `x` unless `1.0 < x`. Written out
+as in §2.2.
+
+**G18. Constants.** `_SE_EPS = 1000 * 2.0**-53` is exactly 125 / 2^50: write it as that quotient of
+casts (rule F2). `_SQRTBIG = 1.3407807929943e154` is a float literal: the same decimal literal.
+
+**G19. The medians file.** `income_medians.csv` is the first file feature engineering writes, from
+`income_medians_all`. In predict the imported table is the parameter `income_medians` (G3); the
+renaming of :213-222 is plain code on the column names (G5 for `upper` / `lower`).
+
+**G20. Harness.** One carrier per group of units, each an identity on `List Int` depending on both
+preludes: `def:zz_carrier_s` (sas_compat), `def:zz_carrier_f` (feature engineering),
+`def:zz_carrier_p` (predict), `def:zz_carrier_m` (metrics), `def:zz_carrier_t` (train). `connect`
+your carrier to your unit before evaluating; use no other carrier. Lookup tables for `sas_best`
+(width 8) and `sas_best12` are regenerated from the port as it stands on the day of the evaluation.
 
 ## 3. Explicit parameters (out-of-scope or non-deterministic behaviour)
 
@@ -228,7 +380,9 @@ Every unit that receives one lists it in its trailer `-- OPEN(port): <name>`.
 | `stepwise_logistic(...)` result | `stepwise` | `StepwiseResult α` |
 | `model.json` content (predict) | `intercept`, `coefficients` | `α`, `List (String × α)` |
 | `pl.read_csv(split_ids)` row_id column, after its casts | `split_ids` | `Tabular.Table α` (numeric column `row_id`) |
-| `pl.read_csv(medians, schema_overrides=…)` | `medians` | `Option (Pl.Frame α)` (the frame as read: `age_group` an `.int` column, `median_income` `.f64`) |
+| `sas_compat.proc_import_csv(income_medians)` (predict; replaces the removed `medians`) | `income_medians` | `Option (Tabular.Table α)` (§2.7 G3) |
+| `sas_compat.sas_best12` | `sas_best12` | `Option α → String` (called only on non-null values, §2.7 G12) |
+| `math.fsum` | `fsum` | `List α → α` (§2.7 G15) |
 | `np.linalg.inv` | `inv` | `List (List α) → List (List α)` |
 | `np.linalg.solve(A, b)` | `solve` | `List (List α) → List α → List α` |
 | matrix product `A @ B`, `A @ v`, `u @ v` | `matmul`, `matvec`, `dot` | `List (List α) → List (List α) → List (List α)`, `List (List α) → List α → List α`, `List α → List α → α` |
@@ -237,7 +391,7 @@ Every unit that receives one lists it in its trailer `-- OPEN(port): <name>`.
 | `x ** 2` on a Python float | `pow2` | `α → α` |
 
 A parameter that stands for a library routine is total; the inputs on which the routine raises (a singular matrix: `LinAlgError`) are outside the model and are listed as OPEN in the unit's trailer.
-A flag that only changes an out-of-scope call (`fix_income_truncation`) is kept as an unused `Bool` parameter with a comment.
+The flags `fix_income_truncation`, `export_train_medians`, `fix_train_medians`, `fix_psi_bins` and the parameter `medians` no longer exist in the port (2026-11-16): no unit carries them.
 A function whose return type depends on an argument (`roc_association` with/without `label`) returns a sum type `A ⊕ B`. A union-typed parameter (`fit: LogisticFit | FloatArray | None`) is `Option (A ⊕ B)`; `isinstance` tests are matches.
 A table, frame or parsed-file parameter that stands for a Python path parameter takes that parameter's position (`input_dir` → what is read from it; `output_dir` is dropped); routine and format parameters come first, in the order of the table. (`def:run_py_py` was accepted with `medians` before `cs_test`; left as accepted, DEV-011.)
 A unit that calls a blueprint item which has such parameters passes them through unchanged.
@@ -282,7 +436,7 @@ not in the inventory is an inventory bug: apply the UNKNOWN rule, flag it, keep 
 
 ## 6. Evidence for every library rule
 
-Experiments are in `migration/experiments/` (run with `uv run python <file>`). Source = polars
+Experiments are in `migration/port-to-lean/experiments/` (run from `migration/port-to-lean` with `PYTHONPATH=../../port uv run --project ../../port python experiments/<file>`). Source = polars
 tag `py-2.1.0`, numpy tag `v2.5.4`.
 
 | Rule (prelude name) | Behaviour | Evidence |
@@ -312,6 +466,7 @@ tag `py-2.1.0`, numpy tag `v2.5.4`.
 | `Np.sort`, `argsortStable`, `searchsorted*` | NaN last; stable; counts in NaN-last order | E05 numpy block |
 | `Np.round3` | `rint(x*1000)/1000` on the grid | E05 |
 | `Series.to_numpy` null → NaN, `nan_to_null` | R-NULLNAN | E05 |
+| batch 7 calls (§2.7 G6–G17) | `str.strip_chars(" ")`, `len_chars`, `to_uppercase`, `is_in`, `ceil`, `n_unique`, `coalesce`, `shift`, `ne_missing`, `int_range`, `head`, `clear`, negative `item`, join with a `left_on` expression, `fill_null(0)`, `map_elements`, numpy `** 2`, `math.fsum`, builtin `max`/`min` | E07 (`experiments/e07_batch7.py`, `e07_batch7.out.txt`) |
 | chunking | every float `sum`/`mean` in scope runs on a frame that is one chunk (after `sort`, `group_by`, or a frame built in memory) | E05 (`n_chunks` after sort = 1) |
 
 Known limits of the model (recorded, not worked around): the sign of a zero in `abs`, in min/max
@@ -335,3 +490,4 @@ a frame column that polars keeps internally as a scalar; a literal zero or null-
 | DEV-010 | 2026-11-10 | Form findings on accepted items (missing trailer on `def:Z975`, bracketed trailers) waived: re-submitting a dependency clears its dependents | orchestrator |
 | DEV-011 | 2026-11-10 | `def:run_py_py` keeps `medians` before `cs_test` (rule C2 was written after it was accepted and differentially tested; reordering would invalidate its receipts) | orchestrator |
 | DEV-012 | 2026-11-10 | B6 (metrics run) and B7/B8 had one line-by-line reviewer each plus one shared end-to-end reviewer on real data, instead of two reviewers per bundle | orchestrator (budget) |
+| DEV-013 | 2026-11-16 | `def:run_py_py` returns triples `(file, column names, table)` so that a result with a header and no row is representable (§2.7 G4); the other stages return pairs | orchestrator; to be confirmed by the lead |
