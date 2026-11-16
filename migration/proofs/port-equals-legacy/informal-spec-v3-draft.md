@@ -13,7 +13,7 @@ brought back in line with it; the flags are gone; ruling G53 limits every claim 
 The claim is now stated on the interface the requirements use, `CreditRisk.Pipeline`, so that the
 requirements can be carried over to the port (playbook stage 6).
 
-Rulings built in: G53, G54, G55. Decisions D1 to D9 of `plan-after-verification.md` are all
+Rulings built in: G53, G54, G55, G56, G57. Decisions D1 to D9 of `plan-after-verification.md` are all
 decided (2026-11-16): D1 and D2 by the owner's rulings G55 and G54; D3 to D9 by the lead as
 recommended, D7 with the owner's answer (the 84 cleared theorems may be removed; Judging stays
 off on `5365851c`, so the match of Lean and text rests on the reviews). The marks `[D3]` to
@@ -115,12 +115,13 @@ valid run takes it:
 `[D3]`: no exception is written into these. Where a valid input falls outside a precondition,
 the coverage contract is disproved with that input: a difference, fixed in the port.
 
-Known before proving (rule H13 of the port's RULEBOOK 2.8): **G2 is expected to fail.** A valid
-training file of one, two or three rows puts every row in the training set (seven tenths,
-rounded up), the fit is a parameter taken to return, and the SAS pipeline produces every result
-(`thm:sas_Q27`); the port's train stage raises on a validation file with no row and writes none
-of its exports. A header-only test file is not such a case: the port completes (H13 (d)), so G3
-is expected to hold there.
+The empty validation set (rule H13 of the port's RULEBOOK 2.8) is closed by ruling G57: the
+training data has at least 4 rows, a clause of `TrainOK`. With the split count held by link
+(`PyLinks` 5) the validation set then has at least one row on every valid input, so **G2 is no
+longer expected to fail** on that account; the real SAS fails on one to three rows as the port
+does. G2 uses one shared lemma: from `TrainOK` and `PyLinks` 5, neither set of the split is
+empty. A header-only test file is still valid input: the port completes (H13 (d)), so G3 is
+expected to hold there.
 
 The precondition of the train stage also carries conditions on the printed steps
 (Hosmer-Lemeshow, classification table) that depend on the numpy parameters: G2 is stated for
@@ -214,7 +215,8 @@ lemmas are `lem:` items (plan section 4.3).
 2. (Done 2026-11-16: decisions D3 to D9 are settled.)
 3. (Done 2026-11-16: the runs are rules H8 to H14 of the port's RULEBOOK 2.8; each clause of
    `PyLinks` cites its rule.) D4 is closed by ruling G56 (owner, 2026-11-16): counts are taken as exact on
-   both sides and the claims hold for raw files of fewer than 10^8 rows. Open: the port's train
-   stage on an empty validation set (H13), to be fixed in the port before contracts are stated.
+   both sides and the claims hold for raw files of fewer than 10^8 rows. The empty validation set (H13) is closed by ruling G57 (at least 4 training
+   rows; neither program changes). Being measured by the lead's team: `model_summary.csv`
+   with a one-class validation set, and the classification table on a tiny fit.
 4. Review of the three definitions: wiring, and each condition against the port in both
    directions.

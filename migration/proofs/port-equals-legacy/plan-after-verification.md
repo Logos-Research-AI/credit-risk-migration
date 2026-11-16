@@ -365,6 +365,12 @@ the two do not agree beyond the bound and the decision goes to the owner, as D4 
 Recommended: a ruling that a raw file has fewer than 10^8 rows. See `definitions-v3-draft.md`,
 notes after `PyLinks`.
 
+**Empty validation set: closed by the owner, ruling G57 (2026-11-16).** The training data has
+at least 4 rows (a clause of `TrainOK`); neither program changes. With the split count held by
+link the validation set has at least one row on valid input, and the coverage contract of the
+train stage is no longer expected to fail. The "empty tables" point of 4.4 is reduced to the
+test file with no row.
+
 The list below is kept as written before the decisions.
 
 - **D1. Files read back.** `SasLinks` (3) takes every read-back as the identity. The port's is

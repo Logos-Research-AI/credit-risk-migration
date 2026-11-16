@@ -5,7 +5,8 @@ port blueprint `5365851c` only after the requirements change of ruling G54 has g
 owner has refreshed the profiles (SAS, then port); a refresh would clear anything stated before it.
 Each text below is meant to become the informal statement of its item. This file holds no Lean.
 
-Rulings built in: G53 (valid input only), G54 (a present `MonthlyIncome` or `NumberOfDependents`
+Rulings built in: G53 (valid input only), G56 (counts exact, clause 10), G57 (at least 4
+training rows, through `TrainOK`), G54 (a present `MonthlyIncome` or `NumberOfDependents`
 is written in at most 12 characters; it reaches these texts through `TrainOK` and `TestOK`), G55
 (the equality is stated for one read-back shared by both sides; the requirements are carried over
 at the identity). Marks `[D3]` to `[D9]` show where a decision is applied (all settled on
@@ -161,17 +162,19 @@ same 8-character round trip. The owner's ruling G56: a stated limit with no form
 Counts are taken as exact on both sides (clause 10), no bound is added to the input conditions,
 and the claims are reported as holding for raw files of fewer than 10^8 rows.
 
-**Note on an empty validation set (H13).** On the Lean side the case exists. `InputOK` allows a
-training file of one, two or three rows; with clause 5 (and clause (5) of `SasLinks`) seven
-tenths rounded up is then every row, so the validation set has no row; the fit is a parameter
-taken to return (clause 6), and `thm:sas_Q27` says the SAS pipeline then produces every result.
-The real port's train stage raises there, after fitting, and writes none of its exports (H13
-(a)). The Lean of the port has no "raise": its units are total and the case is excluded by the
-stage's precondition. So `pyPipeline` cannot show this difference in an equality contract; it
-shows in the coverage contract of the train stage (informal specification v3, section 4), which
-is false on such an input. That is a difference, to be fixed in the port, not a case to assume
-away. (What the real programs do on files this small is a separate question: the real fit did
-not converge on 20 rows.)
+**Note on an empty validation set (H13; closed by ruling G57).** With at most three training
+rows, seven tenths rounded up is every row and the validation set has no row; the port's train
+stage raises there (H13 (a)) and the real SAS fails there too
+(`migration/legacy-to-port/empty-validation.md`). The owner's ruling G57 (requirements draft 8,
+2026-11-16): the training data has at least 4 rows, a formal clause of `TrainOK`. Neither
+program changes. Consequence here: on valid input, with the count of clause 5 (seven tenths of n
+rounded up, held by link), the validation set has n minus that count rows, which is at least 1
+from n = 4 (4 gives 3 and 1). So the validation feature table, the validation score table and
+the tables metrics reads from it have at least one row on every valid input. This rests on the
+link of clause 5: the lemma "the validation set is not empty" is to be stated once, from
+`TrainOK` and clause 5, and used by the coverage contract of the train stage. The training set
+is never empty either (at least 3 rows). A test file with no row stays valid (H13 (d): the port
+completes).
 
 **For the reviewer** (each clause against the port, both ways): too strong makes the proofs
 unsound, too loose lets a disproof rest on something the port never does. In particular clause 8:
