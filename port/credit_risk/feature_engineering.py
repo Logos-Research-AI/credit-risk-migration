@@ -301,7 +301,7 @@ def run(
                 pl.col("flag_low_income"),
                 pl.col("flag_many_dependents"),
                 pl.col("flag_few_credit_lines"),
-            ).alias("total_risk_flags"),
+            ),
             # :182-188  # INV financial_health; A30 one expression applying the statements in order
             financial_health=sas_compat.sas_max(pl.lit(0.0), fh).alias("financial_health"),
             # :191-193  # INV log_* rows; R§2 log()
