@@ -371,6 +371,13 @@ link the validation set has at least one row on valid input, and the coverage co
 train stage is no longer expected to fail. The "empty tables" point of 4.4 is reduced to the
 test file with no row.
 
+**Small valid inputs, decided by the owner 2026-11-16.** Separation: the port follows SAS (port
+fix under way, with four parity fixes). One-class validation set: the SAS Lean units
+`roc_train`, `roc_valid`, `model_summary` are corrected in SAS round 6. One-class training part:
+ruling G58, a stated limit (the fit is outside both proofs, assumed to return the same model).
+New first step in the stating order: coverage lemmas for the 20 units of `sasPipeline` that
+have a precondition (`informal-spec-v3-draft.md`, section 4a).
+
 The list below is kept as written before the decisions.
 
 - **D1. Files read back.** `SasLinks` (3) takes every read-back as the identity. The port's is

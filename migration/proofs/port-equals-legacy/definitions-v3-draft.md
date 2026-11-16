@@ -5,7 +5,7 @@ port blueprint `5365851c` only after the requirements change of ruling G54 has g
 owner has refreshed the profiles (SAS, then port); a refresh would clear anything stated before it.
 Each text below is meant to become the informal statement of its item. This file holds no Lean.
 
-Rulings built in: G53 (valid input only), G56 (counts exact, clause 10), G57 (at least 4
+Rulings built in: G53 (valid input only), G58 (the fit assumed, clause 6 and `Paired` 3), G56 (counts exact, clause 10), G57 (at least 4
 training rows, through `TrainOK`), G54 (a present `MonthlyIncome` or `NumberOfDependents`
 is written in at most 12 characters; it reaches these texts through `TrainOK` and `TestOK`), G55
 (the equality is stated for one read-back shared by both sides; the requirements are carried over
@@ -118,8 +118,10 @@ numpy routines, `fsum`, `today` or `full`.
    2 and 1 for the first three rows.)
 6. **The fit.** For every table: the final effects of the stepwise result are distinct names
    among the 36 candidates, and the result has the shape steps 01 and 04 ask for. The fit is
-   taken to return a result (decision D3; no rule: the real fit raises when it does not
-   converge, H13 (a) to (c), and the smallest file on which it converges is not known).
+   taken to return a result (decision D3 and ruling G58, a stated limit: the fit is outside
+   both proofs; the claims hold for inputs whose training part has both outcomes, and every
+   report says so. On separation the port is being changed to follow SAS, which ends with the
+   intercept alone, so a final model with no effect must be within the stage's precondition).
 7. **Files exist when written.** Each existence flag is true exactly when the producing step
    returned a result: the feature flags on every table, the medians flag on every training table
    for which the feature-engineering steps return, the coefficients flag on every model, the
@@ -198,7 +200,8 @@ nothing about either side alone beyond what the relation needs.
    those ids.
 3. **Fit.** For every table, the SAS `fit` returns the model whose intercept and (name,
    coefficient) list, in order, are those step 04 of train extracts from the port's fit on the
-   same table.
+   same table. (An assumption, not a finding: ruling G58. Reports word it as "the equality is
+   given the same fitted model"; the real fits agree to the judge's tolerance only.)
 4. **Read-backs are shared.** `readFeatures`, `readMedians`, `readScoresValid`,
    `readScoresTrain` of the SAS side are the port's four read-backs, as functions. (Ruling G55:
    one function for both sides, otherwise free within `PyLinks` 8. The identity is one such

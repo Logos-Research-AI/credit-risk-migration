@@ -13,7 +13,7 @@ brought back in line with it; the flags are gone; ruling G53 limits every claim 
 The claim is now stated on the interface the requirements use, `CreditRisk.Pipeline`, so that the
 requirements can be carried over to the port (playbook stage 6).
 
-Rulings built in: G53, G54, G55, G56, G57. Decisions D1 to D9 of `plan-after-verification.md` are all
+Rulings built in: G53, G54, G55, G56, G57, G58. Decisions D1 to D9 of `plan-after-verification.md` are all
 decided (2026-11-16): D1 and D2 by the owner's rulings G55 and G54; D3 to D9 by the lead as
 recommended, D7 with the owner's answer (the 84 cleared theorems may be removed; Judging stays
 off on `5365851c`, so the match of Lean and text rests on the reviews). The marks `[D3]` to
@@ -127,6 +127,53 @@ The precondition of the train stage also carries conditions on the printed steps
 (Hosmer-Lemeshow, classification table) that depend on the numpy parameters: G2 is stated for
 the part that concerns the compared files, and the rest is reported as not covered.
 
+## 4a. Coverage of the SAS unit preconditions (stated first)
+
+The SAS units are total too: where SAS would fail or do something the Lean does not model, the
+case is in the unit's precondition. `sasPipeline` applies the units without their preconditions,
+and the 26 `thm:sas_Q` do not assume them. Twice already a precondition turned out not to hold on
+valid input (`total_good_bad` below 10^8 rows: ruling G56; `roc_valid` with both classes: the
+one-class validation set, corrected in SAS round 6). So before any equality contract, one lemma
+per unit of `sasPipeline` that has a precondition: on valid input, under `SasLinks`, the
+precondition holds of the argument the pipeline gives the unit. They are stated in the port
+blueprint, through the profile, about SAS units only (`lem:sas_cov_<unit>`). A lemma that fails
+is a finding about the SAS verification, reported to the lead, not patched.
+
+The 20 units of `sasPipeline` with a precondition item, read from `3f5df696` on 2026-11-16
+(before the round 6 revision: to be re-read after it), and what each asks:
+
+| Unit | Its precondition asks | Expected |
+|---|---|---|
+| `credit_raw_input_check` | each of the 12 raw columns is, in the whole table, numeric, or absent, or text with no exponent notation; no two column names equal up to capitalisation; `bad_row`, `known_income` not already columns | holds, from `SasLinks` (1) |
+| `credit_raw_clean` | `MonthlyIncome`, `NumberOfDependents` are text cells of at most 32 characters with no letter e, E, d, D; the two `_num` names not already columns | holds, from `SasLinks` (1) c |
+| `income_medians` | `age`, `MonthlyIncome` numeric cells in every row | holds |
+| `income_medians_all` | `age_group`, `median_income` numeric in the medians table; no age group twice; `MonthlyIncome` numeric in the cleaned table | holds |
+| `credit_cleaned` | `age`, `MonthlyIncome`, `NumberOfDependents` numeric; the three new names not already columns | holds |
+| `credit_imputed` | `arrange` returns a permutation; `VAR1` a numeric cell in every row | holds, `SasLinks` (4) |
+| `credit_features` | the nine input columns numeric; the 27 new names not already columns | holds |
+| `credit_train_validation` | `Selected` a numeric cell in every row of the split | from `SasLinks` (5), to check: is it asked of `split` |
+| `logit_scored_valid_temp` | every model variable a numeric cell in every row of the table scored | needs `SasLinks` (6) and what the read-back keeps (`PyLinks` 8 under G55) |
+| `test_raw_input_check` | as the training check, on the test table; a table with no row meets it | holds, `SasLinks` (2) |
+| `test_raw_clean` | as `credit_raw_clean` | holds |
+| `test_cleaned` | as `credit_cleaned`; no row meets it | holds |
+| `test_imputed` | `arrange` returns a permutation | holds |
+| `test_features` | as `credit_features` | holds |
+| `test_scored_temp` | every model variable numeric in the test feature table | needs `SasLinks` (6) |
+| `test_scored` | `predicted_logit` numeric in every row | holds |
+| `test_predictions` | `pd_logistic` numeric in every row | holds |
+| `total_good_bad` | fewer than 10^8 rows; `default_flag` a numeric cell in every row | **first clause does not follow from valid input**: the stated limit of G56. The lemma is stated for the second clause, and the first is reported |
+| `train_bins` (also used for `valid_bins`) | `credit_risk_score` numeric; the names the step creates not already columns; the cuts table has at most one row with numeric cuts | holds; depends on the read-back keeping `credit_risk_score` numeric |
+| `decile_data` | `pd_logistic` numeric; `decile` not already a column | holds; depends on the read-back |
+
+The other units of `sasPipeline` have no precondition item. Units outside it with one
+(`logit_scored_train_output`, `training_metrics`, `validation_metrics`, `roc_train`, `roc_valid`,
+`roc_stats`, `kaggle_submission`, and the two printed-table units) matter only for the per-file
+contracts of section 5 and get the same lemma there if those contracts are kept.
+
+Under ruling G55 three of these depend on the read-back: with the identity (the SAS
+verification's setting) they follow from the SAS shape lemmas; with the shared free read-back
+of the equality contracts they follow from `PyLinks` 8. Both forms are stated.
+
 ## 5. Outputs outside the interface `[D5]`
 
 The playbook asks for one contract per output of the program. Six compared files are not carried
@@ -188,15 +235,19 @@ Stated only after every contract of section 2 is proved.
 
 ## 8. How the work is divided
 
-Groups A (E1, E2, A1, G1), B (E3, E4, E5, A2, G2), C (E6, E7, A3, G3), D (E8 to E11, A4, G4) in
+Stating order: the SAS coverage lemmas of section 4a first; then the three definitions; then
+the contracts. Groups A (E1, E2, A1, G1), B (E3, E4, E5, A2, G2), C (E6, E7, A3, G3), D (E8 to E11, A4, G4) in
 parallel; E (section 6) stated after A to D are stated; F (section 5) last. Every statement is
 checked against this text by a teammate who did not write it before its proof is started. Shared
 lemmas are `lem:` items (plan section 4.3).
 
 ## 9. Not covered
 
-- The fit: stepwise selection and the optimiser, on both sides a parameter. A fit that does not
-  return is outside both models.
+- The fit: stepwise selection and the optimiser, on both sides a parameter, assumed to return a
+  model and the same model for both programs (ruling G58, a stated limit). Every report says:
+  the equality is given the same fitted model; the claims hold for inputs whose training part
+  has both outcomes (with one outcome the real SAS fits no model, experiment x27); and the two
+  real fits agree only to the judge's tolerance (SAS stops at GCONV 1E-8).
 - CSV reading itself: the importers and read-backs are parameters, described by `PyLinks` from
   observed runs (RULEBOOK 2.8), not modelled.
 - What the 12-character and 15-digit hand-off files lose, for the carried requirements (G55).
@@ -216,7 +267,11 @@ lemmas are `lem:` items (plan section 4.3).
 3. (Done 2026-11-16: the runs are rules H8 to H14 of the port's RULEBOOK 2.8; each clause of
    `PyLinks` cites its rule.) D4 is closed by ruling G56 (owner, 2026-11-16): counts are taken as exact on
    both sides and the claims hold for raw files of fewer than 10^8 rows. The empty validation set (H13) is closed by ruling G57 (at least 4 training
-   rows; neither program changes). Being measured by the lead's team: `model_summary.csv`
-   with a one-class validation set, and the classification table on a tiny fit.
+   rows; neither program changes).
+5. The five differences on small valid inputs (`migration/legacy-to-port/small-inputs.md`),
+   decided by the owner on 2026-11-16: the port follows SAS on separation (c) and is fixed for
+   (a), (b), (d), (e) as parity fixes, its Lean following; the SAS translator corrects
+   `def:roc_train`, `def:roc_valid` and `def:model_summary` (no row when the set has one
+   class) in the round 6 revision. Contract F4 is to be read against the corrected units.
 4. Review of the three definitions: wiring, and each condition against the port in both
    directions.
