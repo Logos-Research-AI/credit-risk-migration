@@ -202,6 +202,9 @@ lemmas are `lem:` items (plan section 4.3).
   The equality contracts do cover it.
 - Printed formats, the `printed_*` files, the coefficient and stepwise files.
 - Any input that is not valid (G53).
+- Raw files of 10^8 rows or more (ruling G56): the 8-character count round trip is taken as
+  exact on both sides (`PyLinks` 10); beyond that size neither program counts exactly. Every
+  report states this limit.
 - Floating-point behaviour.
 
 ## 10. Owed before anything is stated
@@ -210,8 +213,8 @@ lemmas are `lem:` items (plan section 4.3).
    profile check again, including the state of the 46 kept theorems.
 2. (Done 2026-11-16: decisions D3 to D9 are settled.)
 3. (Done 2026-11-16: the runs are rules H8 to H14 of the port's RULEBOOK 2.8; each clause of
-   `PyLinks` cites its rule.) Open from them: decision D4 goes back to the owner (H14: the
-   port rounds a count from 10^8; the SAS Lean counts exactly under a precondition of fewer
-   than 10^8 rows), and the port's train stage on an empty validation set (H13).
+   `PyLinks` cites its rule.) D4 is closed by ruling G56 (owner, 2026-11-16): counts are taken as exact on
+   both sides and the claims hold for raw files of fewer than 10^8 rows. Open: the port's train
+   stage on an empty validation set (H13), to be fixed in the port before contracts are stated.
 4. Review of the three definitions: wiring, and each condition against the port in both
    directions.

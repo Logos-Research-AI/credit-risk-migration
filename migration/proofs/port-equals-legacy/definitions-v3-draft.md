@@ -134,9 +134,13 @@ numpy routines, `fsum`, `today` or `full`.
    there, since a table with no row has no cell.)
 9. **The model file.** The intercept and the (name, coefficient) list predict parses are those
    of the model train returned, in the same order. (Rule H11, experiment E14: bit for bit.)
-10. **Counts as text.** For every whole number n with 0 ≤ n < 10^8, `parse_float` of
-    `sas_best n 8` is n and the text is not empty; the text of a missing value is empty. (Rule
-    H14, experiment E17.) **Decision D4 is reopened by H14**: see the note below.
+10. **Counts as text.** For every whole number n, zero or more, `parse_float` of `sas_best n 8`
+    is n and the text is not empty; the text of a missing value is empty. This is an
+    idealisation, by ruling G56 (decision D4, owner, 2026-11-16), in the style of the hand-off
+    links of G55: counts of good and bad applicants are taken as exact on both sides. Rule H14
+    (experiment E17) supports it below 10^8; from 10^8 the real function rounds the count, so
+    the claims hold for raw files of fewer than 10^8 rows, and every report says so. `InputOK`
+    gets no row bound.
 
 **Note on G54 and H9.** H9 finds one shape of 12 characters that the round trip changes: a point
 first, then 11 digits, the 11th not 0. The requirements count the 0 before the point
@@ -150,16 +154,12 @@ does change. Two limits. H9 is a finding on samples of doubles; clause 2 states 
 such real number, as a link. H9 tested no negative number; clause 2 asks none (incomes are zero
 or more, dependents whole numbers).
 
-**Note on D4 and H14.** D4 was decided as "no bound of 10^8, the port's round trip linked to the
-SAS unit's own rule, if a run confirms the two agree at and beyond 10^8". They do not. The SAS
-Lean unit `total_good_bad` counts exactly, and puts "fewer than 10^8 rows" in its precondition
-(SAS rule R19); the port's real function rounds a count from 10^8 to five significant digits
-(H14). So without a bound the condition would be false of the real port, and with the bound
-(clause 10 as now written) the KS contract E9 cannot be proved for a validation set with 10^8
-or more rows of one outcome. This is the case D4 said goes to the owner. The SAS program does
-the same 8-character round trip, so the SAS verification has the same unstated limit. My
-recommendation: a ruling like G54, "a raw file has fewer than 10^8 rows", in the input
-conditions; nothing changes in either program.
+**Note on D4 and H14 (closed by ruling G56).** The SAS Lean unit `total_good_bad` counts
+exactly and puts "fewer than 10^8 rows" in its precondition (SAS rule R19); the port's real
+function rounds a count from 10^8 to five significant digits (H14); the SAS program does the
+same 8-character round trip. The owner's ruling G56: a stated limit with no formal change.
+Counts are taken as exact on both sides (clause 10), no bound is added to the input conditions,
+and the claims are reported as holding for raw files of fewer than 10^8 rows.
 
 **Note on an empty validation set (H13).** On the Lean side the case exists. `InputOK` allows a
 training file of one, two or three rows; with clause 5 (and clause (5) of `SasLinks`) seven
