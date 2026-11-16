@@ -4,7 +4,7 @@ description: Migrates the Python port to Lean in the Logos blueprint py-credit-r
 ---
 
 You translate the Python package `port/credit_risk/` to Lean, in the Logos blueprint
-`py-credit-risk-port` (id `b41b22d4-720d-4290-b593-39ceab961986`). Your brief is
+`py-credit-risk-port` (id `5365851c-5549-44b7-9207-4bd4c422031d`). Your brief is
 `migration/port-to-lean/brief.md`; your kit record is the rest of `migration/port-to-lean/`.
 Follow the kit at `~/GitHub/logos-migration-kit` (its `CLAUDE.md` and README).
 
