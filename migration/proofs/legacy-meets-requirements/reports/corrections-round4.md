@@ -177,3 +177,78 @@ By a reviewer who did not make the change; no new SAS run.
 - Settled by reading only, not run on SAS: a header whose empty row-id name is not first (by
   reading rejected, with or without applicants, as before; whether such a file is valid is the
   owner's), `"MonthlyIncome"x`, a file with a byte order mark.
+
+## Round 5 corrections prepared and not applied (ruling G53)
+
+2026-11-15 and 16. Rulings G46 (column names exact) and G48 (row ids compared as numbers) asked for two corrections of the input checks in `legacy/feature_engineering.sas` and `legacy/predict.sas`. Both were written and run on SAS. Ruling G53 then withdrew the demand to stop on invalid input and set G46 to G52 aside, so **no correction is applied**: `legacy/` is as at commit 697eed5 (`git diff 697eed5 HEAD -- legacy/` is empty).
+
+How the scripts got there: the two corrections sat uncommitted in the working tree and were taken into commit 0d339b7 (a rulings commit made with `commit -a`); the reference listings of a run of the corrected scripts were taken into 56e59f4 the same way. Commit 5096f00 restores the two scripts to their content at 697eed5, and the reference listings are regenerated from a run of the restored scripts (see "Reference logs" below). No history was rewritten.
+
+### The two diffs (not applied)
+
+G46, both scripts, in the columns query of the input check (`feature_engineering.sas` lines 69-75, `predict.sas` lines 133-139). `dictionary.columns` holds the name as PROC IMPORT wrote it, so comparing it without `upcase` is the exact comparison:
+
+```
+-    /* The expected columns and no others */
+-    select (count(*) = 12 and sum(upcase(name) in
+-               ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+-                'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+-                'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+-                'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+-                'NUMBERREALESTATELOANSORLINES')) = 12)
++    /* The expected columns and no others, the names exactly as written here */
++    select (count(*) = 12 and sum(name in
++               ('VAR1', 'SeriousDlqin2yrs', 'age', 'MonthlyIncome', 'NumberOfDependents',
++                'RevolvingUtilizationOfUnsecuredL', 'DebtRatio',
++                'NumberOfTime30-59DaysPastDueNotW', 'NumberOfTime60-89DaysPastDueNotW',
++                'NumberOfTimes90DaysLate', 'NumberOfOpenCreditLinesAndLoans',
++                'NumberRealEstateLoansOrLines')) = 12)
+```
+
+G48, `feature_engineering.sas` (data step `work.input_check` and the query after it; `predict.sas` is the same without `known_income`):
+
+```
+-    keep VAR1 bad_row known_income;
++    /* The row id as a number: ids that read as the same number are the same id */
++    row_id_number = %num(VAR1);
++    keep VAR1 row_id_number bad_row known_income;
+...
+-    select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
++    select coalesce(sum(bad_row), 0), count(*) - count(distinct row_id_number), coalesce(sum(known_income), 0)
+```
+
+### What the program as it stands does on these files (the BEFORE pass)
+
+Inputs: `judge/scenarios/fix_round5/` (built by `judge/make_round5_scenarios.py`, commit 3c7ba60): the first 3000 training rows and the first 200 test rows of the real files, one thing changed per file. Run `ev11_round5_before` (`judge/run_sas_sequence.py`, plan `judge/scenarios/fix_round5/plan.json`, 26 steps in one session, profile oda_eu) on the scripts as at 697eed5, which is what `legacy/` holds now. A training file is given to `feature_engineering.sas` alone, a test file to `predict.sas` alone, after a full good run. "Stopped" means the script's own two ERROR lines and `abort cancel`, and none of the script's output files in the folder afterwards (the script removes them first).
+
+| File changed | What is changed | Training file, `feature_engineering.sas` | Test file, `predict.sas` |
+|---|---|---|---|
+| `header_age_upper` | header has `AGE` for `age` | accepted, 0 ERROR, 3 files written | accepted, 0 ERROR, 2 files written |
+| `header_all_upper` | header in capitals throughout | accepted, 0 ERROR | accepted, 0 ERROR |
+| `header_income_lower` | header has `monthlyincome` | accepted, 0 ERROR | accepted, 0 ERROR |
+| `header_only_age_upper` | header line only, `AGE` for `age` | (test file only) | accepted, 0 ERROR, 2 files written |
+| `id_quoted_07` | row 8 has the id `"07"`, row 7 has `7` | accepted, 0 ERROR | accepted, 0 ERROR |
+| `id_quoted_7_0` | row 8 has the id `"7.0"`, row 7 has `7` | accepted, 0 ERROR | accepted, 0 ERROR |
+| `id_quoted_distinct` | row 8 has the id `"08"` | accepted, 0 ERROR | accepted, 0 ERROR |
+| `short_row_optional` | row 30 lacks its last field, `NumberOfDependents` | accepted, 0 ERROR | accepted, 0 ERROR |
+| `short_row_required` | row 30 lacks its last two fields (a late-payment count and dependents) | stopped: `columns_ok=1 bad_rows=1 duplicate_ids=0`, no file | stopped: `bad_rows=1`, no file |
+| `short_row_required_last` | `age` moved to the last column, row 30 lacks it | stopped: `bad_rows=1`, no file | stopped: `bad_rows=1`, no file |
+| `age_quoted` | row 30 has age `"45"` | passes the input check, then 6 ERROR lines, and 3 files are still written | passes the input check, then 1 ERROR and 1 new WARNING, and 2 files are written with every applicant unscored |
+| `age_exponent` | row 30 has age `4.5e1` | accepted, 0 ERROR, age read as 45 | accepted, 0 ERROR |
+
+Details worth keeping:
+
+- **Quoted ids.** One quoted id makes PROC IMPORT read the id column as text. The duplicate check then counts texts, so `7` and `"07"`, and `7` and `"7.0"`, pass as distinct. With an accepted file the id is written as the text: `08` in `model_features_train.csv`, `kaggle_submission.csv` and `test_predictions.csv`, where the good file gives `8`.
+- **Short rows.** PROC IMPORT reads the missing trailing fields of a short row as missing. The row with only `NumberOfDependents` missing is treated like any row with a blank there (`Dependents_missing` = 1, dependents 0). A short row that lacks a required field is counted as a bad row and the script stops. This is what G49 described; it needed no change.
+- **Quoted age.** One quoted age makes the `age` column text, and the input check accepts it because the text reads as a number. Later steps are written for a numeric age. In `feature_engineering.sas` the PROC SQL that computes the medians fails four times ("Expression using less than (<) has components that are of different data types"), two PROC MEANS fail, and the three files are still exported: `income_medians.csv` from the table an earlier run left in the session, the feature files from the DATA steps, which convert the text silently. In `predict.sas` PROC PLM reports "Variable age has inconsistent type in secondary data set", sets every score to missing, and the prediction files are written with an empty probability, grade F and "Decline" for all 200 applicants. So on this file the program neither stops nor gives a right result. Under G53 and the plain reading of G39 the file is outside the input conditions, so nothing is demanded; it is recorded here because the script reports success in its closing notes.
+- **Exponent notation** leaves the column numeric (PROC IMPORT reads `4.5e1` as 45) and the run is clean.
+
+The same plan was also run with the corrections in the working tree (`ev11_round5_G46`: G46 only; `ev11_round5_G46_G48`: both). They showed what the corrections were for: with G46 the four header files are stopped (`columns_ok=0`) on both sides, header-only test file included; with G48 added, `id_quoted_07` and `id_quoted_7_0` are stopped (`duplicate_ids=1`) on both sides while `id_quoted_distinct` is still accepted. Every other row of the table is the same in all three passes. On the real data the corrected scripts gave 32 output files byte-identical to the reference (run `final5_real`; `final5b_edge_predict` for the edge scenario). These runs are on disk under `judge/runs/` (git-ignored) and describe a program that is not in the repository.
+
+### Reference logs
+
+The listings in `judge/reference/listings/` dated from run `final4_real` (scripts at 56e52f7, before 697eed5 changed `predict.sas`), and for a while (commit 56e59f4) from `final5_real`, a run of the corrected scripts. They are now those of run `final6_real_uncorrected` (2026-11-16): the four scripts as at 697eed5 on the real data, 391 s, 0 ERROR, 0 new WARNING, 32 CSVs.
+
+- Outputs: 30 of the 32 files are byte-identical to `judge/reference/`. The other two, `model_summary.csv` and `model_performance_metrics.csv`, differ in one field each, the date the scripts stamp with `today()`: `16NOV2026` where the reference has `15NOV2026`. The reference's output files were left as they are.
+- Listings against those of `final4_real`, after setting aside statement numbers, times, dates and the session's folder names: `predict.sas.log` echoes the source of 697eed5 (the made-up applicant chosen by name, the PROC DATASETS that removes earlier tables); the other three logs differ only in where SAS wraps the lines that carry the run folder's path, which is longer; the four `.lst` files differ only in dates and an inode number.
+- Not regenerated: the listings of `judge/reference/scenarios/edge_predict/`, still those of `final4_edge_predict` (scripts at 56e52f7), so its `predict.sas.log` echoes the older source of `predict.sas`. Its output files are unaffected.
