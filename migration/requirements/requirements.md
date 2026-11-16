@@ -67,7 +67,7 @@ data.
 
 | # | Requirement | Source |
 |---|---|---|
-| Q27 | On an input that meets the conditions of section 3, every step produces its result. On an input that does not, the pipeline stops with an error and produces no result (rulings G3, G4, G11), except that nothing is demanded when the only fault is a number written with more than 32 characters (ruling G47) | section 3 |
+| Q27 | On an input that meets the conditions of section 3, every step produces its result. On an input that does not, the pipeline stops with an error and produces no result (rulings G3, G4, G11), except that a stop is demanded only when the input is faulty whatever numbers its fields written with more than 32 characters are read as (rulings G47, G51, G52) | section 3 |
 
 ## 2. Reported figures, not requirements
 
@@ -85,20 +85,22 @@ the requirements are stated for raw inputs in which:
 - the outcome, where present, is 0 or 1;
 - the row ids (`VAR1`) are distinct within each raw file (ruling G14);
 - the raw files are tables a CSV file can hold: they have the columns of section 5 and no others,
-  and every numeric value is a decimal number that can be written in at most 32 characters
-  (ruling G28);
+  and every field is written with at most 32 characters, quotes and surrounding blanks counted
+  (rulings G28, G51);
 - the three late-payment counts, the number of dependents and the number of credit lines are
   whole numbers, zero or more (ruling G29);
 - a known `MonthlyIncome` is zero or more (ruling G34);
 - no field holds a text value: each is a number or missing (ruling G39). A field is a number
-  whenever it reads as one, however it is written (ruling G48); row ids are compared as numbers;
+  whenever it reads as one, however it is written (rulings G48, G50); row ids are compared as
+  numbers;
 - column names are those of section 5 exactly, capitalisation included (ruling G46);
 - a row shorter than the header has its missing trailing fields blank (ruling G49).
 
 On such inputs Q1 and Q2 leave no missing value, so no later requirement has to say what a
 missing value does. A pipeline that meets an input outside these conditions must stop with an
-error, not produce a result. The one exception is a number written with more than 32 characters:
-when that is the only fault, nothing is demanded (ruling G47).
+error, not produce a result. The one exception is a field written with more than 32 characters:
+a stop is demanded only when the file is faulty whatever numbers its long fields are read as
+(rulings G47, G51, G52).
 
 ## 4. Rulings
 
