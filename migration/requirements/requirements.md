@@ -161,7 +161,7 @@ missing value does. What a pipeline does on an input outside these conditions is
 | G52 | Q27 demands a stop only when a file is faulty for a reason that does not depend on the value of a field written with more than 32 characters: the file must fail the other input conditions whatever numbers its long fields are read as. When a fault exists only through the exact value of a long field (a count written `2.000…01` in 39 characters), nothing is demanded (completes G47 and G51) | 2026-11-16 |
 | G53 | Q27 is reduced to its first part: on an input that meets the conditions of section 3, every step produces its result. What the pipeline does on any other input is not required and is not part of the verification; the input checks the program has stay as they are. Rulings G46 to G52, which refined what an invalid input is and when a stop is demanded, are set aside: they are kept above for the record and are not formalised. Section 3 stands as it was before them (G39 in its plain reading: no text in any field) | 2026-11-16 |
 
-**Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
+**Signed off by the owner on 2026-11-16** as formalised in the blueprint `credit-risk-requirements` after ruling G53 (59 items; Q27 reduced to valid inputs; consistency proved again; independent review found no open point). Earlier sign-off: 2026-11-14, as formalised in the blueprint `credit-risk-requirements`
 (58 items at that date, 59 since draft 4; consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
 
 ## 5. Names
