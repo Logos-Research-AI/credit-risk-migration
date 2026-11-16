@@ -5,13 +5,15 @@ The original SAS code is the executable spec; the judge queries it on SAS OnDema
 for Academics (ODA) through saspy and compares output folders.
 
 **Status (2026-11-16):** the judge follows the corrected SAS. Comparator self-test: 104/104
-cases, among them a correct port (fully converged refit), which passes. Mutations: the three
-of the corrected SAS that touch the score and the grade are caught
-(`train_score_rounded`, `train_grade_cut_pd`, `predict_grade_b_cut_pd`); the 19 runs of
-2026-11-05 are runs of the SAS program before its corrections and are reported STALE in
-`validation_report.md` until they are run again (five of them no longer find their text). The
-earlier validation (18 of 19 caught, 1 equivalent, 0 missed; 79/79 self-test cases; three
-adversarial reviews) was of the judge against the original SAS.
+cases, among them a correct port (fully converged refit), which passes. Mutations of the
+corrected SAS (`validation_report.md`, runs of 2026-11-16): 15 caught, 2 equivalent (every
+output byte-identical to the reference: `predict_no_dep_impute`, `predict_null_compare_false`),
+0 missed. Five mutations of the original SAS no longer find their text in the corrected
+program and are reported STALE (`train_grade_cutoff`, `train_round_floor`,
+`predict_grade_b_boundary`, `fe_import_guessingrows`, `metrics_psi_sign`); three new ones
+stand in for the first three. The staged metrics run on the reference risk scores reproduces
+the reference byte for byte. The earlier validation (18 of 19 caught, 1 equivalent, 0 missed;
+79/79 self-test cases; three adversarial reviews) was of the judge against the original SAS.
 
 ## Pieces
 
