@@ -566,9 +566,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
         base_score=pl.lit(600.0),
         score_range=pl.lit(250.0),
     ).with_columns(
-        credit_risk_score=sas_compat.sas_round(  # R§2 round(x), INV credit_risk_score
-            pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic"))
-        )
+        # Q15 (b7b1cd4): the score is not rounded
+        credit_risk_score=pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic"))
     )
     risk_scores_train = risk_scores_train.with_columns(
         risk_grade=pl.when(pl.col("credit_risk_score") >= 750)
@@ -610,9 +609,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
         base_score=pl.lit(600.0),
         score_range=pl.lit(250.0),
     ).with_columns(
-        credit_risk_score=sas_compat.sas_round(  # R§2 round(x), INV credit_risk_score
-            pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic"))
-        )
+        # Q15 (b7b1cd4): the score is not rounded
+        credit_risk_score=pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic"))
     )
     risk_scores_validation = risk_scores_validation.with_columns(
         risk_grade=pl.when(pl.col("credit_risk_score") >= 750)
