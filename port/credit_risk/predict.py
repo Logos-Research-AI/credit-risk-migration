@@ -322,7 +322,7 @@ def run(
     test_features = test_features.with_columns(
         # predict.sas:195-200
         # Q9 (10f447e): age * log(income) when income is above 0, else age * log(income + 1)
-        age_income_interaction=pl.when(sas_compat.gt(pl.col("monthly_income"), 0))
+        age_income_interaction=pl.when(pl.col("monthly_income") > 0)
         .then(pl.col("age") * sas_compat.sas_log(pl.col("monthly_income")))
         .otherwise(pl.col("age") * pl.col("log_monthly_income")),
         # Q9 (10f447e): utilization * debt ratio, no division by 100
