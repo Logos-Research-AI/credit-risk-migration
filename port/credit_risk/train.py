@@ -240,7 +240,9 @@ def run(input_dir: Path, output_dir: Path) -> None:
     printed_global_tests = pl.DataFrame(
         {"Step": gt_step, "Test": gt_test, "ChiSq": gt_chisq, "DF": gt_df, "ProbChiSq": gt_prob}
     )
-    sas_compat.write_sas_csv(printed_global_tests, output_dir / "printed_global_tests.csv", formats={})
+    # SAS makes no Global Tests and no R-Square table when no variable ever entered (small-inputs.md (d))
+    if stepwise.steps:
+        sas_compat.write_sas_csv(printed_global_tests, output_dir / "printed_global_tests.csv", formats={})
     printed_rsquare = pl.DataFrame(
         {
             "Step": rs_step,
@@ -252,7 +254,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
             "nValue2": rs_nvalue2,
         }
     )
-    sas_compat.write_sas_csv(printed_rsquare, output_dir / "printed_rsquare.csv", formats={})
+    if stepwise.steps:
+        sas_compat.write_sas_csv(printed_rsquare, output_dir / "printed_rsquare.csv", formats={})
 
     # OUTPUT OUT=work.logit_scored_train PREDICTED=pd_logistic  # R§2 `output out= predicted=`
     # final model effects in MODEL statement order (ParameterEstimates order), Intercept first
@@ -309,7 +312,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
             ],
         }
     )
-    sas_compat.write_sas_csv(printed_association, output_dir / "printed_association.csv", formats={})
+    # SAS makes no Association, Odds Ratios or Hosmer-Lemeshow table for a final model with the
+    # intercept only (small-inputs.md (d)): the four files below are written when it has a variable
+    if final_effects:
+        sas_compat.write_sas_csv(printed_association, output_dir / "printed_association.csv", formats={})
 
     # ODS ParameterEstimates -> work.model_coefficients (exported at train.sas:420)
     # INV model_coefficients.csv
@@ -355,7 +361,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
         {"Effect": or_effect, "OddsRatioEst": or_est, "LowerCL": or_lower, "UpperCL": or_upper}
     )
     # stored formats: Effect $20., OddsRatioEst/LowerCL/UpperCL oddsr8.3 (S7)
-    sas_compat.write_sas_csv(printed_odds_ratios, output_dir / "printed_odds_ratios.csv", formats={})
+    if final_effects:
+        sas_compat.write_sas_csv(printed_odds_ratios, output_dir / "printed_odds_ratios.csv", formats={})
 
     # LACKFIT -> printed_hl_partition.csv and printed_hosmer_lemeshow.csv  # INV printed_hl_partition.csv
     # stored formats: Group/Total/Observed 8., Expected 8.2; ChiSq 10.4, DF 4.,
@@ -381,7 +388,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
             ],
         }
     )
-    sas_compat.write_sas_csv(printed_hl_partition, output_dir / "printed_hl_partition.csv", formats={})
+    if final_effects:
+        sas_compat.write_sas_csv(printed_hl_partition, output_dir / "printed_hl_partition.csv", formats={})
     printed_hosmer_lemeshow = pl.DataFrame(
         {
             "ChiSq": [sas_compat.fmt_wd(hl_chisq, 10, 4)],
@@ -390,7 +398,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
             "NGroups": [str(hl_table.height)],
         }
     )
-    sas_compat.write_sas_csv(printed_hosmer_lemeshow, output_dir / "printed_hosmer_lemeshow.csv", formats={})
+    if final_effects:
+        sas_compat.write_sas_csv(
+            printed_hosmer_lemeshow, output_dir / "printed_hosmer_lemeshow.csv", formats={}
+        )
 
     # CTABLE -> printed_classification.csv  # INV printed_classification.csv
     # stored formats: ProbLevel 5.3, counts 5., percentages 5.1 (S7)
