@@ -857,6 +857,10 @@ _TIE_EPS = math.nextafter(math.sqrt(2.0**-53), 1.0)
 # 1000 * 2**-53 = 1.11e-13: experiments X10, X10b (two values 1000 ulps of 0.5 apart are equal there,
 # 1001 are not; the same distance at 0, 0.3 and 0.85).
 _SE_EPS = 1000 * 2.0**-53
+# What PROC LOGISTIC divides a class of ONE observation by, where the standard error's formula has
+# n - 1 = 0: constant('SQRTBIG'), sqrt of the largest double as SAS writes it. sqrt(0.5 / _SQRTBIG) is
+# bit for bit the 6.106693348777218e-78 of X07 groups 91, 92 and X12 (70 groups); one ulp either side is not.
+_SQRTBIG = 1.3407807929943e154
 
 
 @dataclass
@@ -928,8 +932,10 @@ def roc_association(
     ROCModel label and renders every value with sas_d8). With `label`: the ONE-row frame the inventory
     rows specify (ROCModel, Area, StdErr, LowerArea, UpperArea, SomersD, Gamma, TauA; full-precision
     Float64). The standard error takes each class's components (`_pairs`: compared by the _SE_EPS
-    groups) around the Area, sum of squares / (n - 1) / n; a class of one observation adds nothing
-    (X10: one defaulter and two others gives 0.5; SAS prints 6e-78 where this gives 0, X07 group 91).
+    groups) around the Area, sum of squares / (n - 1) / n; for a class of one observation the divisor
+    is _SQRTBIG, not 0: it adds nothing that shows beside a class of two or more (X10: one defaulter and
+    two others gives 0.5) and gives 6.1e-78, not 0, when both classes have one observation and the two
+    probabilities are tied for the Area and different here (X07 groups 91, 92; X12).
     The limits stay within 0 and 1 (X07, X10; fix_Q26_small: UpperArea 1.0000). An undefined statistic
     (empty class; Gamma when all pairs are tied) is None, except TauA: on a single-class input it is 0
     (None only with at most one usable row)."""
@@ -939,8 +945,8 @@ def roc_association(
     area = _ratio(q.conc + 0.5 * q.tied, p)
     se: float | None = None
     if area is not None:
-        s10 = math.fsum(((q.v10 - area) ** 2).tolist()) / (q.n1 - 1) / q.n1 if q.n1 >= 2 else 0.0
-        s01 = math.fsum(((q.v01 - area) ** 2).tolist()) / (q.n0 - 1) / q.n0 if q.n0 >= 2 else 0.0
+        s10 = math.fsum(((q.v10 - area) ** 2).tolist()) / (q.n1 - 1 if q.n1 >= 2 else _SQRTBIG) / q.n1
+        s01 = math.fsum(((q.v01 - area) ** 2).tolist()) / (q.n0 - 1 if q.n0 >= 2 else _SQRTBIG) / q.n0
         se = math.sqrt(s10 + s01)
     cd = q.conc - q.disc
     r = RocAssociation(
