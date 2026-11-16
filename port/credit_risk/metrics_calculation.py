@@ -115,27 +115,35 @@ def run(input_dir: Path, output_dir: Path, *, fix_psi_bins: bool = False) -> Non
     total_good_count = _into_float(cast(float | None, totals.item(0, "good")))
     total_bad_count = _into_float(cast(float | None, totals.item(0, "bad")))
 
-    # metrics_calculation.sas:87-102 ks_calculation (retain cum_good cum_bad)
+    # metrics_calculation.sas:136-153 ks_calculation (by pd_logistic; retain cum_good cum_bad)
     # INV work.ks_calculation: cum_bad counts every row that is not default_flag = 0; scalar divisors ->
     # div (A13)
     ks_calculation = logit_scored_valid.with_columns(
         cum_good=sas_compat.flag(pl.col("default_flag") == 0).cum_sum(),
-        cum_bad=(1 - sas_compat.flag(pl.col("default_flag") == 0)).cum_sum(),  # else branch (:96-97)
+        cum_bad=(1 - sas_compat.flag(pl.col("default_flag") == 0)).cum_sum(),  # else branch (:146-147)
     )
     ks_calculation = ks_calculation.with_columns(
         cum_pct_good=sas_compat.div(pl.col("cum_good"), pl.lit(total_good_count, pl.Float64)),
         cum_pct_bad=sas_compat.div(pl.col("cum_bad"), pl.lit(total_bad_count, pl.Float64)),
     )
+    # :152 if last.pd_logistic: the last row of each run of equal probabilities (missing is one BY group);
+    # ks_value stays missing on the other rows
+    last_pd_logistic = (pl.int_range(pl.len()) == pl.len() - 1) | pl.col("pd_logistic").ne_missing(
+        pl.col("pd_logistic").shift(-1)
+    )
     ks_calculation = ks_calculation.with_columns(
-        ks_value=(pl.col("cum_pct_good") - pl.col("cum_pct_bad")).abs()
+        ks_value=pl.when(last_pd_logistic).then((pl.col("cum_pct_good") - pl.col("cum_pct_bad")).abs())
     )
 
-    # metrics_calculation.sas:105-111 ks_statistic (SQL remerge: every row equal to the maximum)
-    # R§2 PROC SQL remerge; INV work.ks_calculation / ks_statistic
+    # metrics_calculation.sas:156-162 ks_statistic (one row: the maximum and the lowest cutoff attaining it)
+    # R§2 SQL aggregates (S10): one row also over no rows; INV work.ks_calculation / ks_statistic
     max_ks_value = ks_calculation.select(sas_compat.sql_max(pl.col("ks_value")))  # R§2 SQL aggregates (S10)
     ks_statistic = ks_calculation.filter(
         sas_compat.eq(pl.col("ks_value"), pl.lit(max_ks_value.item(0, 0), pl.Float64))  # SQL: . = . is true
-    ).select(KS_Statistic=pl.col("ks_value"), KS_Cutoff=pl.col("pd_logistic"))
+    ).select(
+        KS_Statistic=sas_compat.sql_max(pl.col("ks_value")),
+        KS_Cutoff=sas_compat.sql_min(pl.col("pd_logistic")),
+    )
 
     # listing-only: PROC PRINT ks_statistic
 
