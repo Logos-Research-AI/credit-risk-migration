@@ -17,8 +17,7 @@ def run(
     output_dir: Path,
     *,
     data_dir: Path,
-    fix_train_medians: bool = False,
-    medians: Path | None = None,
+    income_medians: Path,
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)  # R§4 S12
 
@@ -40,37 +39,10 @@ def run(
         .rename({"MonthlyIncome_num": "MonthlyIncome", "NumberOfDependents_num": "NumberOfDependents"})
     )
 
-    # predict.sas:59-73 PROC SQL test_income_medians
-    # BUG(port): medians come from the TEST set, not training. Repro: cs-test.csv gives
-    # {1: 2516, 2: 4667, 3: 6000, 4: 6260.5, 5: 5395}; edge_predict age group 1 has no median.
-    # INV work.test_income_medians; SAS comparisons: a missing age is < 30 (finding P3)
-    # The WHERE runs before the group by, so an all-missing age group gets no row (INV test_income_medians).
-    test_income_medians = (
-        test_raw_clean.filter(pl.col("MonthlyIncome").is_not_null())
-        .with_columns(
-            age_group=pl.when(sas_compat.lt(pl.col("age"), 30))
-            .then(1)
-            .when(sas_compat.lt(pl.col("age"), 40))
-            .then(2)
-            .when(sas_compat.lt(pl.col("age"), 50))
-            .then(3)
-            .when(sas_compat.lt(pl.col("age"), 60))
-            .then(4)
-            .otherwise(5)
-        )
-        .group_by("age_group", maintain_order=True)
-        .agg(median_income=pl.col("MonthlyIncome").median())
-    )
-
-    # FIXED(post-parity, flag --fix-train-medians): impute from the TRAINING medians (income_medians.csv)
-    if fix_train_medians:
-        if medians is None:
-            raise ValueError("--fix-train-medians requires --medians <income_medians.csv>")
-        test_income_medians = pl.read_csv(
-            medians, schema_overrides={"age_group": pl.Int32, "median_income": pl.Float64}
-        )
-        if set(test_income_medians.get_column("age_group").to_list()) != {1, 2, 3, 4, 5}:
-            raise ValueError(f"{medians}: age_group must cover exactly 1-5")
+    # predict.sas:212-218 PROC IMPORT income_medians.csv (default guessingrows)
+    # Q13 (2d4fdef): the training income medians by age group, exported by feature_engineering
+    # INV work.train_income_medians; R§2 PROC IMPORT
+    train_income_medians = sas_compat.proc_import_csv(income_medians)
 
     # predict.sas:75-94 DATA test_cleaned
     # INV age_group; INV MonthlyIncome_missing
@@ -91,18 +63,21 @@ def run(
         NumberOfDependents=pl.col("NumberOfDependents").fill_null(0.0),
     )
 
-    # predict.sas:97-119 PROC SQL test_imputed
+    # predict.sas:241-264 PROC SQL test_imputed
     # INV work.test_imputed; R§2 PROC SQL left join (A11 not needed: keys never missing)
-    # BUG(port): imputes from TEST-set medians. Repro: edge_predict under-30 rows get null monthly_income.
-    # (FIXED(post-parity, flag --fix-train-medians): test_income_medians above is the training table)
-    # monthly_income stays null where the age group has no median row (INV monthly_income (test_imputed)).
+    # Q13 (2d4fdef): imputes from the training medians. Q14 (12a28e4), Q1 (167dc38): an age group
+    # with no median falls back to the overall training median (coalesce).
     test_imputed = test_cleaned.join(
-        test_income_medians, on="age_group", how="left", maintain_order="left"
+        train_income_medians,
+        left_on=pl.col("age_group").cast(pl.Float64),
+        right_on="age_group",
+        how="left",
+        maintain_order="left",
     ).select(
         pl.col("VAR1").alias("row_id"),
         pl.col("age"),
         pl.when(pl.col("MonthlyIncome_missing") == 1)
-        .then(pl.col("median_income"))
+        .then(pl.coalesce(pl.col("median_income"), pl.col("overall_median_income")))
         .otherwise(pl.col("MonthlyIncome"))
         .alias("monthly_income"),
         pl.col("MonthlyIncome_missing"),
@@ -336,22 +311,17 @@ if __name__ == "__main__":
     parser.add_argument("--input-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument(
-        "--fix-train-medians",
-        action="store_true",
-        help="post-parity fix: impute MonthlyIncome from the training medians",
+        "--income-medians",
+        type=Path,
+        required=True,
+        help="income_medians.csv written by feature_engineering",
     )
-    parser.add_argument("--medians", type=Path, help="income_medians.csv from feature_engineering")
     args = parser.parse_args()
-    if args.fix_train_medians and args.medians is None:
-        parser.error("--fix-train-medians requires --medians")
-    if args.medians is not None and not args.fix_train_medians:
-        parser.error("--medians requires --fix-train-medians")
     run(
         args.input_dir,
         args.output_dir,
         data_dir=args.data_dir,
-        fix_train_medians=args.fix_train_medians,
-        medians=args.medians,
+        income_medians=args.income_medians,
     )
 
 # PORT STATUS: confidence=high todos=0
