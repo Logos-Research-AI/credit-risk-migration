@@ -1,97 +1,109 @@
-41                                                         The SAS System                          Sunday, 15 November 2026 10:39:00
+41                                                         The SAS System                          Sunday, 15 November 2026 17:00:00
 
-4518       
-4519       /*****************************************************************************
-4520        * Credit Risk Scoring Model - Prediction on Test Set
-4521        *
-4522        * Purpose: Score Kaggle test set using trained model
-4523        * Author: Risk Analytics Team
-4524        * Date: 2025
-4525        *
-4526        * Data Source: Kaggle "Give Me Some Credit" competition test set
+4520       
+4521       /*****************************************************************************
+4522        * Credit Risk Scoring Model - Prediction on Test Set
+4523        *
+4524        * Purpose: Score Kaggle test set using trained model
+4525        * Author: Risk Analytics Team
+4526        * Date: 2025
 4527        *
-4528        * This script:
-4529        * - Loads cs-test.csv from data/ directory
-4530        * - Applies same feature engineering as training
-4531        * - Scores using trained logistic regression model
-4532        * - Generates risk scores, grades, and recommendations
-4533        * - Exports predictions for submission
-4534        *****************************************************************************/
-4535       
-4536       /* Define paths */
-4537       %let data_path = /home/u64643823/sasmig/runs/final4_real-20261115T103922/data;
-4538       %let output_path = /home/u64643823/sasmig/runs/final4_real-20261115T103922/output;
-4539       
-4540       /* Remove the results of an earlier run first: a run that stops leaves no result */
-4541       data _null_;
-4542           length fref $8 fname $64;
-4543           do fname = 'kaggle_submission.csv', 'test_predictions.csv';
-4544               fref = ' ';
-4545               if filename(fref, cats("&output_path/", fname)) = 0 then do;
-4546                   if fexist(fref) then rc = fdelete(fref);
-4547                   rc = filename(fref);
-4548               end;
-4549           end;
-4550       run;
-4551       
-4552       /* Stop when the step before did not produce its result */
-4553       data _null_;
-4554           if not fileexist("&output_path/income_medians.csv")
-4555              or not fileexist("&output_path/model_coefficients.csv") then do;
-4556               put "ERROR: The training medians or the model are not in the output folder: the training steps did not complete."
-4556     ! ;
-4557               put "ERROR: Test set scoring stopped. Nothing is exported.";
-4558               abort cancel;
-4559           end;
-4560       run;
-4561       
-4562       /*****************************************************************************
-4563        * 1. Load Kaggle Test Data
-4564        *****************************************************************************/
-4565       
-4566       /* How many lines the test file has (counted up to two). The first line is copied to the
-4567          work folder with one made-up applicant under it: a value for every name, the same line end */
-4568       %let test_lines = 0;
-4569       %let header_copy = %sysfunc(pathname(work))/cs-test-header.csv;
-4570       
-4571       data _null_;
-4572           infile "&data_path/cs-test.csv" lrecl=32767 truncover obs=2 length=len;
-4573           file "&header_copy" lrecl=131068;
-4574           input;
-4575           if _n_ = 1 then do;
-4576               put _infile_;
-4577               put '1,NA,0.5,40,0,0.5,NA,5,0,1,0,NA' @;
-4578               do i = 13 to countc(_infile_, ',') + 1;
-4579                   put ',0' @;
-4580               end;
-4581               if len > 0 then if char(_infile_, len) = '0D'x then put '0D'x @;
-4582               put;
-4583           end;
-4584           call symputx('test_lines', _n_);
-4585       run;
-4586       
-4587       /* Import test data. PROC IMPORT cannot read a file that has its header line and no
-4588          applicant: PROC IMPORT then reads the copy, so the columns are named as it names them,
-4589          and the made-up applicant is removed, which leaves an empty table */
-4590       %macro import_test;
-4591           %local source;
-4592           %let source = &data_path/cs-test.csv;
-4593           %if &test_lines = 1 %then %let source = &header_copy;
-4594           proc import datafile="&source"
-4595               out=work.test_raw
-4596               dbms=csv
-4597               replace;
-4598               getnames=yes;
-4599               guessingrows=max;
-4600           run;
-4601           %if &test_lines = 1 and %sysfunc(exist(work.test_raw)) %then %do;
-4602               data work.test_raw;
-4603                   set work.test_raw;
-4604                   stop;
-4605               run;
-4606           %end;
-4607       %mend;
-4608       %import_test
+4528        * Data Source: Kaggle "Give Me Some Credit" competition test set
+4529        *
+4530        * This script:
+4531        * - Loads cs-test.csv from data/ directory
+4532        * - Applies same feature engineering as training
+4533        * - Scores using trained logistic regression model
+4534        * - Generates risk scores, grades, and recommendations
+4535        * - Exports predictions for submission
+4536        *****************************************************************************/
+4537       
+4538       /* Define paths */
+4539       %let data_path = /home/u64643823/sasmig/runs/final5_real-20261115T170022/data;
+4540       %let output_path = /home/u64643823/sasmig/runs/final5_real-20261115T170022/output;
+4541       
+4542       /* Remove the results of an earlier run first: a run that stops leaves no result */
+4543       data _null_;
+4544           length fref $8 fname $64;
+4545           do fname = 'kaggle_submission.csv', 'test_predictions.csv';
+4546               fref = ' ';
+4547               if filename(fref, cats("&output_path/", fname)) = 0 then do;
+4548                   if fexist(fref) then rc = fdelete(fref);
+4549                   rc = filename(fref);
+4550               end;
+4551           end;
+4552       run;
+4553       
+4554       /* Stop when the step before did not produce its result */
+4555       data _null_;
+4556           if not fileexist("&output_path/income_medians.csv")
+4557              or not fileexist("&output_path/model_coefficients.csv") then do;
+4558               put "ERROR: The training medians or the model are not in the output folder: the training steps did not complete."
+4558     ! ;
+4559               put "ERROR: Test set scoring stopped. Nothing is exported.";
+4560               abort cancel;
+4561           end;
+4562       run;
+4563       
+4564       /*****************************************************************************
+4565        * 1. Load Kaggle Test Data
+4566        *****************************************************************************/
+4567       
+4568       /* How many lines the test file has (counted up to two). The first line is copied to the
+4569          work folder with one made-up applicant under it: a value for every name, chosen by the
+4570          name and not by its place (NA under the three names that may hold NA, a number under
+4571          every other), the same line end */
+4572       %let test_lines = 0;
+4573       %let header_copy = %sysfunc(pathname(work))/cs-test-header.csv;
+4574       
+4575       data _null_;
+4576           infile "&data_path/cs-test.csv" lrecl=32767 truncover obs=2 length=len;
+4577           file "&header_copy" lrecl=131068;
+4578           input;
+4579           if _n_ = 1 then do;
+4580               put _infile_;
+4581               do i = 1 to countc(_infile_, ',') + 1;
+4582                   if i > 1 then put ',' @;
+4583                   if upcase(compress(scan(_infile_, i, ',', 'm'), , 'kn')) in
+4584                      ('SERIOUSDLQIN2YRS', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS') then put 'NA' @;
+4585                   else put '1' @;
+4586               end;
+4587               if len > 0 then if char(_infile_, len) = '0D'x then put '0D'x @;
+4588               put;
+4589           end;
+4590           call symputx('test_lines', _n_);
+4591       run;
+4592       
+4593       /* Import test data. PROC IMPORT cannot read a file that has its header line and no
+4594          applicant: PROC IMPORT then reads the copy, so the columns are named as it names them,
+4595          and the made-up applicant is removed, which leaves an empty table. The tables an earlier
+4596          scoring left in the session are removed first: a step that fails finds no table to use */
+4597       %macro import_test;
+4598           %local source;
+4599           %let source = &data_path/cs-test.csv;
+4600           %if &test_lines = 1 %then %do;
+4601               %let source = &header_copy;
+4602               proc datasets library=work nolist nowarn;
+4603                   delete test_raw input_check test_raw_clean test_cleaned test_imputed
+4604                          test_features test_scored_temp test_scored test_predictions
+4605                          kaggle_submission test_predictions_full;
+4606               quit;
+4607           %end;
+4608           proc import datafile="&source"
+4609               out=work.test_raw
+4610               dbms=csv
+4611               replace;
+4612               getnames=yes;
+4613               guessingrows=max;
+4614           run;
+4615           %if &test_lines = 1 and %sysfunc(exist(work.test_raw)) %then %do;
+4616               data work.test_raw;
+4617                   set work.test_raw;
+4618                   stop;
+4619               run;
+4620           %end;
+4621       %mend;
+4622       %import_test
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
 Name  is not a valid SAS name.
@@ -99,170 +111,172 @@ Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUns
 Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
 Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
 Problems were detected with provided names.  See LOG. 
-4609        /**********************************************************************
-4610        *   PRODUCT:   SAS
-4611        *   VERSION:   9.4
-4612        *   CREATOR:   External File Interface
-4613        *   DATE:      15NOV26
-4614        *   DESC:      Generated SAS Datastep Code
-4615        *   TEMPLATE SOURCE:  (None Specified.)
-4616        ***********************************************************************/
-4617           data WORK.TEST_RAW    ;
-4618           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-4619           infile '/home/u64643823/sasmig/runs/final4_real-20261115T103922/data/cs-test.csv' delimiter = ',' MISSOVER DSD
-4619     ! lrecl=32767 firstobs=2 ;
-4620              informat VAR1 best32. ;
-4621              informat SeriousDlqin2yrs $1. ;
-4622              informat RevolvingUtilizationOfUnsecuredL best32. ;
-4623              informat age best32. ;
-4624              informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
-4625              informat DebtRatio best32. ;
-4626              informat MonthlyIncome $7. ;
-4627              informat NumberOfOpenCreditLinesAndLoans best32. ;
-4628              informat NumberOfTimes90DaysLate best32. ;
-4629              informat NumberRealEstateLoansOrLines best32. ;
-4630              informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
-4631              informat NumberOfDependents $2. ;
-4632              format VAR1 best12. ;
-4633              format SeriousDlqin2yrs $1. ;
-4634              format RevolvingUtilizationOfUnsecuredL best12. ;
-4635              format age best12. ;
-4636              format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
-4637              format DebtRatio best12. ;
-4638              format MonthlyIncome $7. ;
-4639              format NumberOfOpenCreditLinesAndLoans best12. ;
-4640              format NumberOfTimes90DaysLate best12. ;
-4641              format NumberRealEstateLoansOrLines best12. ;
-4642              format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
-4643              format NumberOfDependents $2. ;
-4644           input
-4645                       VAR1
-4646                       SeriousDlqin2yrs  $
-4647                       RevolvingUtilizationOfUnsecuredL
-4648                       age
-4649                       "NumberOfTime30-59DaysPastDueNotW"N
-4650                       DebtRatio
-4651                       MonthlyIncome  $
-4652                       NumberOfOpenCreditLinesAndLoans
-4653                       NumberOfTimes90DaysLate
-4654                       NumberRealEstateLoansOrLines
-4655                       "NumberOfTime60-89DaysPastDueNotW"N
-4656                       NumberOfDependents  $
-4657           ;
-4658           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-4659           run;
-101503 rows created in WORK.TEST_RAW from /home/u64643823/sasmig/runs/final4_real-20261115T103922/data/cs-test.csv.
+4623        /**********************************************************************
+4624        *   PRODUCT:   SAS
+4625        *   VERSION:   9.4
+4626        *   CREATOR:   External File Interface
+4627        *   DATE:      15NOV26
+4628        *   DESC:      Generated SAS Datastep Code
+4629        *   TEMPLATE SOURCE:  (None Specified.)
+4630        ***********************************************************************/
+4631           data WORK.TEST_RAW    ;
+4632           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+4633           infile '/home/u64643823/sasmig/runs/final5_real-20261115T170022/data/cs-test.csv' delimiter = ',' MISSOVER DSD
+4633     ! lrecl=32767 firstobs=2 ;
+4634              informat VAR1 best32. ;
+4635              informat SeriousDlqin2yrs $1. ;
+4636              informat RevolvingUtilizationOfUnsecuredL best32. ;
+4637              informat age best32. ;
+4638              informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+4639              informat DebtRatio best32. ;
+4640              informat MonthlyIncome $7. ;
+4641              informat NumberOfOpenCreditLinesAndLoans best32. ;
+4642              informat NumberOfTimes90DaysLate best32. ;
+4643              informat NumberRealEstateLoansOrLines best32. ;
+4644              informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+4645              informat NumberOfDependents $2. ;
+4646              format VAR1 best12. ;
+4647              format SeriousDlqin2yrs $1. ;
+4648              format RevolvingUtilizationOfUnsecuredL best12. ;
+4649              format age best12. ;
+4650              format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+4651              format DebtRatio best12. ;
+4652              format MonthlyIncome $7. ;
+4653              format NumberOfOpenCreditLinesAndLoans best12. ;
+4654              format NumberOfTimes90DaysLate best12. ;
+4655              format NumberRealEstateLoansOrLines best12. ;
+4656              format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+4657              format NumberOfDependents $2. ;
+4658           input
+4659                       VAR1
+4660                       SeriousDlqin2yrs  $
+4661                       RevolvingUtilizationOfUnsecuredL
+4662                       age
+4663                       "NumberOfTime30-59DaysPastDueNotW"N
+4664                       DebtRatio
+4665                       MonthlyIncome  $
+4666                       NumberOfOpenCreditLinesAndLoans
+4667                       NumberOfTimes90DaysLate
+4668                       NumberRealEstateLoansOrLines
+4669                       "NumberOfTime60-89DaysPastDueNotW"N
+4670                       NumberOfDependents  $
+4671           ;
+4672           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+4673           run;
+101503 rows created in WORK.TEST_RAW from /home/u64643823/sasmig/runs/final5_real-20261115T170022/data/cs-test.csv.
   
   
   
-4660       
-4661       /* Remove the copy */
-4662       data _null_;
-4663           length fref $8;
-4664           fref = ' ';
-4665           if filename(fref, "&header_copy") = 0 then do;
-4666               if fexist(fref) then rc = fdelete(fref);
-4667               rc = filename(fref);
-4668           end;
-4669       run;
-4670       
-4671       /* Check the input conditions: stop with an error before anything is exported */
-4672       /* The numeric value of a raw column: a numeric column as it is; a character column
-4673          read as a number, missing when the text is no number or is longer than 32 characters */
-4674       %macro num(v);
-4675           %local dsid pos vtype;
-4676           %let vtype = ;
-4677           %let dsid = %sysfunc(open(work.test_raw));
-4678           %let pos = %sysfunc(varnum(&dsid, &v));
-4679           %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
-4680           %let dsid = %sysfunc(close(&dsid));
-4681           %if &vtype = N %then "&v"n;
-4682           %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
-4683       %mend;
+4674       
+4675       /* Remove the copy */
+4676       data _null_;
+4677           length fref $8;
+4678           fref = ' ';
+4679           if filename(fref, "&header_copy") = 0 then do;
+4680               if fexist(fref) then rc = fdelete(fref);
+4681               rc = filename(fref);
+4682           end;
+4683       run;
 4684       
-4685       %let columns_ok = 0;
-4686       %let bad_rows = 1;
-4687       %let duplicate_ids = 1;
-4688       
-4689       proc sql noprint;
-4690           /* The expected columns and no others */
-4691           select (count(*) = 12 and sum(upcase(name) in
-4692                      ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
-4693                       'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
-4694                       'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
-4695                       'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
-4696                       'NUMBERREALESTATELOANSORLINES')) = 12)
-4697           into :columns_ok trimmed
-4698           from dictionary.columns
-4699           where libname = 'WORK' and memname = 'TEST_RAW';
-4700       quit;
-4701       
-4702       /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
-4703          the outcome, where present, is 0 or 1; the counts are whole numbers, zero or more;
-4704          a known MonthlyIncome is zero or more */
-4705       data work.input_check;
-4706           set work.test_raw;
-4707           bad_row = (missing(%num(VAR1))
-4708               or (upcase(cats(SeriousDlqin2yrs)) not in ('', '.', 'NA') and
-4709                   %num(SeriousDlqin2yrs) not in (0, 1))
-4710               or missing(%num(age))
-4711               or missing(%num(RevolvingUtilizationOfUnsecuredL))
-4712               or missing(%num(DebtRatio))
-4713               or missing(%num(NumberRealEstateLoansOrLines))
-4714               or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
-4715                       %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
-4716               or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
-4717                       %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
-4718               or not (%num(NumberOfTimes90DaysLate) >= 0 and
-4719                       %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
-4720               or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
-4721                       %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
-4722               or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
-4723               or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
-4724               or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
-4725                   not (%num(NumberOfDependents) >= 0 and
-4726                        %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
-4727           keep VAR1 bad_row;
-4728       run;
-4729       
-4730       /* Bad rows, repeated row ids */
-4731       proc sql noprint;
-4732           select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1)
-4733           into :bad_rows trimmed, :duplicate_ids trimmed
-4734           from work.input_check;
-4735       quit;
-4736       
-4737       data _null_;
-4738           if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 then do;
-4739               put "ERROR: cs-test.csv does not meet the input conditions: "
-4740                   "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids..";
-4741               put "ERROR: Test set scoring stopped. Nothing is exported.";
-4742               abort cancel;
-4743           end;
+4685       /* Check the input conditions: stop with an error before anything is exported */
+4686       /* The numeric value of a raw column: a numeric column as it is; a character column
+4687          read as a number, missing when the text is no number or is longer than 32 characters */
+4688       %macro num(v);
+4689           %local dsid pos vtype;
+4690           %let vtype = ;
+4691           %let dsid = %sysfunc(open(work.test_raw));
+4692           %let pos = %sysfunc(varnum(&dsid, &v));
+4693           %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+4694           %let dsid = %sysfunc(close(&dsid));
+4695           %if &vtype = N %then "&v"n;
+4696           %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+4697       %mend;
+4698       
+4699       %let columns_ok = 0;
+4700       %let bad_rows = 1;
+4701       %let duplicate_ids = 1;
+4702       
+4703       proc sql noprint;
+4704           /* The expected columns and no others, the names exactly as written here */
+4705           select (count(*) = 12 and sum(name in
+4706                      ('VAR1', 'SeriousDlqin2yrs', 'age', 'MonthlyIncome', 'NumberOfDependents',
+4707                       'RevolvingUtilizationOfUnsecuredL', 'DebtRatio',
+4708                       'NumberOfTime30-59DaysPastDueNotW', 'NumberOfTime60-89DaysPastDueNotW',
+4709                       'NumberOfTimes90DaysLate', 'NumberOfOpenCreditLinesAndLoans',
+4710                       'NumberRealEstateLoansOrLines')) = 12)
+4711           into :columns_ok trimmed
+4712           from dictionary.columns
+4713           where libname = 'WORK' and memname = 'TEST_RAW';
+4714       quit;
+4715       
+4716       /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+4717          the outcome, where present, is 0 or 1; the counts are whole numbers, zero or more;
+4718          a known MonthlyIncome is zero or more */
+4719       data work.input_check;
+4720           set work.test_raw;
+4721           bad_row = (missing(%num(VAR1))
+4722               or (upcase(cats(SeriousDlqin2yrs)) not in ('', '.', 'NA') and
+4723                   %num(SeriousDlqin2yrs) not in (0, 1))
+4724               or missing(%num(age))
+4725               or missing(%num(RevolvingUtilizationOfUnsecuredL))
+4726               or missing(%num(DebtRatio))
+4727               or missing(%num(NumberRealEstateLoansOrLines))
+4728               or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+4729                       %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+4730               or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+4731                       %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+4732               or not (%num(NumberOfTimes90DaysLate) >= 0 and
+4733                       %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+4734               or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+4735                       %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+4736               or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+4737               or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+4738               or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+4739                   not (%num(NumberOfDependents) >= 0 and
+4740                        %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+4741           /* The row id as a number: ids that read as the same number are the same id */
+4742           row_id_number = %num(VAR1);
+4743           keep VAR1 row_id_number bad_row;
 4744       run;
 4745       
-4746       /* Check if import succeeded */
-4747       proc contents data=work.test_raw;
-4748           title "Test Data - Column Check";
-4749       run;
-4750       
-4751       /*****************************************************************************
-4752        * 2. Data Cleaning and Missing Value Handling
-4753        *****************************************************************************/
-4754       
-4755       /* First convert MonthlyIncome to numeric if needed */
-4756       data work.test_raw_clean;
-4757           set work.test_raw;
-4758       
-4759           /* Convert to numeric - input function handles character to numeric */
-4760           MonthlyIncome_num = input(MonthlyIncome, best32.);
-4761           NumberOfDependents_num = input(NumberOfDependents, best32.);
-4762       
-4763           /* Keep the numeric versions, drop character if they exist */
-4764           drop MonthlyIncome NumberOfDependents;
-4765           rename MonthlyIncome_num = MonthlyIncome
-4766                  NumberOfDependents_num = NumberOfDependents;
-4767       run;
+4746       /* Bad rows, repeated row ids */
+4747       proc sql noprint;
+4748           select coalesce(sum(bad_row), 0), count(*) - count(distinct row_id_number)
+4749           into :bad_rows trimmed, :duplicate_ids trimmed
+4750           from work.input_check;
+4751       quit;
+4752       
+4753       data _null_;
+4754           if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 then do;
+4755               put "ERROR: cs-test.csv does not meet the input conditions: "
+4756                   "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids..";
+4757               put "ERROR: Test set scoring stopped. Nothing is exported.";
+4758               abort cancel;
+4759           end;
+4760       run;
+4761       
+4762       /* Check if import succeeded */
+4763       proc contents data=work.test_raw;
+4764           title "Test Data - Column Check";
+4765       run;
+4766       
+4767       /*****************************************************************************
+4768        * 2. Data Cleaning and Missing Value Handling
+4769        *****************************************************************************/
+4770       
+4771       /* First convert MonthlyIncome to numeric if needed */
+4772       data work.test_raw_clean;
+4773           set work.test_raw;
+4774       
+4775           /* Convert to numeric - input function handles character to numeric */
+4776           MonthlyIncome_num = input(MonthlyIncome, best32.);
+4777           NumberOfDependents_num = input(NumberOfDependents, best32.);
+4778       
+4779           /* Keep the numeric versions, drop character if they exist */
+4780           drop MonthlyIncome NumberOfDependents;
+4781           rename MonthlyIncome_num = MonthlyIncome
+4782                  NumberOfDependents_num = NumberOfDependents;
+4783       run;
 VAR1=9 SeriousDlqin2yrs=  RevolvingUtilizationOfUnsecuredL=0.013527027 age=68 NumberOfTime30-59DaysPastDueNotW=0 DebtRatio=2024
 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=4 NumberOfTimes90DaysLate=0 NumberRealEstateLoansOrLines=1
 NumberOfTime60-89DaysPastDueNotW=0 NumberOfDependents=0 MonthlyIncome_num=. NumberOfDependents_num=0 _ERROR_=1 _N_=9
@@ -324,431 +338,431 @@ WARNING: Limit set by ERRORS= option reached.  Further errors of this type will 
 VAR1=124 SeriousDlqin2yrs=  RevolvingUtilizationOfUnsecuredL=2.182724252 age=49 NumberOfTime30-59DaysPastDueNotW=0 DebtRatio=497
 MonthlyIncome=NA NumberOfOpenCreditLinesAndLoans=2 NumberOfTimes90DaysLate=2 NumberRealEstateLoansOrLines=0
 NumberOfTime60-89DaysPastDueNotW=1 NumberOfDependents=0 MonthlyIncome_num=. NumberOfDependents_num=0 _ERROR_=1 _N_=124
-4768       
-4769       /* Read the training income medians by age group (exported by feature_engineering.sas) */
-4770       proc import datafile="&output_path/income_medians.csv"
-4771           out=work.train_income_medians
-4772           dbms=csv
-4773           replace;
-4774           getnames=yes;
-4775       run;
+4784       
+4785       /* Read the training income medians by age group (exported by feature_engineering.sas) */
+4786       proc import datafile="&output_path/income_medians.csv"
+4787           out=work.train_income_medians
+4788           dbms=csv
+4789           replace;
+4790           getnames=yes;
+4791       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-4776        /**********************************************************************
-4777        *   PRODUCT:   SAS
-4778        *   VERSION:   9.4
-4779        *   CREATOR:   External File Interface
-4780        *   DATE:      15NOV26
-4781        *   DESC:      Generated SAS Datastep Code
-4782        *   TEMPLATE SOURCE:  (None Specified.)
-4783        ***********************************************************************/
-4784           data WORK.TRAIN_INCOME_MEDIANS    ;
-4785           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-4786           infile '/home/u64643823/sasmig/runs/final4_real-20261115T103922/output/income_medians.csv' delimiter = ',' MISSOVER
-4786     ! DSD lrecl=32767 firstobs=2 ;
-4787              informat age_group best32. ;
-4788              informat median_income best32. ;
-4789              informat overall_median_income best32. ;
-4790              format age_group best12. ;
-4791              format median_income best12. ;
-4792              format overall_median_income best12. ;
-4793           input
-4794                       age_group
-4795                       median_income
-4796                       overall_median_income
-4797           ;
-4798           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-4799           run;
-5 rows created in WORK.TRAIN_INCOME_MEDIANS from /home/u64643823/sasmig/runs/final4_real-20261115T103922/output/income_medians.csv.
+4792        /**********************************************************************
+4793        *   PRODUCT:   SAS
+4794        *   VERSION:   9.4
+4795        *   CREATOR:   External File Interface
+4796        *   DATE:      15NOV26
+4797        *   DESC:      Generated SAS Datastep Code
+4798        *   TEMPLATE SOURCE:  (None Specified.)
+4799        ***********************************************************************/
+4800           data WORK.TRAIN_INCOME_MEDIANS    ;
+4801           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+4802           infile '/home/u64643823/sasmig/runs/final5_real-20261115T170022/output/income_medians.csv' delimiter = ',' MISSOVER
+4802     ! DSD lrecl=32767 firstobs=2 ;
+4803              informat age_group best32. ;
+4804              informat median_income best32. ;
+4805              informat overall_median_income best32. ;
+4806              format age_group best12. ;
+4807              format median_income best12. ;
+4808              format overall_median_income best12. ;
+4809           input
+4810                       age_group
+4811                       median_income
+4812                       overall_median_income
+4813           ;
+4814           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+4815           run;
+5 rows created in WORK.TRAIN_INCOME_MEDIANS from /home/u64643823/sasmig/runs/final5_real-20261115T170022/output/income_medians.csv.
   
   
   
-4800       
-4801       data work.test_cleaned;
-4802           set work.test_raw_clean;
-4803       
-4804           /* Create age group for income imputation */
-4805           if age < 30 then age_group = 1;
-4806           else if age < 40 then age_group = 2;
-4807           else if age < 50 then age_group = 3;
-4808           else if age < 60 then age_group = 4;
-4809           else age_group = 5;
-4810       
-4811           /* Handle missing values - create flags */
-4812           if missing(MonthlyIncome) then MonthlyIncome_missing = 1;
-4813           else MonthlyIncome_missing = 0;
-4814       
-4815           if missing(NumberOfDependents) then do;
-4816               NumberOfDependents = 0;
-4817               Dependents_missing = 1;
-4818           end;
-4819           else Dependents_missing = 0;
-4820       run;
-4821       
-4822       /* Merge and impute income - rename columns in SQL */
-4823       proc sql;
-4824           create table work.test_imputed as
-4825           select
-4826               a.VAR1 as row_id,
-4827               a.age,
-4828               case when a.MonthlyIncome_missing = 1 then coalesce(b.median_income, b.overall_median_income)
-4829                    else a.MonthlyIncome
-4830               end as monthly_income,
-4831               a.MonthlyIncome_missing,
-4832               a.NumberOfDependents as num_dependents,
-4833               a.Dependents_missing,
-4834               a.age_group,
-4835               a."NumberOfTime30-59DaysPastDueNotW"n as num_late_30_59,
-4836               a."NumberOfTime60-89DaysPastDueNotW"n as num_late_60_89,
-4837               a.NumberOfTimes90DaysLate as num_late_90_plus,
-4838               a.RevolvingUtilizationOfUnsecuredL * 100 as credit_utilization,
-4839               a.DebtRatio * 100 as debt_ratio,
-4840               a.NumberOfOpenCreditLinesAndLoans as num_credit_lines,
-4841               a.NumberRealEstateLoansOrLines as num_real_estate_loans
-4842           from work.test_cleaned a
-4843           left join work.train_income_medians b
-4844           on a.age_group = b.age_group;
-4845       quit;
-4846       
-4847       /*****************************************************************************
-4848        * 3. Feature Engineering (Same as Training)
-4849        *****************************************************************************/
-4850       
-4851       data work.test_features;
-4852           set work.test_imputed;
-4853       
-4854           /* Total late payments across all categories */
-4855           total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus);
-4856       
-4857           /* Has any delinquency indicator */
-4858           has_delinquency = (total_late_payments > 0);
-4859       
-4860           /* Has serious delinquency (90+ days) */
-4861           has_serious_delinquency = (num_late_90_plus > 0);
+4816       
+4817       data work.test_cleaned;
+4818           set work.test_raw_clean;
+4819       
+4820           /* Create age group for income imputation */
+4821           if age < 30 then age_group = 1;
+4822           else if age < 40 then age_group = 2;
+4823           else if age < 50 then age_group = 3;
+4824           else if age < 60 then age_group = 4;
+4825           else age_group = 5;
+4826       
+4827           /* Handle missing values - create flags */
+4828           if missing(MonthlyIncome) then MonthlyIncome_missing = 1;
+4829           else MonthlyIncome_missing = 0;
+4830       
+4831           if missing(NumberOfDependents) then do;
+4832               NumberOfDependents = 0;
+4833               Dependents_missing = 1;
+4834           end;
+4835           else Dependents_missing = 0;
+4836       run;
+4837       
+4838       /* Merge and impute income - rename columns in SQL */
+4839       proc sql;
+4840           create table work.test_imputed as
+4841           select
+4842               a.VAR1 as row_id,
+4843               a.age,
+4844               case when a.MonthlyIncome_missing = 1 then coalesce(b.median_income, b.overall_median_income)
+4845                    else a.MonthlyIncome
+4846               end as monthly_income,
+4847               a.MonthlyIncome_missing,
+4848               a.NumberOfDependents as num_dependents,
+4849               a.Dependents_missing,
+4850               a.age_group,
+4851               a."NumberOfTime30-59DaysPastDueNotW"n as num_late_30_59,
+4852               a."NumberOfTime60-89DaysPastDueNotW"n as num_late_60_89,
+4853               a.NumberOfTimes90DaysLate as num_late_90_plus,
+4854               a.RevolvingUtilizationOfUnsecuredL * 100 as credit_utilization,
+4855               a.DebtRatio * 100 as debt_ratio,
+4856               a.NumberOfOpenCreditLinesAndLoans as num_credit_lines,
+4857               a.NumberRealEstateLoansOrLines as num_real_estate_loans
+4858           from work.test_cleaned a
+4859           left join work.train_income_medians b
+4860           on a.age_group = b.age_group;
+4861       quit;
 4862       
-4863           /* Credit utilization categories */
-4864           if credit_utilization < 30 then credit_util_category = 1;
-4865           else if credit_utilization < 50 then credit_util_category = 2;
-4866           else if credit_utilization < 75 then credit_util_category = 3;
-4867           else credit_util_category = 4;
-4868       
-4869           /* Debt ratio categories */
-4870           if debt_ratio < 30 then debt_category = 1;
-4871           else if debt_ratio < 43 then debt_category = 2;
-4872           else if debt_ratio < 60 then debt_category = 3;
-4873           else debt_category = 4;
-4874       
-4875           /* Income per dependent */
-4876           if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
-4877           else income_per_dependent = monthly_income;
+4863       /*****************************************************************************
+4864        * 3. Feature Engineering (Same as Training)
+4865        *****************************************************************************/
+4866       
+4867       data work.test_features;
+4868           set work.test_imputed;
+4869       
+4870           /* Total late payments across all categories */
+4871           total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus);
+4872       
+4873           /* Has any delinquency indicator */
+4874           has_delinquency = (total_late_payments > 0);
+4875       
+4876           /* Has serious delinquency (90+ days) */
+4877           has_serious_delinquency = (num_late_90_plus > 0);
 4878       
-4879           /* Credit lines per person in household */
-4880           credit_lines_per_person = num_credit_lines / (num_dependents + 1);
-4881       
-4882           /* Age categories */
-4883           if age < 25 then age_category = 1;
-4884           else if age < 35 then age_category = 2;
-4885           else if age < 50 then age_category = 3;
-4886           else if age < 65 then age_category = 4;
-4887           else age_category = 5;
-4888       
-4889           /* Risk flags */
-4890           flag_high_utilization = (credit_utilization > 75);
-4891           flag_very_high_utilization = (credit_utilization > 100);
-4892           flag_high_debt_ratio = (debt_ratio > 43);
-4893           flag_very_high_debt_ratio = (debt_ratio > 60);
-4894           flag_recent_late_payments = (num_late_30_59 > 0);
-4895           flag_serious_delinquency = (num_late_90_plus > 0);
-4896           flag_multiple_delinquencies = (total_late_payments >= 3);
-4897           flag_low_income = (monthly_income < 2500);
-4898           flag_many_dependents = (num_dependents >= 3);
-4899           flag_few_credit_lines = (num_credit_lines <= 2);
-4900       
-4901           /* Total risk flags */
-4902           total_risk_flags = sum(flag_high_utilization, flag_very_high_utilization,
-4903                                 flag_high_debt_ratio,
-4904                                 flag_serious_delinquency, flag_multiple_delinquencies,
-4905                                 flag_low_income, flag_many_dependents,
-4906                                 flag_few_credit_lines);
-4907       
-4908           /* Financial health score */
-4909           financial_health = 100;
-4910           if credit_utilization > 30 then financial_health = financial_health - 15;
-4911           if credit_utilization > 75 then financial_health = financial_health - 15;
-4912           if debt_ratio > 43 then financial_health = financial_health - 20;
-4913           if has_delinquency then financial_health = financial_health - 20;
-4914           if num_late_90_plus > 0 then financial_health = financial_health - 30;
-4915           financial_health = max(0, financial_health);
+4879           /* Credit utilization categories */
+4880           if credit_utilization < 30 then credit_util_category = 1;
+4881           else if credit_utilization < 50 then credit_util_category = 2;
+4882           else if credit_utilization < 75 then credit_util_category = 3;
+4883           else credit_util_category = 4;
+4884       
+4885           /* Debt ratio categories */
+4886           if debt_ratio < 30 then debt_category = 1;
+4887           else if debt_ratio < 43 then debt_category = 2;
+4888           else if debt_ratio < 60 then debt_category = 3;
+4889           else debt_category = 4;
+4890       
+4891           /* Income per dependent */
+4892           if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
+4893           else income_per_dependent = monthly_income;
+4894       
+4895           /* Credit lines per person in household */
+4896           credit_lines_per_person = num_credit_lines / (num_dependents + 1);
+4897       
+4898           /* Age categories */
+4899           if age < 25 then age_category = 1;
+4900           else if age < 35 then age_category = 2;
+4901           else if age < 50 then age_category = 3;
+4902           else if age < 65 then age_category = 4;
+4903           else age_category = 5;
+4904       
+4905           /* Risk flags */
+4906           flag_high_utilization = (credit_utilization > 75);
+4907           flag_very_high_utilization = (credit_utilization > 100);
+4908           flag_high_debt_ratio = (debt_ratio > 43);
+4909           flag_very_high_debt_ratio = (debt_ratio > 60);
+4910           flag_recent_late_payments = (num_late_30_59 > 0);
+4911           flag_serious_delinquency = (num_late_90_plus > 0);
+4912           flag_multiple_delinquencies = (total_late_payments >= 3);
+4913           flag_low_income = (monthly_income < 2500);
+4914           flag_many_dependents = (num_dependents >= 3);
+4915           flag_few_credit_lines = (num_credit_lines <= 2);
 4916       
-4917           /* Log transformations */
-4918           log_monthly_income = log(monthly_income + 1);
-4919           log_num_credit_lines = log(num_credit_lines + 1);
-4920           log_total_late_payments = log(total_late_payments + 1);
-4921       
-4922           /* Interaction features */
-4923           if monthly_income > 0 then age_income_interaction = age * log(monthly_income);
-4924           else age_income_interaction = age * log_monthly_income;
-4925           utilization_debt_interaction = credit_utilization * debt_ratio;
-4926       
-4927           /* Cap extreme outliers */
-4928           credit_utilization_capped = min(credit_utilization, 200);
-4929           debt_ratio_capped = min(debt_ratio, 500);
-4930       run;
-4931       
-4932       /*****************************************************************************
-4933        * 4. Score Test Set Using Trained Model
-4934        *****************************************************************************/
-4935       
-4936       /* Score test set with trained model */
-4937       proc plm restore=work.logit_model;
-4938           score data=work.test_features
-4939                 out=work.test_scored_temp
-4940                 predicted=predicted_logit;
-4941       run;
+4917           /* Total risk flags */
+4918           total_risk_flags = sum(flag_high_utilization, flag_very_high_utilization,
+4919                                 flag_high_debt_ratio,
+4920                                 flag_serious_delinquency, flag_multiple_delinquencies,
+4921                                 flag_low_income, flag_many_dependents,
+4922                                 flag_few_credit_lines);
+4923       
+4924           /* Financial health score */
+4925           financial_health = 100;
+4926           if credit_utilization > 30 then financial_health = financial_health - 15;
+4927           if credit_utilization > 75 then financial_health = financial_health - 15;
+4928           if debt_ratio > 43 then financial_health = financial_health - 20;
+4929           if has_delinquency then financial_health = financial_health - 20;
+4930           if num_late_90_plus > 0 then financial_health = financial_health - 30;
+4931           financial_health = max(0, financial_health);
+4932       
+4933           /* Log transformations */
+4934           log_monthly_income = log(monthly_income + 1);
+4935           log_num_credit_lines = log(num_credit_lines + 1);
+4936           log_total_late_payments = log(total_late_payments + 1);
+4937       
+4938           /* Interaction features */
+4939           if monthly_income > 0 then age_income_interaction = age * log(monthly_income);
+4940           else age_income_interaction = age * log_monthly_income;
+4941           utilization_debt_interaction = credit_utilization * debt_ratio;
 4942       
-4943       /* Convert logit to probability */
-4944       data work.test_scored;
-4945           set work.test_scored_temp;
-4946       
-4947           /* Apply inverse logit function */
-4948           pd_logistic = 1 / (1 + exp(-predicted_logit));
-4949       
-4950           drop predicted_logit;
-4951       run;
-4952       
-4953       /*****************************************************************************
-4954        * 5. Generate Risk Scores and Recommendations
-4955        *****************************************************************************/
-4956       
-4957       data work.test_predictions;
-4958           set work.test_scored;
-4959       
-4960           /* Binary prediction at 0.5 threshold */
-4961           pred_logistic = (pd_logistic >= 0.5);
+4943           /* Cap extreme outliers */
+4944           credit_utilization_capped = min(credit_utilization, 200);
+4945           debt_ratio_capped = min(debt_ratio, 500);
+4946       run;
+4947       
+4948       /*****************************************************************************
+4949        * 4. Score Test Set Using Trained Model
+4950        *****************************************************************************/
+4951       
+4952       /* Score test set with trained model */
+4953       proc plm restore=work.logit_model;
+4954           score data=work.test_features
+4955                 out=work.test_scored_temp
+4956                 predicted=predicted_logit;
+4957       run;
+4958       
+4959       /* Convert logit to probability */
+4960       data work.test_scored;
+4961           set work.test_scored_temp;
 4962       
-4963           /* Convert probability to credit risk score (300-850 scale) */
-4964           base_score = 600;
-4965           score_range = 250;
-4966           credit_risk_score = base_score + score_range * (1 - pd_logistic);
-4967       
-4968           /* Assign risk grades from the probability (a missing probability is graded F) */
-4969           if missing(pd_logistic) then risk_grade = 'F';
-4970           else if pd_logistic < 0.10 then risk_grade = 'A';
-4971           else if pd_logistic < 0.15 then risk_grade = 'B';
-4972           else if pd_logistic < 0.25 then risk_grade = 'C';
-4973           else if pd_logistic < 0.35 then risk_grade = 'D';
-4974           else if pd_logistic <= 0.50 then risk_grade = 'E';
-4975           else risk_grade = 'F';
-4976       
-4977           /* Recommended actions */
-4978           if risk_grade in ('A', 'B') then recommendation = 'Approve';
-4979           else if risk_grade = 'C' then recommendation = 'Review';
-4980           else recommendation = 'Decline';
-4981       
-4982           /* Suggested interest rate */
-4983           base_rate = 0.05;
-4984           if risk_grade = 'A' then interest_rate = base_rate;
-4985           else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
-4986           else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
-4987           else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
-4988           else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
-4989           else interest_rate = base_rate + 0.15;
-4990       
-4991           format interest_rate percent8.2;
-4992       run;
-4993       
-4994       /*****************************************************************************
-4995        * 6. Create Output Datasets
-4996        *****************************************************************************/
+4963           /* Apply inverse logit function */
+4964           pd_logistic = 1 / (1 + exp(-predicted_logit));
+4965       
+4966           drop predicted_logit;
+4967       run;
+4968       
+4969       /*****************************************************************************
+4970        * 5. Generate Risk Scores and Recommendations
+4971        *****************************************************************************/
+4972       
+4973       data work.test_predictions;
+4974           set work.test_scored;
+4975       
+4976           /* Binary prediction at 0.5 threshold */
+4977           pred_logistic = (pd_logistic >= 0.5);
+4978       
+4979           /* Convert probability to credit risk score (300-850 scale) */
+4980           base_score = 600;
+4981           score_range = 250;
+4982           credit_risk_score = base_score + score_range * (1 - pd_logistic);
+4983       
+4984           /* Assign risk grades from the probability (a missing probability is graded F) */
+4985           if missing(pd_logistic) then risk_grade = 'F';
+4986           else if pd_logistic < 0.10 then risk_grade = 'A';
+4987           else if pd_logistic < 0.15 then risk_grade = 'B';
+4988           else if pd_logistic < 0.25 then risk_grade = 'C';
+4989           else if pd_logistic < 0.35 then risk_grade = 'D';
+4990           else if pd_logistic <= 0.50 then risk_grade = 'E';
+4991           else risk_grade = 'F';
+4992       
+4993           /* Recommended actions */
+4994           if risk_grade in ('A', 'B') then recommendation = 'Approve';
+4995           else if risk_grade = 'C' then recommendation = 'Review';
+4996           else recommendation = 'Decline';
 4997       
-4998       /* Kaggle submission format (row_id, probability) */
-4999       data work.kaggle_submission;
-5000           set work.test_predictions;
-5001           keep row_id pd_logistic;
-5002       run;
-5003       
-5004       /* Full predictions with all scores and recommendations */
-5005       data work.test_predictions_full;
-5006           set work.test_predictions;
-5007           keep row_id pd_logistic pred_logistic credit_risk_score risk_grade
-5008                recommendation interest_rate age monthly_income
-5009                credit_utilization debt_ratio total_late_payments
-5010                num_credit_lines financial_health total_risk_flags;
-5011       run;
-5012       
-5013       /*****************************************************************************
-5014        * 7. Export Results
-5015        *****************************************************************************/
-5016       
-5017       /* Export Kaggle submission file */
-5018       proc export data=work.kaggle_submission
-5019           outfile="&output_path/kaggle_submission.csv"
-5020           dbms=csv
-5021           replace;
-5022       run;
+4998           /* Suggested interest rate */
+4999           base_rate = 0.05;
+5000           if risk_grade = 'A' then interest_rate = base_rate;
+5001           else if risk_grade = 'B' then interest_rate = base_rate + 0.02;
+5002           else if risk_grade = 'C' then interest_rate = base_rate + 0.04;
+5003           else if risk_grade = 'D' then interest_rate = base_rate + 0.07;
+5004           else if risk_grade = 'E' then interest_rate = base_rate + 0.10;
+5005           else interest_rate = base_rate + 0.15;
+5006       
+5007           format interest_rate percent8.2;
+5008       run;
+5009       
+5010       /*****************************************************************************
+5011        * 6. Create Output Datasets
+5012        *****************************************************************************/
+5013       
+5014       /* Kaggle submission format (row_id, probability) */
+5015       data work.kaggle_submission;
+5016           set work.test_predictions;
+5017           keep row_id pd_logistic;
+5018       run;
+5019       
+5020       /* Full predictions with all scores and recommendations */
+5021       data work.test_predictions_full;
+5022           set work.test_predictions;
+5023           keep row_id pd_logistic pred_logistic credit_risk_score risk_grade
+5024                recommendation interest_rate age monthly_income
+5025                credit_utilization debt_ratio total_late_payments
+5026                num_credit_lines financial_health total_risk_flags;
+5027       run;
+5028       
+5029       /*****************************************************************************
+5030        * 7. Export Results
+5031        *****************************************************************************/
+5032       
+5033       /* Export Kaggle submission file */
+5034       proc export data=work.kaggle_submission
+5035           outfile="&output_path/kaggle_submission.csv"
+5036           dbms=csv
+5037           replace;
+5038       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-5023        /**********************************************************************
-5024        *   PRODUCT:   SAS
-5025        *   VERSION:   9.4
-5026        *   CREATOR:   External File Interface
-5027        *   DATE:      15NOV26
-5028        *   DESC:      Generated SAS Datastep Code
-5029        *   TEMPLATE SOURCE:  (None Specified.)
-5030        ***********************************************************************/
-5031           data _null_;
-5032           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-5033           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-5034           file '/home/u64643823/sasmig/runs/final4_real-20261115T103922/output/kaggle_submission.csv' delimiter=',' DSD
-5034     ! DROPOVER lrecl=32767;
-5035           if _n_ = 1 then        /* write column names or labels */
-5036            do;
-5037              put
-5038                 "row_id"
-5039              ','
-5040                 "pd_logistic"
-5041              ;
-5042            end;
-5043          set  WORK.KAGGLE_SUBMISSION   end=EFIEOD;
-5044              format row_id best12. ;
-5045              format pd_logistic best12. ;
-5046            do;
-5047              EFIOUT + 1;
-5048              put row_id @;
-5049              put pd_logistic ;
-5050              ;
-5051            end;
-5052           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-5053           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-5054           run;
-101503 records created in /home/u64643823/sasmig/runs/final4_real-20261115T103922/output/kaggle_submission.csv from 
+5039        /**********************************************************************
+5040        *   PRODUCT:   SAS
+5041        *   VERSION:   9.4
+5042        *   CREATOR:   External File Interface
+5043        *   DATE:      15NOV26
+5044        *   DESC:      Generated SAS Datastep Code
+5045        *   TEMPLATE SOURCE:  (None Specified.)
+5046        ***********************************************************************/
+5047           data _null_;
+5048           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+5049           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+5050           file '/home/u64643823/sasmig/runs/final5_real-20261115T170022/output/kaggle_submission.csv' delimiter=',' DSD
+5050     ! DROPOVER lrecl=32767;
+5051           if _n_ = 1 then        /* write column names or labels */
+5052            do;
+5053              put
+5054                 "row_id"
+5055              ','
+5056                 "pd_logistic"
+5057              ;
+5058            end;
+5059          set  WORK.KAGGLE_SUBMISSION   end=EFIEOD;
+5060              format row_id best12. ;
+5061              format pd_logistic best12. ;
+5062            do;
+5063              EFIOUT + 1;
+5064              put row_id @;
+5065              put pd_logistic ;
+5066              ;
+5067            end;
+5068           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+5069           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+5070           run;
+101503 records created in /home/u64643823/sasmig/runs/final5_real-20261115T170022/output/kaggle_submission.csv from 
 WORK.KAGGLE_SUBMISSION.
   
   
-5055       
-5056       /* Export full predictions */
-5057       proc export data=work.test_predictions_full
-5058           outfile="&output_path/test_predictions.csv"
-5059           dbms=csv
-5060           replace;
-5061       run;
+5071       
+5072       /* Export full predictions */
+5073       proc export data=work.test_predictions_full
+5074           outfile="&output_path/test_predictions.csv"
+5075           dbms=csv
+5076           replace;
+5077       run;
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-5062        /**********************************************************************
-5063        *   PRODUCT:   SAS
-5064        *   VERSION:   9.4
-5065        *   CREATOR:   External File Interface
-5066        *   DATE:      15NOV26
-5067        *   DESC:      Generated SAS Datastep Code
-5068        *   TEMPLATE SOURCE:  (None Specified.)
-5069        ***********************************************************************/
-5070           data _null_;
-5071           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-5072           %let _EFIREC_ = 0;     /* clear export record count macro variable */
-5073           file '/home/u64643823/sasmig/runs/final4_real-20261115T103922/output/test_predictions.csv' delimiter=',' DSD DROPOVER
-5073     !  lrecl=32767;
-5074           if _n_ = 1 then        /* write column names or labels */
-5075            do;
-5076              put
-5077                 "row_id"
-5078              ','
-5079                 "age"
-5080              ','
-5081                 "monthly_income"
-5082              ','
-5083                 "credit_utilization"
-5084              ','
-5085                 "debt_ratio"
-5086              ','
-5087                 "num_credit_lines"
-5088              ','
-5089                 "total_late_payments"
-5090              ','
-5091                 "total_risk_flags"
-5092              ','
-5093                 "financial_health"
+5078        /**********************************************************************
+5079        *   PRODUCT:   SAS
+5080        *   VERSION:   9.4
+5081        *   CREATOR:   External File Interface
+5082        *   DATE:      15NOV26
+5083        *   DESC:      Generated SAS Datastep Code
+5084        *   TEMPLATE SOURCE:  (None Specified.)
+5085        ***********************************************************************/
+5086           data _null_;
+5087           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+5088           %let _EFIREC_ = 0;     /* clear export record count macro variable */
+5089           file '/home/u64643823/sasmig/runs/final5_real-20261115T170022/output/test_predictions.csv' delimiter=',' DSD DROPOVER
+5089     !  lrecl=32767;
+5090           if _n_ = 1 then        /* write column names or labels */
+5091            do;
+5092              put
+5093                 "row_id"
 5094              ','
-5095                 "pd_logistic"
+5095                 "age"
 5096              ','
-5097                 "pred_logistic"
+5097                 "monthly_income"
 5098              ','
-5099                 "credit_risk_score"
+5099                 "credit_utilization"
 5100              ','
-5101                 "risk_grade"
+5101                 "debt_ratio"
 5102              ','
-5103                 "recommendation"
+5103                 "num_credit_lines"
 5104              ','
-5105                 "interest_rate"
-5106              ;
-5107            end;
-5108          set  WORK.TEST_PREDICTIONS_FULL   end=EFIEOD;
-5109              format row_id best12. ;
-5110              format age best12. ;
-5111              format monthly_income best12. ;
-5112              format credit_utilization best12. ;
-5113              format debt_ratio best12. ;
-5114              format num_credit_lines best12. ;
-5115              format total_late_payments best12. ;
-5116              format total_risk_flags best12. ;
-5117              format financial_health best12. ;
-5118              format pd_logistic best12. ;
-5119              format pred_logistic best12. ;
-5120              format credit_risk_score best12. ;
-5121              format risk_grade $1. ;
-5122              format recommendation $7. ;
-5123              format interest_rate percent8.2 ;
-5124            do;
-5125              EFIOUT + 1;
-5126              put row_id @;
-5127              put age @;
-5128              put monthly_income @;
-5129              put credit_utilization @;
-5130              put debt_ratio @;
-5131              put num_credit_lines @;
-5132              put total_late_payments @;
-5133              put total_risk_flags @;
-5134              put financial_health @;
-5135              put pd_logistic @;
-5136              put pred_logistic @;
-5137              put credit_risk_score @;
-5138              put risk_grade $ @;
-5139              put recommendation $ @;
-5140              put interest_rate ;
-5141              ;
-5142            end;
-5143           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
-5144           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
-5145           run;
-101503 records created in /home/u64643823/sasmig/runs/final4_real-20261115T103922/output/test_predictions.csv from 
+5105                 "total_late_payments"
+5106              ','
+5107                 "total_risk_flags"
+5108              ','
+5109                 "financial_health"
+5110              ','
+5111                 "pd_logistic"
+5112              ','
+5113                 "pred_logistic"
+5114              ','
+5115                 "credit_risk_score"
+5116              ','
+5117                 "risk_grade"
+5118              ','
+5119                 "recommendation"
+5120              ','
+5121                 "interest_rate"
+5122              ;
+5123            end;
+5124          set  WORK.TEST_PREDICTIONS_FULL   end=EFIEOD;
+5125              format row_id best12. ;
+5126              format age best12. ;
+5127              format monthly_income best12. ;
+5128              format credit_utilization best12. ;
+5129              format debt_ratio best12. ;
+5130              format num_credit_lines best12. ;
+5131              format total_late_payments best12. ;
+5132              format total_risk_flags best12. ;
+5133              format financial_health best12. ;
+5134              format pd_logistic best12. ;
+5135              format pred_logistic best12. ;
+5136              format credit_risk_score best12. ;
+5137              format risk_grade $1. ;
+5138              format recommendation $7. ;
+5139              format interest_rate percent8.2 ;
+5140            do;
+5141              EFIOUT + 1;
+5142              put row_id @;
+5143              put age @;
+5144              put monthly_income @;
+5145              put credit_utilization @;
+5146              put debt_ratio @;
+5147              put num_credit_lines @;
+5148              put total_late_payments @;
+5149              put total_risk_flags @;
+5150              put financial_health @;
+5151              put pd_logistic @;
+5152              put pred_logistic @;
+5153              put credit_risk_score @;
+5154              put risk_grade $ @;
+5155              put recommendation $ @;
+5156              put interest_rate ;
+5157              ;
+5158            end;
+5159           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+5160           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+5161           run;
+101503 records created in /home/u64643823/sasmig/runs/final5_real-20261115T170022/output/test_predictions.csv from 
 WORK.TEST_PREDICTIONS_FULL.
   
   
-5146       
-5147       /* Summary statistics */
-5148       proc freq data=work.test_predictions;
-5149           tables risk_grade recommendation;
-5150           title "Test Set - Risk Grade Distribution";
-5151       run;
-5152       
-5153       proc means data=work.test_predictions n mean std min max;
-5154           var pd_logistic credit_risk_score;
-5155           title "Test Set - Prediction Summary";
-5156       run;
-5157       
-5158       /* Print sample predictions */
-5159       proc print data=work.test_predictions_full(obs=20) noobs;
-5160           var row_id pd_logistic pred_logistic credit_risk_score risk_grade recommendation;
-5161           title "Sample Test Set Predictions";
-5162       run;
-5163       
-5164       %put NOTE: Test set scoring completed successfully;
-5165       %put NOTE: Kaggle submission file: &output_path/kaggle_submission.csv;
-5166       %put NOTE: Full predictions: &output_path/test_predictions.csv;
-5167       %put NOTE: Total records scored: 101,503;
+5162       
+5163       /* Summary statistics */
+5164       proc freq data=work.test_predictions;
+5165           tables risk_grade recommendation;
+5166           title "Test Set - Risk Grade Distribution";
+5167       run;
 5168       
-5169       
-5170       
-5171       
-42                                                         The SAS System                          Sunday, 15 November 2026 10:39:00
+5169       proc means data=work.test_predictions n mean std min max;
+5170           var pd_logistic credit_risk_score;
+5171           title "Test Set - Prediction Summary";
+5172       run;
+5173       
+5174       /* Print sample predictions */
+5175       proc print data=work.test_predictions_full(obs=20) noobs;
+5176           var row_id pd_logistic pred_logistic credit_risk_score risk_grade recommendation;
+5177           title "Sample Test Set Predictions";
+5178       run;
+5179       
+5180       %put NOTE: Test set scoring completed successfully;
+5181       %put NOTE: Kaggle submission file: &output_path/kaggle_submission.csv;
+5182       %put NOTE: Full predictions: &output_path/test_predictions.csv;
+5183       %put NOTE: Total records scored: 101,503;
+5184       
+5185       
+5186       
+5187       
+42                                                         The SAS System                          Sunday, 15 November 2026 17:00:00
 
-5172       
+5188       
