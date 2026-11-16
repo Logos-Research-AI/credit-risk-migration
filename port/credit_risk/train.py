@@ -688,6 +688,13 @@ def run(input_dir: Path, output_dir: Path) -> None:
         risk_scores_validation.get_column("pd_logistic"),
         label="Validation Set",
     )
+    # train.sas:325-331: when the rows the step uses (outcome and probability present) hold no event or
+    # no non-event, SAS stops the step ("All observations have the same response") and work.roc_valid
+    # is not created (small-inputs.md (a); judge/runs/gen_s15, s19, s23, s29)
+    roc_valid_used = risk_scores_validation.filter(
+        pl.col("default_flag").is_not_null() & pl.col("pd_logistic").is_not_null()
+    ).get_column("default_flag")
+    roc_valid_created = bool((roc_valid_used == 1).any()) and bool((roc_valid_used != 1).any())
 
     # train.sas:334-344
     # listing-only: PROC PRINT Area of roc_train (Training Set AUC)
@@ -761,6 +768,12 @@ def run(input_dir: Path, output_dir: Path) -> None:
         "valid_accuracy",
     }
     model_summary = model_summary.select([c for c in model_summary.columns if c in summary_keep])
+    if not roc_valid_created:
+        # the merge names a table that does not exist: the data step stops and leaves 0 rows and the
+        # kept variables in the order it met them, Valid_AUC last; the export writes the header only
+        model_summary = model_summary.clear().select(
+            [c for c in model_summary.columns if c != "Valid_AUC"] + ["Valid_AUC"]
+        )
 
     # train.sas:413-417 PROC EXPORT model_summary  # INV model_summary.csv
     sas_compat.write_sas_csv(
@@ -800,7 +813,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
             **{c: [sas_compat.sas_d8(v) for v in roc_valid.get_column(c).to_list()] for c in roc_cols},
         }
     )
-    sas_compat.write_sas_csv(printed_roc_validation, output_dir / "printed_roc_validation.csv", formats={})
+    if roc_valid_created:  # the judge's export of a table that does not exist writes no file
+        sas_compat.write_sas_csv(
+            printed_roc_validation, output_dir / "printed_roc_validation.csv", formats={}
+        )
     sas_compat.write_sas_csv(confusion_matrix_train, output_dir / "printed_confusion_train.csv", formats={})
     sas_compat.write_sas_csv(confusion_matrix, output_dir / "printed_confusion_validation.csv", formats={})
 
