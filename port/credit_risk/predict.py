@@ -184,9 +184,12 @@ def run(
     )
     test_features = test_features.with_columns(
         # predict.sas:195-200
-        age_income_interaction=pl.col("age") * pl.col("log_monthly_income"),
-        # INV utilization_debt_interaction: product first, then div by the literal (A13)
-        utilization_debt_interaction=sas_compat.div(pl.col("credit_utilization") * pl.col("debt_ratio"), 100),
+        # Q9 (10f447e): age * log(income) when income is above 0, else age * log(income + 1)
+        age_income_interaction=pl.when(sas_compat.gt(pl.col("monthly_income"), 0))
+        .then(pl.col("age") * sas_compat.sas_log(pl.col("monthly_income")))
+        .otherwise(pl.col("age") * pl.col("log_monthly_income")),
+        # Q9 (10f447e): utilization * debt ratio, no division by 100
+        utilization_debt_interaction=pl.col("credit_utilization") * pl.col("debt_ratio"),
         credit_utilization_capped=sas_compat.sas_min(pl.col("credit_utilization"), pl.lit(200.0)),
         debt_ratio_capped=sas_compat.sas_min(pl.col("debt_ratio"), pl.lit(500.0)),
     )
