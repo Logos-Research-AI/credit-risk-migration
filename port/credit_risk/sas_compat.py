@@ -109,7 +109,8 @@ def gt(x: ExprOrNum, c: ExprOrNum) -> pl.Expr:
 
 
 def ge(x: ExprOrNum, c: ExprOrNum) -> pl.Expr:
-    """SAS `x >= c`. Site: predict.sas grade chain and pred_logistic = flag(ge(pd, 0.5))."""
+    """SAS `x >= c`. Sites: pred_logistic = flag(ge(pd, 0.5)) (train, predict), the model_status tests
+    of metrics_calculation, the whole-number test of %num (feature_engineering, predict)."""
     return _named(x, ~lt(x, c))
 
 
@@ -229,8 +230,10 @@ _NUM_RE = r"^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$"
 
 
 def input_best32(s: pl.Expr) -> pl.Expr:
-    """SAS input(s, best32.): numeric text -> Float64; anything else ('NA', '') -> missing. An
-    already-numeric column is an identity cast to Float64 (S2). Overflow ('1E400') and inf -> missing.
+    """SAS input(s, best32.): numeric text -> Float64; anything else ('NA', '') -> missing. The
+    argument is text. For a column PROC IMPORT typed as numeric SAS first writes the number as BEST12.
+    text, so the value can change (X09: 1234567890123 is read back as 1234567900000): the callers
+    render such a column with sas_best12 before calling. Overflow ('1E400') and inf -> missing.
     RESOLVED (post-parity): X06 confirms the 32-column cut (37 digits read as 32); leading blanks ignored."""
     t = s.cast(pl.String).str.slice(0, 32).str.strip_chars()
     v = t.cast(pl.Float64, strict=False)
@@ -539,8 +542,9 @@ def sas_pvalue(x: float | None) -> str:
 def proc_import_csv(path: Path, guessingrows: int | None = 20) -> pl.DataFrame:
     """PROC IMPORT dbms=csv getnames=yes (RULEBOOK §2, A3): numeric if every one of the first
     `guessingrows` data values parses as a number (None = all rows), else text of width = the
-    longest of those values, LATER VALUES TRUNCATED to that width (BUG(port): guessingrows=20 sizes
-    MonthlyIncome $5., so 159791 -> 15979, 77 rows); an all-empty
+    longest of those values, LATER VALUES TRUNCATED to that width, as PROC IMPORT does (guessingrows=20
+    sized MonthlyIncome $5., so 159791 -> 15979 on 77 rows: the SAS programs now read cs-training.csv
+    and cs-test.csv with guessingrows=max, the callers pass None); an all-empty
     column in the guessing window is text of width 1; empty header -> VAR1; names cut to 32.
     Numeric columns are Float64 (unparseable later values -> null); empty cells are null."""
     raw = pl.read_csv(path, infer_schema=False)
@@ -646,23 +650,6 @@ def proc_rank_groups(x: pl.Series, k: int, descending: bool = False) -> pl.Serie
     r = x.rank("average", descending=descending)
     g = np.floor(np.divide(np.asarray(r.to_numpy(), dtype=np.float64) * k, n + 1))
     return pl.Series(x.name, g, dtype=pl.Float64, nan_to_null=True).cast(pl.Int64)
-
-
-def proc_rank_apply_groups(reference: pl.Series, x: pl.Series, k: int) -> pl.Series:
-    """Bins for `x` using the PROC RANK groups=k cut-points of `reference` (post-parity PSI fix).
-    Group g of the reference starts at its smallest member; x falls in the highest group whose start
-    is <= x; below every start -> the LOWEST reference group present (open below). A value in the gap
-    between max(g) and min(g+1) goes to g (lower-bound rule). Missing -> missing. Int64."""
-    ref = reference.drop_nulls()
-    groups = proc_rank_groups(ref, k)
-    starts = pl.DataFrame({"g": groups, "v": ref}).group_by("g").agg(lo=pl.col("v").min()).sort("g")
-    g_arr = starts.get_column("g").to_numpy()
-    lo = starts.get_column("lo").to_numpy()
-    xv = np.asarray(x.fill_null(np.nan).to_numpy(), dtype=np.float64)
-    idx = np.searchsorted(lo, xv, side="right") - 1
-    out = np.where(idx < 0, g_arr[0], g_arr[np.clip(idx, 0, None)]).astype(np.float64)
-    out[np.isnan(xv)] = np.nan
-    return pl.Series(x.name, out, dtype=pl.Float64, nan_to_null=True).cast(pl.Int64)
 
 
 @dataclass
