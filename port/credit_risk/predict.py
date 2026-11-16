@@ -163,12 +163,16 @@ def run(
     ):
         financial_health = pl.when(cond).then(financial_health - k).otherwise(financial_health)
     test_features = test_features.with_columns(
+        # Q7 (7b55ef1): the total counts the eight risk flags
         total_risk_flags=sas_compat.sas_sum(
             pl.col("flag_high_utilization"),
+            pl.col("flag_very_high_utilization"),
             pl.col("flag_high_debt_ratio"),
             pl.col("flag_serious_delinquency"),
             pl.col("flag_multiple_delinquencies"),
             pl.col("flag_low_income"),
+            pl.col("flag_many_dependents"),
+            pl.col("flag_few_credit_lines"),
         ),
         financial_health=sas_compat.sas_max(pl.lit(0.0), financial_health),
     )
