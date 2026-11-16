@@ -1,5 +1,5 @@
 {
-  "run_id": "final5_real",
+  "run_id": "final6_real_uncorrected",
   "mutation": null,
   "scripts": [
     "feature_engineering.sas",
@@ -22,6 +22,6 @@
     "metrics_calculation.sas": [],
     "predict.sas": []
   },
-  "remote_run_root": "/home/u64643823/sasmig/runs/final5_real-20261115T170022",
-  "wall_clock_s": 345
+  "remote_run_root": "/home/u64643823/sasmig/runs/final6_real_uncorrected-20261116T094856",
+  "wall_clock_s": 391
 }
