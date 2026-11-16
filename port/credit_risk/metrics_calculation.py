@@ -81,6 +81,26 @@ def confusion_metrics(
 def run(input_dir: Path, output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)  # R§4, S12
 
+    # metrics_calculation.sas:23-34: remove the results of an earlier run first
+    for fname in (
+        "validation_summary.csv",
+        "decile_analysis.csv",
+        "threshold_analysis.csv",
+        "ks_statistic.csv",
+        "calibration_plot.csv",
+        "model_performance_metrics.csv",
+    ):
+        (output_dir / fname).unlink(missing_ok=True)
+
+    # metrics_calculation.sas:36-44: stop when the step before did not produce its result
+    if (
+        not (input_dir / "risk_scores_train.csv").exists()
+        or not (input_dir / "risk_scores_validation.csv").exists()
+    ):
+        print("ERROR: The score files are not in the output folder: model training did not complete.")
+        print("ERROR: Model validation stopped. Nothing is exported.")
+        raise ValueError("Model validation stopped. Nothing is exported.")
+
     # metrics_calculation.sas:51-64 PROC IMPORT of the scored data
     # INV work.logit_scored_valid / logit_scored_train (R§2 PROC IMPORT, default guessingrows=20)
     logit_scored_valid = sas_compat.proc_import_csv(input_dir / "risk_scores_validation.csv", guessingrows=20)
