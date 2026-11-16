@@ -1,6 +1,6 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 6, 2026-11-16: ruling G53 reduces Q27 to valid inputs (the demand to stop on any other input is withdrawn, so rulings G11, G23, G36 and G42 no longer bear on a requirement) and sets rulings G46 to G52 aside. Draft 5, 2026-11-15, had rulings G44 and G45 added the same day (they confirm readings already formalised; no requirement changes). Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
+Draft 7, 2026-11-16: rulings G54 (income and dependents written in at most 12 characters) and G55 (hand-off files at full precision). Draft 6, 2026-11-16: ruling G53 reduces Q27 to valid inputs (the demand to stop on any other input is withdrawn, so rulings G11, G23, G36 and G42 no longer bear on a requirement) and sets rulings G46 to G52 aside. Draft 5, 2026-11-15, had rulings G44 and G45 added the same day (they confirm readings already formalised; no requirement changes). Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
 made after the requirements were checked against the SAS program and the program was corrected. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
@@ -90,6 +90,8 @@ the requirements are stated for raw inputs in which:
 - the three late-payment counts, the number of dependents and the number of credit lines are
   whole numbers, zero or more (ruling G29);
 - a known `MonthlyIncome` is zero or more (ruling G34);
+- `MonthlyIncome` and `NumberOfDependents`, where present, are written in at most 12 characters
+  (ruling G54);
 - no field holds a text value: each is a number or missing (ruling G39).
 
 On such inputs Q1 and Q2 leave no missing value, so no later requirement has to say what a
@@ -160,6 +162,10 @@ missing value does. What a pipeline does on an input outside these conditions is
 | G51 | The 32-character rule (G28, G47) is about the field as written: a field written with more than 32 characters is outside what Q27 demands, whatever its value; a field written with 32 characters or fewer must be read as its number | 2026-11-16 |
 | G52 | Q27 demands a stop only when a file is faulty for a reason that does not depend on the value of a field written with more than 32 characters: the file must fail the other input conditions whatever numbers its long fields are read as. When a fault exists only through the exact value of a long field (a count written `2.000…01` in 39 characters), nothing is demanded (completes G47 and G51) | 2026-11-16 |
 | G53 | Q27 is reduced to its first part: on an input that meets the conditions of section 3, every step produces its result. What the pipeline does on any other input is not required and is not part of the verification; the input checks the program has stay as they are. Rulings G46 to G52, which refined what an invalid input is and when a stop is demanded, are set aside: they are kept above for the record and are not formalised. Section 3 stands as it was before them (G39 in its plain reading: no text in any field) | 2026-11-16 |
+| G54 | A present `MonthlyIncome` or `NumberOfDependents` is a number written in at most 12 characters (section 3). Reason: when the column holds no missing value the SAS program passes each value through 12-character text, so a longer value is changed (experiment x25: 2499.9999999999 is used as 2500 and loses its low-income flag; with one `NA` in the column the same value is read exactly). The program is not changed; such values are outside the inputs the requirements assume | 2026-11-16 |
+| G55 | G38 extended from the published columns to the files passed between the scripts: the requirements are about the values computed, taken as carried from one script to the next at full precision. What the 12-character (features, scores) and 15-digit (medians) files lose on the way, and the width PROC IMPORT gives a text column, are outside the verification (experiment x25: on the real data 11 of 42 feature columns change, at most by 0.005, and every probability and score, at most by 5E-11 and 5E-9). Q12 to Q14 and Q19 to Q26 are verified of the program with exact hand-offs | 2026-11-16 |
+
+**Rulings G54 and G55 (2026-11-16, after the sign-off below)** came from the planning of the port's equality proof: G54 narrows the inputs of section 3 and is to be formalised (the input conditions `TrainOK` and `TestOK`), reviewed and the consistency proved again, after which this line is replaced by the owner's new sign-off; G55 changes no formal item.
 
 **Signed off by the owner on 2026-11-16** as formalised in the blueprint `credit-risk-requirements` after ruling G53 (59 items; Q27 reduced to valid inputs; consistency proved again; independent review found no open point). Earlier sign-off: 2026-11-14, as formalised in the blueprint `credit-risk-requirements`
 (58 items at that date, 59 since draft 4; consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
