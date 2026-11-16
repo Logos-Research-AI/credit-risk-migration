@@ -1205,7 +1205,13 @@ def classification_table(
     Numeric frame with exactly the columns ProbLevel, CorrectEvents, CorrectNonevents, IncorrectEvents,
     IncorrectNonevents, Correct, Sensitivity, Specificity, FalsePositive, FalseNegative, PPV, NPV
     (counts Int64, percentages Float64, null for 0/0).
-    RESOLVED (post-parity): every SAS run starts the grid at 0.000; the helper reproduces all 19 runs."""
+    RESOLVED (post-parity): every SAS run starts the grid at 0.000; the helper reproduces all 19 runs.
+    Intercept-only fit (`x` has the one column): SAS's numbers are those of the exact leave-one-out
+    mean (events - y) / (n - 1) = p - (y - p) h / (1 - h), not of the logit step (small-inputs.md (b):
+    17 SAS runs of 2 to 42 training rows). There a probability that equals a level (0.2, 0.5: small
+    fractions) starts or ends the grid at that level and is counted at it (tolerance 1e-9). SAS's
+    rows are reproduced in all 17 runs and its counts in 13; in 4 SAS does not count a probability
+    equal to the last level (1.000 in three runs, 0.300 in gen_s22): its level arithmetic is not known."""
     if y.ndim == 2:  # inventory order (X, y, pd)
         y, x = x, y
     if fit is not None and not isinstance(fit, LogisticFit):
@@ -1223,8 +1229,12 @@ def classification_table(
     q = np.einsum("ij,jk,ik->i", x, v, x)
     h = w * q
     ps = _expit(eta - (y - p) * q / (1.0 - h))
-    klo = math.floor(float(ps.min()) / 0.02)
-    khi = math.ceil(float(ps.max()) / 0.02)
+    tol = 0.0
+    if x.shape[1] == 1:  # intercept only: the exact leave-one-out mean
+        ps = p - (y - p) * h / (1.0 - h)
+        tol = 1e-9
+    klo = math.floor(float(ps.min()) / 0.02 + tol)
+    khi = math.ceil(float(ps.max()) / 0.02 - tol)
     grid = np.round(np.arange(klo, khi + 1) * 0.02, 3)
     n1 = int(y.sum())
     n0 = len(y) - n1
@@ -1240,7 +1250,7 @@ def classification_table(
         ).split()
     }
     for z in grid:
-        pe = ps >= z
+        pe = ps >= z - tol
         ce = int(np.count_nonzero(pe & (y == 1)))
         ie = int(np.count_nonzero(pe & (y == 0)))
         cn, inn = n0 - ie, n1 - ce
