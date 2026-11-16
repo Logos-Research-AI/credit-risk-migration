@@ -2,9 +2,10 @@
 
 Refits the SAS-selected logistic model on the reference features with Newton-Raphson to
 full convergence (SAS stops earlier, at GCONV=1E-8), then rewrites the train-stage
-row-level outputs exactly as SAS's rules would from the refit pd: score with
-round-half-away-from-zero, grade/recommendation/rate, the 0.5 prediction, pd printed
-with BEST12. A correct port behaves like this, so the judge must PASS it.
+row-level outputs exactly as the corrected SAS's rules would from the refit pd: the score
+600 + 250 * (1 - pd), not rounded, the grade cut on the probability with its recommendation
+and rate, the 0.5 prediction, pd and score printed with BEST12. A correct port behaves like
+this, so the judge must PASS it.
 (Idea and first version: adversarial review C.)
 
 Usage (from judge/): uv run python make_converged_candidate.py  -> fixtures/converged/
@@ -12,7 +13,6 @@ Usage (from judge/): uv run python make_converged_candidate.py  -> fixtures/conv
 
 from __future__ import annotations
 
-import math
 from pathlib import Path
 
 import numpy as np
@@ -36,13 +36,6 @@ def fit(X: np.ndarray, y: np.ndarray) -> np.ndarray:
     raise RuntimeError("no convergence")
 
 
-def sas_tuple(score: int) -> tuple[str, str, str]:
-    grade = next((g for cut, g in ((750, "A"), (700, "B"), (650, "C"), (600, "D"), (550, "E")) if score >= cut), "F")
-    rec = "Approve" if grade in ("A", "B") else "Review" if grade == "C" else "Decline"
-    rate = {"A": 0.05, "B": 0.07, "C": 0.09, "D": 0.12, "E": 0.15}.get(grade, 0.20)
-    return grade, rec, f"{rate * 100:.2f}%"
-
-
 def main() -> None:
     variables = [v for v in C.read_text_csv(REF / "model_coefficients.csv")["Variable"].to_list() if v != "Intercept"]
     feats = {s: pl.read_csv(REF / f"model_features_{s}.csv") for s in ("train", "validation")}
@@ -59,9 +52,9 @@ def main() -> None:
                  ("final_model_output.csv", "train")):
         ref = C.read_text_csv(REF / f)
         pd_ = [pds[s][int(r)] for r in ref["row_id"].to_list()]
-        score = [math.floor(600 + 250 * (1 - p) + 0.5) for p in pd_]  # SAS round(): half away from 0
-        tup = [sas_tuple(sc) for sc in score]
-        upd = {"pd_logistic": [C.sas_best12(p) for p in pd_], "credit_risk_score": [str(x) for x in score],
+        score = [C.sas_best12(600 + 250 * (1 - p)) for p in pd_]  # train.sas 242, 277: not rounded
+        tup = [C.sas_grade(p) for p in pd_]  # train.sas 245-265
+        upd = {"pd_logistic": [C.sas_best12(p) for p in pd_], "credit_risk_score": score,
                "risk_grade": [t[0] for t in tup], "recommendation": [t[1] for t in tup],
                "interest_rate": [t[2] for t in tup]}
         if "pred_logistic" in ref.columns:

@@ -27,8 +27,12 @@ FT, CO, MS = "model_features_train.csv", "model_coefficients.csv", "model_summar
 KG, ST, DA, TA = "kaggle_submission.csv", "stepwise_summary.csv", "decile_analysis.csv", "threshold_analysis.csv"
 HL, HP, FS = "printed_hosmer_lemeshow.csv", "printed_hl_partition.csv", "printed_fit_statistics.csv"
 CT, PM = "printed_confusion_train.csv", "model_performance_metrics.csv"
-AS = "printed_association.csv"
+AS, PC, IM = "printed_association.csv", "printed_classification.csv", "income_medians.csv"
+CUTS = [cut for cut, _, _ in C.GRADE_CUTS]
 PASS = frozenset()
+# grade flips of the positive control that the judge excuses (a fully converged refit against SAS's fit)
+CONV_TRAIN: dict[str, int] = {"risk_grade": 1, "recommendation": 1, "interest_rate": 1}  # applicant 108555, at the 15 % cut
+CONV_VALID: dict[str, int] = {}
 TODAY = dt.date.today().strftime("%d%b%Y").upper()
 
 
@@ -46,16 +50,17 @@ def b12(v: str, d: float) -> str:
     return C.sas_best12(float(v) + d)
 
 
-def raw_frac(pd_: float) -> float:
-    raw = 600 + 250 * (1 - pd_)
-    return raw - int(raw)
+def cut_gap(pd_: float) -> float:
+    """Distance to the nearest grade cut, positive when the probability is below it."""
+    cut = min(CUTS, key=lambda k: abs(k - pd_))
+    return cut - pd_
 
 
 def rescore(df: pl.DataFrame, pds: list[float]) -> pl.DataFrame:
-    """Rewrite pd and everything SAS derives from it, consistently (like a port would)."""
-    score = [C.sas_round(600 + 250 * (1 - p)) for p in pds]
-    tup = [make_converged_candidate.sas_tuple(s) for s in score]
-    upd = {"pd_logistic": [C.sas_best12(p) for p in pds], "credit_risk_score": [str(s) for s in score],
+    """Rewrite pd and everything the corrected SAS derives from it, consistently (like a port would)."""
+    score = [C.sas_best12(600 + 250 * (1 - p)) for p in pds]
+    tup = [C.sas_grade(p) for p in pds]
+    upd = {"pd_logistic": [C.sas_best12(p) for p in pds], "credit_risk_score": score,
            "risk_grade": [t[0] for t in tup], "recommendation": [t[1] for t in tup], "interest_rate": [t[2] for t in tup]}
     if "pred_logistic" in df.columns:
         upd["pred_logistic"] = ["1" if p >= 0.5 else "0" for p in pds]
@@ -67,8 +72,8 @@ def cases():
     kg, st, da, ta = load(KG), load(ST), load(DA), load(TA)
     hl, hp, fs, ct, pm = load(HL), load(HP), load(FS), load(CT), load(PM)
     pd_ = rs.get_column("pd_logistic").cast(pl.Float64).to_list()
-    far = next(i for i, p in enumerate(pd_) if abs(raw_frac(p) - 0.5) > 0.1 and abs(p - 0.5) > 0.01)
-    near = next(i for i, p in enumerate(pd_) if 0 < 0.5 - raw_frac(p) <= 250 * C.PD_TOL / 2)  # rounds down, can go up
+    far = next(i for i, p in enumerate(pd_) if abs(cut_gap(p)) > 0.01)  # far from every grade cut (and from 0.5)
+    near = next(i for i, p in enumerate(pd_) if 1e-6 < cut_gap(p) <= C.PD_TOL / 2)  # just below a cut, can cross it
     zero_flag = rs.get_column("default_flag").to_list().index("0")
     zero_util = rs.get_column("credit_utilization").to_list().index("0")
     PDv = rs["pd_logistic"][far]
@@ -79,19 +84,23 @@ def cases():
     yield "rows reordered", RS, {RS: rs.reverse()}, PASS, True, {}
     # positive control: a correct port (fully converged refit, SAS rules applied)
     conv = {f: C.read_text_csv(CONV / f) for f in (RS, RV, FM)}
-    yield "CONVERGED REFIT = correct port (train)", RS, conv, PASS, False, {"credit_risk_score": 42}
-    yield "CONVERGED REFIT = correct port (valid)", RV, conv, PASS, False, {"credit_risk_score": 29}
-    yield "CONVERGED REFIT = correct port (final)", FM, conv, PASS, False, {"credit_risk_score": 42}
+    yield "CONVERGED REFIT = correct port (train)", RS, conv, PASS, False, CONV_TRAIN
+    yield "CONVERGED REFIT = correct port (valid)", RV, conv, PASS, False, CONV_VALID
+    yield "CONVERGED REFIT = correct port (final)", FM, conv, PASS, False, CONV_TRAIN
     # pd value / distribution / format
-    yield "pd +2e-4 (beyond PD_TOL)", RS, {RS: setc(rs, far, "pd_logistic", b12(PDv, 2e-4))}, {"pd_logistic"}, False, {}
-    yield "pd +5e-5 one row (within PD_TOL)", RS, {RS: setc(rs, far, "pd_logistic", b12(PDv, 5e-5))}, PASS, False, {}
+    # a pd changed alone leaves the score that is not its own pd's formula: both rules speak
+    yield "pd +2e-4 alone (beyond PD_TOL)", RS, {RS: setc(rs, far, "pd_logistic", b12(PDv, 2e-4))}, {"pd_logistic", "credit_risk_score"}, False, {}
+    yield "pd +5e-5 alone (score not its formula)", RS, {RS: setc(rs, far, "pd_logistic", b12(PDv, 5e-5))}, {"credit_risk_score"}, False, {}
+    one = lambda d: pl.concat([rs.slice(0, far), rescore(rs.slice(far, 1), [pd_[far] + d]), rs.slice(far + 1)])
+    yield "pd +5e-5 one row, rescored (within PD_TOL)", RS, {RS: one(5e-5)}, PASS, False, {}
+    yield "pd +2e-4 one row, rescored (beyond PD_TOL)", RS, {RS: one(2e-4)}, {"pd_logistic", "credit_risk_score"}, False, {}
     bias = rescore(rs, [p + 5e-5 for p in pd_])
     yield "C/D2: +5e-5 bias on every pd, rescored", RS, {RS: bias}, ("atleast", {"pd_logistic(mean)"}), False, None
     pd4 = rs.with_columns(pl.Series("pd_logistic", [f"{p:.4f}" for p in pd_], dtype=pl.Utf8))
     yield "C/D3: pd printed %.4f", RS, {RS: pd4}, ("atleast", {"pd_logistic"}), False, None
     yield "C/D4: pd in E-notation", RS, {RS: setc(rs, far, "pd_logistic", f"{float(PDv):.9E}")}, {"pd_logistic"}, False, {}
-    yield "pd 'nan'", RS, {RS: setc(rs, far, "pd_logistic", "nan")}, {"pd_logistic"}, False, {}
-    yield "pd missing", RS, {RS: setc(rs, far, "pd_logistic", "")}, {"pd_logistic"}, False, {}
+    yield "pd 'nan'", RS, {RS: setc(rs, far, "pd_logistic", "nan")}, {"pd_logistic", "credit_risk_score"}, False, {}
+    yield "pd missing", RS, {RS: setc(rs, far, "pd_logistic", "")}, {"pd_logistic", "credit_risk_score"}, False, {}
     # structure
     yield "row dropped", RS, {RS: rs.slice(1)}, {"rows", "keys"}, False, {}
     yield "row duplicated", RS, {RS: pl.concat([rs, rs.slice(0, 1)])}, {"rows", "keys"}, False, {}
@@ -115,25 +124,52 @@ def cases():
     yield "BEST12 short rounded value +3e-10", FT, {FT: setc(ft, li, "log_monthly_income", b12(lv, 3e-10))}, {"log_monthly_income"}, False, {}
     # discrete pd-derived columns and excusals (reviews A2, C1)
     yield "grade ' A' (whitespace)", RS, {RS: setc(rs, far, "risk_grade", " " + rs["risk_grade"][far])}, {"risk_grade"}, False, {}
-    yield "score +1 far from boundary", RS, {RS: setc(rs, far, "credit_risk_score", str(int(rs["credit_risk_score"][far]) + 1))}, {"credit_risk_score"}, False, {}
-    p_up = pd_[near] - (0.5 - raw_frac(pd_[near]) + 1e-9) / 250  # just crosses round()'s .5 boundary
-    legit = pl.concat([rs.slice(0, near), rescore(rs.slice(near, 1), [p_up]), rs.slice(near + 1)])
-    yield "legit flip: pd crosses .5 boundary, rescored", RS, {RS: legit}, PASS, False, {"credit_risk_score": 1}
-    yield "score +1 at boundary but pd unchanged", RS, {RS: setc(rs, near, "credit_risk_score", str(int(rs["credit_risk_score"][near]) + 1))}, {"credit_risk_score"}, False, {}
+    # the score: within 250 * PD_TOL of the reference AND 600 + 250 * (1 - candidate pd) (Q15, 2026-11-16)
+    SCv = rs["credit_risk_score"][far]
+    yield "score +0.01, pd unchanged (not its formula)", RS, {RS: setc(rs, far, "credit_risk_score", b12(SCv, 0.01))}, {"credit_risk_score"}, False, {}
+    yield "score +1, pd unchanged", RS, {RS: setc(rs, far, "credit_risk_score", b12(SCv, 1))}, {"credit_risk_score"}, False, {}
+    yield "score +1e-8 (one printed unit)", RS, {RS: setc(rs, far, "credit_risk_score", b12(SCv, 1e-8))}, PASS, False, {}
+    yield "score +1e-6, pd unchanged", RS, {RS: setc(rs, far, "credit_risk_score", b12(SCv, 1e-6))}, {"credit_risk_score"}, False, {}
+    yield "score rounded to an integer", RS, {RS: setc(rs, far, "credit_risk_score", str(round(float(SCv))))}, {"credit_risk_score"}, False, {}
+    yield "score with extra digits", RS, {RS: setc(rs, far, "credit_risk_score", SCv + "1")}, {"credit_risk_score"}, False, {}
+    yield "score missing", RS, {RS: setc(rs, far, "credit_risk_score", "")}, {"credit_risk_score"}, False, {}
     d1 = rescore(rs, [round(p, 4) for p in pd_]).with_columns(rs["pd_logistic"])
     yield "C/D1: scores from pd rounded to 4dp, pd exact", RS, {RS: d1}, ("atleast", {"credit_risk_score"}), False, None
+    old = rs.with_columns(pl.Series("credit_risk_score", [str(round(float(x))) for x in rs["credit_risk_score"].to_list()], dtype=pl.Utf8))
+    yield "every score rounded (the uncorrected SAS)", RS, {RS: old}, {"credit_risk_score"}, False, {}
+    # grade, recommendation, rate: excused only near a cut AND as SAS grades the candidate's own pd (Q18)
+    p_up = pd_[near] + cut_gap(pd_[near]) + 1e-9  # just crosses the grade cut
+    legit = pl.concat([rs.slice(0, near), rescore(rs.slice(near, 1), [p_up]), rs.slice(near + 1)])
+    moved = {c: 1 for c in C.GRADE_TUPLE if legit[c][near] != rs[c][near]}
+    yield "legit flip: pd crosses a grade cut, rescored", RS, {RS: legit}, PASS, False, moved
+    flip = lambda df, i, g: setc(setc(setc(df, i, "risk_grade", g), i, "recommendation", C.GRADE_TERMS[g][0]), i, "interest_rate", C.GRADE_TERMS[g][1])
+    other = C.sas_grade(p_up)[0]
+    yield "grade flipped at a cut but pd unchanged", RS, {RS: flip(rs, near, other)}, set(moved), False, {}
+    far_other = "C" if rs["risk_grade"][far] != "C" else "D"
+    yield "grade flip far from a cut (whole tuple)", RS, {RS: flip(rs, far, far_other)}, {"risk_grade", "recommendation", "interest_rate"}, False, {}
+    p_far = pd_[far] + 5e-5
+    far_flip = pl.concat([rs.slice(0, far), flip(rescore(rs.slice(far, 1), [p_far]), 0, far_other), rs.slice(far + 1)])
+    yield "grade flip far from a cut, pd moved 5e-5", RS, {RS: far_flip}, {"risk_grade", "recommendation", "interest_rate"}, False, {}
+    wrong_rate = setc(legit, near, "interest_rate", "20.00%")
+    yield "legit flip but rate of another grade", RS, {RS: wrong_rate}, {"interest_rate"} | (set(moved) - {"interest_rate"}), False, {}
     garbage = setc(setc(rs, near, "credit_risk_score", "-999"), near, "risk_grade", "Z")
-    yield "near boundary, garbage score+grade", RS, {RS: garbage}, {"credit_risk_score", "risk_grade"}, False, {}
+    yield "near a cut, garbage score+grade", RS, {RS: garbage}, {"credit_risk_score", "risk_grade"}, False, {}
+    cutoff = rs.with_columns(pl.Series("risk_grade", [C.sas_grade(p + 0.01)[0] for p in pd_], dtype=pl.Utf8))
+    yield "every grade cut 1 point lower (mutated cut)", RS, {RS: cutoff}, {"risk_grade"}, False, None
     yield "pred_logistic '7'", RS, {RS: setc(rs, far, "pred_logistic", "7")}, {"pred_logistic"}, False, {}
     yield "rate '5.0%'", RS, {RS: setc(rs, far, "interest_rate", "5.0%")}, {"interest_rate"}, False, {}
     # model-fit tables (review B2/B5/C5)
-    yield "coef Estimate +2 DU", CO, {CO: setc(co, 1, "Estimate", "0.00252")}, PASS, False, {}
-    yield "coef Estimate +3 DU", CO, {CO: setc(co, 1, "Estimate", "0.00253")}, {"Estimate"}, False, {}
+    est = co["Estimate"][1]  # five decimals, e.g. '-0.00084'
+    yield "coef Estimate +2 DU", CO, {CO: setc(co, 1, "Estimate", f"{float(est) + 2e-5:.5f}")}, PASS, False, {}
+    yield "coef Estimate +3 DU", CO, {CO: setc(co, 1, "Estimate", f"{float(est) + 3e-5:.5f}")}, {"Estimate"}, False, {}
     w = co["WaldChiSq"][3]
     yield "coef WaldChiSq +0.05%", CO, {CO: setc(co, 3, "WaldChiSq", f"{float(w) * 1.0005:.4f}")}, PASS, False, {}
     yield "coef WaldChiSq +0.5%", CO, {CO: setc(co, 3, "WaldChiSq", f"{float(w) * 1.005:.4f}")}, {"WaldChiSq"}, False, {}
     yield "coef DF 1->2", CO, {CO: setc(co, 1, "DF", "2")}, {"DF"}, False, {}
-    yield "p-value 0.0436->0.0437", CO, {CO: setc(co, 1, "ProbChiSq", "0.0437")}, PASS, False, {}
+    num_p = next((i for i, v in enumerate(co["ProbChiSq"].to_list()) if not v.startswith("<")), None)
+    if num_p is not None:  # a coefficient whose p-value is printed as a number
+        pv = float(co["ProbChiSq"][num_p])
+        yield "p-value +1 DU", CO, {CO: setc(co, num_p, "ProbChiSq", f"{pv + 1e-4:.4f}")}, PASS, False, {}
     yield "p-value '<.0001' -> number", CO, {CO: setc(co, 0, "ProbChiSq", "0.00005")}, {"ProbChiSq"}, False, {}
     s0 = st["ScoreChiSq"][0]
     yield "stepwise ScoreChiSq +0.05%", ST, {ST: setc(st, 0, "ScoreChiSq", f"{float(s0) * 1.0005:.4f}")}, PASS, False, {}
@@ -145,8 +181,9 @@ def cases():
     av = fs["InterceptAndCovariates"][aic]
     yield "fit stats -2LL-class +0.001 (2 DU)", FS, {FS: setc(fs, aic, "InterceptAndCovariates", f"{float(av) + 0.001:.3f}")}, PASS, False, {}
     yield "C/D6: AIC +2 (parameter count)", FS, {FS: setc(fs, aic, "InterceptAndCovariates", f"{float(av) + 2:.3f}")}, {"InterceptAndCovariates"}, False, {}
-    yield "HL ChiSq +0.05%", HL, {HL: setc(hl, 0, "ChiSq", "121.9700")}, PASS, False, {}
-    yield "HL ChiSq +1", HL, {HL: setc(hl, 0, "ChiSq", "122.9130")}, {"ChiSq"}, False, {}
+    chi = float(hl["ChiSq"][0])
+    yield "HL ChiSq +0.05%", HL, {HL: setc(hl, 0, "ChiSq", f"{chi * 1.0005:.4f}")}, PASS, False, {}
+    yield "HL ChiSq +1", HL, {HL: setc(hl, 0, "ChiSq", f"{chi + 1:.4f}")}, {"ChiSq"}, False, {}
     yield "HL DF 8->9", HL, {HL: setc(hl, 0, "DF", "9")}, {"DF"}, False, {}
     yield "HL EventsObserved +1", HP, {HP: setc(hp, 0, "EventsObserved", str(int(hp["EventsObserved"][0]) + 1))}, PASS, False, {}
     yield "HL EventsObserved +3", HP, {HP: setc(hp, 0, "EventsObserved", str(int(hp["EventsObserved"][0]) + 3))}, {"EventsObserved"}, False, {}
@@ -159,15 +196,17 @@ def cases():
     yield "C/D6: confusion row moved, no flips", CT, {CT: setc(setc(ct, 0, "COUNT", str(c0 - 1)), 1, "COUNT", str(c1 + 1))}, {"COUNT"}, False, {}
     # metrics and summaries
     yield "decile defaults +1", DA, {DA: setc(da, 0, "defaults", str(int(da["defaults"][0]) + 1))}, {"defaults"}, False, {}
-    yield "decile default_rate +1 DU", DA, {DA: setc(da, 0, "default_rate", "35.05%")}, PASS, False, {}
-    yield "decile default_rate no '%'", DA, {DA: setc(da, 0, "default_rate", "35.04")}, {"default_rate"}, False, {}
-    yield "C/D4: default_rate percent8.3", DA, {DA: setc(da, 0, "default_rate", "35.040%")}, {"default_rate"}, False, {}
-    yield "C/D4: Train_AUC printed 8.5", MS, {MS: setc(setc(ms, 0, "Train_AUC", "0.85920"), 0, "training_date", TODAY)}, {"Train_AUC"}, False, {}
+    dr = da["default_rate"][0].rstrip("%")
+    yield "decile default_rate +1 DU", DA, {DA: setc(da, 0, "default_rate", f"{float(dr) + 0.01:.2f}%")}, PASS, False, {}
+    yield "decile default_rate no '%'", DA, {DA: setc(da, 0, "default_rate", dr)}, {"default_rate"}, False, {}
+    yield "C/D4: default_rate percent8.3", DA, {DA: setc(da, 0, "default_rate", dr + "0%")}, {"default_rate"}, False, {}
+    yield "C/D4: Train_AUC printed 8.5", MS, {MS: setc(setc(ms, 0, "Train_AUC", ms["Train_AUC"][0] + "0"), 0, "training_date", TODAY)}, {"Train_AUC"}, False, {}
     msd = setc(ms, 0, "training_date", TODAY)
     yield "summary training_records +1", MS, {MS: setc(msd, 0, "training_records", "105001")}, {"training_records"}, False, {}
-    yield "summary valid_precision +1 DU", MS, {MS: setc(msd, 0, "valid_precision", "0.5691")}, PASS, False, {}
-    yield "summary valid_precision +2 DU, no flips", MS, {MS: setc(msd, 0, "valid_precision", "0.5692")}, {"valid_precision"}, False, {}
-    yield "C/D5: train_accuracy +8e-4, no flips", MS, {MS: setc(msd, 0, "train_accuracy", "0.9377")}, {"train_accuracy"}, False, {}
+    vp = float(ms["valid_precision"][0])
+    yield "summary valid_precision +1 DU", MS, {MS: setc(msd, 0, "valid_precision", f"{vp + 1e-4:.4f}")}, PASS, False, {}
+    yield "summary valid_precision +2 DU, no flips", MS, {MS: setc(msd, 0, "valid_precision", f"{vp + 2e-4:.4f}")}, {"valid_precision"}, False, {}
+    yield "C/D5: train_accuracy +8e-4, no flips", MS, {MS: setc(msd, 0, "train_accuracy", f"{float(ms['train_accuracy'][0]) + 8e-4:.4f}")}, {"train_accuracy"}, False, {}
     yield "date: today, DATE9.", MS, {MS: msd}, PASS, True, {}
     yield "C/D7: date '99ZZZ0000'", MS, {MS: setc(ms, 0, "training_date", "99ZZZ0000")}, {"training_date"}, True, {}
     yield "C/D7: date hard-coded 01JAN2020", MS, {MS: setc(ms, 0, "training_date", "01JAN2020")}, {"training_date"}, True, {}
@@ -180,12 +219,30 @@ def cases():
     yield "CRLF line endings", CO, {CO: raw.replace(b"\n", b"\r\n")}, PASS, False, {}
     yield "quoted text fields", CO, {CO: raw.replace(b"MLE", b'"MLE"')}, PASS, False, {}
     yield "empty candidate file", CO, {CO: b""}, {"error"}, False, {}
+    # 2026-11-16: classification counts within 1; the percentages keep the model rule
+    pc = load(PC)
+    row = next(i for i, v in enumerate(pc["CorrectEvents"].to_list()) if 100 < int(v) < 1000)
+    ce, ie = int(pc["CorrectEvents"][row]), int(pc["IncorrectNonevents"][row])
+    yield "classification: one applicant moved", PC, {PC: setc(setc(pc, row, "CorrectEvents", str(ce + 1)), row, "IncorrectNonevents", str(ie - 1))}, PASS, False, {}
+    yield "classification: CorrectEvents +2", PC, {PC: setc(pc, row, "CorrectEvents", str(ce + 2))}, {"CorrectEvents"}, False, {}
+    big = int(pc["CorrectNonevents"][row])
+    yield "classification: large count +2", PC, {PC: setc(pc, row, "CorrectNonevents", str(big + 2))}, {"CorrectNonevents"}, False, {}
+    yield "classification: count '308.0'", PC, {PC: setc(pc, row, "CorrectEvents", f"{ce}.0")}, {"CorrectEvents"}, False, {}
+    yield "classification: Sensitivity +1.0", PC, {PC: setc(pc, row, "Sensitivity", f"{float(pc['Sensitivity'][row]) + 1:.1f}")}, {"Sensitivity"}, False, {}
+    # 2026-11-16: income_medians.csv is judged in the fe stage
+    im = load(IM)
+    yield "income medians identical", IM, {IM: im}, PASS, True, {}
+    yield "income medians: one median +1", IM, {IM: setc(im, 0, "median_income", str(int(im["median_income"][0]) + 1))}, {"median_income"}, False, {}
+    yield "income medians: overall median +0.5", IM, {IM: im.with_columns(pl.lit("5400.5").alias("overall_median_income"))}, {"overall_median_income"}, False, {}
+    yield "income medians: no overall column", IM, {IM: im.drop("overall_median_income")}, {"columns"}, False, {}
+    yield "income medians: age group missing", IM, {IM: im.slice(1)}, {"rows", "keys"}, False, {}
     # Q1 (2026-11-05): Percent Tied absolute 1e-5 percentage points; other cells keep the model rule
     asc = load(AS)
-    yield "Q1: Percent Tied of converged port (283 ties)", AS, {AS: setc(asc, 2, "nValue1", "0.0000412099")}, PASS, False, {}
-    yield "Q1: Percent Tied +2e-5 pp", AS, {AS: setc(asc, 2, "nValue1", "0.000060773")}, {"nValue1"}, False, {}
-    yield "Q1: Percent Concordant off by 0.2", AS, {AS: setc(asc, 0, "nValue1", "86.122064")}, {"nValue1"}, False, {}
-    yield "Q1: Tau-a +1e-4 (not the tied cell)", AS, {AS: setc(asc, 2, "nValue2", "0.089602")}, {"nValue2"}, False, {}
+    tied, conc, tau = float(asc["nValue1"][2]), float(asc["nValue1"][0]), float(asc["nValue2"][2])
+    yield "Q1: Percent Tied +5e-6 pp (a converged port's ties)", AS, {AS: setc(asc, 2, "nValue1", f"{tied + 5e-6:.6f}")}, PASS, False, {}
+    yield "Q1: Percent Tied +2e-5 pp", AS, {AS: setc(asc, 2, "nValue1", f"{tied + 2e-5:.6f}")}, {"nValue1"}, False, {}
+    yield "Q1: Percent Concordant off by 0.2", AS, {AS: setc(asc, 0, "nValue1", f"{conc + 0.2:.6f}")}, {"nValue1"}, False, {}
+    yield "Q1: Tau-a +1e-4 (not the tied cell)", AS, {AS: setc(asc, 2, "nValue2", f"{tau + 1e-4:.6f}")}, {"nValue2"}, False, {}
 
 
 def main() -> int:

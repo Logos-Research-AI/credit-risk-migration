@@ -27,11 +27,19 @@ port    Python-port-vs-SAS. Two checks on every numeric cell:
             statistics (-2 Log L, AIC, SC, likelihood-ratio test) LIKELIHOOD_REL_TOL;
             Estimate/StdErr 2 display units; integer cells relative only; Association
             "Percent Tied" absolute 1e-5 percentage points (ABS_CELL_TOL).
-          * credit_risk_score may differ by exactly 1 only where the reference pd is within
-            PD_TOL of round()'s .5 boundary AND the candidate's score is SAS round() of the
-            candidate's own pd; grade/recommendation/rate must then be the tuple SAS
-            assigns to that score. pred_logistic may flip only within PD_TOL of 0.5 and
-            only to (candidate pd >= 0.5).
+          * credit_risk_score (not rounded by the corrected SAS, Q15): a number within
+            250 * PD_TOL of the reference AND equal to 600 + 250 * (1 - candidate pd), to
+            the precision of the two printed cells, AND printed as BEST12. prints it.
+          * risk_grade, recommendation, interest_rate (cut on the probability, Q18): exact
+            text; a difference is excused only where the reference pd is within PD_TOL of
+            a grade cut (0.10, 0.15, 0.25, 0.35, 0.50), the candidate pd is within PD_TOL
+            of the reference pd, AND the candidate's three values are what the corrected
+            SAS assigns to the candidate's own pd.
+          * pred_logistic may flip only within PD_TOL of 0.5 and only to
+            (candidate pd >= 0.5).
+          * printed_classification.csv: the four count columns within 1 (the table counts
+            leave-one-out probabilities against each level; one applicant on a level's
+            boundary moves one count).
           * Each such 0.5 flip widens the confusion-matrix outputs by exactly one flip's
             worth (computed from the files themselves, independent of --only).
         Every excusal is counted and reported; none are silent.
@@ -62,7 +70,7 @@ FLOAT_EPS = 1e-12  # relative slack for float parsing / last-bit noise only
 BEST_WIDTH = 12
 
 STAGES: dict[str, list[str]] = {
-    "fe": ["model_features_train.csv", "model_features_validation.csv"],
+    "fe": ["model_features_train.csv", "model_features_validation.csv", "income_medians.csv"],
     "train": ["risk_scores_train.csv", "risk_scores_validation.csv", "final_model_output.csv",
               "model_coefficients.csv", "stepwise_summary.csv", "model_summary.csv",
               "printed_fit_statistics.csv", "printed_global_tests.csv", "printed_rsquare.csv",
@@ -79,7 +87,7 @@ KEYS: dict[str, list[str]] = {  # file -> key columns (absent = positional)
     "model_features_train.csv": ["row_id"], "model_features_validation.csv": ["row_id"],
     "risk_scores_train.csv": ["row_id"], "risk_scores_validation.csv": ["row_id"],
     "final_model_output.csv": ["row_id"], "test_predictions.csv": ["row_id"],
-    "kaggle_submission.csv": ["row_id"],
+    "kaggle_submission.csv": ["row_id"], "income_medians.csv": ["age_group"],
     "model_coefficients.csv": ["Variable"], "stepwise_summary.csv": ["Step"],
     "decile_analysis.csv": ["decile"], "threshold_analysis.csv": ["threshold"],
     "calibration_plot.csv": ["pred_bin"],
@@ -117,6 +125,12 @@ ABS_COL_TOL = {
     ("printed_hl_partition.csv", "Total"): 2.0,
     ("printed_hl_partition.csv", "EventsObserved"): 2.0,  # rows adjacent in pd may swap groups
     ("printed_hl_partition.csv", "NoneventsObserved"): 2.0,
+    # The classification table counts bias-adjusted (leave-one-out) probabilities against each
+    # level: an applicant on a level's boundary moves one count (owner's decision, 2026-11-16)
+    ("printed_classification.csv", "CorrectEvents"): 1.0,
+    ("printed_classification.csv", "CorrectNonevents"): 1.0,
+    ("printed_classification.csv", "IncorrectEvents"): 1.0,
+    ("printed_classification.csv", "IncorrectNonevents"): 1.0,
 }
 # (file, column) -> (label column, label, absolute tolerance) for one labelled cell
 ABS_CELL_TOL = {
@@ -131,7 +145,12 @@ DATE_WINDOW_DAYS = 2
 
 PD_COL = "pd_logistic"
 SCORE_COL = "credit_risk_score"
-SCORE_TUPLE = ["credit_risk_score", "risk_grade", "recommendation", "interest_rate"]
+GRADE_TUPLE = ["risk_grade", "recommendation", "interest_rate"]
+# The corrected SAS (train.sas 245-265, predict.sas 388-408): the grade is cut on the probability,
+# lower edge included, 50 % belongs to E, a missing probability is F. (upper bound, inclusive?, grade)
+GRADE_CUTS = [(0.10, False, "A"), (0.15, False, "B"), (0.25, False, "C"), (0.35, False, "D"), (0.50, True, "E")]
+GRADE_TERMS = {"A": ("Approve", "5.00%"), "B": ("Approve", "7.00%"), "C": ("Review", "9.00%"),
+               "D": ("Decline", "12.00%"), "E": ("Decline", "15.00%"), "F": ("Decline", "20.00%")}
 CUTOFF_COL = "pred_logistic"  # = (pd >= 0.5)
 ROW_LEVEL_FILES = {f for f, k in FILES.items() if k == ["row_id"]}
 SCORED = {"train": "risk_scores_train.csv", "valid": "risk_scores_validation.csv"}
@@ -152,8 +171,22 @@ def sas_best12(x: float) -> str:
     return "0" if s == "-0" else s
 
 
-def sas_round(x: float) -> int:
-    return math.floor(x + 0.5) if x >= 0 else -math.floor(-x + 0.5)  # half away from zero
+def sas_grade(pd_: float | None) -> tuple[str, str, str]:
+    """(risk_grade, recommendation, interest_rate) as the corrected SAS assigns and prints them."""
+    grade = "F"
+    if pd_ is not None and not math.isnan(pd_):
+        grade = next((g for cut, incl, g in GRADE_CUTS if pd_ < cut or (incl and pd_ == cut)), "F")
+    return (grade, *GRADE_TERMS[grade])
+
+
+def sas_grade_expr(pd_: pl.Expr) -> dict[str, pl.Expr]:
+    """sas_grade as expressions over a parsed probability column, one per column of GRADE_TUPLE."""
+    grade = pl.lit("F")
+    for cut, incl, g in reversed(GRADE_CUTS):
+        grade = pl.when((pd_ <= cut) if incl else (pd_ < cut)).then(pl.lit(g)).otherwise(grade)
+    grade = pl.when(pd_.is_null() | pd_.is_nan()).then(pl.lit("F")).otherwise(grade)
+    terms = lambda i: grade.replace_strict({g: t[i] for g, t in GRADE_TERMS.items()}, return_dtype=pl.Utf8)
+    return {"risk_grade": grade, "recommendation": terms(0), "interest_rate": terms(1)}
 
 
 def read_text_csv(path: Path) -> pl.DataFrame:
@@ -278,6 +311,18 @@ def value_bad(name: str, col: str, r: pl.Expr, c: pl.Expr, extra_tol: float) -> 
     return pl.when(rn.is_not_null()).then(pct_mismatch | ~within).otherwise(r != c)  # tokens: exact
 
 
+def score_bad(r: pl.Expr, c: pl.Expr, cand_pd_text: pl.Expr) -> pl.Expr:
+    """Port-mode mismatch of credit_risk_score, which the corrected SAS does not round: the
+    candidate must be within 250 * PD_TOL of the reference AND be 600 + 250 * (1 - its own pd).
+    Both cells are BEST12. prints, so "be" is to one unit of each: the printed pd carries the
+    score to 250 units of its last digit, the printed score to one unit of its own."""
+    rn, cn, cand_pd = parse_num(r), parse_num(c), parse_num(cand_pd_text)
+    near_ref = (rn - cn).abs() <= 250 * PD_TOL + FLOAT_EPS * rn.abs()
+    printed = 250 * best12_unit(cand_pd_text) + best12_unit(c)
+    own = (cn - (600 + 250 * (1 - cand_pd))).abs() <= printed + FLOAT_EPS * cn.abs()
+    return pl.when(rn.is_not_null()).then(~(near_ref & own).fill_null(False)).otherwise(r != c)
+
+
 def date_ok(text: str, cand_path: Path) -> bool:
     try:
         d = dt.datetime.strptime(text.title(), "%d%b%Y").date()
@@ -343,20 +388,15 @@ def _compare_file(res: FileResult, name: str, ref_path: Path, cand_path: Path, m
 
     # Excusals (port mode, row-level files): only where the CANDIDATE is self-consistent.
     excuse: dict[str, pl.Expr] = {}
-    if mode == "port" and name in ROW_LEVEL_FILES and PD_COL in data_cols:
+    pd_rules = mode == "port" and name in ROW_LEVEL_FILES and PD_COL in data_cols
+    if pd_rules:
         ref_pd, cand_pd = parse_num(pl.col(PD_COL)), parse_num(pl.col(f"{PD_COL}__c"))
-        raw_ref, raw_cand = 600 + 250 * (1 - ref_pd), 600 + 250 * (1 - cand_pd)
-        near_half = ((raw_ref - raw_ref.floor()) - 0.5).abs() <= 250 * PD_TOL
-        if SCORE_COL in data_cols:
-            tuple_cols = [c for c in SCORE_TUPLE if c in data_cols]
-            sas_tuples = joined.select(tuple_cols).unique().rename({c: f"{c}__c" for c in tuple_cols}) \
-                .with_columns(pl.lit(True).alias("__tuple_is_sas"))
-            joined = joined.join(sas_tuples, on=[f"{c}__c" for c in tuple_cols], how="left")
-            cand_score = parse_num(pl.col(f"{SCORE_COL}__c"))
-            score_step = (parse_num(pl.col(SCORE_COL)) - cand_score).abs() == 1
-            self_consistent = cand_score == (raw_cand + 0.5).floor()  # SAS round() of candidate pd
-            row_ok = (near_half & score_step & self_consistent & (cand_pd - ref_pd).abs().le(PD_TOL)
-                      & pl.col("__tuple_is_sas").fill_null(False)).fill_null(False)
+        tuple_cols = [c for c in GRADE_TUPLE if c in data_cols]
+        if tuple_cols:
+            near_grade_cut = pl.any_horizontal([(ref_pd - cut).abs() <= PD_TOL for cut, _, _ in GRADE_CUTS])
+            own = sas_grade_expr(cand_pd)  # what the corrected SAS assigns to the candidate's own pd
+            self_consistent = pl.all_horizontal([pl.col(f"{c}__c") == own[c] for c in tuple_cols])
+            row_ok = (near_grade_cut & (cand_pd - ref_pd).abs().le(PD_TOL) & self_consistent).fill_null(False)
             excuse.update({c: row_ok for c in tuple_cols})
         if CUTOFF_COL in data_cols:
             near_cut = (ref_pd - 0.5).abs() <= PD_TOL
@@ -372,7 +412,7 @@ def _compare_file(res: FileResult, name: str, ref_path: Path, cand_path: Path, m
                 if bad_dates:
                     res.fail(col, f"not a DATE9. date within {DATE_WINDOW_DAYS} days of the run: {bad_dates[:3]}")
             continue
-        if mode == "strict" or col in keys or col in SCORE_TUPLE or col == CUTOFF_COL:
+        if mode == "strict" or col in keys or col in GRADE_TUPLE or col == CUTOFF_COL:
             bad = r != c  # exact text (excusals applied below)
         else:
             ref_vals = joined.get_column(col)
@@ -380,7 +420,10 @@ def _compare_file(res: FileResult, name: str, ref_path: Path, cand_path: Path, m
             if not has_numeric:
                 bad = r != c
             else:
-                bad = value_bad(name, col, r, c, extra_tol.get(col, 0.0))
+                if col == SCORE_COL and pd_rules:
+                    bad = score_bad(r, c, pl.col(f"{PD_COL}__c"))
+                else:
+                    bad = value_bad(name, col, r, c, extra_tol.get(col, 0.0))
                 kind = column_kind(name, col)
                 diff = joined.filter((r != c) & parse_num(r).is_not_null()).select(col, f"{col}__c")
                 fmt_bad = [(a, b) for a, b in diff.iter_rows() if not format_ok(a, b, kind)]
