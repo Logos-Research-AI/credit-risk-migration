@@ -144,3 +144,30 @@ Two cautions for the split:
 
 - `sas_compat.py` is shared by all four stage modules. To keep the sets disjoint, only set E writes to it; sets A to D put any new helper in their own module, or ask E for it.
 - Sets A and B hold the same feature engineering twice (as the SAS does), and sets B and C the same scoring. The three agents should agree the Q7, Q9, Q15 and Q18 expressions once, so the copies do not drift.
+
+## After the fixes (2026-11-16, same day)
+
+The port was brought in line with the corrected SAS in two rounds of the migration kit's
+`port-follows-legacy` script (one agent per group of files, each fix reviewed by another), and
+the parity judge was updated by the owner's decision. **Every line of the contract passes**
+(`out/pfl2_measure/`, judge at 2b9dbdf): fe 3/3, train 18/18, metrics 9/9 on the real data and
+the three edge scenarios, predict 2/2 twice, end to end 3/3 and 2/2.
+
+- Port: the commits `98699fd..HEAD -- port/`. The `--fix-*` flags are gone; the corrected
+  behaviour is the only behaviour. All four stages remove earlier results first and stop when
+  the step before produced none.
+- Judge (owner's decision, 2026-11-16): the score is compared within 250 * PD_TOL and must be
+  the formula of the port's own probability; grade, recommendation and rate must be what SAS
+  assigns to the port's own probability, a difference from the reference being excused only
+  within PD_TOL of a cut; classification counts within 1, each row keeping its sum;
+  `income_medians.csv` byte for byte. Reviewed by a second agent (four gaps found and closed,
+  2b9dbdf). What it lets through on the real data: one grade flip (applicant 108555, pd
+  0.1499989 in SAS, 0.1500000 in the port) and ten classification counts off by one.
+- Judge validation on the corrected SAS: 15 mutations caught, 2 equivalent (two missing-value
+  branches of predict no longer change any output), 5 stale (two without a replacement: the
+  import guessing rows and the PSI sign). `judge/validation_report.md`.
+- Out of scope by ruling G53 and not worked on: what either program does with a malformed file.
+  The reviewers recorded several such differences (quoted fields, header forms, blank lines).
+- Left as they are (lead's decision, form closest to the SAS): the port removes only the files
+  the SAS names at the start of a step; one-unit-in-the-last-place differences in unprinted
+  ROC statistics.
