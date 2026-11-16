@@ -1,0 +1,132 @@
+[
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix_round5/good",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "train_header_age_upper",
+  "data_dir": "scenarios/fix_round5/train_header_age_upper",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_header_all_upper",
+  "data_dir": "scenarios/fix_round5/train_header_all_upper",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_header_income_lower",
+  "data_dir": "scenarios/fix_round5/train_header_income_lower",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_id_quoted_07",
+  "data_dir": "scenarios/fix_round5/train_id_quoted_07",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_id_quoted_7_0",
+  "data_dir": "scenarios/fix_round5/train_id_quoted_7_0",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_id_quoted_distinct",
+  "data_dir": "scenarios/fix_round5/train_id_quoted_distinct",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_short_row_optional",
+  "data_dir": "scenarios/fix_round5/train_short_row_optional",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_short_row_required",
+  "data_dir": "scenarios/fix_round5/train_short_row_required",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_short_row_required_last",
+  "data_dir": "scenarios/fix_round5/train_short_row_required_last",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_age_quoted",
+  "data_dir": "scenarios/fix_round5/train_age_quoted",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "train_age_exponent",
+  "data_dir": "scenarios/fix_round5/train_age_exponent",
+  "scripts": "feature_engineering.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix_round5/good",
+  "scripts": "feature_engineering.sas,train.sas,metrics_calculation.sas,predict.sas"
+ },
+ {
+  "label": "test_header_age_upper",
+  "data_dir": "scenarios/fix_round5/test_header_age_upper",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_header_all_upper",
+  "data_dir": "scenarios/fix_round5/test_header_all_upper",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_header_income_lower",
+  "data_dir": "scenarios/fix_round5/test_header_income_lower",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_id_quoted_07",
+  "data_dir": "scenarios/fix_round5/test_id_quoted_07",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_id_quoted_7_0",
+  "data_dir": "scenarios/fix_round5/test_id_quoted_7_0",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_id_quoted_distinct",
+  "data_dir": "scenarios/fix_round5/test_id_quoted_distinct",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_short_row_optional",
+  "data_dir": "scenarios/fix_round5/test_short_row_optional",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_short_row_required",
+  "data_dir": "scenarios/fix_round5/test_short_row_required",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_short_row_required_last",
+  "data_dir": "scenarios/fix_round5/test_short_row_required_last",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_age_quoted",
+  "data_dir": "scenarios/fix_round5/test_age_quoted",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_age_exponent",
+  "data_dir": "scenarios/fix_round5/test_age_exponent",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "test_header_only_age_upper",
+  "data_dir": "scenarios/fix_round5/test_header_only_age_upper",
+  "scripts": "predict.sas"
+ },
+ {
+  "label": "good",
+  "data_dir": "scenarios/fix_round5/good",
+  "scripts": "predict.sas"
+ }
+]
