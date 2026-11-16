@@ -21,7 +21,7 @@ def _into_float(x: float | None) -> float | None:
     return float(v) if v else None
 
 
-# metrics_calculation.sas:122-158  %macro confusion_metrics(threshold, suffix)
+# metrics_calculation.sas:173-209  %macro confusion_metrics(threshold, suffix)
 # R§2 macro (A23): returns the datasets it creates (confusion, conf_matrix, metrics)
 def confusion_metrics(
     threshold: float, suffix: str, logit_scored_valid: pl.DataFrame
@@ -29,20 +29,20 @@ def confusion_metrics(
     # R§2 macro: WORK dataset the body reads is a parameter; suffix only names SAS datasets (INV
     # confusion_metrics)
     _ = suffix
-    # :123-126 predicted = (pd_logistic >= &threshold)
+    # :174-177 predicted = (pd_logistic >= &threshold)
     confusion = logit_scored_valid.with_columns(
         predicted=sas_compat.flag(
             pl.col("pd_logistic") >= threshold
         )  # R§2 boolean assignment; INV predicted (MISSING_NEVER, plain >=)
     )
-    # :128-130 PROC FREQ tables default_flag * predicted / out=conf_matrix
+    # :179-181 PROC FREQ tables default_flag * predicted / out=conf_matrix
     # INV work.conf_matrix_&suffix: only occurring cells become rows
     conf_matrix = (
         confusion.group_by(["default_flag", "predicted"], maintain_order=True)
         .agg(COUNT=pl.len().cast(pl.Int64))
         .sort(["default_flag", "predicted"], maintain_order=True)
     )
-    # :133-157 retain TP TN FP FN 0; set ... end=eof  (R§2 retain + end=eof -> aggregation)
+    # :184-208 retain TP TN FP FN 0; set ... end=eof  (R§2 retain + end=eof -> aggregation)
     # INV work.metrics_&suffix: an absent cell keeps the retained 0 (empty sum is 0)
     counts = conf_matrix.select(
         TP=pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("predicted") == 1)).sum(),
@@ -74,19 +74,19 @@ def confusion_metrics(
     )
     metrics = metrics.select("threshold", "accuracy", "precision", "recall", "f1_score", "specificity").cast(
         pl.Float64
-    )  # keep list (:156); explicit Float64 so an all-null column is not dtype Null
+    )  # keep list (:207); explicit Float64 so an all-null column is not dtype Null
     return confusion, conf_matrix, metrics
 
 
 def run(input_dir: Path, output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)  # R§4, S12
 
-    # metrics_calculation.sas:28-41 PROC IMPORT of the scored data
+    # metrics_calculation.sas:51-64 PROC IMPORT of the scored data
     # INV work.logit_scored_valid / logit_scored_train (R§2 PROC IMPORT, default guessingrows=20)
     logit_scored_valid = sas_compat.proc_import_csv(input_dir / "risk_scores_validation.csv", guessingrows=20)
     logit_scored_train = sas_compat.proc_import_csv(input_dir / "risk_scores_train.csv", guessingrows=20)
 
-    # metrics_calculation.sas:48-54 PROC LOGISTIC nofit + roc (ROCAssociation)
+    # metrics_calculation.sas:71-77 PROC LOGISTIC nofit + roc (ROCAssociation)
     # INV printed_roc_metrics.csv; the roccontrast table is not ported. With one response level among the
     # usable rows (or no usable row) PROC LOGISTIC stops with an ERROR and WORK.ROC_STATS is not created:
     # the Area is then missing here
@@ -133,10 +133,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # listing-only: PROC PRINT auc_summary (AUC and Gini)
 
-    # metrics_calculation.sas:75-77 PROC SORT by pd_logistic (in place; stable, ties keep input order)
+    # metrics_calculation.sas:124-126 PROC SORT by pd_logistic (in place; stable, ties keep input order)
     logit_scored_valid = logit_scored_valid.sort("pd_logistic", maintain_order=True)  # R§2 PROC SORT
 
-    # metrics_calculation.sas:80-84 select ... into :total_good_count, :total_bad_count
+    # metrics_calculation.sas:129-133 select ... into :total_good_count, :total_bad_count
     # R§2 select into (A9): BEST8. text; INV work.ks_calculation / ks_statistic: exact integers here
     totals = logit_scored_valid.select(
         good=sas_compat.sql_sum(sas_compat.flag(pl.col("default_flag") == 0)),  # R§2 SQL aggregates (S10)
@@ -177,21 +177,21 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # listing-only: PROC PRINT ks_statistic
 
-    # metrics_calculation.sas:161-165 test multiple thresholds (call order)
+    # metrics_calculation.sas:212-216 test multiple thresholds (call order)
     _confusion_03, _conf_matrix_03, metrics_03 = confusion_metrics(0.3, "03", logit_scored_valid)
     _confusion_04, _conf_matrix_04, metrics_04 = confusion_metrics(0.4, "04", logit_scored_valid)
     _confusion_05, _conf_matrix_05, metrics_05 = confusion_metrics(0.5, "05", logit_scored_valid)
     _confusion_06, _conf_matrix_06, metrics_06 = confusion_metrics(0.6, "06", logit_scored_valid)
     _confusion_07, _conf_matrix_07, metrics_07 = confusion_metrics(0.7, "07", logit_scored_valid)
 
-    # metrics_calculation.sas:168-171 threshold_analysis (set = concatenation)
+    # metrics_calculation.sas:219-222 threshold_analysis (set = concatenation)
     threshold_analysis = pl.concat(
         [metrics_03, metrics_04, metrics_05, metrics_06, metrics_07], how="vertical"
     )
 
     # listing-only: PROC PRINT threshold_analysis (accuracy..specificity printed 8.4)
 
-    # metrics_calculation.sas:183-188 PROC RANK groups=10 descending
+    # metrics_calculation.sas:234-239 PROC RANK groups=10 descending
     # R§2 PROC RANK; INV work.decile_data / decile_analysis
     decile_data = logit_scored_valid.with_columns(
         sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 10, descending=True).alias(
@@ -264,7 +264,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # listing-only: PROC PRINT decile_analysis
 
-    # metrics_calculation.sas:213-217 select ... into :total_defaults, :overall_default_rate
+    # metrics_calculation.sas:286-290 select ... into :total_defaults, :overall_default_rate
     # R§2 select into (A9): BEST8. text, later arithmetic sees the rounded value; INV &total_defaults /
     # &overall_default_rate
     into = decile_data.select(
@@ -382,13 +382,13 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # listing-only: PROC PRINT psi_summary
 
-    # metrics_calculation.sas:299-304 PROC RANK groups=20
+    # metrics_calculation.sas:427-432 PROC RANK groups=20
     # R§2 PROC RANK
     calibration_data = logit_scored_valid.with_columns(
         sas_compat.proc_rank_groups(logit_scored_valid.get_column("pd_logistic"), 20).alias("pred_bin")
     )
 
-    # metrics_calculation.sas:306-316 calibration_plot
+    # metrics_calculation.sas:434-444 calibration_plot
     # INV work.calibration_plot (calibration_plot.csv): means divided after aggregation (A7), only
     # occurring bins
     calibration_plot = (
@@ -404,7 +404,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # listing-only: PROC SGPLOT calibration_plot (calibration scatter)
 
-    # metrics_calculation.sas:331-345 validation_summary
+    # metrics_calculation.sas:459-473 validation_summary
     # R§2 merge (S5); INV work.validation_summary: status via helpers (AUC, KS, PSI can be missing on
     # extra rows)
     validation_summary = sas_compat.merge_one_to_one(auc_summary, ks_statistic, psi_summary)
@@ -423,7 +423,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # listing-only: PROC PRINT validation_summary
 
-    # metrics_calculation.sas:356-387 PROC EXPORT validation_summary, decile_analysis, threshold_analysis,
+    # metrics_calculation.sas:484-516 PROC EXPORT validation_summary, decile_analysis, threshold_analysis,
     # ks_statistic, calibration_plot (INV validation_summary.csv, decile_analysis.csv, threshold_analysis.csv,
     # ks_statistic.csv, calibration_plot.csv for the stored formats)
     sas_compat.write_sas_csv(
@@ -444,7 +444,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         formats={"mean_predicted": "8.4", "mean_actual": "8.4"},
     )
 
-    # metrics_calculation.sas:391-413 model_performance_metrics
+    # metrics_calculation.sas:519-541 model_performance_metrics
     # INV work.model_performance_metrics: where=(threshold=0.5) (plain, never missing) + dataset rename
     # and RENAME
     # statement composed; R§2 merge (S5); validation_date = today() (A16 at export)
@@ -464,7 +464,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         dataset=pl.lit("Kaggle Give Me Some Credit"),
     ).drop("threshold", "ROCModel")
 
-    # metrics_calculation.sas:416-420 PROC EXPORT model_performance_metrics
+    # metrics_calculation.sas:544-548 PROC EXPORT model_performance_metrics
     # INV model_performance_metrics.csv: *_at_50 columns carry no format (BEST12.)
     sas_compat.write_sas_csv(
         model_performance_metrics,
@@ -512,7 +512,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     )
     sas_compat.write_sas_csv(psi_calculation, output_dir / "printed_psi_calculation.csv", formats={})
 
-    # metrics_calculation.sas:427-430
+    # metrics_calculation.sas:555-558
     print("NOTE: Model validation completed successfully")
     print("NOTE: Validation metrics calculated and exported")
     print(f"NOTE: Results saved to: {output_dir}")
