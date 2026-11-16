@@ -1,0 +1,13 @@
+{
+ "fuzzer": "port-translator-6",
+ "generator": "diffeval/units/fz_t4_gen.py",
+ "units": {
+  "fe_run_04_imputed": {
+   "seeds": "20000..22559",
+   "generated": 2560,
+   "kept": 2240,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one block of 64 seeds (56 inside the precondition, 8 outside: no row, or a Float64 MonthlyIncome_missing); credit_cleaned 1..20 rows, keys -1..6 with nulls, flags 0..2 with nulls, its own median_income column (shape 6); income_medians_all 0..6 rows, keys 0..6 with nulls and duplicates, other column order (shape 4), an extra MonthlyIncome column (shape 5); edge pool: null, NaN, +-inf, +-0.0, 1e300, 1e-300, 5e-324, ties, 1.0 +- 1 ulp; source lines executed verbatim"
+  }
+ }
+}

@@ -158,3 +158,14 @@ T20 done 2026-11-16 (closing check of the update; scripts and outputs under `dif
 - Scripts that called removed keywords: retired (`experiments/t20_retire.py`; plan section 4).
 - Manifest: state, upstream, precondition and open parameters of the changed and added units
   (`experiments/t20_manifest.py`); `def:proc_rank_apply_groups` is marked removed.
+
+Fuzz pass 2026-11-16 (asked by the owner; protocol `prompts/fuzz-2026-11-16.md`; receipts
+`diffeval/receipts/fuzz_2026-11-16.tsv`; generators `diffeval/units/fz_*_gen.py`): the changed and added
+units and the four compositions, inputs built inside Lean from seeds, each unit fuzzed by a translator
+who did not write it, outputs taken from the tool results by `diffeval/fuzz_collect.py`. No defect of a
+unit's Lean or of a precondition was found and no generated input made Python raise inside a
+precondition. Every difference is a limit of the prelude recorded in RULEBOOK section 6 (sign of a zero
+in min/max, in the median and, new, in the running sum; last bit of `log` and `exp`), each shown by
+substituting the prelude's value in the port's result. Lead's ruling: recorded limits, nothing
+re-submitted. All rows ran on blueprint id b41b22d4-...; after the owner's re-base one recorded whole-run
+input per composition was evaluated again on 5365851c-... (`diffeval/work/rb_*`).

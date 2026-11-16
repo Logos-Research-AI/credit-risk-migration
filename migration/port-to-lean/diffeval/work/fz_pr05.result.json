@@ -1,0 +1,162 @@
+[
+ {
+  "id": "fz_pr05/seeds 75000..75749: kept (707 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75000..75749: rejected, num_dependents holds -1 (8 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75000..75749: rejected, num_late_30_59 is Int64 (35 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75000..75749: kept, the four log columns without their low 20 bits",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75000..75749: rejected (-1), the four log columns without their low 20 bits",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75750..76499: kept (692 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75750..76499: rejected, num_dependents holds -1 (5 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75750..76499: rejected, num_late_30_59 is Int64 (53 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75750..76499: kept, the four log columns without their low 20 bits",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 75750..76499: rejected (-1), the four log columns without their low 20 bits",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 76500..77249: kept (692 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 76500..77249: rejected, num_dependents holds -1 (3 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 76500..77249: rejected, num_late_30_59 is Int64 (55 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 76500..77249: kept, the four log columns without their low 20 bits",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 76500..77249: rejected (-1), the four log columns without their low 20 bits",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 77250..77999: kept (697 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 77250..77999: rejected, num_dependents holds -1 (8 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 77250..77999: rejected, num_late_30_59 is Int64 (45 inputs)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 77250..77999: kept, the four log columns without their low 20 bits",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_pr05/seeds 77250..77999: rejected (-1), the four log columns without their low 20 bits",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

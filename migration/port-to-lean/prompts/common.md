@@ -2,7 +2,8 @@
 
 Workspace: /Users/cristophersalvi/GitHub/sas-migration-formal/python (Python package `credit_risk/`,
 a port of a SAS pipeline). We translate the Python to Lean 4 in the Logos blueprint
-`py-credit-risk-port`, id `b41b22d4-720d-4290-b593-39ceab961986`, through the `logos-mcp` MCP tools
+`py-credit-risk-port`, id `5365851c-5549-44b7-9207-4bd4c422031d` (since the owner's re-base of 2026-11-16; the
+earlier id `b41b22d4-720d-4290-b593-39ceab961986` is a stale copy: nothing is written to it), through the `logos-mcp` MCP tools
 (load them with ToolSearch, e.g. `select:mcp__claude_ai_Logos_MCP_Staging__get_items,mcp__claude_ai_Logos_MCP_Staging__get_lean,mcp__claude_ai_Logos_MCP_Staging__write_statement,mcp__claude_ai_Logos_MCP_Staging__edit_statement,mcp__claude_ai_Logos_MCP_Staging__read_scratch,mcp__claude_ai_Logos_MCP_Staging__eval_decl,mcp__claude_ai_Logos_MCP_Staging__get_status,mcp__claude_ai_Logos_MCP_Staging__check_decl,mcp__claude_ai_Logos_MCP_Staging__add_code,mcp__claude_ai_Logos_MCP_Staging__add_precond,mcp__claude_ai_Logos_MCP_Staging__connect`).
 Use only the `mcp__claude_ai_Logos_MCP_Staging__*` tools (since 2026-11-12 the local `logos-mcp` server is discontinued).
 
@@ -72,3 +73,9 @@ UPDATE 2026-11-16 (update after the verification round; this block overrides any
 - Order on a changed unit: `write_code` the new source, then `write_statement`. For a new unit:
   `add_code` with `file_path` and the line range, then `write_statement`; then `add_precond`.
   Do not restore cleared items your task does not name; report the `cleared` list.
+
+BLUEPRINT ID CHANGE 2026-11-16 (owner's re-base): the port blueprint is now
+`5365851c-5549-44b7-9207-4bd4c422031d`. Write nothing to `b41b22d4-...`, not even a carrier or a
+connect. All new evaluation calls go to the new id. The new profile shows the SAS blueprint: open
+only `def:` and `_precond` items of the port, by exact id or prefix; open nothing with a Sas name;
+no search that could return items of another blueprint.

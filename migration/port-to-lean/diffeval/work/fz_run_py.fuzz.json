@@ -1,0 +1,15 @@
+{
+ "fuzzer": "port-translator-1",
+ "generator": "port-to-lean/diffeval/units/fz_run_py_gen.py",
+ "units": {
+  "run_py": {
+   "seeds": "5000000..5002159",
+   "generated": 2160,
+   "kept": 2092,
+   "python_raises_inside_precondition": [],
+   "python_raises_table_clauses_hold": [],
+   "note": "one case = one seed: validation 1-9 rows, training 1-9 rows, values from pools (flags 0/1/null; probabilities with the thresholds 0.3-0.7 and one ulp either side, 0, -0, 1, ties, 1e-300, 5e-324, 2, -0.25, null; scores with ties, one ulp either side, 1e300, null). Not used: 68 seeds the CSV file cannot hold (a column with no value; -0.0), 0 where the exact-sum lambda differs from math.fsum, 0 where Python raises: []. sas_d8 is an injective stand-in on both sides; step preconditions not rendered (table clauses hold by construction)",
+   "all_differences_are_recorded_limit": "30 seeds, each with pd_logistic -0.0 and 0.0 in one decile: recorded limit (1) of the polars prelude (min / max of zeros of opposite sign: the prelude returns the first of the equal values, polars -0.0 for min and 0.0 for max). Shown two ways: seed 5000135 file by file in Lean (only decile_analysis.csv and printed_cumulative_lift.csv differ), and for all 30 seeds the Python result with min_pd / max_pd replaced by the first-of-equal value has exactly the Lean digest"
+  }
+ }
+}

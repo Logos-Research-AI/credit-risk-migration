@@ -1,0 +1,34 @@
+{
+ "fuzzer": "port-translator-3",
+ "generator": "diffeval/units/fz_t1_gen.py",
+ "units": {
+  "_pairs": {
+   "seeds": "10000..12199",
+   "generated": 2200,
+   "kept": 2112,
+   "python_raises_inside_precondition": [],
+   "note": "rows 0..40 by seed; y: Float64 from {0, 1, null, NaN, -0.0, 2, 0.5} / Int64 with nulls / Boolean / Null dtype; score: a grid of 1..12 levels plus offsets of the size of _SE_EPS and _TIE_EPS (ties), or 50% edges (null, NaN, +-inf, +-0.0, 0.5 and 0.5 -+ each eps exactly and one ulp either side, +-1e300, 1e-300, 5e-324), or random floats, or Int64 / Boolean / Null dtype; score one row longer in 1 seed of 25; one case digests 25 seeds; 88 seeds dropped (unequal lengths: precondition rejects and Python raises)"
+  },
+  "roc_association": {
+   "seeds": "10000..12199",
+   "generated": 2200,
+   "kept": 2112,
+   "python_raises_inside_precondition": [],
+   "note": "rows 0..40 by seed; y: Float64 from {0, 1, null, NaN, -0.0, 2, 0.5} / Int64 with nulls / Boolean / Null dtype; score: a grid of 1..12 levels plus offsets of the size of _SE_EPS and _TIE_EPS (ties), or 50% edges (null, NaN, +-inf, +-0.0, 0.5 and 0.5 -+ each eps exactly and one ulp either side, +-1e300, 1e-300, 5e-324), or random floats, or Int64 / Boolean / Null dtype; score one row longer in 1 seed of 25; one case digests 25 seeds; 88 seeds dropped (unequal lengths: precondition rejects and Python raises)"
+  },
+  "association_table": {
+   "seeds": "10000..12199",
+   "generated": 2200,
+   "kept": 2112,
+   "python_raises_inside_precondition": [],
+   "note": "rows 0..40 by seed; y: Float64 from {0, 1, null, NaN, -0.0, 2, 0.5} / Int64 with nulls / Boolean / Null dtype; score: a grid of 1..12 levels plus offsets of the size of _SE_EPS and _TIE_EPS (ties), or 50% edges (null, NaN, +-inf, +-0.0, 0.5 and 0.5 -+ each eps exactly and one ulp either side, +-1e300, 1e-300, 5e-324), or random floats, or Int64 / Boolean / Null dtype; score one row longer in 1 seed of 25; one case digests 25 seeds; 88 seeds dropped (unequal lengths: precondition rejects and Python raises)"
+  },
+  "_groups": {
+   "seeds": "10000..12099",
+   "generated": 2100,
+   "kept": 2100,
+   "python_raises_inside_precondition": [],
+   "note": "ss: 0..40 values, 50% edges (NaN, +-inf, +-0.0, values one ulp either side of each eps below 0.5, +-1e300, 1e-300, 5e-324), else random; eps from {0, _TIE_EPS, _SE_EPS, NaN, +-inf, -1, 1e300, 5e-324, 0.5, one ulp beside the two eps, 1, 2}; 1-D arrays only; one case digests 25 seeds"
+  }
+ }
+}

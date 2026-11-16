@@ -1,0 +1,13 @@
+{
+ "fuzzer": "port-translator-5",
+ "generator": "diffeval/units/fz_fe_run_01_clean_gen.py",
+ "units": {
+  "fe_run_01_clean": {
+   "seeds": "20000..22299 (shaped), 50000..50319 (unshaped)",
+   "generated": 2620,
+   "kept": 2376,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one frame credit_raw from a seed (rows, kinds, layout, null share from the seed; values by index from a pool of 28 floats and 24 strings); shaped blocks of 25 seeds are one digest; rejected inputs on which Python returns: 178 {'no row': 41, 'MonthlyIncome:Boolean': 17, 'MonthlyIncome:Boolean NumberOfDependents:Int64': 2, 'no row MonthlyIncome:Boolean': 6, 'MonthlyIncome:Int64 NumberOfDependents:Boolean': 15, 'no row NumberOfDependents:Boolean': 10, 'NumberOfDependents:Boolean': 14, 'NumberOfDependents:Int64': 12, 'no row NumberOfDependents:Int64': 11, 'MonthlyIncome:Int64 NumberOfDependents:Int64': 3, 'MonthlyIncome:Int64': 19, 'no row MonthlyIncome:Int64': 8, 'MonthlyIncome:Boolean NumberOfDependents:Boolean': 9, 'no row MonthlyIncome:Boolean NumberOfDependents:Boolean': 4, 'no row MonthlyIncome:Int64 NumberOfDependents:Boolean': 2, 'no row MonthlyIncome:Int64 NumberOfDependents:Int64': 3, 'no row MonthlyIncome:Boolean NumberOfDependents:Int64': 2}; dropped (Python raises outside the precondition): 66"
+  }
+ }
+}

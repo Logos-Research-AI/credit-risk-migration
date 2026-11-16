@@ -1,0 +1,446 @@
+[
+ {
+  "id": "fz_dec/kept seeds 1001..1079 (50)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1081..1159 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1161..1239 (44)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1241..1319 (50)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1321..1399 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1401..1479 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1481..1559 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1561..1639 (45)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1641..1719 (45)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1721..1799 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 1000..1192 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 1200..1392 (44)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 1400..1596 (49)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 1600..1792 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept zeros seeds 1003..1395 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12192529479084379112,
+    2872466416068312839
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_dec/kept zeros seeds 1403..1795 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3247754388513786296,
+    9290771090993276897
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_dec/rejected no row seeds 1020..1796 (49)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1801..1879 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1881..1959 (49)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 1961..2039 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2041..2119 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2121..2199 (42)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2201..2279 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2281..2359 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2361..2439 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2441..2519 (49)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2521..2599 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 1800..1996 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 2004..2196 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 2200..2388 (45)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 2400..2596 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept zeros seeds 1803..2195 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14297991270713380830,
+    9909820421974120976
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_dec/kept zeros seeds 2211..2595 (45)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13357624611184961452,
+    1567072055872534998
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_dec/rejected no row seeds 1814..2590 (54)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2601..2679 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2681..2759 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2761..2839 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2841..2919 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 2922..2999 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 3001..3079 (45)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 3081..3159 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 3161..3239 (45)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 3241..3319 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept seeds 3321..3399 (49)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 2600..2796 (49)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 2800..2996 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 3000..3196 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept wild flags seeds 3200..3396 (42)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec/kept zeros seeds 2603..2995 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16713245338839058808,
+    92799256220707264
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_dec/kept zeros seeds 3003..3395 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3825472359928961917,
+    4442557759922010509
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_dec/rejected no row seeds 2640..3380 (53)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

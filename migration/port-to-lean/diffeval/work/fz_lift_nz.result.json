@@ -1,0 +1,98 @@
+[
+ {
+  "id": "fz_lift_nz/kept zeros seeds 1005..1293 (33)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/kept zeros seeds 1301..1597 (36)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/kept zeros seeds 1605..1893 (32)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/kept zeros seeds 1901..2189 (29)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/rejected no row seeds 1011..1583 (84)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/rejected no row seeds 1601..2197 (85)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/kept zeros seeds 2205..2493 (33)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/kept zeros seeds 2501..2797 (34)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/kept zeros seeds 2805..3085 (34)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/kept zeros seeds 3101..3397 (28)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/rejected no row seeds 2208..2794 (66)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift_nz/rejected no row seeds 2803..3395 (78)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

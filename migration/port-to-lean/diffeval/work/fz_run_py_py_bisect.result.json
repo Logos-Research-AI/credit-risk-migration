@@ -1,0 +1,508 @@
+[
+ {
+  "id": "fz_run_py_py_bisect/seed 30925 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30926 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30927 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30928 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30929 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30930 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9308262168469418615,
+    17394828593469107001
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30931 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30932 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30933 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30934 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30935 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30937 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30938 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30940 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30941 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30942 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30943 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30944 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30946 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30947 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30948 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 30949 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31300 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31301 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31302 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31303 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31304 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31305 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31307 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31309 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31310 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31312 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31313 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31314 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31316 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5688691488576960280,
+    9740495638350836890
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31317 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31318 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31319 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31321 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31322 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31323 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31324 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31377 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31378 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31379 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31381 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31382 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31383 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31384 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31385 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31386 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31387 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31388 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31390 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31391 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31392 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31393 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15969267589636051286,
+    14327422387733817827
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31394 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31395 (files)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31397 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_run_py_py_bisect/seed 31399 (stop)",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

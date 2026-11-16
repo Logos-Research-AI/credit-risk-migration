@@ -1,0 +1,13 @@
+{
+ "fuzzer": "port-translator-10",
+ "generator": "diffeval/units/fz_train_run_gen.py",
+ "units": {
+  "run_py_py_py": {
+   "seeds": "60000..60039 generated; sent to Lean: kept [60008, 60031, 60017, 60037, 60007, 60010], rejected [60009, 60004]",
+   "generated": 40,
+   "kept": 6,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one value (number of files, model.json, one digest per exported table) of the whole train.run on one seed; files of 30-59 / 1-14 rows, small integers as floats (ties), nulls in some columns and in default_flag; of the 40 seeds 23 are inside the rendered precondition, 8 return with an intercept-only final model (rejected by `final_effects != []`), 9 have no stepwise result (the real stepwise_logistic raises 'did not converge': the parameter does not exist, no input to send); only 6 + 2 seeds were sent: each input is 8,000-13,000 characters of routine tables typed first-hand"
+  }
+ }
+}

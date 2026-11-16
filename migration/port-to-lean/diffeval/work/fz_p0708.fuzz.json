@@ -1,0 +1,20 @@
+{
+ "fuzzer": "port-translator-10",
+ "generator": "diffeval/units/fz_t10t17_gen.py",
+ "units": {
+  "predict_run_07_predictions": {
+   "seeds": "1000..3399 (Float64 pd), 9000..9299 (Int64 pd, rejected)",
+   "generated": 2700,
+   "kept": 2400,
+   "python_raises_inside_precondition": [],
+   "note": "frames of 0-24 rows; pd pool: null, NaN, +-inf, +-0.0, each cut and one ulp either side, 1.0, huge, tiny, subnormal; a base_score column replaced in place every 4th seed; one case = digest of 50 seeds"
+  },
+  "predict_run_08_outputs": {
+   "seeds": "20000..23999",
+   "generated": 4000,
+   "kept": 3074,
+   "python_raises_inside_precondition": [],
+   "note": "19 pool names (the 15 kept, base_rate, x, AGE, default_flag) each present with 85 %, rotated order, 0-2 rows; age_name from age, AGE, Age, x, row_id, zz, base_rate; outside the precondition Python raises except when the frame has no age column and age_name is age (160 seeds of 20000..23999; those of 20000..20999, 40, sent as rejected); one case = digest of the kept seeds of a block of 50"
+  }
+ }
+}

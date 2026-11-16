@@ -2,6 +2,9 @@
 
 **Version 5** (2026-11-16: batch 8 = H1–H7, what the readers deliver on valid input, §2.8; batch 7 = G1–G20 for the port as changed on 2026-11-16, §2.7; where §2.7 differs from an earlier section, §2.7 holds). Version 4 (2026-11-10: batch 3 = C1–C3 after the run reviews; batch 1 = A1–A14 after the stress test; batch 2 = B1–B14 after the first reviews; all listed in `migration/amendments.md`). **The preludes are frozen** (B13).
 
+Blueprint id since the owner's re-base of 2026-11-16: `5365851c-5549-44b7-9207-4bd4c422031d`. The earlier id
+`b41b22d4-720d-4290-b593-39ceab961986` is a stale copy: nothing is written to it.
+
 > The meta-rule: if two agents could answer a question differently, the answer goes in this file.
 > Read-only inside any loop. Implementers, reviewers and fixers cite it and never edit it.
 > Amendments are queued in `migration/amendments.md` and applied by the orchestrator between batches.
@@ -717,6 +720,36 @@ of zeros of opposite sign, in the median and in `np.sort` when zeros of both sig
 a frame column that polars keeps internally as a scalar; a literal zero or null-literal operand of `sum_horizontal` (polars leaves the column unchanged, the model adds 0.0); padding a Null-dtype column in `merge_one_to_one` (`Col.append` on two Null columns); a literal, an aggregate or a non-aggregated column passed to `sql_*`, `div`, `sas_log` inside `group_by().agg`; a Boolean input of `sql_sum`; a null in a Date (`.cell`) column; a Null-dtype column (`Pl.litNull`) anywhere but as a branch of `Pl.wto` or next to Float64 operands (`fill_null`, `+`/`*` with Int64, comparison with String, `&`/`|`, `cast(pl.Int64)`, `sum`, `mean` of a Null column: dtype, and for `sum` the value 0.0 instead of null); zero-width frames with a height; two points of form on `def:metrics_run_06_psi_precond`, found by the review of T15 and left as they are (DECISION of the lead, 2026-11-16; neither changes behaviour): it ends with a `-- PORT STATUS: confidence=high todos=0` trailer although §4 says a precondition item carries none, and its statement dependencies include `def:metrics_run_06_psi` although its Lean does not mention the unit, so a later re-submission of the unit clears the precondition; a narrowing stricter than needed in `def:fe_run_00_input_check_precond`, which requires ASCII text in the cells of `MonthlyIncome` and `NumberOfDependents`: by G27 (a) the check is exact for every text (evidence `experiments/e08_t7_input_check.py` and, over all Unicode characters in Python and in polars, `experiments/e09_upper_cells.py`), so non-ASCII cells are excluded there without need; the clause is kept because re-submitting the precondition would clear `def:run` (DECISION of the lead, 2026-11-16); `def:predict_run_00_input_check_precond` has no such clause; zero-row tables; a file written with a header and no data row by feature engineering, train or metrics, whose result is the pair `(file name, [])` with the column names lost (DECISION of the lead, 2026-11-16: these three stages keep pairs; only predict returns triples, §2.7 G4. Example: `judge/scenarios/fix_Q7`, where the validation set has no applicant, so `model_features_validation.csv` is the table `[]`; stated in the comment of `def:run_precond`); multi-chunk columns; integers beyond
 2^53; R-F2I; a `group_by` whose key column carries polars' sorted flag (the frame was sorted by the key: polars then sums each group with the select-context kernel, the model always with the Kahan fold; not reachable in the package, whose float group aggregates use keys built by `proc_rank_groups`, which carry no flag; `reviews/B2_r2.md` F1); `sum_horizontal` with 9 or more operands (bracketing outside both values of `full`, and not deterministic). Outside the model altogether: the last bit of `exp` and `log`, which differs between the Lean evaluator's `Float` and polars on a few values per thousand (`RealLike.exp` / `RealLike.log` are abstract in the statements; `reviews/B2_r2.md` F2). The full differential receipt of the preludes is `migration/diffeval/receipts/prelude.tsv`.
 
+Signed zeros and the last bit of `log` and `exp`, as measured by the fuzz pass of 2026-11-16 (ruling of the lead,
+2026-11-16: each is a recorded limit of the prelude; nothing is re-submitted and no precondition is
+narrowed, because the equality contracts are stated at the reals, where there is no signed zero; receipts
+`diffeval/receipts/fuzz_2026-11-16.tsv`):
+- min / max of zeros of opposite sign (prelude: the first of the equal values; polars: -0.0 for min, 0.0
+  for max). Smallest case: `pd_logistic` [-0.0, 0.0] in one decile gives `min_pd` -0.0, `max_pd` 0.0 in
+  polars and (-0.0, -0.0) in the prelude. Reaches `def:metrics_run_04_deciles` (`min_pd`, `max_pd`) and
+  through it `def:metrics_run_05_cumulative_lift` and `def:run_py` (`decile_analysis.csv`,
+  `printed_cumulative_lift.csv`): 30 of 2,092 fuzzed runs. Not reached through `def:metrics_run_02_ks`
+  (154 fuzzed frames with both zeros: equal).
+- the median when the middle of the sorted values falls on zeros of both signs: see the first bullet of
+  "Known points on the T4 units" below (callers `def:fe_run_02_income_medians`,
+  `def:fe_run_02b_medians_all`; seen from 17 values up).
+- the running sum (new, found by port-translator-12): polars `cum_sum` starts from 0.0, so a running sum
+  whose first non-null values are -0.0 is +0.0; `Pl.cumSumF` starts from the first value and gives -0.0.
+  Smallest case: `cum_sum` of [null, -0.0, -0.0, 1.0] is [null, 0.0, 0.0, 1.0] in polars 2.1.0 and
+  [null, -0.0, -0.0, 1.0] in the prelude (`experiments/fz_t14_cumsum_zero.py`). Reaches
+  `def:metrics_run_05_cumulative_lift` (`cum_defaults`, and from it `cum_capture_rate`, `cum_lift`) when a
+  `defaults` is -0.0, that is a decile whose `default_flag` sum is -0.0; the other `cum_sum` calls of the
+  package are on integer columns (steps 01 and 02 of metrics), where there is no signed zero.
+- the last bit of `log`: the Lean evaluator's `Float.log 0.3783783783783784` ends in ...871, polars and
+  `math.log` in ...870. Seen in `def:metrics_run_06_psi` (shares 7/37 and 1/2 in one bin: 1 of 2,200
+  fuzzed inputs). Outside the model, as recorded for `log` above.
+- the last bit of `exp` (the same recorded sentence as `log`): the Lean evaluator's `Float.exp` differs
+  from polars / `math.exp` by one unit in the last place on 5.272105834777667, 123.18413696076126 and
+  25.386958717439118. Seen in `def:run_py_py` through `pd_logistic` and `credit_risk_score` (3 of 2,314
+  fuzzed runs, seeds 30930, 31316, 31393; the port's frames recomputed from the Lean's `exp` value give
+  the Lean digest, `experiments/fz_run_py_py_exp_last_bit.py`). Smallest case: one row, one coefficient
+  (MonthlyIncome_missing, -0.0), intercept -25.386958717439118.
+
 Known points on the T4 units (2026-11-16, from the review by port-translator-6; the items stay as
 accepted, decision of the lead):
 
@@ -725,9 +758,24 @@ accepted, decision of the lead):
   when zeros of both signs are present. Such incomes are reachable: the text `-0` passes the input
   check and `input_best32` returns `-0.0`. On 14 lists holding zeros of both signs the Lean
   returned the same sign as the port (e.g. `[0.0, -0.0]` gives `0.0` and `[-0.0, 0.0]` gives `-0.0`
-  on both sides). The limit is not lifted by this: it is 14 probes, not a rule. The precondition
-  of the unit does not exclude these inputs and its comment does not mention them. Probe:
-  `experiments/rev_t4_zero_median.py`.
+  on both sides); those lists all had 5 values or fewer. **The fuzz pass then found a difference
+  inside the precondition** (port-translator-6, seeds 11164 and 11214 of
+  `diffeval/units/fz_t4_gen.py`): `MonthlyIncome = [0.0, -1.0 ×7, 1.0, -0.0, 1.0 ×7]` (17 known
+  incomes, any `income_medians`) gives an overall median of `0.0` in Python and `-0.0` in the Lean.
+  The fuzzer's reading: the prelude keeps input order among equal zeros, polars does so on short
+  lists and not at 17 values; it is the recorded limit above, not a fault of the unit's statement.
+  The precondition of the unit does not exclude these inputs and its comment does not mention
+  them. Probes: `experiments/rev_t4_zero_median.py`, `experiments/fz_t4_zero_median_min.py`.
+  **Decision of the lead (2026-11-16), for every caller of the prelude's median at once:** nothing
+  is re-submitted and no precondition is narrowed. The equality contracts are stated on the port's
+  pipeline at the real numbers, where there is no signed zero, so no theorem covers this case at
+  floats; it is a limit of how far the float evaluation mirrors the port. Callers: the port has two
+  median calls (`grep "median()" port/credit_risk/*.py`): `feature_engineering.py:172`, the group
+  medians of `def:fe_run_02_income_medians` (`Expr.median` in `group_by().agg`), and `:184`, the
+  overall median of `def:fe_run_02b_medians_all`. The failing case was measured on the second
+  only; the first has the same limit by the same prelude function and is to get its own fuzz run.
+  Every later step that reads `median_income` or `overall_median_income` (`def:fe_run_04_imputed`,
+  `income_medians.csv`, and through that file the predict stage) carries the sign of that zero.
 - **A narrowing the Lean does not need** (`def:fe_run_04_imputed_precond`). The clause
   `0 < credit_cleaned.height` excludes a `credit_cleaned` with no row, on which Python does not
   raise. On a frame with the 15 columns and no row the Lean result equals the port's (same digest

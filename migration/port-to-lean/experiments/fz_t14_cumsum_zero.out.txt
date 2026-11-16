@@ -1,0 +1,6 @@
+polars 2.1.0
+cum_sum of [null, -0.0, -0.0, 1.0] (bits): [None, 0, 0, 4607182418800017408]
+Series.cum_sum (bits): [None, 0, 0, 4607182418800017408]
+step 05 lines 287-321, cum_defaults (bits): [0, 0]
+step 05 lines 287-321, cum_capture_rate (bits): [0, 0]
+step 05 lines 287-321, cum_lift (bits): [0, 0]

@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator-6",
+ "generator": "diffeval/units/fz_t4_gen.py",
+ "units": {
+  "fe_run_02b_medians_all": {
+   "seeds": "10000..12559",
+   "generated": 2560,
+   "kept": 2240,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one block of 64 seeds (56 inside the precondition, 8 outside: Int64 MonthlyIncome); income_medians 0..7 rows, keys -1..6 with nulls and duplicates, an existing overall_median_income column (shape 5); MonthlyIncome 0..30 rows; edge pool: null, NaN, +-inf, +-0.0, 1e300, 1e-300, 5e-324, ties (1.0, 5000.0), 1.0 +- 1 ulp; source lines executed verbatim",
+   "all_differences_are_recorded_limit": "the sign of a zero in the median (RULEBOOK section 6): seeds 11164 and 11214, the only two of block 11152..11215 that differ when the block is evaluated seed by seed; overall_median_income is 0.0 in Python and -0.0 in Lean, or the reverse; minimal input of 17 known incomes [0.0, -1.0 x7, 1.0, -0.0, 1.0 x7] (experiments/fz_t4_zero_median_min.py)"
+  }
+ }
+}

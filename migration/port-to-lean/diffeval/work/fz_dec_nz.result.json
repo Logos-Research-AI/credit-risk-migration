@@ -1,0 +1,50 @@
+[
+ {
+  "id": "fz_dec_nz/kept zeros seeds 1003..1395 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec_nz/kept zeros seeds 1403..1795 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec_nz/kept zeros seeds 1803..2195 (48)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec_nz/kept zeros seeds 2211..2595 (45)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec_nz/kept zeros seeds 2603..2995 (47)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_dec_nz/kept zeros seeds 3003..3395 (46)",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

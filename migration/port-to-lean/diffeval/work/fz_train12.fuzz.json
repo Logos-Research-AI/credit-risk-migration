@@ -1,0 +1,13 @@
+{
+ "fuzzer": "port-translator-10",
+ "generator": "diffeval/units/fz_t10t17_gen.py",
+ "units": {
+  "train_run_12_risk_scores": {
+   "seeds": "40000..42399 (both frames Float64 pd; validation frame from seed + 500000), 49000..49299 (Int64 pd in training, rejected)",
+   "generated": 2700,
+   "kept": 2400,
+   "python_raises_inside_precondition": [],
+   "note": "two frames of 0-24 rows each; same pd pool as step 07; one case = digest of 50 seeds"
+  }
+ }
+}

@@ -1,0 +1,1346 @@
+[
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: model.json intercept",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: model.json coefficients",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: stepwise_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_fit_statistics.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_global_tests.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_rsquare.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_association.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_odds_ratios.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_hl_partition.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_hosmer_lemeshow.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_classification.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: risk_scores_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: risk_scores_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: final_model_output.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: model_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: model_coefficients.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_roc_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_roc_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_confusion_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60008: 34/14 rows, n_obs 21, steps [('flag_very_high_utilization', None)], final ['flag_very_high_utilization']: printed_confusion_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: model.json intercept",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: model.json coefficients",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: stepwise_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_fit_statistics.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_global_tests.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_rsquare.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_association.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_odds_ratios.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_hl_partition.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_hosmer_lemeshow.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_classification.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: risk_scores_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: risk_scores_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: final_model_output.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: model_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: model_coefficients.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_roc_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_roc_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_confusion_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60031: 42/5 rows, n_obs 29, steps [('age', None)], final ['age']: printed_confusion_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: model.json intercept",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: model.json coefficients",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: stepwise_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_fit_statistics.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_global_tests.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_rsquare.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_association.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_odds_ratios.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_hl_partition.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_hosmer_lemeshow.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_classification.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: risk_scores_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: risk_scores_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: final_model_output.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: model_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: model_coefficients.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_roc_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_roc_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_confusion_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60017: 38/5 rows, n_obs 28, steps [('num_credit_lines', None)], final ['num_credit_lines']: printed_confusion_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: model.json intercept",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: model.json coefficients",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: stepwise_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_fit_statistics.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_global_tests.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_rsquare.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_association.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_odds_ratios.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_hl_partition.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_hosmer_lemeshow.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_classification.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: risk_scores_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: risk_scores_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: final_model_output.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: model_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: model_coefficients.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_roc_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_roc_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_confusion_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60009: 41/2 rows, n_obs 35, steps [], final []: printed_confusion_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: model.json intercept",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: model.json coefficients",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: stepwise_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_fit_statistics.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_global_tests.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_rsquare.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_association.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_odds_ratios.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_hl_partition.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_hosmer_lemeshow.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_classification.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: risk_scores_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: risk_scores_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: final_model_output.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: model_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: model_coefficients.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_roc_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_roc_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_confusion_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60037: 31/14 rows, n_obs 23, steps [('flag_low_income', None), ('num_late_30_59', None), (None, 'num_late_30_59')], final ['flag_low_income']: printed_confusion_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: model.json intercept",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: model.json coefficients",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: stepwise_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_fit_statistics.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_global_tests.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_rsquare.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_association.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_odds_ratios.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_hl_partition.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_hosmer_lemeshow.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_classification.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: risk_scores_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: risk_scores_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: final_model_output.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: model_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: model_coefficients.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_roc_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_roc_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_confusion_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60007: 31/9 rows, n_obs 24, steps [('flag_many_dependents', None), ('num_dependents', None), (None, 'num_dependents')], final ['flag_many_dependents']: printed_confusion_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: model.json intercept",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: model.json coefficients",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: stepwise_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_fit_statistics.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_global_tests.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_rsquare.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_association.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_odds_ratios.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_hl_partition.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_hosmer_lemeshow.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_classification.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: risk_scores_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: risk_scores_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: final_model_output.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: model_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: model_coefficients.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_roc_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_roc_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_confusion_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60010: 55/9 rows, n_obs 31, steps [('has_delinquency', None), ('credit_util_category', None)], final ['has_delinquency', 'credit_util_category']: printed_confusion_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: model.json intercept",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: model.json coefficients",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: stepwise_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_fit_statistics.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_global_tests.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_rsquare.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_association.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_odds_ratios.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_hl_partition.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_hosmer_lemeshow.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_classification.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: risk_scores_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: risk_scores_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: final_model_output.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: model_summary.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: model_coefficients.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_roc_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_roc_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_confusion_train.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train_run/seed 60004: 48/9 rows, n_obs 38, steps [('age', None), (None, 'age')], final []: printed_confusion_validation.csv",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

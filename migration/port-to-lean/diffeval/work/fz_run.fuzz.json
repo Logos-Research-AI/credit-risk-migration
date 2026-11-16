@@ -1,0 +1,13 @@
+{
+ "fuzzer": "port-translator-8",
+ "generator": "diffeval/units/fz_run_gen.py",
+ "units": {
+  "run": {
+   "seeds": "80000..82499, no file, header only",
+   "generated": 2502,
+   "kept": 2411,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one seed: a cs-training frame of 1-12 rows written as a file and a split file, the real run; modes (0, 11-15 valid; 1 repeated id; 2 missing id; 3-7 one edge cell; 8 a text column; 9 names; 10 no known income) sent: {0: 125, 1: 162, 2: 135, 3: 171, 4: 161, 5: 152, 6: 165, 7: 137, 8: 148, 9: 156, 10: 160, 11: 147, 12: 149, 13: 182, 14: 142, 15: 134}; runs that complete: 1413, stop: 1013; not used: 74 frames the file cannot hold; rejected by the precondition and sent: {'non-ASCII text in MonthlyIncome / NumberOfDependents': 9, 'no split id': 8}; rejected and Python raises: 0; full = (seed even); the four log columns compared without their low 20 bits; plus no file and a header-only file"
+  }
+ }
+}

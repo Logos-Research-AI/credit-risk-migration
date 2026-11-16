@@ -1,0 +1,434 @@
+[
+ {
+  "id": "fz_train12/Float64 pd, seeds 40000..40049 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40050..40099 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40100..40149 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40150..40199 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40200..40249 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40250..40299 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40300..40349 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40350..40399 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40400..40449 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40450..40499 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40500..40549 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40550..40599 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40600..40649 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40650..40699 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40700..40749 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40750..40799 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40800..40849 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40850..40899 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40900..40949 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 40950..40999 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41000..41049 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41050..41099 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41100..41149 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41150..41199 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41200..41249 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41250..41299 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41300..41349 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41350..41399 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41400..41449 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41450..41499 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41500..41549 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41550..41599 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41600..41649 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41650..41699 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41700..41749 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41750..41799 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41800..41849 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41850..41899 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41900..41949 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 41950..41999 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 42000..42049 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 42050..42099 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 42100..42149 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 42150..42199 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 42200..42249 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 42250..42299 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 42300..42349 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Float64 pd, seeds 42350..42399 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Int64 pd in the training frame (outside the precondition), seeds 49000..49049 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Int64 pd in the training frame (outside the precondition), seeds 49050..49099 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Int64 pd in the training frame (outside the precondition), seeds 49100..49149 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Int64 pd in the training frame (outside the precondition), seeds 49150..49199 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Int64 pd in the training frame (outside the precondition), seeds 49200..49249 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_train12/Int64 pd in the training frame (outside the precondition), seeds 49250..49299 (50 inputs)",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

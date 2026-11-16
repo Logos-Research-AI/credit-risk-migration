@@ -1,0 +1,2364 @@
+[
+ {
+  "id": "fz_p04/kept seeds 30000..30044",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30046..30087",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30088..30129",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30130..30170",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30173..30215",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30217..30261",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30263..30306",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30308..30361",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30362..30409",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30412..30445",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30447..30491",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30495..30542",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30543..30583",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30586..30637",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30641..30680",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30681..30721",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30722..30770",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30773..30809",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30812..30843",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30844..30880",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30881..30931",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30932..30977",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 30978..31012",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31013..31055",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31056..31095",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31096..31131",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31133..31171",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31172..31198",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 30001..30104",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 30107..30310",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 30312..30503",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 30538..30707",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 30732..30913",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 30914..31020",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 31041..31176",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 31189..31189",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 30005..30035",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1099086123693582874,
+    12816872422184483720
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 30192..30239",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12238052977278687360,
+    6000418484177412262
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 30294..30424",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4425241599126038077,
+    10508283847345115693
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 30435..30558",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10915934631583151458,
+    14728789159315954843
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 30572..30628",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13410611550302464493,
+    5599880123183617516
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 30644..30753",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6495897463833175806,
+    15766867533495107576
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 30783..30972",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14125359000651120610,
+    8807643826208362526
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 30975..31100",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9320502790597076160,
+    16144542337350631831
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 31162..31195",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10755031325734705254,
+    6389108237729969100
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30024..30060",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30075..30233",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17195792574195119678,
+    6841138407463128396
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30254..30287",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30296..30371",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30397..30496",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30507..30560",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30566..30642",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30655..30726",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30742..30897",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14937000437532304355,
+    1437369971589959787
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 30903..31040",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31051..31129",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31152..31152",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30037..30122",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16397795935914797829,
+    3049832030519669381
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30134..30240",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6291042428057942668,
+    15474430353651892414
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30258..30333",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11744396549109463830,
+    9086633586622507605
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30345..30392",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8566161856690290348,
+    10228533033949341721
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30411..30627",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13936936607947953888,
+    16962689566914925050
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30639..30740",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6164611607061316192,
+    5466601210996237998
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30777..30854",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16218358685030872329,
+    18007026102337458801
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30872..30934",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11638808688182474986,
+    11500295391876711587
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 30939..31099",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14266338602750813862,
+    16102527442065232913
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 31111..31191",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11566370823513321193,
+    4554648735091817265
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30045..30216",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3996825000622263797,
+    16506819926143112651
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30218..30326",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14576343792874967014,
+    12275756808211166743
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30347..30438",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8876260200104613465,
+    18228912142410079586
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30452..30502",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5769431589245252779,
+    7749064259207733356
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30511..30564",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12492591688537310524,
+    1125230731956905799
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30587..30694",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13085747439116793162,
+    3733951434578774966
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30705..30750",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12932845443707438880,
+    13907695984820020472
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30759..30838",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8915082024363728186,
+    17613151669504976033
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 30860..31014",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11539818477696174359,
+    9969152571473451281
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31038..31125",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    254260056508374225,
+    7272005622033057713
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31149..31179",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9369438545239586911,
+    13360642252361242688
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/kept seeds 31200..31233",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31234..31279",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31281..31325",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31327..31360",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31361..31411",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31415..31459",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31460..31507",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31508..31551",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31552..31584",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31585..31623",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31626..31658",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31659..31693",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31698..31749",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31750..31790",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31792..31838",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31839..31881",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31882..31919",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31921..31974",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 31975..32017",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32018..32063",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32064..32103",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32105..32140",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32141..32176",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32178..32219",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32220..32263",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32264..32305",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32307..32355",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32356..32396",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32397..32399",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 31237..31295",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 31430..31542",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 31554..31690",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 31712..31783",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 31805..31953",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 31977..32072",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 32148..32266",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 32328..32384",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 31236..31311",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5906121826904856021,
+    1323345452979284577
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 31312..31457",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7165546680692376512,
+    1940509190428888750
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 31499..31726",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10680470169456117274,
+    6928660814093791329
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 31756..31803",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14608943573720690291,
+    289122508360185862
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 31869..32032",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4273739867132830361,
+    16303827488553415346
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 32036..32195",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4992294611822688667,
+    8730747983075633059
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 32202..32331",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15227694690870107066,
+    17936228064069615281
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 32346..32380",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13131849984829959462,
+    3378932050726158055
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31231..31302",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17181590144420799686,
+    3260167743309949761
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31333..31393",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31404..31494",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    589866014447320908,
+    13587557890016290950
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31521..31701",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3584788018585175673,
+    4861839593095242036
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31703..31778",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31807..31845",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31857..31941",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 31957..31985",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 32021..32099",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2617050119692193811,
+    13232313096987594935
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 32222..32338",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 32375..32375",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 31228..31381",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    121093316255312635,
+    15150807736257720601
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 31391..31465",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6226393555588954703,
+    2586595101132924737
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 31482..31538",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7991210403339977115,
+    12207744528658343294
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 31630..31724",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17993249836186550309,
+    1735804025434879095
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 31819..31931",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17914688447759875871,
+    17390696416406336165
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 31994..32046",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9377105108390610709,
+    6289187427836304415
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 32048..32091",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15813647281229539246,
+    1809641675816989884
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 32110..32210",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14549648254453800014,
+    14923086773530104855
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 32233..32282",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4351871822493246631,
+    14960449582175974771
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 32342..32386",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1413417615602156281,
+    14588128034201266344
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31201..31350",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4031770046543377586,
+    95317226169495542
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31355..31437",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3431859119886950956,
+    15198248702309365547
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31442..31592",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11820744381870096744,
+    1655199029713784972
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31625..31711",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9373722916315029836,
+    13233193655231099087
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31737..31812",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    18235602035561285193,
+    604845015701249720
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31822..31937",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8173974481336733164,
+    4345480854263091689
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 31962..32054",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6609014939382515942,
+    10835214419766747917
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 32062..32363",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    521233403660195682,
+    16332265738258546799
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/kept seeds 32401..32440",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32442..32479",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32480..32525",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32526..32569",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32571..32607",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32608..32647",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32648..32685",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32686..32731",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32735..32792",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32793..32831",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32832..32884",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32886..32921",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32922..32964",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 32967..33015",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33016..33062",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33066..33114",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33115..33156",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33157..33202",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33203..33250",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33251..33291",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33293..33327",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33328..33367",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33368..33405",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33406..33456",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33457..33494",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33495..33548",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33550..33592",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/kept seeds 33594..33599",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 32456..32510",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 32512..32549",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 32564..32724",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 32745..32833",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 32862..32951",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 32957..32998",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 33054..33208",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 33211..33446",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 33462..33544",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome_missing not integer) seeds 33561..33598",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 32437..32601",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1824327995314300349,
+    14378130215633241742
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 32639..32740",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14479691772451843804,
+    610142330914610777
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 32751..32867",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14531229338994807826,
+    17280685798200154757
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 32883..33046",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8130856425591990569,
+    7290611641024667206
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 33068..33162",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8609262465110623217,
+    12430462177035469732
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 33163..33260",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5740899245146686855,
+    5612279095705988612
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 33264..33460",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3067762795428670331,
+    443426303214795786
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 33486..33521",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1583321572328274666,
+    8153863019631366517
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (MonthlyIncome not Float64) seeds 33558..33575",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17080348740604535943,
+    12858905573925221809
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 32408..32540",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 32599..32720",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 32782..32850",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12675979075605301779,
+    1333159549017229608
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 32882..32913",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 32933..33025",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 33055..33184",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 33199..33268",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3182809811752630254,
+    5640354456648646971
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 33274..33341",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 33349..33465",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (left age_group not integer) seeds 33469..33597",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 32422..32476",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13194873693419462432,
+    14216319459641419125
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 32481..32667",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11144489048674233406,
+    973923515674546378
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 32723..32840",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6780558789722966656,
+    14740379683910390094
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 32863..33063",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11934270614187369045,
+    1594207320551857398
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 33076..33176",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13725626609530815045,
+    17197427986998510153
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 33214..33383",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4140214097936873576,
+    17771912903861591229
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined overall_median_income absent or not Float64) seeds 33441..33552",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7362027213708878776,
+    4251682579933632012
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 32419..32570",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11928162703847001194,
+    18408131412787435167
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 32591..32678",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9129946848937977306,
+    12245146318950123604
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 32691..32744",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4283867968542674121,
+    295583951948487463
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 32746..32842",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1145768011058844838,
+    11365748787601491563
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 32875..33010",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12409319835364643228,
+    11301774103969495564
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 33034..33084",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2171506024004921310,
+    18306879860960626179
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 33143..33222",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11586801322031438819,
+    7959598040846938364
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 33232..33298",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4575599697966476609,
+    14714304873324128357
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 33378..33445",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2552763309212001896,
+    3764525129642893654
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 33506..33523",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13771003362769662219,
+    11827592649041393413
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p04/rejected (joined median_income absent or not Float64) seeds 33535..33589",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15830592038253760178,
+    12933722391997050632
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ }
+]

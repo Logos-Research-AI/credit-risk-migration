@@ -1,0 +1,554 @@
+[
+ {
+  "id": "fz_lift/kept seeds 1001..1068 (45)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1073..1139 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1140..1209 (48)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1210..1279 (44)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1281..1348 (48)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1350..1419 (46)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1420..1489 (49)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1491..1559 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1562..1628 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept wild flags seeds 1000..1296 (30)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept wild flags seeds 1304..1592 (30)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept zeros seeds 1005..1293 (33)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13906400011672887376,
+    8549638308406162158
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/kept zeros seeds 1301..1597 (36)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16246368412332895259,
+    15037188999760290431
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/rejected no row seeds 1011..1297 (45)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/rejected no row seeds 1314..1583 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1603..1668 (45)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1670..1739 (43)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1740..1809 (48)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1810..1879 (47)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1882..1948 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 1950..2019 (43)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2020..2089 (46)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2090..2159 (47)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2161..2228 (48)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept wild flags seeds 1600..1896 (35)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept wild flags seeds 1912..2176 (31)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept zeros seeds 1605..1893 (32)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17190057218283822642,
+    4237801176428062482
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/kept zeros seeds 1901..2189 (29)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15802058602059833609,
+    7184390950981504554
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/rejected no row seeds 1601..1899 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2583899676638699009,
+    6482975874003006640
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/rejected no row seeds 1903..2197 (46)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2201..2268 (47)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2270..2339 (52)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2340..2409 (46)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2411..2479 (47)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2481..2548 (44)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2550..2619 (51)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2620..2689 (44)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2690..2759 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2761..2828 (45)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept wild flags seeds 2200..2496 (33)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept wild flags seeds 2504..2792 (33)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept zeros seeds 2205..2493 (33)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8622460520361113998,
+    2113111872671329635
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/kept zeros seeds 2501..2797 (34)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    717882455386969494,
+    8595726256217324986
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/rejected no row seeds 2208..2499 (31)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/rejected no row seeds 2508..2794 (35)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5745482384363232445,
+    12360458503047965023
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/kept seeds 2801..2868 (43)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2870..2939 (46)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 2940..3009 (44)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 3010..3079 (49)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 3081..3147 (47)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 3150..3219 (47)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 3220..3289 (47)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 3290..3359 (47)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept seeds 3361..3428 (46)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept wild flags seeds 2800..3096 (32)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept wild flags seeds 3104..3384 (32)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_lift/kept zeros seeds 2805..3085 (34)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17977050159758775393,
+    8360162016971866252
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/kept zeros seeds 3101..3397 (28)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8921833835582651659,
+    15888999463463656886
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/rejected no row seeds 2803..3093 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15245332706825243038,
+    4760103242395099748
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_lift/rejected no row seeds 3105..3395 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4526320006265468800,
+    6534946594470892779
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ }
+]

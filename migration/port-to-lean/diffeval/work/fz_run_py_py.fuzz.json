@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator-3",
+ "generator": "diffeval/units/fz_run_py_py_gen.py",
+ "units": {
+  "run_py_py": {
+   "seeds": "30000..32599",
+   "generated": 2600,
+   "kept": 2314,
+   "python_raises_inside_precondition": [],
+   "note": "generated files, real predict.run; outcomes {'kept files': 868, 'kept stop': 1301, 'kept files (no row)': 145, 'rejected raises': 286}; rejected and Python raises (dropped): 286; kept cases digest a block of 25 seeds, each rejected input is one case; the 3 differing blocks are seeds 30930, 31316, 31393: last bit of exp (recorded limit, RULEBOOK 6), shown by experiments/fz_run_py_py_exp_last_bit.py",
+   "all_differences_are_recorded_limit": "last bit of exp (RULEBOOK 6, outside the model): seeds 30930, 31316, 31393; the port's frames recomputed with the Lean evaluator's Float.exp value give the Lean's digest on each (experiments/fz_run_py_py_exp_last_bit.py)"
+  }
+ }
+}

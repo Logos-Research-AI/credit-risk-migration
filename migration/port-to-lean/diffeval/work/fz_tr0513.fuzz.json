@@ -1,0 +1,20 @@
+{
+ "fuzzer": "port-translator-11",
+ "generator": "diffeval/units/fz_train_05_13_gen.py",
+ "units": {
+  "train_run_13_roc": {
+   "seeds": "20000..22299",
+   "generated": 2300,
+   "kept": 2125,
+   "python_raises_inside_precondition": [],
+   "note": "rows 0..40 by seed; y: Float64 from {0, 1, null, NaN, -0.0, 2, 0.5} / Int64 with nulls / Boolean / Null dtype; score: a grid of 1..12 levels plus offsets of the size of _SE_EPS and _TIE_EPS (ties), or 50% edges (null, NaN, +-inf, +-0.0, 0.5 and 0.5 -+ each eps exactly and one ulp either side, +-1e300, 1e-300, 5e-324), or random floats, or Int64 / Boolean / Null dtype; score one row longer in 1 seed of 25; one case digests 25 seeds; frames: the two columns alone or with a third Int64 column before / between, three orders; validation frame from seed + 500000; 175 seeds dropped (a frame with columns of unequal length: precondition rejects, Python raises)"
+  },
+  "train_run_05_association": {
+   "seeds": "30000..32199 (A), 40000.. (B)",
+   "generated": 2396,
+   "kept": 2315,
+   "python_raises_inside_precondition": [],
+   "note": "rows 0..40 by seed; y: Float64 from {0, 1, null, NaN, -0.0, 2, 0.5} / Int64 with nulls / Boolean / Null dtype; score: a grid of 1..12 levels plus offsets of the size of _SE_EPS and _TIE_EPS (ties), or 50% edges (null, NaN, +-inf, +-0.0, 0.5 and 0.5 -+ each eps exactly and one ulp either side, +-1e300, 1e-300, 5e-324), or random floats, or Int64 / Boolean / Null dtype; score one row longer in 1 seed of 25; one case digests 25 seeds; frames as for step 13; part A (2119 seeds): fmt_wd / sas_d12_3 replaced on both sides by the same injective text of their arguments; part B (196 seeds, at most 5 rows): the real fmt_wd / sas_d12_3 as typed tables; 81 seeds dropped (unequal column lengths)"
+  }
+ }
+}

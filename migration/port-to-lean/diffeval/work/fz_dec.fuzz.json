@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator-12",
+ "generator": "diffeval/units/fz_t14_gen.py",
+ "units": {
+  "metrics_run_04_deciles": {
+   "seeds": "1000..3399",
+   "generated": 2400,
+   "kept": 2244,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one digest over about 50 seeds (input frame, decile_data, decile_analysis of each); 0 to 60 rows; default_flag from {null, 0, 1}, one seed in 4 from a wild pool (NaN, +-inf, 2, 0.5, -1, -0.0, 1e300, random floats); pd_logistic 70 or 30 % from a pool with ties (null, NaN, +-inf, 0, 0.5 +- 1 ulp, 0.25, 0.75, 1, 0.1, 1e300, 1e-300, subnormal), else random floats; one seed in 8 also -0.0 (family zeros). Rejected = 0 rows",
+   "all_differences_are_recorded_limit": "recorded prelude limit, min / max of zeros of both signs (RULEBOOK section 6): only the family zeros differs, and suite fz_dec_nz (the same seeds with -0.0 replaced by 0.0 in min_pd, max_pd on both sides) is equal, 6 of 6"
+  }
+ }
+}

@@ -1,0 +1,194 @@
+[
+ {
+  "id": "fz_psi/seeds 20000..20499: kept (302 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 20000..20499: rejected, a frame without rows (81 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 20000..20499: rejected, an Int64 column (117 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4309119136093992586,
+    4540728588270107301
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_psi/seeds 20500..20999: kept (308 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    999267226963318613,
+    13420564132698436952
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_psi/seeds 20500..20999: rejected, a frame without rows (83 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 20500..20999: rejected, an Int64 column (109 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 21000..21499: kept (321 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 21000..21499: rejected, a frame without rows (61 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 21000..21499: rejected, an Int64 column (118 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5298218281520146430,
+    13062695671514429010
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_psi/seeds 21500..21999: kept (309 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 21500..21999: rejected, a frame without rows (71 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 21500..21999: rejected, an Int64 column (120 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 22000..22499: kept (317 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 22000..22499: rejected, a frame without rows (71 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 22000..22499: rejected, an Int64 column (112 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14392742999696996685,
+    265202224970128386
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_psi/seeds 22500..22999: kept (335 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 22500..22999: rejected, a frame without rows (73 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 22500..22999: rejected, an Int64 column (92 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 23000..23499: kept (308 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 23000..23499: rejected, a frame without rows (77 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_psi/seeds 23000..23499: rejected, an Int64 column (115 inputs)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

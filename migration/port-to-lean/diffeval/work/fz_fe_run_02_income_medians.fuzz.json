@@ -1,0 +1,21 @@
+{
+ "fuzzer": "port-translator-5",
+ "generator": "diffeval/units/fz_fe_run_02_income_medians_gen.py",
+ "units": {
+  "fe_run_02_income_medians": {
+   "seeds": "30000..32099 (ordinary), 70000..70099 (unshaped)",
+   "generated": 2200,
+   "kept": 2121,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one frame from a seed (1-40 rows; age pool of 24 with the thresholds 30/40/50/60 and one ulp either side, null, NaN, +-inf; income pool of 21 without -0.0); ordinary blocks of 25 seeds are one digest; rejected inputs on which Python returns: 63; dropped: 16; {'no row age:Int64 income:Float64': 10, 'age:Float64 income:Boolean': 8, 'age:Int64 income:Float64': 8, 'age:Float64 income:Int64': 11, 'age:Int64 income:Int64': 2, 'no row age:Int64 income:Boolean': 3, 'raises ComputeError age:String income:Int64': 5, 'age:Int64 income:Boolean': 4, 'raises ComputeError age:String income:Float64': 6, 'no row age:Int64 income:Int64': 2, 'no row age:Float64 income:Float64': 7, 'no row age:Float64 income:Boolean': 3, 'no row age:Float64 income:Int64': 5, 'raises ComputeError age:String income:Boolean': 5}"
+  },
+  "fe_run_02_income_medians [zeros of both signs]": {
+   "seeds": "60000..60249",
+   "generated": 250,
+   "kept": 250,
+   "python_raises_inside_precondition": [],
+   "note": "incomes from 0.0, -0.0, +-1, +-2, null in one or two age groups, 2-33 rows; 149 inputs hold zeros of both signs; on 14 the port's median and the prelude's median differ in the sign of a zero (14 of them with more than 7 known incomes): those cases are expected to differ (recorded limit, RULEBOOK section 6) and `check` compares the Lean digest with the Python result carrying the prelude's median",
+   "all_differences_are_recorded_limit": "sign of a zero in the median (RULEBOOK section 6, decision of the lead 2026-11-16): all 14 differing cases were predicted from the prelude's median before the Lean ran, none predicted case agrees, and for each the Lean digest equals the digest of the port's result with the prelude's median substituted (14 of 14)"
+  }
+ }
+}

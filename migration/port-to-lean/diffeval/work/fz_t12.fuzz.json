@@ -1,0 +1,13 @@
+{
+ "fuzzer": "port-translator-3",
+ "generator": "diffeval/units/fz_t12_gen.py",
+ "units": {
+  "metrics_run_01_roc_auc": {
+   "seeds": "20000..22799",
+   "generated": 2800,
+   "kept": 2166,
+   "python_raises_inside_precondition": [],
+   "note": "frames of 0..40 rows with default_flag and pd_logistic (reversed order in 1 seed of 4); flags Float64 from {0, 1, null, NaN, -0.0, 2, 0.5}; probabilities: grid of 1..12 levels plus offsets of the size of the two eps, or 50% edges (null, NaN, +-inf, +-0.0, 0.5 -+ each eps and one ulp either side, +-1e300, 1e-300, 5e-324), or random, or all null; rejected and sent: no row, Int64 flag or probability column (634 inputs); kept: {'no pair (auc_summary has no row)': 190, 'AUC present': 1471}; one case digests a block of 25 seeds"
+  }
+ }
+}

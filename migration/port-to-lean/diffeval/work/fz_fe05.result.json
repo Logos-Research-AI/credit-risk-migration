@@ -1,0 +1,162 @@
+[
+ {
+  "id": "fz_fe05/seeds 70000..70749: kept (692 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70000..70749: rejected, num_dependents holds -1 (4 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70000..70749: rejected, num_late_30_59 is Int64 (54 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70000..70749: kept, the four log columns without their low 20 bits",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70000..70749: rejected (-1), the four log columns without their low 20 bits",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70750..71499: kept (692 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70750..71499: rejected, num_dependents holds -1 (9 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70750..71499: rejected, num_late_30_59 is Int64 (49 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70750..71499: kept, the four log columns without their low 20 bits",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 70750..71499: rejected (-1), the four log columns without their low 20 bits",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 71500..72249: kept (702 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 71500..72249: rejected, num_dependents holds -1 (7 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 71500..72249: rejected, num_late_30_59 is Int64 (41 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 71500..72249: kept, the four log columns without their low 20 bits",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 71500..72249: rejected (-1), the four log columns without their low 20 bits",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 72250..72999: kept (690 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 72250..72999: rejected, num_dependents holds -1 (6 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 72250..72999: rejected, num_late_30_59 is Int64 (54 inputs)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 72250..72999: kept, the four log columns without their low 20 bits",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_fe05/seeds 72250..72999: rejected (-1), the four log columns without their low 20 bits",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

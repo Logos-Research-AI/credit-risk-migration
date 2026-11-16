@@ -1,0 +1,1794 @@
+[
+ {
+  "id": "fz_t12/kept seeds of 20000..20024",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20025..20049",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20050..20074",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20075..20099",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20100..20124",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20125..20149",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20150..20174",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20175..20199",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20200..20224",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20225..20249",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20250..20274",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20275..20299",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20300..20324",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20325..20349",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20350..20374",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20375..20399",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20400..20424",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20425..20449",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20450..20474",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20475..20499",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20500..20524",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20525..20549",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20550..20574",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20575..20599",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20600..20624",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20625..20649",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20650..20674",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20675..20699",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20700..20724",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20725..20749",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20750..20774",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20775..20799",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20800..20824",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20825..20849",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20850..20874",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20875..20899",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20900..20924",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20925..20949",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20950..20974",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 20975..20999",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21000..21024",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21025..21049",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21050..21074",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21075..21099",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21100..21124",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21125..21149",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21150..21174",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21175..21199",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21200..21224",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21225..21249",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21250..21274",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21275..21299",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21300..21324",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21325..21349",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21350..21374",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21375..21399",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21400..21424",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21425..21449",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21450..21474",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21475..21499",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21500..21524",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21525..21549",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21550..21574",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21575..21599",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21600..21624",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21625..21649",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21650..21674",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21675..21699",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21700..21724",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21725..21749",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21750..21774",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21775..21799",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21800..21824",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21825..21849",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21850..21874",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21875..21899",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21900..21924",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21925..21949",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21950..21974",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 21975..21999",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22000..22024",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22025..22049",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22050..22074",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22075..22099",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22100..22124",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22125..22149",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22150..22174",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22175..22199",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22200..22224",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22225..22249",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22250..22274",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22275..22299",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22300..22324",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22325..22349",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22350..22374",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22375..22399",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22400..22424",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22425..22449",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22450..22474",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22475..22499",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22500..22524",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22525..22549",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22550..22574",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22575..22599",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22600..22624",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22625..22649",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22650..22674",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22675..22699",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22700..22724",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22725..22749",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22750..22774",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/kept seeds of 22775..22799",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20000..20024 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20025..20049 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20050..20074 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20075..20099 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20100..20124 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20125..20149 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20150..20174 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20175..20199 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20200..20224 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20225..20249 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20250..20274 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20275..20299 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20300..20324 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20325..20349 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20350..20374 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20375..20399 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20400..20424 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20425..20449 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20450..20474 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20475..20499 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20500..20524 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20525..20549 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20550..20574 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20575..20599 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20600..20624 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20625..20649 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20650..20674 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20675..20699 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20700..20724 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20725..20749 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20750..20774 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20775..20799 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20800..20824 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20825..20849 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20850..20874 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20875..20899 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20900..20924 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20925..20949 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20950..20974 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 20975..20999 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21000..21024 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21025..21049 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21050..21074 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21075..21099 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21100..21124 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21125..21149 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21150..21174 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21175..21199 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21200..21224 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21225..21249 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21250..21274 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21275..21299 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21300..21324 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21325..21349 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21350..21374 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21375..21399 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21400..21424 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21425..21449 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21450..21474 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21475..21499 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21500..21524 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21525..21549 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21550..21574 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21575..21599 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21600..21624 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21625..21649 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21650..21674 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21675..21699 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21700..21724 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21725..21749 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21750..21774 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21775..21799 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21800..21824 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21825..21849 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21850..21874 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21875..21899 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21900..21924 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21925..21949 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21950..21974 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 21975..21999 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22000..22024 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22025..22049 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22050..22074 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22075..22099 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22100..22124 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22125..22149 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22150..22174 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22175..22199 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22200..22224 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22225..22249 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22250..22274 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22275..22299 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22300..22324 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22325..22349 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22350..22374 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22375..22399 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22400..22424 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22425..22449 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22450..22474 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22475..22499 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22500..22524 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22525..22549 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22550..22574 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22575..22599 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22600..22624 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22625..22649 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22650..22674 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22675..22699 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22700..22724 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22725..22749 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22750..22774 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t12/rejected seeds of 22775..22799 (no row, or an Int64 column)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

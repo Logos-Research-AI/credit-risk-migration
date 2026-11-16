@@ -1,0 +1,968 @@
+[
+ {
+  "id": "fz_t4_02b/seeds 10000..10063 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10000..10063 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10000..10063 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10064..10127 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10064..10127 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10064..10127 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10128..10191 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10128..10191 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10128..10191 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10192..10255 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10192..10255 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10192..10255 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10256..10319 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10256..10319 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10256..10319 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10320..10383 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10320..10383 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10320..10383 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10384..10447 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10384..10447 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10384..10447 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10448..10511 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10448..10511 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10448..10511 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10512..10575 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10512..10575 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10512..10575 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10576..10639 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10576..10639 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10576..10639 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10640..10703 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10640..10703 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10640..10703 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10704..10767 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10704..10767 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10704..10767 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10768..10831 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10768..10831 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10768..10831 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10832..10895 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10832..10895 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10832..10895 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10896..10959 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10896..10959 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10896..10959 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10960..11023 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10960..11023 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 10960..11023 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11024..11087 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11024..11087 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11024..11087 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11088..11151 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11088..11151 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11088..11151 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11152..11215 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    860885885117042932,
+    929286011880575335
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11152..11215 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11152..11215 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11216..11279 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11216..11279 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11216..11279 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11280..11343 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11280..11343 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11280..11343 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11344..11407 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11344..11407 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11344..11407 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11408..11471 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11408..11471 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11408..11471 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11472..11535 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11472..11535 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11472..11535 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11536..11599 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11536..11599 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11536..11599 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11600..11663 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11600..11663 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11600..11663 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11664..11727 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11664..11727 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11664..11727 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11728..11791 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11728..11791 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11728..11791 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11792..11855 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11792..11855 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11792..11855 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11856..11919 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11856..11919 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11856..11919 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11920..11983 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11920..11983 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11920..11983 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11984..12047 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11984..12047 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 11984..12047 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12048..12111 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12048..12111 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12048..12111 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12112..12175 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12112..12175 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12112..12175 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12176..12239 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12176..12239 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12176..12239 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12240..12303 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12240..12303 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12240..12303 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12304..12367 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12304..12367 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12304..12367 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12368..12431 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12368..12431 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12368..12431 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12432..12495 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12432..12495 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12432..12495 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12496..12559 kept",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12496..12559 rejected",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_t4_02b/seeds 12496..12559 inputs",
+  "primitive": "input",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

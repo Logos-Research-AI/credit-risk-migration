@@ -1,0 +1,2956 @@
+[
+ {
+  "id": "fz_p02/kept seeds 20001..20037",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20038..20069",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20070..20109",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20110..20144",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20145..20183",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20185..20221",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20222..20254",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20255..20286",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20287..20324",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20326..20360",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20361..20395",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20396..20433",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20434..20467",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20468..20505",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20506..20543",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20544..20576",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20578..20610",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20611..20647",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20648..20681",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20682..20714",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20716..20751",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20753..20785",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20786..20822",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20823..20851",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20852..20882",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20883..20919",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20920..20956",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20957..20995",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 20996..21029",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21030..21058",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21060..21095",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21096..21129",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21131..21161",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21162..21197",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21198..21199",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20000..20023",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20024..20054",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20074..20093",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8292065753331669108,
+    7350950521902355972
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20101..20135",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5214039576107119933,
+    8078881093792188932
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20137..20166",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20172..20206",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8532015253772448516,
+    15206440576681951062
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20207..20237",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1369640517847058263,
+    1282045521973176133
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20241..20260",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12871373851434796203,
+    9157442555111015186
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20275..20306",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17328178452880113713,
+    15560879158401437840
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20309..20325",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20329..20350",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17771413195492203948,
+    16632298373144015198
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20364..20384",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9712993674073112090,
+    1378288641422041878
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20388..20436",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10643190410666855286,
+    11599586869816183126
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20458..20489",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20490..20537",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20541..20591",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20596..20622",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20627..20644",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3044453474112488288,
+    3554365833803070804
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20645..20655",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16029990289697138811,
+    12257654822301235047
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20677..20695",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7786180846753448525,
+    10370912835678281808
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20698..20745",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12815801029712347402,
+    12535550355166291730
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20749..20780",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13233622703133358065,
+    435480483660876997
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20782..20802",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11262394310951867807,
+    5266107792563381675
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20807..20825",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20830..20889",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13196594727699736901,
+    7849619401964997885
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20890..20936",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3436454078749731992,
+    7674317478354698378
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20941..20975",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 20980..21002",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8922997646415128040,
+    845383271379050118
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21010..21090",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5870033917295140326,
+    17236758663907403363
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21111..21137",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21142..21177",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3299170571262445380,
+    16977009938695922844
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20002..20056",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13401093867264564358,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20073..20095",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11447164638101684720,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20096..20121",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    866877617198918945,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20138..20171",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5022402543051921754,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20176..20208",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15836021779311143659,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20228..20348",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1821021900699078660,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20356..20391",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    18230880043436766664,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20400..20418",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15393418082817549151,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20420..20447",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7760408942459573592,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20448..20500",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1719727938714583114,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20501..20528",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14280167714629610032,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20532..20577",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11946687207930320022,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20584..20628",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8864343332198073471,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20646..20670",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9469830326267211429,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20708..20748",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14893792366773234845,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20766..20872",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10230418613830279416,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20877..20907",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4317033746614954379,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20909..20953",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2832270019608034943,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20955..20964",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9151936581749326716,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 20966..21001",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17123376615336252191,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21012..21056",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12566660421725040168,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21064..21094",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15931553180622146445,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21098..21125",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2106117293508139353,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21133..21173",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    18380600188347783141,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21175..21190",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16347456244347350790,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/kept seeds 21200..21234",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21236..21269",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21270..21300",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21301..21341",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21342..21380",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21381..21416",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21417..21446",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21447..21485",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21486..21512",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21513..21547",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21549..21578",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21579..21606",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21607..21639",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21640..21675",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21681..21710",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21712..21742",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21744..21782",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21783..21819",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21820..21856",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21857..21888",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21889..21923",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21924..21961",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21962..21996",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 21997..22038",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22039..22075",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22076..22109",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22110..22147",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22149..22184",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22187..22218",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22221..22253",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22254..22284",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22286..22327",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22329..22363",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22364..22396",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22397..22399",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21249..21302",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21308..21326",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16640890609707464881,
+    12028236935778037657
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21328..21351",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21363..21391",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10315616280739663148,
+    16355443036247848679
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21401..21448",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15859720525551980551,
+    3373101852229356911
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21452..21467",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5110945315107378006,
+    17210722020845343486
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21471..21546",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9978763498143001606,
+    1646641314387757527
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21612..21677",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1070185167624197613,
+    3002065408405308687
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21695..21759",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7996278974226856070,
+    15874648574338967677
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21766..21773",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3993271581354191863,
+    3997880173799865619
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21778..21823",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21849..21885",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17223736778215290507,
+    14700177101023747354
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21896..21915",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5435547297983609728,
+    357518812145492672
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21918..21969",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 21973..22006",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11966689106942689145,
+    5968267667522961803
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22008..22030",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10789873878540911354,
+    13669920055164597802
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22032..22062",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22098..22123",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9469664886150287584,
+    10574021996317737014
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22132..22173",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22208..22272",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16331999074144065408,
+    7190786062013456486
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22278..22303",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3529534000807422525,
+    4359570563429365892
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22307..22366",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    824121633775561735,
+    6037213964049241749
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22372..22383",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21202..21211",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8933342660531448491,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21213..21246",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13665133083501083973,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21251..21294",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12842894402563445725,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21303..21359",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14862922812292822952,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21364..21410",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15115321804156104484,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21445..21466",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4953071576576463965,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21478..21545",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17690916563669909927,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21557..21602",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3730775901095365890,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21611..21647",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9976563598134665857,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21648..21661",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1986731533921459904,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21663..21721",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9620161576544863214,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21738..21776",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15133253662648563196,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21777..21803",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8959428145887959465,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21804..21837",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2807671037512858756,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21844..21864",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13607927306117457397,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21867..21919",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1961568217740984803,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21929..21943",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13044193569956806401,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21949..21986",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10152925389526679214,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 21987..22023",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    275383675514563889,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22028..22049",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14205221856707306820,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22050..22065",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7722484355694470884,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22079..22095",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8944725311954137414,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22111..22141",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11761719783204134135,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22144..22158",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4158298827209599378,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22166..22199",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6002902886978921720,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22209..22223",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11621696054282691410,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22227..22264",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8018956146564938096,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22285..22321",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9580886714379998762,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22325..22345",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11601655825877870768,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22351..22395",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8125748484805742369,
+    15320316226499077206
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/kept seeds 22400..22432",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22435..22466",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22467..22503",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22504..22539",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22542..22580",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22581..22615",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22616..22658",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22660..22691",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22692..22727",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22728..22754",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22755..22785",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22786..22820",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22821..22851",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22852..22888",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22889..22916",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22917..22952",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22953..22985",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 22986..23025",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23026..23060",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23061..23101",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23102..23130",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23131..23163",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23164..23195",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23196..23233",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23235..23267",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23271..23302",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23305..23344",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23345..23374",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23375..23405",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23407..23441",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23443..23476",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23479..23520",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23523..23554",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23555..23594",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/kept seeds 23595..23599",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22409..22446",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8983692479165302243,
+    6285280772172295029
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22452..22495",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3230863982632685266,
+    13920839932512097478
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22507..22520",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9416476769544712978,
+    15440427490309937276
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22529..22560",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22563..22591",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22610..22629",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17933116505819084423,
+    7481310082555773099
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22639..22698",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9313592626428266356,
+    5850972132060706276
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22700..22790",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8671193131687106142,
+    12629000502145886123
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22808..22858",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3684078582959136182,
+    2754850945321254358
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22865..22890",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22908..22942",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22976..22988",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 22995..23021",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4679514406572176988,
+    15263828251653891261
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23033..23067",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23068..23083",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23084..23125",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11318522786165612209,
+    3934864504907598942
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23137..23197",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15856603728305167974,
+    5362288712231665017
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23201..23220",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15230384111787087910,
+    1504773548261003890
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23260..23284",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5779931753832154528,
+    12709639049330626166
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23303..23334",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7635505982745200735,
+    9285217870463815298
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23336..23361",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16191794849980018028,
+    2462821505052293236
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23404..23462",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8121662541359619482,
+    15543051336898630946
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23466..23487",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23503..23534",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23541..23573",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1585039248431582647,
+    950063479843445729
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (non-ASCII name) seeds 23575..23579",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22416..22434",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7647859053160290561,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22437..22475",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12149131121381507136,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22482..22548",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6476598045779344322,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22551..22582",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7266224523081765077,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22590..22618",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15842702952004299459,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22631..22651",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1085008536399647500,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22659..22668",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10884842346671488862,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22669..22718",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3712816455023180575,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22721..22777",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1647578553226761107,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22784..22812",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14154198974953094490,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22814..22848",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12436711128133188410,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22857..22924",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3930653407151259432,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22927..22951",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14554960678004281220,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 22967..23005",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12022183363145760142,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23012..23042",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1016454615525197546,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23055..23081",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2775051878521250461,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23082..23161",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    4461277595360193654,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23170..23198",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17805265772442465295,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23199..23237",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6436704093700079506,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23239..23266",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    1694630765070077638,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23295..23312",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10084137013906955783,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23325..23337",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3993280182458269372,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23343..23406",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9015382385319680538,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23413..23433",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15351766865041758117,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23442..23473",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7211967591500538616,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23474..23505",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10294853573121989014,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23511..23530",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    3479677633677620902,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_p02/rejected (table with no row) seeds 23537..23587",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15205677377414986239,
+    17714204235123410522
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ }
+]
