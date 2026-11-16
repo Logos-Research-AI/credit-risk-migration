@@ -286,8 +286,120 @@ model has no variable the step-0 form: the single `M2LOGL0` line, and no global-
 - One file per size; the frequencies above are of these seeds, not estimates.
 - (b): SAS's rule for a probability equal to a level, and whether an intercept-only fit of 50 rows or
   more can still differ.
-- (c): the iteration at which SAS declares separation, quasi-complete separation, and a separation
-  at a later step than the first.
+- (c): the iteration at which SAS declares separation. (Quasi-complete separation, separation at a
+  later step and a training set of one class were measured afterwards: next section.)
 - (e) on files above 30 rows.
-- A training set of one class (valid by section 3 as it stands): neither program fits; seen in
-  `empty-validation.md` on 1 to 3 rows only, not run here on 4 rows or more.
+
+## A training set of one class, and more on separation (added 2026-11-16)
+
+Measured after the five differences above. The port is the one of commit 748f4db, run from a copy
+(`git archive 748f4db port/credit_risk`, in `out/oneclass/port748`), because `port/` is being changed.
+Inputs `out/oneclass/inputs/`, SAS runs `judge/runs/oneclass_*`, port runs `out/oneclass/port/`
+(`bash out/oneclass/port_run.sh <case>`; all output in `out/oneclass/port_runs.out`).
+
+### (f) The training set has one class: SAS produces no model, and neither does the port
+
+**There are valid inputs on which the SAS program produces no model.** Section 3 does not ask for
+both outcomes, so a file of non-defaulters only is valid; and a file with both outcomes is valid and
+still gives a one-class training set when SAS's split puts every defaulter in the validation set.
+
+Nine inputs: 4, 10 and 60 rows (the files of seeds 15, 20 and 29), each three ways: every outcome 0;
+every outcome 1; outcome 1 exactly on the rows of SAS's validation set of that file (1 of 4, 3 of 10,
+18 of 60 defaulters; the split was the same as before, so the training set has no defaulter).
+
+SAS, the same in all nine (ERROR lines: fe 0, train 36, metrics 64, predict 3):
+
+```
+proc logistic data=work.model_features_train descending; model default_flag = ... / selection=stepwise ...
+ERROR: All observations have the same response.  No statistics are computed.
+WARNING: The data set WORK.LOGIT_SCORED_TRAIN may be incomplete.  When this step was stopped there were 42 observations and 44 variables.
+proc plm restore=work.logit_model; ...
+ERROR: The file WORK.LOGIT_MODEL does not exist or it is not a valid item store.
+...
+NOTE: Model training completed successfully          (the script's own last %put, printed regardless)
+```
+
+- No model: no item store, no `model_coefficients.csv`.
+- `train.sas` has no stop there. It runs to its end and writes `risk_scores_train.csv` and
+  `final_model_output.csv` with every training row, **the probability and the score empty, grade F,
+  Decline, 20.00 %**, and a prediction of 0:
+  `5,0,29,2499.99,100,26.2022649,0,0,,,F,Decline,20.00%`. It writes `risk_scores_validation.csv`
+  and `model_summary.csv` with a header and no row.
+- `metrics_calculation.sas` cannot import the header-only validation scores and writes headers only.
+- `predict.sas` stops by its own check: "ERROR: The training medians or the model are not in the
+  output folder: the training steps did not complete. Test set scoring stopped. Nothing is exported."
+  No prediction file.
+
+Port (748f4db), the same in all nine: feature engineering exit 0 and its three files equal to SAS's
+(3/3); train exit 1, `RuntimeError: stepwise_logistic: the fit at step 0 ([]) did not converge`,
+nothing written; metrics exit 1 ("Model validation stopped. Nothing is exported."); predict exit 1
+("Test set scoring stopped. Nothing is exported.").
+
+| | SAS | Port (748f4db) |
+|---|---|---|
+| Model | none | none |
+| Train's files | 4 written: two score files with no probability and grade F for everyone, two with a header only | none |
+| Metrics' files | headers only | none |
+| Prediction files | none (predict stops) | none (predict stops) |
+
+So on these inputs neither produces a model or a prediction, and they agree on that. They differ in
+what train leaves behind: SAS leaves score files that grade every applicant F without a probability
+(against Q14: no unscored applicant), the port leaves nothing. A proof that assumes the SAS fit
+always returns a model does not hold on valid input as section 3 stands: it needs the condition
+"the training set has both outcomes", which is a condition on the split's result, not on the raw
+file (the 60-row file with 18 defaulters has both outcomes and still fails).
+
+### Quasi-complete separation: SAS completes, the port (748f4db) stops
+
+`n60_quasi`: seed 29's file, outcome 1 for every applicant with a 90-day delinquency and for every
+fourth of the others (35 defaulters). SAS: train 8 ERROR lines (all the runner's exports of tables an
+intercept-only model does not make, case (d)), metrics 0, predict 0; every file written.
+
+```
+Step 1. Effect has_serious_delinque entered:   Quasi-complete separation of data points detected.
+WARNING: There is possibly a quasicomplete separation of data points in step 1. The maximum likelihood estimate may not exist.
+WARNING: The LOGISTIC procedure continues in spite of the above warning. Results shown are based on the last maximum likelihood iteration.
+Step 2. Effect has_serious_delinque is removed:   Convergence criterion (GCONV=1E-8) satisfied.
+
+1,has_serious_delinque,,1,1,26.0217,_,<.0001
+2,,has_serious_delinque,1,0,_,0.0072,0.9325
+```
+
+As with complete separation the variable is removed on its Wald test and the final model is the
+intercept: every applicant gets 0.5714285714. Port: `the fit at step 1 (['has_serious_delinquency'])
+did not converge`, nothing written after feature engineering.
+
+### Separation at a later step: SAS completes, and its final model depends on the separated fits
+
+`n60_two_variables`: seed 29's file, outcome 1 exactly when age + 3 × credit lines is above its
+median (29 defaulters): neither variable alone decides it, the two together do. SAS: 0 ERROR lines
+in every script, every file written.
+
+```
+Step 1. Effect age entered:                     Convergence criterion (GCONV=1E-8) satisfied.
+Step 2. Effect log_num_credit_lines entered:    Convergence criterion (GCONV=1E-8) satisfied.
+Step 3. Effect num_credit_lines entered:        Complete separation of data points detected.
+Step 4. Effect log_num_credit_lines is removed: Complete separation of data points detected.
+Step 5. Effect age is removed:                  Convergence criterion (GCONV=1E-8) satisfied.
+
+3,num_credit_lines,,1,3,9.7158,_,0.0018
+4,,log_num_credit_lines,1,2,_,0.0000,0.9955
+5,,age,1,1,_,1.7665,0.1838
+final model: Intercept -2.3474, num_credit_lines 0.2448
+```
+
+The model of step 4 (age and credit lines) is still separated (-2 Log L 0.181), and SAS removes
+`age` from it because the Wald test of the separated fit gives 0.1838. So here the choice of the
+final model is made on estimates taken from "the last maximum likelihood iteration" of a fit that
+does not exist: **a port that follows SAS on separation must stop each separated fit at the
+iteration SAS stops at, or it may remove another variable and end with another model.** In the
+first-step cases above the final model did not depend on that; here it does. Port (748f4db):
+`the fit at step 3 (['age', 'log_num_credit_lines', 'num_credit_lines']) did not converge`.
+
+### Not checked
+
+- SAS's rule for the iteration at which it declares a separation and stops (it decides the Wald
+  values above; PROC LOGISTIC prints an iteration history with the `itprint` option, which would
+  show it).
+- A one-class training set on more than 60 rows; the result does not depend on the size in the
+  three sizes run.
