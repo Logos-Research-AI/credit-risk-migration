@@ -1,6 +1,6 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 5, 2026-11-15, with rulings G44 and G45 added the same day (they confirm readings already formalised; no requirement changes). Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
+Draft 6, 2026-11-16: ruling G53 reduces Q27 to valid inputs (the demand to stop on any other input is withdrawn, so rulings G11, G23, G36 and G42 no longer bear on a requirement) and sets rulings G46 to G52 aside. Draft 5, 2026-11-15, had rulings G44 and G45 added the same day (they confirm readings already formalised; no requirement changes). Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
 made after the requirements were checked against the SAS program and the program was corrected. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
@@ -67,7 +67,7 @@ data.
 
 | # | Requirement | Source |
 |---|---|---|
-| Q27 | On an input that meets the conditions of section 3, every step produces its result. What it does on an input that does not is not required (ruling G53, which withdraws the earlier demand to stop with an error; rulings G3, G4, G11) | section 3 |
+| Q27 | On an input that meets the conditions of section 3, every step produces its result. What it does on an input that does not is not required (ruling G53, which withdraws the earlier demand to stop with an error; rulings G3, G4) | section 3 |
 
 ## 2. Reported figures, not requirements
 
