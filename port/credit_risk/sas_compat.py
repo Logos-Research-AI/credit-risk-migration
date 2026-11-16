@@ -840,6 +840,10 @@ class RocAssociation:
 # double sqrt(2**-53) = 1.0536712127723509e-8: experiment X08 (a pair is tied up to that distance, at
 # every magnitude, and not tied one ulp further).
 _TIE_EPS = math.nextafter(math.sqrt(2.0**-53), 1.0)
+# The standard error of the ROC area groups the probabilities the same way with a smaller tolerance,
+# 1000 * 2**-53 = 1.11e-13: experiments X10, X10b (two values 1000 ulps of 0.5 apart are equal there,
+# 1001 are not; the same distance at 0, 0.3 and 0.85).
+_SE_EPS = 1000 * 2.0**-53
 
 
 @dataclass
@@ -853,30 +857,42 @@ class _Pairs:
     v01: FloatArray
 
 
-def _pairs(y: pl.Series, score: pl.Series) -> _Pairs:
-    d = pl.DataFrame({"y": y.cast(pl.Float64), "s": score.cast(pl.Float64)}).drop_nulls()
-    yy = np.asarray(d.get_column("y").to_numpy(), dtype=np.float64)
-    ss = np.asarray(d.get_column("s").to_numpy(), dtype=np.float64)
-    # SAS groups the probabilities from the largest down: a value joins the current group while it is
-    # within _TIE_EPS of the group's largest value, else it opens a new group (finding P1; X07, X08).
-    # A pair is concordant, discordant or tied by the groups of its two members (gg: group number,
-    # larger for a higher probability).
+def _groups(ss: FloatArray, eps: float) -> npt.NDArray[np.int64]:
+    """SAS groups the probabilities from the largest down: a value joins the current group while it is
+    within `eps` of the group's largest value, else it opens a new group (finding P1; X07, X08).
+    The group number is larger for a higher probability."""
     gg = np.zeros(len(ss), dtype=np.int64)
     top, g = 0.0, 0
     for k, i in enumerate(np.argsort(ss, kind="stable")[::-1].tolist()):
         v = float(ss[i])
-        if k == 0 or top - v > _TIE_EPS:
+        if k == 0 or top - v > eps:
             top, g = v, g - 1
         gg[i] = g
+    return gg
+
+
+def _pairs(y: pl.Series, score: pl.Series) -> _Pairs:
+    d = pl.DataFrame({"y": y.cast(pl.Float64), "s": score.cast(pl.Float64)}).drop_nulls()
+    yy = np.asarray(d.get_column("y").to_numpy(), dtype=np.float64)
+    ss = np.asarray(d.get_column("s").to_numpy(), dtype=np.float64)
+    # A pair is concordant, discordant or tied by the _TIE_EPS groups of its two members.
+    gg = _groups(ss, _TIE_EPS)
     ev = np.sort(gg[yy == 1])
     ne = np.sort(gg[yy == 0])
     n1, n0 = len(ev), len(ne)
     lo_ne = np.searchsorted(ne, ev, side="left")
     le_ne = np.searchsorted(ne, ev, side="right")
-    lo_ev = np.searchsorted(ev, ne, side="left")
-    le_ev = np.searchsorted(ev, ne, side="right")
     conc = int(lo_ne.sum())
     tied = int((le_ne - lo_ne).sum())
+    # v10, v01 (the components of the standard error) compare the two members by their _SE_EPS groups:
+    # two probabilities 1e-9 apart are tied in the area and different here (X07, X10).
+    fg = _groups(ss, _SE_EPS)
+    ev = np.sort(fg[yy == 1])
+    ne = np.sort(fg[yy == 0])
+    lo_ne = np.searchsorted(ne, ev, side="left")
+    le_ne = np.searchsorted(ne, ev, side="right")
+    lo_ev = np.searchsorted(ev, ne, side="left")
+    le_ev = np.searchsorted(ev, ne, side="right")
     v10 = (lo_ne + 0.5 * (le_ne - lo_ne)) / max(n0, 1)
     v01 = ((n1 - le_ev) + 0.5 * (le_ev - lo_ev)) / max(n1, 1)
     return _Pairs(conc, n1 * n0 - conc - tied, tied, n1, n0, np.asarray(v10), np.asarray(v01))
@@ -898,22 +914,27 @@ def roc_association(
     Tied = same ROCEPS group (`_pairs`). Without `label`: a RocAssociation of numbers (the caller adds the
     ROCModel label and renders every value with sas_d8). With `label`: the ONE-row frame the inventory
     rows specify (ROCModel, Area, StdErr, LowerArea, UpperArea, SomersD, Gamma, TauA; full-precision
-    Float64). An undefined statistic (empty class, all pairs tied, one observation in a class for the
-    standard error) is None, except TauA: on a single-class input it is 0 (None only with at most one
-    usable row). RESOLVED (post-parity): degenerate inputs are outside the pipeline domain (R1)."""
+    Float64). The standard error takes each class's components (`_pairs`: compared by the _SE_EPS
+    groups) around the Area, sum of squares / (n - 1) / n; a class of one observation adds nothing
+    (X10: one defaulter and two others gives 0.5; SAS prints 6e-78 where this gives 0, X07 group 91).
+    The limits stay within 0 and 1 (X07, X10; fix_Q26_small: UpperArea 1.0000). An undefined statistic
+    (empty class; Gamma when all pairs are tied) is None, except TauA: on a single-class input it is 0
+    (None only with at most one usable row)."""
     q = _pairs(y, score)
     n = q.n1 + q.n0
     p = q.n1 * q.n0
     area = _ratio(q.conc + 0.5 * q.tied, p)
     se: float | None = None
-    if q.n1 >= 2 and q.n0 >= 2:
-        se = math.sqrt(float(np.var(q.v10, ddof=1)) / q.n1 + float(np.var(q.v01, ddof=1)) / q.n0)
+    if area is not None:
+        s10 = math.fsum(((q.v10 - area) ** 2).tolist()) / (q.n1 - 1) / q.n1 if q.n1 >= 2 else 0.0
+        s01 = math.fsum(((q.v01 - area) ** 2).tolist()) / (q.n0 - 1) / q.n0 if q.n0 >= 2 else 0.0
+        se = math.sqrt(s10 + s01)
     cd = q.conc - q.disc
     r = RocAssociation(
         area,
         se,
-        None if area is None or se is None else area - Z975 * se,
-        None if area is None or se is None else area + Z975 * se,
+        None if area is None or se is None else max(area - Z975 * se, 0.0),
+        None if area is None or se is None else min(area + Z975 * se, 1.0),
         _ratio(cd, p),
         _ratio(cd, q.conc + q.disc),
         _ratio(cd, n * (n - 1) / 2),
