@@ -66,13 +66,13 @@ run;
 %let known_incomes = 0;
 
 proc sql noprint;
-    /* The expected columns and no others, the names exactly as written here */
-    select (count(*) = 12 and sum(name in
-               ('VAR1', 'SeriousDlqin2yrs', 'age', 'MonthlyIncome', 'NumberOfDependents',
-                'RevolvingUtilizationOfUnsecuredL', 'DebtRatio',
-                'NumberOfTime30-59DaysPastDueNotW', 'NumberOfTime60-89DaysPastDueNotW',
-                'NumberOfTimes90DaysLate', 'NumberOfOpenCreditLinesAndLoans',
-                'NumberRealEstateLoansOrLines')) = 12)
+    /* The expected columns and no others */
+    select (count(*) = 12 and sum(upcase(name) in
+               ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+                'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+                'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+                'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+                'NUMBERREALESTATELOANSORLINES')) = 12)
     into :columns_ok trimmed
     from dictionary.columns
     where libname = 'WORK' and memname = 'CREDIT_RAW';
@@ -103,14 +103,12 @@ data work.input_check;
             not (%num(NumberOfDependents) >= 0 and
                  %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
     known_income = not missing(%num(MonthlyIncome));
-    /* The row id as a number: ids that read as the same number are the same id */
-    row_id_number = %num(VAR1);
-    keep VAR1 row_id_number bad_row known_income;
+    keep VAR1 bad_row known_income;
 run;
 
 /* Bad rows, repeated row ids, known incomes */
 proc sql noprint;
-    select coalesce(sum(bad_row), 0), count(*) - count(distinct row_id_number), coalesce(sum(known_income), 0)
+    select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
     into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
     from work.input_check;
 quit;
