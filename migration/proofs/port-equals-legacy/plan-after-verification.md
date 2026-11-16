@@ -329,6 +329,15 @@ Each contract gets a reviewer who did not write it, before any proof, as in the 
 
 ## 5. Decisions needed before contracts are stated
 
+**Ruled by the owner on 2026-11-16** (requirements draft 7; SAS experiment x25). D1 is ruling
+G55: the equality contracts are stated for one read-back shared by both sides and otherwise
+free; the 26 requirements are carried over at the identity, said so in their text. D2 is ruling
+G54: a present `MonthlyIncome` or `NumberOfDependents` is written in at most 12 characters;
+valid input is narrowed (`TrainOK`, `TestOK`), the SAS is not changed. Nothing is stated on the
+blueprint until that change is formalised and the owner has refreshed the profiles. The drafts
+written meanwhile: `informal-spec-v3-draft.md` and `definitions-v3-draft.md`, next to this file.
+D3 to D9 remain open.
+
 - **D1. Files read back.** `SasLinks` (3) takes every read-back as the identity. The port's is
   not (H4, H5: BEST12. changes 11 feature columns and both score columns), and the SAS program
   exports its feature files with `format _numeric_ best12.` too. Under identity on both sides the

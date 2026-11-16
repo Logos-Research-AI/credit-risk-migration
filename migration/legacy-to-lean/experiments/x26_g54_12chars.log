@@ -1,0 +1,2072 @@
+X26 RUN saspy=5.110.0 (uv run --with saspy, not pinned to the judge's) python=3.12.12 profile=oda_eu sasver=9.04.01M9P06052025 rows=9512
+
+33                                                         The SAS System                          Monday, 16 November 2026 16:09:00
+
+182        
+183        /* ================= X26 SUBMISSION TRAIN_SCRIPT (feature_engineering.sas, paths redirected) ================= */
+184        /*****************************************************************************
+185         * Credit Risk Scoring Model - Feature Engineering
+186         *
+187         * Purpose: Load Kaggle "Give Me Some Credit" data and create features
+188         * Author: Risk Analytics Team
+189         * Date: 2025
+190         *
+191         * Data Source: Kaggle "Give Me Some Credit" competition
+192         * https://www.kaggle.com/c/GiveMeSomeCredit
+193         *
+194         * This script:
+195         * - Loads cs-training.csv from data/ directory
+196         * - Handles missing values
+197         * - Creates derived features and risk indicators
+198         * - Splits into training (70%) and validation (30%) sets
+199         * - Exports engineered features for modeling
+200         *****************************************************************************/
+201        
+202        /* Define base paths */
+203        %let data_path =
+203      ! /saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_data;
+204        %let output_path =
+204      ! /saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out;
+205        
+206        /* Remove the results of an earlier run first: a run that stops leaves no result */
+207        data _null_;
+208            length fref $8 fname $64;
+209            do fname = 'income_medians.csv', 'model_features_train.csv',
+210                       'model_features_validation.csv';
+211                fref = ' ';
+212                if filename(fref, cats("&output_path/", fname)) = 0 then do;
+213                    if fexist(fref) then rc = fdelete(fref);
+214                    rc = filename(fref);
+215                end;
+216            end;
+217        run;
+218        
+219        /*****************************************************************************
+220         * 1. Load Kaggle Training Data
+221         *****************************************************************************/
+222        
+223        /* Import Kaggle training data */
+224        proc import datafile="&data_path/cs-training.csv"
+225            out=work.credit_raw
+226            dbms=csv
+227            replace;
+228            getnames=yes;
+229            guessingrows=max;
+230        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+231         /**********************************************************************
+232         *   PRODUCT:   SAS
+233         *   VERSION:   9.4
+234         *   CREATOR:   External File Interface
+235         *   DATE:      16NOV26
+236         *   DESC:      Generated SAS Datastep Code
+237         *   TEMPLATE SOURCE:  (None Specified.)
+238         ***********************************************************************/
+239            data WORK.CREDIT_RAW    ;
+240            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+241            infile
+241      ! '/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_data/cs-t
+241      ! raining.csv' delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+242               informat VAR1 best32. ;
+243               informat SeriousDlqin2yrs best32. ;
+244               informat RevolvingUtilizationOfUnsecuredL best32. ;
+245               informat age best32. ;
+246               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+247               informat DebtRatio best32. ;
+248               informat MonthlyIncome best32. ;
+249               informat NumberOfOpenCreditLinesAndLoans best32. ;
+250               informat NumberOfTimes90DaysLate best32. ;
+251               informat NumberRealEstateLoansOrLines best32. ;
+252               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+253               informat NumberOfDependents best32. ;
+254               format VAR1 best12. ;
+255               format SeriousDlqin2yrs best12. ;
+256               format RevolvingUtilizationOfUnsecuredL best12. ;
+257               format age best12. ;
+258               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+259               format DebtRatio best12. ;
+260               format MonthlyIncome best12. ;
+261               format NumberOfOpenCreditLinesAndLoans best12. ;
+262               format NumberOfTimes90DaysLate best12. ;
+263               format NumberRealEstateLoansOrLines best12. ;
+264               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+265               format NumberOfDependents best12. ;
+266            input
+267                        VAR1
+268                        SeriousDlqin2yrs
+269                        RevolvingUtilizationOfUnsecuredL
+270                        age
+271                        "NumberOfTime30-59DaysPastDueNotW"N
+272                        DebtRatio
+273                        MonthlyIncome
+274                        NumberOfOpenCreditLinesAndLoans
+275                        NumberOfTimes90DaysLate
+276                        NumberRealEstateLoansOrLines
+277                        "NumberOfTime60-89DaysPastDueNotW"N
+278                        NumberOfDependents
+279            ;
+280            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+281            run;
+9512 rows created in WORK.CREDIT_RAW from 
+/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_data/cs-training.csv.
+  
+  
+  
+282        
+283        /* Check the input conditions: stop with an error before anything is exported */
+284        /* The numeric value of a raw column: a numeric column as it is; a character column
+285           read as a number, missing when the text is no number or is longer than 32 characters */
+286        %macro num(v);
+287            %local dsid pos vtype;
+288            %let vtype = ;
+289            %let dsid = %sysfunc(open(work.credit_raw));
+290            %let pos = %sysfunc(varnum(&dsid, &v));
+291            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+292            %let dsid = %sysfunc(close(&dsid));
+293            %if &vtype = N %then "&v"n;
+294            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+295        %mend;
+296        
+297        %let columns_ok = 0;
+298        %let bad_rows = 1;
+299        %let duplicate_ids = 1;
+300        %let known_incomes = 0;
+301        
+302        proc sql noprint;
+303            /* The expected columns and no others */
+304            select (count(*) = 12 and sum(upcase(name) in
+305                       ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+306                        'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+307                        'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+308                        'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+309                        'NUMBERREALESTATELOANSORLINES')) = 12)
+310            into :columns_ok trimmed
+311            from dictionary.columns
+312            where libname = 'WORK' and memname = 'CREDIT_RAW';
+313        quit;
+314        
+315        /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+316           the outcome is 0 or 1; the counts are whole numbers, zero or more;
+317           a known MonthlyIncome is zero or more */
+318        data work.input_check;
+319            set work.credit_raw;
+320            bad_row = (missing(%num(VAR1))
+321                or %num(SeriousDlqin2yrs) not in (0, 1)
+322                or missing(%num(age))
+323                or missing(%num(RevolvingUtilizationOfUnsecuredL))
+324                or missing(%num(DebtRatio))
+325                or missing(%num(NumberRealEstateLoansOrLines))
+326                or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+327                        %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+328                or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+329                        %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+330                or not (%num(NumberOfTimes90DaysLate) >= 0 and
+331                        %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+332                or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+333                        %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+334                or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+335                or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+336                or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+337                    not (%num(NumberOfDependents) >= 0 and
+338                         %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+339            known_income = not missing(%num(MonthlyIncome));
+340            keep VAR1 bad_row known_income;
+341        run;
+342        
+343        /* Bad rows, repeated row ids, known incomes */
+344        proc sql noprint;
+345            select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+346            into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+347            from work.input_check;
+348        quit;
+349        
+350        data _null_;
+351            if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+352                put "ERROR: cs-training.csv does not meet the input conditions: "
+353                    "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+354                put "ERROR: Feature engineering stopped. Nothing is exported.";
+355                abort cancel;
+356            end;
+357        run;
+358        
+359        /* Display basic statistics */
+360        proc means data=work.credit_raw n nmiss mean std min max;
+361            title "Raw Data Summary - Kaggle Give Me Some Credit";
+362        run;
+363        
+364        /*****************************************************************************
+365         * 2. Data Cleaning and Missing Value Handling
+366         *****************************************************************************/
+367        
+368        /* First convert MonthlyIncome to numeric if needed */
+369        data work.credit_raw_clean;
+370            set work.credit_raw;
+371        
+372            /* Convert to numeric - input function handles character to numeric */
+373            MonthlyIncome_num = input(MonthlyIncome, best32.);
+374            NumberOfDependents_num = input(NumberOfDependents, best32.);
+375        
+376            /* Keep the numeric versions, drop character if they exist */
+377            drop MonthlyIncome NumberOfDependents;
+378            rename MonthlyIncome_num = MonthlyIncome
+379                   NumberOfDependents_num = NumberOfDependents;
+380        run;
+381        
+382        /* Calculate income medians by age group for imputation */
+383        proc sql;
+384            create table work.income_medians as
+385            select
+386                case
+387                    when age < 30 then 1
+388                    when age < 40 then 2
+389                    when age < 50 then 3
+390                    when age < 60 then 4
+391                    else 5
+392                end as age_group,
+393                median(MonthlyIncome) as median_income
+394            from work.credit_raw_clean
+395            where MonthlyIncome is not missing
+396            group by calculated age_group;
+397        quit;
+398        
+399        /* One row per age group, with the median of all known incomes:
+400           the fallback for an age group that has no known income */
+401        data work.age_groups;
+402            do age_group = 1 to 5;
+403                output;
+404            end;
+405        run;
+406        
+407        proc sql;
+408            create table work.income_medians_all as
+409            select
+410                g.age_group,
+411                m.median_income,
+412                (select median(MonthlyIncome) from work.credit_raw_clean
+413                 where MonthlyIncome is not missing) as overall_median_income
+414            from work.age_groups g
+415            left join work.income_medians m
+416            on g.age_group = m.age_group
+417            order by g.age_group;
+418        quit;
+419        
+420        data work.credit_cleaned;
+421            set work.credit_raw_clean;
+422        
+423            /* Create age group for income imputation */
+424            if age < 30 then age_group = 1;
+425            else if age < 40 then age_group = 2;
+426            else if age < 50 then age_group = 3;
+427            else if age < 60 then age_group = 4;
+428            else age_group = 5;
+429        
+430            /* Handle missing values - create flags */
+431            if missing(MonthlyIncome) then MonthlyIncome_missing = 1;
+432            else MonthlyIncome_missing = 0;
+433        
+434            if missing(NumberOfDependents) then do;
+435                NumberOfDependents = 0;
+436                Dependents_missing = 1;
+437            end;
+438            else Dependents_missing = 0;
+439        run;
+440        
+441        /* Merge and impute income - rename columns in SQL */
+442        proc sql;
+443            create table work.credit_imputed as
+444            select
+445                a.VAR1 as row_id,
+446                a.SeriousDlqin2yrs as default_flag,
+447                a.age,
+448                case when a.MonthlyIncome_missing = 1 then coalesce(b.median_income, b.overall_median_income)
+449                     else a.MonthlyIncome
+450                end as monthly_income,
+451                a.MonthlyIncome_missing,
+452                a.NumberOfDependents as num_dependents,
+453                a.Dependents_missing,
+454                a.age_group,
+455                a."NumberOfTime30-59DaysPastDueNotW"n as num_late_30_59,
+456                a."NumberOfTime60-89DaysPastDueNotW"n as num_late_60_89,
+457                a.NumberOfTimes90DaysLate as num_late_90_plus,
+458                a.RevolvingUtilizationOfUnsecuredL * 100 as credit_utilization,
+459                a.DebtRatio * 100 as debt_ratio,
+460                a.NumberOfOpenCreditLinesAndLoans as num_credit_lines,
+461                a.NumberRealEstateLoansOrLines as num_real_estate_loans
+462            from work.credit_cleaned a
+463            left join work.income_medians_all b
+464            on a.age_group = b.age_group;
+465        quit;
+466        
+467        /*****************************************************************************
+468         * 3. Feature Engineering
+469         *****************************************************************************/
+470        
+471        data work.credit_features;
+472            set work.credit_imputed;
+473        
+474            /* Total late payments across all categories */
+475            total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus);
+476        
+477            /* Has any delinquency indicator */
+478            has_delinquency = (total_late_payments > 0);
+479        
+480            /* Has serious delinquency (90+ days) */
+481            has_serious_delinquency = (num_late_90_plus > 0);
+482        
+483            /* Credit utilization categories */
+484            if credit_utilization < 30 then credit_util_category = 1; /* Low */
+485            else if credit_utilization < 50 then credit_util_category = 2; /* Medium */
+486            else if credit_utilization < 75 then credit_util_category = 3; /* High */
+487            else credit_util_category = 4; /* Very High */
+488        
+489            /* Debt ratio categories */
+490            if debt_ratio < 30 then debt_category = 1; /* Low */
+491            else if debt_ratio < 43 then debt_category = 2; /* Medium */
+492            else if debt_ratio < 60 then debt_category = 3; /* High */
+493            else debt_category = 4; /* Very High */
+494        
+495            /* Income per dependent (handle division by zero) */
+496            if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
+497            else income_per_dependent = monthly_income;
+498        
+499            /* Credit lines per person in household */
+500            credit_lines_per_person = num_credit_lines / (num_dependents + 1);
+501        
+502            /* Age categories for risk assessment */
+503            if age < 25 then age_category = 1; /* Young */
+504            else if age < 35 then age_category = 2; /* Young Adult */
+505            else if age < 50 then age_category = 3; /* Middle Age */
+506            else if age < 65 then age_category = 4; /* Mature */
+507            else age_category = 5; /* Senior */
+508        
+509            /* Risk flags */
+510            flag_high_utilization = (credit_utilization > 75);
+511            flag_very_high_utilization = (credit_utilization > 100);
+512            flag_high_debt_ratio = (debt_ratio > 43);
+513            flag_very_high_debt_ratio = (debt_ratio > 60);
+514            flag_recent_late_payments = (num_late_30_59 > 0);
+515            flag_serious_delinquency = (num_late_90_plus > 0);
+516            flag_multiple_delinquencies = (total_late_payments >= 3);
+517            flag_low_income = (monthly_income < 2500);
+518            flag_many_dependents = (num_dependents >= 3);
+519            flag_few_credit_lines = (num_credit_lines <= 2);
+520        
+521            /* Total risk flags */
+522            total_risk_flags = sum(flag_high_utilization, flag_very_high_utilization,
+523                                  flag_high_debt_ratio,
+524                                  flag_serious_delinquency, flag_multiple_delinquencies,
+525                                  flag_low_income, flag_many_dependents,
+526                                  flag_few_credit_lines);
+527        
+528            /* Financial health score (0-100) */
+529            financial_health = 100;
+530            if credit_utilization > 30 then financial_health = financial_health - 15;
+531            if credit_utilization > 75 then financial_health = financial_health - 15;
+532            if debt_ratio > 43 then financial_health = financial_health - 20;
+533            if has_delinquency then financial_health = financial_health - 20;
+534            if num_late_90_plus > 0 then financial_health = financial_health - 30;
+535            financial_health = max(0, financial_health);
+536        
+537            /* Log transformations for skewed variables (add 1 to handle zeros) */
+538            log_monthly_income = log(monthly_income + 1);
+539            log_num_credit_lines = log(num_credit_lines + 1);
+540            log_total_late_payments = log(total_late_payments + 1);
+541        
+542            /* Interaction features */
+543            if monthly_income > 0 then age_income_interaction = age * log(monthly_income);
+544            else age_income_interaction = age * log_monthly_income;
+545            utilization_debt_interaction = credit_utilization * debt_ratio;
+546        
+547            /* Cap extreme outliers in credit_utilization and debt_ratio */
+548            credit_utilization_capped = min(credit_utilization, 200);
+549            debt_ratio_capped = min(debt_ratio, 500);
+550        run;
+551        
+552        /*****************************************************************************
+553         * 4. Split into Training and Validation Sets (70/30)
+554         *****************************************************************************/
+555        
+556        /* Set random seed for reproducibility */
+557        proc surveyselect data=work.credit_features
+558                          out=work.credit_split
+559                          samprate=0.7
+560                          seed=42
+561                          outall;
+562        run;
+563        
+564        data work.credit_train work.credit_validation;
+565            set work.credit_split;
+566            if selected = 1 then output work.credit_train;
+567            else output work.credit_validation;
+568            drop selected;
+569        run;
+570        
+571        /*****************************************************************************
+572         * 5. Summary Statistics
+573         *****************************************************************************/
+574        
+575        proc means data=work.credit_train n mean std min max;
+576            var age monthly_income credit_utilization debt_ratio total_late_payments
+577                num_credit_lines num_real_estate_loans default_flag;
+578            title "Training Set Summary Statistics";
+579        run;
+580        
+581        proc freq data=work.credit_train;
+582            tables default_flag;
+583            title "Training Set - Default Rate";
+584        run;
+585        
+586        proc means data=work.credit_validation n mean std min max;
+587            var age monthly_income credit_utilization debt_ratio total_late_payments
+588                num_credit_lines num_real_estate_loans default_flag;
+589            title "Validation Set Summary Statistics";
+590        run;
+591        
+592        proc freq data=work.credit_validation;
+593            tables default_flag;
+594            title "Validation Set - Default Rate";
+595        run;
+596        
+597        /*****************************************************************************
+598         * 6. Export Engineered Features
+599         *****************************************************************************/
+600        
+601        /* Ensure all variables are numeric before export */
+602        data work.credit_train_export;
+603            set work.credit_train;
+604            /* Force numeric format for all variables */
+605            format _numeric_ best12.;
+606        run;
+607        
+608        data work.credit_validation_export;
+609            set work.credit_validation;
+610            /* Force numeric format for all variables */
+611            format _numeric_ best12.;
+612        run;
+613        
+614        /* Export the training income medians (per age group, and overall):
+615           predict.sas imputes the test set from them */
+616        data work.income_medians_export;
+617            set work.income_medians_all;
+618            format median_income overall_median_income best32.;
+619        run;
+620        
+621        proc export data=work.income_medians_export
+622            outfile="&output_path/income_medians.csv"
+623            dbms=csv
+624            replace;
+625        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+626         /**********************************************************************
+627         *   PRODUCT:   SAS
+628         *   VERSION:   9.4
+629         *   CREATOR:   External File Interface
+630         *   DATE:      16NOV26
+631         *   DESC:      Generated SAS Datastep Code
+632         *   TEMPLATE SOURCE:  (None Specified.)
+633         ***********************************************************************/
+634            data _null_;
+635            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+636            %let _EFIREC_ = 0;     /* clear export record count macro variable */
+637            file
+637      ! '/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out/incom
+637      ! e_medians.csv' delimiter=',' DSD DROPOVER lrecl=32767;
+638            if _n_ = 1 then        /* write column names or labels */
+639             do;
+640               put
+641                  "age_group"
+642               ','
+643                  "median_income"
+644               ','
+645                  "overall_median_income"
+646               ;
+647             end;
+648           set  WORK.INCOME_MEDIANS_EXPORT   end=EFIEOD;
+649               format age_group best12. ;
+650               format median_income best32. ;
+651               format overall_median_income best32. ;
+652             do;
+653               EFIOUT + 1;
+654               put age_group @;
+655               put median_income @;
+656               put overall_median_income ;
+657               ;
+658             end;
+659            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+660            if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+661            run;
+5 records created in 
+/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out/income_medians.cs
+v from WORK.INCOME_MEDIANS_EXPORT.
+  
+  
+662        
+663        /* Export training set */
+664        proc export data=work.credit_train_export
+665            outfile="&output_path/model_features_train.csv"
+666            dbms=csv
+667            replace;
+668        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+669         /**********************************************************************
+670         *   PRODUCT:   SAS
+671         *   VERSION:   9.4
+672         *   CREATOR:   External File Interface
+673         *   DATE:      16NOV26
+674         *   DESC:      Generated SAS Datastep Code
+675         *   TEMPLATE SOURCE:  (None Specified.)
+676         ***********************************************************************/
+677            data _null_;
+678            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+679            %let _EFIREC_ = 0;     /* clear export record count macro variable */
+680            file
+680      ! '/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out/model
+680      ! _features_train.csv' delimiter=',' DSD DROPOVER lrecl=32767;
+681            if _n_ = 1 then        /* write column names or labels */
+682             do;
+683               put
+684                  "row_id"
+685               ','
+686                  "default_flag"
+687               ','
+688                  "age"
+689               ','
+690                  "monthly_income"
+691               ','
+692                  "MonthlyIncome_missing"
+693               ','
+694                  "num_dependents"
+695               ','
+696                  "Dependents_missing"
+697               ','
+698                  "age_group"
+699               ','
+700                  "num_late_30_59"
+701               ','
+702                  "num_late_60_89"
+703               ','
+704                  "num_late_90_plus"
+705               ','
+706                  "credit_utilization"
+707               ','
+708                  "debt_ratio"
+709               ','
+710                  "num_credit_lines"
+711               ','
+712                  "num_real_estate_loans"
+713               ','
+714                  "total_late_payments"
+715               ','
+716                  "has_delinquency"
+717               ','
+718                  "has_serious_delinquency"
+719               ','
+720                  "credit_util_category"
+721               ','
+722                  "debt_category"
+723               ','
+724                  "income_per_dependent"
+725               ','
+726                  "credit_lines_per_person"
+727               ','
+728                  "age_category"
+729               ','
+730                  "flag_high_utilization"
+731               ','
+732                  "flag_very_high_utilization"
+733               ','
+734                  "flag_high_debt_ratio"
+735               ','
+736                  "flag_very_high_debt_ratio"
+737               ','
+738                  "flag_recent_late_payments"
+739               ','
+740                  "flag_serious_delinquency"
+741               ','
+742                  "flag_multiple_delinquencies"
+743               ','
+744                  "flag_low_income"
+745               ','
+746                  "flag_many_dependents"
+747               ','
+748                  "flag_few_credit_lines"
+749               ','
+750                  "total_risk_flags"
+751               ','
+752                  "financial_health"
+753               ','
+754                  "log_monthly_income"
+755               ','
+756                  "log_num_credit_lines"
+757               ','
+758                  "log_total_late_payments"
+759               ','
+760                  "age_income_interaction"
+761               ','
+762                  "utilization_debt_interaction"
+763               ','
+764                  "credit_utilization_capped"
+765               ','
+766                  "debt_ratio_capped"
+767               ;
+768             end;
+769           set  WORK.CREDIT_TRAIN_EXPORT   end=EFIEOD;
+770               format row_id best12. ;
+771               format default_flag best12. ;
+772               format age best12. ;
+773               format monthly_income best12. ;
+774               format MonthlyIncome_missing best12. ;
+775               format num_dependents best12. ;
+776               format Dependents_missing best12. ;
+777               format age_group best12. ;
+778               format num_late_30_59 best12. ;
+779               format num_late_60_89 best12. ;
+780               format num_late_90_plus best12. ;
+781               format credit_utilization best12. ;
+782               format debt_ratio best12. ;
+783               format num_credit_lines best12. ;
+784               format num_real_estate_loans best12. ;
+785               format total_late_payments best12. ;
+786               format has_delinquency best12. ;
+787               format has_serious_delinquency best12. ;
+788               format credit_util_category best12. ;
+789               format debt_category best12. ;
+790               format income_per_dependent best12. ;
+791               format credit_lines_per_person best12. ;
+792               format age_category best12. ;
+793               format flag_high_utilization best12. ;
+794               format flag_very_high_utilization best12. ;
+795               format flag_high_debt_ratio best12. ;
+796               format flag_very_high_debt_ratio best12. ;
+797               format flag_recent_late_payments best12. ;
+798               format flag_serious_delinquency best12. ;
+799               format flag_multiple_delinquencies best12. ;
+800               format flag_low_income best12. ;
+801               format flag_many_dependents best12. ;
+802               format flag_few_credit_lines best12. ;
+803               format total_risk_flags best12. ;
+804               format financial_health best12. ;
+805               format log_monthly_income best12. ;
+806               format log_num_credit_lines best12. ;
+807               format log_total_late_payments best12. ;
+808               format age_income_interaction best12. ;
+809               format utilization_debt_interaction best12. ;
+810               format credit_utilization_capped best12. ;
+811               format debt_ratio_capped best12. ;
+812             do;
+813               EFIOUT + 1;
+814               put row_id @;
+815               put default_flag @;
+816               put age @;
+817               put monthly_income @;
+818               put MonthlyIncome_missing @;
+819               put num_dependents @;
+820               put Dependents_missing @;
+821               put age_group @;
+822               put num_late_30_59 @;
+823               put num_late_60_89 @;
+824               put num_late_90_plus @;
+825               put credit_utilization @;
+826               put debt_ratio @;
+827               put num_credit_lines @;
+828               put num_real_estate_loans @;
+829               put total_late_payments @;
+830               put has_delinquency @;
+831               put has_serious_delinquency @;
+832               put credit_util_category @;
+833               put debt_category @;
+834               put income_per_dependent @;
+835               put credit_lines_per_person @;
+836               put age_category @;
+837               put flag_high_utilization @;
+838               put flag_very_high_utilization @;
+839               put flag_high_debt_ratio @;
+840               put flag_very_high_debt_ratio @;
+841               put flag_recent_late_payments @;
+842               put flag_serious_delinquency @;
+843               put flag_multiple_delinquencies @;
+844               put flag_low_income @;
+845               put flag_many_dependents @;
+846               put flag_few_credit_lines @;
+847               put total_risk_flags @;
+848               put financial_health @;
+849               put log_monthly_income @;
+850               put log_num_credit_lines @;
+851               put log_total_late_payments @;
+852               put age_income_interaction @;
+853               put utilization_debt_interaction @;
+854               put credit_utilization_capped @;
+855               put debt_ratio_capped ;
+856               ;
+857             end;
+858            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+859            if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+860            run;
+6659 records created in 
+/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out/model_features_tr
+ain.csv from WORK.CREDIT_TRAIN_EXPORT.
+  
+  
+861        
+862        /* Export validation set */
+863        proc export data=work.credit_validation_export
+864            outfile="&output_path/model_features_validation.csv"
+865            dbms=csv
+866            replace;
+867        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+868         /**********************************************************************
+869         *   PRODUCT:   SAS
+870         *   VERSION:   9.4
+871         *   CREATOR:   External File Interface
+872         *   DATE:      16NOV26
+873         *   DESC:      Generated SAS Datastep Code
+874         *   TEMPLATE SOURCE:  (None Specified.)
+875         ***********************************************************************/
+876            data _null_;
+877            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+878            %let _EFIREC_ = 0;     /* clear export record count macro variable */
+879            file
+879      ! '/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out/model
+879      ! _features_validation.csv' delimiter=',' DSD DROPOVER lrecl=32767;
+880            if _n_ = 1 then        /* write column names or labels */
+881             do;
+882               put
+883                  "row_id"
+884               ','
+885                  "default_flag"
+886               ','
+887                  "age"
+888               ','
+889                  "monthly_income"
+890               ','
+891                  "MonthlyIncome_missing"
+892               ','
+893                  "num_dependents"
+894               ','
+895                  "Dependents_missing"
+896               ','
+897                  "age_group"
+898               ','
+899                  "num_late_30_59"
+900               ','
+901                  "num_late_60_89"
+902               ','
+903                  "num_late_90_plus"
+904               ','
+905                  "credit_utilization"
+906               ','
+907                  "debt_ratio"
+908               ','
+909                  "num_credit_lines"
+910               ','
+911                  "num_real_estate_loans"
+912               ','
+913                  "total_late_payments"
+914               ','
+915                  "has_delinquency"
+916               ','
+917                  "has_serious_delinquency"
+918               ','
+919                  "credit_util_category"
+920               ','
+921                  "debt_category"
+922               ','
+923                  "income_per_dependent"
+924               ','
+925                  "credit_lines_per_person"
+926               ','
+927                  "age_category"
+928               ','
+929                  "flag_high_utilization"
+930               ','
+931                  "flag_very_high_utilization"
+932               ','
+933                  "flag_high_debt_ratio"
+934               ','
+935                  "flag_very_high_debt_ratio"
+936               ','
+937                  "flag_recent_late_payments"
+938               ','
+939                  "flag_serious_delinquency"
+940               ','
+941                  "flag_multiple_delinquencies"
+942               ','
+943                  "flag_low_income"
+944               ','
+945                  "flag_many_dependents"
+946               ','
+947                  "flag_few_credit_lines"
+948               ','
+949                  "total_risk_flags"
+950               ','
+951                  "financial_health"
+952               ','
+953                  "log_monthly_income"
+954               ','
+955                  "log_num_credit_lines"
+956               ','
+957                  "log_total_late_payments"
+958               ','
+959                  "age_income_interaction"
+960               ','
+961                  "utilization_debt_interaction"
+962               ','
+963                  "credit_utilization_capped"
+964               ','
+965                  "debt_ratio_capped"
+966               ;
+967             end;
+968           set  WORK.CREDIT_VALIDATION_EXPORT   end=EFIEOD;
+969               format row_id best12. ;
+970               format default_flag best12. ;
+971               format age best12. ;
+972               format monthly_income best12. ;
+973               format MonthlyIncome_missing best12. ;
+974               format num_dependents best12. ;
+975               format Dependents_missing best12. ;
+976               format age_group best12. ;
+977               format num_late_30_59 best12. ;
+978               format num_late_60_89 best12. ;
+979               format num_late_90_plus best12. ;
+980               format credit_utilization best12. ;
+981               format debt_ratio best12. ;
+982               format num_credit_lines best12. ;
+983               format num_real_estate_loans best12. ;
+984               format total_late_payments best12. ;
+985               format has_delinquency best12. ;
+986               format has_serious_delinquency best12. ;
+987               format credit_util_category best12. ;
+988               format debt_category best12. ;
+989               format income_per_dependent best12. ;
+990               format credit_lines_per_person best12. ;
+991               format age_category best12. ;
+992               format flag_high_utilization best12. ;
+993               format flag_very_high_utilization best12. ;
+994               format flag_high_debt_ratio best12. ;
+995               format flag_very_high_debt_ratio best12. ;
+996               format flag_recent_late_payments best12. ;
+997               format flag_serious_delinquency best12. ;
+998               format flag_multiple_delinquencies best12. ;
+999               format flag_low_income best12. ;
+1000              format flag_many_dependents best12. ;
+1001              format flag_few_credit_lines best12. ;
+1002              format total_risk_flags best12. ;
+1003              format financial_health best12. ;
+1004              format log_monthly_income best12. ;
+1005              format log_num_credit_lines best12. ;
+1006              format log_total_late_payments best12. ;
+1007              format age_income_interaction best12. ;
+1008              format utilization_debt_interaction best12. ;
+1009              format credit_utilization_capped best12. ;
+1010              format debt_ratio_capped best12. ;
+1011            do;
+1012              EFIOUT + 1;
+1013              put row_id @;
+1014              put default_flag @;
+1015              put age @;
+1016              put monthly_income @;
+1017              put MonthlyIncome_missing @;
+1018              put num_dependents @;
+1019              put Dependents_missing @;
+1020              put age_group @;
+1021              put num_late_30_59 @;
+1022              put num_late_60_89 @;
+1023              put num_late_90_plus @;
+1024              put credit_utilization @;
+1025              put debt_ratio @;
+1026              put num_credit_lines @;
+1027              put num_real_estate_loans @;
+1028              put total_late_payments @;
+1029              put has_delinquency @;
+1030              put has_serious_delinquency @;
+1031              put credit_util_category @;
+1032              put debt_category @;
+1033              put income_per_dependent @;
+1034              put credit_lines_per_person @;
+1035              put age_category @;
+1036              put flag_high_utilization @;
+1037              put flag_very_high_utilization @;
+1038              put flag_high_debt_ratio @;
+1039              put flag_very_high_debt_ratio @;
+1040              put flag_recent_late_payments @;
+1041              put flag_serious_delinquency @;
+1042              put flag_multiple_delinquencies @;
+1043              put flag_low_income @;
+1044              put flag_many_dependents @;
+1045              put flag_few_credit_lines @;
+1046              put total_risk_flags @;
+1047              put financial_health @;
+1048              put log_monthly_income @;
+1049              put log_num_credit_lines @;
+1050              put log_total_late_payments @;
+1051              put age_income_interaction @;
+1052              put utilization_debt_interaction @;
+1053              put credit_utilization_capped @;
+1054              put debt_ratio_capped ;
+1055              ;
+1056            end;
+1057           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1058           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1059           run;
+1060       
+2853 records created in 
+/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out/model_features_va
+lidation.csv from 
+WORK.CREDIT_VALIDATION_EXPORT.
+  
+  
+1061       
+1062       %put NOTE: Feature engineering completed successfully;
+1063       %put NOTE: Training set: exported to &output_path/model_features_train.csv;
+1064       %put NOTE: Validation set: exported to &output_path/model_features_validation.csv;
+1065       %put NOTE: Missing value imputation completed;
+1066       %put NOTE: Ready for model training;
+1067       
+1068       
+1069       
+1070       
+34                                                         The SAS System                          Monday, 16 November 2026 16:09:00
+
+1071       
+35                                                         The SAS System                          Monday, 16 November 2026 16:09:00
+
+1074       
+1075       %put X26 TRAIN TOTALS columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes
+1075     ! ;
+X26 TRAIN TOTALS columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=9509
+1076       /* ================= X26 SUBMISSION TRAIN_COMPARE ================= */
+1077       title "x26 TRAIN work.credit_raw";
+1078       proc contents data=work.credit_raw varnum; run;
+1079       data work.x26_TRAIN;
+1080           merge work.credit_raw(keep=VAR1 MonthlyIncome NumberOfDependents
+1081                            rename=(VAR1=id0 MonthlyIncome=inc0 NumberOfDependents=dep0))
+1082                 work.credit_raw_clean(keep=VAR1 MonthlyIncome NumberOfDependents);
+1083           length ti td $1;
+1084           ti = vtype(inc0); td = vtype(dep0);
+1085           inc_changed = not (inc0 = MonthlyIncome);
+1086           dep_changed = not (dep0 = NumberOfDependents);
+1087           id_differs = not (id0 = VAR1);
+1088           if inc_changed or dep_changed or id_differs then
+1089               put "X26 TRAIN CHANGED " id0= VAR1= "income before=" inc0 hex16. " after=" MonthlyIncome hex16.
+1090                   " (" inc0 best32. " -> " MonthlyIncome best32. ") dependents before=" dep0 hex16.
+1091                   " after=" NumberOfDependents hex16.;
+1092       run;
+X26 TRAIN CHANGED id0=9306 VAR1=9306 income before=42374876E7FFE666 after=42374876E8000000 (                   99999999999.9 -> 
+                    100000000000) dependents before=40D29B0000000000 after=40D29B0000000000
+X26 TRAIN CHANGED id0=9310 VAR1=9310 income before=4206FEE0E1AC0000 after=4206FEE0E1B00000 (                   12345678901.5 -> 
+                     12345678902) dependents before=40DB244000000000 after=40DB244000000000
+X26 TRAIN CHANGED id0=9313 VAR1=9313 income before=3FBFB4551363224F after=3FBFB4551337274F (                   0.12384540294 -> 
+                    0.1238454029) dependents before=40E9C6C000000000 after=40E9C6C000000000
+X26 TRAIN CHANGED id0=9314 VAR1=9314 income before=3FE8893561674A50 after=3FE889356165EA78 (                   0.76674908661 -> 
+                    0.7667490866) dependents before=40D98CC000000000 after=40D98CC000000000
+X26 TRAIN CHANGED id0=9315 VAR1=9315 income before=3FBD1D48E593EF69 after=3FBD1D48E5B4EBA9 (                   0.11372809987 -> 
+                    0.1137280999) dependents before=40EF78E000000000 after=40EF78E000000000
+X26 TRAIN CHANGED id0=9316 VAR1=9316 income before=3FE7A312079D62E7 after=3FE7A312079EC2BF (                   0.73865605819 -> 
+                    0.7386560582) dependents before=40D88A0000000000 after=40D88A0000000000
+X26 TRAIN CHANGED id0=9317 VAR1=9317 income before=3FEF77E5E6020BCC after=3FEF77E5E5FF4C1C (                   0.98338599132 -> 
+                    0.9833859913) dependents before=40C3A10000000000 after=40C3A10000000000
+X26 TRAIN CHANGED id0=9318 VAR1=9318 income before=3F97B2C41B21106A after=3F97B2C41AC91A6B (                   0.02314287582 -> 
+                    0.0231428758) dependents before=40F84F7000000000 after=40F84F7000000000
+X26 TRAIN CHANGED id0=9319 VAR1=9319 income before=3FC626CE68B4C685 after=3FC626CE689EC905 (                   0.17305927384 -> 
+                    0.1730592738) dependents before=40F774F000000000 after=40F774F000000000
+X26 TRAIN CHANGED id0=9320 VAR1=9320 income before=3FEC001E6BA11BEE after=3FEC001E6BA27BC6 (                   0.87501450559 -> 
+                    0.8750145056) dependents before=40F3D6B000000000 after=40F3D6B000000000
+X26 TRAIN CHANGED id0=9321 VAR1=9321 income before=3FE4657733A248B2 after=3FE4657733A7C812 (                   0.63738594136 -> 
+                    0.6373859414) dependents before=40D550C000000000 after=40D550C000000000
+X26 TRAIN CHANGED id0=9322 VAR1=9322 income before=3FE2854231CAC8A7 after=3FE2854231D04807 (                   0.57876691556 -> 
+                    0.5787669156) dependents before=40F79DF000000000 after=40F79DF000000000
+X26 TRAIN CHANGED id0=9323 VAR1=9323 income before=3FE52246C73283B4 after=3FE52246C7380314 (                   0.66043414026 -> 
+                    0.6604341403) dependents before=40E88F8000000000 after=40E88F8000000000
+X26 TRAIN CHANGED id0=9324 VAR1=9324 income before=3FA177FE8DE9D4F2 after=3FA177FE8E41CAF1 (                   0.03411860926 -> 
+                    0.0341186093) dependents before=40EEC3C000000000 after=40EEC3C000000000
+X26 TRAIN CHANGED id0=9325 VAR1=9325 income before=3FD00BE37ECD5FFA after=3FD00BE37EC520EA (                   0.25072562583 -> 
+                    0.2507256258) dependents before=40F2B71000000000 after=40F2B71000000000
+X26 TRAIN CHANGED id0=9326 VAR1=9326 income before=3FE5812FC56193DA after=3FE5812FC5603402 (                   0.67201984931 -> 
+                    0.6720198493) dependents before=40F1347000000000 after=40F1347000000000
+X26 TRAIN CHANGED id0=9327 VAR1=9327 income before=3FDCF1A87D67AACE after=3FDCF1A87D6FE9DE (                   0.45224964377 -> 
+                    0.4522496438) dependents before=40F3827000000000 after=40F3827000000000
+X26 TRAIN CHANGED id0=9328 VAR1=9328 income before=3FCE73000162EFA4 after=3FCE730001527184 (                   0.23788452213 -> 
+                    0.2378845221) dependents before=40E71EE000000000 after=40E71EE000000000
+X26 TRAIN CHANGED id0=9329 VAR1=9329 income before=3FE4315FB9A8CA90 after=3FE4315FB9AE49F0 (                   0.63102709066 -> 
+                    0.6310270907) dependents before=40E3AB2000000000 after=40E3AB2000000000
+X26 TRAIN CHANGED id0=9330 VAR1=9330 income before=3FD45C514945B1A2 after=3FD45C5149403242 (                   0.31813461452 -> 
+                    0.3181346145) dependents before=40F435A000000000 after=40F435A000000000
+X26 TRAIN CHANGED id0=9331 VAR1=9331 income before=3FEC8E525B5BB731 after=3FEC8E525B5D1709 (                   0.89237325519 -> 
+                    0.8923732552) dependents before=40F6A21000000000 after=40F6A21000000000
+X26 TRAIN CHANGED id0=9332 VAR1=9332 income before=3FDACE75FD9851B2 after=3FDACE75FD8D52F2 (                   0.41885137334 -> 
+                    0.4188513733) dependents before=40F7A38000000000 after=40F7A38000000000
+X26 TRAIN CHANGED id0=9333 VAR1=9333 income before=3FBE65AE7D86DF72 after=3FBE65AE7D65E332 (                   0.11873903813 -> 
+                    0.1187390381) dependents before=40EBFDC000000000 after=40EBFDC000000000
+X26 TRAIN CHANGED id0=9334 VAR1=9334 income before=3FD81BFBE485AFBC after=3FD81BFBE482F00C (                   0.37670800511 -> 
+                    0.3767080051) dependents before=40F55C6000000000 after=40F55C6000000000
+X26 TRAIN CHANGED id0=9335 VAR1=9335 income before=3FE7F254772FF52C after=3FE7F2547736D464 (                   0.74833129195 -> 
+                     0.748331292) dependents before=40F66C1000000000 after=40F66C1000000000
+X26 TRAIN CHANGED id0=9336 VAR1=9336 income before=3FE8D6391E3286C2 after=3FE8D6391E2D0762 (                   0.77615028284 -> 
+                    0.7761502828) dependents before=40D8D3C000000000 after=40D8D3C000000000
+X26 TRAIN CHANGED id0=9337 VAR1=9337 income before=3FD70B1BD55762A3 after=3FD70B1BD554A2F3 (                   0.36005302271 -> 
+                    0.3600530227) dependents before=40D82B8000000000 after=40D82B8000000000
+X26 TRAIN CHANGED id0=9338 VAR1=9338 income before=3FEE3119AC309877 after=3FEE3119AC34B7FF (                   0.94349368697 -> 
+                     0.943493687) dependents before=40F7EF8000000000 after=40F7EF8000000000
+X26 TRAIN CHANGED id0=9339 VAR1=9339 income before=3FEE98A84096ED19 after=3FEE98A8409DCC51 (                   0.95613491645 -> 
+                    0.9561349165) dependents before=40F6B16000000000 after=40F6B16000000000
+X26 TRAIN CHANGED id0=9340 VAR1=9340 income before=3FE4320C093D336F after=3FE4320C093FF31F (                   0.63110925488 -> 
+                    0.6311092549) dependents before=40F292F000000000 after=40F292F000000000
+X26 TRAIN CHANGED id0=9341 VAR1=9341 income before=3FEF07CD5B1696E5 after=3FEF07CD5B1AB66D (                   0.96970241347 -> 
+                    0.9697024135) dependents before=40E3394000000000 after=40E3394000000000
+X26 TRAIN CHANGED id0=9342 VAR1=9342 income before=3FBDEFAD7C786A2B after=3FBDEFAD7C99666B (                   0.11693844117 -> 
+                    0.1169384412) dependents before=40F364E000000000 after=40F364E000000000
+X26 TRAIN CHANGED id0=9343 VAR1=9343 income before=3FDD98EE1ADCF179 after=3FDD98EE1ADFB129 (                   0.46245911239 -> 
+                    0.4624591124) dependents before=40E67BA000000000 after=40E67BA000000000
+X26 TRAIN CHANGED id0=9344 VAR1=9344 income before=3FC92C123253AF96 after=3FC92C12323DB216 (                   0.19665744264 -> 
+                    0.1966574426) dependents before=40F4449000000000 after=40F4449000000000
+X26 TRAIN CHANGED id0=9345 VAR1=9345 income before=3FD6D942E650A1C4 after=3FD6D942E64862B4 (                   0.35701057903 -> 
+                     0.357010579) dependents before=40ED1B2000000000 after=40ED1B2000000000
+X26 TRAIN CHANGED id0=9346 VAR1=9346 income before=3FD3D998CAD19CD9 after=3FD3D998CACC1D79 (                   0.31015605742 -> 
+                    0.3101560574) dependents before=40F5B6C000000000 after=40F5B6C000000000
+X26 TRAIN CHANGED id0=9347 VAR1=9347 income before=3FD4F033BD81E12D after=3FD4F033BD76E26D (                   0.32716077334 -> 
+                    0.3271607733) dependents before=40EA656000000000 after=40EA656000000000
+X26 TRAIN CHANGED id0=9348 VAR1=9348 income before=3FECBE2310256718 after=3FECBE23102C4650 (                   0.89821007875 -> 
+                    0.8982100788) dependents before=40DF8F4000000000 after=40DF8F4000000000
+X26 TRAIN CHANGED id0=9349 VAR1=9349 income before=3FE236AC312C8DF5 after=3FE236AC31320D55 (                   0.56917390446 -> 
+                    0.5691739045) dependents before=40F13E9000000000 after=40F13E9000000000
+X26 TRAIN CHANGED id0=9350 VAR1=9350 income before=3FDA9FA1F4B34DFC after=3FDA9FA1F4AB0EEC (                   0.41599320313 -> 
+                    0.4159932031) dependents before=40E3A7C000000000 after=40E3A7C000000000
+X26 TRAIN CHANGED id0=9351 VAR1=9351 income before=3FEE4F64E838C353 after=3FEE4F64E83FA28B (                   0.94719167095 -> 
+                     0.947191671) dependents before=40E9E3C000000000 after=40E9E3C000000000
+X26 TRAIN CHANGED id0=9352 VAR1=9352 income before=3FE2483C466D4FCC after=3FE2483C466BEFF4 (                   0.57131780391 -> 
+                    0.5713178039) dependents before=40F66AA000000000 after=40F66AA000000000
+X26 TRAIN CHANGED id0=9353 VAR1=9353 income before=3FA268755BB709E7 after=3FA268755BE304E6 (                   0.03595320458 -> 
+                    0.0359532046) dependents before=40D8E3C000000000 after=40D8E3C000000000
+X26 TRAIN CHANGED id0=9354 VAR1=9354 income before=3FE245AA4BAABAB5 after=3FE245AA4BA7FB05 (                   0.57100405482 -> 
+                    0.5710040548) dependents before=40F869F000000000 after=40F869F000000000
+X26 TRAIN CHANGED id0=9355 VAR1=9355 income before=3FEE611DFC2DD02A after=3FEE611DFC2C7052 (                   0.94935511831 -> 
+                    0.9493551183) dependents before=40C3880000000000 after=40C3880000000000
+X26 TRAIN CHANGED id0=9356 VAR1=9356 income before=3FCCD09D006ECC4F after=3FCCD09D00694CEF (                   0.22511637231 -> 
+                    0.2251163723) dependents before=41292CA200000000 after=41292CA200000000
+X26 TRAIN CHANGED id0=9357 VAR1=9357 income before=3FE2B9D640AE0BE8 after=3FE2B9D640A88C88 (                   0.58518517144 -> 
+                    0.5851851714) dependents before=4114B8E400000000 after=4114B8E400000000
+X26 TRAIN CHANGED id0=9358 VAR1=9358 income before=3FEAC7B19B8B91BA after=3FEAC7B19B8CF192 (                   0.83687668209 -> 
+                    0.8368766821) dependents before=41212B3C00000000 after=41212B3C00000000
+X26 TRAIN CHANGED id0=9359 VAR1=9359 income before=3FE391A38FC79FC6 after=3FE391A38FCA5F76 (                   0.61152818758 -> 
+                    0.6115281876) dependents before=4116908800000000 after=4116908800000000
+X26 TRAIN CHANGED id0=9360 VAR1=9360 income before=3F85273F3FCC14E1 after=3F85273F40240AE1 (                   0.01032876409 -> 
+                    0.0103287641) dependents before=4121727A00000000 after=4121727A00000000
+X26 TRAIN CHANGED id0=9361 VAR1=9361 income before=3FEBE9B3EE16E6FD after=3FEBE9B3EE11679D (                   0.87227818014 -> 
+                    0.8722781801) dependents before=411C30F000000000 after=411C30F000000000
+X26 TRAIN CHANGED id0=9362 VAR1=9362 income before=3FDCD7312BC8630C after=3FDCD7312BCDE26C (                   0.45063428188 -> 
+                    0.4506342819) dependents before=4129E76200000000 after=4129E76200000000
+X26 TRAIN CHANGED id0=9363 VAR1=9363 income before=3FDC7C189EF4ADAB after=3FDC7C189EFFAC6A (                   0.44507422946 -> 
+                    0.4450742295) dependents before=412C069200000000 after=412C069200000000
+X26 TRAIN CHANGED id0=9364 VAR1=9364 income before=3FC87CF241EFF02E after=3FC87CF241D9F2AE (                   0.19131305904 -> 
+                     0.191313059) dependents before=40FBFB8000000000 after=40FBFB8000000000
+X26 TRAIN CHANGED id0=9365 VAR1=9365 income before=3FEDE4600EE4F170 after=3FEDE4600EEA70D0 (                   0.93412783536 -> 
+                    0.9341278354) dependents before=410A3A8000000000 after=410A3A8000000000
+X26 TRAIN CHANGED id0=9366 VAR1=9366 income before=3FCF39E601917989 after=3FCF39E601867AC9 (                   0.24395442082 -> 
+                    0.2439544208) dependents before=411E6CD800000000 after=411E6CD800000000
+X26 TRAIN CHANGED id0=9367 VAR1=9367 income before=3FE145E46C0C55EC after=3FE145E46C0DB5C4 (                   0.53978177169 -> 
+                    0.5397817717) dependents before=4125246A00000000 after=4125246A00000000
+X26 TRAIN CHANGED id0=9368 VAR1=9368 income before=3FE1D431E7221D6A after=3FE1D431E7237D42 (                   0.55715270179 -> 
+                    0.5571527018) dependents before=4102884800000000 after=4102884800000000
+X26 TRAIN CHANGED id0=9369 VAR1=9369 income before=3FE95B813ABE720A after=3FE95B813AC55142 (                   0.79242001985 -> 
+                    0.7924200199) dependents before=410C4E3000000000 after=410C4E3000000000
+X26 TRAIN CHANGED id0=9370 VAR1=9370 income before=3FCE7356CEE1AC85 after=3FCE7356CED6ADC5 (                   0.23789486982 -> 
+                    0.2378948698) dependents before=411C88E400000000 after=411C88E400000000
+X26 TRAIN CHANGED id0=9371 VAR1=9371 income before=3FB90D47427F168F after=3FB90D4742A012CE (                   0.09785886167 -> 
+                    0.0978588617) dependents before=4126F28400000000 after=4126F28400000000
+X26 TRAIN CHANGED id0=9372 VAR1=9372 income before=3FD3E80D3A13B9D4 after=3FD3E80D3A193934 (                   0.31103830978 -> 
+                    0.3110383098) dependents before=41012D1800000000 after=41012D1800000000
+X26 TRAIN CHANGED id0=9373 VAR1=9373 income before=3FE1368CBC97F28F after=3FE1368CBC9D71EF (                   0.53790890536 -> 
+                    0.5379089054) dependents before=4118E05400000000 after=4118E05400000000
+X26 TRAIN CHANGED id0=9374 VAR1=9374 income before=3FEEB2FE55E88B35 after=3FEEB2FE55EB4AE5 (                   0.95934979228 -> 
+                    0.9593497923) dependents before=411E9CAC00000000 after=411E9CAC00000000
+X26 TRAIN CHANGED id0=9375 VAR1=9375 income before=3FEFDD1136B4741D after=3FEFDD1136B5D3F5 (                   0.99573574719 -> 
+                    0.9957357472) dependents before=4123F73000000000 after=4123F73000000000
+X26 TRAIN CHANGED id0=9376 VAR1=9376 income before=3FE2A0E6928E9506 after=3FE2A0E6928A757E (                   0.58214119553 -> 
+                    0.5821411955) dependents before=412CA14200000000 after=412CA14200000000
+X26 TRAIN CHANGED id0=9377 VAR1=9377 income before=3FED361A925854D1 after=3FED361A92543549 (                   0.91285446723 -> 
+                    0.9128544672) dependents before=4121A2B200000000 after=4121A2B200000000
+X26 TRAIN CHANGED id0=9378 VAR1=9378 income before=3FAA3B93A0E67CE8 after=3FAA3B93A1547067 (                   0.05123578395 -> 
+                     0.051235784) dependents before=4106527000000000 after=4106527000000000
+X26 TRAIN CHANGED id0=9379 VAR1=9379 income before=3FD587F88F659194 after=3FD587F88F735004 (                   0.33642400745 -> 
+                    0.3364240075) dependents before=412406A200000000 after=412406A200000000
+X26 TRAIN CHANGED id0=9380 VAR1=9380 income before=3FE9C3D782C31C55 after=3FE9C3D782C47C2D (                   0.80515647449 -> 
+                    0.8051564745) dependents before=412D1C8C00000000 after=412D1C8C00000000
+X26 TRAIN CHANGED id0=9381 VAR1=9381 income before=3FD1A1EBF6FD85A4 after=3FD1A1EBF70B4414 (                   0.27550791855 -> 
+                    0.2755079186) dependents before=41287C3A00000000 after=41287C3A00000000
+X26 TRAIN CHANGED id0=9382 VAR1=9382 income before=3FEFDDC314A0A1A5 after=3FEFDDC3149C821D (                   0.99582056073 -> 
+                    0.9958205607) dependents before=412209CC00000000 after=412209CC00000000
+X26 TRAIN CHANGED id0=9383 VAR1=9383 income before=3FC8EB1C9AA43361 after=3FC8EB1C9A93B541 (                   0.19467504073 -> 
+                    0.1946750407) dependents before=4117F2D800000000 after=4117F2D800000000
+X26 TRAIN CHANGED id0=9384 VAR1=9384 income before=3FC4904D0647DF94 after=3FC4904D064D5EF4 (                   0.16065371329 -> 
+                    0.1606537133) dependents before=412323BA00000000 after=412323BA00000000
+X26 TRAIN CHANGED id0=9385 VAR1=9385 income before=3FD5E5CC4B081643 after=3FD5E5CC4B15D4B3 (                   0.34215075805 -> 
+                    0.3421507581) dependents before=41196A5800000000 after=41196A5800000000
+X26 TRAIN CHANGED id0=9386 VAR1=9386 income before=3FD194AF7D787D1D after=3FD194AF7D703E0D (                   0.27470004323 -> 
+                    0.2747000432) dependents before=410CF8B000000000 after=410CF8B000000000
+X26 TRAIN CHANGED id0=9387 VAR1=9387 income before=3FB00C5162B84CDE after=3FB00C516297509E (                   0.06268795643 -> 
+                    0.0626879564) dependents before=4115A34800000000 after=4115A34800000000
+X26 TRAIN CHANGED id0=9388 VAR1=9388 income before=3FD77D4536672E86 after=3FD77D45366CADE6 (                   0.36702089608 -> 
+                    0.3670208961) dependents before=4113868800000000 after=4113868800000000
+X26 TRAIN CHANGED id0=9389 VAR1=9389 income before=3FD77AB1E72770CF after=3FD77AB1E71F31BF (                   0.36686370443 -> 
+                    0.3668637044) dependents before=41255B8A00000000 after=41255B8A00000000
+X26 TRAIN CHANGED id0=9390 VAR1=9390 income before=3FCA208C75356086 after=3FCA208C75405F46 (                   0.20411830638 -> 
+                    0.2041183064) dependents before=41119DEC00000000 after=41119DEC00000000
+X26 TRAIN CHANGED id0=9391 VAR1=9391 income before=3FEBB03572E6C4F6 after=3FEBB03572E824CE (                   0.86525986139 -> 
+                    0.8652598614) dependents before=412E704000000000 after=412E704000000000
+X26 TRAIN CHANGED id0=9392 VAR1=9392 income before=3FDC40416263B5FD after=3FDC40416258B73D (                   0.44142183884 -> 
+                    0.4414218388) dependents before=41105FA800000000 after=41105FA800000000
+X26 TRAIN CHANGED id0=9393 VAR1=9393 income before=3FEF1E67427AC00D after=3FEF1E674276A085 (                   0.97246134743 -> 
+                    0.9724613474) dependents before=4129282A00000000 after=4129282A00000000
+X26 TRAIN CHANGED id0=9394 VAR1=9394 income before=3FE9BEA18DAD1CF1 after=3FE9BEA18DB3FC29 (                   0.80452039405 -> 
+                    0.8045203941) dependents before=4124152600000000 after=4124152600000000
+X26 TRAIN CHANGED id0=9395 VAR1=9395 income before=3FE67B33C1B4FEED after=3FE67B33C1AF7F8D (                   0.70253932794 -> 
+                    0.7025393279) dependents before=4119239C00000000 after=4119239C00000000
+X26 TRAIN CHANGED id0=9396 VAR1=9396 income before=3FEFFA1AFBDB3577 after=3FEFFA1AFBD9D59F (                   0.99928044501 -> 
+                     0.999280445) dependents before=412A240200000000 after=412A240200000000
+X26 TRAIN CHANGED id0=9397 VAR1=9397 income before=3FEEFD5B5025B9D0 after=3FEEFD5B50219A48 (                   0.96842733053 -> 
+                    0.9684273305) dependents before=4113056400000000 after=4113056400000000
+X26 TRAIN CHANGED id0=9398 VAR1=9398 income before=3FB2AD815E129DA5 after=3FB2AD815E079EE5 (                   0.07295998141 -> 
+                    0.0729599814) dependents before=4103F28800000000 after=4103F28800000000
+X26 TRAIN CHANGED id0=9399 VAR1=9399 income before=3FCA3F3AA49A6A56 after=3FCA3F3AA494EAF6 (                   0.20505459821 -> 
+                    0.2050545982) dependents before=4111571C00000000 after=4111571C00000000
+X26 TRAIN CHANGED id0=9400 VAR1=9400 income before=3FEBCA2DD58C1D34 after=3FEBCA2DD5919C94 (                   0.86843005856 -> 
+                    0.8684300586) dependents before=4122802600000000 after=4122802600000000
+X26 TRAIN CHANGED id0=9401 VAR1=9401 income before=3FDE218ECBD856A9 after=3FDE218ECBCD57E9 (                   0.47079820544 -> 
+                    0.4707982054) dependents before=4127A9F000000000 after=4127A9F000000000
+X26 TRAIN CHANGED id0=9402 VAR1=9402 income before=3FE195D56C788D26 after=3FE195D56C75CD76 (                   0.54954024492 -> 
+                    0.5495402449) dependents before=412DDF8C00000000 after=412DDF8C00000000
+X26 TRAIN CHANGED id0=9403 VAR1=9403 income before=3FEE583A7CC579D0 after=3FEE583A7CCAF92F (                   0.94827007646 -> 
+                    0.9482700765) dependents before=4126E62800000000 after=4126E62800000000
+X26 TRAIN CHANGED id0=9404 VAR1=9404 income before=3FE95B938B3F932E after=3FE95B938B43B2B6 (                   0.79242875287 -> 
+                    0.7924287529) dependents before=412B568800000000 after=412B568800000000
+X26 TRAIN CHANGED id0=9405 VAR1=9405 income before=3FEA7CF03DF09C7A after=3FEA7CF03DEB1D1A (                   0.82775127504 -> 
+                     0.827751275) dependents before=4129BDCA00000000 after=4129BDCA00000000
+X26 TRAIN CHANGED id0=9406 VAR1=9406 income before=3FD942BC4BBC6942 after=3FD942BC4BB16A82 (                   0.39469821354 -> 
+                    0.3946982135) dependents before=411362D400000000 after=411362D400000000
+X26 TRAIN CHANGED id0=9407 VAR1=9407 income before=3FE465B31ED3384C after=3FE465B31ECF18C5 (                   0.63741451283 -> 
+                    0.6374145128) dependents before=412BF35C00000000 after=412BF35C00000000
+X26 TRAIN CHANGED id0=9408 VAR1=9408 income before=3FEEF56CC4C97B0D after=3FEEF56CC4C6BB5D (                   0.96745909152 -> 
+                    0.9674590915) dependents before=41030FB000000000 after=41030FB000000000
+X26 TRAIN CHANGED id0=9409 VAR1=9409 income before=3FDA1C7494699373 after=3FDA1C74947751E3 (                   0.40798677915 -> 
+                    0.4079867792) dependents before=411DA2C000000000 after=411DA2C000000000
+X26 TRAIN CHANGED id0=9410 VAR1=9410 income before=3FC3D85CBA6C8037 after=3FC3D85CBA5682B8 (                   0.15504035094 -> 
+                    0.1550403509) dependents before=412494B600000000 after=412494B600000000
+X26 TRAIN CHANGED id0=9411 VAR1=9411 income before=3FCB3897236AB9C2 after=3FCB3897237B37E2 (                   0.21266450147 -> 
+                    0.2126645015) dependents before=410720E800000000 after=410720E800000000
+X26 TRAIN CHANGED id0=9412 VAR1=9412 income before=3FAFAD87B7EEBE14 after=3FAFAD87B81AB914 (                   0.06187080498 -> 
+                     0.061870805) dependents before=412C3D2A00000000 after=412C3D2A00000000
+X26 TRAIN CHANGED id0=9413 VAR1=9413 income before=3FD03A830433C5C5 after=3FD03A8304310615 (                   0.25357127581 -> 
+                    0.2535712758) dependents before=412A9F0200000000 after=412A9F0200000000
+X26 TRAIN CHANGED id0=9414 VAR1=9414 income before=3FCF33EBEFCB2722 after=3FCF33EBEFBAA902 (                   0.24377202233 -> 
+                    0.2437720223) dependents before=4115604C00000000 after=4115604C00000000
+X26 TRAIN CHANGED id0=9415 VAR1=9415 income before=3FEB9E0DDD87B3D5 after=3FEB9E0DDD8913AD (                   0.86304372089 -> 
+                    0.8630437209) dependents before=41023A1800000000 after=41023A1800000000
+X26 TRAIN CHANGED id0=9416 VAR1=9416 income before=3FE91DE578177B60 after=3FE91DE5781CFAC0 (                   0.78489945846 -> 
+                    0.7848994585) dependents before=412E847E00000000 after=412E847E00000000
+X26 TRAIN CHANGED id0=9417 VAR1=9417 income before=3FDF90C51AF62953 after=3FDF90C51AFE6863 (                   0.49321105607 -> 
+                    0.4932110561) dependents before=40F86A0000000000 after=40F86A0000000000
+X26 TRAIN CHANGED id0=9418 VAR1=9418 income before=3FE851B56035511B after=3FE851B5602FD1BB (                   0.75997418204 -> 
+                     0.759974182) dependents before=412FA47600000000 after=412FA47600000000
+X26 TRAIN CHANGED id0=9419 VAR1=9419 income before=3FDDA2B36774FE0A after=3FDDA2B36777BDBA (                   0.46305546859 -> 
+                    0.4630554686) dependents before=4155CEB880000000 after=4155CEB880000000
+X26 TRAIN CHANGED id0=9420 VAR1=9420 income before=3FC91F1C6E65DB46 after=3FC91F1C6E6B5AA6 (                   0.19626193419 -> 
+                    0.1962619342) dependents before=4161242A60000000 after=4161242A60000000
+X26 TRAIN CHANGED id0=9421 VAR1=9421 income before=3FDCAE7EF3737D42 after=3FDCAE7EF37E7C02 (                   0.44815038466 -> 
+                    0.4481503847) dependents before=415A800F40000000 after=415A800F40000000
+X26 TRAIN CHANGED id0=9422 VAR1=9422 income before=3FE825F1B60700DA after=3FE825F1B60B2062 (                   0.75463185837 -> 
+                    0.7546318584) dependents before=4149574800000000 after=4149574800000000
+X26 TRAIN CHANGED id0=9423 VAR1=9423 income before=3FEDC3C1F042D037 after=3FEDC3C1F03EB0AF (                   0.93014618803 -> 
+                     0.930146188) dependents before=41552EE100000000 after=41552EE100000000
+X26 TRAIN CHANGED id0=9424 VAR1=9424 income before=3FEDC9BF9CF870AD after=3FEDC9BF9CF9D085 (                   0.93087750109 -> 
+                    0.9308775011) dependents before=415BB447C0000000 after=415BB447C0000000
+X26 TRAIN CHANGED id0=9425 VAR1=9425 income before=3FC39C14E4453BD8 after=3FC39C14E455B9F8 (                   0.15320073267 -> 
+                    0.1532007327) dependents before=415AF4B780000000 after=415AF4B780000000
+X26 TRAIN CHANGED id0=9426 VAR1=9426 income before=3FE157E2A0D53D56 after=3FE157E2A0DABCB6 (                   0.54197818196 -> 
+                     0.541978182) dependents before=416250EE80000000 after=416250EE80000000
+X26 TRAIN CHANGED id0=9427 VAR1=9427 income before=3FDADC0E1386A00E after=3FDADC0E138120AE (                   0.41968109042 -> 
+                    0.4196810904) dependents before=4147A8A980000000 after=4147A8A980000000
+X26 TRAIN CHANGED id0=9428 VAR1=9428 income before=3FC0EACCEE8766FA after=3FC0EACCEEA2E3DA (                   0.13216554305 -> 
+                    0.1321655431) dependents before=4156B6BCC0000000 after=4156B6BCC0000000
+X26 TRAIN CHANGED id0=9429 VAR1=9429 income before=3FDA1AE2800ACFD9 after=3FDA1AE280081029 (                   0.40789091591 -> 
+                    0.4078909159) dependents before=4140448500000000 after=4140448500000000
+X26 TRAIN CHANGED id0=9430 VAR1=9430 income before=3FD28FE3C95346AA after=3FD28FE3C95E456A (                   0.29003233586 -> 
+                    0.2900323359) dependents before=4146DE1F80000000 after=4146DE1F80000000
+X26 TRAIN CHANGED id0=9431 VAR1=9431 income before=3FD5180027E67689 after=3FD5180027E3B6D9 (                   0.32958988091 -> 
+                    0.3295898809) dependents before=413FA87400000000 after=413FA87400000000
+X26 TRAIN CHANGED id0=9432 VAR1=9432 income before=3FEDF1DCEF11EFB9 after=3FEDF1DCEF134F91 (                   0.93577429479 -> 
+                    0.9357742948) dependents before=415C711240000000 after=415C711240000000
+X26 TRAIN CHANGED id0=9433 VAR1=9433 income before=3FE7A1F9D2300D60 after=3FE7A1F9D2342CE8 (                   0.73852244427 -> 
+                    0.7385224443) dependents before=413E1F0D00000000 after=413E1F0D00000000
+X26 TRAIN CHANGED id0=9434 VAR1=9434 income before=3FEE59ECEFC13C4B after=3FEE59ECEFC6BBAA (                   0.94847723796 -> 
+                     0.948477238) dependents before=4161445520000000 after=4161445520000000
+X26 TRAIN CHANGED id0=9435 VAR1=9435 income before=3FBF9F2115E2DFF1 after=3FBF9F2115D7E131 (                   0.12352186951 -> 
+                    0.1235218695) dependents before=41447BDA00000000 after=41447BDA00000000
+X26 TRAIN CHANGED id0=9436 VAR1=9436 income before=3FE1EF6CE95183A6 after=3FE1EF6CE952E37E (                   0.56047673769 -> 
+                    0.5604767377) dependents before=4155616180000000 after=4155616180000000
+X26 TRAIN CHANGED id0=9437 VAR1=9437 income before=3FD985D50A80B0EE after=3FD985D50A7B318E (                   0.39879346872 -> 
+                    0.3987934687) dependents before=4141FDE880000000 after=4141FDE880000000
+X26 TRAIN CHANGED id0=9438 VAR1=9438 income before=3FE7F843EB4B6CD8 after=3FE7F843EB50EC38 (                   0.74905582386 -> 
+                    0.7490558239) dependents before=414E790800000000 after=414E790800000000
+X26 TRAIN CHANGED id0=9439 VAR1=9439 income before=3FD68F4C6A774F3A after=3FD68F4C6A748F8A (                   0.35249624631 -> 
+                    0.3524962463) dependents before=4144D46580000000 after=4144D46580000000
+X26 TRAIN CHANGED id0=9440 VAR1=9440 income before=3FEBBB3431B2C2F2 after=3FEBBB3431AD4392 (                   0.86660203654 -> 
+                    0.8666020365) dependents before=4158C0D780000000 after=4158C0D780000000
+X26 TRAIN CHANGED id0=9441 VAR1=9441 income before=3F8F4FA676F0CEEA after=3F8F4FA678A89CE8 (                   0.01528863955 -> 
+                    0.0152886396) dependents before=413D813300000000 after=413D813300000000
+X26 TRAIN CHANGED id0=9442 VAR1=9442 income before=3FD39DEEE47FEBFB after=3FD39DEEE48AEABB (                   0.30651447596 -> 
+                     0.306514476) dependents before=41553D1D40000000 after=41553D1D40000000
+X26 TRAIN CHANGED id0=9443 VAR1=9443 income before=3FEE3D7C484084AC after=3FEE3D7C484763E4 (                   0.94500555145 -> 
+                    0.9450055515) dependents before=4158029A00000000 after=4158029A00000000
+X26 TRAIN CHANGED id0=9444 VAR1=9444 income before=3FDA43CBEDA96431 after=3FDA43CBEDAEE391 (                   0.41038797578 -> 
+                    0.4103879758) dependents before=4150208240000000 after=4150208240000000
+X26 TRAIN CHANGED id0=9445 VAR1=9445 income before=3FC80D7749FFFDA3 after=3FC80D774A0AFC63 (                   0.18791094888 -> 
+                    0.1879109489) dependents before=413B1A5B00000000 after=413B1A5B00000000
+X26 TRAIN CHANGED id0=9446 VAR1=9446 income before=3FD0ADB6CF4873D5 after=3FD0ADB6CF537295 (                   0.26060266726 -> 
+                    0.2606026673) dependents before=415EDEF0C0000000 after=415EDEF0C0000000
+X26 TRAIN CHANGED id0=9447 VAR1=9447 income before=3FD93B9EC7BB9EDD after=3FD93B9EC7C3DDED (                   0.39426393037 -> 
+                    0.3942639304) dependents before=4158E63440000000 after=4158E63440000000
+X26 TRAIN CHANGED id0=9448 VAR1=9448 income before=3FDEE05CEC5FD232 after=3FDEE05CEC6D90A2 (                   0.48244402965 -> 
+                    0.4824440297) dependents before=4144358000000000 after=4144358000000000
+X26 TRAIN CHANGED id0=9449 VAR1=9449 income before=3FED8A4A319C1636 after=3FED8A4A319ED5E6 (                   0.92313108148 -> 
+                    0.9231310815) dependents before=4136A5BE00000000 after=4136A5BE00000000
+X26 TRAIN CHANGED id0=9450 VAR1=9450 income before=3FDD2BAFD1982456 after=3FDD2BAFD1A06366 (                   0.45579143017 -> 
+                    0.4557914302) dependents before=412FEFA000000000 after=412FEFA000000000
+X26 TRAIN CHANGED id0=9451 VAR1=9451 income before=3FE4DF9518A3E366 after=3FE4DF9518A123B6 (                   0.65229277432 -> 
+                    0.6522927743) dependents before=41611CD5E0000000 after=41611CD5E0000000
+X26 TRAIN CHANGED id0=9452 VAR1=9452 income before=3FEEA37812D9F700 after=3FEEA37812D89728 (                   0.95745471651 -> 
+                    0.9574547165) dependents before=414F876900000000 after=414F876900000000
+X26 TRAIN CHANGED id0=9453 VAR1=9453 income before=3FED3D95504CDF2D after=3FED3D955050FEB5 (                   0.91376748737 -> 
+                    0.9137674874) dependents before=4155F63800000000 after=4155F63800000000
+X26 TRAIN CHANGED id0=9454 VAR1=9454 income before=3FB92375C4D5EDEB after=3FB92375C4E0ECAB (                   0.09819732719 -> 
+                    0.0981973272) dependents before=415EEE8A80000000 after=415EEE8A80000000
+X26 TRAIN CHANGED id0=9455 VAR1=9455 income before=3FB66472DB72B798 after=3FB66472DB51BB58 (                   0.08747022493 -> 
+                    0.0874702249) dependents before=4154AA0F00000000 after=4154AA0F00000000
+X26 TRAIN CHANGED id0=9456 VAR1=9456 income before=3FE80482F7DE1CD2 after=3FE80482F7E23C5A (                   0.75055073177 -> 
+                    0.7505507318) dependents before=415F61F600000000 after=415F61F600000000
+X26 TRAIN CHANGED id0=9457 VAR1=9457 income before=3FEEFCE5538C5B21 after=3FEEFCE5538F1AD1 (                   0.96837107008 -> 
+                    0.9683710701) dependents before=41410F1800000000 after=41410F1800000000
+X26 TRAIN CHANGED id0=9458 VAR1=9458 income before=3FEECA84E640D5A0 after=3FEECA84E63F75C8 (                   0.96222157451 -> 
+                    0.9622215745) dependents before=4156A7DEC0000000 after=4156A7DEC0000000
+X26 TRAIN CHANGED id0=9459 VAR1=9459 income before=3FE6B7811D07330B after=3FE6B7811D0E1243 (                   0.70990043325 -> 
+                    0.7099004333) dependents before=4157DBFCC0000000 after=4157DBFCC0000000
+X26 TRAIN CHANGED id0=9460 VAR1=9460 income before=3FE88EF48F226118 after=3FE88EF48F294050 (                   0.76745059925 -> 
+                    0.7674505993) dependents before=4160F40900000000 after=4160F40900000000
+X26 TRAIN CHANGED id0=9461 VAR1=9461 income before=3FE7FD10C641DD61 after=3FE7FD10C63C5E01 (                   0.74964178774 -> 
+                    0.7496417877) dependents before=4161FCB5C0000000 after=4161FCB5C0000000
+X26 TRAIN CHANGED id0=9462 VAR1=9462 income before=3FCECD996B92F561 after=3FCECD996B827742 (                   0.24064939263 -> 
+                    0.2406493926) dependents before=415A755BC0000000 after=415A755BC0000000
+X26 TRAIN CHANGED id0=9463 VAR1=9463 income before=3FEA39E9883DD564 after=3FEA39E988385604 (                   0.81956936464 -> 
+                    0.8195693646) dependents before=4155FCC740000000 after=4155FCC740000000
+X26 TRAIN CHANGED id0=9464 VAR1=9464 income before=3FE0366C6FF72825 after=3FE0366C6FF1A8C5 (                   0.50664350384 -> 
+                    0.5066435038) dependents before=41508E6BC0000000 after=41508E6BC0000000
+X26 TRAIN CHANGED id0=9465 VAR1=9465 income before=3FBBD13DD1A60732 after=3FBBD13DD19B0872 (                   0.10866152161 -> 
+                    0.1086615216) dependents before=41542BCE00000000 after=41542BCE00000000
+X26 TRAIN CHANGED id0=9466 VAR1=9466 income before=3FD53ACA8FD52374 after=3FD53ACA8FDD6284 (                   0.33171333357 -> 
+                    0.3317133336) dependents before=4149833380000000 after=4149833380000000
+X26 TRAIN CHANGED id0=9467 VAR1=9467 income before=3FDCC71F3BBE49E3 after=3FDCC71F3BBB8A33 (                   0.44965344271 -> 
+                    0.4496534427) dependents before=415D28A5C0000000 after=415D28A5C0000000
+X26 TRAIN CHANGED id0=9468 VAR1=9468 income before=3FE44A3AB6615CDC after=3FE44A3AB662BCB4 (                   0.63406119939 -> 
+                    0.6340611994) dependents before=415259BC80000000 after=415259BC80000000
+X26 TRAIN CHANGED id0=9469 VAR1=9469 income before=3FD7C3DD4A7DBA86 after=3FD7C3DD4A8B78F6 (                   0.37132961535 -> 
+                    0.3713296154) dependents before=41617255C0000000 after=41617255C0000000
+X26 TRAIN CHANGED id0=9470 VAR1=9470 income before=3FEAEF49C51F742F after=3FEAEF49C52393B7 (                   0.84170998097 -> 
+                     0.841709981) dependents before=415E0F2480000000 after=415E0F2480000000
+X26 TRAIN CHANGED id0=9471 VAR1=9471 income before=3FD771D6CF6C50C1 after=3FD771D6CF699112 (                   0.36632318741 -> 
+                    0.3663231874) dependents before=4154861A00000000 after=4154861A00000000
+X26 TRAIN CHANGED id0=9472 VAR1=9472 income before=3FEC39AC8F397438 after=3FEC39AC8F3C33E8 (                   0.88204029058 -> 
+                    0.8820402906) dependents before=4140A17900000000 after=4140A17900000000
+X26 TRAIN CHANGED id0=9473 VAR1=9473 income before=3FE3F0894596BE9A after=3FE3F08945955EC2 (                   0.62311233131 -> 
+                    0.6231123313) dependents before=415F8A5A80000000 after=415F8A5A80000000
+X26 TRAIN CHANGED id0=9474 VAR1=9474 income before=3FED8DA7AF65978C after=3FED8DA7AF69B714 (                   0.92354187257 -> 
+                    0.9235418726) dependents before=4135C6AD00000000 after=4135C6AD00000000
+X26 TRAIN CHANGED id0=9475 VAR1=9475 income before=3FDE60FE3D318AA4 after=3FDE60FE3D2ECAF4 (                   0.47466999031 -> 
+                    0.4746699903) dependents before=4133CE7000000000 after=4133CE7000000000
+X26 TRAIN CHANGED id0=9476 VAR1=9476 income before=3FE229748365CABD after=3FE229748369EA45 (                   0.56756044067 -> 
+                    0.5675604407) dependents before=4157D11F00000000 after=4157D11F00000000
+X26 TRAIN CHANGED id0=9477 VAR1=9477 income before=3FE939A037050B6B after=3FE939A036FF8C0B (                   0.78828440424 -> 
+                    0.7882844042) dependents before=41376DD500000000 after=41376DD500000000
+X26 TRAIN CHANGED id0=9478 VAR1=9478 income before=3FAB461DC11010FE after=3FAB461DC16806FE (                   0.05326931936 -> 
+                    0.0532693194) dependents before=416312CFE0000000 after=416312CFE0000000
+X26 TRAIN CHANGED id0=9479 VAR1=9479 income before=3FCF045904F0D6F5 after=3FCF045904DAD976 (                   0.24232018224 -> 
+                    0.2423201822) dependents before=412E848000000000 after=412E848000000000
+X26 TRAIN CHANGED id0=9480 VAR1=9480 income before=3FAF9361789748B8 after=3FAF936178EF3EB8 (                   0.06167130086 -> 
+                    0.0616713009) dependents before=4196531AA4000000 after=4196531AA4000000
+X26 TRAIN CHANGED id0=9481 VAR1=9481 income before=3FC32E415B357703 after=3FC32E415B45F522 (                   0.14984909967 -> 
+                    0.1498490997) dependents before=418076F350000000 after=418076F350000000
+X26 TRAIN CHANGED id0=9482 VAR1=9482 income before=3FDDE90FB78FC521 after=3FDDE90FB784C661 (                   0.46734993864 -> 
+                    0.4673499386) dependents before=4170483220000000 after=4170483220000000
+X26 TRAIN CHANGED id0=9483 VAR1=9483 income before=3FE15A05867839D8 after=3FE15A05867AF988 (                   0.54223896278 -> 
+                    0.5422389628) dependents before=418921FE98000000 after=418921FE98000000
+X26 TRAIN CHANGED id0=9484 VAR1=9484 income before=3FD8BE9BD49D53CB after=3FD8BE9BD4A2D32B (                   0.38663383258 -> 
+                    0.3866338326) dependents before=4170305470000000 after=4170305470000000
+X26 TRAIN CHANGED id0=9485 VAR1=9485 income before=3FDF86483CF623B5 after=3FDF86483D03E225 (                   0.49257093385 -> 
+                    0.4925709339) dependents before=418C4B5708000000 after=418C4B5708000000
+X26 TRAIN CHANGED id0=9486 VAR1=9486 income before=3FD08BFC889C8738 after=3FD08BFC88944828 (                   0.25854409543 -> 
+                    0.2585440954) dependents before=4192A91EC4000000 after=4192A91EC4000000
+X26 TRAIN CHANGED id0=9487 VAR1=9487 income before=3FE68380F69951B1 after=3FE68380F6969201 (                   0.70355270542 -> 
+                    0.7035527054) dependents before=416D40B900000000 after=416D40B900000000
+X26 TRAIN CHANGED id0=9488 VAR1=9488 income before=3FE5897E2F35C5B0 after=3FE5897E2F31A628 (                   0.67303380223 -> 
+                    0.6730338022) dependents before=41741A88B0000000 after=41741A88B0000000
+X26 TRAIN CHANGED id0=9489 VAR1=9489 income before=3FEFD6328AE46E83 after=3FEFD6328ADEEF23 (                   0.99489714744 -> 
+                    0.9948971474) dependents before=418B2174E0000000 after=418B2174E0000000
+X26 TRAIN CHANGED id0=9490 VAR1=9490 income before=3FA799AC5E8D3D0C after=3FA799AC5ECF358B (                   0.04609430937 -> 
+                    0.0460943094) dependents before=4192865C68000000 after=4192865C68000000
+X26 TRAIN CHANGED id0=9491 VAR1=9491 income before=3FCDEE268C9FCBB9 after=3FCDEE268C8F4D99 (                   0.23383027903 -> 
+                     0.233830279) dependents before=41786742A0000000 after=41786742A0000000
+X26 TRAIN CHANGED id0=9492 VAR1=9492 income before=3FA3F65E617855A8 after=3FA3F65E614C5AA8 (                   0.03898901882 -> 
+                    0.0389890188) dependents before=4196AB07F8000000 after=4196AB07F8000000
+X26 TRAIN CHANGED id0=9493 VAR1=9493 income before=3FEC15CE40A82C53 after=3FEC15CE40AF0B8B (                   0.87766182545 -> 
+                    0.8776618255) dependents before=4170856B00000000 after=4170856B00000000
+X26 TRAIN CHANGED id0=9494 VAR1=9494 income before=3FDAA0DF189E165F after=3FDAA0DF18A6556F (                   0.41606881527 -> 
+                    0.4160688153) dependents before=4191043C0C000000 after=4191043C0C000000
+X26 TRAIN CHANGED id0=9495 VAR1=9495 income before=3FC9375495628E24 after=3FC93754954C90A4 (                   0.19700104994 -> 
+                    0.1970010499) dependents before=4181E79DC8000000 after=4181E79DC8000000
+X26 TRAIN CHANGED id0=9496 VAR1=9496 income before=3FD1F7DA5099FC90 after=3FD1F7DA50973CE0 (                   0.28075273391 -> 
+                    0.2807527339) dependents before=416ECF8C60000000 after=416ECF8C60000000
+X26 TRAIN CHANGED id0=9497 VAR1=9497 income before=3FE2A969CFB27160 after=3FE2A969CFB53110 (                   0.58318033758 -> 
+                    0.5831803376) dependents before=4191E2DF14000000 after=4191E2DF14000000
+X26 TRAIN CHANGED id0=9498 VAR1=9498 income before=3FEC41DA344E443B after=3FEC41DA3448C4DB (                   0.88303861824 -> 
+                    0.8830386182) dependents before=41901F029C000000 after=41901F029C000000
+X26 TRAIN CHANGED id0=9499 VAR1=9499 income before=3FDB4794BEE597C3 after=3FDB4794BEDD58B3 (                   0.42624395983 -> 
+                    0.4262439598) dependents before=418E813170000000 after=418E813170000000
+X26 TRAIN CHANGED id0=9500 VAR1=9500 income before=3FEF5E4C8651FC6A after=3FEF5E4C86535C42 (                   0.98026109919 -> 
+                    0.9802610992) dependents before=417A2CC850000000 after=417A2CC850000000
+X26 TRAIN CHANGED id0=9501 VAR1=9501 income before=3FEC7216D597BF29 after=3FEC7216D5991F01 (                   0.88892690389 -> 
+                    0.8889269039) dependents before=41942C2270000000 after=41942C2270000000
+X26 TRAIN CHANGED id0=9502 VAR1=9502 income before=3FDA96FA5D987B50 after=3FDA96FA5DA639C0 (                   0.41546496525 -> 
+                    0.4154649653) dependents before=41693EFEA0000000 after=41693EFEA0000000
+X26 TRAIN CHANGED id0=9503 VAR1=9503 income before=3FDECB32554CEE87 after=3FDECB32554FAE37 (                   0.48115213709 -> 
+                    0.4811521371) dependents before=4191F7E8A0000000 after=4191F7E8A0000000
+X26 TRAIN CHANGED id0=9504 VAR1=9504 income before=3FA8FD59000F2D0E after=3FA8FD58FFCD348F (                   0.04880788923 -> 
+                    0.0488078892) dependents before=417D305170000000 after=417D305170000000
+X26 TRAIN CHANGED id0=9505 VAR1=9505 income before=3FD4C840CC8440AD after=3FD4C840CC8180FD (                   0.32472248051 -> 
+                    0.3247224805) dependents before=417FECD530000000 after=417FECD530000000
+X26 TRAIN CHANGED id0=9506 VAR1=9506 income before=3FEE3D42ABF9240D after=3FEE3D42ABF3A4AD (                   0.94497808064 -> 
+                    0.9449780806) dependents before=41788ED620000000 after=41788ED620000000
+X26 TRAIN CHANGED id0=9507 VAR1=9507 income before=3FDFACE932896C31 after=3FDFACE93291AB41 (                   0.49492864547 -> 
+                    0.4949286455) dependents before=4197CC98A0000000 after=4197CC98A0000000
+X26 TRAIN CHANGED id0=9508 VAR1=9508 income before=3FEC35544084E486 after=3FEC3554408A63E6 (                   0.88150990106 -> 
+                    0.8815099011) dependents before=4187CC5040000000 after=4187CC5040000000
+X26 TRAIN CHANGED id0=9509 VAR1=9509 income before=3FE75B2BE637D7DE after=3FE75B2BE63EB716 (                   0.72987933125 -> 
+                    0.7298793313) dependents before=4180615150000000 after=4180615150000000
+X26 TRAIN CHANGED id0=9510 VAR1=9510 income before=3FCBD3A2BCA2F1FF after=3FCBD3A2BC9273DF (                   0.21739610873 -> 
+                    0.2173961087) dependents before=41948EF578000000 after=41948EF578000000
+X26 TRAIN CHANGED id0=9511 VAR1=9511 income before=3FDC61A78D8AB10B after=3FDC61A78D90306B (                   0.44346035788 -> 
+                    0.4434603579) dependents before=4180E8E5F0000000 after=4180E8E5F0000000
+X26 TRAIN CHANGED id0=9512 VAR1=9512 income before=3FA23EA14AB0DAD6 after=3FA23EA14A6EE257 (                   0.03563407933 -> 
+                    0.0356340793) dependents before=416BFA3BE0000000 after=416BFA3BE0000000
+1093       proc sql noprint;
+1094           select count(*), sum(inc_changed), sum(dep_changed), sum(id_differs),
+1095                  sum(missing(inc0)), sum(missing(dep0)), min(ti), max(ti), min(td), max(td)
+1096           into :n trimmed, :ni trimmed, :nd trimmed, :nid trimmed, :mi trimmed, :md trimmed,
+1097                :ti1 trimmed, :ti2 trimmed, :td1 trimmed, :td2 trimmed
+1098           from work.x26_TRAIN;
+1099       quit;
+1100       %put X26 TRAIN SUMMARY rows=&n income_changed=&ni dependents_changed=&nd id_differs=&nid income_missing=&mi
+1100     ! dependents_missing=&md income_type=&ti1.&ti2 dependents_type=&td1.&td2;
+X26 TRAIN SUMMARY rows=9512 income_changed=202 dependents_changed=0 id_differs=0 income_missing=3 dependents_missing=3 
+income_type=NN dependents_type=NN
+1101       data _null_;
+1102           set work.x26_TRAIN;
+1103           file
+1103     ! "/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out/x26_t
+1103     ! rain_hex.csv" lrecl=200;
+1104           if _n_ = 1 then put 'id,inc_raw,inc_clean,dep_raw,dep_clean';
+1105           put id0 +(-1) ',' inc0 hex16. ',' MonthlyIncome hex16. ',' dep0 hex16. ',' NumberOfDependents hex16.;
+1106       run;
+1107       
+1108       
+1109       
+1110       
+36                                                         The SAS System                          Monday, 16 November 2026 16:09:00
+
+1111       
+37                                                         The SAS System                          Monday, 16 November 2026 16:09:00
+
+1114       
+1115       /* ================= X26 SUBMISSION TEST_STATEMENTS (predict.sas, verbatim) ================= */
+1116       %let data_path =
+1116     ! /saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_test_data;
+1117       /* predict.sas, from `%let test_lines = 0;` to the `%import_test` call */
+1118       %let test_lines = 0;
+1119       %let header_copy = %sysfunc(pathname(work))/cs-test-header.csv;
+1120       
+1121       data _null_;
+1122           infile "&data_path/cs-test.csv" lrecl=32767 truncover obs=2 length=len;
+1123           file "&header_copy" lrecl=131068;
+1124           input;
+1125           if _n_ = 1 then do;
+1126               put _infile_;
+1127               do i = 1 to countc(_infile_, ',') + 1;
+1128                   if i > 1 then put ',' @;
+1129                   if upcase(compress(scan(_infile_, i, ',', 'm'), , 'kn')) in
+1130                      ('SERIOUSDLQIN2YRS', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS') then put 'NA' @;
+1131                   else put '1' @;
+1132               end;
+1133               if len > 0 then if char(_infile_, len) = '0D'x then put '0D'x @;
+1134               put;
+1135           end;
+1136           call symputx('test_lines', _n_);
+1137       run;
+1138       
+1139       /* Import test data. PROC IMPORT cannot read a file that has its header line and no
+1140          applicant: PROC IMPORT then reads the copy, so the columns are named as it names them,
+1141          and the made-up applicant is removed, which leaves an empty table. The tables an earlier
+1142          scoring left in the session are removed first: a step that fails finds no table to use */
+1143       %macro import_test;
+1144           %local source;
+1145           %let source = &data_path/cs-test.csv;
+1146           %if &test_lines = 1 %then %do;
+1147               %let source = &header_copy;
+1148               proc datasets library=work nolist nowarn;
+1149                   delete test_raw input_check test_raw_clean test_cleaned test_imputed
+1150                          test_features test_scored_temp test_scored test_predictions
+1151                          kaggle_submission test_predictions_full;
+1152               quit;
+1153           %end;
+1154           proc import datafile="&source"
+1155               out=work.test_raw
+1156               dbms=csv
+1157               replace;
+1158               getnames=yes;
+1159               guessingrows=max;
+1160           run;
+1161           %if &test_lines = 1 and %sysfunc(exist(work.test_raw)) %then %do;
+1162               data work.test_raw;
+1163                   set work.test_raw;
+1164                   stop;
+1165               run;
+1166           %end;
+1167       %mend;
+1168       %import_test
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+1169        /**********************************************************************
+1170        *   PRODUCT:   SAS
+1171        *   VERSION:   9.4
+1172        *   CREATOR:   External File Interface
+1173        *   DATE:      16NOV26
+1174        *   DESC:      Generated SAS Datastep Code
+1175        *   TEMPLATE SOURCE:  (None Specified.)
+1176        ***********************************************************************/
+1177           data WORK.TEST_RAW    ;
+1178           %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1179           infile
+1179     ! '/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_test_data/cs-te
+1179     ! st.csv' delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+1180              informat VAR1 best32. ;
+1181              informat SeriousDlqin2yrs $1. ;
+1182              informat RevolvingUtilizationOfUnsecuredL best32. ;
+1183              informat age best32. ;
+1184              informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+1185              informat DebtRatio best32. ;
+1186              informat MonthlyIncome best32. ;
+1187              informat NumberOfOpenCreditLinesAndLoans best32. ;
+1188              informat NumberOfTimes90DaysLate best32. ;
+1189              informat NumberRealEstateLoansOrLines best32. ;
+1190              informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+1191              informat NumberOfDependents best32. ;
+1192              format VAR1 best12. ;
+1193              format SeriousDlqin2yrs $1. ;
+1194              format RevolvingUtilizationOfUnsecuredL best12. ;
+1195              format age best12. ;
+1196              format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+1197              format DebtRatio best12. ;
+1198              format MonthlyIncome best12. ;
+1199              format NumberOfOpenCreditLinesAndLoans best12. ;
+1200              format NumberOfTimes90DaysLate best12. ;
+1201              format NumberRealEstateLoansOrLines best12. ;
+1202              format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+1203              format NumberOfDependents best12. ;
+1204           input
+1205                       VAR1
+1206                       SeriousDlqin2yrs  $
+1207                       RevolvingUtilizationOfUnsecuredL
+1208                       age
+1209                       "NumberOfTime30-59DaysPastDueNotW"N
+1210                       DebtRatio
+1211                       MonthlyIncome
+1212                       NumberOfOpenCreditLinesAndLoans
+1213                       NumberOfTimes90DaysLate
+1214                       NumberRealEstateLoansOrLines
+1215                       "NumberOfTime60-89DaysPastDueNotW"N
+1216                       NumberOfDependents
+1217           ;
+1218           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1219           run;
+9512 rows created in WORK.TEST_RAW from 
+/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_test_data/cs-test.csv.
+  
+  
+  
+1220       /* predict.sas, the step test_raw_clean */
+1221       data work.test_raw_clean;
+1222           set work.test_raw;
+1223       
+1224           /* Convert to numeric - input function handles character to numeric */
+1225           MonthlyIncome_num = input(MonthlyIncome, best32.);
+1226           NumberOfDependents_num = input(NumberOfDependents, best32.);
+1227       
+1228           /* Keep the numeric versions, drop character if they exist */
+1229           drop MonthlyIncome NumberOfDependents;
+1230           rename MonthlyIncome_num = MonthlyIncome
+1231                  NumberOfDependents_num = NumberOfDependents;
+1232       run;
+1233       
+1234       
+1235       
+1236       
+38                                                         The SAS System                          Monday, 16 November 2026 16:09:00
+
+1237       
+39                                                         The SAS System                          Monday, 16 November 2026 16:09:00
+
+1240       
+1241       /* ================= X26 SUBMISSION TEST_COMPARE ================= */
+1242       title "x26 TEST work.test_raw";
+1243       proc contents data=work.test_raw varnum; run;
+1244       data work.x26_TEST;
+1245           merge work.test_raw(keep=VAR1 MonthlyIncome NumberOfDependents
+1246                            rename=(VAR1=id0 MonthlyIncome=inc0 NumberOfDependents=dep0))
+1247                 work.test_raw_clean(keep=VAR1 MonthlyIncome NumberOfDependents);
+1248           length ti td $1;
+1249           ti = vtype(inc0); td = vtype(dep0);
+1250           inc_changed = not (inc0 = MonthlyIncome);
+1251           dep_changed = not (dep0 = NumberOfDependents);
+1252           id_differs = not (id0 = VAR1);
+1253           if inc_changed or dep_changed or id_differs then
+1254               put "X26 TEST CHANGED " id0= VAR1= "income before=" inc0 hex16. " after=" MonthlyIncome hex16.
+1255                   " (" inc0 best32. " -> " MonthlyIncome best32. ") dependents before=" dep0 hex16.
+1256                   " after=" NumberOfDependents hex16.;
+1257       run;
+X26 TEST CHANGED id0=9306 VAR1=9306 income before=42374876E7FFE666 after=42374876E8000000 (                   99999999999.9 -> 
+                    100000000000) dependents before=40D29B0000000000 after=40D29B0000000000
+X26 TEST CHANGED id0=9310 VAR1=9310 income before=4206FEE0E1AC0000 after=4206FEE0E1B00000 (                   12345678901.5 -> 
+                     12345678902) dependents before=40DB244000000000 after=40DB244000000000
+X26 TEST CHANGED id0=9313 VAR1=9313 income before=3FBFB4551363224F after=3FBFB4551337274F (                   0.12384540294 -> 
+                    0.1238454029) dependents before=40E9C6C000000000 after=40E9C6C000000000
+X26 TEST CHANGED id0=9314 VAR1=9314 income before=3FE8893561674A50 after=3FE889356165EA78 (                   0.76674908661 -> 
+                    0.7667490866) dependents before=40D98CC000000000 after=40D98CC000000000
+X26 TEST CHANGED id0=9315 VAR1=9315 income before=3FBD1D48E593EF69 after=3FBD1D48E5B4EBA9 (                   0.11372809987 -> 
+                    0.1137280999) dependents before=40EF78E000000000 after=40EF78E000000000
+X26 TEST CHANGED id0=9316 VAR1=9316 income before=3FE7A312079D62E7 after=3FE7A312079EC2BF (                   0.73865605819 -> 
+                    0.7386560582) dependents before=40D88A0000000000 after=40D88A0000000000
+X26 TEST CHANGED id0=9317 VAR1=9317 income before=3FEF77E5E6020BCC after=3FEF77E5E5FF4C1C (                   0.98338599132 -> 
+                    0.9833859913) dependents before=40C3A10000000000 after=40C3A10000000000
+X26 TEST CHANGED id0=9318 VAR1=9318 income before=3F97B2C41B21106A after=3F97B2C41AC91A6B (                   0.02314287582 -> 
+                    0.0231428758) dependents before=40F84F7000000000 after=40F84F7000000000
+X26 TEST CHANGED id0=9319 VAR1=9319 income before=3FC626CE68B4C685 after=3FC626CE689EC905 (                   0.17305927384 -> 
+                    0.1730592738) dependents before=40F774F000000000 after=40F774F000000000
+X26 TEST CHANGED id0=9320 VAR1=9320 income before=3FEC001E6BA11BEE after=3FEC001E6BA27BC6 (                   0.87501450559 -> 
+                    0.8750145056) dependents before=40F3D6B000000000 after=40F3D6B000000000
+X26 TEST CHANGED id0=9321 VAR1=9321 income before=3FE4657733A248B2 after=3FE4657733A7C812 (                   0.63738594136 -> 
+                    0.6373859414) dependents before=40D550C000000000 after=40D550C000000000
+X26 TEST CHANGED id0=9322 VAR1=9322 income before=3FE2854231CAC8A7 after=3FE2854231D04807 (                   0.57876691556 -> 
+                    0.5787669156) dependents before=40F79DF000000000 after=40F79DF000000000
+X26 TEST CHANGED id0=9323 VAR1=9323 income before=3FE52246C73283B4 after=3FE52246C7380314 (                   0.66043414026 -> 
+                    0.6604341403) dependents before=40E88F8000000000 after=40E88F8000000000
+X26 TEST CHANGED id0=9324 VAR1=9324 income before=3FA177FE8DE9D4F2 after=3FA177FE8E41CAF1 (                   0.03411860926 -> 
+                    0.0341186093) dependents before=40EEC3C000000000 after=40EEC3C000000000
+X26 TEST CHANGED id0=9325 VAR1=9325 income before=3FD00BE37ECD5FFA after=3FD00BE37EC520EA (                   0.25072562583 -> 
+                    0.2507256258) dependents before=40F2B71000000000 after=40F2B71000000000
+X26 TEST CHANGED id0=9326 VAR1=9326 income before=3FE5812FC56193DA after=3FE5812FC5603402 (                   0.67201984931 -> 
+                    0.6720198493) dependents before=40F1347000000000 after=40F1347000000000
+X26 TEST CHANGED id0=9327 VAR1=9327 income before=3FDCF1A87D67AACE after=3FDCF1A87D6FE9DE (                   0.45224964377 -> 
+                    0.4522496438) dependents before=40F3827000000000 after=40F3827000000000
+X26 TEST CHANGED id0=9328 VAR1=9328 income before=3FCE73000162EFA4 after=3FCE730001527184 (                   0.23788452213 -> 
+                    0.2378845221) dependents before=40E71EE000000000 after=40E71EE000000000
+X26 TEST CHANGED id0=9329 VAR1=9329 income before=3FE4315FB9A8CA90 after=3FE4315FB9AE49F0 (                   0.63102709066 -> 
+                    0.6310270907) dependents before=40E3AB2000000000 after=40E3AB2000000000
+X26 TEST CHANGED id0=9330 VAR1=9330 income before=3FD45C514945B1A2 after=3FD45C5149403242 (                   0.31813461452 -> 
+                    0.3181346145) dependents before=40F435A000000000 after=40F435A000000000
+X26 TEST CHANGED id0=9331 VAR1=9331 income before=3FEC8E525B5BB731 after=3FEC8E525B5D1709 (                   0.89237325519 -> 
+                    0.8923732552) dependents before=40F6A21000000000 after=40F6A21000000000
+X26 TEST CHANGED id0=9332 VAR1=9332 income before=3FDACE75FD9851B2 after=3FDACE75FD8D52F2 (                   0.41885137334 -> 
+                    0.4188513733) dependents before=40F7A38000000000 after=40F7A38000000000
+X26 TEST CHANGED id0=9333 VAR1=9333 income before=3FBE65AE7D86DF72 after=3FBE65AE7D65E332 (                   0.11873903813 -> 
+                    0.1187390381) dependents before=40EBFDC000000000 after=40EBFDC000000000
+X26 TEST CHANGED id0=9334 VAR1=9334 income before=3FD81BFBE485AFBC after=3FD81BFBE482F00C (                   0.37670800511 -> 
+                    0.3767080051) dependents before=40F55C6000000000 after=40F55C6000000000
+X26 TEST CHANGED id0=9335 VAR1=9335 income before=3FE7F254772FF52C after=3FE7F2547736D464 (                   0.74833129195 -> 
+                     0.748331292) dependents before=40F66C1000000000 after=40F66C1000000000
+X26 TEST CHANGED id0=9336 VAR1=9336 income before=3FE8D6391E3286C2 after=3FE8D6391E2D0762 (                   0.77615028284 -> 
+                    0.7761502828) dependents before=40D8D3C000000000 after=40D8D3C000000000
+X26 TEST CHANGED id0=9337 VAR1=9337 income before=3FD70B1BD55762A3 after=3FD70B1BD554A2F3 (                   0.36005302271 -> 
+                    0.3600530227) dependents before=40D82B8000000000 after=40D82B8000000000
+X26 TEST CHANGED id0=9338 VAR1=9338 income before=3FEE3119AC309877 after=3FEE3119AC34B7FF (                   0.94349368697 -> 
+                     0.943493687) dependents before=40F7EF8000000000 after=40F7EF8000000000
+X26 TEST CHANGED id0=9339 VAR1=9339 income before=3FEE98A84096ED19 after=3FEE98A8409DCC51 (                   0.95613491645 -> 
+                    0.9561349165) dependents before=40F6B16000000000 after=40F6B16000000000
+X26 TEST CHANGED id0=9340 VAR1=9340 income before=3FE4320C093D336F after=3FE4320C093FF31F (                   0.63110925488 -> 
+                    0.6311092549) dependents before=40F292F000000000 after=40F292F000000000
+X26 TEST CHANGED id0=9341 VAR1=9341 income before=3FEF07CD5B1696E5 after=3FEF07CD5B1AB66D (                   0.96970241347 -> 
+                    0.9697024135) dependents before=40E3394000000000 after=40E3394000000000
+X26 TEST CHANGED id0=9342 VAR1=9342 income before=3FBDEFAD7C786A2B after=3FBDEFAD7C99666B (                   0.11693844117 -> 
+                    0.1169384412) dependents before=40F364E000000000 after=40F364E000000000
+X26 TEST CHANGED id0=9343 VAR1=9343 income before=3FDD98EE1ADCF179 after=3FDD98EE1ADFB129 (                   0.46245911239 -> 
+                    0.4624591124) dependents before=40E67BA000000000 after=40E67BA000000000
+X26 TEST CHANGED id0=9344 VAR1=9344 income before=3FC92C123253AF96 after=3FC92C12323DB216 (                   0.19665744264 -> 
+                    0.1966574426) dependents before=40F4449000000000 after=40F4449000000000
+X26 TEST CHANGED id0=9345 VAR1=9345 income before=3FD6D942E650A1C4 after=3FD6D942E64862B4 (                   0.35701057903 -> 
+                     0.357010579) dependents before=40ED1B2000000000 after=40ED1B2000000000
+X26 TEST CHANGED id0=9346 VAR1=9346 income before=3FD3D998CAD19CD9 after=3FD3D998CACC1D79 (                   0.31015605742 -> 
+                    0.3101560574) dependents before=40F5B6C000000000 after=40F5B6C000000000
+X26 TEST CHANGED id0=9347 VAR1=9347 income before=3FD4F033BD81E12D after=3FD4F033BD76E26D (                   0.32716077334 -> 
+                    0.3271607733) dependents before=40EA656000000000 after=40EA656000000000
+X26 TEST CHANGED id0=9348 VAR1=9348 income before=3FECBE2310256718 after=3FECBE23102C4650 (                   0.89821007875 -> 
+                    0.8982100788) dependents before=40DF8F4000000000 after=40DF8F4000000000
+X26 TEST CHANGED id0=9349 VAR1=9349 income before=3FE236AC312C8DF5 after=3FE236AC31320D55 (                   0.56917390446 -> 
+                    0.5691739045) dependents before=40F13E9000000000 after=40F13E9000000000
+X26 TEST CHANGED id0=9350 VAR1=9350 income before=3FDA9FA1F4B34DFC after=3FDA9FA1F4AB0EEC (                   0.41599320313 -> 
+                    0.4159932031) dependents before=40E3A7C000000000 after=40E3A7C000000000
+X26 TEST CHANGED id0=9351 VAR1=9351 income before=3FEE4F64E838C353 after=3FEE4F64E83FA28B (                   0.94719167095 -> 
+                     0.947191671) dependents before=40E9E3C000000000 after=40E9E3C000000000
+X26 TEST CHANGED id0=9352 VAR1=9352 income before=3FE2483C466D4FCC after=3FE2483C466BEFF4 (                   0.57131780391 -> 
+                    0.5713178039) dependents before=40F66AA000000000 after=40F66AA000000000
+X26 TEST CHANGED id0=9353 VAR1=9353 income before=3FA268755BB709E7 after=3FA268755BE304E6 (                   0.03595320458 -> 
+                    0.0359532046) dependents before=40D8E3C000000000 after=40D8E3C000000000
+X26 TEST CHANGED id0=9354 VAR1=9354 income before=3FE245AA4BAABAB5 after=3FE245AA4BA7FB05 (                   0.57100405482 -> 
+                    0.5710040548) dependents before=40F869F000000000 after=40F869F000000000
+X26 TEST CHANGED id0=9355 VAR1=9355 income before=3FEE611DFC2DD02A after=3FEE611DFC2C7052 (                   0.94935511831 -> 
+                    0.9493551183) dependents before=40C3880000000000 after=40C3880000000000
+X26 TEST CHANGED id0=9356 VAR1=9356 income before=3FCCD09D006ECC4F after=3FCCD09D00694CEF (                   0.22511637231 -> 
+                    0.2251163723) dependents before=41292CA200000000 after=41292CA200000000
+X26 TEST CHANGED id0=9357 VAR1=9357 income before=3FE2B9D640AE0BE8 after=3FE2B9D640A88C88 (                   0.58518517144 -> 
+                    0.5851851714) dependents before=4114B8E400000000 after=4114B8E400000000
+X26 TEST CHANGED id0=9358 VAR1=9358 income before=3FEAC7B19B8B91BA after=3FEAC7B19B8CF192 (                   0.83687668209 -> 
+                    0.8368766821) dependents before=41212B3C00000000 after=41212B3C00000000
+X26 TEST CHANGED id0=9359 VAR1=9359 income before=3FE391A38FC79FC6 after=3FE391A38FCA5F76 (                   0.61152818758 -> 
+                    0.6115281876) dependents before=4116908800000000 after=4116908800000000
+X26 TEST CHANGED id0=9360 VAR1=9360 income before=3F85273F3FCC14E1 after=3F85273F40240AE1 (                   0.01032876409 -> 
+                    0.0103287641) dependents before=4121727A00000000 after=4121727A00000000
+X26 TEST CHANGED id0=9361 VAR1=9361 income before=3FEBE9B3EE16E6FD after=3FEBE9B3EE11679D (                   0.87227818014 -> 
+                    0.8722781801) dependents before=411C30F000000000 after=411C30F000000000
+X26 TEST CHANGED id0=9362 VAR1=9362 income before=3FDCD7312BC8630C after=3FDCD7312BCDE26C (                   0.45063428188 -> 
+                    0.4506342819) dependents before=4129E76200000000 after=4129E76200000000
+X26 TEST CHANGED id0=9363 VAR1=9363 income before=3FDC7C189EF4ADAB after=3FDC7C189EFFAC6A (                   0.44507422946 -> 
+                    0.4450742295) dependents before=412C069200000000 after=412C069200000000
+X26 TEST CHANGED id0=9364 VAR1=9364 income before=3FC87CF241EFF02E after=3FC87CF241D9F2AE (                   0.19131305904 -> 
+                     0.191313059) dependents before=40FBFB8000000000 after=40FBFB8000000000
+X26 TEST CHANGED id0=9365 VAR1=9365 income before=3FEDE4600EE4F170 after=3FEDE4600EEA70D0 (                   0.93412783536 -> 
+                    0.9341278354) dependents before=410A3A8000000000 after=410A3A8000000000
+X26 TEST CHANGED id0=9366 VAR1=9366 income before=3FCF39E601917989 after=3FCF39E601867AC9 (                   0.24395442082 -> 
+                    0.2439544208) dependents before=411E6CD800000000 after=411E6CD800000000
+X26 TEST CHANGED id0=9367 VAR1=9367 income before=3FE145E46C0C55EC after=3FE145E46C0DB5C4 (                   0.53978177169 -> 
+                    0.5397817717) dependents before=4125246A00000000 after=4125246A00000000
+X26 TEST CHANGED id0=9368 VAR1=9368 income before=3FE1D431E7221D6A after=3FE1D431E7237D42 (                   0.55715270179 -> 
+                    0.5571527018) dependents before=4102884800000000 after=4102884800000000
+X26 TEST CHANGED id0=9369 VAR1=9369 income before=3FE95B813ABE720A after=3FE95B813AC55142 (                   0.79242001985 -> 
+                    0.7924200199) dependents before=410C4E3000000000 after=410C4E3000000000
+X26 TEST CHANGED id0=9370 VAR1=9370 income before=3FCE7356CEE1AC85 after=3FCE7356CED6ADC5 (                   0.23789486982 -> 
+                    0.2378948698) dependents before=411C88E400000000 after=411C88E400000000
+X26 TEST CHANGED id0=9371 VAR1=9371 income before=3FB90D47427F168F after=3FB90D4742A012CE (                   0.09785886167 -> 
+                    0.0978588617) dependents before=4126F28400000000 after=4126F28400000000
+X26 TEST CHANGED id0=9372 VAR1=9372 income before=3FD3E80D3A13B9D4 after=3FD3E80D3A193934 (                   0.31103830978 -> 
+                    0.3110383098) dependents before=41012D1800000000 after=41012D1800000000
+X26 TEST CHANGED id0=9373 VAR1=9373 income before=3FE1368CBC97F28F after=3FE1368CBC9D71EF (                   0.53790890536 -> 
+                    0.5379089054) dependents before=4118E05400000000 after=4118E05400000000
+X26 TEST CHANGED id0=9374 VAR1=9374 income before=3FEEB2FE55E88B35 after=3FEEB2FE55EB4AE5 (                   0.95934979228 -> 
+                    0.9593497923) dependents before=411E9CAC00000000 after=411E9CAC00000000
+X26 TEST CHANGED id0=9375 VAR1=9375 income before=3FEFDD1136B4741D after=3FEFDD1136B5D3F5 (                   0.99573574719 -> 
+                    0.9957357472) dependents before=4123F73000000000 after=4123F73000000000
+X26 TEST CHANGED id0=9376 VAR1=9376 income before=3FE2A0E6928E9506 after=3FE2A0E6928A757E (                   0.58214119553 -> 
+                    0.5821411955) dependents before=412CA14200000000 after=412CA14200000000
+X26 TEST CHANGED id0=9377 VAR1=9377 income before=3FED361A925854D1 after=3FED361A92543549 (                   0.91285446723 -> 
+                    0.9128544672) dependents before=4121A2B200000000 after=4121A2B200000000
+X26 TEST CHANGED id0=9378 VAR1=9378 income before=3FAA3B93A0E67CE8 after=3FAA3B93A1547067 (                   0.05123578395 -> 
+                     0.051235784) dependents before=4106527000000000 after=4106527000000000
+X26 TEST CHANGED id0=9379 VAR1=9379 income before=3FD587F88F659194 after=3FD587F88F735004 (                   0.33642400745 -> 
+                    0.3364240075) dependents before=412406A200000000 after=412406A200000000
+X26 TEST CHANGED id0=9380 VAR1=9380 income before=3FE9C3D782C31C55 after=3FE9C3D782C47C2D (                   0.80515647449 -> 
+                    0.8051564745) dependents before=412D1C8C00000000 after=412D1C8C00000000
+X26 TEST CHANGED id0=9381 VAR1=9381 income before=3FD1A1EBF6FD85A4 after=3FD1A1EBF70B4414 (                   0.27550791855 -> 
+                    0.2755079186) dependents before=41287C3A00000000 after=41287C3A00000000
+X26 TEST CHANGED id0=9382 VAR1=9382 income before=3FEFDDC314A0A1A5 after=3FEFDDC3149C821D (                   0.99582056073 -> 
+                    0.9958205607) dependents before=412209CC00000000 after=412209CC00000000
+X26 TEST CHANGED id0=9383 VAR1=9383 income before=3FC8EB1C9AA43361 after=3FC8EB1C9A93B541 (                   0.19467504073 -> 
+                    0.1946750407) dependents before=4117F2D800000000 after=4117F2D800000000
+X26 TEST CHANGED id0=9384 VAR1=9384 income before=3FC4904D0647DF94 after=3FC4904D064D5EF4 (                   0.16065371329 -> 
+                    0.1606537133) dependents before=412323BA00000000 after=412323BA00000000
+X26 TEST CHANGED id0=9385 VAR1=9385 income before=3FD5E5CC4B081643 after=3FD5E5CC4B15D4B3 (                   0.34215075805 -> 
+                    0.3421507581) dependents before=41196A5800000000 after=41196A5800000000
+X26 TEST CHANGED id0=9386 VAR1=9386 income before=3FD194AF7D787D1D after=3FD194AF7D703E0D (                   0.27470004323 -> 
+                    0.2747000432) dependents before=410CF8B000000000 after=410CF8B000000000
+X26 TEST CHANGED id0=9387 VAR1=9387 income before=3FB00C5162B84CDE after=3FB00C516297509E (                   0.06268795643 -> 
+                    0.0626879564) dependents before=4115A34800000000 after=4115A34800000000
+X26 TEST CHANGED id0=9388 VAR1=9388 income before=3FD77D4536672E86 after=3FD77D45366CADE6 (                   0.36702089608 -> 
+                    0.3670208961) dependents before=4113868800000000 after=4113868800000000
+X26 TEST CHANGED id0=9389 VAR1=9389 income before=3FD77AB1E72770CF after=3FD77AB1E71F31BF (                   0.36686370443 -> 
+                    0.3668637044) dependents before=41255B8A00000000 after=41255B8A00000000
+X26 TEST CHANGED id0=9390 VAR1=9390 income before=3FCA208C75356086 after=3FCA208C75405F46 (                   0.20411830638 -> 
+                    0.2041183064) dependents before=41119DEC00000000 after=41119DEC00000000
+X26 TEST CHANGED id0=9391 VAR1=9391 income before=3FEBB03572E6C4F6 after=3FEBB03572E824CE (                   0.86525986139 -> 
+                    0.8652598614) dependents before=412E704000000000 after=412E704000000000
+X26 TEST CHANGED id0=9392 VAR1=9392 income before=3FDC40416263B5FD after=3FDC40416258B73D (                   0.44142183884 -> 
+                    0.4414218388) dependents before=41105FA800000000 after=41105FA800000000
+X26 TEST CHANGED id0=9393 VAR1=9393 income before=3FEF1E67427AC00D after=3FEF1E674276A085 (                   0.97246134743 -> 
+                    0.9724613474) dependents before=4129282A00000000 after=4129282A00000000
+X26 TEST CHANGED id0=9394 VAR1=9394 income before=3FE9BEA18DAD1CF1 after=3FE9BEA18DB3FC29 (                   0.80452039405 -> 
+                    0.8045203941) dependents before=4124152600000000 after=4124152600000000
+X26 TEST CHANGED id0=9395 VAR1=9395 income before=3FE67B33C1B4FEED after=3FE67B33C1AF7F8D (                   0.70253932794 -> 
+                    0.7025393279) dependents before=4119239C00000000 after=4119239C00000000
+X26 TEST CHANGED id0=9396 VAR1=9396 income before=3FEFFA1AFBDB3577 after=3FEFFA1AFBD9D59F (                   0.99928044501 -> 
+                     0.999280445) dependents before=412A240200000000 after=412A240200000000
+X26 TEST CHANGED id0=9397 VAR1=9397 income before=3FEEFD5B5025B9D0 after=3FEEFD5B50219A48 (                   0.96842733053 -> 
+                    0.9684273305) dependents before=4113056400000000 after=4113056400000000
+X26 TEST CHANGED id0=9398 VAR1=9398 income before=3FB2AD815E129DA5 after=3FB2AD815E079EE5 (                   0.07295998141 -> 
+                    0.0729599814) dependents before=4103F28800000000 after=4103F28800000000
+X26 TEST CHANGED id0=9399 VAR1=9399 income before=3FCA3F3AA49A6A56 after=3FCA3F3AA494EAF6 (                   0.20505459821 -> 
+                    0.2050545982) dependents before=4111571C00000000 after=4111571C00000000
+X26 TEST CHANGED id0=9400 VAR1=9400 income before=3FEBCA2DD58C1D34 after=3FEBCA2DD5919C94 (                   0.86843005856 -> 
+                    0.8684300586) dependents before=4122802600000000 after=4122802600000000
+X26 TEST CHANGED id0=9401 VAR1=9401 income before=3FDE218ECBD856A9 after=3FDE218ECBCD57E9 (                   0.47079820544 -> 
+                    0.4707982054) dependents before=4127A9F000000000 after=4127A9F000000000
+X26 TEST CHANGED id0=9402 VAR1=9402 income before=3FE195D56C788D26 after=3FE195D56C75CD76 (                   0.54954024492 -> 
+                    0.5495402449) dependents before=412DDF8C00000000 after=412DDF8C00000000
+X26 TEST CHANGED id0=9403 VAR1=9403 income before=3FEE583A7CC579D0 after=3FEE583A7CCAF92F (                   0.94827007646 -> 
+                    0.9482700765) dependents before=4126E62800000000 after=4126E62800000000
+X26 TEST CHANGED id0=9404 VAR1=9404 income before=3FE95B938B3F932E after=3FE95B938B43B2B6 (                   0.79242875287 -> 
+                    0.7924287529) dependents before=412B568800000000 after=412B568800000000
+X26 TEST CHANGED id0=9405 VAR1=9405 income before=3FEA7CF03DF09C7A after=3FEA7CF03DEB1D1A (                   0.82775127504 -> 
+                     0.827751275) dependents before=4129BDCA00000000 after=4129BDCA00000000
+X26 TEST CHANGED id0=9406 VAR1=9406 income before=3FD942BC4BBC6942 after=3FD942BC4BB16A82 (                   0.39469821354 -> 
+                    0.3946982135) dependents before=411362D400000000 after=411362D400000000
+X26 TEST CHANGED id0=9407 VAR1=9407 income before=3FE465B31ED3384C after=3FE465B31ECF18C5 (                   0.63741451283 -> 
+                    0.6374145128) dependents before=412BF35C00000000 after=412BF35C00000000
+X26 TEST CHANGED id0=9408 VAR1=9408 income before=3FEEF56CC4C97B0D after=3FEEF56CC4C6BB5D (                   0.96745909152 -> 
+                    0.9674590915) dependents before=41030FB000000000 after=41030FB000000000
+X26 TEST CHANGED id0=9409 VAR1=9409 income before=3FDA1C7494699373 after=3FDA1C74947751E3 (                   0.40798677915 -> 
+                    0.4079867792) dependents before=411DA2C000000000 after=411DA2C000000000
+X26 TEST CHANGED id0=9410 VAR1=9410 income before=3FC3D85CBA6C8037 after=3FC3D85CBA5682B8 (                   0.15504035094 -> 
+                    0.1550403509) dependents before=412494B600000000 after=412494B600000000
+X26 TEST CHANGED id0=9411 VAR1=9411 income before=3FCB3897236AB9C2 after=3FCB3897237B37E2 (                   0.21266450147 -> 
+                    0.2126645015) dependents before=410720E800000000 after=410720E800000000
+X26 TEST CHANGED id0=9412 VAR1=9412 income before=3FAFAD87B7EEBE14 after=3FAFAD87B81AB914 (                   0.06187080498 -> 
+                     0.061870805) dependents before=412C3D2A00000000 after=412C3D2A00000000
+X26 TEST CHANGED id0=9413 VAR1=9413 income before=3FD03A830433C5C5 after=3FD03A8304310615 (                   0.25357127581 -> 
+                    0.2535712758) dependents before=412A9F0200000000 after=412A9F0200000000
+X26 TEST CHANGED id0=9414 VAR1=9414 income before=3FCF33EBEFCB2722 after=3FCF33EBEFBAA902 (                   0.24377202233 -> 
+                    0.2437720223) dependents before=4115604C00000000 after=4115604C00000000
+X26 TEST CHANGED id0=9415 VAR1=9415 income before=3FEB9E0DDD87B3D5 after=3FEB9E0DDD8913AD (                   0.86304372089 -> 
+                    0.8630437209) dependents before=41023A1800000000 after=41023A1800000000
+X26 TEST CHANGED id0=9416 VAR1=9416 income before=3FE91DE578177B60 after=3FE91DE5781CFAC0 (                   0.78489945846 -> 
+                    0.7848994585) dependents before=412E847E00000000 after=412E847E00000000
+X26 TEST CHANGED id0=9417 VAR1=9417 income before=3FDF90C51AF62953 after=3FDF90C51AFE6863 (                   0.49321105607 -> 
+                    0.4932110561) dependents before=40F86A0000000000 after=40F86A0000000000
+X26 TEST CHANGED id0=9418 VAR1=9418 income before=3FE851B56035511B after=3FE851B5602FD1BB (                   0.75997418204 -> 
+                     0.759974182) dependents before=412FA47600000000 after=412FA47600000000
+X26 TEST CHANGED id0=9419 VAR1=9419 income before=3FDDA2B36774FE0A after=3FDDA2B36777BDBA (                   0.46305546859 -> 
+                    0.4630554686) dependents before=4155CEB880000000 after=4155CEB880000000
+X26 TEST CHANGED id0=9420 VAR1=9420 income before=3FC91F1C6E65DB46 after=3FC91F1C6E6B5AA6 (                   0.19626193419 -> 
+                    0.1962619342) dependents before=4161242A60000000 after=4161242A60000000
+X26 TEST CHANGED id0=9421 VAR1=9421 income before=3FDCAE7EF3737D42 after=3FDCAE7EF37E7C02 (                   0.44815038466 -> 
+                    0.4481503847) dependents before=415A800F40000000 after=415A800F40000000
+X26 TEST CHANGED id0=9422 VAR1=9422 income before=3FE825F1B60700DA after=3FE825F1B60B2062 (                   0.75463185837 -> 
+                    0.7546318584) dependents before=4149574800000000 after=4149574800000000
+X26 TEST CHANGED id0=9423 VAR1=9423 income before=3FEDC3C1F042D037 after=3FEDC3C1F03EB0AF (                   0.93014618803 -> 
+                     0.930146188) dependents before=41552EE100000000 after=41552EE100000000
+X26 TEST CHANGED id0=9424 VAR1=9424 income before=3FEDC9BF9CF870AD after=3FEDC9BF9CF9D085 (                   0.93087750109 -> 
+                    0.9308775011) dependents before=415BB447C0000000 after=415BB447C0000000
+X26 TEST CHANGED id0=9425 VAR1=9425 income before=3FC39C14E4453BD8 after=3FC39C14E455B9F8 (                   0.15320073267 -> 
+                    0.1532007327) dependents before=415AF4B780000000 after=415AF4B780000000
+X26 TEST CHANGED id0=9426 VAR1=9426 income before=3FE157E2A0D53D56 after=3FE157E2A0DABCB6 (                   0.54197818196 -> 
+                     0.541978182) dependents before=416250EE80000000 after=416250EE80000000
+X26 TEST CHANGED id0=9427 VAR1=9427 income before=3FDADC0E1386A00E after=3FDADC0E138120AE (                   0.41968109042 -> 
+                    0.4196810904) dependents before=4147A8A980000000 after=4147A8A980000000
+X26 TEST CHANGED id0=9428 VAR1=9428 income before=3FC0EACCEE8766FA after=3FC0EACCEEA2E3DA (                   0.13216554305 -> 
+                    0.1321655431) dependents before=4156B6BCC0000000 after=4156B6BCC0000000
+X26 TEST CHANGED id0=9429 VAR1=9429 income before=3FDA1AE2800ACFD9 after=3FDA1AE280081029 (                   0.40789091591 -> 
+                    0.4078909159) dependents before=4140448500000000 after=4140448500000000
+X26 TEST CHANGED id0=9430 VAR1=9430 income before=3FD28FE3C95346AA after=3FD28FE3C95E456A (                   0.29003233586 -> 
+                    0.2900323359) dependents before=4146DE1F80000000 after=4146DE1F80000000
+X26 TEST CHANGED id0=9431 VAR1=9431 income before=3FD5180027E67689 after=3FD5180027E3B6D9 (                   0.32958988091 -> 
+                    0.3295898809) dependents before=413FA87400000000 after=413FA87400000000
+X26 TEST CHANGED id0=9432 VAR1=9432 income before=3FEDF1DCEF11EFB9 after=3FEDF1DCEF134F91 (                   0.93577429479 -> 
+                    0.9357742948) dependents before=415C711240000000 after=415C711240000000
+X26 TEST CHANGED id0=9433 VAR1=9433 income before=3FE7A1F9D2300D60 after=3FE7A1F9D2342CE8 (                   0.73852244427 -> 
+                    0.7385224443) dependents before=413E1F0D00000000 after=413E1F0D00000000
+X26 TEST CHANGED id0=9434 VAR1=9434 income before=3FEE59ECEFC13C4B after=3FEE59ECEFC6BBAA (                   0.94847723796 -> 
+                     0.948477238) dependents before=4161445520000000 after=4161445520000000
+X26 TEST CHANGED id0=9435 VAR1=9435 income before=3FBF9F2115E2DFF1 after=3FBF9F2115D7E131 (                   0.12352186951 -> 
+                    0.1235218695) dependents before=41447BDA00000000 after=41447BDA00000000
+X26 TEST CHANGED id0=9436 VAR1=9436 income before=3FE1EF6CE95183A6 after=3FE1EF6CE952E37E (                   0.56047673769 -> 
+                    0.5604767377) dependents before=4155616180000000 after=4155616180000000
+X26 TEST CHANGED id0=9437 VAR1=9437 income before=3FD985D50A80B0EE after=3FD985D50A7B318E (                   0.39879346872 -> 
+                    0.3987934687) dependents before=4141FDE880000000 after=4141FDE880000000
+X26 TEST CHANGED id0=9438 VAR1=9438 income before=3FE7F843EB4B6CD8 after=3FE7F843EB50EC38 (                   0.74905582386 -> 
+                    0.7490558239) dependents before=414E790800000000 after=414E790800000000
+X26 TEST CHANGED id0=9439 VAR1=9439 income before=3FD68F4C6A774F3A after=3FD68F4C6A748F8A (                   0.35249624631 -> 
+                    0.3524962463) dependents before=4144D46580000000 after=4144D46580000000
+X26 TEST CHANGED id0=9440 VAR1=9440 income before=3FEBBB3431B2C2F2 after=3FEBBB3431AD4392 (                   0.86660203654 -> 
+                    0.8666020365) dependents before=4158C0D780000000 after=4158C0D780000000
+X26 TEST CHANGED id0=9441 VAR1=9441 income before=3F8F4FA676F0CEEA after=3F8F4FA678A89CE8 (                   0.01528863955 -> 
+                    0.0152886396) dependents before=413D813300000000 after=413D813300000000
+X26 TEST CHANGED id0=9442 VAR1=9442 income before=3FD39DEEE47FEBFB after=3FD39DEEE48AEABB (                   0.30651447596 -> 
+                     0.306514476) dependents before=41553D1D40000000 after=41553D1D40000000
+X26 TEST CHANGED id0=9443 VAR1=9443 income before=3FEE3D7C484084AC after=3FEE3D7C484763E4 (                   0.94500555145 -> 
+                    0.9450055515) dependents before=4158029A00000000 after=4158029A00000000
+X26 TEST CHANGED id0=9444 VAR1=9444 income before=3FDA43CBEDA96431 after=3FDA43CBEDAEE391 (                   0.41038797578 -> 
+                    0.4103879758) dependents before=4150208240000000 after=4150208240000000
+X26 TEST CHANGED id0=9445 VAR1=9445 income before=3FC80D7749FFFDA3 after=3FC80D774A0AFC63 (                   0.18791094888 -> 
+                    0.1879109489) dependents before=413B1A5B00000000 after=413B1A5B00000000
+X26 TEST CHANGED id0=9446 VAR1=9446 income before=3FD0ADB6CF4873D5 after=3FD0ADB6CF537295 (                   0.26060266726 -> 
+                    0.2606026673) dependents before=415EDEF0C0000000 after=415EDEF0C0000000
+X26 TEST CHANGED id0=9447 VAR1=9447 income before=3FD93B9EC7BB9EDD after=3FD93B9EC7C3DDED (                   0.39426393037 -> 
+                    0.3942639304) dependents before=4158E63440000000 after=4158E63440000000
+X26 TEST CHANGED id0=9448 VAR1=9448 income before=3FDEE05CEC5FD232 after=3FDEE05CEC6D90A2 (                   0.48244402965 -> 
+                    0.4824440297) dependents before=4144358000000000 after=4144358000000000
+X26 TEST CHANGED id0=9449 VAR1=9449 income before=3FED8A4A319C1636 after=3FED8A4A319ED5E6 (                   0.92313108148 -> 
+                    0.9231310815) dependents before=4136A5BE00000000 after=4136A5BE00000000
+X26 TEST CHANGED id0=9450 VAR1=9450 income before=3FDD2BAFD1982456 after=3FDD2BAFD1A06366 (                   0.45579143017 -> 
+                    0.4557914302) dependents before=412FEFA000000000 after=412FEFA000000000
+X26 TEST CHANGED id0=9451 VAR1=9451 income before=3FE4DF9518A3E366 after=3FE4DF9518A123B6 (                   0.65229277432 -> 
+                    0.6522927743) dependents before=41611CD5E0000000 after=41611CD5E0000000
+X26 TEST CHANGED id0=9452 VAR1=9452 income before=3FEEA37812D9F700 after=3FEEA37812D89728 (                   0.95745471651 -> 
+                    0.9574547165) dependents before=414F876900000000 after=414F876900000000
+X26 TEST CHANGED id0=9453 VAR1=9453 income before=3FED3D95504CDF2D after=3FED3D955050FEB5 (                   0.91376748737 -> 
+                    0.9137674874) dependents before=4155F63800000000 after=4155F63800000000
+X26 TEST CHANGED id0=9454 VAR1=9454 income before=3FB92375C4D5EDEB after=3FB92375C4E0ECAB (                   0.09819732719 -> 
+                    0.0981973272) dependents before=415EEE8A80000000 after=415EEE8A80000000
+X26 TEST CHANGED id0=9455 VAR1=9455 income before=3FB66472DB72B798 after=3FB66472DB51BB58 (                   0.08747022493 -> 
+                    0.0874702249) dependents before=4154AA0F00000000 after=4154AA0F00000000
+X26 TEST CHANGED id0=9456 VAR1=9456 income before=3FE80482F7DE1CD2 after=3FE80482F7E23C5A (                   0.75055073177 -> 
+                    0.7505507318) dependents before=415F61F600000000 after=415F61F600000000
+X26 TEST CHANGED id0=9457 VAR1=9457 income before=3FEEFCE5538C5B21 after=3FEEFCE5538F1AD1 (                   0.96837107008 -> 
+                    0.9683710701) dependents before=41410F1800000000 after=41410F1800000000
+X26 TEST CHANGED id0=9458 VAR1=9458 income before=3FEECA84E640D5A0 after=3FEECA84E63F75C8 (                   0.96222157451 -> 
+                    0.9622215745) dependents before=4156A7DEC0000000 after=4156A7DEC0000000
+X26 TEST CHANGED id0=9459 VAR1=9459 income before=3FE6B7811D07330B after=3FE6B7811D0E1243 (                   0.70990043325 -> 
+                    0.7099004333) dependents before=4157DBFCC0000000 after=4157DBFCC0000000
+X26 TEST CHANGED id0=9460 VAR1=9460 income before=3FE88EF48F226118 after=3FE88EF48F294050 (                   0.76745059925 -> 
+                    0.7674505993) dependents before=4160F40900000000 after=4160F40900000000
+X26 TEST CHANGED id0=9461 VAR1=9461 income before=3FE7FD10C641DD61 after=3FE7FD10C63C5E01 (                   0.74964178774 -> 
+                    0.7496417877) dependents before=4161FCB5C0000000 after=4161FCB5C0000000
+X26 TEST CHANGED id0=9462 VAR1=9462 income before=3FCECD996B92F561 after=3FCECD996B827742 (                   0.24064939263 -> 
+                    0.2406493926) dependents before=415A755BC0000000 after=415A755BC0000000
+X26 TEST CHANGED id0=9463 VAR1=9463 income before=3FEA39E9883DD564 after=3FEA39E988385604 (                   0.81956936464 -> 
+                    0.8195693646) dependents before=4155FCC740000000 after=4155FCC740000000
+X26 TEST CHANGED id0=9464 VAR1=9464 income before=3FE0366C6FF72825 after=3FE0366C6FF1A8C5 (                   0.50664350384 -> 
+                    0.5066435038) dependents before=41508E6BC0000000 after=41508E6BC0000000
+X26 TEST CHANGED id0=9465 VAR1=9465 income before=3FBBD13DD1A60732 after=3FBBD13DD19B0872 (                   0.10866152161 -> 
+                    0.1086615216) dependents before=41542BCE00000000 after=41542BCE00000000
+X26 TEST CHANGED id0=9466 VAR1=9466 income before=3FD53ACA8FD52374 after=3FD53ACA8FDD6284 (                   0.33171333357 -> 
+                    0.3317133336) dependents before=4149833380000000 after=4149833380000000
+X26 TEST CHANGED id0=9467 VAR1=9467 income before=3FDCC71F3BBE49E3 after=3FDCC71F3BBB8A33 (                   0.44965344271 -> 
+                    0.4496534427) dependents before=415D28A5C0000000 after=415D28A5C0000000
+X26 TEST CHANGED id0=9468 VAR1=9468 income before=3FE44A3AB6615CDC after=3FE44A3AB662BCB4 (                   0.63406119939 -> 
+                    0.6340611994) dependents before=415259BC80000000 after=415259BC80000000
+X26 TEST CHANGED id0=9469 VAR1=9469 income before=3FD7C3DD4A7DBA86 after=3FD7C3DD4A8B78F6 (                   0.37132961535 -> 
+                    0.3713296154) dependents before=41617255C0000000 after=41617255C0000000
+X26 TEST CHANGED id0=9470 VAR1=9470 income before=3FEAEF49C51F742F after=3FEAEF49C52393B7 (                   0.84170998097 -> 
+                     0.841709981) dependents before=415E0F2480000000 after=415E0F2480000000
+X26 TEST CHANGED id0=9471 VAR1=9471 income before=3FD771D6CF6C50C1 after=3FD771D6CF699112 (                   0.36632318741 -> 
+                    0.3663231874) dependents before=4154861A00000000 after=4154861A00000000
+X26 TEST CHANGED id0=9472 VAR1=9472 income before=3FEC39AC8F397438 after=3FEC39AC8F3C33E8 (                   0.88204029058 -> 
+                    0.8820402906) dependents before=4140A17900000000 after=4140A17900000000
+X26 TEST CHANGED id0=9473 VAR1=9473 income before=3FE3F0894596BE9A after=3FE3F08945955EC2 (                   0.62311233131 -> 
+                    0.6231123313) dependents before=415F8A5A80000000 after=415F8A5A80000000
+X26 TEST CHANGED id0=9474 VAR1=9474 income before=3FED8DA7AF65978C after=3FED8DA7AF69B714 (                   0.92354187257 -> 
+                    0.9235418726) dependents before=4135C6AD00000000 after=4135C6AD00000000
+X26 TEST CHANGED id0=9475 VAR1=9475 income before=3FDE60FE3D318AA4 after=3FDE60FE3D2ECAF4 (                   0.47466999031 -> 
+                    0.4746699903) dependents before=4133CE7000000000 after=4133CE7000000000
+X26 TEST CHANGED id0=9476 VAR1=9476 income before=3FE229748365CABD after=3FE229748369EA45 (                   0.56756044067 -> 
+                    0.5675604407) dependents before=4157D11F00000000 after=4157D11F00000000
+X26 TEST CHANGED id0=9477 VAR1=9477 income before=3FE939A037050B6B after=3FE939A036FF8C0B (                   0.78828440424 -> 
+                    0.7882844042) dependents before=41376DD500000000 after=41376DD500000000
+X26 TEST CHANGED id0=9478 VAR1=9478 income before=3FAB461DC11010FE after=3FAB461DC16806FE (                   0.05326931936 -> 
+                    0.0532693194) dependents before=416312CFE0000000 after=416312CFE0000000
+X26 TEST CHANGED id0=9479 VAR1=9479 income before=3FCF045904F0D6F5 after=3FCF045904DAD976 (                   0.24232018224 -> 
+                    0.2423201822) dependents before=412E848000000000 after=412E848000000000
+X26 TEST CHANGED id0=9480 VAR1=9480 income before=3FAF9361789748B8 after=3FAF936178EF3EB8 (                   0.06167130086 -> 
+                    0.0616713009) dependents before=4196531AA4000000 after=4196531AA4000000
+X26 TEST CHANGED id0=9481 VAR1=9481 income before=3FC32E415B357703 after=3FC32E415B45F522 (                   0.14984909967 -> 
+                    0.1498490997) dependents before=418076F350000000 after=418076F350000000
+X26 TEST CHANGED id0=9482 VAR1=9482 income before=3FDDE90FB78FC521 after=3FDDE90FB784C661 (                   0.46734993864 -> 
+                    0.4673499386) dependents before=4170483220000000 after=4170483220000000
+X26 TEST CHANGED id0=9483 VAR1=9483 income before=3FE15A05867839D8 after=3FE15A05867AF988 (                   0.54223896278 -> 
+                    0.5422389628) dependents before=418921FE98000000 after=418921FE98000000
+X26 TEST CHANGED id0=9484 VAR1=9484 income before=3FD8BE9BD49D53CB after=3FD8BE9BD4A2D32B (                   0.38663383258 -> 
+                    0.3866338326) dependents before=4170305470000000 after=4170305470000000
+X26 TEST CHANGED id0=9485 VAR1=9485 income before=3FDF86483CF623B5 after=3FDF86483D03E225 (                   0.49257093385 -> 
+                    0.4925709339) dependents before=418C4B5708000000 after=418C4B5708000000
+X26 TEST CHANGED id0=9486 VAR1=9486 income before=3FD08BFC889C8738 after=3FD08BFC88944828 (                   0.25854409543 -> 
+                    0.2585440954) dependents before=4192A91EC4000000 after=4192A91EC4000000
+X26 TEST CHANGED id0=9487 VAR1=9487 income before=3FE68380F69951B1 after=3FE68380F6969201 (                   0.70355270542 -> 
+                    0.7035527054) dependents before=416D40B900000000 after=416D40B900000000
+X26 TEST CHANGED id0=9488 VAR1=9488 income before=3FE5897E2F35C5B0 after=3FE5897E2F31A628 (                   0.67303380223 -> 
+                    0.6730338022) dependents before=41741A88B0000000 after=41741A88B0000000
+X26 TEST CHANGED id0=9489 VAR1=9489 income before=3FEFD6328AE46E83 after=3FEFD6328ADEEF23 (                   0.99489714744 -> 
+                    0.9948971474) dependents before=418B2174E0000000 after=418B2174E0000000
+X26 TEST CHANGED id0=9490 VAR1=9490 income before=3FA799AC5E8D3D0C after=3FA799AC5ECF358B (                   0.04609430937 -> 
+                    0.0460943094) dependents before=4192865C68000000 after=4192865C68000000
+X26 TEST CHANGED id0=9491 VAR1=9491 income before=3FCDEE268C9FCBB9 after=3FCDEE268C8F4D99 (                   0.23383027903 -> 
+                     0.233830279) dependents before=41786742A0000000 after=41786742A0000000
+X26 TEST CHANGED id0=9492 VAR1=9492 income before=3FA3F65E617855A8 after=3FA3F65E614C5AA8 (                   0.03898901882 -> 
+                    0.0389890188) dependents before=4196AB07F8000000 after=4196AB07F8000000
+X26 TEST CHANGED id0=9493 VAR1=9493 income before=3FEC15CE40A82C53 after=3FEC15CE40AF0B8B (                   0.87766182545 -> 
+                    0.8776618255) dependents before=4170856B00000000 after=4170856B00000000
+X26 TEST CHANGED id0=9494 VAR1=9494 income before=3FDAA0DF189E165F after=3FDAA0DF18A6556F (                   0.41606881527 -> 
+                    0.4160688153) dependents before=4191043C0C000000 after=4191043C0C000000
+X26 TEST CHANGED id0=9495 VAR1=9495 income before=3FC9375495628E24 after=3FC93754954C90A4 (                   0.19700104994 -> 
+                    0.1970010499) dependents before=4181E79DC8000000 after=4181E79DC8000000
+X26 TEST CHANGED id0=9496 VAR1=9496 income before=3FD1F7DA5099FC90 after=3FD1F7DA50973CE0 (                   0.28075273391 -> 
+                    0.2807527339) dependents before=416ECF8C60000000 after=416ECF8C60000000
+X26 TEST CHANGED id0=9497 VAR1=9497 income before=3FE2A969CFB27160 after=3FE2A969CFB53110 (                   0.58318033758 -> 
+                    0.5831803376) dependents before=4191E2DF14000000 after=4191E2DF14000000
+X26 TEST CHANGED id0=9498 VAR1=9498 income before=3FEC41DA344E443B after=3FEC41DA3448C4DB (                   0.88303861824 -> 
+                    0.8830386182) dependents before=41901F029C000000 after=41901F029C000000
+X26 TEST CHANGED id0=9499 VAR1=9499 income before=3FDB4794BEE597C3 after=3FDB4794BEDD58B3 (                   0.42624395983 -> 
+                    0.4262439598) dependents before=418E813170000000 after=418E813170000000
+X26 TEST CHANGED id0=9500 VAR1=9500 income before=3FEF5E4C8651FC6A after=3FEF5E4C86535C42 (                   0.98026109919 -> 
+                    0.9802610992) dependents before=417A2CC850000000 after=417A2CC850000000
+X26 TEST CHANGED id0=9501 VAR1=9501 income before=3FEC7216D597BF29 after=3FEC7216D5991F01 (                   0.88892690389 -> 
+                    0.8889269039) dependents before=41942C2270000000 after=41942C2270000000
+X26 TEST CHANGED id0=9502 VAR1=9502 income before=3FDA96FA5D987B50 after=3FDA96FA5DA639C0 (                   0.41546496525 -> 
+                    0.4154649653) dependents before=41693EFEA0000000 after=41693EFEA0000000
+X26 TEST CHANGED id0=9503 VAR1=9503 income before=3FDECB32554CEE87 after=3FDECB32554FAE37 (                   0.48115213709 -> 
+                    0.4811521371) dependents before=4191F7E8A0000000 after=4191F7E8A0000000
+X26 TEST CHANGED id0=9504 VAR1=9504 income before=3FA8FD59000F2D0E after=3FA8FD58FFCD348F (                   0.04880788923 -> 
+                    0.0488078892) dependents before=417D305170000000 after=417D305170000000
+X26 TEST CHANGED id0=9505 VAR1=9505 income before=3FD4C840CC8440AD after=3FD4C840CC8180FD (                   0.32472248051 -> 
+                    0.3247224805) dependents before=417FECD530000000 after=417FECD530000000
+X26 TEST CHANGED id0=9506 VAR1=9506 income before=3FEE3D42ABF9240D after=3FEE3D42ABF3A4AD (                   0.94497808064 -> 
+                    0.9449780806) dependents before=41788ED620000000 after=41788ED620000000
+X26 TEST CHANGED id0=9507 VAR1=9507 income before=3FDFACE932896C31 after=3FDFACE93291AB41 (                   0.49492864547 -> 
+                    0.4949286455) dependents before=4197CC98A0000000 after=4197CC98A0000000
+X26 TEST CHANGED id0=9508 VAR1=9508 income before=3FEC35544084E486 after=3FEC3554408A63E6 (                   0.88150990106 -> 
+                    0.8815099011) dependents before=4187CC5040000000 after=4187CC5040000000
+X26 TEST CHANGED id0=9509 VAR1=9509 income before=3FE75B2BE637D7DE after=3FE75B2BE63EB716 (                   0.72987933125 -> 
+                    0.7298793313) dependents before=4180615150000000 after=4180615150000000
+X26 TEST CHANGED id0=9510 VAR1=9510 income before=3FCBD3A2BCA2F1FF after=3FCBD3A2BC9273DF (                   0.21739610873 -> 
+                    0.2173961087) dependents before=41948EF578000000 after=41948EF578000000
+X26 TEST CHANGED id0=9511 VAR1=9511 income before=3FDC61A78D8AB10B after=3FDC61A78D90306B (                   0.44346035788 -> 
+                    0.4434603579) dependents before=4180E8E5F0000000 after=4180E8E5F0000000
+X26 TEST CHANGED id0=9512 VAR1=9512 income before=3FA23EA14AB0DAD6 after=3FA23EA14A6EE257 (                   0.03563407933 -> 
+                    0.0356340793) dependents before=416BFA3BE0000000 after=416BFA3BE0000000
+1258       proc sql noprint;
+1259           select count(*), sum(inc_changed), sum(dep_changed), sum(id_differs),
+1260                  sum(missing(inc0)), sum(missing(dep0)), min(ti), max(ti), min(td), max(td)
+1261           into :n trimmed, :ni trimmed, :nd trimmed, :nid trimmed, :mi trimmed, :md trimmed,
+1262                :ti1 trimmed, :ti2 trimmed, :td1 trimmed, :td2 trimmed
+1263           from work.x26_TEST;
+1264       quit;
+1265       %put X26 TEST SUMMARY rows=&n income_changed=&ni dependents_changed=&nd id_differs=&nid income_missing=&mi
+1265     ! dependents_missing=&md income_type=&ti1.&ti2 dependents_type=&td1.&td2;
+X26 TEST SUMMARY rows=9512 income_changed=202 dependents_changed=0 id_differs=0 income_missing=3 dependents_missing=3 
+income_type=NN dependents_type=NN
+1266       data _null_;
+1267           set work.x26_TEST;
+1268           file
+1268     ! "/saswork/SAS_work87090000F504_odaws02-euw1.oda.sas.com/SAS_workB2360000F504_odaws02-euw1.oda.sas.com/x26_train_out/x26_t
+1268     ! est_hex.csv" lrecl=200;
+1269           if _n_ = 1 then put 'id,inc_raw,inc_clean,dep_raw,dep_clean';
+1270           put id0 +(-1) ',' inc0 hex16. ',' MonthlyIncome hex16. ',' dep0 hex16. ',' NumberOfDependents hex16.;
+1271       run;
+1272       
+1273       
+1274       
+1275       
+40                                                         The SAS System                          Monday, 16 November 2026 16:09:00
+
+1276       
+X26 TRAIN PYTHON rows=9512 import_not_nearest_double=0 changed_by_input=202
+X26 TRAIN PYTHON class=EDGE rows=172 import_not_nearest_double=0 changed_by_input=2
+X26 TRAIN PYTHON class=P11 rows=200 import_not_nearest_double=0 changed_by_input=200
+X26 TRAIN PYTHON changed id=9306 class=EDGE income=[99999999999.9] 42374876E7FFE666->42374876E8000000 dependents=[19052] 40D29B0000000000->40D29B0000000000
+X26 TRAIN PYTHON changed id=9310 class=EDGE income=[12345678901.5] 4206FEE0E1AC0000->4206FEE0E1B00000 dependents=[27793] 40DB244000000000->40DB244000000000
+X26 TRAIN PYTHON changed id=9313 class=P11 income=[.12384540294] 3FBFB4551363224F->3FBFB4551337274F dependents=[52790] 40E9C6C000000000->40E9C6C000000000
+X26 TRAIN PYTHON changed id=9314 class=P11 income=[.76674908661] 3FE8893561674A50->3FE889356165EA78 dependents=[26163] 40D98CC000000000->40D98CC000000000
+X26 TRAIN PYTHON changed id=9315 class=P11 income=[.11372809987] 3FBD1D48E593EF69->3FBD1D48E5B4EBA9 dependents=[64455] 40EF78E000000000->40EF78E000000000
+X26 TRAIN PYTHON changed id=9316 class=P11 income=[.73865605819] 3FE7A312079D62E7->3FE7A312079EC2BF dependents=[25128] 40D88A0000000000->40D88A0000000000
+X26 TRAIN PYTHON changed id=9317 class=P11 income=[.98338599132] 3FEF77E5E6020BCC->3FEF77E5E5FF4C1C dependents=[10050] 40C3A10000000000->40C3A10000000000
+X26 TRAIN PYTHON changed id=9318 class=P11 income=[.02314287582] 3F97B2C41B21106A->3F97B2C41AC91A6B dependents=[99575] 40F84F7000000000->40F84F7000000000
+X26 TRAIN PYTHON changed id=9319 class=P11 income=[.17305927384] 3FC626CE68B4C685->3FC626CE689EC905 dependents=[96079] 40F774F000000000->40F774F000000000
+X26 TRAIN PYTHON changed id=9320 class=P11 income=[.87501450559] 3FEC001E6BA11BEE->3FEC001E6BA27BC6 dependents=[81259] 40F3D6B000000000->40F3D6B000000000
+X26 TRAIN PYTHON changed id=9321 class=P11 income=[.63738594136] 3FE4657733A248B2->3FE4657733A7C812 dependents=[21827] 40D550C000000000->40D550C000000000
+X26 TRAIN PYTHON changed id=9322 class=P11 income=[.57876691556] 3FE2854231CAC8A7->3FE2854231D04807 dependents=[96735] 40F79DF000000000->40F79DF000000000
+X26 TRAIN PYTHON changed id=9323 class=P11 income=[.66043414026] 3FE52246C73283B4->3FE52246C7380314 dependents=[50300] 40E88F8000000000->40E88F8000000000
+X26 TRAIN PYTHON changed id=9324 class=P11 income=[.03411860926] 3FA177FE8DE9D4F2->3FA177FE8E41CAF1 dependents=[63006] 40EEC3C000000000->40EEC3C000000000
+X26 TRAIN PYTHON changed id=9325 class=P11 income=[.25072562583] 3FD00BE37ECD5FFA->3FD00BE37EC520EA dependents=[76657] 40F2B71000000000->40F2B71000000000
+X26 TRAIN PYTHON changed id=9326 class=P11 income=[.67201984931] 3FE5812FC56193DA->3FE5812FC5603402 dependents=[70471] 40F1347000000000->40F1347000000000
+X26 TRAIN PYTHON changed id=9327 class=P11 income=[.45224964377] 3FDCF1A87D67AACE->3FDCF1A87D6FE9DE dependents=[79911] 40F3827000000000->40F3827000000000
+X26 TRAIN PYTHON changed id=9328 class=P11 income=[.23788452213] 3FCE73000162EFA4->3FCE730001527184 dependents=[47351] 40E71EE000000000->40E71EE000000000
+X26 TRAIN PYTHON changed id=9329 class=P11 income=[.63102709066] 3FE4315FB9A8CA90->3FE4315FB9AE49F0 dependents=[40281] 40E3AB2000000000->40E3AB2000000000
+X26 TRAIN PYTHON changed id=9330 class=P11 income=[.31813461452] 3FD45C514945B1A2->3FD45C5149403242 dependents=[82778] 40F435A000000000->40F435A000000000
+X26 TRAIN PYTHON changed id=9331 class=P11 income=[.89237325519] 3FEC8E525B5BB731->3FEC8E525B5D1709 dependents=[92705] 40F6A21000000000->40F6A21000000000
+X26 TRAIN PYTHON changed id=9332 class=P11 income=[.41885137334] 3FDACE75FD9851B2->3FDACE75FD8D52F2 dependents=[96824] 40F7A38000000000->40F7A38000000000
+X26 TRAIN PYTHON changed id=9333 class=P11 income=[.11873903813] 3FBE65AE7D86DF72->3FBE65AE7D65E332 dependents=[57326] 40EBFDC000000000->40EBFDC000000000
+X26 TRAIN PYTHON changed id=9334 class=P11 income=[.37670800511] 3FD81BFBE485AFBC->3FD81BFBE482F00C dependents=[87494] 40F55C6000000000->40F55C6000000000
+X26 TRAIN PYTHON changed id=9335 class=P11 income=[.74833129195] 3FE7F254772FF52C->3FE7F2547736D464 dependents=[91841] 40F66C1000000000->40F66C1000000000
+X26 TRAIN PYTHON changed id=9336 class=P11 income=[.77615028284] 3FE8D6391E3286C2->3FE8D6391E2D0762 dependents=[25423] 40D8D3C000000000->40D8D3C000000000
+X26 TRAIN PYTHON changed id=9337 class=P11 income=[.36005302271] 3FD70B1BD55762A3->3FD70B1BD554A2F3 dependents=[24750] 40D82B8000000000->40D82B8000000000
+X26 TRAIN PYTHON changed id=9338 class=P11 income=[.94349368697] 3FEE3119AC309877->3FEE3119AC34B7FF dependents=[98040] 40F7EF8000000000->40F7EF8000000000
+X26 TRAIN PYTHON changed id=9339 class=P11 income=[.95613491645] 3FEE98A84096ED19->3FEE98A8409DCC51 dependents=[92950] 40F6B16000000000->40F6B16000000000
+X26 TRAIN PYTHON changed id=9340 class=P11 income=[.63110925488] 3FE4320C093D336F->3FE4320C093FF31F dependents=[76079] 40F292F000000000->40F292F000000000
+X26 TRAIN PYTHON changed id=9341 class=P11 income=[.96970241347] 3FEF07CD5B1696E5->3FEF07CD5B1AB66D dependents=[39370] 40E3394000000000->40E3394000000000
+X26 TRAIN PYTHON changed id=9342 class=P11 income=[.11693844117] 3FBDEFAD7C786A2B->3FBDEFAD7C99666B dependents=[79438] 40F364E000000000->40F364E000000000
+X26 TRAIN PYTHON changed id=9343 class=P11 income=[.46245911239] 3FDD98EE1ADCF179->3FDD98EE1ADFB129 dependents=[46045] 40E67BA000000000->40E67BA000000000
+X26 TRAIN PYTHON changed id=9344 class=P11 income=[.19665744264] 3FC92C123253AF96->3FC92C12323DB216 dependents=[83017] 40F4449000000000->40F4449000000000
+X26 TRAIN PYTHON changed id=9345 class=P11 income=[.35701057903] 3FD6D942E650A1C4->3FD6D942E64862B4 dependents=[59609] 40ED1B2000000000->40ED1B2000000000
+X26 TRAIN PYTHON changed id=9346 class=P11 income=[.31015605742] 3FD3D998CAD19CD9->3FD3D998CACC1D79 dependents=[88940] 40F5B6C000000000->40F5B6C000000000
+X26 TRAIN PYTHON changed id=9347 class=P11 income=[.32716077334] 3FD4F033BD81E12D->3FD4F033BD76E26D dependents=[54059] 40EA656000000000->40EA656000000000
+X26 TRAIN PYTHON changed id=9348 class=P11 income=[.89821007875] 3FECBE2310256718->3FECBE23102C4650 dependents=[32317] 40DF8F4000000000->40DF8F4000000000
+X26 TRAIN PYTHON changed id=9349 class=P11 income=[.56917390446] 3FE236AC312C8DF5->3FE236AC31320D55 dependents=[70633] 40F13E9000000000->40F13E9000000000
+X26 TRAIN PYTHON changed id=9350 class=P11 income=[.41599320313] 3FDA9FA1F4B34DFC->3FDA9FA1F4AB0EEC dependents=[40254] 40E3A7C000000000->40E3A7C000000000
+X26 TEST PYTHON rows=9512 import_not_nearest_double=0 changed_by_input=202
+X26 TEST PYTHON class=EDGE rows=172 import_not_nearest_double=0 changed_by_input=2
+X26 TEST PYTHON class=P11 rows=200 import_not_nearest_double=0 changed_by_input=200
+X26 TEST PYTHON changed id=9306 class=EDGE income=[99999999999.9] 42374876E7FFE666->42374876E8000000 dependents=[19052] 40D29B0000000000->40D29B0000000000
+X26 TEST PYTHON changed id=9310 class=EDGE income=[12345678901.5] 4206FEE0E1AC0000->4206FEE0E1B00000 dependents=[27793] 40DB244000000000->40DB244000000000
+X26 TEST PYTHON changed id=9313 class=P11 income=[.12384540294] 3FBFB4551363224F->3FBFB4551337274F dependents=[52790] 40E9C6C000000000->40E9C6C000000000
+X26 TEST PYTHON changed id=9314 class=P11 income=[.76674908661] 3FE8893561674A50->3FE889356165EA78 dependents=[26163] 40D98CC000000000->40D98CC000000000
+X26 TEST PYTHON changed id=9315 class=P11 income=[.11372809987] 3FBD1D48E593EF69->3FBD1D48E5B4EBA9 dependents=[64455] 40EF78E000000000->40EF78E000000000
+X26 TEST PYTHON changed id=9316 class=P11 income=[.73865605819] 3FE7A312079D62E7->3FE7A312079EC2BF dependents=[25128] 40D88A0000000000->40D88A0000000000
+X26 TEST PYTHON changed id=9317 class=P11 income=[.98338599132] 3FEF77E5E6020BCC->3FEF77E5E5FF4C1C dependents=[10050] 40C3A10000000000->40C3A10000000000
+X26 TEST PYTHON changed id=9318 class=P11 income=[.02314287582] 3F97B2C41B21106A->3F97B2C41AC91A6B dependents=[99575] 40F84F7000000000->40F84F7000000000
+X26 TEST PYTHON changed id=9319 class=P11 income=[.17305927384] 3FC626CE68B4C685->3FC626CE689EC905 dependents=[96079] 40F774F000000000->40F774F000000000
+X26 TEST PYTHON changed id=9320 class=P11 income=[.87501450559] 3FEC001E6BA11BEE->3FEC001E6BA27BC6 dependents=[81259] 40F3D6B000000000->40F3D6B000000000
+X26 TEST PYTHON changed id=9321 class=P11 income=[.63738594136] 3FE4657733A248B2->3FE4657733A7C812 dependents=[21827] 40D550C000000000->40D550C000000000
+X26 TEST PYTHON changed id=9322 class=P11 income=[.57876691556] 3FE2854231CAC8A7->3FE2854231D04807 dependents=[96735] 40F79DF000000000->40F79DF000000000
+X26 TEST PYTHON changed id=9323 class=P11 income=[.66043414026] 3FE52246C73283B4->3FE52246C7380314 dependents=[50300] 40E88F8000000000->40E88F8000000000
+X26 TEST PYTHON changed id=9324 class=P11 income=[.03411860926] 3FA177FE8DE9D4F2->3FA177FE8E41CAF1 dependents=[63006] 40EEC3C000000000->40EEC3C000000000
+X26 TEST PYTHON changed id=9325 class=P11 income=[.25072562583] 3FD00BE37ECD5FFA->3FD00BE37EC520EA dependents=[76657] 40F2B71000000000->40F2B71000000000
+X26 TEST PYTHON changed id=9326 class=P11 income=[.67201984931] 3FE5812FC56193DA->3FE5812FC5603402 dependents=[70471] 40F1347000000000->40F1347000000000
+X26 TEST PYTHON changed id=9327 class=P11 income=[.45224964377] 3FDCF1A87D67AACE->3FDCF1A87D6FE9DE dependents=[79911] 40F3827000000000->40F3827000000000
+X26 TEST PYTHON changed id=9328 class=P11 income=[.23788452213] 3FCE73000162EFA4->3FCE730001527184 dependents=[47351] 40E71EE000000000->40E71EE000000000
+X26 TEST PYTHON changed id=9329 class=P11 income=[.63102709066] 3FE4315FB9A8CA90->3FE4315FB9AE49F0 dependents=[40281] 40E3AB2000000000->40E3AB2000000000
+X26 TEST PYTHON changed id=9330 class=P11 income=[.31813461452] 3FD45C514945B1A2->3FD45C5149403242 dependents=[82778] 40F435A000000000->40F435A000000000
+X26 TEST PYTHON changed id=9331 class=P11 income=[.89237325519] 3FEC8E525B5BB731->3FEC8E525B5D1709 dependents=[92705] 40F6A21000000000->40F6A21000000000
+X26 TEST PYTHON changed id=9332 class=P11 income=[.41885137334] 3FDACE75FD9851B2->3FDACE75FD8D52F2 dependents=[96824] 40F7A38000000000->40F7A38000000000
+X26 TEST PYTHON changed id=9333 class=P11 income=[.11873903813] 3FBE65AE7D86DF72->3FBE65AE7D65E332 dependents=[57326] 40EBFDC000000000->40EBFDC000000000
+X26 TEST PYTHON changed id=9334 class=P11 income=[.37670800511] 3FD81BFBE485AFBC->3FD81BFBE482F00C dependents=[87494] 40F55C6000000000->40F55C6000000000
+X26 TEST PYTHON changed id=9335 class=P11 income=[.74833129195] 3FE7F254772FF52C->3FE7F2547736D464 dependents=[91841] 40F66C1000000000->40F66C1000000000
+X26 TEST PYTHON changed id=9336 class=P11 income=[.77615028284] 3FE8D6391E3286C2->3FE8D6391E2D0762 dependents=[25423] 40D8D3C000000000->40D8D3C000000000
+X26 TEST PYTHON changed id=9337 class=P11 income=[.36005302271] 3FD70B1BD55762A3->3FD70B1BD554A2F3 dependents=[24750] 40D82B8000000000->40D82B8000000000
+X26 TEST PYTHON changed id=9338 class=P11 income=[.94349368697] 3FEE3119AC309877->3FEE3119AC34B7FF dependents=[98040] 40F7EF8000000000->40F7EF8000000000
+X26 TEST PYTHON changed id=9339 class=P11 income=[.95613491645] 3FEE98A84096ED19->3FEE98A8409DCC51 dependents=[92950] 40F6B16000000000->40F6B16000000000
+X26 TEST PYTHON changed id=9340 class=P11 income=[.63110925488] 3FE4320C093D336F->3FE4320C093FF31F dependents=[76079] 40F292F000000000->40F292F000000000
+X26 TEST PYTHON changed id=9341 class=P11 income=[.96970241347] 3FEF07CD5B1696E5->3FEF07CD5B1AB66D dependents=[39370] 40E3394000000000->40E3394000000000
+X26 TEST PYTHON changed id=9342 class=P11 income=[.11693844117] 3FBDEFAD7C786A2B->3FBDEFAD7C99666B dependents=[79438] 40F364E000000000->40F364E000000000
+X26 TEST PYTHON changed id=9343 class=P11 income=[.46245911239] 3FDD98EE1ADCF179->3FDD98EE1ADFB129 dependents=[46045] 40E67BA000000000->40E67BA000000000
+X26 TEST PYTHON changed id=9344 class=P11 income=[.19665744264] 3FC92C123253AF96->3FC92C12323DB216 dependents=[83017] 40F4449000000000->40F4449000000000
+X26 TEST PYTHON changed id=9345 class=P11 income=[.35701057903] 3FD6D942E650A1C4->3FD6D942E64862B4 dependents=[59609] 40ED1B2000000000->40ED1B2000000000
+X26 TEST PYTHON changed id=9346 class=P11 income=[.31015605742] 3FD3D998CAD19CD9->3FD3D998CACC1D79 dependents=[88940] 40F5B6C000000000->40F5B6C000000000
+X26 TEST PYTHON changed id=9347 class=P11 income=[.32716077334] 3FD4F033BD81E12D->3FD4F033BD76E26D dependents=[54059] 40EA656000000000->40EA656000000000
+X26 TEST PYTHON changed id=9348 class=P11 income=[.89821007875] 3FECBE2310256718->3FECBE23102C4650 dependents=[32317] 40DF8F4000000000->40DF8F4000000000
+X26 TEST PYTHON changed id=9349 class=P11 income=[.56917390446] 3FE236AC312C8DF5->3FE236AC31320D55 dependents=[70633] 40F13E9000000000->40F13E9000000000
+X26 TEST PYTHON changed id=9350 class=P11 income=[.41599320313] 3FDA9FA1F4B34DFC->3FDA9FA1F4AB0EEC dependents=[40254] 40E3A7C000000000->40E3A7C000000000
