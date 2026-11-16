@@ -38,6 +38,30 @@ def block(label, reason):
 
 agent_name = ev.get("agent_type")
 role_name = role_of(agent_name)
+
+# Agents started without a name (by a workflow script, or as plain sub-agents) are addressed by
+# their id. The hook notes the role of every id it sees, so that a message to an id can be held
+# to the same rule as a message to a name.
+SEEN = os.path.join(here, "agents-seen.json")
+
+
+def seen():
+    try:
+        return json.load(open(SEEN))
+    except Exception:
+        return {}
+
+
+if ev.get("agent_id") and role_name:
+    known = seen()
+    if known.get(ev["agent_id"]) != role_name:
+        known[ev["agent_id"]] = role_name
+        try:
+            tmp = SEEN + f".{os.getpid()}"
+            json.dump(known, open(tmp, "w"))
+            os.replace(tmp, SEEN)
+        except Exception:
+            pass
 if ev.get("tool_name") == "Agent":  # whoever starts an agent: a name and a definition must agree on the role
     ti = ev.get("tool_input") or {}
     named, typed = role_of(ti.get("name")), role_of(ti.get("subagent_type"))
@@ -122,7 +146,8 @@ def main():
                 reasons.append(bad(re.split(r"[*?\[{]", t)[0] or ".", ".claude" in t, base))
     elif tool == "SendMessage":
         to = ti.get("to") or ""
-        if to not in LEAD and (not role_name or role_of(to) != role_name):
+        to_role = role_of(to) or seen().get(to)
+        if to not in LEAD and (not role_name or to_role != role_name):
             reasons.append(f"this agent may message only the lead and agents of its own role, not {to or 'everyone'}")
     elif tool.startswith("mcp__"):
         hit = [v for v in ti.values() if isinstance(v, str) and v in denied_bp]
