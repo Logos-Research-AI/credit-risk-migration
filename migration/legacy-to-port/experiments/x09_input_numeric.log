@@ -1,0 +1,80 @@
+X09 RUN saspy=5.110.0 profile=oda_eu sasver=9.04.01M9P06052025
+5                                                          The SAS System                          Monday, 16 November 2026 09:41:00
+
+24         
+25         /* X09: INPUT(x, best32.) on a column PROC IMPORT typed as numeric (guessingrows=max, no NA):
+26            is the number first written as BEST12. text and read back? Also what BEST32. prints for
+27            values of more than 15 significant digits (the format of income_medians.csv). */
+28         filename x09 temp;
+29         data _null_;
+30           file x09;
+31           put 'id,MonthlyIncome';
+32           put '1,1234567890123';
+33           put '2,123456789.12345';
+34           put '3,3000';
+35           put '4,0.000001234567891';
+36           put '5,';
+37           put '6,123456789012';
+38           put '7,1234567.123456789';
+39         run;
+40         proc import datafile=x09 out=work.x09_raw dbms=csv replace;
+40       !                                                             getnames=yes; guessingrows=max; run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+41          /**********************************************************************
+42          *   PRODUCT:   SAS
+43          *   VERSION:   9.4
+44          *   CREATOR:   External File Interface
+45          *   DATE:      16NOV26
+46          *   DESC:      Generated SAS Datastep Code
+47          *   TEMPLATE SOURCE:  (None Specified.)
+48          ***********************************************************************/
+49             data WORK.X09_RAW    ;
+50             %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+51             infile X09 delimiter = ',' MISSOVER DSD  firstobs=2 ;
+52                informat id best32. ;
+53                informat MonthlyIncome best32. ;
+54                format id best12. ;
+55                format MonthlyIncome best12. ;
+56             input
+57                         id
+58                         MonthlyIncome
+59             ;
+60             if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+61             run;
+7 rows created in WORK.X09_RAW from X09.
+  
+  
+  
+62         data work.x09_clean;
+63           set work.x09_raw;
+64           type = vtype(MonthlyIncome);
+65           MonthlyIncome_num = input(MonthlyIncome, best32.);
+66           put "X09 input " id= type= MonthlyIncome= hex16. MonthlyIncome_num= hex16. MonthlyIncome_num= best32.;
+67         run;
+X09 input id=1 type=N MonthlyIncome=4271F71FB04CB000 MonthlyIncome_num=4271F71FB2B60000 MonthlyIncome_num=1234567900000
+X09 input id=2 type=N MonthlyIncome=419D6F34547E69AD MonthlyIncome_num=419D6F34547AE148 MonthlyIncome_num=123456789.12
+X09 input id=3 type=N MonthlyIncome=40A7700000000000 MonthlyIncome_num=40A7700000000000 MonthlyIncome_num=3000
+X09 input id=4 type=N MonthlyIncome=3EB4B66DC05DF05A MonthlyIncome_num=3EB4B66DC2E6750C MonthlyIncome_num=1.2345679E-6
+X09 input id=5 type=N MonthlyIncome=. MonthlyIncome_num=. MonthlyIncome_num=.
+X09 input id=6 type=N MonthlyIncome=423CBE991A140000 MonthlyIncome_num=423CBE991A140000 MonthlyIncome_num=123456789012
+X09 input id=7 type=N MonthlyIncome=4132D6871F9ADD37 MonthlyIncome_num=4132D6871F9DB22D MonthlyIncome_num=1234567.1235
+68         data _null_;
+69           do x = 12345678901234567, 1234567.123456789, 6172839450618783.5, 2499.9999999999995, 0.1, 1e15, 123456789012345678;
+70             put "X09 best32 " x= hex16. x= best32.;
+71           end;
+72         run;
+X09 best32 x=4345EE2A2EB5A5C4 x=12345678901234568
+X09 best32 x=4132D6871F9ADD37 x=1234567.12345678
+X09 best32 x=4335EE2A2EB5ABA0 x=6172839450618784
+X09 best32 x=40A387FFFFFFFFFF x=2500
+X09 best32 x=3FB999999999999A x=0.1
+X09 best32 x=430C6BF526340000 x=1000000000000000
+X09 best32 x=437B69B4BA630F35 x=123456789012345680
+73         
+74         
+75         
+76         
+6                                                          The SAS System                          Monday, 16 November 2026 09:41:00
+
+77         

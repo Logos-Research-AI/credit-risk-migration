@@ -32,10 +32,20 @@ def run(
 
     # feature_engineering.sas:45-56  # INV MonthlyIncome_num, NumberOfDependents_num
     # create the _num columns, drop the text columns, rename (numeric versions end last, as in the PDV)
+    # input(v, best32.) reads text: a column imported as numeric (no row holds NA or other text) is
+    # first written as BEST12. text, so a number that needs more than 12 characters is changed
+    # (experiment x09_input_numeric: 1234567890123 is read back as 1234567900000)
+    def input_best32(v: str) -> pl.Expr:
+        if credit_raw.schema[v] != pl.String:
+            return sas_compat.input_best32(
+                pl.col(v).map_elements(sas_compat.sas_best12, return_dtype=pl.String)
+            )
+        return sas_compat.input_best32(pl.col(v))
+
     credit_raw_clean = (
         credit_raw.with_columns(
-            MonthlyIncome_num=sas_compat.input_best32(pl.col("MonthlyIncome")),
-            NumberOfDependents_num=sas_compat.input_best32(pl.col("NumberOfDependents")),
+            MonthlyIncome_num=input_best32("MonthlyIncome"),
+            NumberOfDependents_num=input_best32("NumberOfDependents"),
         )
         .drop("MonthlyIncome", "NumberOfDependents")
         .rename({"MonthlyIncome_num": "MonthlyIncome", "NumberOfDependents_num": "NumberOfDependents"})
