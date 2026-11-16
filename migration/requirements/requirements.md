@@ -67,7 +67,7 @@ data.
 
 | # | Requirement | Source |
 |---|---|---|
-| Q27 | On an input that meets the conditions of section 3, every step produces its result. On an input that does not, the pipeline stops with an error and produces no result (rulings G3, G4, G11), except that a stop is demanded only when the input is faulty whatever numbers its fields written with more than 32 characters are read as (rulings G47, G51, G52) | section 3 |
+| Q27 | On an input that meets the conditions of section 3, every step produces its result. What it does on an input that does not is not required (ruling G53, which withdraws the earlier demand to stop with an error; rulings G3, G4, G11) | section 3 |
 
 ## 2. Reported figures, not requirements
 
@@ -85,22 +85,16 @@ the requirements are stated for raw inputs in which:
 - the outcome, where present, is 0 or 1;
 - the row ids (`VAR1`) are distinct within each raw file (ruling G14);
 - the raw files are tables a CSV file can hold: they have the columns of section 5 and no others,
-  and every field is written with at most 32 characters, quotes and surrounding blanks counted
-  (rulings G28, G51);
+  and every numeric value is a decimal number that can be written in at most 32 characters
+  (ruling G28);
 - the three late-payment counts, the number of dependents and the number of credit lines are
   whole numbers, zero or more (ruling G29);
 - a known `MonthlyIncome` is zero or more (ruling G34);
-- no field holds a text value: each is a number or missing (ruling G39). A field is a number
-  whenever it reads as one, however it is written (rulings G48, G50); row ids are compared as
-  numbers;
-- column names are those of section 5 exactly, capitalisation included (ruling G46);
-- a row shorter than the header has its missing trailing fields blank (ruling G49).
+- no field holds a text value: each is a number or missing (ruling G39).
 
 On such inputs Q1 and Q2 leave no missing value, so no later requirement has to say what a
-missing value does. A pipeline that meets an input outside these conditions must stop with an
-error, not produce a result. The one exception is a field written with more than 32 characters:
-a stop is demanded only when the file is faulty whatever numbers its long fields are read as
-(rulings G47, G51, G52).
+missing value does. What a pipeline does on an input outside these conditions is not required
+(ruling G53).
 
 ## 4. Rulings
 
@@ -165,6 +159,7 @@ a stop is demanded only when the file is faulty whatever numbers its long fields
 | G50 | "Reads as a number" (G48) is: an optional pair of double quotes around the field; blanks around the field; an optional sign; digits with an optional decimal point, where the digits before or after the point may be absent but not both (`.5`, `5.`); an optional exponent `e` or `E` with an optional sign. Nothing else is a number: single quotes, other exponent letters, NaN, infinity, thousands separators, hexadecimal and a quoted empty field are text | 2026-11-16 |
 | G51 | The 32-character rule (G28, G47) is about the field as written: a field written with more than 32 characters is outside what Q27 demands, whatever its value; a field written with 32 characters or fewer must be read as its number | 2026-11-16 |
 | G52 | Q27 demands a stop only when a file is faulty for a reason that does not depend on the value of a field written with more than 32 characters: the file must fail the other input conditions whatever numbers its long fields are read as. When a fault exists only through the exact value of a long field (a count written `2.000…01` in 39 characters), nothing is demanded (completes G47 and G51) | 2026-11-16 |
+| G53 | Q27 is reduced to its first part: on an input that meets the conditions of section 3, every step produces its result. What the pipeline does on any other input is not required and is not part of the verification; the input checks the program has stay as they are. Rulings G46 to G52, which refined what an invalid input is and when a stop is demanded, are set aside: they are kept above for the record and are not formalised. Section 3 stands as it was before them (G39 in its plain reading: no text in any field) | 2026-11-16 |
 
 **Signed off by the owner on 2026-11-14** as formalised in the blueprint `credit-risk-requirements`
 (58 items at that date, 59 since draft 4; consistency proved; report in `report.md`, audit in `../audit/requirements-audit.md`).
