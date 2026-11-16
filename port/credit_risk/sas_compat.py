@@ -746,25 +746,26 @@ def fit_logistic(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logistic
     return LogisticFit(list(names), b, cov, ll, n_iter, converged)
 
 
-def _fit_separated(
-    x: FloatArray, y: FloatArray, names: Sequence[str], start: FloatArray
-) -> LogisticFit | None:
+def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticFit | None:
     """The estimates SAS keeps for a model whose maximum likelihood estimate does not exist
     (PROC LOGISTIC, "Existence of Maximum Likelihood Estimates"; SAS warns and continues, "Results
-    shown are based on the last maximum likelihood iteration"). Fisher scoring from `start` (the
-    estimates of the step before, 0 for the effect that enters), no step halving, at most 25
-    iterations (SAS's MAXITER). From the 8th iteration on, after each iteration:
+    shown are based on the last maximum likelihood iteration"). Fisher scoring from the intercept-only
+    estimates (intercept log(events / non-events), every other coefficient 0), no step halving, at
+    most 25 iterations (SAS's MAXITER). From the 8th iteration on, after each iteration:
     complete separation when every observation has probability >= 0.95 of its observed response;
     else quasi-complete separation when some observation has, and a diagonal element of the inverse
     information matrix for the standardized columns (mean 0, standard deviation 1, divisor n - 1)
     exceeds 5000. The iteration stops there and its estimates are returned, `converged=False`.
-    None when neither is found. Measured on judge/runs gen_s16, s17, s18, s20, small_sep60 (complete,
-    stopped at iteration 8) and gen_s21, gen_s24 (quasi-complete, stopped at iterations 9 and 10):
-    -2 Log L, the global tests, R-square and the Wald chi-square of the removal are SAS's.
+    None when neither is found. Measured on judge/runs gen_s16, s17, s18, s20, small_sep60 and
+    oneclass_n60_two_variables steps 3 and 4 (complete, stopped at iteration 8) and gen_s21, gen_s24,
+    oneclass_n60_quasi (quasi-complete, stopped at iterations 9, 10 and 9): -2 Log L, the global
+    tests, R-square and the Wald chi-squares of the removal are SAS's. The two-variable run fixes the
+    start (the estimates of the step before give other numbers).
     Not settled by those runs: how close to 1 SAS wants the probabilities for complete separation
-    (the smallest seen is 0.999901; 0.95 is the documentation's "extremely large probability"),
-    and the divisor of the standard deviation (n and n - 1 agree on both quasi-complete runs)."""
-    b = np.asarray(start, dtype=np.float64)
+    (the smallest seen is 0.97726; 0.95 is the documentation's "extremely large probability"),
+    and the divisor of the standard deviation (n and n - 1 agree on the three quasi-complete runs)."""
+    b = np.zeros(x.shape[1])
+    b[0] = math.log(float(y.sum()) / float(len(y) - y.sum()))
     with np.errstate(divide="ignore", invalid="ignore"):
         xs = np.column_stack([x[:, 0], (x[:, 1:] - x[:, 1:].mean(axis=0)) / x[:, 1:].std(axis=0, ddof=1)])
     try:
@@ -836,17 +837,12 @@ def stepwise_logistic(
     def mkey(m: str) -> int:
         return order[m]
 
-    def fit(cols: list[str], prev: LogisticFit | None) -> LogisticFit:
+    def fit(cols: list[str]) -> LogisticFit:
         x = np.column_stack([ones, *[z_all[c] for c in cols]])
         f = fit_logistic(x, y, ["Intercept", *cols])
         if not f.converged:
             # separation: SAS warns and continues with the last iteration's estimates
-            sep = None
-            if prev is not None and cols:
-                start = np.array(
-                    [prev.beta[prev.names.index(m)] if m in prev.names else 0.0 for m in f.names]
-                )
-                sep = _fit_separated(x, y, f.names, start)
+            sep = _fit_separated(x, y, f.names) if cols else None
             if sep is None:
                 raise RuntimeError(f"stepwise_logistic: the fit at step {step} ({cols}) did not converge")
             if sep.separation == "complete":
@@ -867,7 +863,7 @@ def stepwise_logistic(
         return f
 
     model: list[str] = []
-    cur = fit(model, None)
+    cur = fit(model)
     res = StepwiseResult(intercept_only=cur, final=cur)
     last_removed: str | None = None
     while step < 500:
@@ -881,7 +877,7 @@ def stepwise_logistic(
             if best_w is not None and chi2_sf(best_w[0], 1) > slstay:
                 step += 1
                 model.remove(best_w[1])
-                cur = fit(model, cur)
+                cur = fit(model)
                 res.steps.append(
                     StepwiseStep(
                         step, None, best_w[1], 1, len(model), None, best_w[0], chi2_sf(best_w[0], 1), cur
@@ -913,7 +909,7 @@ def stepwise_logistic(
             break
         step += 1
         model.append(best[1])
-        cur = fit(model, cur)
+        cur = fit(model)
         res.steps.append(
             StepwiseStep(step, best[1], None, 1, len(model), best[0], None, chi2_sf(best[0], 1), cur)
         )

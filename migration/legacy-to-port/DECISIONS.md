@@ -159,10 +159,12 @@ for translation rules once it exists.
   step with the estimates of the iteration at which SAS declares the separation, and goes on to
   the removal test. RULEBOOK §2 (stepwise row and post-parity note) is updated in the same commit.
 - The rule for the kept estimates (`sas_compat._fit_separated`) is SAS's documented one (PROC
-  LOGISTIC, "Existence of Maximum Likelihood Estimates"), started from the estimates of the step
-  before. It reproduces the printed tables of the separated step in the seven SAS runs in hand
-  (`judge/runs/gen_s16`, `s17`, `s18`, `s20`, `small_sep60` complete, stopped at iteration 8;
-  `gen_s21`, `gen_s24` quasi-complete, stopped at iterations 9 and 10). Not settled by them: how
-  close to 1 the probabilities must be for complete separation (0.95 taken; smallest seen
-  0.999901), and the divisor of the standard deviation in the quasi-complete test.
+  LOGISTIC, "Existence of Maximum Likelihood Estimates"), started from the intercept-only
+  estimates. It reproduces the printed tables of the separated steps in the nine SAS runs in hand
+  (`judge/runs/gen_s16`, `s17`, `s18`, `s20`, `small_sep60`, `oneclass_n60_two_variables` steps 3
+  and 4: complete, stopped at iteration 8; `gen_s21`, `gen_s24`, `oneclass_n60_quasi`:
+  quasi-complete, stopped at iterations 9, 10 and 9). The two-variable run, where the final model
+  depends on the separated fits, fixes the start. Not settled by them: how close to 1 the
+  probabilities must be for complete separation (0.95 taken; smallest seen 0.97726), and the
+  divisor of the standard deviation in the quasi-complete test.
 - A fit that does not converge for another reason still stops with an error.
