@@ -246,6 +246,13 @@ Tasks that can run at once after T0: T1, T2, T3, T4, T5, T7, T8, T9, T10, T13, T
 | `diffeval/units/runs_r2_gen.py` | 363-364, 432 | `fix_train_medians=fx, medians=…` |
 | `diffeval/units/runs_r2_gen.py` | 502 | `mc.run(…, fix_psi_bins=fix)` |
 
+T20 (2026-11-16): every script of this table except `b3_gen.py` is retired, not rewritten
+(`experiments/t20_retire.py`): each tested the port with a flag off and on, and the Lean signatures it
+generates terms for no longer exist. A note and an early exit at its top name the generators of the
+update that test the same units (`diffeval/units/t*_gen.py`); the recorded outputs stay as records of
+the earlier port. `b3_gen.py` keeps its three other suites and no longer writes the
+`proc_rank_apply_groups` suite.
+
 `sas_round` is still in `sas_compat.py`, so the scripts that call it still run. `brief.md:88` and
 `RULEBOOK.md:240` describe the removed flags and need an amendment.
 

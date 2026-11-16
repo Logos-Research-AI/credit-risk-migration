@@ -137,3 +137,24 @@ Decisions by the lead (2026-11-16):
 T0 done 2026-11-16: RULEBOOK v5 (§2.7; batch 7 in `amendments.md`), experiment E07
 (`experiments/e07_batch7.py`, output beside it), five carrier items
 (`def:zz_carrier_s/_f/_p/_m/_t`) accepted. Open for the lead: DEV-013 (predict result as triples).
+
+T20 done 2026-11-16 (closing check of the update; scripts and outputs under `diffeval/`):
+- Stored source against the port, by script (`diffeval/stored_source_check.py`, output
+  `diffeval/work/stored_source_check.out.txt`; the stored texts are under `diffeval/work/stored/`):
+  30 changed or added code items; 29 are the text of the file line for line (no difference, not even
+  in a comment). `def:run_py_py_py` could not be compared: `get_items` refuses its `code` field
+  (37,620 bytes, limit 30,720).
+- Suites reproducible from the final port (`diffeval/t20_regen.py`, output
+  `diffeval/work/t20_regen.out.txt`): every generator of the update run again after the port's last
+  change; the expected values and the Lean inputs, with the lookup tables of `sas_best`,
+  `sas_best12` and `input_best32` inside them, come out byte for byte the same.
+- The four compositions evaluated again on the Lean as accepted at the end, by agents that did not
+  write them (`diffeval/work/t20_<suite>.out.txt`): `run` 144/144, `run_py_py_py` 74/74,
+  `run_py_py` 26/26, `run_py` 144/144.
+- The port run end to end on `legacy/data`, each stage on the files of the stage before, and each
+  stage on a folder without its input (`diffeval/t20_e2e.py`, output `diffeval/work/t20_e2e.out.txt`).
+- Receipts: `diffeval/receipts/units.tsv` holds the rows that describe the Lean as it now stands; the
+  rows of the earlier Lean of changed units are in `diffeval/receipts/units_before_2026-11-16.tsv`.
+- Scripts that called removed keywords: retired (`experiments/t20_retire.py`; plan section 4).
+- Manifest: state, upstream, precondition and open parameters of the changed and added units
+  (`experiments/t20_manifest.py`); `def:proc_rank_apply_groups` is marked removed.

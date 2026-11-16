@@ -1,0 +1,1154 @@
+[
+ {
+  "id": "t6_run/real_text/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_text/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_numeric/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/real_long/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix2/q13_median_width/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q14/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q1/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q9/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_Q7/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_G34/income_zero/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_age_exponent/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/fix_round5/train_header_all_upper/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/full=true/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/full=true/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/full=true/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/full=true/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/full=false/files",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/full=false/income_medians.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/full=false/model_features_train.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/edge_predict/full=false/model_features_validation.csv",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop columns_ok: fix2/train_extra_column/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop columns_ok: fix2/train_extra_column/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop columns_ok: fix2/train_extra_column/full=true/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop columns_ok: fix2/train_extra_column/full=false/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop columns_ok: fix2/train_missing_column/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop columns_ok: fix2/train_missing_column/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop columns_ok: fix2/train_missing_column/full=true/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop columns_ok: fix2/train_missing_column/full=false/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop bad_rows: fix2/train_outcome_2/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop bad_rows: fix2/train_outcome_2/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop bad_rows: fix2/train_outcome_2/full=true/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop bad_rows: fix2/train_outcome_2/full=false/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop duplicate_ids: fix2/train_duplicate_id/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop duplicate_ids: fix2/train_duplicate_id/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop duplicate_ids: fix2/train_duplicate_id/full=true/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop duplicate_ids: fix2/train_duplicate_id/full=false/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop known_incomes: fix2/train_no_known_income/input table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop known_incomes: fix2/train_no_known_income/split table",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop known_incomes: fix2/train_no_known_income/full=true/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/stop known_incomes: fix2/train_no_known_income/full=false/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/absent file/full=true/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/absent file/full=false/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/header only/full=true/none",
+  "primitive": "run",
+  "note": "Python: 12 columns, no row, known_incomes = 0; Lean: the table [] has no column, columns_ok = 0",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t6_run/header only/full=false/none",
+  "primitive": "run",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

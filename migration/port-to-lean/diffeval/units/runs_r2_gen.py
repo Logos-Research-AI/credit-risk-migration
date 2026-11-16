@@ -53,11 +53,12 @@ real functions produced during the run; `today` is the String cell of the run's 
 from __future__ import annotations
 
 # RETIRED 2026-11-16: this script is a record of the port before the update of 2026-11-16 and no longer
-# runs: it calls export_train_medians, fix_income_truncation, fix_train_medians, medians, fix_psi_bins; see t6_gen.py, t11_gen.py, t16_gen.py, t18_gen.py.
+# runs as a script (its helper functions are still imported by later generators): it calls export_train_medians, fix_income_truncation, fix_train_medians, medians, fix_psi_bins; see t6_gen.py, t11_gen.py, t16_gen.py, t18_gen.py.
 # Its recorded outputs describe the port as it was then.
 import sys as _sys
 
-_sys.exit("RETIRED 2026-11-16: " + __file__ + " calls keywords the port no longer has; see the note at its top")
+if __name__ == "__main__":  # retired as a script; its helpers may still be imported
+    _sys.exit("RETIRED 2026-11-16: " + __file__ + " calls keywords the port no longer has; see the note at its top")
 
 
 import contextlib

@@ -1,7 +1,6 @@
 """T20: are the suites of the update reproducible from the final port?
 
-For each generator of the update (diffeval/units/t*_gen.py, rv_*_gen.py; not t16 while it is in
-work): keep the hashes of the suite files it wrote (work/<suite>.json: expected values and the
+For each generator of the update (diffeval/units/t*_gen.py, rv_*_gen.py): keep the hashes of the suite files it wrote (work/<suite>.json: expected values and the
 lookup tables of sas_best / sas_best12 / input_best32 baked into the Lean inputs;
 work/<suite>.inputs.json: the Lean inputs), run it again on the port as it now stands, and compare
 the hashes. Then compare.py on every suite that has a recorded Lean output.
@@ -20,7 +19,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 WORK = HERE / "work"
-SKIP = {"t16_gen.py"}
+SKIP: set[str] = set()
 
 
 def hashes() -> dict[str, str]:

@@ -53,3 +53,14 @@ predict: completed in 2s
 fe on a folder without cs-training.csv: stopped: ValueError: Feature engineering stopped. Nothing is exported.; files written []; ['ERROR: cs-training.csv does not meet the input conditions: columns_ok=0 bad_rows=1 duplicate_ids=1 known_incomes=0.', 'ERROR: Feature engineering stopped. Nothing is exported.']
 train on a folder without the feature files: stopped: ValueError: Model training stopped. Nothing is exported.; files written []; ['ERROR: The feature files are not in the output folder: feature engineering did not complete.', 'ERROR: Model training stopped. Nothing is exported.']
 predict without medians and model: stopped: ValueError: Test set scoring stopped. Nothing is exported.; files written []; ['ERROR: The training medians or the model are not in the output folder: the training steps did not complete.', 'ERROR: Test set scoring stopped. Nothing is exported.']
+metrics: completed in 0s
+    calibration_plot.csv	21 lines	5439132384a71f7a (new)
+    decile_analysis.csv	11 lines	eb78ccff65f936ad (new)
+    ks_statistic.csv	2 lines	4e195392060e33fc (new)
+    model_performance_metrics.csv	2 lines	1ca7477b8b3a82be (new)
+    printed_cumulative_lift.csv	11 lines	93e5a91c01ec69af (new)
+    printed_psi_calculation.csv	11 lines	178e49659c111b35 (new)
+    printed_roc_metrics.csv	2 lines	3783e53882229509 (new)
+    threshold_analysis.csv	6 lines	fc94a3f8f59825b6 (new)
+    validation_summary.csv	2 lines	a486ab6f4a147c5c (new)
+metrics without the score files: stopped: ValueError: Model validation stopped. Nothing is exported.; files written []; ['ERROR: The score files are not in the output folder: model training did not complete.', 'ERROR: Model validation stopped. Nothing is exported.']

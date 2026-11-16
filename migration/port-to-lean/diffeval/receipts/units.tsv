@@ -79,7 +79,6 @@ _hl_groups	91	0	PASS		migration/diffeval/units/b5_gen.py
 ExprOrNum	-	-	SEE-PRELUDE	prelude: see receipts/prelude.tsv	migration/diffeval/prelude_suites.py
 FloatArray_	-	-	SEE-PRELUDE	prelude: see receipts/prelude.tsv	migration/diffeval/prelude_suites.py
 predict_run_00_input_check	467	0	PASS	real predict.run traced at lines 82 / 176 / 177 on the test files of judge/scenarios named by T7 (fix_Q27_emptytest, fix_Q27_emptytest_badheader, fix_Q27_column_order, fix_round5/test_*, fix2/test_*, fix_G34/test_*, fix_Q27_test) plus fix_Q27, fix_Q27_textid/test_* and hand-made files; input_best32 = table from stripped text to the real input_best32 result; all three eval inputs run first-hand by the translator (2026-11-16), outputs taken from the tool results (a helper agent's earlier run gave the same integers)	port-to-lean/diffeval/units/t7_gen.py
-run_py	144	0	PASS	real mc.run, frames captured at write_sas_csv: fix_* scenarios whole, edge_metrics_a (150 / 300 lines; _b and _c not run at this level), real_metrics (200 / 300 lines); three stopped runs (a score file absent -> none); runs with one response level give 8 files (no printed_roc_metrics.csv)	port-to-lean/diffeval/units/t16_gen.py
 _SE_EPS	1	0	PASS		port-to-lean/diffeval/units/t1_gen.py
 _SQRTBIG	1	0	PASS		port-to-lean/diffeval/units/t1_gen.py
 _TIE_EPS	1	0	PASS		port-to-lean/diffeval/units/t1_gen.py
@@ -137,3 +136,4 @@ predict_run_01_clean	8	0	PASS	review of T8: hand-made test_raw frames; Python = 
 input	16	0	PASS		port-to-lean/experiments/rev_t4_probe.py
 fe_run_02b_medians_all	8	0	PASS		port-to-lean/experiments/rev_t4_probe.py
 fe_run_04_imputed	5	0	PASS		port-to-lean/experiments/rev_t4_probe.py
+run_py	144	0	PASS	real mc.run, frames captured at write_sas_csv: fix_* scenarios whole, edge_metrics_a (150 / 300 lines; _b and _c not run at this level), real_metrics (200 / 300 lines); three stopped runs (a score file absent -> none); runs with one response level give 8 files (no printed_roc_metrics.csv)	port-to-lean/diffeval/units/t16_gen.py

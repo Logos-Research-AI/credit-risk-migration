@@ -34,6 +34,12 @@ UPD = {
                                            "def:ExprOrNum", None, None),
     "def:metrics_run_06_psi": ("325-401", "def:div,def:sas_log,def:sql_sum,def:lt,def:gt,def:flag,def:sas_max,"
                                "def:ExprOrNum", None, None),
+    "def:run_py": (None, "def:metrics_run_01_roc_auc,def:metrics_run_02_ks,def:metrics_run_03_thresholds,"
+                   "def:metrics_run_04_deciles,def:metrics_run_05_cumulative_lift,def:metrics_run_06_psi,"
+                   "def:metrics_run_07_calibration,def:metrics_run_08_validation_summary,"
+                   "def:metrics_run_09_model_performance,def:metrics_run_10_printed_roc,def:_into_float,"
+                   "def:confusion_metrics,def:ExprOrNum", None,
+                   "sas_best,parse_float,sas_d8,today,fsum,risk_scores_validation,risk_scores_train"),
     "def:run_py_py": (None, "def:predict_run_00_input_check,def:predict_run_01_clean,def:predict_run_02_medians,"
                       "def:predict_run_03_cleaned,def:predict_run_04_imputed,def:predict_run_05_features,"
                       "def:predict_run_06_score,def:predict_run_07_predictions,def:predict_run_08_outputs,def:flag,"

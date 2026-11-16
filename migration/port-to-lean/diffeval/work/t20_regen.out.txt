@@ -1,17 +1,12 @@
 port last changed 15:11:13
 rv_t5t9_gen.py	SAME	1s	wrote ['rv_t5t9.inputs.json', 'rv_t5t9.json']	changed []
-rv_t8_gen.py	FAILED	1s	wrote ['rv_t8.inputs.json', 'rv_t8.json']	changed []
-        main()
-        ~~~~^^
-      File "/Users/cristophersalvi/GitHub/credit-risk-migration/migration/port-to-lean/diffeval/units/rv_t8_gen.py", line 139, in main
-        print(len(inp["inputs"]), "inputs", [len(x) for x in inp["inputs"]])
-                  ~~~^^^^^^^^^^
-    KeyError: 'inputs'
+rv_t8_gen.py	SAME	1s	wrote ['rv_t8.inputs.json', 'rv_t8.json']	changed []
 t11_gen.py	SAME	12s	wrote ['t11_run.inputs.json', 't11_run.json']	changed []
 t12_gen.py	SAME	1s	wrote ['t12_auc.inputs.json', 't12_auc.json']	changed []
 t13_gen.py	SAME	2s	wrote ['t13_ks.inputs.json', 't13_ks.json']	changed []
 t14_gen.py	SAME	3s	wrote ['t14_dec.inputs.json', 't14_dec.json', 't14_lift.inputs.json', 't14_lift.json']	changed []
 t15_gen.py	SAME	1s	wrote ['t15_psi.inputs.json', 't15_psi.json']	changed []
+t16_gen.py	SAME	1s	wrote ['t16_run.inputs.json', 't16_run.json']	changed []
 t18_gen.py	SAME	1s	wrote ['t18_run.inputs.json', 't18_run.json']	changed []
 t1_gen.py	SAME	1s	wrote ['t1_roc.inputs.json', 't1_roc.json']	changed []
 t2_gen.py	SAME	4s	wrote ['t2_check.inputs.json', 't2_check.json']	changed []
@@ -21,7 +16,7 @@ t5t9_gen.py	SAME	18s	wrote ['t5t9_fe.inputs.json', 't5t9_fe.json', 't5t9_pr.inpu
 t6_gen.py	SAME	2s	wrote ['t6_run.inputs.json', 't6_run.json']	changed []
 t7_gen.py	SAME	2s	wrote ['t7_check.inputs.json', 't7_check.json']	changed []
 t8_edges_gen.py	SAME	12s	wrote ['t8_edges.inputs.json', 't8_edges.json']	changed []
-t8_gen.py	SAME	25s	wrote ['t8_steps.inputs.json', 't8_steps.json']	changed []
+t8_gen.py	SAME	24s	wrote ['t8_steps.inputs.json', 't8_steps.json']	changed []
 t9_gen.py	SAME	20s	wrote ['t9_predict.inputs.json', 't9_predict.json', 't9_train.inputs.json', 't9_train.json']	changed []
 --- compare.py on the recorded Lean outputs
 b3_merge	no recorded Lean output
@@ -40,7 +35,11 @@ t15_psi	exit 0	t15_psi: 108 cases  PASS=108
 t16_run	exit 0	t16_run: 144 cases  PASS=144
 t18_run	exit 0	t18_run: 74 cases  PASS=74
 t1_roc	exit 0	t1_roc: 483 cases  PASS=483
-t2_check	exit 0	t2_check: 784 cases  ERROR=784
+t20_t11_run	exit 0	t11_run: 26 cases  PASS=26
+t20_t16_run	exit 0	t16_run: 144 cases  PASS=144
+t20_t18_run	exit 0	t18_run: 74 cases  PASS=74
+t20_t6_run	exit 0	t6_run: 144 cases  PASS=144
+t2_check	exit 0	t2_check: 784 cases  PASS=784
 t2_source	no recorded Lean output
 t3_clean	exit 0	t3_clean: 16 cases  PASS=16
 t4_units	exit 0	t4_units: 72 cases  PASS=72
