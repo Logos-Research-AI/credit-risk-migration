@@ -46,6 +46,9 @@ MONTHS: tuple[str, ...] = ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG
 ExprOrNum = pl.Expr | float | int
 
 _CTX = Context(prec=80)
+# Wide enough for the product of two doubles to be exact (a double has at most 767 significant digits).
+_CTX_EXACT = Context(prec=1200)
+_MIN_NORMAL = 2.2250738585072014e-308
 
 
 def _e(c: ExprOrNum) -> pl.Expr:
@@ -351,25 +354,37 @@ def _best_below_one(x: float, w: int) -> str:
 
 
 def _best32(x: float) -> str:
-    """BEST32. text of a non-zero finite value (experiments X09, X11: 613 values, all reproduced).
-    A whole number prints every digit of the double (12345678901234567 -> '12345678901234568').
-    Otherwise |x| * (1 + 2**-52) is CUT, not rounded, to 15 - (number of integer digits) decimals,
-    16 characters before the sign, trailing zeros stripped: 1234567.123456789 -> '1234567.12345678',
-    2/3 -> '0.66666666666666', 2499.9999999999995 -> '2500', 0.1 + 0.7 -> '0.8'. Below 1e-5 the
-    15-digit form (A18) is cut to 14 digits in E-notation (2.8933077716502265e-08 ->
-    '2.8933077716502E-8'). Not measured: a whole number of more than 21 digits."""
+    """BEST32. text of a non-zero finite value (experiments X09, X11, X13, X14, X15).
+    A whole number below 2**106 whose text fits in 32 characters prints every digit of the double
+    (12345678901234567 -> '12345678901234568'; X15: the double below 2**106 in full, 2**106 not, and
+    no 32-digit negative). Any other value from 1e-5 up: |x| * (1 + 2**-52) is CUT, not rounded, to
+    15 - (number of integer digits) decimals, 16 characters before the sign, trailing zeros stripped:
+    1234567.123456789 -> '1234567.12345678', 2/3 -> '0.66666666666666', 2499.9999999999995 -> '2500',
+    0.1 + 0.7 -> '0.8' (X09 and X11: 620 values, all reproduced; X13: 51 more from 1e15 to 2**53).
+    The rest is E-notation, a mantissa of 14 digits: |x| * (1 + 2**-49) cut to 14 significant digits
+    (the three doubles below 1e-5 -> '1E-5', 9.276747499544084e-200 -> '9.2767474995441E-200',
+    1e32 -> '1E32'). That factor reproduces 1,147 of the 1,172 E-notation values measured (X11, X13,
+    X14); the 25 others (24 of X14, one of X13) are doubles within an ulp or two of a step of the
+    mantissa, where SAS's own arithmetic decides: NOT pinned down. A value below the smallest normal
+    double prints '0' (X14; a negative one is not measured)."""
     sign = "-" if x < 0 else ""
     ax = abs(x)
+    if ax < _MIN_NORMAL:
+        return "0"
     if ax == math.floor(ax):
-        return sign + str(int(ax))
-    if ax >= 1e-5:
+        whole = sign + str(int(ax))
+        if ax < 2.0**106 and len(whole) <= 32:
+            return whole
+    elif ax >= 1e-5:
         xp = ax * (1 + 2.0**-52)
         dec = max(15 - len(str(int(xp))), 0)
         q = Decimal(xp).quantize(Decimal(1).scaleb(-dec), rounding=ROUND_DOWN, context=_CTX)
         return sign + _strip_zeros(f"{q:f}")
-    d15 = _sig15(x)
-    exp = d15.adjusted()
-    mant = d15.scaleb(-exp).quantize(Decimal(1).scaleb(-13), rounding=ROUND_DOWN, context=_CTX)
+    d = _CTX_EXACT.multiply(Decimal(ax), Decimal(1 + 2.0**-49))
+    exp = d.adjusted()
+    mant = d.scaleb(-exp, context=_CTX_EXACT).quantize(
+        Decimal(1).scaleb(-13), rounding=ROUND_DOWN, context=_CTX_EXACT
+    )
     return sign + _strip_zeros(f"{mant:f}") + f"E{exp}"
 
 
@@ -384,7 +399,7 @@ def sas_best(x: float | None, w: int) -> str:
     RESOLVED (post-parity): X06 fixes the BEST8/BEST6 cells below 1 and above 1e11 (see _best_e).
     Still unverified: a w too small to show any digit (-100 at w=3 gives '-1E2').
     At w = 32 (the medians of income_medians.csv) the text is `_best32`: more than 15 digits for a
-    whole number, a cut and not a rounding otherwise (X09, X11).
+    whole number, a cut and not a rounding otherwise (X09, X11, X13-X15).
     Non-finite -> ''."""
     if x is None or not math.isfinite(x):
         return ""
