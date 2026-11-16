@@ -186,10 +186,20 @@ def run(
 
     # predict.sas:45-56 DATA test_raw_clean
     # INV work.test_raw_clean; R§2 input(s, best32.) (S2); keep/drop/rename
+    # input(v, best32.) reads text: a column imported as numeric (no row holds NA or other text) is
+    # first written as BEST12. text, so a number that needs more than 12 characters is changed
+    # (experiment x09_input_numeric: 1234567890123 is read back as 1234567900000)
+    def input_best32(v: str) -> pl.Expr:
+        if test_raw.schema[v] != pl.String:
+            return sas_compat.input_best32(
+                pl.col(v).map_elements(sas_compat.sas_best12, return_dtype=pl.String)
+            )
+        return sas_compat.input_best32(pl.col(v))
+
     test_raw_clean = (
         test_raw.with_columns(
-            MonthlyIncome_num=sas_compat.input_best32(pl.col("MonthlyIncome")),
-            NumberOfDependents_num=sas_compat.input_best32(pl.col("NumberOfDependents")),
+            MonthlyIncome_num=input_best32("MonthlyIncome"),
+            NumberOfDependents_num=input_best32("NumberOfDependents"),
         )
         .drop("MonthlyIncome", "NumberOfDependents")
         .rename({"MonthlyIncome_num": "MonthlyIncome", "NumberOfDependents_num": "NumberOfDependents"})
