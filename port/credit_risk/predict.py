@@ -96,11 +96,13 @@ def run(
     columns_ok = 0
     bad_rows = 1
     duplicate_ids = 1
+    age_name = "age"
     if test_raw is not None:
         # predict.sas:132-143 the expected columns and no others (SAS names: any case)
         # SAS names are case-blind, so a table cannot hold two names that differ only in case:
         # PROC IMPORT names the later one VARn, n its place (ev10 header_variants 10: VAR12)
-        upper_names = [name.upper() for name in test_raw.columns]
+        test_raw_names = test_raw.columns
+        upper_names = [name.upper() for name in test_raw_names]
         sas_names = [
             f"VAR{i + 1}" if name.upper() in upper_names[:i] else name
             for i, name in enumerate(test_raw.columns)
@@ -125,6 +127,9 @@ def run(
         )
         if columns_ok == 1:
             test_raw = raw
+            # the test file's spelling of age, which the export below writes (predict.sas:246 a.age
+            # keeps the imported name: ev11_round5_before 14 writes AGE)
+            age_name = test_raw_names[upper_names.index("AGE")]
 
         # predict.sas:117-126 %num: a numeric column as it is; a character column read as a number,
         # missing when the text is no number or is longer than 32 characters
@@ -438,7 +443,9 @@ def run(
         "financial_health",
         "total_risk_flags",
     }
-    test_predictions_full = test_predictions.select([c for c in test_predictions.columns if c in KEEP_FULL])
+    test_predictions_full = test_predictions.select(
+        [c for c in test_predictions.columns if c in KEEP_FULL]
+    ).rename({"age": age_name})  # SAS names are case-blind and keep the spelling of the test file
 
     # predict.sas:288-292 PROC EXPORT kaggle_submission
     # R§2 PROC EXPORT; INV kaggle_submission.csv
