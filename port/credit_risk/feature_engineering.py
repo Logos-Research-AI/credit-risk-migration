@@ -177,13 +177,16 @@ def run(
             flag_few_credit_lines=sas_compat.flag(sas_compat.le(pl.col("num_credit_lines"), 2)),
         )
         .with_columns(
-            # :177-179  # INV total_risk_flags
+            # :288-292  # INV total_risk_flags; Q7 (7b55ef1): the eight risk flags, in the SAS order
             total_risk_flags=sas_compat.sas_sum(
                 pl.col("flag_high_utilization"),
+                pl.col("flag_very_high_utilization"),
                 pl.col("flag_high_debt_ratio"),
                 pl.col("flag_serious_delinquency"),
                 pl.col("flag_multiple_delinquencies"),
                 pl.col("flag_low_income"),
+                pl.col("flag_many_dependents"),
+                pl.col("flag_few_credit_lines"),
             ).alias("total_risk_flags"),
             # :182-188  # INV financial_health; A30 one expression applying the statements in order
             financial_health=sas_compat.sas_max(pl.lit(0.0), fh).alias("financial_health"),
