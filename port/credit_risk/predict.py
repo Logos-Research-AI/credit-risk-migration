@@ -98,14 +98,28 @@ def run(
     duplicate_ids = 1
     if test_raw is not None:
         # predict.sas:132-143 the expected columns and no others (SAS names: any case)
+        # SAS names are case-blind, so a table cannot hold two names that differ only in case:
+        # PROC IMPORT names the later one VARn, n its place (ev10 header_variants 10: VAR12)
+        upper_names = [name.upper() for name in test_raw.columns]
+        sas_names = [
+            f"VAR{i + 1}" if name.upper() in upper_names[:i] else name
+            for i, name in enumerate(test_raw.columns)
+        ]
         columns_ok = int(
-            len(test_raw.columns) == 12
-            and sum(name.upper() in [c.upper() for c in EXPECTED] for name in test_raw.columns) == 12
+            len(sas_names) == 12
+            and sum(name.upper() in [c.upper() for c in EXPECTED] for name in sas_names) == 12
         )
-        # SAS names are case-blind: the columns take the spelling the steps below use; a column
+        # SAS names are case-blind: the columns take the spelling the steps below use (the first
+        # column of each name; a column of no expected name is not read below); a column
         # the check names and the table lacks is a numeric column of missing values
         by_upper = {c.upper(): c for c in EXPECTED}
-        raw = test_raw.rename({name: by_upper.get(name.upper(), name) for name in test_raw.columns})
+        raw = test_raw.select(
+            [
+                pl.col(name).alias(by_upper[name.upper()])
+                for i, name in enumerate(test_raw.columns)
+                if name.upper() in by_upper and name.upper() not in upper_names[:i]
+            ]
+        )
         raw = raw.with_columns(
             [pl.lit(None, dtype=pl.Float64).alias(c) for c in EXPECTED if c not in raw.columns]
         )
