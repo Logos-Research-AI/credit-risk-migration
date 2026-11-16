@@ -1223,12 +1223,18 @@ def classification_table(
     IncorrectNonevents, Correct, Sensitivity, Specificity, FalsePositive, FalseNegative, PPV, NPV
     (counts Int64, percentages Float64, null for 0/0).
     RESOLVED (post-parity): every SAS run starts the grid at 0.000; the helper reproduces all 19 runs.
-    Intercept-only fit (`x` has the one column): SAS's numbers are those of the exact leave-one-out
-    mean (events - y) / (n - 1) = p - (y - p) h / (1 - h), not of the logit step (small-inputs.md (b):
-    17 SAS runs of 2 to 42 training rows). There a probability that equals a level (0.2, 0.5: small
-    fractions) starts or ends the grid at that level and is counted at it (tolerance 1e-9). SAS's
-    rows are reproduced in all 17 runs and its counts in 13; in 4 SAS does not count a probability
-    equal to the last level (1.000 in three runs, 0.300 in gen_s22): its level arithmetic is not known."""
+    Intercept-only fit (`x` has the one column): SAS's probability is the exact leave-one-out mean
+    (events - y) / (n - 1), not the logit step, and it is compared, exactly (>=), with SAS's own level
+    values, which are not k * 0.02: the first level is k * 0.02, the second the first + 0.02, and from
+    the third on a level at an even position is the level two before + 0.04 and one at an odd
+    position the level before + 0.02; the level printed 1.000 is 1 + 1e-12. So a probability equal to
+    a printed level is counted at some levels (0.200, 0.400, 0.500 from 0.000) and not at others
+    (0.300 from 0.200, 0.700 as a first level, never at 1.000). Experiment X16
+    (`migration/legacy-to-port/experiments/x16_ctable_intercept_only`: 40 fits of 2 to 101 rows, SAS's
+    cross-validated probabilities and its 357 levels bit for bit, every count) and the 17
+    intercept-only runs of judge/runs (small-inputs.md (b)). A probability that equals a printed level
+    starts or ends the grid at that level (tolerance 1e-9 on the range, the port's choice: SAS's is
+    not known; it gives SAS's rows in all 57 fits)."""
     if y.ndim == 2:  # inventory order (X, y, pd)
         y, x = x, y
     if fit is not None and not isinstance(fit, LogisticFit):
@@ -1248,11 +1254,18 @@ def classification_table(
     ps = _expit(eta - (y - p) * q / (1.0 - h))
     tol = 0.0
     if x.shape[1] == 1:  # intercept only: the exact leave-one-out mean
-        ps = p - (y - p) * h / (1.0 - h)
+        ps = (float(y.sum()) - y) / (len(y) - 1.0)
         tol = 1e-9
     klo = math.floor(float(ps.min()) / 0.02 + tol)
     khi = math.ceil(float(ps.max()) / 0.02 - tol)
     grid = np.round(np.arange(klo, khi + 1) * 0.02, 3)
+    cut = [float(z) for z in grid]  # the values the probabilities are compared with
+    if x.shape[1] == 1:  # intercept only: SAS's own level values (X16)
+        cut[0] = klo * 0.02
+        for i in range(1, len(cut)):
+            cut[i] = cut[i - 2] + 0.04 if i >= 2 and i % 2 == 0 else cut[i - 1] + 0.02
+        if khi == 50:
+            cut[-1] = 1.0 + 1e-12
     n1 = int(y.sum())
     n0 = len(y) - n1
 
@@ -1266,8 +1279,8 @@ def classification_table(
             "Sensitivity Specificity FalsePositive FalseNegative PPV NPV"
         ).split()
     }
-    for z in grid:
-        pe = ps >= z - tol
+    for z, c in zip(grid, cut, strict=True):
+        pe = ps >= c
         ce = int(np.count_nonzero(pe & (y == 1)))
         ie = int(np.count_nonzero(pe & (y == 0)))
         cn, inn = n0 - ie, n1 - ce
