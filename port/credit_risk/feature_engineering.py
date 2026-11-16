@@ -19,7 +19,6 @@ def run(
     output_dir: Path,
     *,
     split_ids: Path,
-    export_train_medians: bool = False,
 ) -> None:
     # R§4 (S12, A27): create the output folder first
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -61,12 +60,17 @@ def run(
         .agg(median_income=pl.col("MonthlyIncome").median())
     )
 
-    # post-parity (row 3, flag --export-train-medians): medians of the FULL cs-training.csv (before the
-    # split), i.e. the table used to impute the training features; an EXTRA file, never judged
-    if export_train_medians:
-        sas_compat.write_sas_csv(
-            income_medians.sort("age_group"), output_dir / "income_medians.csv", formats={}
+    # feature_engineering.sas:165-184  # work.age_groups, work.income_medians_all
+    # one row per age group 1 to 5 (an age group with no known income has a missing median), with the
+    # median of all known incomes on every row (missing when no income is known); ordered by age_group
+    age_groups = pl.DataFrame({"age_group": [1, 2, 3, 4, 5]}, schema={"age_group": pl.Int32})
+    income_medians_all = age_groups.join(
+        income_medians, on="age_group", how="left", maintain_order="left"
+    ).with_columns(
+        overall_median_income=pl.lit(
+            credit_raw_clean.get_column("MonthlyIncome").drop_nulls().median(), dtype=pl.Float64
         )
+    )
 
     # feature_engineering.sas:75-94  # INV age_group, MonthlyIncome_missing, Dependents_missing
     credit_cleaned = credit_raw_clean.with_columns(
@@ -87,14 +91,15 @@ def run(
     )
 
     # feature_engineering.sas:97-120  # INV work.credit_imputed; R§2 left join (A11), key Int32 on both sides
+    # :214 Q1 (167dc38): the age group's median, else the median of all known incomes
     credit_imputed = credit_cleaned.join(
-        income_medians, on="age_group", how="left", maintain_order="left"
+        income_medians_all, on="age_group", how="left", maintain_order="left"
     ).select(
         pl.col("VAR1").alias("row_id"),
         pl.col("SeriousDlqin2yrs").alias("default_flag"),
         pl.col("age"),
         pl.when(pl.col("MonthlyIncome_missing") == 1)
-        .then(pl.col("median_income"))
+        .then(pl.coalesce(pl.col("median_income"), pl.col("overall_median_income")))
         .otherwise(pl.col("MonthlyIncome"))
         .alias("monthly_income"),
         pl.col("MonthlyIncome_missing"),
@@ -241,6 +246,14 @@ def run(
     # `format _numeric_ best12.` is the writer default (A31): the copy steps are kept as aliases
     credit_train_export = credit_train
     credit_validation_export = credit_validation
+    # :380-391  income_medians.csv, always written and first: the training income medians per age group
+    # and overall (format best32. on the two medians), from which predict imputes the test set
+    income_medians_export = income_medians_all
+    sas_compat.write_sas_csv(
+        income_medians_export,
+        output_dir / "income_medians.csv",
+        formats={"median_income": "best32.", "overall_median_income": "best32."},
+    )
     sas_compat.write_sas_csv(credit_train_export, output_dir / "model_features_train.csv", formats={})
     sas_compat.write_sas_csv(
         credit_validation_export, output_dir / "model_features_validation.csv", formats={}
@@ -259,17 +272,7 @@ if __name__ == "__main__":  # R§4
     parser.add_argument("--data-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--split-ids", type=Path, required=True)
-    parser.add_argument(
-        "--export-train-medians",
-        action="store_true",
-        help="also write income_medians.csv (for predict --fix-train-medians)",
-    )
     args = parser.parse_args()
-    run(
-        args.data_dir,
-        args.output_dir,
-        split_ids=args.split_ids,
-        export_train_medians=args.export_train_medians,
-    )
+    run(args.data_dir, args.output_dir, split_ids=args.split_ids)
 
 # PORT STATUS: confidence=high todos=0
