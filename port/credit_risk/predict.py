@@ -2,6 +2,8 @@
 
 import argparse
 import json
+import re
+import tempfile
 from pathlib import Path
 
 import polars as pl
@@ -21,9 +23,144 @@ def run(
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)  # R§4 S12
 
-    # predict.sas:27-33 PROC IMPORT, guessingrows=max
+    # predict.sas:22-32 Q27 (b40a55d): remove the results of an earlier run first
+    for fname in ("kaggle_submission.csv", "test_predictions.csv"):
+        (output_dir / fname).unlink(missing_ok=True)
+
+    # predict.sas:34-42 Q27 (b40a55d): stop when the step before did not produce its result
+    if not income_medians.exists() or not (input_dir / "model_coefficients.csv").exists():
+        print(
+            "ERROR: The training medians or the model are not in the output folder: "
+            "the training steps did not complete."
+        )
+        print("ERROR: Test set scoring stopped. Nothing is exported.")
+        raise ValueError("Test set scoring stopped. Nothing is exported.")
+
+    # predict.sas:48-71 Q27 (G44): how many lines the test file has (counted up to two); the first
+    # line with one made-up applicant under it: NA under the three names that may hold NA, 1 under
+    # every other, the same line end
+    test_lines = 0
+    header_copy_text = b""
+    try:
+        with (data_dir / "cs-test.csv").open("rb") as fh:
+            for _n_ in (1, 2):
+                infile = fh.readline()
+                if infile == b"":
+                    break
+                infile = infile.removesuffix(b"\n")
+                if _n_ == 1:
+                    made_up = b",".join(
+                        b"NA"
+                        if re.sub(rb"[^0-9A-Za-z_]", b"", name).upper()
+                        in (b"SERIOUSDLQIN2YRS", b"MONTHLYINCOME", b"NUMBEROFDEPENDENTS")
+                        else b"1"
+                        for name in infile.split(b",")
+                    )
+                    line_end = b"\r\n" if infile.endswith(b"\r") else b"\n"
+                    header_copy_text = infile + b"\n" + made_up + line_end
+                test_lines = _n_
+    except OSError:
+        pass
+
+    # predict.sas:73-112 PROC IMPORT, guessingrows=max
     # INV work.test_raw; R§2 PROC IMPORT (None = all rows, A31)
-    test_raw = sas_compat.proc_import_csv(data_dir / "cs-test.csv", guessingrows=None)
+    # Q27 (G44): a file with its header line and no applicant is read from the copy, and the
+    # made-up applicant is removed, which leaves an empty table. A failed import leaves no table.
+    test_raw: pl.DataFrame | None
+    try:
+        if test_lines == 1:
+            with tempfile.TemporaryDirectory() as work:
+                header_copy = Path(work) / "cs-test-header.csv"
+                header_copy.write_bytes(header_copy_text)
+                test_raw = sas_compat.proc_import_csv(header_copy, guessingrows=None).clear()
+        else:
+            test_raw = sas_compat.proc_import_csv(data_dir / "cs-test.csv", guessingrows=None)
+    except (OSError, ValueError, pl.exceptions.PolarsError):
+        test_raw = None
+
+    # predict.sas:114-187 Q27: check the input conditions, stop with an error before anything is exported
+    EXPECTED = (
+        "VAR1",
+        "SeriousDlqin2yrs",
+        "age",
+        "MonthlyIncome",
+        "NumberOfDependents",
+        "RevolvingUtilizationOfUnsecuredL",
+        "DebtRatio",
+        "NumberOfTime30-59DaysPastDueNotW",
+        "NumberOfTime60-89DaysPastDueNotW",
+        "NumberOfTimes90DaysLate",
+        "NumberOfOpenCreditLinesAndLoans",
+        "NumberRealEstateLoansOrLines",
+    )
+    columns_ok = 0
+    bad_rows = 1
+    duplicate_ids = 1
+    if test_raw is not None:
+        # predict.sas:132-143 the expected columns and no others (SAS names: any case)
+        columns_ok = int(
+            len(test_raw.columns) == 12
+            and sum(name.upper() in [c.upper() for c in EXPECTED] for name in test_raw.columns) == 12
+        )
+        # SAS names are case-blind: the columns take the spelling the steps below use; a column
+        # the check names and the table lacks is a numeric column of missing values
+        by_upper = {c.upper(): c for c in EXPECTED}
+        raw = test_raw.rename({name: by_upper.get(name.upper(), name) for name in test_raw.columns})
+        raw = raw.with_columns(
+            [pl.lit(None, dtype=pl.Float64).alias(c) for c in EXPECTED if c not in raw.columns]
+        )
+        if columns_ok == 1:
+            test_raw = raw
+
+        # predict.sas:117-126 %num: a numeric column as it is; a character column read as a number,
+        # missing when the text is no number or is longer than 32 characters
+        def num(v: str) -> pl.Expr:
+            if raw.schema[v] != pl.String:
+                return pl.col(v)
+            text = pl.col(v).str.strip_chars(" ")
+            return pl.when(text.str.len_chars() <= 32).then(sas_compat.input_best32(text))
+
+        # upcase(cats(v)) not in ('', '.', 'NA'): the cell states a value
+        def stated(v: str) -> pl.Expr:
+            if raw.schema[v] != pl.String:
+                return pl.col(v).is_not_null()
+            return ~pl.col(v).fill_null("").str.strip_chars(" ").str.to_uppercase().is_in(["", ".", "NA"])
+
+        # x >= 0 and x = int(x): a whole number, zero or more (a missing x is not)
+        def count_ok(x: pl.Expr) -> pl.Expr:
+            return sas_compat.ge(x, 0) & sas_compat.eq(x, pl.when(x >= 0).then(x.floor()).otherwise(x.ceil()))
+
+        # predict.sas:148-171 DATA input_check
+        input_check = raw.select(
+            pl.col("VAR1"),
+            bad_row=sas_compat.flag(
+                num("VAR1").is_null()
+                | (stated("SeriousDlqin2yrs") & ~num("SeriousDlqin2yrs").is_in([0.0, 1.0]).fill_null(False))
+                | num("age").is_null()
+                | num("RevolvingUtilizationOfUnsecuredL").is_null()
+                | num("DebtRatio").is_null()
+                | num("NumberRealEstateLoansOrLines").is_null()
+                | ~count_ok(num("NumberOfTime30-59DaysPastDueNotW"))
+                | ~count_ok(num("NumberOfTime60-89DaysPastDueNotW"))
+                | ~count_ok(num("NumberOfTimes90DaysLate"))
+                | ~count_ok(num("NumberOfOpenCreditLinesAndLoans"))
+                | (stated("MonthlyIncome") & num("MonthlyIncome").is_null())
+                | (num("MonthlyIncome").is_not_null() & sas_compat.lt(num("MonthlyIncome"), 0))
+                | (stated("NumberOfDependents") & ~count_ok(num("NumberOfDependents")))
+            ),
+        )
+        # predict.sas:173-178 bad rows, repeated row ids (count(distinct) leaves a missing id out)
+        bad_rows = int(input_check.get_column("bad_row").sum())
+        duplicate_ids = input_check.height - input_check.get_column("VAR1").drop_nulls().n_unique()
+
+    # predict.sas:180-187
+    if test_raw is None or columns_ok != 1 or bad_rows != 0 or duplicate_ids != 0:
+        print(
+            "ERROR: cs-test.csv does not meet the input conditions: "
+            f"columns_ok={columns_ok} bad_rows={bad_rows} duplicate_ids={duplicate_ids}."
+        )
+        print("ERROR: Test set scoring stopped. Nothing is exported.")
+        raise ValueError("Test set scoring stopped. Nothing is exported.")
 
     # predict.sas:36-38
     # listing-only: PROC CONTENTS of test_raw
