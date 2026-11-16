@@ -22,7 +22,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # train.sas:19 %let output_path -> input_dir (features) and output_dir (exports)  # INV &output_path
 
-    # train.sas:26-41 PROC IMPORT of the two feature files
+    # train.sas:49-64 PROC IMPORT of the two feature files
     # R§2 PROC IMPORT, INV work.model_features_train: guessingrows=max -> None, all 42 columns Float64
     model_features_train = sas_compat.proc_import_csv(
         input_dir / "model_features_train.csv", guessingrows=None
@@ -31,8 +31,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
         input_dir / "model_features_validation.csv", guessingrows=None
     )
 
-    # train.sas:48-96 PROC LOGISTIC stepwise, ODS tables, OUTPUT OUT=, STORE
-    # MODEL statement order (train.sas:51-80)
+    # train.sas:71-119 PROC LOGISTIC stepwise, ODS tables, OUTPUT OUT=, STORE
+    # MODEL statement order (train.sas:74-103)
     candidates = [
         "credit_utilization_capped",
         "debt_ratio_capped",
@@ -292,7 +292,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     )
     sas_compat.write_sas_csv(printed_association, output_dir / "printed_association.csv", formats={})
 
-    # ODS ParameterEstimates -> work.model_coefficients (exported at train.sas:395)
+    # ODS ParameterEstimates -> work.model_coefficients (exported at train.sas:420)
     # INV model_coefficients.csv
     # stored formats: Variable $20., DF 2., Estimate d8., StdErr d8., WaldChiSq 10.4,
     # ProbChiSq pvalue6.4, _ESTTYPE_ $4. (S7)
@@ -420,14 +420,14 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # title "Logistic Regression Model - Credit Default Prediction"  # R§2 title dropped
 
-    # train.sas:103-106 add binary prediction variable
+    # train.sas:126-129 add binary prediction variable
     logit_scored_train = logit_scored_train.with_columns(
         pred_logistic=sas_compat.flag(
             pl.col("pd_logistic") >= 0.5
         )  # INV credit_risk_score: MISSING_NEVER, plain
     )
 
-    # train.sas:109-111 PROC FREQ out=work.confusion_matrix_train
+    # train.sas:132-134 PROC FREQ out=work.confusion_matrix_train
     # R§2 PROC FREQ tables a*b / out=, INV printed_confusion_train.csv
     confusion_matrix_train = (
         logit_scored_train.group_by(["default_flag", "pred_logistic"], maintain_order=True)
@@ -446,10 +446,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
         )
     )
 
-    # train.sas:113-115
+    # train.sas:136-138
     # listing-only: PROC PRINT confusion_matrix_train
 
-    # train.sas:118-139 data work.training_metrics (retain + end=eof)
+    # train.sas:141-162 data work.training_metrics (retain + end=eof)
     # R§2 retain + end=eof, INV work.training_metrics
     training_metrics = confusion_matrix_train.select(
         TP=pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 1)).sum(),
@@ -482,17 +482,17 @@ def run(input_dir: Path, output_dir: Path) -> None:
         "train_precision", "train_recall", "train_f1_score", "train_accuracy"
     ).cast(pl.Float64)
 
-    # train.sas:141-144
+    # train.sas:164-167
     # listing-only: PROC PRINT training_metrics
 
-    # train.sas:151-155 PROC PLM restore ... score -> eta = intercept + sum(b_i x_i)
+    # train.sas:174-178 PROC PLM restore ... score -> eta = intercept + sum(b_i x_i)
     # INV work.logit_scored_valid_temp (PROC PLM in train): in-memory model, same as model.json
     eta_valid = pl.lit(intercept)
     for c, b in coefficients.items():
         eta_valid = eta_valid + b * pl.col(c)
     logit_scored_valid_temp = model_features_validation.with_columns(predicted_logit=eta_valid)
 
-    # train.sas:158-168 inverse logit and binary prediction
+    # train.sas:181-191 inverse logit and binary prediction
     logit_scored_valid = (
         logit_scored_valid_temp.with_columns(
             pd_logistic=1
@@ -504,7 +504,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         .drop("predicted_logit")
     )
 
-    # train.sas:171-173 PROC FREQ out=work.confusion_matrix
+    # train.sas:194-196 PROC FREQ out=work.confusion_matrix
     # R§2 PROC FREQ, INV printed_confusion_validation.csv
     confusion_matrix = (
         logit_scored_valid.group_by(["default_flag", "pred_logistic"], maintain_order=True)
@@ -523,10 +523,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
         )
     )
 
-    # train.sas:175-177
+    # train.sas:198-200
     # listing-only: PROC PRINT confusion_matrix
 
-    # train.sas:180-201 data work.validation_metrics (retain + end=eof)  # INV work.validation_metrics
+    # train.sas:203-224 data work.validation_metrics (retain + end=eof)  # INV work.validation_metrics
     validation_metrics = confusion_matrix.select(
         TP=pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 1)).sum(),
         TN=pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 0)).sum(),
@@ -558,10 +558,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
         "valid_precision", "valid_recall", "valid_f1_score", "valid_accuracy"
     ).cast(pl.Float64)
 
-    # train.sas:203-206
+    # train.sas:226-229
     # listing-only: PROC PRINT validation_metrics
 
-    # train.sas:213-244 data work.risk_scores_train
+    # train.sas:236-268 data work.risk_scores_train
     risk_scores_train = logit_scored_train.with_columns(
         base_score=pl.lit(600.0),
         score_range=pl.lit(250.0),
@@ -607,7 +607,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         .otherwise(pl.col("base_rate") + 0.15)
     )  # format interest_rate percent8.2 -> applied at export
 
-    # train.sas:247-275 data work.risk_scores_validation
+    # train.sas:271-300 data work.risk_scores_validation
     risk_scores_validation = logit_scored_valid.with_columns(
         base_score=pl.lit(600.0),
         score_range=pl.lit(250.0),
@@ -653,11 +653,11 @@ def run(input_dir: Path, output_dir: Path) -> None:
         .otherwise(pl.col("base_rate") + 0.15)
     )  # format interest_rate percent8.2 -> applied at export
 
-    # train.sas:278-286
+    # train.sas:303-311
     # listing-only: PROC FREQ risk_grade x default_flag of risk_scores_train
     # listing-only: PROC FREQ risk_grade x default_flag of risk_scores_validation
 
-    # train.sas:293-306 PROC LOGISTIC nofit + roc (train and validation)
+    # train.sas:318-331 PROC LOGISTIC nofit + roc (train and validation)
     # R§2 PROC LOGISTIC nofit + roc, INV printed_roc_train.csv / printed_roc_validation.csv
     roc_train = sas_compat.roc_association(
         risk_scores_train.get_column("default_flag"),
@@ -670,15 +670,15 @@ def run(input_dir: Path, output_dir: Path) -> None:
         label="Validation Set",
     )
 
-    # train.sas:309-319
+    # train.sas:334-344
     # listing-only: PROC PRINT Area of roc_train (Training Set AUC)
     # listing-only: PROC PRINT Area of roc_valid (Validation Set AUC)
 
-    # train.sas:326-335 drop IP_: XP_: _FROM_ _INTO_ _LEVEL_  # INV work.risk_scores_train_clean: identity
+    # train.sas:351-360 drop IP_: XP_: _FROM_ _INTO_ _LEVEL_  # INV work.risk_scores_train_clean: identity
     risk_scores_train_clean = risk_scores_train
     risk_scores_validation_clean = risk_scores_validation
 
-    # train.sas:338-349 PROC EXPORT scored sets  # INV risk_scores_train.csv, risk_scores_validation.csv
+    # train.sas:363-374 PROC EXPORT scored sets  # INV risk_scores_train.csv, risk_scores_validation.csv
     sas_compat.write_sas_csv(
         risk_scores_train_clean, output_dir / "risk_scores_train.csv", formats={"interest_rate": "percent8.2"}
     )
@@ -688,7 +688,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         formats={"interest_rate": "percent8.2"},
     )
 
-    # train.sas:352-358 data work.final_model_output (keep keeps PDV order)
+    # train.sas:377-383 data work.final_model_output (keep keeps PDV order)
     # R§2 keep, A12, INV final_model_output.csv
     keep = {
         "row_id",
@@ -707,12 +707,12 @@ def run(input_dir: Path, output_dir: Path) -> None:
     }
     final_model_output = risk_scores_train.select([c for c in risk_scores_train.columns if c in keep])
 
-    # train.sas:360-364 PROC EXPORT final_model_output
+    # train.sas:385-389 PROC EXPORT final_model_output
     sas_compat.write_sas_csv(
         final_model_output, output_dir / "final_model_output.csv", formats={"interest_rate": "percent8.2"}
     )
 
-    # train.sas:367-386 data work.model_summary (merge, no BY)  # R§2 merge (A6, S5), INV work.model_summary
+    # train.sas:392-411 data work.model_summary (merge, no BY)  # R§2 merge (A6, S5), INV work.model_summary
     model_summary = sas_compat.merge_one_to_one(
         roc_train.filter(pl.col("ROCModel") == "Training Set").select(Train_AUC=pl.col("Area")),
         roc_valid.filter(pl.col("ROCModel") == "Validation Set").select(Valid_AUC=pl.col("Area")),
@@ -743,7 +743,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     }
     model_summary = model_summary.select([c for c in model_summary.columns if c in summary_keep])
 
-    # train.sas:388-392 PROC EXPORT model_summary  # INV model_summary.csv
+    # train.sas:413-417 PROC EXPORT model_summary  # INV model_summary.csv
     sas_compat.write_sas_csv(
         model_summary,
         output_dir / "model_summary.csv",
@@ -762,7 +762,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         },
     )
 
-    # train.sas:395-399 PROC EXPORT model_coefficients  # INV model_coefficients.csv
+    # train.sas:420-424 PROC EXPORT model_coefficients  # INV model_coefficients.csv
     sas_compat.write_sas_csv(model_coefficients, output_dir / "model_coefficients.csv", formats={})
 
     # judge-instrumented exports of printed datasets (EXPORT_AFTER)  # R§2 datasets the judge exports (A21)
@@ -785,7 +785,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     sas_compat.write_sas_csv(confusion_matrix_train, output_dir / "printed_confusion_train.csv", formats={})
     sas_compat.write_sas_csv(confusion_matrix, output_dir / "printed_confusion_validation.csv", formats={})
 
-    # train.sas:401-407 %put
+    # train.sas:426-432 %put
     print("NOTE: Model training completed successfully")
     print("NOTE: Model stored as work.logit_model")
     print(f"NOTE: Training set scored: {output_dir}/risk_scores_train.csv")
