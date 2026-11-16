@@ -886,7 +886,10 @@ def stepwise_logistic(
             for c in sorted(model, key=mkey):
                 i = cur.names.index(c)
                 wv = float(cur.beta[i] ** 2 / cur.cov[i, i])
-                if best_w is None or wv < best_w[0]:
+                # equal up to rounding is a tie: on symmetric data (D10 of out/separation/sas, three
+                # columns with the same role on a separated step) the equal chi-squares differ in the
+                # 15th digit and SAS removes the first in MODEL order. 1e-9 is the port's choice.
+                if best_w is None or wv < best_w[0] * (1.0 - 1e-9):
                     best_w = (wv, c)
             if best_w is not None and chi2_sf(best_w[0], 1) > slstay:
                 step += 1
