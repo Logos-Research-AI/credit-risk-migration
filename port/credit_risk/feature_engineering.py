@@ -1,7 +1,9 @@
 """Port of feature_engineering.sas (RULEBOOK v1.3, structure-preserving).
 
 Loads cs-training.csv, imputes and engineers features, splits train / validation using an
-EXTERNAL split (R§4, INV &data_path / &output_path) and exports the two model_features CSVs.
+EXTERNAL split (R§4, INV &data_path / &output_path) and exports income_medians.csv and the two
+model_features CSVs. Earlier results are removed first; a training file that fails the input check
+stops the run with nothing exported.
 """
 
 from __future__ import annotations
@@ -125,10 +127,10 @@ def run(
         print("ERROR: Feature engineering stopped. Nothing is exported.")
         raise ValueError("Feature engineering stopped. Nothing is exported.")
 
-    # feature_engineering.sas:36-38
+    # feature_engineering.sas:125-128
     # listing-only: PROC MEANS n nmiss mean std min max of credit_raw  # INV listing-only PROCs
 
-    # feature_engineering.sas:45-56  # INV MonthlyIncome_num, NumberOfDependents_num
+    # feature_engineering.sas:134-146  # INV MonthlyIncome_num, NumberOfDependents_num
     # create the _num columns, drop the text columns, rename (numeric versions end last, as in the PDV)
     # input(v, best32.) reads text: a column imported as numeric (no row holds NA or other text) is
     # first written as BEST12. text, so a number that needs more than 12 characters is changed
@@ -149,10 +151,12 @@ def run(
         .rename({"MonthlyIncome_num": "MonthlyIncome", "NumberOfDependents_num": "NumberOfDependents"})
     )
 
-    # feature_engineering.sas:59-73  # INV work.income_medians; R§2 PROC SQL median
+    # feature_engineering.sas:148-163  # INV work.income_medians; R§2 PROC SQL median
+    # an even count gives lo + (hi - lo) / 2, which is what median() computes (SAS run x14_sum_median:
+    # 1016.85 and 7098.24 give 40AFB3170A3D70A3; (lo + hi) / 2 would end in A4)
     income_medians = (
         credit_raw_clean.with_columns(
-            # :62-68 PROC SQL CASE; R§2 chain, INV age_group: Int32 literals; SAS comparisons (finding P2)
+            # :152-158 PROC SQL CASE; R§2 chain, INV age_group: Int32 literals; SAS comparisons (finding P2)
             age_group=pl.when(sas_compat.lt(pl.col("age"), 30))
             .then(1)
             .when(sas_compat.lt(pl.col("age"), 40))
@@ -181,9 +185,9 @@ def run(
         )
     )
 
-    # feature_engineering.sas:75-94  # INV age_group, MonthlyIncome_missing, Dependents_missing
+    # feature_engineering.sas:186-205  # INV age_group, MonthlyIncome_missing, Dependents_missing
     credit_cleaned = credit_raw_clean.with_columns(
-        # :79-83 R§2 if/else-if chain, INV age_group: Int32 literals; SAS comparisons (finding P2)
+        # :190-194 R§2 if/else-if chain, INV age_group: Int32 literals; SAS comparisons (finding P2)
         age_group=pl.when(sas_compat.lt(pl.col("age"), 30))
         .then(1)
         .when(sas_compat.lt(pl.col("age"), 40))
@@ -199,7 +203,7 @@ def run(
         NumberOfDependents=pl.col("NumberOfDependents").fill_null(0.0),
     )
 
-    # feature_engineering.sas:97-120  # INV work.credit_imputed; R§2 left join (A11), key Int32 on both sides
+    # feature_engineering.sas:207-231  # INV work.credit_imputed; R§2 left join (A11), key Int32 on both sides
     # :214 Q1 (167dc38): the age group's median, else the median of all known incomes
     credit_imputed = credit_cleaned.join(
         income_medians_all, on="age_group", how="left", maintain_order="left"
@@ -224,9 +228,9 @@ def run(
         pl.col("NumberRealEstateLoansOrLines").alias("num_real_estate_loans"),
     )
 
-    # feature_engineering.sas:126-202  # R§2 DATA step: successive with_columns where a statement reads
+    # feature_engineering.sas:237-316  # R§2 DATA step: successive with_columns where a statement reads
     # an earlier assignment; plain comparisons because every operand is MISSING_NEVER (A2, INV rows)
-    # :182-188  # INV financial_health; A30 nested expression applying the statements in order
+    # :294-301  # INV financial_health; A30 nested expression applying the statements in order
     fh = pl.lit(100.0)
     fh = pl.when(pl.col("credit_utilization") > 30).then(fh - 15).otherwise(fh)
     fh = pl.when(pl.col("credit_utilization") > 75).then(fh - 15).otherwise(fh)
@@ -236,17 +240,17 @@ def run(
 
     credit_features = (
         credit_imputed.with_columns(
-            # :130  # INV total_late_payments
+            # :241  # INV total_late_payments
             total_late_payments=sas_compat.sas_sum(
                 pl.col("num_late_30_59"), pl.col("num_late_60_89"), pl.col("num_late_90_plus")
             ).alias("total_late_payments"),
         )
         .with_columns(
-            # :133  # INV has_delinquency
+            # :244  # INV has_delinquency
             has_delinquency=sas_compat.flag(pl.col("total_late_payments") > 0),
-            # :136  # INV has_serious_delinquency
+            # :247  # INV has_serious_delinquency
             has_serious_delinquency=sas_compat.flag(pl.col("num_late_90_plus") > 0),
-            # :139-142  # INV credit_util_category; SAS comparisons in the three chains (finding P4)
+            # :250-253  # INV credit_util_category; SAS comparisons in the three chains (finding P4)
             credit_util_category=pl.when(sas_compat.lt(pl.col("credit_utilization"), 30))
             .then(1)
             .when(sas_compat.lt(pl.col("credit_utilization"), 50))
@@ -254,7 +258,7 @@ def run(
             .when(sas_compat.lt(pl.col("credit_utilization"), 75))
             .then(3)
             .otherwise(4),
-            # :145-148  # INV debt_category
+            # :256-259  # INV debt_category
             debt_category=pl.when(sas_compat.lt(pl.col("debt_ratio"), 30))
             .then(1)
             .when(sas_compat.lt(pl.col("debt_ratio"), 43))
@@ -262,13 +266,13 @@ def run(
             .when(sas_compat.lt(pl.col("debt_ratio"), 60))
             .then(3)
             .otherwise(4),
-            # :151-152  # INV income_per_dependent (plain `/`, column by column, divisor >= 2; A13)
+            # :262-263  # INV income_per_dependent (plain `/`, column by column, divisor >= 2; A13)
             income_per_dependent=pl.when(pl.col("num_dependents") > 0)
             .then(pl.col("monthly_income") / (pl.col("num_dependents") + 1))
             .otherwise(pl.col("monthly_income")),
-            # :155  # INV credit_lines_per_person (divisor >= 1)
+            # :266  # INV credit_lines_per_person (divisor >= 1)
             credit_lines_per_person=pl.col("num_credit_lines") / (pl.col("num_dependents") + 1),
-            # :158-162  # INV age_category
+            # :269-273  # INV age_category
             age_category=pl.when(sas_compat.lt(pl.col("age"), 25))
             .then(1)
             .when(sas_compat.lt(pl.col("age"), 35))
@@ -278,7 +282,7 @@ def run(
             .when(sas_compat.lt(pl.col("age"), 65))
             .then(4)
             .otherwise(5),
-            # :165-174  # INV flag_* rows; R§2 flag()
+            # :276-285  # INV flag_* rows; R§2 flag()
             flag_high_utilization=sas_compat.flag(pl.col("credit_utilization") > 75),
             flag_very_high_utilization=sas_compat.flag(pl.col("credit_utilization") > 100),
             flag_high_debt_ratio=sas_compat.flag(pl.col("debt_ratio") > 43),
@@ -302,9 +306,9 @@ def run(
                 pl.col("flag_many_dependents"),
                 pl.col("flag_few_credit_lines"),
             ),
-            # :182-188  # INV financial_health; A30 one expression applying the statements in order
+            # :294-301  # INV financial_health; A30 one expression applying the statements in order
             financial_health=sas_compat.sas_max(pl.lit(0.0), fh).alias("financial_health"),
-            # :191-193  # INV log_* rows; R§2 log()
+            # :304-306  # INV log_* rows; R§2 log()
             log_monthly_income=sas_compat.sas_log(pl.col("monthly_income") + 1).alias("log_monthly_income"),
             log_num_credit_lines=sas_compat.sas_log(pl.col("num_credit_lines") + 1).alias(
                 "log_num_credit_lines"
@@ -321,7 +325,7 @@ def run(
             .otherwise(pl.col("age") * pl.col("log_monthly_income")),
             # :311  # INV utilization_debt_interaction; Q9 (10f447e): the product, no division by 100
             utilization_debt_interaction=pl.col("credit_utilization") * pl.col("debt_ratio"),
-            # :200-201  # INV credit_utilization_capped, debt_ratio_capped; R§2 min()
+            # :314-315  # INV credit_utilization_capped, debt_ratio_capped; R§2 min()
             credit_utilization_capped=sas_compat.sas_min(pl.col("credit_utilization"), pl.lit(200.0)).alias(
                 "credit_utilization_capped"
             ),
@@ -331,7 +335,7 @@ def run(
         )
     )
 
-    # feature_engineering.sas:209-221  # INV work.credit_split
+    # feature_engineering.sas:323-335  # INV work.credit_split
     # RESOLVED (post-parity): the split is an explicit input (--split-ids), so row order cannot change it
     # (SAS drew a different split in judge run x_split_drift_m_metrics_threshold, judge/README.md:75-81)
     # the split is an INPUT (A27): selected = row_id is a training row_id in split_ids
@@ -345,17 +349,17 @@ def run(
     credit_train = credit_split.filter(pl.col("selected")).drop("selected")
     credit_validation = credit_split.filter(~pl.col("selected")).drop("selected")
 
-    # feature_engineering.sas:227-247
+    # feature_engineering.sas:341-361
     # listing-only: PROC MEANS n mean std min max of credit_train
     # listing-only: PROC FREQ default_flag of credit_train
     # listing-only: PROC MEANS n mean std min max of credit_validation
     # listing-only: PROC FREQ default_flag of credit_validation
 
-    # feature_engineering.sas:254-278  # INV model_features_train.csv, model_features_validation.csv
+    # feature_engineering.sas:367-405  # INV model_features_train.csv, model_features_validation.csv
     # `format _numeric_ best12.` is the writer default (A31): the copy steps are kept as aliases
     credit_train_export = credit_train
     credit_validation_export = credit_validation
-    # :380-391  income_medians.csv, always written and first: the training income medians per age group
+    # :380-391  income_medians.csv, the first of the three exports: the training income medians per age group
     # and overall (format best32. on the two medians), from which predict imputes the test set
     income_medians_export = income_medians_all
     sas_compat.write_sas_csv(
@@ -368,7 +372,7 @@ def run(
         credit_validation_export, output_dir / "model_features_validation.csv", formats={}
     )
 
-    # feature_engineering.sas:280-284  # R§2 %put
+    # feature_engineering.sas:407-411  # R§2 %put
     print("NOTE: Feature engineering completed successfully")
     print(f"NOTE: Training set: exported to {output_dir}/model_features_train.csv")
     print(f"NOTE: Validation set: exported to {output_dir}/model_features_validation.csv")
