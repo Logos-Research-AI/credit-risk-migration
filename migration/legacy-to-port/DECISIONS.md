@@ -158,12 +158,15 @@ for translation rules once it exists.
 - Now: when a variable separates the classes as it enters, the port warns as SAS does, keeps the
   step with the estimates of the iteration at which SAS declares the separation, and goes on to
   the removal test. RULEBOOK §2 (stepwise row and post-parity note) is updated in the same commit.
-- The rule for the kept estimates (`sas_compat._fit_separated`) is SAS's documented one (PROC
-  LOGISTIC, "Existence of Maximum Likelihood Estimates"), started from the intercept-only
+- The rule for the kept estimates (`sas_compat._fit_separated`) is the one measured on SAS's
+  iteration histories (`out/separation/sas`, PROC LOGISTIC with ITPRINT; the documentation's
+  section is "Existence of Maximum Likelihood Estimates"), started from the intercept-only
   estimates. It reproduces the printed tables of the separated steps in the nine SAS runs in hand
   (`judge/runs/gen_s16`, `s17`, `s18`, `s20`, `small_sep60`, `oneclass_n60_two_variables` steps 3
   and 4: complete, stopped at iteration 8; `gen_s21`, `gen_s24`, `oneclass_n60_quasi`:
-  quasi-complete, stopped at iterations 9, 10 and 9). The two-variable run, where the final model
+  quasi-complete, stopped at iterations 9, 10 and 12; an earlier version of this entry and of the
+  `_fit_separated` docstring said 9 for `oneclass_n60_quasi`, which SAS's iteration history,
+  `out/separation/sas/P2_quasi60.log`, contradicts: it stops at 12, as the port does). The two-variable run, where the final model
   depends on the separated fits, fixes the start. Not settled by them: the divisor of the
   standard deviation in the quasi-complete test.
 - Corrected 2026-11-16 (review of c1124e1 / 428b5c9): complete separation is declared when no
