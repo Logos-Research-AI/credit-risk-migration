@@ -69,7 +69,12 @@ class Seed:
     shuffled_ids: bool = False
     blank_missing: bool = False  # missing written as an empty field, not NA
     base_logit: float = -3.3  # sets the default rate
+    no_defaulter_ids: tuple[int, ...] = ()  # row ids whose outcome is set to 0 (a validation set of one class)
+    defaulter_ids: tuple[int, ...] = ()  # row ids whose outcome is set to 1
 
+
+NO_DEFAULTER_29: tuple[int, ...] = (1, 3, 7, 10, 17, 26, 29, 30, 31, 33, 35, 36, 39, 42, 43, 47, 56, 58)
+DEFAULTER_29: tuple[int, ...] = ()
 
 SEEDS: dict[int, Seed] = {
     1: Seed(400, 150, "small"),
@@ -90,6 +95,28 @@ SEEDS: dict[int, Seed] = {
     13: Seed(700, 250, "nearly every field from the edge pools", edge=0.9),
     14: Seed(4000, 900, "large, age group 1 (under 30) with no known income, ties",
              empty_income_group=1, ties=0.1),
+    # ---- small files (2026-11-16). Section 3 asks at least 4 rows (ruling G57): the split then leaves the
+    # validation set floor(0.3 n) rows, 1 row up to n = 6. On files this small SAS's training script can end
+    # with ERROR lines (a validation set of one class; printed tables the fit does not make), so these seeds
+    # are judged with `judge --with-errors`, file by file.
+    15: Seed(4, 3, "smallest valid training file: 3 training rows, 1 validation row"),
+    16: Seed(5, 3, "5 rows: 4 training, 1 validation"),
+    17: Seed(6, 3, "6 rows: 5 training, 1 validation"),
+    18: Seed(7, 3, "7 rows: 5 training, 2 validation"),
+    19: Seed(8, 4, "8 rows"),
+    20: Seed(10, 4, "10 rows"),
+    21: Seed(12, 5, "12 rows"),
+    22: Seed(15, 5, "15 rows"),
+    23: Seed(20, 6, "20 rows"),
+    24: Seed(25, 8, "25 rows"),
+    25: Seed(30, 10, "30 rows"),
+    26: Seed(50, 15, "50 rows"),
+    27: Seed(100, 30, "100 rows"),
+    28: Seed(200, 60, "200 rows"),
+    # The 18 ids below are the validation set SAS made of this seed's file (run gen_s29_split, feature
+    # engineering only, before the outcomes were set): no defaulter among them, six defaulters elsewhere.
+    29: Seed(60, 20, "60 rows, no defaulter in the validation set (18 rows)",
+             no_defaulter_ids=NO_DEFAULTER_29, defaulter_ids=DEFAULTER_29),
 }
 
 # ---- edge pools: each threshold of the program exactly and just either side ----------------------
@@ -206,6 +233,12 @@ class Maker:
         ids = list(range(1, n + 1))
         if cfg.shuffled_ids:
             ids = r.sample(range(1, 20 * n + 1), n)
+        if training:
+            for i, x in zip(ids, rows):
+                if i in cfg.no_defaulter_ids:
+                    x["outcome"] = "0"
+                if i in cfg.defaulter_ids:
+                    x["outcome"] = "1"
         order = ("outcome", "util", "age", "late30", "debt", "income", "lines", "late90", "estate", "late60", "dependents")
         lines = [HEADER] + [",".join([str(i)] + [x[k] for k in order]) for i, x in zip(ids, rows)]
         for ln in lines[1:]:
@@ -229,13 +262,34 @@ def make(seed: int, out: Path) -> None:
 
 
 # ---- the port, judged against a SAS run of the same files ----------------------------------------
-def judge(seed: int, data: Path, sas: Path, out: Path, accept_warnings: bool) -> int:
+FILE_BY_FILE = """
+import json, sys
+from pathlib import Path
+import compare as C
+ref, cand, stage = Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3]
+files = C.STAGES[stage]
+both = [f for f in files if (ref / f).exists() and (cand / f).exists()]
+res = C.compare_dir(ref, cand, both, "port")
+print(json.dumps({"only_sas": [f for f in files if (ref / f).exists() and not (cand / f).exists()],
+                  "only_port": [f for f in files if (cand / f).exists() and not (ref / f).exists()],
+                  "neither": [f for f in files if not (ref / f).exists() and not (cand / f).exists()],
+                  "results": [{"file": r.file, "status": r.status, "problems": r.problems, "excused": r.excused} for r in res]}))
+"""
+
+
+def judge(seed: int, data: Path, sas: Path, out: Path, accept_warnings: bool, with_errors: bool = False) -> int:
     meta_path = sas / "run_meta.json"
     meta = json.loads(meta_path.read_text())
     errors = {k: v for k, v in meta.get("errors", {}).items() if v}
-    if errors:
+    if errors and not with_errors:
         print(f"seed {seed}: the SAS run has ERROR lines, nothing to judge against: {errors}")
         return 2
+    if errors:
+        # compare.py refuses a reference whose run had ERROR lines. Here the port is judged file by file on
+        # the files SAS did write; a file only one side wrote is reported and counts as a difference.
+        print(f"seed {seed}: the SAS run has ERROR lines: " + ", ".join(f"{k} {len(v)}" for k, v in errors.items())
+              + "; judged file by file")
+        accept_warnings = True
     new = sorted({w for v in meta.get("new_warnings", {}).values() for w in v})
     reviewed = set((meta.get("warnings_reviewed") or {}).get("warnings", []))
     if set(new) - reviewed:
@@ -268,7 +322,31 @@ def judge(seed: int, data: Path, sas: Path, out: Path, accept_warnings: bool) ->
 
     verdicts: list[tuple[str, str, str]] = []
 
+    def compare_files(line: str, stage: str, cand: Path) -> None:
+        tag = f"{line}_{stage}"
+        res = subprocess.run(["uv", "run", "--quiet", "python", "-c", FILE_BY_FILE, str(sas.resolve()),
+                              str(cand.resolve()), stage], cwd=JUDGE, capture_output=True, text=True)
+        (out / f"judge_{tag}.json").write_text(res.stdout or res.stderr)
+        if res.returncode:
+            verdicts.append((line, stage, "UNUSABLE"))
+            print(f"  {line:<3} {stage:<8} the judge stopped: " + (res.stderr.strip().splitlines() or ["?"])[-1][:200])
+            return
+        r = json.loads(res.stdout)
+        failed = [x for x in r["results"] if x["status"] != "PASS"]
+        same = not failed and not r["only_sas"] and not r["only_port"]
+        verdicts.append((line, stage, "PASS" if same else "FAIL"))
+        print(f"  {line:<3} {stage:<8} {len(r['results']) - len(failed)}/{len(r['results'])} files written by both pass"
+              + (f"; only SAS wrote {r['only_sas']}" if r["only_sas"] else "")
+              + (f"; only the port wrote {r['only_port']}" if r["only_port"] else "")
+              + (f"; neither wrote {r['neither']}" if r["neither"] else "") + f"  {'PASS' if same else 'FAIL'}")
+        for x in failed:
+            print(f"      FAIL  {x['file']}")
+            for pr in x["problems"][:4]:
+                print("        - " + pr[:240])
+
     def compare(line: str, stage: str, cand: Path) -> None:
+        if errors:
+            return compare_files(line, stage, cand)
         tag = f"{line}_{stage}"
         res = subprocess.run(["uv", "run", "--quiet", "python", "compare.py", str(sas.resolve()), str(cand.resolve()),
                               "--mode", "port", "--stage", stage, "--json", str((out / f"judge_{tag}.json").resolve())],
@@ -324,11 +402,13 @@ def main() -> int:
     j.add_argument("--out", type=Path, required=True)
     j.add_argument("--accept-warnings", action="store_true",
                    help="record the SAS run's new WARNINGs as reviewed (after reading them)")
+    j.add_argument("--with-errors", action="store_true",
+                   help="judge file by file against a SAS run that has ERROR lines (the small seeds)")
     args = ap.parse_args()
     if args.cmd == "make":
         make(args.seed, args.out.resolve())
         return 0
-    return judge(args.seed, args.data.resolve(), args.sas.resolve(), args.out.resolve(), args.accept_warnings)
+    return judge(args.seed, args.data.resolve(), args.sas.resolve(), args.out.resolve(), args.accept_warnings, args.with_errors)
 
 
 if __name__ == "__main__":
