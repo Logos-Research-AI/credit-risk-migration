@@ -87,7 +87,9 @@ def run(input_dir: Path, output_dir: Path) -> None:
     logit_scored_train = sas_compat.proc_import_csv(input_dir / "risk_scores_train.csv", guessingrows=20)
 
     # metrics_calculation.sas:48-54 PROC LOGISTIC nofit + roc (ROCAssociation)
-    # INV printed_roc_metrics.csv; the roccontrast table is not ported
+    # INV printed_roc_metrics.csv; the roccontrast table is not ported. With one response level among the
+    # usable rows (or no usable row) PROC LOGISTIC stops with an ERROR and WORK.ROC_STATS is not created:
+    # the Area is then missing here
     # listing-only: PROC LOGISTIC roccontrast (ROC Model Information / contrast coefficients)
     roc_stats = sas_compat.roc_association(
         logit_scored_valid.get_column("default_flag"),
@@ -496,7 +498,9 @@ def run(input_dir: Path, output_dir: Path) -> None:
         },
         schema={c: pl.String for c in roc_stats.columns},
     )
-    sas_compat.write_sas_csv(printed_roc_metrics, output_dir / "printed_roc_metrics.csv", formats={})
+    # WORK.ROC_STATS does not exist when PROC LOGISTIC stopped (one response level): no file is exported
+    if roc_stats.item(0, "Area") is not None:
+        sas_compat.write_sas_csv(printed_roc_metrics, output_dir / "printed_roc_metrics.csv", formats={})
     sas_compat.write_sas_csv(
         cumulative_lift,
         output_dir / "printed_cumulative_lift.csv",
