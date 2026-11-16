@@ -1,0 +1,392 @@
+[
+ {
+  "id": "t14_dec/real mc.run, real_metrics, first 300 validation rows (300 rows, columns ['default_flag', 'pd_logistic']): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, real_metrics, first 300 validation rows (300 rows, columns ['default_flag', 'pd_logistic']): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, real_metrics, first 300 validation rows (300 rows, columns ['default_flag', 'pd_logistic']): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, fix_Q23_nodefaulter (4 rows, columns ['default_flag', 'pd_logistic']): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, fix_Q23_nodefaulter (4 rows, columns ['default_flag', 'pd_logistic']): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, fix_Q23_nodefaulter (4 rows, columns ['default_flag', 'pd_logistic']): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, fix_G43 (3 rows, columns ['default_flag', 'pd_logistic']): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, fix_G43 (3 rows, columns ['default_flag', 'pd_logistic']): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, fix_G43 (3 rows, columns ['default_flag', 'pd_logistic']): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_a (3000 rows, columns ['default_flag', 'pd_logistic']): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_a (3000 rows, columns ['default_flag', 'pd_logistic']): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_a (3000 rows, columns ['default_flag', 'pd_logistic']): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_b (3000 rows, columns ['default_flag', 'pd_logistic']): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_b (3000 rows, columns ['default_flag', 'pd_logistic']): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_b (3000 rows, columns ['default_flag', 'pd_logistic']): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_c (3000 rows, columns ['default_flag', 'pd_logistic']): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_c (3000 rows, columns ['default_flag', 'pd_logistic']): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/real mc.run, edge_metrics_c (3000 rows, columns ['default_flag', 'pd_logistic']): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: null pd, null flag, NaN pd, ties: input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: null pd, null flag, NaN pd, ties: decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: null pd, null flag, NaN pd, ties: decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: one row: input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: one row: decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: one row: decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: one row, null pd (every decile empty): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: one row, null pd (every decile empty): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: one row, null pd (every decile empty): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: every pd null: input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: every pd null: decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: every pd null: decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: every default_flag null (totals missing): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: every default_flag null (totals missing): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: every default_flag null (totals missing): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: no defaulter (0 / 0): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: no defaulter (0 / 0): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: no defaulter (0 / 0): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: unsorted, 25 rows with ties: input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: unsorted, 25 rows with ties: decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: unsorted, 25 rows with ties: decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: signed zeros and infinities: input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: signed zeros and infinities: decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: signed zeros and infinities: decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "recorded limit (1) of the polars prelude: max of zeros of opposite sign. The decile holds pd -0.0, 0.0, 0.0: polars gives max_pd = 0.0, the prelude's max the first of the equal values, -0.0. Checked cell by cell (work/t14_zero.py): the Lean frame equals the Python frame with that one cell replaced",
+  "diffs": [
+   [
+    "int",
+    5442577432628814332,
+    13431661690008128431
+   ]
+  ],
+  "ulps": [],
+  "status": "XFAIL"
+ },
+ {
+  "id": "t14_dec/hand: a decile whose default_flag is all null: input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: a decile whose default_flag is all null: decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: a decile whose default_flag is all null: decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: 11 distinct rows (every decile but one has one row): input logit_scored_valid",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: 11 distinct rows (every decile but one has one row): decile_data",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14_dec/hand: 11 distinct rows (every decile but one has one row): decile_analysis",
+  "primitive": "metrics_run_04_deciles",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

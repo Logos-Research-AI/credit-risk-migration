@@ -1,0 +1,3866 @@
+[
+ {
+  "id": "t1_roc/_SE_EPS bits",
+  "primitive": "_SE_EPS",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/_SQRTBIG bits",
+  "primitive": "_SQRTBIG",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/_TIE_EPS bits",
+  "primitive": "_TIE_EPS",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_small, whole (7 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_small, whole (7 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_small, whole (7 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_small, whole (7 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_small, whole (7 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_ties, whole (40 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_ties, whole (40 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_ties, whole (40 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_ties, whole (40 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_ties, whole (40 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_nodefaulter, whole (4 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_nodefaulter, whole (4 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_nodefaulter, whole (4 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_nodefaulter, whole (4 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q26_nodefaulter, whole (4 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_alldefaulters, whole (4 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_alldefaulters, whole (4 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_alldefaulters, whole (4 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_alldefaulters, whole (4 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_alldefaulters, whole (4 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_tie, whole (4 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_tie, whole (4 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_tie, whole (4 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_tie, whole (4 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_tie, whole (4 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_nodefaulter, whole (4 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_nodefaulter, whole (4 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_nodefaulter, whole (4 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_nodefaulter, whole (4 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario fix_Q23_nodefaulter, whole (4 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, whole (3000 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, whole (3000 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, whole (3000 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, whole (3000 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, whole (3000 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, whole (3000 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, whole (3000 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, whole (3000 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, whole (3000 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, whole (3000 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, whole (3000 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, whole (3000 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, whole (3000 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, whole (3000 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, whole (3000 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, rows 1-300",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, rows 1-300 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, rows 1-300 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, rows 1-300",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_a, rows 1-300 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, rows 1-300",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, rows 1-300 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, rows 1-300 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, rows 1-300",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_b, rows 1-300 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, rows 1-300",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, rows 1-300 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, rows 1-300 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, rows 1-300",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario edge_metrics_c, rows 1-300 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 1-300",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 1-300 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 1-300 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 1-300",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 1-300 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, every 150th row (300 rows)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, every 150th row (300 rows) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, every 150th row (300 rows) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, every 150th row (300 rows)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, every 150th row (300 rows) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 20001-20300",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 20001-20300 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 20001-20300 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 20001-20300",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/scenario real_metrics, rows 20001-20300 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: simple",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: simple (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: simple (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: simple",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: simple (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps2",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps2 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps2 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps2",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: ties_eps2 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: other_y",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: other_y (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: other_y (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: other_y",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: other_y (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_ones",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_ones (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_ones (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_ones",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_ones (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_zeros",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_zeros (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_zeros (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_zeros",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_zeros (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: empty",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: empty (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: empty (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: empty",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: empty (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_null",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_null (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_null (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_null",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_null (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1_1",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1_1 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1_1 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1_1",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1_1 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n0_1",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n0_1 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n0_1 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n0_1",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n0_1 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1n0_1",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1n0_1 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1n0_1 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1n0_1",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: n1n0_1 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: single",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: single (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: single (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: single",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: single (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_tied",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_tied (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_tied (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_tied",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: all_tied (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_scores",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_scores (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_scores (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_scores",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_scores (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_ev_only",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_ev_only (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_ev_only (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_ev_only",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan_ev_only (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: inf_scores",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: inf_scores (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: inf_scores (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: inf_scores",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: inf_scores (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: neg_zero",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: neg_zero (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: neg_zero (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: neg_zero",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: neg_zero (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: int_y",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: int_y (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: int_y (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: int_y",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: int_y (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: bool_y_int_s",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: bool_y_int_s (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: bool_y_int_s (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: bool_y_int_s",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: bool_y_int_s (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: huge",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: huge (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: huge (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: huge",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: huge (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)-1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+0ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+0ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+0ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+0ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+0ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.5 v=(top-eps)+2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)-1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+0ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+0ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+0ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+0ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+0ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.3 v=(top-eps)+2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)-1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+0ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+0ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+0ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+0ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+0ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.85 v=(top-eps)+2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)-1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+0ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+0ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+0ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+0ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+0ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=1.0 v=(top-eps)+2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)-1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+0ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+0ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+0ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+0ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+0ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=2.220446049250313e-13 v=(top-eps)+2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)-1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+0ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+0ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+0ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+0ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+0ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+1ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+1ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+1ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+1ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+1ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+2ulp",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+2ulp (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+2ulp (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+2ulp",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: se_eps top=0.001 v=(top-eps)+2ulp (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1000 ulps of 0.5",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1000 ulps of 0.5 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1000 ulps of 0.5 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1000 ulps of 0.5",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1000 ulps of 0.5 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1001 ulps of 0.5",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1001 ulps of 0.5 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1001 ulps of 0.5 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1001 ulps of 0.5",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 1001 ulps of 0.5 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 999 ulps of 0.5 rev",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 999 ulps of 0.5 rev (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 999 ulps of 0.5 rev (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 999 ulps of 0.5 rev",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: x10 999 ulps of 0.5 rev (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1 rev",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1 rev (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1 rev (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1 rev",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for area, different for se (1e-9), 1/1 rev (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for both, 1/1",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for both, 1/1 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for both, 1/1 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for both, 1/1",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: tied for both, 1/1 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: 1e-9 apart, 3/3",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: 1e-9 apart, 3/3 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: 1e-9 apart, 3/3 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: 1e-9 apart, 3/3",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: 1e-9 apart, 3/3 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one defaulter, two others (x10)",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one defaulter, two others (x10) (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one defaulter, two others (x10) (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one defaulter, two others (x10)",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one defaulter, two others (x10) (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one non-defaulter, three defaulters",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one non-defaulter, three defaulters (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one non-defaulter, three defaulters (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one non-defaulter, three defaulters",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: one non-defaulter, three defaulters (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 1/1",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 1/1 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 1/1 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 1/1",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 1/1 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 1/1",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 1/1 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 1/1 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 1/1",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 1/1 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0.25: lower below 0",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0.25: lower below 0 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0.25: lower below 0 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0.25: lower below 0",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0.25: lower below 0 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 2/2",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 2/2 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 2/2 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 2/2",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 0, 2/2 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 2/2",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 2/2 (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 2/2 (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 2/2",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: area 1, 2/2 (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain se_eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain se_eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain se_eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain se_eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain se_eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain between eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain between eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain between eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain between eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: chain between eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan and near ties",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan and near ties (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan and near ties (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan and near ties",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nan and near ties (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls and near ties",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls and near ties (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls and near ties (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls and near ties",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: nulls and near ties (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: null dtype y",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: null dtype y (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: null dtype y (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: null dtype y",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: null dtype y (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: y other values",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: y other values (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: y other values (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: y other values",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/hand: y other values (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1211 n=200 cont",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1211 n=200 cont (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1211 n=200 cont (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1211 n=200 cont",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1211 n=200 cont (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1221 n=250 grid of 50 levels + offsets of the size of the two eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1221 n=250 grid of 50 levels + offsets of the size of the two eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1221 n=250 grid of 50 levels + offsets of the size of the two eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1221 n=250 grid of 50 levels + offsets of the size of the two eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1221 n=250 grid of 50 levels + offsets of the size of the two eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1231 n=150 mix",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1231 n=150 mix (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1231 n=150 mix (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1231 n=150 mix",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1231 n=150 mix (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1241 n=130 grid of 6 levels + offsets of the size of the two eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1241 n=130 grid of 6 levels + offsets of the size of the two eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1241 n=130 grid of 6 levels + offsets of the size of the two eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1241 n=130 grid of 6 levels + offsets of the size of the two eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1241 n=130 grid of 6 levels + offsets of the size of the two eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1251 n=9 cont",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1251 n=9 cont (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1251 n=9 cont (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1251 n=9 cont",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1251 n=9 cont (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1261 n=17 grid of 3 levels + offsets of the size of the two eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1261 n=17 grid of 3 levels + offsets of the size of the two eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1261 n=17 grid of 3 levels + offsets of the size of the two eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1261 n=17 grid of 3 levels + offsets of the size of the two eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1261 n=17 grid of 3 levels + offsets of the size of the two eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1271 n=40 mix",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1271 n=40 mix (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1271 n=40 mix (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1271 n=40 mix",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1271 n=40 mix (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1281 n=64 grid of 12 levels + offsets of the size of the two eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1281 n=64 grid of 12 levels + offsets of the size of the two eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1281 n=64 grid of 12 levels + offsets of the size of the two eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1281 n=64 grid of 12 levels + offsets of the size of the two eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1281 n=64 grid of 12 levels + offsets of the size of the two eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1291 n=120 grid of 2 levels + offsets of the size of the two eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1291 n=120 grid of 2 levels + offsets of the size of the two eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1291 n=120 grid of 2 levels + offsets of the size of the two eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1291 n=120 grid of 2 levels + offsets of the size of the two eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1291 n=120 grid of 2 levels + offsets of the size of the two eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1301 n=100 grid of 1 levels + offsets of the size of the two eps",
+  "primitive": "_pairs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1301 n=100 grid of 1 levels + offsets of the size of the two eps (no label -> record)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1301 n=100 grid of 1 levels + offsets of the size of the two eps (label -> frame)",
+  "primitive": "roc_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1301 n=100 grid of 1 levels + offsets of the size of the two eps",
+  "primitive": "association_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t1_roc/random seed=1301 n=100 grid of 1 levels + offsets of the size of the two eps (the _TIE_EPS and the _SE_EPS groups of the usable scores)",
+  "primitive": "_groups",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

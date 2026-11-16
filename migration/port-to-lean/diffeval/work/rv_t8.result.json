@@ -1,0 +1,82 @@
+[
+ {
+  "id": "rv_t8/step 04 L1 (own median_income) | right repeats key 1, has -0.0, key last",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 04 L2 | right repeats key 1, has -0.0, key last",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 04 L1 (own median_income) | right with no row",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 04 L2 | right with no row",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 04 L1 (own median_income) | right key null / NaN / inf, extra text column",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 04 L2 | right key null / NaN / inf, extra text column",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 01 numeric MonthlyIncome, text NumberOfDependents",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 01 text MonthlyIncome, numeric NumberOfDependents, frame has the _num names",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 01 both numeric, no row",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t8/step 01 both text, no row",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

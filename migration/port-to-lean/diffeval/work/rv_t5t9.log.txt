@@ -1,0 +1,19 @@
+rv_t5t9 eval_decl run, blueprint b41b22d4-720d-4290-b593-39ceab961986 (Logos MCP Staging), 2026-11-16
+
+Calls (one input per call, in order):
+a0  item def:zz_carrier_f  decl zz_carrier_f  kind=returned  elapsed_ms=340
+a1  item def:zz_carrier_f  decl zz_carrier_f  kind=returned  elapsed_ms=427
+b0  item def:zz_carrier_p  decl zz_carrier_p  kind=returned  elapsed_ms=486
+b1  item def:zz_carrier_p  decl zz_carrier_p  kind=returned  elapsed_ms=408
+
+Retries: none
+Schema errors: none
+Carrier re-submissions: none (no write_statement call made, no get_items call needed)
+Timeouts: none
+Unknown-identifier errors (fe_run_05_features / predict_run_05_features): none
+Digest re-runs: none needed (no failing case)
+
+Outputs: diffeval/work/rv_t5t9.out.txt (four lines, a0 a1 b0 b1, newlines removed from each eval_decl output)
+
+Compare (cd migration/port-to-lean && PYTHONPATH=../../port uv run --project ../../port python diffeval/compare.py diffeval/work/rv_t5t9.json diffeval/work/rv_t5t9.out.txt), output verbatim:
+rv_t5t9: 22 cases  PASS=22

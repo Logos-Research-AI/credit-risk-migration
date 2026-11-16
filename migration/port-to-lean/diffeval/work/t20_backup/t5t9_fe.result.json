@@ -1,0 +1,1874 @@
+[
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): input frame",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): result full=true",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): result full=false",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column age",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column num_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column num_late_30_59",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column num_late_60_89",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column num_late_90_plus",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column credit_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column has_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column has_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column credit_util_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column debt_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column income_per_dependent",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column credit_lines_per_person",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column age_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_very_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_very_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_recent_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_multiple_delinquencies",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_low_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_many_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column flag_few_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column total_risk_flags",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column financial_health",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column log_monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column log_num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column log_total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column age_income_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column utilization_debt_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column credit_utilization_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/real cs-training.csv (125 rows): column debt_ratio_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): input frame",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): result full=true",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): result full=false",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column age",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column num_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column num_late_30_59",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column num_late_60_89",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column num_late_90_plus",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column credit_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column has_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column has_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column credit_util_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column debt_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column income_per_dependent",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column credit_lines_per_person",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column age_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_very_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_very_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_recent_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_multiple_delinquencies",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_low_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_many_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column flag_few_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column total_risk_flags",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column financial_health",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column log_monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column log_num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column log_total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column age_income_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column utilization_debt_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column credit_utilization_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q7 (1 rows): column debt_ratio_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): input frame",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): result full=true",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): result full=false",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column age",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column num_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column num_late_30_59",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column num_late_60_89",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column num_late_90_plus",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column credit_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column has_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column has_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column credit_util_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column debt_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column income_per_dependent",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column credit_lines_per_person",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column age_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_very_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_very_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_recent_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_multiple_delinquencies",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_low_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_many_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column flag_few_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column total_risk_flags",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column financial_health",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column log_monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column log_num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column log_total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column age_income_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column utilization_debt_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column credit_utilization_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_Q9 (2 rows): column debt_ratio_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): input frame",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): result full=true",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): result full=false",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column age",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column num_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column num_late_30_59",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column num_late_60_89",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column num_late_90_plus",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column credit_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column has_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column has_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column credit_util_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column debt_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column income_per_dependent",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column credit_lines_per_person",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column age_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_very_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_very_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_recent_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_multiple_delinquencies",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_low_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_many_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column flag_few_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column total_risk_flags",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column financial_health",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column log_monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column log_num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column log_total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column age_income_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column utilization_debt_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column credit_utilization_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/fix_G34/income_zero (48 rows): column debt_ratio_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): input frame",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): result full=true",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): result full=false",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column age",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column num_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column num_late_30_59",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column num_late_60_89",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column num_late_90_plus",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column credit_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column has_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column has_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column credit_util_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column debt_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column income_per_dependent",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column credit_lines_per_person",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column age_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_very_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_very_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_recent_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_multiple_delinquencies",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_low_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_many_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column flag_few_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column total_risk_flags",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column financial_health",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column log_monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column log_num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column log_total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column age_income_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column utilization_debt_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column credit_utilization_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made rows (slice) (20 rows): column debt_ratio_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): input frame",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): result full=true",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): result full=false",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column age",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column num_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column num_late_30_59",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column num_late_60_89",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column num_late_90_plus",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column credit_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column has_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column has_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column credit_util_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column debt_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column income_per_dependent",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column credit_lines_per_person",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column age_category",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_very_high_utilization",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_very_high_debt_ratio",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_recent_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_serious_delinquency",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_multiple_delinquencies",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_low_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_many_dependents",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column flag_few_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column total_risk_flags",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column financial_health",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column log_monthly_income",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column log_num_credit_lines",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column log_total_late_payments",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column age_income_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column utilization_debt_interaction",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column credit_utilization_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t5t9_fe/hand-made frame with no row (slice) (0 rows): column debt_ratio_capped",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

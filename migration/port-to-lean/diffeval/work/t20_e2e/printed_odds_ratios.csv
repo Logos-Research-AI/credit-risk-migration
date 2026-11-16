@@ -1,0 +1,16 @@
+Effect,OddsRatioEst,LowerCL,UpperCL
+debt_ratio_capped,0.999,0.999,0.999
+has_delinquency,2.614,2.256,3.028
+age,0.983,0.981,0.985
+num_credit_lines,1.042,1.030,1.054
+num_real_estate_loan,1.052,1.026,1.078
+log_num_credit_lines,0.870,0.785,0.964
+flag_high_utilizatio,0.684,0.602,0.778
+flag_very_high_utili,1.622,1.438,1.829
+flag_high_debt_ratio,0.710,0.637,0.792
+flag_very_high_debt_,1.372,1.237,1.521
+flag_recent_late_pay,0.828,0.751,0.914
+flag_multiple_delinq,2.341,2.112,2.594
+total_risk_flags,1.110,1.049,1.174
+credit_util_category,1.441,1.367,1.520
+financial_health,0.979,0.975,0.982

@@ -1,0 +1,26 @@
+== with_columns of literals on a frame with no column
+3 rows select([]) shape: (0, 0) -> with_columns(2 null literals) shape: (0, 2) Schema({'p': Float64, 'q': Float64})
+3 rows select(1 col) shape: (3, 1) -> with_columns shape: (3, 3)
+3 rows with_columns([]) shape: (3, 1)
+0 rows select([]) shape: (0, 0) -> with_columns(2 null literals) shape: (0, 2) Schema({'p': Float64, 'q': Float64})
+0 rows select(1 col) shape: (0, 1) -> with_columns shape: (0, 3)
+0 rows with_columns([]) shape: (0, 1)
+== the check expressions on a frame with columns and no row
+(0, 2) Schema({'VAR1': Float64, 'bad_row': Int64}) 0 0
+== the same on the one-row frame of null literals
+(0, 2) (0, 2) [] 0
+== n_unique of a text id column; of floats
+3 3
+== count_ok and is_in on values
+[(True, True, True), (True, True, True), (True, True, True), (False, False, True), (False, False, False), (False, None, None), (True, False, True), (True, False, True), (True, False, True), (False, False, False), (True, False, True)]
+== strip / upper / is_in of the stated() chain
+[False, False, False, False, False, False, True, True, True, True]
+== Python upper on names; f-string
+['AGE', 'AGE', 'VAR12', 'VAR12']
+== to_uppercase over every Unicode scalar value: which characters give a text with N, A or '.'
+characters whose upper form holds N, A or '.' or is empty: ['.', 'A', 'N', 'a', 'n', 'ŉ', 'ẚ']
+non-ASCII characters whose upper form is ASCII: [('0xdf', 'SS'), ('0x131', 'I'), ('0x17f', 'S'), ('0xfb00', 'FF'), ('0xfb01', 'FI'), ('0xfb02', 'FL'), ('0xfb03', 'FFI'), ('0xfb04', 'FFL'), ('0xfb05', 'ST'), ('0xfb06', 'ST')]
+ASCII characters where to_uppercase differs from a-z -> A-Z: 0
+per character vs whole string: ['NAΣΣ', 'ǄNA', 'ʼNA', 'ṄA']
+python upper, non-ASCII names with an ASCII upper form: ['SERIOUSDLQIN2YRS', 'MONTHLYINCOME', 'I']
+strip_chars(' ') on other blanks: ['\xa0NA\xa0', '\u3000NA', 'NA\u2003', '\tNA\n']

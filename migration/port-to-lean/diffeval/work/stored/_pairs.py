@@ -1,0 +1,25 @@
+def _pairs(y: pl.Series, score: pl.Series) -> _Pairs:
+    d = pl.DataFrame({"y": y.cast(pl.Float64), "s": score.cast(pl.Float64)}).drop_nulls()
+    yy = np.asarray(d.get_column("y").to_numpy(), dtype=np.float64)
+    ss = np.asarray(d.get_column("s").to_numpy(), dtype=np.float64)
+    # A pair is concordant, discordant or tied by the _TIE_EPS groups of its two members.
+    gg = _groups(ss, _TIE_EPS)
+    ev = np.sort(gg[yy == 1])
+    ne = np.sort(gg[yy == 0])
+    n1, n0 = len(ev), len(ne)
+    lo_ne = np.searchsorted(ne, ev, side="left")
+    le_ne = np.searchsorted(ne, ev, side="right")
+    conc = int(lo_ne.sum())
+    tied = int((le_ne - lo_ne).sum())
+    # v10, v01 (the components of the standard error) compare the two members by their _SE_EPS groups:
+    # two probabilities 1e-9 apart are tied in the area and different here (X07, X10).
+    fg = _groups(ss, _SE_EPS)
+    ev = np.sort(fg[yy == 1])
+    ne = np.sort(fg[yy == 0])
+    lo_ne = np.searchsorted(ne, ev, side="left")
+    le_ne = np.searchsorted(ne, ev, side="right")
+    lo_ev = np.searchsorted(ev, ne, side="left")
+    le_ev = np.searchsorted(ev, ne, side="right")
+    v10 = (lo_ne + 0.5 * (le_ne - lo_ne)) / max(n0, 1)
+    v01 = ((n1 - le_ev) + 0.5 * (le_ev - lo_ev)) / max(n1, 1)
+    return _Pairs(conc, n1 * n0 - conc - tied, tied, n1, n0, np.asarray(v10), np.asarray(v01))

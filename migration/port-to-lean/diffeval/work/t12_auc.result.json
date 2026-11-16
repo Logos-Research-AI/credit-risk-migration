@@ -1,0 +1,386 @@
+[
+ {
+  "id": "t12_auc/real mc.run, fix_Q26_small (whole): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q26_small (whole): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q26_ties (whole): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q26_ties (whole): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q26_nodefaulter (whole): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q26_nodefaulter (whole): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q23_nodefaulter (whole): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q23_nodefaulter (whole): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q23_alldefaulters (whole): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q23_alldefaulters (whole): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q23_tie (whole): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, fix_Q23_tie (whole): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, real_metrics, validation rows 1-300; training rows 1-700: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, real_metrics, validation rows 1-300; training rows 1-700: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, real_metrics, every 150th validation row (300 rows); training rows 1-700: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, real_metrics, every 150th validation row (300 rows); training rows 1-700: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, edge_metrics_b, validation rows 1-600; training whole: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/real mc.run, edge_metrics_b, validation rows 1-600; training whole: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: null pd rows dropped: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: null pd rows dropped: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: all pd null (auc_pairs has no row): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: all pd null (auc_pairs has no row): auc_summary (0 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: null flags: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: null flags: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: all flags null: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: all flags null: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: flag values other than 0 / 1: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: flag values other than 0 / 1: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: NaN probabilities (one group, sorted last): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: NaN probabilities (one group, sorted last): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: zeros of both signs (one group): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: zeros of both signs (one group): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: negative zero first: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: negative zero first: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: one row: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: one row: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: one row, pd null: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: one row, pd null: auc_summary (0 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: one defaulter, one other: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: one defaulter, one other: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: all tied: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: all tied: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: near ties (exact AUC separates, ROC area ties): roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: near ties (exact AUC separates, ROC area ties): auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: unsorted with repeats: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: unsorted with repeats: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: infinite probabilities: roc_stats",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t12_auc/slice :114-152, hand frame: infinite probabilities: auc_summary (1 row)",
+  "primitive": "metrics_run_01_roc_auc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

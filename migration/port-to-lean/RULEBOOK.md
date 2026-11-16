@@ -1,6 +1,6 @@
 # Translation Rulebook — Python (polars 2.1.0, numpy 2.5.4) → Lean 4, blueprint `py-credit-risk-port`
 
-**Version 5** (2026-11-16: batch 7 = G1–G20 for the port as changed on 2026-11-16, §2.7; where §2.7 differs from an earlier section, §2.7 holds). Version 4 (2026-11-10: batch 3 = C1–C3 after the run reviews; batch 1 = A1–A14 after the stress test; batch 2 = B1–B14 after the first reviews; all listed in `migration/amendments.md`). **The preludes are frozen** (B13).
+**Version 5** (2026-11-16: batch 8 = H1–H7, what the readers deliver on valid input, §2.8; batch 7 = G1–G20 for the port as changed on 2026-11-16, §2.7; where §2.7 differs from an earlier section, §2.7 holds). Version 4 (2026-11-10: batch 3 = C1–C3 after the run reviews; batch 1 = A1–A14 after the stress test; batch 2 = B1–B14 after the first reviews; all listed in `migration/amendments.md`). **The preludes are frozen** (B13).
 
 > The meta-rule: if two agents could answer a question differently, the answer goes in this file.
 > Read-only inside any loop. Implementers, reviewers and fixers cite it and never edit it.
@@ -270,8 +270,11 @@ line ranges. They take the optional raw input and return what later lines use: t
 after the case-blind renaming; predict also `age_name`). The counters are plain `Int`.
 Python `str.upper()` / `str.lower()` on column names and polars `str.to_uppercase()` on cells are
 full Unicode case mappings (E07: `ß` → `SS`); Lean's `String.toUpper` / `toLower` change ASCII
-letters only. Use them, and state in the precondition that the column names and the text cells of
-the checked columns are ASCII (`-- narrowing:` comment). `raw.schema[v] != pl.String` is a match on
+letters only. Use them, and state in the precondition that the column names are ASCII
+(`-- narrowing:` comment). (Corrected 2026-11-16 by G27 (a): the first wording also asked for
+ASCII text cells in the checked columns; that is not needed, because the upper form is only tested
+against `""`, `"."`, `"NA"`. G27 holds. `def:fe_run_00_input_check_precond` was accepted on the
+first wording and keeps the stricter clause: §6.) `raw.schema[v] != pl.String` is a match on
 the column kind (`.str` or not).
 
 **G6. Strings in expressions.** Not in the prelude: write local `let` helpers (rule F1) that build
@@ -321,8 +324,11 @@ is not String (G5 kind test); the precondition states Float64 for that case.
 
 **G13. Join with a key expression** (`predict_run_04_imputed`):
 `l.join(r, left_on=pl.col("age_group").cast(pl.Float64), right_on="age_group", how="left", maintain_order="left")`.
-Result columns (E07): all left columns, then the right key as `age_group_right` (null on an
-unmatched row), then the other right columns (suffix `_right` on a clash). Rows as the prelude's
+Result columns: all left columns, then all the right columns in the order of the right frame, the
+right key included at its own place as `age_group_right` (null on an unmatched row), with the
+suffix `_right` on a clash. (Corrected 2026-11-16: the first wording said the key comes first
+among the right columns; E07 only had a right frame whose key was its first column. The full
+column and error rules are G23, which holds.) Rows as the prelude's
 left join: left order, one row per matching right row in right order, null keys never match. A
 String right key raises `SchemaError` (precondition: the imported `age_group` is numeric). Write a
 local helper with the same list code as `Pl.Frame.join`, keeping the right key column.
@@ -357,6 +363,238 @@ preludes: `def:zz_carrier_s` (sas_compat), `def:zz_carrier_f` (feature engineeri
 `def:zz_carrier_p` (predict), `def:zz_carrier_m` (metrics), `def:zz_carrier_t` (train). `connect`
 your carrier to your unit before evaluating; use no other carrier. Lookup tables for `sas_best`
 (width 8) and `sas_best12` are regenerated from the port as it stands on the day of the evaluation.
+
+Rules G21 to G25 were added by translators during the run. Numbers were made unique on 2026-11-16:
+G21 (forward fill, T14), G22 (division under a guard, T14) and G23 (join completed, T8) keep their
+numbers; the rule T4 wrote as "G21" (median of a Series) is G24; the rule T15 wrote as "G22" (score
+against a Float64 literal) is G25. A comment in an accepted unit that cites the old number of G24
+or G25 means these rules. A new rule takes the next free number (G26); its author adds it at the
+end of this section and names its evidence file in full.
+
+**G21. `e.forward_fill()`** (no limit; `metrics_run_05_cumulative_lift`, added by T14 on 2026-11-16).
+Each null takes the last non-null value before it in the column; the nulls before the first
+non-null value stay null; a NaN is a value (it is kept, and it fills the nulls after it); the dtype
+is kept. Select / with_columns context only. Not in the prelude: a local `let` helper (rule F1) that
+maps the values of the `.f64`, `.int`, `.bool` or `.str` column with one left fold carrying the last
+non-null value, with the `name` of the input and `ser := Pl.node [e.ser]`; copy the helper of
+`def:metrics_run_05_cumulative_lift`. Evidence: the differential suites `r3_lift` and `t14_lift`
+(`diffeval/units/t14_gen.py`, hand-made cases "unsorted deciles, null defaults first / middle /
+last", "all defaults null", "NaN defaults is kept, not filled"): 60 of 60 cases equal.
+
+**G22. A column / column division under a `when` guard** (T14, reading of §2.2 Convention 1 and
+R-DIV0). `pl.when(gt(d, 0)).then(… n / d …)`: polars evaluates `n / d` on every row and selects it
+only where the guard holds. The Lean writes the same `Pl.wto` with `n.div d` inside; the unit's
+precondition states nothing about `d` being non-zero, because the quotient on a row where the guard
+fails is never selected. This is the one exception to the last sentence of R-DIV0 (§2.2), and it
+holds only when the guard is in the same expression as the division; accepted by the reviewer and
+by the lead (2026-11-16). Evidence: suite `t14_lift` (`diffeval/units/t14_gen.py`), cases with
+`cum_count` 0, null and negative, and the real run on `judge/scenarios/fix_G43` (first deciles empty).
+
+**G24. Median of a Series; the Int32 key of `age_groups`** (T4, 2026-11-16; first written as "G21"; evidence
+`experiments/e08_series_median.py`, output `experiments/e08_series_median.out.txt`).
+`s.drop_nulls().median()` on a Float64 Series `s : List (Option α)` is
+`Pl.median ((s.filterMap id).map some)`: the same value, bit for bit, as the select-context
+`pl.col(..).median()` (4000 cases, 0 differences: NaN is a value and the greatest, `[-inf, inf]`
+gives NaN, an even count gives `0.5 * (b - a) + a`); a Python float, or `None` when no value is
+left. `pl.lit(m, dtype=pl.Float64)` of that result is `Pl.litOptF m` (null for `None`, the same
+bits otherwise, on every row). On a String column the median is `None` without an error, on an
+Int64 or Boolean column it is a float: the unit states Float64 with a `-- narrowing:` comment.
+`pl.DataFrame({"age_group": [1, 2, 3, 4, 5]}, schema={"age_group": pl.Int32})` is the frame literal
+`[("age_group", Pl.Col.int [some 1, …, some 5])]`; joining its Int32 key with an Int32 or Int64 key
+works, with a Float64 or String key polars raises `SchemaError` (precondition: integer key).
+`pl.coalesce(a, b)` with a String operand does not raise (the result is a String column); with an
+Int64 or Null-dtype operand next to a Float64 one the result is Float64. G9 stays stated for two
+Float64 columns: the unit's precondition requires them, with a `-- narrowing:` comment.
+
+**G25. A score column compared with a Float64 literal; an Int64 counter built from flags** (T15,
+2026-11-16; first written as "G22"; evidence `experiments/t15_psi_dtypes.py`, output `t15_psi_dtypes.out.txt`, and the 108
+cases of `diffeval/units/t15_gen.py`). `sas_compat.gt(pl.col(c), pl.lit(x, pl.Float64))` on a String
+column `c` raises `ComputeError` ("cannot compare string with numeric type (f64)"): precondition
+Float64, with a `-- narrowing:` comment for Int64, which does not raise. `pl.lit(0, pl.Int64)` plus
+`flag(..)` terms is an Int64 column: `(Pl.litI 0).add ..`, kept `.int` (no R-F2I cast to Float64); on
+a frame emptied with `.clear()` it is an empty Int64 column. `df.item(i, 0)` on a null cell is
+`None`; `pl.lit(None, pl.Float64)` as the second argument of `gt` makes every non-null value
+greater (missing is smallest) and no null value greater.
+
+**G23. The join of G13, completed; `map_elements` on an empty or all-null column; one declaration
+per statement** (T8, 2026-11-16; evidence `experiments/e08_t8_predict_steps.py`, output
+`e08_t8_predict_steps.out.txt`, and the 55 cases of `diffeval/units/t8_gen.py`, `t8_edges_gen.py`).
+This replaces the column rule of G13. `l.join(r, left_on=<expr named k>, right_on="k", how="left",
+maintain_order="left")` returns the left columns, then ALL the right columns in the order of `r`,
+the key at its own place (not first); a right column whose name is a left column's gets the suffix
+`_right`, so the key is `k_right` because `l` has `k`. When `<name>_right` is already a column of
+`l` or of `r`, polars raises `DuplicateError` (precondition, key included). An integer right key
+against the Float64 left key raises `SchemaError` like a String one; an absent right key raises
+`ColumnNotFoundError`. Keys match as in the prelude's join (`Val.keyEq` on the Float64 values:
+`-0.0` equals `0.0`; a NaN right key matches no integer; a null on either side matches nothing).
+An empty left frame gives all the columns with no row; an empty right frame gives nulls.
+`pl.when(c).then(pl.coalesce(a, b)).otherwise(d)` with a String `a`, `b` or `d` does not raise: the
+result is a String column (stated as a narrowing in the unit's precondition).
+`map_elements(f, return_dtype=pl.String)` on a column with no row or with nulls only gives a String
+column (length 0 / all null); `sas_compat.input_best32` of it is Float64.
+The case-blind rename of `predict.py:213-222` never targets a taken name (no `DuplicateError`).
+On a re-written (`changed`) item the server refused a statement with helper declarations above the
+unit ("only one is allowed", T8): there a helper is a `let` inside the unit, and a precondition that
+needs it restates it as a `let` (same text). A new `add_code` item was accepted with helper
+declarations (T7).
+
+**G26. `a + b * c` on Float64 columns is two rounded operations** (review of T10 / T17 by
+port-translator-10, 2026-11-16; evidence `experiments/rv_t10_fma.py`). polars does not fuse
+`pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic"))` into a multiply-add: on
+200,007 values the column equals Python's `600.0 + 250.0 * (1 - p)` bit for bit (0 differences; 16,533
+differences from `math.fma`). So it is `a.add (b.mul c)` with the prelude's `add` / `mul`, as written.
+
+**G27. Input checks: three facts settled by T7** (2026-11-16) (E08: `experiments/e08_t7_input_check.py`, output
+`e08_t7_input_check.out.txt`). They hold for both input checks (same expressions).
+(a) *Upper case on cells needs no narrowing.* `….str.to_uppercase().is_in(["", ".", "NA"])` with
+`String.toUpper` (ASCII letters only) is exact for every text: over all Unicode scalar values, the
+only characters whose polars upper form holds `N`, `A` or `.` are `n N a A .` and U+0149, U+1E9A,
+whose upper forms (`ʼN`, `Aʾ`) keep a non-ASCII character; the upper form is the concatenation of
+the characters' upper forms. So a text with a non-ASCII character never has the upper form `""`,
+`"."` or `"NA"`, on either side. The precondition states ASCII for the **column names** only
+(Python `upper()` maps U+017F to `S`, U+0131 to `I`, so a non-ASCII name can match an expected one);
+this replaces the "text cells of the checked columns are ASCII" clause of G5.
+(b) *A frame with no column.* `frame.select([])` has shape (0, 0), and `with_columns` of literal
+columns on it gives the columns with **no row** (shape (0, k), not (1, k)): the prelude's
+`withColumns` agrees, no special case. The check then counts `bad_rows = 0`, `duplicate_ids = 0`.
+(c) *`input_best32` in the check.* The parameter is applied to the stripped text expression; the
+precondition states that it returns a Float64 column of the frame's height on each text column the
+check reads, and only for the inputs on which the result depends on it (predict: `columns_ok = 1`).
+
+**G28. The join of G23 when the right frame repeats a key: right order at any size** (review of T8
+by port-translator-9, 2026-11-16; evidence `experiments/rv_t8_join_dups.py`, output
+`rv_t8_join_dups.out.txt`, and the 10 cases of `diffeval/units/rv_t8_gen.py`). With
+`how="left", maintain_order="left"` and a key expression, a left row with several matching right
+rows gets them in the order of the right frame, also on large frames (200,000 left rows against
+2,000 right rows, 27,350,686 result rows; 3 against 100,000): equal to the list model of G23 row
+for row. No change to G23; this is the evidence for its "in right order" on repeated keys.
+`select` after the join reads a name the left frame also has from the LEFT column (the right one
+is `<name>_right`): a `test_cleaned` with its own `median_income` is imputed from that column.
+
+### 2.8 Batch 8 (2026-11-16): what the port's readers deliver on VALID input
+
+Observed on real runs; no Lean. These are the facts the conditions on the input parameters of the
+four `run` items may rest on. Scope: valid files only (documented columns, numeric fields, blank or
+NA where a missing value is allowed, unique ids, at least one training row; the test file may be a
+header with no applicant). Quoted fields, other headers, blank lines and short rows are not covered.
+Evidence: `experiments/e08_inputs.py` (E08), `e09_readback.py` (E09), `e10_valid_stops.py` (E10),
+`e11_medians_readback.py` (E11), each with its `.out.txt`. Meant to be blueprint items
+`rule:<name>`; the server refuses the prefix `rule` (only def / thm / lem / neg), so they are here.
+
+**H1 `rule:import_raw_names_rows`.** Reader: `sas_compat.proc_import_csv(path, guessingrows=None)`
+(feature engineering on `cs-training.csv`; predict on a `cs-test.csv` with at least one data line).
+The frame has (1) the columns, in header order: `VAR1`, `SeriousDlqin2yrs`,
+`RevolvingUtilizationOfUnsecuredL`, `age`, `NumberOfTime30-59DaysPastDueNotW`, `DebtRatio`,
+`MonthlyIncome`, `NumberOfOpenCreditLinesAndLoans`, `NumberOfTimes90DaysLate`,
+`NumberRealEstateLoansOrLines`, `NumberOfTime60-89DaysPastDueNotW`, `NumberOfDependents` (the empty
+first header field becomes `VAR1`; every name is the header field cut to 32 characters, which cuts
+three names); (2) one row per data line; (3) rows in file order, cell (i, j) from field j of data
+line i. E08 Part 1: compared field by field with the file text on 34 files (legacy/data, 150000 and
+101503 data lines; the training and test files of 16 valid scenario folders) and 6 variants made of
+verbatim legacy lines, one of them a single data line. All hold.
+
+**H2 `rule:import_raw_kinds_cells`.** Same reader. Each column is Float64 or String, decided per
+column over ALL data lines: Float64 when at least one field is not blank and every non-blank field
+is a number; String otherwise. So one `NA` (or `.`, `na`) anywhere makes the column String, and a
+column whose fields are all blank is String. Integers and decimals give the same kind: `5700` and
+`5700.0` are both Float64 and the same value; `4.5e1` is Float64 45.0.
+Cells: a blank field is null in either kind. In a Float64 column a non-blank field is
+`float(field)`, bit for bit. In a String column a non-blank field is its text unchanged: `NA` is
+the text "NA", not null, and `5700` is the text "5700".
+What the real files give (E08 Part 1): training legacy/data: `MonthlyIncome` String (29731 NA),
+`NumberOfDependents` String (3924 NA), the other ten Float64, no null anywhere. Test legacy/data:
+`SeriousDlqin2yrs` String with every cell null (the column is blank on every line),
+`MonthlyIncome` and `NumberOfDependents` String with NA texts, the other nine Float64.
+Variants of legacy lines: no NA in any line: all twelve Float64; NA only in `MonthlyIncome`: that
+column String, `NumberOfDependents` Float64; NA replaced by a blank field: both Float64 with nulls
+(391 and 58 of 2000); every `NumberOfDependents` blank: String, all null.
+So a valid training frame has `MonthlyIncome` and `NumberOfDependents` each String or Float64 and
+the other ten Float64; a valid test frame the same, with `SeriousDlqin2yrs` String (all null) when
+the column is blank throughout (every test file run: observed). A test file whose outcome column
+holds NA or 0 / 1 was not among the valid files; the kind rule gives String and Float64 for them.
+
+**H3 `rule:import_test_header_only`.** A `cs-test.csv` that is its header line and nothing else:
+`test_raw` of the real `predict.run` has height 0 and the twelve columns of H1 in header order with
+kinds `VAR1` Float64, `SeriousDlqin2yrs` String, `MonthlyIncome` String, `NumberOfDependents`
+String, the other eight Float64. Same for LF, CR LF and no line end after the header
+(`fix_Q27_emptytest/header_only`, `crlf_header_only`, `header_only_noterminator`), and with the
+legacy training file. predict completes and writes `kaggle_submission.csv` (columns `row_id`,
+`pd_logistic`) and `test_predictions.csv` (15 columns) with height 0. In the terms of G4:
+`cs_test = some (header, [])` with `true` (String) exactly under those three names. E08 Parts 2-4.
+
+**H4 `rule:readback_model_features`.** `model_features_train.csv` and
+`model_features_validation.csv`, written by feature engineering and read by train with
+`guessingrows=None`. Same 42 names in the same order, same number of rows in the same order, no
+null written or read. Every column is read Float64 (written: 24 Float64, 14 Int64, 4 Int32), so in
+table terms every cell is numeric on both sides. Cell law, which held on every cell of every run:
+read = float(text printed by the writer), bit for bit; the text is `sas_best12(x)` for a Float64
+column and `str(int)` for an integer column. The table read back is therefore NOT the table
+written: in 11 Float64 columns the value changes because BEST12 keeps at most 12 characters:
+`credit_utilization`, `debt_ratio`, `income_per_dependent`, `credit_lines_per_person`,
+`log_monthly_income`, `log_num_credit_lines`, `log_total_late_payments`, `age_income_interaction`,
+`utilization_debt_interaction`, `credit_utilization_capped`, `debt_ratio_capped` (legacy training
+set: between 8901 and 103867 of 105000 cells per column; largest relative change 2.7e-7, in
+`utilization_debt_interaction`; e.g. 9.118334726180159 is read 9.1183347262). The other 31 columns
+were read equal to what was written, cell for cell, in every run. E08 Part 3, E09 A (legacy,
+fix2/good, fix_G34/income_zero, fix2/q13_median_width, legacy reordered).
+A validation set with no row (`fix_Q1`: two training lines, both in the split): the file is the
+header alone and is read as 42 String columns with height 0 (E09 A). Train did not complete on
+that file (RuntimeError, the fit did not converge), so nothing is known beyond the read.
+
+**H5 `rule:readback_risk_scores`.** `risk_scores_validation.csv` and `risk_scores_train.csv`,
+written by train and read by metrics with `guessingrows=20`: the kind of a column and the width of
+a text column are decided on the first 20 data rows only. Same 51 names and order, same rows and
+order, no null. Differences from the table written, all with runs (E08 Part 3, E09 A-C):
+(a) `pd_logistic` and `credit_risk_score`: read = float(`sas_best12`(written)); every cell changes
+(legacy: 45000 of 45000 and 105000 of 105000; relative change up to 8.8e-9 and 7.7e-12).
+(b) `interest_rate`: written Float64 with format `percent8.2`, read as String: 0.09 is read "9.00%".
+When the first 20 rows hold only 5-character texts, the longer ones are cut: "12.00%" is read
+"12.00" (legacy and fix2/good validation sets).
+(c) `recommendation` (String: Approve, Decline, Review): equal in the legacy and fix2/good runs.
+With the legacy lines reordered so that the first 20 scored rows are all "Review" (a valid file),
+"Approve" is read "Approv" and "Decline" "Declin" (43036 of 45000 and 100721 of 105000 cells).
+(d) `risk_grade` (String, one character) and the other 46 columns: read equal to what was written,
+cell for cell (the columns train took from the feature files already hold the values read
+through BEST12, so printing them again changes nothing; `pred_logistic` is Int64 written, Float64
+read, same values).
+No run had a numeric column whose first 20 rows are all blank; by H2's rule on the 20-row window
+such a column would be read String. Not observed on valid input.
+
+**H6 `rule:readback_income_medians`.** `income_medians.csv`, written by feature engineering
+(format `best32.` on the two medians) and read by predict with the default `guessingrows=20`:
+5 rows, columns `age_group`, `median_income`, `overall_median_income`, all read Float64
+(`age_group` written Int32). Read equal to written, cell for cell and null for null, on 11 training
+files (E11; E09 A): legacy, fix2/good, q13_median_width, fix_G34/income_zero, fix_round5/good,
+fix_Q27_textid/good, fix_Q13, and the files with an age group that has no known income (fix_Q1,
+fix_Q14, fix_Q7, fix_Q9), where `median_income` is null for that group on both sides and
+`overall_median_income` is never null.
+
+**H7 `rule:inputs_present_in_sequence`.** The four stages run in order on valid input (feature
+engineering, train, metrics, predict; one output folder): every "absent" parameter is present.
+`credit_raw` is a frame; `model_features_train.csv` and `model_features_validation.csv` exist
+before train; `risk_scores_validation.csv` and `risk_scores_train.csv` exist before metrics;
+`income_medians.csv`, `model_coefficients.csv` and `model.json` exist before predict; `test_raw`
+is a frame; no stage stops. Shown on 10 sequences (E08 Part 4): legacy/data, fix2/good,
+fix_G34/income_zero, fix2/q13_median_width, fix_round5/good, fix_Q27_emptytest/good, the three
+header-only test files, and legacy training with the header-only test file.
+No exception (DECISION of the lead, 2026-11-16): a negative income is not valid input by the
+requirements as they now stand, so fix2/valid_unusual and fix2/q14_negative_real, whose README
+still says "Valid files", are not valid files. Feature engineering stops on them, and then every
+later stage stops on its absent input, because rows 34 and 35 have `MonthlyIncome` -1 and -7.5
+(bad_rows = 2; E10). Their rows with a blank, `.` or
+`na` income and a blank `NumberOfDependents` are not counted bad. A training file of two lines
+(fix_Q1) passes feature engineering and train raises RuntimeError (no convergence): not a stop of
+the "absent input" kind, and outside the model.
+
+**Not observed (batch 8).** No condition may rest on these without a new run.
+1. A completed run with an empty validation set. The only case (fix_Q1) is read as 42 String
+   columns of height 0 and train then raised RuntimeError (no convergence).
+2. A valid test file whose `SeriousDlqin2yrs` holds NA or 0 / 1: none among the valid files; the
+   kinds given in H2 for it follow from the kind rule, not from a run on such a file.
+3. A numeric score column that is blank in its first 20 rows: no run had one; its reading as
+   String (H5) is not observed.
+4. Whether metrics uses `interest_rate` or `recommendation`: not established by a run (a text
+   search of `metrics_calculation.py` finds neither name).
 
 ## 3. Explicit parameters (out-of-scope or non-deterministic behaviour)
 
@@ -467,12 +705,35 @@ tag `py-2.1.0`, numpy tag `v2.5.4`.
 | `Np.round3` | `rint(x*1000)/1000` on the grid | E05 |
 | `Series.to_numpy` null → NaN, `nan_to_null` | R-NULLNAN | E05 |
 | batch 7 calls (§2.7 G6–G17) | `str.strip_chars(" ")`, `len_chars`, `to_uppercase`, `is_in`, `ceil`, `n_unique`, `coalesce`, `shift`, `ne_missing`, `int_range`, `head`, `clear`, negative `item`, join with a `left_on` expression, `fill_null(0)`, `map_elements`, numpy `** 2`, `math.fsum`, builtin `max`/`min` | E07 (`experiments/e07_batch7.py`, `e07_batch7.out.txt`) |
+| G21 `forward_fill`, G22 division under a guard | see §2.7 | `diffeval/units/t14_gen.py` (suites `r3_lift`, `t14_lift`) |
+| G23 join with a key expression, `map_elements` on empty / all-null | see §2.7 | `experiments/e08_t8_predict_steps.py`, `experiments/e08_t8_predict_steps.out.txt`; `diffeval/units/t8_gen.py`, `t8_edges_gen.py` |
+| G24 Series median, Int32 key, coalesce dtypes | see §2.7 | `experiments/e08_series_median.py`, `experiments/e08_series_median.out.txt` |
+| G25 String score against a Float64 literal, Int64 counter | see §2.7 | `experiments/t15_psi_dtypes.py`, `experiments/t15_psi_dtypes.out.txt`; `diffeval/units/t15_gen.py` |
+| predict input check on frames with no row or no column (supports G4, G5, G8; no rule of its own) | `select([])` gives a 0 × 0 frame, `with_columns` of null literals on it gives 0 rows; the check expressions on a frame with no row give 0 bad rows and 0 distinct ids | `experiments/e08_t7_input_check.py`, `experiments/e08_t7_input_check.out.txt` |
 | chunking | every float `sum`/`mean` in scope runs on a frame that is one chunk (after `sort`, `group_by`, or a frame built in memory) | E05 (`n_chunks` after sort = 1) |
 
 Known limits of the model (recorded, not worked around): the sign of a zero in `abs`, in min/max
 of zeros of opposite sign, in the median and in `np.sort` when zeros of both signs are present;
-a frame column that polars keeps internally as a scalar; a literal zero or null-literal operand of `sum_horizontal` (polars leaves the column unchanged, the model adds 0.0); padding a Null-dtype column in `merge_one_to_one` (`Col.append` on two Null columns); a literal, an aggregate or a non-aggregated column passed to `sql_*`, `div`, `sas_log` inside `group_by().agg`; a Boolean input of `sql_sum`; a null in a Date (`.cell`) column; a Null-dtype column (`Pl.litNull`) anywhere but as a branch of `Pl.wto` or next to Float64 operands (`fill_null`, `+`/`*` with Int64, comparison with String, `&`/`|`, `cast(pl.Int64)`, `sum`, `mean` of a Null column: dtype, and for `sum` the value 0.0 instead of null); zero-width frames with a height; zero-row tables; multi-chunk columns; integers beyond
+a frame column that polars keeps internally as a scalar; a literal zero or null-literal operand of `sum_horizontal` (polars leaves the column unchanged, the model adds 0.0); padding a Null-dtype column in `merge_one_to_one` (`Col.append` on two Null columns); a literal, an aggregate or a non-aggregated column passed to `sql_*`, `div`, `sas_log` inside `group_by().agg`; a Boolean input of `sql_sum`; a null in a Date (`.cell`) column; a Null-dtype column (`Pl.litNull`) anywhere but as a branch of `Pl.wto` or next to Float64 operands (`fill_null`, `+`/`*` with Int64, comparison with String, `&`/`|`, `cast(pl.Int64)`, `sum`, `mean` of a Null column: dtype, and for `sum` the value 0.0 instead of null); zero-width frames with a height; two points of form on `def:metrics_run_06_psi_precond`, found by the review of T15 and left as they are (DECISION of the lead, 2026-11-16; neither changes behaviour): it ends with a `-- PORT STATUS: confidence=high todos=0` trailer although §4 says a precondition item carries none, and its statement dependencies include `def:metrics_run_06_psi` although its Lean does not mention the unit, so a later re-submission of the unit clears the precondition; a narrowing stricter than needed in `def:fe_run_00_input_check_precond`, which requires ASCII text in the cells of `MonthlyIncome` and `NumberOfDependents`: by G27 (a) the check is exact for every text (evidence `experiments/e08_t7_input_check.py` and, over all Unicode characters in Python and in polars, `experiments/e09_upper_cells.py`), so non-ASCII cells are excluded there without need; the clause is kept because re-submitting the precondition would clear `def:run` (DECISION of the lead, 2026-11-16); `def:predict_run_00_input_check_precond` has no such clause; zero-row tables; a file written with a header and no data row by feature engineering, train or metrics, whose result is the pair `(file name, [])` with the column names lost (DECISION of the lead, 2026-11-16: these three stages keep pairs; only predict returns triples, §2.7 G4. Example: `judge/scenarios/fix_Q7`, where the validation set has no applicant, so `model_features_validation.csv` is the table `[]`; stated in the comment of `def:run_precond`); multi-chunk columns; integers beyond
 2^53; R-F2I; a `group_by` whose key column carries polars' sorted flag (the frame was sorted by the key: polars then sums each group with the select-context kernel, the model always with the Kahan fold; not reachable in the package, whose float group aggregates use keys built by `proc_rank_groups`, which carry no flag; `reviews/B2_r2.md` F1); `sum_horizontal` with 9 or more operands (bracketing outside both values of `full`, and not deterministic). Outside the model altogether: the last bit of `exp` and `log`, which differs between the Lean evaluator's `Float` and polars on a few values per thousand (`RealLike.exp` / `RealLike.log` are abstract in the statements; `reviews/B2_r2.md` F2). The full differential receipt of the preludes is `migration/diffeval/receipts/prelude.tsv`.
+
+Known points on the T4 units (2026-11-16, from the review by port-translator-6; the items stay as
+accepted, decision of the lead):
+
+- **Signed zeros in `MonthlyIncome` and the overall median** (`def:fe_run_02b_medians_all`). The
+  overall median is the prelude's `Pl.median`, whose recorded limit above is the sign of the result
+  when zeros of both signs are present. Such incomes are reachable: the text `-0` passes the input
+  check and `input_best32` returns `-0.0`. On 14 lists holding zeros of both signs the Lean
+  returned the same sign as the port (e.g. `[0.0, -0.0]` gives `0.0` and `[-0.0, 0.0]` gives `-0.0`
+  on both sides). The limit is not lifted by this: it is 14 probes, not a rule. The precondition
+  of the unit does not exclude these inputs and its comment does not mention them. Probe:
+  `experiments/rev_t4_zero_median.py`.
+- **A narrowing the Lean does not need** (`def:fe_run_04_imputed_precond`). The clause
+  `0 < credit_cleaned.height` excludes a `credit_cleaned` with no row, on which Python does not
+  raise. On a frame with the 15 columns and no row the Lean result equals the port's (same digest
+  on both sides), so the clause is stricter than fidelity requires. `run` never reaches step 04
+  with no row (the input check stops first). The step 05 precondition has no such clause. Probe:
+  `experiments/rev_t4_empty.py`.
 
 ## 7. Deviation log
 
@@ -490,4 +751,5 @@ a frame column that polars keeps internally as a scalar; a literal zero or null-
 | DEV-010 | 2026-11-10 | Form findings on accepted items (missing trailer on `def:Z975`, bracketed trailers) waived: re-submitting a dependency clears its dependents | orchestrator |
 | DEV-011 | 2026-11-10 | `def:run_py_py` keeps `medians` before `cs_test` (rule C2 was written after it was accepted and differentially tested; reordering would invalidate its receipts) | orchestrator |
 | DEV-012 | 2026-11-10 | B6 (metrics run) and B7/B8 had one line-by-line reviewer each plus one shared end-to-end reviewer on real data, instead of two reviewers per bundle | orchestrator (budget) |
-| DEV-013 | 2026-11-16 | `def:run_py_py` returns triples `(file, column names, table)` so that a result with a header and no row is representable (§2.7 G4); the other stages return pairs | orchestrator; to be confirmed by the lead |
+| DEV-013 | 2026-11-16 | `def:run_py_py` returns triples `(file, column names, table)` so that a result with a header and no row is representable (§2.7 G4); the other stages return pairs | lead, confirmed 2026-11-16 |
+| DEV-014 | 2026-11-16 | Units whose Python text is unchanged keep their accepted Lean and stored source as they are: only the item's source reference (file, line span) was updated (`update_item_source`, metadata only). So the `-- credit_risk/<file>:<lines>` header inside their Lean, and the stored docstrings of `le`, `ge`, `eq`, are those of the earlier port. Rewriting them would clear every dependent item for no change in meaning. The manifest has the current ranges | orchestrator |

@@ -1,0 +1,13 @@
+Step,Test,ChiSq,DF,ProbChiSq
+1,Likelihood Ratio,153.5956,1,<.0001
+1,Score,323.3222,1,<.0001
+1,Wald,140.1557,1,<.0001
+2,Likelihood Ratio,210.7997,2,<.0001
+2,Score,375.8864,2,<.0001
+2,Wald,171.3631,2,<.0001
+3,Likelihood Ratio,219.3618,3,<.0001
+3,Score,377.2125,3,<.0001
+3,Wald,178.1186,3,<.0001
+4,Likelihood Ratio,234.9600,4,<.0001
+4,Score,433.8393,4,<.0001
+4,Wald,191.0143,4,<.0001

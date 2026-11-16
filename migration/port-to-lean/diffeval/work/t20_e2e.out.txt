@@ -1,0 +1,55 @@
+fe: completed in 4s
+    income_medians.csv	6 lines	45174000182f4023 (new)
+    model_features_train.csv	105001 lines	abaea62cecf8709a (new)
+    model_features_validation.csv	45001 lines	c03b3df6339d339b (new)
+train: completed in 7s
+    final_model_output.csv	105001 lines	47a8eebe8821d34c (new)
+    income_medians.csv	6 lines	45174000182f4023
+    model.json	0 lines	25f08e5884aa4a2d (new)
+    model_coefficients.csv	17 lines	cca4ae0905bc64e4 (new)
+    model_features_train.csv	105001 lines	abaea62cecf8709a
+    model_features_validation.csv	45001 lines	c03b3df6339d339b
+    model_summary.csv	2 lines	32ec36d97a1b0b3c (new)
+    printed_association.csv	5 lines	7cc17671fa8fbb6b (new)
+    printed_classification.csv	45 lines	5ec7d5040ea7c97b (new)
+    printed_confusion_train.csv	5 lines	8c303e3c99a6a283 (new)
+    printed_confusion_validation.csv	5 lines	fc39c18cae6d1877 (new)
+    printed_fit_statistics.csv	59 lines	4a34571f0d2548c2 (new)
+    printed_global_tests.csv	58 lines	7b94375e701de7e1 (new)
+    printed_hl_partition.csv	11 lines	71fab1cfe064e5ef (new)
+    printed_hosmer_lemeshow.csv	2 lines	4d8b8599161806dc (new)
+    printed_odds_ratios.csv	16 lines	3caac9c985e9fe02 (new)
+    printed_roc_train.csv	2 lines	b2c684228fcbb50d (new)
+    printed_roc_validation.csv	2 lines	40ac9d3d88b87b1f (new)
+    printed_rsquare.csv	20 lines	ca4edc67709bcdd6 (new)
+    risk_scores_train.csv	105001 lines	a7a71221b9f6c46d (new)
+    risk_scores_validation.csv	45001 lines	a3068b9ca10284db (new)
+    stepwise_summary.csv	20 lines	9046031eccc422df (new)
+predict: completed in 2s
+    final_model_output.csv	105001 lines	47a8eebe8821d34c
+    income_medians.csv	6 lines	45174000182f4023
+    kaggle_submission.csv	101504 lines	02c0d3bf68743db1 (new)
+    model.json	0 lines	25f08e5884aa4a2d
+    model_coefficients.csv	17 lines	cca4ae0905bc64e4
+    model_features_train.csv	105001 lines	abaea62cecf8709a
+    model_features_validation.csv	45001 lines	c03b3df6339d339b
+    model_summary.csv	2 lines	32ec36d97a1b0b3c
+    printed_association.csv	5 lines	7cc17671fa8fbb6b
+    printed_classification.csv	45 lines	5ec7d5040ea7c97b
+    printed_confusion_train.csv	5 lines	8c303e3c99a6a283
+    printed_confusion_validation.csv	5 lines	fc39c18cae6d1877
+    printed_fit_statistics.csv	59 lines	4a34571f0d2548c2
+    printed_global_tests.csv	58 lines	7b94375e701de7e1
+    printed_hl_partition.csv	11 lines	71fab1cfe064e5ef
+    printed_hosmer_lemeshow.csv	2 lines	4d8b8599161806dc
+    printed_odds_ratios.csv	16 lines	3caac9c985e9fe02
+    printed_roc_train.csv	2 lines	b2c684228fcbb50d
+    printed_roc_validation.csv	2 lines	40ac9d3d88b87b1f
+    printed_rsquare.csv	20 lines	ca4edc67709bcdd6
+    risk_scores_train.csv	105001 lines	a7a71221b9f6c46d
+    risk_scores_validation.csv	45001 lines	a3068b9ca10284db
+    stepwise_summary.csv	20 lines	9046031eccc422df
+    test_predictions.csv	101504 lines	020f56a1c8e92637 (new)
+fe on a folder without cs-training.csv: stopped: ValueError: Feature engineering stopped. Nothing is exported.; files written []; ['ERROR: cs-training.csv does not meet the input conditions: columns_ok=0 bad_rows=1 duplicate_ids=1 known_incomes=0.', 'ERROR: Feature engineering stopped. Nothing is exported.']
+train on a folder without the feature files: stopped: ValueError: Model training stopped. Nothing is exported.; files written []; ['ERROR: The feature files are not in the output folder: feature engineering did not complete.', 'ERROR: Model training stopped. Nothing is exported.']
+predict without medians and model: stopped: ValueError: Test set scoring stopped. Nothing is exported.; files written []; ['ERROR: The training medians or the model are not in the output folder: the training steps did not complete.', 'ERROR: Test set scoring stopped. Nothing is exported.']

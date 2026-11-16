@@ -1,0 +1,82 @@
+[
+ {
+  "id": "t8_edges/step 02 rename ['AGE_GROUP', 'Median_Income', 'OVERALL_MEDIAN_INCOME']",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 02 rename ['Age_Group', 'age_group', 'm']",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 02 rename ['age_group', 'AGE_GROUP', 'median_income']",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 02 rename ['AGE_GROUP', 'aGE_GROUP', 'age_group']",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 02 rename ['x', 'Overall_Median_Income', 'median_income']",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 04 key not first, repeated key 1, no key 2, clash age",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 04 keys NaN, -0.0, null, 2.5, 3",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 04 all medians null",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 04 left names on the right (VAR1, MonthlyIncome)",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_edges/step 04 left frame with no row",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

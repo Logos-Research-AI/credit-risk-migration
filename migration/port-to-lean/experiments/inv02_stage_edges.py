@@ -1,3 +1,10 @@
+# RETIRED 2026-11-16: this script is a record of the port before the update of 2026-11-16 and no longer
+# runs: it calls export_train_medians, fix_train_medians, medians, fix_psi_bins; the stage edges are now in diffeval/units/t6_gen.py, t11_gen.py, t16_gen.py.
+# Its recorded outputs describe the port as it was then.
+import sys as _sys
+
+_sys.exit("RETIRED 2026-11-16: " + __file__ + " calls keywords the port no longer has; see the note at its top")
+
 """INV02: the four stages on crafted edge inputs behind migration/inventory.tsv. Run: uv run python migration/experiments/inv02_stage_edges.py"""
 import sys, io, contextlib, json, polars as pl
 from pathlib import Path

@@ -36,6 +36,14 @@ validation_date is the `.cell` column of the `today` cell (a String cell in the 
 """
 from __future__ import annotations
 
+# RETIRED 2026-11-16: this script is a record of the port before the update of 2026-11-16 and no longer
+# runs: it calls fix_psi_bins; see t12_gen.py to t16_gen.py.
+# Its recorded outputs describe the port as it was then.
+import sys as _sys
+
+_sys.exit("RETIRED 2026-11-16: " + __file__ + " calls keywords the port no longer has; see the note at its top")
+
+
 import contextlib
 import io
 import sys

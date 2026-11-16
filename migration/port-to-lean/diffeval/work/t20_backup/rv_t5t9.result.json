@@ -1,0 +1,178 @@
+[
+ {
+  "id": "rv_t5t9/fe_run_05_features edge full=true (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features edge full=false (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features empty full=true (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features empty full=false (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features one full=true (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features one full=false (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features zeros full=true (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features zeros full=false (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features negzeros full=true (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features negzeros full=false (without the log columns)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/fe_run_05_features edge: the four log columns (2 ulps)",
+  "primitive": "fe_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features edge full=true (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features edge full=false (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features empty full=true (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features empty full=false (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features one full=true (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features one full=false (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features zeros full=true (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features zeros full=false (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features negzeros full=true (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features negzeros full=false (without the log columns)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_t5t9/predict_run_05_features edge: the four log columns (2 ulps)",
+  "primitive": "predict_run_05_features",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

@@ -1,0 +1,578 @@
+[
+ {
+  "id": "t4_units/real run, fix_Q1 (2 rows, column MonthlyIncome) / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q1 (2 rows, column MonthlyIncome) / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q1 (2 rows, column MonthlyIncome) / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, real, first 40 rows (40 rows, column MonthlyIncome) / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, real, first 40 rows (40 rows, column MonthlyIncome) / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, real, first 40 rows (40 rows, column MonthlyIncome) / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q14, first 300 rows (300 rows, column MonthlyIncome) / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q14, first 300 rows (300 rows, column MonthlyIncome) / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q14, first 300 rows (300 rows, column MonthlyIncome) / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: no known income: income_medians without a row, every MonthlyIncome null / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: no known income: income_medians without a row, every MonthlyIncome null / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: no known income: income_medians without a row, every MonthlyIncome null / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: credit_raw_clean without a row / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: credit_raw_clean without a row / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: credit_raw_clean without a row / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: one known income / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: one known income / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: one known income / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: even count, interpolated: 1016.85 and 7098.24 / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: even count, interpolated: 1016.85 and 7098.24 / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: even count, interpolated: 1016.85 and 7098.24 / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: even count, equal middle values / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: even count, equal middle values / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: even count, equal middle values / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: a NaN income is a value, the greatest / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: a NaN income is a value, the greatest / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: a NaN income is a value, the greatest / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: NaN in the middle / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: NaN in the middle / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: NaN in the middle / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: infinite incomes of both signs / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: infinite incomes of both signs / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: infinite incomes of both signs / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: groups in order 5, 3, 1; groups 2 and 4 absent / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: groups in order 5, 3, 1; groups 2 and 4 absent / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: groups in order 5, 3, 1; groups 2 and 4 absent / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians with two rows for group 2 and a null key / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians with two rows for group 2 and a null key / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians with two rows for group 2 and a null key / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians with a third column and its own overall_median_income (replaced in place) / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians with a third column and its own overall_median_income (replaced in place) / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians with a third column and its own overall_median_income (replaced in place) / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: Int64 key in income_medians / input income_medians",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: Int64 key in income_medians / input credit_raw_clean",
+  "primitive": "fe_run_02b_medians_all (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: Int64 key in income_medians / income_medians_all",
+  "primitive": "fe_run_02b_medians_all",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, real cs-training.csv (= edge_predict/cs-training.csv) (rows 1..125: 10 of 150000, 5 with a missing income) / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, real cs-training.csv (= edge_predict/cs-training.csv) (rows 1..125: 10 of 150000, 5 with a missing income) / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, real cs-training.csv (= edge_predict/cs-training.csv) (rows 1..125: 10 of 150000, 5 with a missing income) / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q1 (all 2 rows) / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q1 (all 2 rows) / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q1 (all 2 rows) / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q14 (rows 1..125: 9 of 3000, 5 with a missing income) / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q14 (rows 1..125: 9 of 3000, 5 with a missing income) / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/real run, fix_Q14 (rows 1..125: 9 of 3000, 5 with a missing income) / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: group medians present, null (overall used), NaN (kept); flag 1 with an income; flag 0 with a null income / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: group medians present, null (overall used), NaN (kept); flag 1 with an income; flag 0 with a null income / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: group medians present, null (overall used), NaN (kept); flag 1 with an income; flag 0 with a null income / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: no known income: both medians null on every row / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: no known income: both medians null on every row / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: no known income: both medians null on every row / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: age groups of credit_cleaned absent from income_medians_all (7) : null income / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: age groups of credit_cleaned absent from income_medians_all (7) : null income / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: age groups of credit_cleaned absent from income_medians_all (7) : null income / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians_all without a row / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians_all without a row / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: income_medians_all without a row / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: two rows of income_medians_all for group 2: the left row is repeated / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: two rows of income_medians_all for group 2: the left row is repeated / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: two rows of income_medians_all for group 2: the left row is repeated / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: flag values other than 0 and 1 (2, null) / input credit_cleaned",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: flag values other than 0 and 1 (2, null) / input income_medians_all",
+  "primitive": "fe_run_04_imputed (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t4_units/hand: flag values other than 0 and 1 (2, null) / credit_imputed",
+  "primitive": "fe_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

@@ -35,6 +35,14 @@ Lean side, one eval input per input file (the runs on the same file share the ta
 """
 from __future__ import annotations
 
+# RETIRED 2026-11-16: this script is a record of the port before the update of 2026-11-16 and no longer
+# runs: it calls fix_train_medians, medians; see t7_gen.py, t8_gen.py, t9_gen.py, t11_gen.py.
+# Its recorded outputs describe the port as it was then.
+import sys as _sys
+
+_sys.exit("RETIRED 2026-11-16: " + __file__ + " calls keywords the port no longer has; see the note at its top")
+
+
 import contextlib
 import io
 import json

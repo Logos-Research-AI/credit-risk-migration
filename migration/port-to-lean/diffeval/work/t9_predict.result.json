@@ -1,0 +1,418 @@
+[
+ {
+  "id": "t9_predict/legacy/data narrow: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/legacy/data narrow: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/legacy/data narrow: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/legacy/data narrow: test_predictions_full age_name=age",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/legacy/data wide: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/legacy/data wide: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/legacy/data wide: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/legacy/data wide: test_predictions_full age_name=age",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_age_upper narrow: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_age_upper narrow: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_age_upper narrow: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_age_upper narrow: test_predictions_full age_name=AGE",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_age_upper wide: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_age_upper wide: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_age_upper wide: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_age_upper wide: test_predictions_full age_name=AGE",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_all_upper narrow: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_all_upper narrow: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_all_upper narrow: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/fix_round5/test_header_all_upper narrow: test_predictions_full age_name=AGE",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand cuts: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand cuts: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand cuts: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand cuts: test_predictions_full age_name=AGE",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand cuts, age_name unchanged: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand cuts, age_name unchanged: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand cuts, age_name unchanged: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand cuts, age_name unchanged: test_predictions_full age_name=age",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=1.0: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=1.0: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=1.0: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=1.0: test_predictions_full age_name=Age",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=0.0: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=0.0: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=0.0: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=0.0: test_predictions_full age_name=Age",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=None: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=None: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=None: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=None: test_predictions_full age_name=Age",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=0.5: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=0.5: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=0.5: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand one row pd=0.5: test_predictions_full age_name=Age",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand no row: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand no row: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand no row: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand no row: test_predictions_full age_name=AGE",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand all null: input test_scored",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand all null: test_predictions",
+  "primitive": "predict_run_07_predictions",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand all null: kaggle_submission",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_predict/hand all null: test_predictions_full age_name=aGe",
+  "primitive": "predict_run_08_outputs",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

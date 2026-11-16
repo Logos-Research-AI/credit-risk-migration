@@ -1,0 +1,10 @@
+[
+ {
+  "item": "def:zz_carrier",
+  "decl": "zz_carrier",
+  "first_input": 0,
+  "inputs": [
+   "(let V : List Float := [(Float.ofBits 0), (Float.ofBits 9223372036854775808), (Float.ofBits 4607182418800017408), (Float.ofBits 13830554455654793216), (Float.ofBits 9221120237041090560), (Float.ofBits 9218868437227405312), (Float.ofBits 18442240474082181120), (Float.ofBits 9214871658872686752), (Float.ofBits 1), (Float.ofBits 4613937818241073152), (Float.ofBits 4591870180066957722), (Float.ofBits 13843502304583483392)]; (V.flatMap (fun (a : Float) => V.map (fun (b : Float) => (match _ratio (α := Float) a b with | none => (-1 : Int) | some q => (q.toBits.toNat : Int))))))"
+  ]
+ }
+]

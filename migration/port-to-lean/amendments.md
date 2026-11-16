@@ -76,3 +76,8 @@
 | G18 | scoping | `_SE_EPS`, `_SQRTBIG` | E07 hex values | exact quotient; decimal literal |
 | G19 | scoping | medians file written and read | port | parameter `income_medians` replaces `medians` |
 | G20 | harness | carriers | five carrier items added 2026-11-16 | one per group |
+| G21 | T14 | `forward_fill` not in the prelude | `diffeval/units/t14_gen.py` | local helper |
+| G22 | T14, accepted by the reviewer and the lead | R-DIV0 last sentence, for a division under a `when` guard in the same expression | `diffeval/units/t14_gen.py`, run on `fix_G43` | no non-zero precondition there |
+| G23 | T8 | G13 column order of the join with a key expression | `experiments/e08_t8_predict_steps.py` | all right columns in right-frame order, key at its own place; G13 text corrected |
+| G24 | T4 (first written as "G21") | Series median; Int32 key; coalesce dtypes | `experiments/e08_series_median.py` | rule added |
+| G25 | T15 (first written as "G22") | String score against a Float64 literal; Int64 counter | `experiments/t15_psi_dtypes.py`, `diffeval/units/t15_gen.py` | rule added |

@@ -1,0 +1,6 @@
+String training: ComputeError: cannot compare string with numeric type (f64)
+String validation: ComputeError: cannot compare string with numeric type (f64)
+Int64 training: no raise; PSI 0.0; score_bin dtype Int64
+Int64 validation: no raise; PSI 0.0; score_bin dtype Int64
+column missing in training: ColumnNotFoundError: unable to find column "credit_risk_score"; valid columns: ["x"]
+column missing in validation: ColumnNotFoundError: unable to find column "credit_risk_score"; valid columns: ["x"]

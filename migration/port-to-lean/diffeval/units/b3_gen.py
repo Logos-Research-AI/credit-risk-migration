@@ -195,5 +195,7 @@ def suite_merge() -> Suite:
 
 
 if __name__ == "__main__":
-    for mk in (suite_ratio, suite_rank, suite_apply, suite_merge):
+    # 2026-11-16: suite_apply (proc_rank_apply_groups) is left out: the function was removed from
+    # the port and its item from the blueprint (T15)
+    for mk in (suite_ratio, suite_rank, suite_merge):
         mk().write()

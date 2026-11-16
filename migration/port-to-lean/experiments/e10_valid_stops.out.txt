@@ -1,0 +1,8 @@
+fix2/valid_unusual: ValueError: Feature engineering stopped. Nothing is exported.; columns_ok=1 bad_rows=2 duplicate_ids=0 known_incomes=2410; ids of the bad rows: [34.0, 35.0]
+    line: 34,0,0.186868556,57,0,0.313812313,-1,9,0,2,0,0
+    line: 35,0,0.693329681,42,2,0.257731959,-7.5,7,0,0,0,0
+fix2/q14_negative_real: ValueError: Feature engineering stopped. Nothing is exported.; columns_ok=1 bad_rows=2 duplicate_ids=0 known_incomes=120269; ids of the bad rows: [34.0, 35.0]
+    line: 34,0,0.186868556,57,0,0.313812313,-1,9,0,2,0,0
+    line: 35,0,0.693329681,42,2,0.257731959,-7.5,7,0,0,0,0
+fix2/good: completed; columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=2413; ids of the bad rows: []
+fix_G34/income_zero: completed; columns_ok=1 bad_rows=0 duplicate_ids=0 known_incomes=2413; ids of the bad rows: []

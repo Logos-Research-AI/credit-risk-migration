@@ -1,0 +1,1154 @@
+[
+ {
+  "id": "t16_run/fix_Q26_small: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_small: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: number of files (without printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_nodefaulter: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: number of files (without printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_nodefaulter: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: number of files (without printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_alldefaulters: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_tie: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q23_near: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q24: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_G43: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q25: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/stop: risk_scores_train.csv absent -> none",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/stop: risk_scores_validation.csv absent -> none",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/stop: both score files absent -> none",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/fix_Q26_ties: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/edge_metrics_a [first 150 validation / 300 training lines]: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t16_run/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

@@ -1,0 +1,4 @@
+pred_bin,mean_predicted,mean_actual,bin_count
+5,0.5400,0.0000,1
+10,0.9000,1.0000,1
+15,0.9800,0.0000,1

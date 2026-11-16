@@ -1,0 +1,17 @@
+Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_
+Intercept,1,-1.7031,0.2313,54.2287,<.0001,MLE
+debt_ratio_capped,1,-0.00084,0.000120,49.2387,<.0001,MLE
+has_delinquency,1,0.9608,0.0751,163.7451,<.0001,MLE
+age,1,-0.0174,0.00113,235.0781,<.0001,MLE
+num_credit_lines,1,0.0413,0.00592,48.6033,<.0001,MLE
+num_real_estate_loan,1,0.0508,0.0126,16.2476,<.0001,MLE
+log_num_credit_lines,1,-0.1392,0.0523,7.0708,0.0078,MLE
+flag_high_utilizatio,1,-0.3798,0.0654,33.6975,<.0001,MLE
+flag_very_high_utili,1,0.4835,0.0615,61.8518,<.0001,MLE
+flag_high_debt_ratio,1,-0.3427,0.0556,38.0496,<.0001,MLE
+flag_very_high_debt_,1,0.3160,0.0526,36.0931,<.0001,MLE
+flag_recent_late_pay,1,-0.1882,0.0504,13.9492,0.0002,MLE
+flag_multiple_delinq,1,0.8506,0.0525,262.8488,<.0001,MLE
+total_risk_flags,1,0.1039,0.0287,13.1061,0.0003,MLE
+credit_util_category,1,0.3656,0.0270,183.4701,<.0001,MLE
+financial_health,1,-0.0215,0.00176,149.1735,<.0001,MLE

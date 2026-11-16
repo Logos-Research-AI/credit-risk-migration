@@ -1,0 +1,594 @@
+[
+ {
+  "id": "t18_run/candidates .. fit_mask",
+  "primitive": "train_run_01_fit_frame",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/fit_frame: number of columns .. fit_frame.debt_ratio_capped",
+  "primitive": "train_run_01_fit_frame",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/final.names .. ybar",
+  "primitive": "train_run_01_fit_frame",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/stepwise_summary.csv: file name .. stepwise_summary.csv.ProbChiSq",
+  "primitive": "train_run_02_stepwise_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_fit_statistics.csv: file name .. printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_global_tests.csv: file name .. printed_global_tests.csv.ProbChiSq",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_rsquare.csv: file name .. printed_rsquare.csv.nValue2",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/final_effects .. coefficients",
+  "primitive": "train_run_04_score_train",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/logit_scored_train: number of columns .. logit_scored_train.pd_logistic",
+  "primitive": "train_run_04_score_train",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/fit_scored: number of columns .. fit_scored.pd_logistic",
+  "primitive": "train_run_04_score_train",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_association.csv: file name .. printed_association.csv.nValue2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/model_coefficients: number of columns .. model_coefficients._ESTTYPE_",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_odds_ratios.csv: file name .. printed_odds_ratios.csv.UpperCL",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_hl_partition.csv: file name .. printed_hl_partition.csv.NoneventsExpected",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_hosmer_lemeshow.csv: file name .. printed_hosmer_lemeshow.csv.NGroups",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_classification.csv: file name .. printed_classification.csv.NPV",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/logit_scored_train+pred: number of columns .. logit_scored_train+pred.pred_logistic",
+  "primitive": "train_run_09_confusion_train",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/confusion_matrix_train: number of columns .. confusion_matrix_train.PERCENT",
+  "primitive": "train_run_09_confusion_train",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/training_metrics: number of columns .. training_metrics.train_accuracy",
+  "primitive": "train_run_09_confusion_train",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/logit_scored_valid: number of columns .. logit_scored_valid.pred_logistic",
+  "primitive": "train_run_10_score_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/confusion_matrix: number of columns .. confusion_matrix.PERCENT",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/validation_metrics: number of columns .. validation_metrics.valid_accuracy",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/risk_scores_train: number of columns .. risk_scores_train.interest_rate",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/risk_scores_validation: number of columns .. risk_scores_validation.interest_rate",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/roc_train: number of columns .. roc_train.TauA",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/roc_valid: number of columns .. roc_valid.TauA",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/risk_scores_train.csv: file name .. risk_scores_train.csv.interest_rate",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/risk_scores_validation.csv: file name .. risk_scores_validation.csv.interest_rate",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/final_model_output.csv: file name .. final_model_output.csv.interest_rate",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/model_summary.csv: file name .. model_summary.csv.validation_records",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/model_coefficients.csv: file name .. model_coefficients.csv._ESTTYPE_",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_roc_train.csv: file name .. printed_roc_train.csv.TauA",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_roc_validation.csv: file name .. printed_roc_validation.csv.TauA",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_confusion_train.csv: file name .. printed_confusion_train.csv.PERCENT",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/printed_confusion_validation.csv: file name .. printed_confusion_validation.csv.PERCENT",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/completed run is some .. stop: both absent",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: stepwise_summary.csv: file name .. run: stepwise_summary.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_fit_statistics.csv: file name .. run: printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_global_tests.csv: file name .. run: printed_global_tests.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_rsquare.csv: file name .. run: printed_rsquare.csv.nValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_association.csv: file name .. run: printed_association.csv.nValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_odds_ratios.csv: file name .. run: printed_odds_ratios.csv.UpperCL",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_hl_partition.csv: file name .. run: printed_hl_partition.csv.NoneventsExpected",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_hosmer_lemeshow.csv: file name .. run: printed_hosmer_lemeshow.csv.NGroups",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_classification.csv: file name .. run: printed_classification.csv.NPV",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: risk_scores_train.csv: file name .. run: risk_scores_train.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: risk_scores_validation.csv: file name .. run: risk_scores_validation.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: final_model_output.csv: file name .. run: final_model_output.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: model_summary.csv: file name .. run: model_summary.csv.validation_records",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: model_coefficients.csv: file name .. run: model_coefficients.csv._ESTTYPE_",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_roc_train.csv: file name .. run: printed_roc_train.csv.TauA",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_roc_validation.csv: file name .. run: printed_roc_validation.csv.TauA",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_confusion_train.csv: file name .. run: printed_confusion_train.csv.PERCENT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/run: printed_confusion_validation.csv: file name .. run: printed_confusion_validation.csv.PERCENT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/model.json intercept .. model.json coefficients (names, order, values)",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/steps .. intercept_only.loglik",
+  "primitive": "StepwiseResult",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/step 1 .. step 6",
+  "primitive": "StepwiseStep",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(-lr/n_obs) step 1",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(-lr/n_obs) step 2",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(-lr/n_obs) step 3",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(-lr/n_obs) step 4",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(-lr/n_obs) step 5",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(-lr/n_obs) step 6",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.log vs math.log: log(n_obs)",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(-m2ll0/n_obs)",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(b) idx 2",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(b - Z975*se) idx 2",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(b + Z975*se) idx 2",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(b) idx 1",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(b - Z975*se) idx 1",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/probe Float.exp vs math.exp: exp(b + Z975*se) idx 1",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/localisation mask (bit i: value i differs modulo 26)",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t18_run/number of compared values",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

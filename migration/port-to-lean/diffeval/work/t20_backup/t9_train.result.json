@@ -1,0 +1,258 @@
+[
+ {
+  "id": "t9_train/real features narrow: input logit_scored_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features narrow: input logit_scored_valid",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features narrow: risk_scores_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features narrow: risk_scores_validation",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features wide: input logit_scored_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features wide: input logit_scored_valid",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features wide: risk_scores_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features wide: risk_scores_validation",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features, age blanked in 3 rows (null pd) narrow: input logit_scored_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features, age blanked in 3 rows (null pd) narrow: input logit_scored_valid",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features, age blanked in 3 rows (null pd) narrow: risk_scores_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features, age blanked in 3 rows (null pd) narrow: risk_scores_validation",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features, age blanked (null pd) wide: input logit_scored_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features, age blanked (null pd) wide: input logit_scored_valid",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features, age blanked (null pd) wide: risk_scores_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/real features, age blanked (null pd) wide: risk_scores_validation",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand cuts: input logit_scored_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand cuts: input logit_scored_valid",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand cuts: risk_scores_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand cuts: risk_scores_validation",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand one row 1.0 / null: input logit_scored_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand one row 1.0 / null: input logit_scored_valid",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand one row 1.0 / null: risk_scores_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand one row 1.0 / null: risk_scores_validation",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand one row 0.0 / 0.5: input logit_scored_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand one row 0.0 / 0.5: input logit_scored_valid",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand one row 0.0 / 0.5: risk_scores_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand one row 0.0 / 0.5: risk_scores_validation",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand no row / all null: input logit_scored_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand no row / all null: input logit_scored_valid",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand no row / all null: risk_scores_train",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t9_train/hand no row / all null: risk_scores_validation",
+  "primitive": "train_run_12_risk_scores",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

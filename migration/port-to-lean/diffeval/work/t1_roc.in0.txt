@@ -1,0 +1,1 @@
+([((_SE_EPS (α := Float)).toBits.toNat : Int), ((_SQRTBIG (α := Float)).toBits.toNat : Int), ((_TIE_EPS (α := Float)).toBits.toNat : Int)])

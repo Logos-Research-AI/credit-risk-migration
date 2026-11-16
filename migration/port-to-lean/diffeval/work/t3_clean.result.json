@@ -1,0 +1,130 @@
+[
+ {
+  "id": "t3_clean/real_head/input",
+  "primitive": "fe_run_01_clean (input frame)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/real_head/credit_raw_clean",
+  "primitive": "fe_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/real_both_numeric/input",
+  "primitive": "fe_run_01_clean (input frame)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/real_both_numeric/credit_raw_clean",
+  "primitive": "fe_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/real_income_text/input",
+  "primitive": "fe_run_01_clean (input frame)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/real_income_text/credit_raw_clean",
+  "primitive": "fe_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/real_na_rows/input",
+  "primitive": "fe_run_01_clean (input frame)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/real_na_rows/credit_raw_clean",
+  "primitive": "fe_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/q13_median_width/input",
+  "primitive": "fe_run_01_clean (input frame)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/q13_median_width/credit_raw_clean",
+  "primitive": "fe_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/train_age_exponent/input",
+  "primitive": "fe_run_01_clean (input frame)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/train_age_exponent/credit_raw_clean",
+  "primitive": "fe_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/hand_best12/input",
+  "primitive": "fe_run_01_clean (input frame)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/hand_best12/credit_raw_clean",
+  "primitive": "fe_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/hand_frame_nan/input",
+  "primitive": "fe_run_01_clean (input frame)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t3_clean/hand_frame_nan/credit_raw_clean",
+  "primitive": "fe_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

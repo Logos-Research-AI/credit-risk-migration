@@ -1,0 +1,2 @@
+Train_AUC,Valid_AUC,train_precision,train_recall,train_f1_score,train_accuracy,valid_precision,valid_recall,valid_f1_score,valid_accuracy,model_name,training_date,training_records,validation_records
+0.8712,0.8016,0.7500,0.2059,0.3231,0.9575,0.3810,0.1231,0.1860,0.9246,Logistic Regression,16NOV2026,105000,45000

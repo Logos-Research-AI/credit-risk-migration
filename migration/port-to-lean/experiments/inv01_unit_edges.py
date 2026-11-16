@@ -1,3 +1,10 @@
+# RETIRED 2026-11-16: this script is a record of the port before the update of 2026-11-16 and no longer
+# runs: it calls sas_compat.proc_rank_apply_groups.
+# Its recorded outputs describe the port as it was then.
+import sys as _sys
+
+_sys.exit("RETIRED 2026-11-16: " + __file__ + " calls keywords the port no longer has; see the note at its top")
+
 """INV01: unit-level edge cases behind migration/inventory.tsv (labels U01..U44). Run: uv run python migration/experiments/inv01_unit_edges.py"""
 import math, warnings, numpy as np, polars as pl, sys
 from pathlib import Path

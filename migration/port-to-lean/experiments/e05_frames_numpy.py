@@ -1,3 +1,10 @@
+# RETIRED 2026-11-16: this script is a record of the port before the update of 2026-11-16 and no longer
+# runs: it calls sas_compat.proc_rank_apply_groups.
+# Its recorded outputs describe the port as it was then.
+import sys as _sys
+
+_sys.exit("RETIRED 2026-11-16: " + __file__ + " calls keywords the port no longer has; see the note at its top")
+
 """E05: frame-level polars semantics and numpy primitives used by the package."""
 import math, struct, sys, random
 import numpy as np, polars as pl

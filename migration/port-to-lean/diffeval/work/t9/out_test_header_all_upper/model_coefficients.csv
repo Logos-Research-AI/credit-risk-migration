@@ -1,0 +1,6 @@
+Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_
+Intercept,1,-4.6919,0.2398,382.7102,<.0001,MLE
+credit_utilization_c,1,0.0189,0.00295,40.9866,<.0001,MLE
+total_late_payments,1,0.4719,0.0899,27.5675,<.0001,MLE
+has_delinquency,1,1.7857,0.3647,23.9706,<.0001,MLE
+flag_recent_late_pay,1,-1.3973,0.3509,15.8516,<.0001,MLE

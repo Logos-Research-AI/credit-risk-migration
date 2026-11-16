@@ -1,0 +1,866 @@
+[
+ {
+  "id": "t15_psi/real mc.run, fix_Q25: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix_Q25: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix_Q25: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix_Q25: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix_G43: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix_G43: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix_G43: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix_G43: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, real_metrics [first 150 / 60 rows]: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, real_metrics [first 150 / 60 rows]: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, real_metrics [first 150 / 60 rows]: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, real_metrics [first 150 / 60 rows]: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix2/q25_tiny_psi [first 10000 / 10000 rows]: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix2/q25_tiny_psi [first 10000 / 10000 rows]: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix2/q25_tiny_psi [first 10000 / 10000 rows]: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, fix2/q25_tiny_psi [first 10000 / 10000 rows]: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_a [first 300 / 120 rows]: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_a [first 300 / 120 rows]: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_a [first 300 / 120 rows]: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_a [first 300 / 120 rows]: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_b [first 300 / 120 rows]: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_b [first 300 / 120 rows]: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_b [first 300 / 120 rows]: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_b [first 300 / 120 rows]: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_c [first 300 / 120 rows]: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_c [first 300 / 120 rows]: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_c [first 300 / 120 rows]: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/real mc.run, edge_metrics_c [first 300 / 120 rows]: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 equal: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 equal: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 equal: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 equal: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 validation above: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 validation above: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 validation above: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 validation above: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 validation below: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 validation below: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 validation below: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 1 / 1 validation below: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 2 / 3: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 2 / 3: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 2 / 3: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 2 / 3: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 3 / 2 ties on every cut: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 3 / 2 ties on every cut: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 3 / 2 ties on every cut: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 3 / 2 ties on every cut: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 9 / 4: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 9 / 4: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 9 / 4: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 9 / 4: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 10 / 10 same scores, other order: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 10 / 10 same scores, other order: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 10 / 10 same scores, other order: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 10 / 10 same scores, other order: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 11 / 5 unsorted training: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 11 / 5 unsorted training: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 11 / 5 unsorted training: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 11 / 5 unsorted training: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 12 / 1: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 12 / 1: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 12 / 1: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 12 / 1: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training nulls: first cuts are null: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training nulls: first cuts are null: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training nulls: first cuts are null: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training nulls: first cuts are null: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training all null: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training all null: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training all null: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training all null: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: validation all null: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: validation all null: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: validation all null: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: validation all null: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: NaN in both sets: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: NaN in both sets: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: NaN in both sets: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: NaN in both sets: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training all NaN: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training all NaN: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training all NaN: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: training all NaN: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: one distinct training value, many rows: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: one distinct training value, many rows: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: one distinct training value, many rows: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: one distinct training value, many rows: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: two distinct training values 7 + 13: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: two distinct training values 7 + 13: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: two distinct training values 7 + 13: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: two distinct training values 7 + 13: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: zero scores: input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: zero scores: input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: zero scores: psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: zero scores: psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 0 / 3 (training without rows: outside the precondition, the code is defined): input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 0 / 3 (training without rows: outside the precondition, the code is defined): input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 0 / 3 (training without rows: outside the precondition, the code is defined): psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 0 / 3 (training without rows: outside the precondition, the code is defined): psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 3 / 0 (validation without rows: outside the precondition, the code is defined): input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 3 / 0 (validation without rows: outside the precondition, the code is defined): input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 3 / 0 (validation without rows: outside the precondition, the code is defined): psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 3 / 0 (validation without rows: outside the precondition, the code is defined): psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 0 / 0 (outside the precondition, the code is defined): input logit_scored_train",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 0 / 0 (outside the precondition, the code is defined): input logit_scored_valid",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 0 / 0 (outside the precondition, the code is defined): psi_calculation",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t15_psi/hand: 0 / 0 (outside the precondition, the code is defined): psi_summary",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

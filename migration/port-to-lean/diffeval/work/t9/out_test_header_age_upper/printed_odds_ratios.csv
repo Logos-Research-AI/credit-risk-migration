@@ -1,0 +1,5 @@
+Effect,OddsRatioEst,LowerCL,UpperCL
+credit_utilization_c,1.019,1.013,1.025
+total_late_payments,1.603,1.344,1.912
+has_delinquency,5.964,2.918,12.189
+flag_recent_late_pay,0.247,0.124,0.492

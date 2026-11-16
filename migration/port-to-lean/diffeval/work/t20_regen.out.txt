@@ -1,0 +1,55 @@
+port last changed 15:11:13
+rv_t5t9_gen.py	SAME	1s	wrote ['rv_t5t9.inputs.json', 'rv_t5t9.json']	changed []
+rv_t8_gen.py	FAILED	1s	wrote ['rv_t8.inputs.json', 'rv_t8.json']	changed []
+        main()
+        ~~~~^^
+      File "/Users/cristophersalvi/GitHub/credit-risk-migration/migration/port-to-lean/diffeval/units/rv_t8_gen.py", line 139, in main
+        print(len(inp["inputs"]), "inputs", [len(x) for x in inp["inputs"]])
+                  ~~~^^^^^^^^^^
+    KeyError: 'inputs'
+t11_gen.py	SAME	12s	wrote ['t11_run.inputs.json', 't11_run.json']	changed []
+t12_gen.py	SAME	1s	wrote ['t12_auc.inputs.json', 't12_auc.json']	changed []
+t13_gen.py	SAME	2s	wrote ['t13_ks.inputs.json', 't13_ks.json']	changed []
+t14_gen.py	SAME	3s	wrote ['t14_dec.inputs.json', 't14_dec.json', 't14_lift.inputs.json', 't14_lift.json']	changed []
+t15_gen.py	SAME	1s	wrote ['t15_psi.inputs.json', 't15_psi.json']	changed []
+t18_gen.py	SAME	1s	wrote ['t18_run.inputs.json', 't18_run.json']	changed []
+t1_gen.py	SAME	1s	wrote ['t1_roc.inputs.json', 't1_roc.json']	changed []
+t2_gen.py	SAME	4s	wrote ['t2_check.inputs.json', 't2_check.json']	changed []
+t3_gen.py	SAME	14s	wrote ['t3_clean.inputs.json', 't3_clean.json']	changed []
+t4_gen.py	SAME	12s	wrote ['t4_units.inputs.json', 't4_units.json']	changed []
+t5t9_gen.py	SAME	18s	wrote ['t5t9_fe.inputs.json', 't5t9_fe.json', 't5t9_pr.inputs.json', 't5t9_pr.json']	changed []
+t6_gen.py	SAME	2s	wrote ['t6_run.inputs.json', 't6_run.json']	changed []
+t7_gen.py	SAME	2s	wrote ['t7_check.inputs.json', 't7_check.json']	changed []
+t8_edges_gen.py	SAME	12s	wrote ['t8_edges.inputs.json', 't8_edges.json']	changed []
+t8_gen.py	SAME	25s	wrote ['t8_steps.inputs.json', 't8_steps.json']	changed []
+t9_gen.py	SAME	20s	wrote ['t9_predict.inputs.json', 't9_predict.json', 't9_train.inputs.json', 't9_train.json']	changed []
+--- compare.py on the recorded Lean outputs
+b3_merge	no recorded Lean output
+b3_rank	no recorded Lean output
+b3_ratio	no recorded Lean output
+rev_t4	exit 0	rev_t4: 29 cases  PASS=29
+rv_t5t9	exit 0	rv_t5t9: 22 cases  PASS=22
+rv_t8	exit 0	rv_t8: 10 cases  PASS=10
+rv_t8_review	no recorded Lean output
+t11_run	exit 0	t11_run: 26 cases  PASS=26
+t12_auc	exit 0	t12_auc: 48 cases  PASS=48
+t13_ks	exit 0	t13_ks: 72 cases  PASS=72
+t14_dec	exit 0	t14_dec: 48 cases  PASS=47  XFAIL=1
+t14_lift	exit 0	t14_lift: 60 cases  PASS=60
+t15_psi	exit 0	t15_psi: 108 cases  PASS=108
+t16_run	exit 0	t16_run: 144 cases  PASS=144
+t18_run	exit 0	t18_run: 74 cases  PASS=74
+t1_roc	exit 0	t1_roc: 483 cases  PASS=483
+t2_check	exit 0	t2_check: 784 cases  ERROR=784
+t2_source	no recorded Lean output
+t3_clean	exit 0	t3_clean: 16 cases  PASS=16
+t4_units	exit 0	t4_units: 72 cases  PASS=72
+t5t9_fe	exit 0	t5t9_fe: 234 cases  PASS=234
+t5t9_pr	exit 0	t5t9_pr: 195 cases  PASS=195
+t6_run	exit 0	t6_run: 144 cases  PASS=144
+t7_check	exit 0	t7_check: 467 cases  PASS=467
+t7_spot	exit 0	t7_spot: 140 cases  PASS=140
+t8_edges	exit 0	t8_edges: 10 cases  PASS=10
+t8_steps	exit 0	t8_steps: 45 cases  PASS=45
+t9_predict	exit 0	t9_predict: 52 cases  PASS=52
+t9_train	exit 0	t9_train: 32 cases  PASS=32

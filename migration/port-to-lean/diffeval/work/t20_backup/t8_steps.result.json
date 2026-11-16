@@ -1,0 +1,362 @@
+[
+ {
+  "id": "t8_steps/legacy/data cs-test[15 lines]: test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[15 lines]: test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[15 lines]: train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[15 lines]: test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[15 lines]: test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[stated income]: test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[stated income]: test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[stated income]: train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[stated income]: test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/legacy/data cs-test[stated income]: test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q13 cs-test[whole]: test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q13 cs-test[whole]: test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q13 cs-test[whole]: train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q13 cs-test[whole]: test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q13 cs-test[whole]: test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q14 cs-test[whole]: test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q14 cs-test[whole]: test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q14 cs-test[whole]: train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q14 cs-test[whole]: test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q14 cs-test[whole]: test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q1 cs-test[whole]: test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q1 cs-test[whole]: test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q1 cs-test[whole]: train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q1 cs-test[whole]: test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix_Q1 cs-test[whole]: test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix2/q13_median_width cs-test[12 lines]: test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix2/q13_median_width cs-test[12 lines]: test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix2/q13_median_width cs-test[12 lines]: train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix2/q13_median_width cs-test[12 lines]: test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/fix2/q13_median_width cs-test[12 lines]: test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[15 lines]: test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[15 lines]: test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[15 lines]: train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[15 lines]: test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[15 lines]: test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[stated income]: test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[stated income]: test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[stated income]: train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[stated income]: test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/edge_predict cs-test[stated income]: test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/handmade wide numeric income (not a plan scenario): test_raw",
+  "primitive": "input (test_raw)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/handmade wide numeric income (not a plan scenario): test_raw_clean",
+  "primitive": "predict_run_01_clean",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/handmade wide numeric income (not a plan scenario): train_income_medians",
+  "primitive": "predict_run_02_medians",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/handmade wide numeric income (not a plan scenario): test_cleaned",
+  "primitive": "predict_run_03_cleaned",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t8_steps/handmade wide numeric income (not a plan scenario): test_imputed",
+  "primitive": "predict_run_04_imputed",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

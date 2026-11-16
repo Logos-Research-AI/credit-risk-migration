@@ -208,7 +208,7 @@ Questions as put before T0:
 | T4 | medians of all groups (new, :179-186); `def:fe_run_04_imputed` (+precond) | T0 | same run on real data, `fix_Q1`, `fix_Q14`, `fix2/train_no_known_income`, `edge_predict/cs-training.csv` |
 | T5 | `def:fe_run_05_features` (+precond) | T0 | same run on real data, `fix_Q7`, `fix_Q9`, `fix_G34/income_zero` |
 | T6 | `def:run`, `def:run_precond` | T2, T3, T4, T5 | whole stage: `legacy/data/cs-training.csv` with `inputs/split_ids.csv`; one stopping scenario per counter |
-| T7 | predict input check (new, :26-182) | T0 | `predict.run` on `fix_Q27_emptytest/*`, `fix_Q27_emptytest_badheader/*`, `fix_Q27_column_order/*`, `fix_round5/test_*`, `fix2/test_*`, `fix_G34/test_*`, `fix_Q27_test` |
+| T7 | predict input check (new unit `def:predict_run_00_input_check`, :82-182; the removal :27-28, the stop :31-37 and the probe and import :42-79 are in `def:run_py_py`, T11) | T0 | `predict.run` on `fix_Q27_emptytest/*`, `fix_Q27_emptytest_badheader/*`, `fix_Q27_column_order/*`, `fix_round5/test_*`, `fix2/test_*`, `fix_G34/test_*`, `fix_Q27_test` |
 | T8 | `def:predict_run_01_clean`, `def:predict_run_02_medians`, `def:predict_run_04_imputed` (+preconds) | T0 | `predict.run` on `legacy/data/cs-test.csv` with `income_medians.csv` and `model.json` from real runs of the two stages before; `fix_Q13`, `fix_Q14`, `fix_Q1`, `fix2/q13_median_width`, `edge_predict` |
 | T9 | `def:predict_run_05_features` (+precond) | T0 (same text as T5: one translator can take both) | `predict.run` on real data, `fix_Q7`, `fix_Q9`, `fix2/q14_negative_real` |
 | T10 | `def:predict_run_07_predictions` (+precond), `def:predict_run_08_outputs` | T0 | `predict.run` on real data, `fix_round5/test_header_age_upper`, `test_header_all_upper` |

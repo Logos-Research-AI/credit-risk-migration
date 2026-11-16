@@ -1,0 +1,49 @@
+== join with left_on expression: position of the right key, clashes, keys
+right key not first: schema: Schema({'VAR1': Float64, 'age_group': Int32, 'x': String, 'median_income': Float64, 'age_group_right': Float64, 'overall_median_income': Float64, 'x_right': Float64})
+right key not first: rows: [(1.0, 1, 'a', 10.0, 1.0, 33.0, 7.0), (2.0, 2, 'b', None, 2.0, 33.0, 8.0), (3.0, 5, 'c', None, None, None, None), (4.0, 3, 'd', 30.0, 3.0, 33.0, 9.0)]
+right already has age_group_right: RAISES DuplicateError: column 'age_group_right' is duplicate
+right has x and x_right: RAISES DuplicateError: column 'x_right' is duplicate
+left already has age_group_right: RAISES DuplicateError: column with name 'age_group_right' already exists
+
+You may want to try:
+- renaming the column prior to joining
+- using the `suffix` parameter to speci
+left has x and x_right: RAISES DuplicateError: column with name 'x_right' already exists
+
+You may want to try:
+- renaming the column prior to joining
+- using the `suffix` parameter to specify a suf
+right key NaN / -0.0 / null / inf vs left ints: [(0, -0.0, 2.0), (1, 1.0, 5.0), (None, None, None)]
+left Int64 key: [(1.0, 1, 'a', 10.0, 1.0, 33.0, 7.0), (2.0, 2, 'b', None, 2.0, 33.0, 8.0), (3.0, 5, 'c', None, None, None, None), (4.0, 3, 'd', 30.0, 3.0, 33.0, 9.0)]
+empty left: (Schema({'VAR1': Float64, 'age_group': Int32, 'x': String, 'median_income': Float64, 'age_group_right': Float64, 'overall_median_income': Float64, 'x_right': Float64}), (0, 7))
+right key Int64 column: RAISES SchemaError: datatypes of join keys don't match - `age_group`: f64 on left does not match `age_group`: i64 on right (and no other type was available to cast to)
+right key absent: RAISES ColumnNotFoundError: unable to find column "age_group"; valid columns: ["median_income", "overall_median_income", "x"]
+right with no row: [(1.0, 1, 'a', None, None, None, None), (2.0, 2, 'b', None, None, None, None), (3.0, 5, 'c', None, None, None, None), (4.0, 3, 'd', None, None, None, None)]
+== coalesce / when on the joined columns
+f64/f64: (Schema({'monthly_income': Float64}), [10.0, 6.0, 3.0, None, 4.0])
+String median_income: (Schema({'monthly_income': String}), ['1', '6.0', '3.0', None, '4.0'])
+String overall_median_income: (Schema({'monthly_income': String}), ['10.0', None, '3.0', None, '4.0'])
+String MonthlyIncome: (Schema({'monthly_income': String}), ['10.0', '6.0', None, None, 'x'])
+miss Float64 == 1: [10.0, 6.0, 3.0, None, 4.0]
+coalesce name: ['median_income']
+== step 01: map_elements(sas_best12) then input_best32, kinds and empty frames
+map_elements dtype: Schema({'v': String})
+round trip values: [1234567900000.0, None, 5.0, None, None, 0.0, 1e+20]
+round trip name / dtype: Schema({'v': Float64})
+empty frame map_elements dtype: Schema({'v': String})
+empty frame round trip: (Schema({'v': Float64}), (0, 1))
+all-null f64: (Schema({'v': String}), [None, None])
+empty String column input_best32: Schema({'v': Float64})
+with_columns/drop/rename order: ['VAR1', 'z', 'MonthlyIncome', 'NumberOfDependents']
+schema[absent]: RAISES KeyError: 'nope'
+frame already has MonthlyIncome_num: ['VAR1', 'z', 'MonthlyIncome', 'NumberOfDependents']
+== step 02: the case-blind rename
+rename ['age_group', 'median_income', 'overall_median_income']: ({'age_group': 'age_group', 'median_income': 'median_income', 'overall_median_income': 'overall_median_income'}, ['age_group', 'median_income', 'overall_median_income'])
+rename ['AGE_GROUP', 'Median_Income', 'x']: ({'AGE_GROUP': 'age_group', 'Median_Income': 'median_income'}, ['age_group', 'median_income', 'x'])
+rename ['Age_Group', 'age_group', 'm']: ({}, ['Age_Group', 'age_group', 'm'])
+rename ['age_group', 'AGE_GROUP']: ({'age_group': 'age_group'}, ['age_group', 'AGE_GROUP'])
+rename ['AGE_GROUP', 'Age_Group', 'median_income']: ({'AGE_GROUP': 'age_group', 'median_income': 'median_income'}, ['age_group', 'Age_Group', 'median_income'])
+rename ['AGE_GROUP', 'aGE_GROUP', 'age_group']: ({}, ['AGE_GROUP', 'aGE_GROUP', 'age_group'])
+rename ['median_ıncome', 'age_group']: ({'median_ıncome': 'median_ıncome', 'age_group': 'age_group'}, ['median_ıncome', 'age_group'])
+rename ['VAR1', 'Overall_Median_Income']: ({'Overall_Median_Income': 'overall_median_income'}, ['VAR1', 'overall_median_income'])
+upper/lower non-ASCII: ('MEDIAN_INCOME', 'SS', b'i\\u0307')

@@ -1,0 +1,29 @@
+t7_check run log (eval_decl on blueprint b41b22d4-720d-4290-b593-39ceab961986, item def:zz_carrier_p, decl zz_carrier_p, connector "Logos MCP Staging")
+All values below are as observed in my own tool results.
+
+eval_decl calls (one input per call, in input order, each sent exactly once):
+  input 0: success true, kind returned, elapsed_ms 1654
+  input 1: success true, kind returned, elapsed_ms 2376
+  input 2: success true, kind returned, elapsed_ms 118
+
+Retries: none.
+Schema errors: none.
+Carrier re-submission: none (get_items and write_statement were never called; no write on the blueprint).
+Timeouts: none.
+Hook blocks: none.
+
+How diffeval/work/t7_check.out.txt was produced:
+  Each of its three lines is the `output` field of cases[0] of the eval_decl call for that input (line 1 from input 0, line 2 from input 1, line 3 from input 2), with only the line breaks removed; nothing came from any other source.
+  The lines were transcribed by hand into one Write call; the file was not diffed against the tool output afterwards. The compare run below is the only check on that transcription.
+
+How the inputs were passed:
+  Input 0 was copied from the plain printed form of the JSON file and JSON-escaped by hand; inputs 1 and 2 were copied from python json.dumps output of the same file.
+  In input 2 the no-break space, the e-acute and the emoji were sent as JSON escapes ( , é, 😀); the input echoed back by eval_decl shows the characters themselves, not Lean \u{..} escapes.
+
+Compare (cd migration/port-to-lean && PYTHONPATH=../../port uv run --project ../../port python diffeval/compare.py diffeval/work/t7_check.json diffeval/work/t7_check.out.txt), full printed output verbatim:
+t7_check: 467 cases  PASS=467
+
+Delivery notes:
+  SubagentHandback was refused four times ("Nothing was sent: the agent that spawned you is no longer running"); a fifth call returned "Report delivered to your caller."
+  The same report was sent to port-translator-7 with SendMessage (msg_id 8c2dd8f0-80d9-4742-acb3-528b59040735).
+  A separate MCP server named logos-mcp failed to connect at session start (ECONNREFUSED); it was not used.

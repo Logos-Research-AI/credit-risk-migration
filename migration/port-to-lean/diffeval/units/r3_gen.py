@@ -33,6 +33,14 @@ the inputs are the same bit for bit. Int64 columns that the Lean keeps as Float6
 """
 from __future__ import annotations
 
+# RETIRED 2026-11-16: this script is a record of the port before the update of 2026-11-16 and no longer
+# runs: it calls fix_psi_bins in the slice of step 06; see t14_gen.py, t15_gen.py.
+# Its recorded outputs describe the port as it was then.
+import sys as _sys
+
+_sys.exit("RETIRED 2026-11-16: " + __file__ + " calls keywords the port no longer has; see the note at its top")
+
+
 import math
 import sys
 import textwrap

@@ -1,0 +1,578 @@
+[
+ {
+  "id": "t13_ks/fix_Q23_tie: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_tie: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_tie: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_near: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_near: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_near: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q24: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q24: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q24: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_nodefaulter: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_nodefaulter: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_nodefaulter: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_alldefaulters: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_alldefaulters: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/fix_Q23_alldefaulters: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (nulls NaN zeros ties, null flag): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (nulls NaN zeros ties, null flag): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (nulls NaN zeros ties, null flag): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, flag 0): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, flag 0): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, flag 0): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, flag 1): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, flag 1): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, flag 1): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, null pd): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, null pd): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one row, null pd): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (all pd null): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (all pd null): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (all pd null): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (all pd NaN): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (all pd NaN): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (all pd NaN): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one value of pd): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one value of pd): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (one value of pd): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (no defaulter, ties, a null pd): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (no defaulter, ties, a null pd): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (no defaulter, ties, a null pd): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (no non-defaulter, null flags): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (no non-defaulter, null flags): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (no non-defaulter, null flags): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (maximum attained twice): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (maximum attained twice): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (maximum attained twice): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (maximum on the null group and later): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (maximum on the null group and later): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (maximum on the null group and later): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (40 rows, heavy ties): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (40 rows, heavy ties): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/hand (40 rows, heavy ties): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_a: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_a: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_a: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_b: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_b: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_b: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_c: input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_c: logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/edge_metrics_c: ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/real_metrics (first 200 lines): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/real_metrics (first 200 lines): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/real_metrics (first 200 lines): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/real_metrics (the rows of its first tied probabilities): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/real_metrics (the rows of its first tied probabilities): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/real_metrics (the rows of its first tied probabilities): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/limit (zeros of both signs, no maximum): input frame",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/limit (zeros of both signs, no maximum): logit_scored_valid sorted",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t13_ks/limit (zeros of both signs, no maximum): ks_statistic",
+  "primitive": "metrics_run_02_ks",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]
