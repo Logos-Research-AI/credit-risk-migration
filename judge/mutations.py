@@ -106,6 +106,28 @@ MUTATIONS: dict[str, list[tuple[str, str, str, int]]] = {
     "metrics_status_threshold": [
         ("metrics_calculation.sas", "else if AUC >= 0.65 then", "else if AUC >= 0.70 then", 1),
     ],
+    # ---- Mutations of the CORRECTED SAS (2026-11-16): the score is no longer rounded (Q15) and the
+    # grade is cut on the probability (Q18), so train_round_floor, train_grade_cutoff and
+    # predict_grade_b_boundary above no longer find their text. These three stand in for them and
+    # validate the score and grade rules of the judge.
+    # Training: the score rounded again (train + validation blocks).
+    "train_score_rounded": [
+        ("train.sas",
+         "credit_risk_score = base_score + score_range * (1 - pd_logistic);",
+         "credit_risk_score = round(base_score + score_range * (1 - pd_logistic));", 2),
+    ],
+    # Training: the A/B cut moved from 10 % to 11 % (train + validation blocks).
+    "train_grade_cut_pd": [
+        ("train.sas",
+         "    else if pd_logistic < 0.10 then risk_grade = 'A';",
+         "    else if pd_logistic < 0.11 then risk_grade = 'A';", 2),
+    ],
+    # Prediction: the B/C cut moved from 15 % to 16 %.
+    "predict_grade_b_cut_pd": [
+        ("predict.sas",
+         "    else if pd_logistic < 0.15 then risk_grade = 'B';",
+         "    else if pd_logistic < 0.16 then risk_grade = 'B';", 1),
+    ],
 }
 
 # Mutations validated against an edge scenario instead of the real data:

@@ -4,11 +4,14 @@ Decides mechanically whether the Python port reproduces the original SAS pipelin
 The original SAS code is the executable spec; the judge queries it on SAS OnDemand
 for Academics (ODA) through saspy and compares output folders.
 
-**Status:** validated (see `validation_report.md`): 18 of 19 deliberate breakages of the
-SAS code caught, 1 provably undetectable (outputs byte-identical), 0 missed; a correct
-port (fully converged refit) passes; 79/79 comparator self-test cases. Built and then
-audited by three separate adversarial reviews; every confirmed finding is fixed and has
-a self-test case.
+**Status (2026-11-16):** the judge follows the corrected SAS. Comparator self-test: 104/104
+cases, among them a correct port (fully converged refit), which passes. Mutations: the three
+of the corrected SAS that touch the score and the grade are caught
+(`train_score_rounded`, `train_grade_cut_pd`, `predict_grade_b_cut_pd`); the 19 runs of
+2026-11-05 are runs of the SAS program before its corrections and are reported STALE in
+`validation_report.md` until they are run again (five of them no longer find their text). The
+earlier validation (18 of 19 caught, 1 equivalent, 0 missed; 79/79 self-test cases; three
+adversarial reviews) was of the judge against the original SAS.
 
 ## Pieces
 
@@ -22,7 +25,7 @@ a self-test case.
 | `run_validation_runs.sh` | Every SAS run the validation needs; resumable, two parallel queues |
 | `validate_judge.py` | Judges each mutated run: CAUGHT / EQUIVALENT / MISSED / RERUN; writes `validation_report.md` |
 | `test_compare.py` | Comparator self-test: injected faults with expected verdicts per column, plus the positive control |
-| `reference/` | The reference: 31 CSVs from the unmodified SAS run, listings, `run_meta.json` |
+| `reference/` | The reference: 32 CSVs from the SAS run (the corrected SAS since 2026-11-15; all 32 judged since 2026-11-16), listings, `run_meta.json` |
 | `reference/scenarios/` | References for the 4 edge-case scenarios |
 | `known_warnings.txt` | WARNINGs the original code always emits (reviewed, benign); anything else is flagged |
 
@@ -60,7 +63,7 @@ counts in the next (pd differences of ~1e-5 would otherwise swap rows across dec
 
 | # | Port run | Inputs | Judge command |
 |---|---|---|---|
-| 1 | fe | `data/cs-training.csv`, split = reference training `row_id`s | `compare.py reference <out> --stage fe` |
+| 1 | fe | `data/cs-training.csv`, split = reference training `row_id`s | `compare.py reference <out> --stage fe` (the two feature files and `income_medians.csv`) |
 | 2 | train | `reference/model_features_*.csv` | `compare.py reference <out> --stage train` |
 | 3 | metrics | `reference/risk_scores_*.csv` | `compare.py reference <out> --stage metrics` |
 | 4 | predict | `data/cs-test.csv` + the model artifact **written by run 2** | `compare.py reference <out> --stage predict` |
@@ -98,7 +101,10 @@ Default is **exact**. Each tolerance below is deliberate and is a place a defect
 | **Value**, other numbers (BEST12.): 1 unit in the 12th character | Integers and flags are effectively exact |
 | `pd_logistic`: per row within `PD_TOL = 1e-4`, and per file mean \|Δ\| within `PD_MEAN_TOL = 1e-5` | Tolerance evidence; the mean bound catches systematic bias |
 | Model-fit tables: 2 display units + 0.1% relative; -2 Log L, AIC, SC, LR test 1e-6 relative; Estimate/StdErr 2 display units; integers relative only; HL group Totals and observed counts ±2 (Totals: Q2, 2026-11-05); Association `Percent Tied` absolute 1e-5 percentage points (added 2026-11-05, Q1) | Tolerance evidence |
-| Score ±1 only where the reference pd is within `PD_TOL` of round()'s .5 boundary **and** the candidate score is SAS round() of the candidate's own pd **and** grade/recommendation/rate are the tuple SAS assigns to that score; 0/1 prediction may flip only within `PD_TOL` of 0.5 and only to (candidate pd ≥ 0.5) | A legitimate pd difference can cross a boundary; the port must be self-consistent. Every excusal is counted and reported |
+| `credit_risk_score` (2026-11-16; the corrected SAS does not round it, Q15): a number within 250 × `PD_TOL` of the reference **and** equal to 600 + 250 × (1 − candidate pd) to the precision of the two printed cells **and** printed as BEST12. prints it | The score is a function of the probability, so it carries the probability's tolerance and nothing more; a score that is not its own pd's formula fails wherever it lies. This replaces the ±1 rule for the rounded score |
+| `risk_grade`, `recommendation`, `interest_rate` (2026-11-16; cut on the probability, Q18): exact text. A difference is excused only where the reference pd is within `PD_TOL` of a grade cut (0.10, 0.15, 0.25, 0.35, 0.50), the candidate pd is within `PD_TOL` of the reference pd **and** the candidate's three values are what the corrected SAS assigns to the candidate's own pd | A legitimate pd difference can cross a cut; the port must be self-consistent. Every excusal is counted and reported |
+| 0/1 prediction may flip only within `PD_TOL` of 0.5 and only to (candidate pd ≥ 0.5) | As above |
+| `printed_classification.csv`: the four count columns within 1 (2026-11-16); its percentages keep the model-fit rule | The table counts leave-one-out probabilities against each level; an applicant on a level's boundary moves one count. On the real data the port differs by 1 at five levels |
 | Each such 0.5 flip widens `model_summary` and `printed_confusion_*` by exactly one flip's worth per metric (accuracy 1/N, recall 1/P, ...), computed from the files independent of `--only` | |
 | `training_date`, `validation_date`: a real DATE9. date within 2 days of the candidate file | Stamped with `today()` |
 
@@ -111,8 +117,11 @@ A fully converged Newton refit of the selected model on the reference features
 (37961.2327 vs printed 37961.233). SAS stops at GCONV=1E-8, which is not the exact MLE.
 Against it:
 - pd differs by up to **3.64e-5**, mean 1.6e-6, median 9.0e-7. → `PD_TOL = 1e-4`,
-  `PD_MEAN_TOL = 1e-5`. The positive control passes with 42 / 29 legitimate score
-  excusals (train / validation); a uniform +5e-5 bias fails.
+  `PD_MEAN_TOL = 1e-5`. The positive control passed with 42 / 29 legitimate score
+  excusals (train / validation); a uniform +5e-5 bias fails. (Figures of the original
+  reference. Against the corrected SAS, 2026-11-16: pd differs by up to 8.2e-6, mean
+  1.0e-6; the positive control passes with one excused grade flip, applicant 108555,
+  whose pd is 0.1499989 in SAS and 0.1500000 in the refit.)
 - Wald χ² differs by up to 0.0285 (`has_delinquency` 306.3717 vs 306.4002), about
   1e-4 relative; the Intercept prints -4.1669 vs -4.1668. → 0.1% relative, 2 display units.
 - The log-likelihood gap is 4.5e-6 absolute. → likelihood statistics at 1e-6 relative.
@@ -158,10 +167,9 @@ covered. Scenario c was tuned offline with an emulation of PROC RANK
 scenario a exactly: a ready rule for the port.
 
 Not reachable by any input, so covered by the rulebook instead of the judge:
-- **Grade E is dead code.** Score = 600 + 250·(1−pd) ≥ 600 whenever pd is present, so
-  E (550–599) never occurs. F occurs only when pd is missing.
-- **round() half-ties** need pd = 1 − (k+0.5)/250 exactly; SAS rounds half away from
-  zero, Python's `round` to even (`compare.sas_round` is the SAS rule).
+- (Before the corrections grade E was dead code and round() half-ties mattered. The
+  corrected SAS cuts the grade on the probability and does not round the score
+  (Q15, Q18), so neither applies: every grade is reachable, F only above 50 %.)
 
 Not judged at all (listing-only output): PROC MEANS / FREQ / PRINT tables in the
 listings and log NOTEs. They restate judged data; the rulebook decides whether the port

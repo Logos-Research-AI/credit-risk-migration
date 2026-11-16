@@ -8,6 +8,9 @@ Verdict per mutation:
   EQUIVALENT  every judged file byte-identical to the reference: no judge could see it
   MISSED      outputs differ but port mode passes: a JUDGE BUG
   NOT RUN     no run folder yet
+  STALE       the run is of an earlier SAS program than the reference (it was made before the
+              reference run, or its mutation no longer finds its text in legacy/): it proves
+              nothing about the judge as it stands and must be run again
 Also re-checks the references themselves: each must pass against itself and its
 run_meta.json must show no SAS errors and no unexpected warnings.
 
@@ -21,7 +24,8 @@ import sys
 from pathlib import Path
 
 import compare as C
-from mutations import EDGE_SCENARIO, MUTATIONS
+from mutations import EDGE_SCENARIO, MUTATIONS, apply_mutation
+from run_sas import REPO, SCRIPTS
 
 JUDGE = Path(__file__).resolve().parent
 REF = JUDGE / "reference"
@@ -37,6 +41,22 @@ def reference_for(mutation: str) -> tuple[Path, list[str]]:
         return REF, C.STAGES["metrics"]
     files = SCEN_FILES[scen] or list(C.FILES)
     return REF / "scenarios" / scen, files
+
+
+def run_stamp(run_dir: Path) -> str:
+    """When the SAS run was made: the yyyymmddThhmmss that run_sas.py puts in the remote folder name."""
+    return C.load_meta(run_dir).get("remote_run_root", "").rsplit("-", 1)[-1]
+
+
+def stale(mutation: str, ref: Path, run: Path, sources: dict[str, str]) -> str:
+    try:
+        apply_mutation(sources, mutation)
+    except RuntimeError:
+        return "the mutation no longer finds its text in legacy/"
+    made, ref_made = run_stamp(run), run_stamp(ref)
+    if made and ref_made and made < ref_made:
+        return f"run of {made}, before the reference run of {ref_made}"
+    return ""
 
 
 def split_drift(ref: Path, run: Path) -> str:
@@ -89,6 +109,7 @@ def main() -> int:
     lines += ["", "## Mutations (port mode)", "",
               "| Mutation | Reference | Verdict | Failing files [columns] | SAS errors in run |", "|---|---|---|---|---|"]
     counts: dict[str, int] = {}
+    sources = {name: (REPO / name).read_text() for name in SCRIPTS}
     for m in MUTATIONS:
         run = JUDGE / "runs" / f"m_{m}"
         ref, files = reference_for(m)
@@ -99,10 +120,13 @@ def main() -> int:
         else:
             meta = json.loads((run / "run_meta.json").read_text())
             errs = str(sum(len(v) for v in meta.get("errors", {}).values()))
-            drift = split_drift(ref, run)
-            strict = C.compare_dir(ref, run, files, "strict")
-            port = C.compare_dir(ref, run, files, "port")
-            if drift:
+            old = stale(m, ref, run, sources)
+            drift = "" if old else split_drift(ref, run)
+            strict = [] if old else C.compare_dir(ref, run, files, "strict")
+            port = [] if old else C.compare_dir(ref, run, files, "port")
+            if old:
+                verdict, detail = "STALE", old
+            elif drift:
                 verdict, detail = "RERUN", f"SAS split drift: {drift} (verdict would be contaminated)"
             elif all(r.status == "PASS" for r in strict):
                 verdict, detail = "EQUIVALENT", "outputs byte-identical"
