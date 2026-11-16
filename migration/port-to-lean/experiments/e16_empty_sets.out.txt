@@ -1,0 +1,297 @@
+#### A. validation set empty: the split file names every applicant
+
+== A1 real training file, every id in the split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 150001, 'model_features_validation.csv': 1}
+   train   : RAISED InvalidOperationError: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -4.8351468287903385`, rhs: expression `[(dyn float: 0.002097812287352219) * (
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 46, 'printed_fit_statistics.csv': 74, 'printed_global_tests.csv': 73, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 19, 'printed_rsquare.csv': 25, 'stepwise_summary.csv': 25}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 150000 rows, credit_validation 0 rows
+   validation_summary.csv: not in the output folder at the end
+   ks_statistic.csv: not in the output folder at the end
+   model_performance_metrics.csv: not in the output folder at the end
+   decile_analysis.csv: not in the output folder at the end
+   threshold_analysis.csv: not in the output folder at the end
+   calibration_plot.csv: not in the output folder at the end
+   risk_scores_validation.csv: not in the output folder at the end
+   model_features_validation.csv (1 lines): 'row_id,default_flag,age,monthly_income,MonthlyIncome_missing,num_dependents,Dependents_missing,age_group,num_late_30_59,num_late_60_89,num_late_90_plus,credit_utilization,debt_ratio,num_credit_lines,num_real_estate_loans,total_late_payments,has_delinquency,has_serious_delinquency,credit_util_category,debt_category,income_per_dependent,credit_lines_per_person,age_category,flag_high_utilization,flag_very_high_utilization,flag_high_debt_ratio,flag_very_high_debt_ratio,flag_recent_late_payments,flag_serious_delinquency,flag_multiple_delinquencies,flag_low_income,flag_many_dependents,flag_few_credit_lines,total_risk_flags,financial_health,log_monthly_income,log_num_credit_lines,log_total_late_pay'
+
+== A2 first 2 data lines of the real training file, every id in the split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 3, 'model_features_validation.csv': 1}
+   train   : RAISED ComputeError: cannot compare string with numeric type (i32)
+
+This error occurred in the following expression:
+	[(col("default_flag")) == (dyn int: 1)]
+while evaluating this l
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 42, 'printed_fit_statistics.csv': 2, 'printed_global_tests.csv': 1, 'printed_hl_partition.csv': 2, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 1, 'printed_rsquare.csv': 1, 'stepwise_summary.csv': 1}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 2 rows, credit_validation 0 rows
+
+== A2 first 20 data lines of the real training file, every id in the split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 21, 'model_features_validation.csv': 1}
+   train   : RAISED RuntimeError: stepwise_logistic: the fit at step 1 (['num_late_30_59']) did not converge
+             wrote {}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 20 rows, credit_validation 0 rows
+
+== A2 first 100 data lines of the real training file, every id in the split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 101, 'model_features_validation.csv': 1}
+   train   : RAISED InvalidOperationError: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -0.8314410526606281`, rhs: expression `[(dyn float: 2.074638443428831) * (col
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 45, 'printed_fit_statistics.csv': 14, 'printed_global_tests.csv': 13, 'printed_hl_partition.csv': 10, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 3, 'printed_rsquare.csv': 5, 'stepwise_summary.csv': 5}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 100 rows, credit_validation 0 rows
+
+== A2 first 500 data lines of the real training file, every id in the split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 501, 'model_features_validation.csv': 1}
+   train   : RAISED InvalidOperationError: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -4.96637664970283`, rhs: expression `[(dyn float: 0.02311563026134504) * (col
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 51, 'printed_fit_statistics.csv': 14, 'printed_global_tests.csv': 13, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 5, 'printed_rsquare.csv': 5, 'stepwise_summary.csv': 5}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 500 rows, credit_validation 0 rows
+
+== A2 first 2000 data lines of the real training file, every id in the split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 2001, 'model_features_validation.csv': 1}
+   train   : RAISED InvalidOperationError: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -2.2779651574938073`, rhs: expression `[(dyn float: 0.015557780526585912) * (
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 45, 'printed_fit_statistics.csv': 20, 'printed_global_tests.csv': 19, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 7, 'printed_rsquare.csv': 7, 'stepwise_summary.csv': 7}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 2000 rows, credit_validation 0 rows
+
+== A2 first 10000 data lines of the real training file, every id in the split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 10001, 'model_features_validation.csv': 1}
+   train   : RAISED InvalidOperationError: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -1.8804316601829614`, rhs: expression `[(dyn float: 0.011291235865751668) * (
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 45, 'printed_fit_statistics.csv': 38, 'printed_global_tests.csv': 37, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 9, 'printed_rsquare.csv': 13, 'stepwise_summary.csv': 13}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 10000 rows, credit_validation 0 rows
+
+== A3 scenario fix_Q1 (2 data lines) with the real split file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 3, 'model_features_validation.csv': 1}
+   train   : RAISED RuntimeError: stepwise_logistic: the fit at step 0 ([]) did not converge
+             wrote {}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 2 rows, credit_validation 0 rows
+
+== A3 scenario fix_Q1 (2 data lines), every id in the split file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 3, 'model_features_validation.csv': 1}
+   train   : RAISED RuntimeError: stepwise_logistic: the fit at step 0 ([]) did not converge
+             wrote {}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 2 rows, credit_validation 0 rows
+
+== A3 scenario fix2/good (3000 data lines) with the real split file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 2073, 'model_features_validation.csv': 929}
+   train   : completed
+             wrote {'final_model_output.csv': 2073, 'model.json': 0, 'model_coefficients.csv': 6, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 52, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 5, 'printed_fit_statistics.csv': 14, 'printed_global_tests.csv': 13, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 5, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 5, 'risk_scores_train.csv': 2073, 'risk_scores_validation.csv': 929, 'stepwise_summary.csv': 5}
+   metrics : completed
+             wrote {'calibration_plot.csv': 21, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 201, 'test_predictions.csv': 201}
+   fe: credit_train 2072 rows, credit_validation 928 rows
+
+== A3 scenario fix2/good (3000 data lines), every id in the split file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 3001, 'model_features_validation.csv': 1}
+   train   : RAISED InvalidOperationError: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -2.5211667744243824`, rhs: expression `[(dyn float: 0.014899248448548622) * (
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 44, 'printed_fit_statistics.csv': 20, 'printed_global_tests.csv': 19, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 7, 'printed_rsquare.csv': 7, 'stepwise_summary.csv': 7}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 3000 rows, credit_validation 0 rows
+
+== A3 scenario fix_Q13 (3000 data lines) with the real split file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 2073, 'model_features_validation.csv': 929}
+   train   : completed
+             wrote {'final_model_output.csv': 2073, 'model.json': 0, 'model_coefficients.csv': 6, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 52, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 5, 'printed_fit_statistics.csv': 14, 'printed_global_tests.csv': 13, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 5, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 5, 'risk_scores_train.csv': 2073, 'risk_scores_validation.csv': 929, 'stepwise_summary.csv': 5}
+   metrics : completed
+             wrote {'calibration_plot.csv': 21, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 3, 'test_predictions.csv': 3}
+   fe: credit_train 2072 rows, credit_validation 928 rows
+
+== A3 scenario fix_Q13 (3000 data lines), every id in the split file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 3001, 'model_features_validation.csv': 1}
+   train   : RAISED InvalidOperationError: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -2.5211667744243824`, rhs: expression `[(dyn float: 0.014899248448548622) * (
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 44, 'printed_fit_statistics.csv': 20, 'printed_global_tests.csv': 19, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 7, 'printed_rsquare.csv': 7, 'stepwise_summary.csv': 7}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 3000 rows, credit_validation 0 rows
+
+#### B. for comparison, the same small files with the real split file (validation set not empty when n >= 3)
+
+== B first 2 data lines of the real training file, real split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 3, 'model_features_validation.csv': 1}
+   train   : RAISED ComputeError: cannot compare string with numeric type (i32)
+
+This error occurred in the following expression:
+	[(col("default_flag")) == (dyn int: 0)]
+while evaluating this l
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 42, 'printed_fit_statistics.csv': 2, 'printed_global_tests.csv': 1, 'printed_hl_partition.csv': 2, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 1, 'printed_rsquare.csv': 1, 'stepwise_summary.csv': 1}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 2 rows, credit_validation 0 rows
+
+== B first 20 data lines of the real training file, real split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 15, 'model_features_validation.csv': 7}
+   train   : RAISED RuntimeError: stepwise_logistic: the fit at step 1 (['num_late_30_59']) did not converge
+             wrote {}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 14 rows, credit_validation 6 rows
+
+== B first 100 data lines of the real training file, real split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 68, 'model_features_validation.csv': 34}
+   train   : completed
+             wrote {'final_model_output.csv': 68, 'model.json': 0, 'model_coefficients.csv': 3, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 48, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 3, 'printed_fit_statistics.csv': 11, 'printed_global_tests.csv': 10, 'printed_hl_partition.csv': 5, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 2, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 4, 'risk_scores_train.csv': 68, 'risk_scores_validation.csv': 34, 'stepwise_summary.csv': 4}
+   metrics : completed
+             wrote {'calibration_plot.csv': 4, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 101504, 'test_predictions.csv': 101504}
+   fe: credit_train 67 rows, credit_validation 33 rows
+
+== B first 500 data lines of the real training file, real split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 362, 'model_features_validation.csv': 140}
+   train   : completed
+             wrote {'final_model_output.csv': 362, 'model.json': 0, 'model_coefficients.csv': 5, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 52, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 4, 'printed_fit_statistics.csv': 11, 'printed_global_tests.csv': 10, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 4, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 4, 'risk_scores_train.csv': 362, 'risk_scores_validation.csv': 140, 'stepwise_summary.csv': 4}
+   metrics : completed
+             wrote {'calibration_plot.csv': 21, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 101504, 'test_predictions.csv': 101504}
+   fe: credit_train 361 rows, credit_validation 139 rows
+
+== B first 2000 data lines of the real training file, real split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 1401, 'model_features_validation.csv': 601}
+   train   : completed
+             wrote {'final_model_output.csv': 1401, 'model.json': 0, 'model_coefficients.csv': 6, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 52, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 5, 'printed_fit_statistics.csv': 14, 'printed_global_tests.csv': 13, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 5, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 5, 'risk_scores_train.csv': 1401, 'risk_scores_validation.csv': 601, 'stepwise_summary.csv': 5}
+   metrics : completed
+             wrote {'calibration_plot.csv': 21, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 101504, 'test_predictions.csv': 101504}
+   fe: credit_train 1400 rows, credit_validation 600 rows
+
+== B first 10000 data lines of the real training file, real split file, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 6995, 'model_features_validation.csv': 3007}
+   train   : completed
+             wrote {'final_model_output.csv': 6995, 'model.json': 0, 'model_coefficients.csv': 9, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 45, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 5, 'printed_fit_statistics.csv': 23, 'printed_global_tests.csv': 22, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 8, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 8, 'risk_scores_train.csv': 6995, 'risk_scores_validation.csv': 3007, 'stepwise_summary.csv': 8}
+   metrics : completed
+             wrote {'calibration_plot.csv': 21, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 101504, 'test_predictions.csv': 101504}
+   fe: credit_train 6994 rows, credit_validation 3006 rows
+
+#### C. header-only test file
+
+== C1 real training file, real split file, test file = header line + line end
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 105001, 'model_features_validation.csv': 45001}
+   train   : completed
+             wrote {'final_model_output.csv': 105001, 'model.json': 0, 'model_coefficients.csv': 17, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 45, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 5, 'printed_fit_statistics.csv': 59, 'printed_global_tests.csv': 58, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 16, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 20, 'risk_scores_train.csv': 105001, 'risk_scores_validation.csv': 45001, 'stepwise_summary.csv': 20}
+   metrics : completed
+             wrote {'calibration_plot.csv': 21, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 1, 'test_predictions.csv': 1}
+   fe: credit_train 105000 rows, credit_validation 45000 rows
+   kaggle_submission.csv (1 lines): 'row_id,pd_logistic\n'
+   test_predictions.csv (1 lines): 'row_id,age,monthly_income,credit_utilization,debt_ratio,num_credit_lines,total_late_payments,total_risk_flags,financial_health,pd_logistic,pred_logistic,credit_risk_score,risk_grade,recommendation,interest_rate\n'
+
+== C2 same, header line with no line end
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 105001, 'model_features_validation.csv': 45001}
+   train   : completed
+             wrote {'final_model_output.csv': 105001, 'model.json': 0, 'model_coefficients.csv': 17, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 45, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 5, 'printed_fit_statistics.csv': 59, 'printed_global_tests.csv': 58, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 16, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 20, 'risk_scores_train.csv': 105001, 'risk_scores_validation.csv': 45001, 'stepwise_summary.csv': 20}
+   metrics : completed
+             wrote {'calibration_plot.csv': 21, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 1, 'test_predictions.csv': 1}
+   fe: credit_train 105000 rows, credit_validation 45000 rows
+   kaggle_submission.csv (1 lines): 'row_id,pd_logistic\n'
+   test_predictions.csv (1 lines): 'row_id,age,monthly_income,credit_utilization,debt_ratio,num_credit_lines,total_late_payments,total_risk_flags,financial_health,pd_logistic,pred_logistic,credit_risk_score,risk_grade,recommendation,interest_rate\n'
+
+== C3 same, header line with CRLF
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 105001, 'model_features_validation.csv': 45001}
+   train   : completed
+             wrote {'final_model_output.csv': 105001, 'model.json': 0, 'model_coefficients.csv': 17, 'model_summary.csv': 2, 'printed_association.csv': 5, 'printed_classification.csv': 45, 'printed_confusion_train.csv': 5, 'printed_confusion_validation.csv': 5, 'printed_fit_statistics.csv': 59, 'printed_global_tests.csv': 58, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 16, 'printed_roc_train.csv': 2, 'printed_roc_validation.csv': 2, 'printed_rsquare.csv': 20, 'risk_scores_train.csv': 105001, 'risk_scores_validation.csv': 45001, 'stepwise_summary.csv': 20}
+   metrics : completed
+             wrote {'calibration_plot.csv': 21, 'decile_analysis.csv': 11, 'ks_statistic.csv': 2, 'model_performance_metrics.csv': 2, 'printed_cumulative_lift.csv': 11, 'printed_psi_calculation.csv': 11, 'printed_roc_metrics.csv': 2, 'threshold_analysis.csv': 6, 'validation_summary.csv': 2}
+   predict : completed
+             wrote {'kaggle_submission.csv': 1, 'test_predictions.csv': 1}
+   fe: credit_train 105000 rows, credit_validation 45000 rows
+   kaggle_submission.csv (1 lines): 'row_id,pd_logistic\n'
+   test_predictions.csv (1 lines): 'row_id,age,monthly_income,credit_utilization,debt_ratio,num_credit_lines,total_late_payments,total_risk_flags,financial_health,pd_logistic,pred_logistic,credit_risk_score,risk_grade,recommendation,interest_rate\n'
+
+#### D. both: validation set empty and header-only test file
+
+== D real training file, every id in the split file, header-only test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 150001, 'model_features_validation.csv': 1}
+   train   : RAISED InvalidOperationError: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -4.8351468287903385`, rhs: expression `[(dyn float: 0.002097812287352219) * (
+             wrote {'model.json': 0, 'printed_association.csv': 5, 'printed_classification.csv': 46, 'printed_fit_statistics.csv': 74, 'printed_global_tests.csv': 73, 'printed_hl_partition.csv': 11, 'printed_hosmer_lemeshow.csv': 2, 'printed_odds_ratios.csv': 19, 'printed_rsquare.csv': 25, 'stepwise_summary.csv': 25}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 150000 rows, credit_validation 0 rows
+   kaggle_submission.csv: not in the output folder at the end
+   test_predictions.csv: not in the output folder at the end
+
+#### E. the other end: training set empty (split file with no id)
+
+== E real training file, split file header only, real test file
+   fe      : completed
+             wrote {'income_medians.csv': 6, 'model_features_train.csv': 1, 'model_features_validation.csv': 150001}
+   train   : RAISED RuntimeError: stepwise_logistic: the fit at step 0 ([]) did not converge
+             wrote {}
+   metrics : RAISED ValueError: Model validation stopped. Nothing is exported.
+             wrote {}
+   predict : RAISED ValueError: Test set scoring stopped. Nothing is exported.
+             wrote {}
+   fe: credit_train 0 rows, credit_validation 150000 rows

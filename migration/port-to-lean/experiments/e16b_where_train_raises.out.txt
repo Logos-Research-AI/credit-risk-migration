@@ -1,0 +1,21 @@
+
+== first 2 data lines, every id in the split file
+   model_features_validation.csv: 1 line(s); read by proc_import_csv: 0 rows x 42 columns, kinds ['String']
+   train raised ComputeError at train.py:549: validation_metrics = confusion_matrix.select(
+   first line of the message: cannot compare string with numeric type (i32)
+   output folder after train: ['income_medians.csv', 'model.json', 'model_features_train.csv', 'model_features_validation.csv', 'printed_association.csv', 'printed_classification.csv', 'printed_fit_statistics.csv', 'printed_global_tests.csv', 'printed_hl_partition.csv', 'printed_hosmer_lemeshow.csv', 'printed_odds_ratios.csv', 'printed_rsquare.csv', 'stepwise_summary.csv']
+   the five files train removes at its start and exports at its end are present: {'risk_scores_train.csv': False, 'risk_scores_validation.csv': False, 'final_model_output.csv': False, 'model_summary.csv': False, 'model_coefficients.csv': False}
+
+== first 100 data lines, every id in the split file
+   model_features_validation.csv: 1 line(s); read by proc_import_csv: 0 rows x 42 columns, kinds ['String']
+   train raised InvalidOperationError at train.py:512: logit_scored_valid_temp = model_features_validation.with_columns(predicted_logit=eta_valid)
+   first line of the message: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -0.8314410526606281`, rhs: expression `[(dyn float: 2.074638443428831) * (col("num_dependents"))]`); try an explicit 
+   output folder after train: ['income_medians.csv', 'model.json', 'model_features_train.csv', 'model_features_validation.csv', 'printed_association.csv', 'printed_classification.csv', 'printed_fit_statistics.csv', 'printed_global_tests.csv', 'printed_hl_partition.csv', 'printed_hosmer_lemeshow.csv', 'printed_odds_ratios.csv', 'printed_rsquare.csv', 'stepwise_summary.csv']
+   the five files train removes at its start and exports at its end are present: {'risk_scores_train.csv': False, 'risk_scores_validation.csv': False, 'final_model_output.csv': False, 'model_summary.csv': False, 'model_coefficients.csv': False}
+
+== first 2000 data lines, every id in the split file
+   model_features_validation.csv: 1 line(s); read by proc_import_csv: 0 rows x 42 columns, kinds ['String']
+   train raised InvalidOperationError at train.py:512: logit_scored_valid_temp = model_features_validation.with_columns(predicted_logit=eta_valid)
+   first line of the message: arithmetic on dtypes dyn float and str is not allowed (lhs: expression `dyn float: -2.2779651574938073`, rhs: expression `[(dyn float: 0.015557780526585912) * (col("credit_utilization_capped"))]`); tr
+   output folder after train: ['income_medians.csv', 'model.json', 'model_features_train.csv', 'model_features_validation.csv', 'printed_association.csv', 'printed_classification.csv', 'printed_fit_statistics.csv', 'printed_global_tests.csv', 'printed_hl_partition.csv', 'printed_hosmer_lemeshow.csv', 'printed_odds_ratios.csv', 'printed_rsquare.csv', 'stepwise_summary.csv']
+   the five files train removes at its start and exports at its end are present: {'risk_scores_train.csv': False, 'risk_scores_validation.csv': False, 'final_model_output.csv': False, 'model_summary.csv': False, 'model_coefficients.csv': False}

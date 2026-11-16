@@ -1,0 +1,15 @@
+== '.' + 11 digits (12 characters): changed exactly when the 11th digit is not 0?
+   (11th digit not 0, unchanged) counts: {(True, False): 180033, (False, True): 19965, (True, True): 2}
+   value read is the text rounded to 10 decimals: 189973 of 200000
+   examples of rounding at a 5: [('.12345678905', '0.1234567891'), ('.12345678915', '0.1234567892'), ('.12345678925', '0.1234567893'), ('.99999999995', '1'), ('.00000000005', '5E-11'), ('.00000000004', '4E-11'), ('.00000000001', '1E-11')]
+
+== plain texts (digits and at most one point, no sign, no exponent): every shape of at most 12 characters
+   tried: {'integer': 48000, 'point elsewhere or shorter': 304000, "'.' first, 11 digits after": 4000}
+   changed: {"'.' first, 11 digits after": 3622}
+   first changed: {"'.' first, 11 digits after": ('.01488897418', '0.0148889742', 0.0148889742)}
+
+== E-notation texts of at most 12 characters (if a valid file may hold them): changed by number of significant digits and exponent
+   exponent E-5   7 significant digits: changed 2434 of 2434; e.g. ('9.121223E-5', '0.0000912122', 9.12122e-05)
+   exponent E-5   8 significant digits: changed 2395 of 2395; e.g. ('2.3085634E-5', '0.0000230856', 2.30856e-05)
+   exponent E-4   8 significant digits: changed 2395 of 2395; e.g. ('4.9101247E-4', '0.0004910125', 0.0004910125)
+   exponents with no change at any number of digits: ['E-300', 'E-20', 'E-12', 'E-9', 'E-7', 'E-6', 'E-3', 'E-1', 'E0', 'E1', 'E3', 'E5', 'E7', 'E9', 'E10', 'E11', 'E12', 'E20', 'E300']

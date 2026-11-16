@@ -1,6 +1,6 @@
 # Translation Rulebook — Python (polars 2.1.0, numpy 2.5.4) → Lean 4, blueprint `py-credit-risk-port`
 
-**Version 5** (2026-11-16: batch 8 = H1–H7, what the readers deliver on valid input, §2.8; batch 7 = G1–G20 for the port as changed on 2026-11-16, §2.7; where §2.7 differs from an earlier section, §2.7 holds). Version 4 (2026-11-10: batch 3 = C1–C3 after the run reviews; batch 1 = A1–A14 after the stress test; batch 2 = B1–B14 after the first reviews; all listed in `migration/amendments.md`). **The preludes are frozen** (B13).
+**Version 5** (2026-11-16: batch 8 = H1–H14, what the readers deliver on valid input (H1–H7) and six more real runs for the conditions on the parameters (H8–H14), §2.8; batch 7 = G1–G20 for the port as changed on 2026-11-16, §2.7; where §2.7 differs from an earlier section, §2.7 holds). Version 4 (2026-11-10: batch 3 = C1–C3 after the run reviews; batch 1 = A1–A14 after the stress test; batch 2 = B1–B14 after the first reviews; all listed in `migration/amendments.md`). **The preludes are frozen** (B13).
 
 Blueprint id since the owner's re-base of 2026-11-16: `5365851c-5549-44b7-9207-4bd4c422031d`. The earlier id
 `b41b22d4-720d-4290-b593-39ceab961986` is a stale copy: nothing is written to it.
@@ -589,11 +589,139 @@ later stage stops on its absent input, because rows 34 and 35 have `MonthlyIncom
 (fix_Q1) passes feature engineering and train raises RuntimeError (no convergence): not a stop of
 the "absent input" kind, and outside the model.
 
+**H8 `rule:input_best32_nearest_double`.** `sas_compat.input_best32` on a String column
+(E12, `experiments/e12_best32_best12.py`). For a text of at most 32 characters made of digits
+with at most one point (forms `ddd`, `ddd.ddd`, `ddd.`, `.ddd`, leading zeros allowed), the
+result is the nearest double to the decimal written, bit for bit equal to Python `float(text)`:
+0 differences on 526,817 distinct stated fields of legacy/data (both files), 58,683 integers of
+1 to 32 digits, 139,180 decimals of 3 to 32 characters with the point in every position, 54,763
+`0.ddd` forms, 166,637 integers and 257,753 decimals of at most 12 characters, and 32 hard
+cases (ties, 17 and more digits, largest and smallest doubles). Also read as their number: a
+sign (`+7`, `-7`, `-0` gives -0.0), an exponent (`1E3`, `1e+3`, `1.e2`, `4.9e-324`), blanks,
+tabs or a no-break space around the number, `1e-400` (0.0). Read as missing (null): a null
+cell, `''`, `' '`, `.`, `NA`, `na`, `N/A`, any text with a letter other than one e/E exponent
+(`abc`, `12abc`, `1d3`, `0x10`), `1,000`, `1 000`, `1_000`, `1e`, `e5`, `+`, `-`, `--1`,
+`1.2.3`, `$5`, `5%`, `inf`, `Infinity`, `nan`, `NaN`, a full-width digit, and a number beyond
+the doubles (`1e400`, `-1e400`). Beyond 32 characters only the first 32 are read (before the
+blanks are removed): 33 ones read as 32 ones, `' '` + 32 ones as 31 ones, 31 ones + `e5` as
+null, 30 ones + `e55` as 30 ones e5. Not valid input; recorded as observed.
+
+**H9 `rule:best12_round_trip_12_chars`.** `input_best32(sas_best12(x))` for `x = float(text)`,
+as feature engineering step 01 and predict step 01 do on a numeric `MonthlyIncome` /
+`NumberOfDependents` column (E12, and E12b `experiments/e12b_best12_changed.py`). It is the
+identity, bit for bit, on every text of at most 12 characters made of digits with at most one
+point, EXCEPT the shape `.ddddddddddd` (a point first, then 11 digits: 12 characters, no
+leading 0). No change on: the 13,599 distinct income / dependents texts of the real training
+file; every integer 0 to 200,000; about 100,000 integers of each length 6 to 12 with `10...0`
+and `99...9`; decimals of 3 to 12 characters with the point after every count of digits (55
+shapes, up to 20,000 each, 11 significant digits included); `0.` + 1 to 10 digits; `.` + 1 to
+10 digits; `0.` + zeros + digits at 12 characters for every count of zeros; zero forms (`0`,
+`0.0`, `.0`, `0.`, `000000000000`); leading and trailing zeros. Changed: `.` + 11 digits whose
+11th digit is not 0. BEST12 writes `0.` + 10 decimals, so the value read is the value rounded
+to 10 decimals: `.99303984006` -> `0.9930398401`, `.12345678901` -> `0.123456789`,
+`.01234567891` -> `0.0123456789`, `.12345678905` -> `0.1234567891`, `.99999999999` -> `1`
+(180,033 of 180,035 such texts changed; the two unchanged, and `.00000000005` -> `5E-11`, are
+below 1e-5 where BEST12 writes E-notation). With the 11th digit 0 nothing changes (19,965 of
+19,965). If a valid file may hold E-notation: 12-character texts with exponent E-5 and 7 or 8
+significant digits, or E-4 and 8, are changed (`9.121223E-5` -> `0.0000912122`); no change at
+the 19 other exponents tried (E-300 to E300).
+
+**H10 `rule:split_ids_file`.** Feature engineering's `split_ids` (E13,
+`experiments/e13_split.py`; code `feature_engineering.py:342-350`). The file is read as CSV
+with a header, only the column named exactly `row_id`, every cell as text, then cast to Int64
+and to Float64. A training row is in the training set when its `row_id` (the first column of
+`cs-training.csv` as a double, not the position of the row) is among those ids; every other row
+is in the validation set. Both sets keep the order of the training file and exactly the columns of
+`credit_features`; together they are every row once (checked as frames on every run below).
+Needed for the run to complete: the file exists, is not 0 bytes, has a column `row_id` (other
+columns and any column position are accepted; `id`, `ROW_ID` raise ColumnNotFoundError), and
+every non-blank id is an integer text of digits with an optional sign that fits Int64 (`3.0`,
+`3.7`, `' 3'`, `1e0`, `abc`, a 20-digit id raise InvalidOperationError). These raise out of
+`run` after the earlier outputs were removed and before anything is written: the output folder
+holds none of the three files. Accepted with no effect on the result: the ids in any order, an
+id twice, an id of no applicant, `+3`, `03`, quotes, CRLF, no final line end, a blank line or a
+blank id (a null id selects nothing; no row is lost). The file may hold no id (header only):
+training set empty, all rows in validation. The real file (`inputs/split_ids.csv`): 105,000
+distinct ids from 1 to 150,000, unsorted. Sizes with it, training file = the first n rows of
+the real file, (train, validation): n=1 (1,0), 2 (2,0), 3 (2,1), 4 (3,1), 5 (4,1), 6 (5,1),
+7 (6,1), 8 (7,1), 9 (7,2), 10 (8,2), 11 (8,3), 12 (8,4), 13 (8,5), 14 (9,5), 15 (9,6),
+16 (10,6), 17 (11,6), 18 (12,6), 19 (13,6), 20 (14,6); 50 (31,19); 100 (67,33); 1000
+(705,295); the real file (105000, 45000). Training ids among 1 to 20: 1, 2, 4, 5, 6, 7, 8, 10,
+14, 16, 17, 18, 19, 20. Feature engineering completes for every n from 1 and writes
+`income_medians.csv`, `model_features_train.csv`, `model_features_validation.csv` (a header
+line alone for an empty set). A training file with an id twice or a blank id is stopped by the
+input check; an id `3.5` is accepted and falls in validation.
+
+**H11 `rule:model_json_round_trip`.** `model.json` (E14, `experiments/e14_model_json.py`).
+Train writes `{"intercept": float, "coefficients": {name: float}}` with `json.dump`; predict
+reads it with `json.loads` and `float`. The model predict holds equals the model train held:
+intercept bit for bit, the same names in the same order, every coefficient bit for bit. Shown
+on 8 completed runs (legacy/data with 15 coefficients; fix2/good, fix_round5/good,
+fix_G34/income_zero, fix_Q13, fix_Q14, fix_Q27_textid/good, fix_round5/train_age_exponent with
+4): all values Python floats and finite, every name a column of predict's scoring frame. The
+text form alone: 999,523 random finite doubles and 13 edge values (-0.0, 5e-324, the largest
+double) come back bit for bit; key order is kept. (fix_Q7 and fix_Q9 as they stand in
+judge/scenarios: train raises "the fit at step 0 did not converge", no `model.json`.)
+
+**H12 `rule:test_target_column_ignored`.** A test file whose `SeriousDlqin2yrs` is not all blank
+(E15, `experiments/e15_test_target.py`; the real test file, its first 15 lines, its first line,
+with that field alone rewritten; model of the real run). Kind of the column in `test_raw`:
+Float64 when every stated cell is 0 or 1 (blank cells null); String as soon as one cell is NA
+(NA cells kept as the text `NA`, blank cells null), wherever the NA stands (first line, last
+line of 101,503, after 30 numeric lines: predict reads with every row); String when all blank.
+In all 13 variants (all NA; all 0; all 1; 0/1 alternating; blank, 0, 1, NA mixed in two orders;
+blank or NA on the first 30 lines then 0/1; 0/1 on the first 30 lines then NA or blank; a
+single 1 or NA on the last line; a single NA on the first line) predict completes and
+`kaggle_submission.csv` and `test_predictions.csv` are byte-identical to those of the all-blank
+file, at each of the three sizes. A stated value other than 0, 1, NA (`2`, `yes`) stops predict
+with nothing exported (not valid input).
+
+**H13 `rule:empty_validation_or_test`.** (E16 `experiments/e16_empty_sets.py`, E16b
+`experiments/e16b_where_train_raises.py`.)
+(a) Empty validation set: NO four-stage run completes; train never completes. Feature
+engineering completes and writes `model_features_validation.csv` as its header line alone;
+train reads it as 0 rows x 42 String columns, fits the model on the training set, writes
+`model.json`, `stepwise_summary.csv` and eight `printed_*.csv` files, then raises an uncaught
+Polars error when it scores the validation frame (`train.py:512`, InvalidOperationError,
+arithmetic on float and str; on the 2-row file `train.py:549`, ComputeError, comparing the
+String `default_flag` with a number). None of train's five exports exists
+(`risk_scores_train.csv`, `risk_scores_validation.csv`, `final_model_output.csv`,
+`model_summary.csv`, `model_coefficients.csv`), so metrics and predict stop on their absent
+inputs ("Nothing is exported"). Shown with every id in the split file on: the real training
+file (150,000 rows), its first 100, 500, 2000, 10000 rows, fix2/good and fix_Q13 (3000 rows),
+and the real file with a header-only test file too. On smaller files train stops earlier with
+RuntimeError "did not converge" and writes nothing: first 20 rows (step 1), fix_Q1 (2 rows,
+step 0; its validation set is empty under the real split file as well).
+(b) Not an empty set, but small: with the real split file, the first 20 rows (14 / 6) do not
+converge; the first 100 (67 / 33), 500, 2000, 10000 rows and the two 3000-row scenarios
+complete all four stages.
+(c) Empty training set (split file with no id): train raises "the fit at step 0 did not
+converge"; nothing after feature engineering is written.
+(d) Header-only test file (real training file, real split; header with `\n`, with no line end,
+with CRLF): all four stages complete. Predict writes `kaggle_submission.csv` =
+`row_id,pd_logistic` and `test_predictions.csv` = its 15 names, each one header line and no
+row. The other three stages write what they write with the real test file (same files and line
+counts).
+
+**H14 `rule:count_through_best8`.** `metrics_calculation._into_float(x) = float(sas_best(x, 8))`
+(None when the text is empty), applied to `total_good_count`, `total_bad_count`,
+`total_defaults`, `overall_default_rate` (E17, `experiments/e17_counts_best8.py`, the
+functions called directly). A whole count below 10^8 is unchanged: every integer from 0 to
+2,000,000 and 2,000,000 random ones below 10^8; 99999999 -> `99999999` -> 99999999.0. From 10^8
+the text is E-notation in at most 8 characters and the number read back is the count rounded,
+half up, to 5 significant digits (4 from 10^10, where the exponent takes two characters):
+1,000,000 of 1,000,000 random integers in [10^8, 10^11) agree with that rule. 100000000 ->
+`1E8` -> 100000000.0 (equal); 100000001 -> `1E8` -> 100000000.0; 100005000 -> `1.0001E8` ->
+100010000.0; 123456789 -> `1.2346E8` -> 123460000.0; 999999999 -> `1E9`; 1234567890 ->
+`1.2346E9` -> 1234600000.0; 12345678901 -> `1.235E10` -> 12350000000.0. So a count from 10^8 is
+unchanged only when it has at most 5 significant digits (4 from 10^10). The rate passes through
+the same text and is cut to 8 characters: 1/3 -> `0.333333`, 2/3 -> `0.666667`, 0.000123456 ->
+`0.000123`, 0.99999999 -> `1`.
+
 **Not observed (batch 8).** No condition may rest on these without a new run.
-1. A completed run with an empty validation set. The only case (fix_Q1) is read as 42 String
-   columns of height 0 and train then raised RuntimeError (no convergence).
-2. A valid test file whose `SeriousDlqin2yrs` holds NA or 0 / 1: none among the valid files; the
-   kinds given in H2 for it follow from the kind rule, not from a run on such a file.
+1. A completed run with an empty validation set: there is none (H13 a); train does not
+   complete on any file tried.
+2. (Settled by H12.) A valid test file whose `SeriousDlqin2yrs` holds NA or 0 / 1.
 3. A numeric score column that is blank in its first 20 rows: no run had one; its reading as
    String (H5) is not observed.
 4. Whether metrics uses `interest_rate` or `recommendation`: not established by a run (a text

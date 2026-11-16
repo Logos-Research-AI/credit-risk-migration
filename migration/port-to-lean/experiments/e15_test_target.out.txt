@@ -1,0 +1,55 @@
+real test file: data lines 101503 ; distinct SeriousDlqin2yrs texts: ['']
+
+== the real test file (101503 lines)
+   all blank (as the real file): completed; column kind String, nulls 101503 of 101503; files written {'kaggle_submission.csv': 101504, 'test_predictions.csv': 101504}
+   all NA                                  : completed; column kind String, nulls 0 of 101503; every written file byte-identical to the all-blank run: True
+   all 0                                   : completed; column kind Float64, nulls 0 of 101503; every written file byte-identical to the all-blank run: True
+   all 1                                   : completed; column kind Float64, nulls 0 of 101503; every written file byte-identical to the all-blank run: True
+   0 and 1 alternating                     : completed; column kind Float64, nulls 0 of 101503; every written file byte-identical to the all-blank run: True
+   blank, 0, 1, NA in turn                 : completed; column kind String, nulls 25376 of 101503; every written file byte-identical to the all-blank run: True
+   NA, 1, 0, blank in turn                 : completed; column kind String, nulls 25375 of 101503; every written file byte-identical to the all-blank run: True
+   blank on the first 30 lines, then 0/1   : completed; column kind Float64, nulls 30 of 101503; every written file byte-identical to the all-blank run: True
+   NA on the first 30 lines, then 0/1      : completed; column kind String, nulls 0 of 101503; every written file byte-identical to the all-blank run: True
+   0/1 on the first 30 lines, then NA      : completed; column kind String, nulls 0 of 101503; every written file byte-identical to the all-blank run: True
+   0/1 on the first 30 lines, then blank   : completed; column kind Float64, nulls 101473 of 101503; every written file byte-identical to the all-blank run: True
+   only the last line holds 1              : completed; column kind Float64, nulls 101502 of 101503; every written file byte-identical to the all-blank run: True
+   only the last line holds NA             : completed; column kind String, nulls 101502 of 101503; every written file byte-identical to the all-blank run: True
+   only the first line holds NA            : completed; column kind String, nulls 101502 of 101503; every written file byte-identical to the all-blank run: True
+   (not valid) a 2 on line 5               : RAISED ValueError: Test set scoring stopped. Nothing is exported.; column kind Float64; files written []
+   (not valid) text 'yes' on line 5        : RAISED ValueError: Test set scoring stopped. Nothing is exported.; column kind String; files written []
+
+== its first 15 lines (fewer than 20)
+   all blank (as the real file): completed; column kind String, nulls 15 of 15; files written {'kaggle_submission.csv': 16, 'test_predictions.csv': 16}
+   all NA                                  : completed; column kind String, nulls 0 of 15; every written file byte-identical to the all-blank run: True
+   all 0                                   : completed; column kind Float64, nulls 0 of 15; every written file byte-identical to the all-blank run: True
+   all 1                                   : completed; column kind Float64, nulls 0 of 15; every written file byte-identical to the all-blank run: True
+   0 and 1 alternating                     : completed; column kind Float64, nulls 0 of 15; every written file byte-identical to the all-blank run: True
+   blank, 0, 1, NA in turn                 : completed; column kind String, nulls 4 of 15; every written file byte-identical to the all-blank run: True
+   NA, 1, 0, blank in turn                 : completed; column kind String, nulls 3 of 15; every written file byte-identical to the all-blank run: True
+   blank on the first 30 lines, then 0/1   : completed; column kind String, nulls 15 of 15; every written file byte-identical to the all-blank run: True
+   NA on the first 30 lines, then 0/1      : completed; column kind String, nulls 0 of 15; every written file byte-identical to the all-blank run: True
+   0/1 on the first 30 lines, then NA      : completed; column kind Float64, nulls 0 of 15; every written file byte-identical to the all-blank run: True
+   0/1 on the first 30 lines, then blank   : completed; column kind Float64, nulls 0 of 15; every written file byte-identical to the all-blank run: True
+   only the last line holds 1              : completed; column kind Float64, nulls 14 of 15; every written file byte-identical to the all-blank run: True
+   only the last line holds NA             : completed; column kind String, nulls 14 of 15; every written file byte-identical to the all-blank run: True
+   only the first line holds NA            : completed; column kind String, nulls 14 of 15; every written file byte-identical to the all-blank run: True
+   (not valid) a 2 on line 5               : RAISED ValueError: Test set scoring stopped. Nothing is exported.; column kind Float64; files written []
+   (not valid) text 'yes' on line 5        : RAISED ValueError: Test set scoring stopped. Nothing is exported.; column kind String; files written []
+
+== its first line only
+   all blank (as the real file): completed; column kind String, nulls 1 of 1; files written {'kaggle_submission.csv': 2, 'test_predictions.csv': 2}
+   all NA                                  : completed; column kind String, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   all 0                                   : completed; column kind Float64, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   all 1                                   : completed; column kind Float64, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   0 and 1 alternating                     : completed; column kind Float64, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   blank, 0, 1, NA in turn                 : completed; column kind String, nulls 1 of 1; every written file byte-identical to the all-blank run: True
+   NA, 1, 0, blank in turn                 : completed; column kind String, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   blank on the first 30 lines, then 0/1   : completed; column kind String, nulls 1 of 1; every written file byte-identical to the all-blank run: True
+   NA on the first 30 lines, then 0/1      : completed; column kind String, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   0/1 on the first 30 lines, then NA      : completed; column kind Float64, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   0/1 on the first 30 lines, then blank   : completed; column kind Float64, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   only the last line holds 1              : completed; column kind Float64, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   only the last line holds NA             : completed; column kind String, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   only the first line holds NA            : completed; column kind String, nulls 0 of 1; every written file byte-identical to the all-blank run: True
+   (not valid) a 2 on line 5               : completed; column kind String; files written ['kaggle_submission.csv', 'test_predictions.csv']
+   (not valid) text 'yes' on line 5        : completed; column kind String; files written ['kaggle_submission.csv', 'test_predictions.csv']
