@@ -1262,7 +1262,14 @@ def classification_table(
     cross-validated probabilities and its 357 levels bit for bit, every count) and the 17
     intercept-only runs of judge/runs (small-inputs.md (b)). A probability that equals a printed level
     starts or ends the grid at that level (tolerance 1e-9 on the range, the port's choice: SAS's is
-    not known; it gives SAS's rows in all 57 fits)."""
+    not known; it gives SAS's rows in all 57 fits).
+    Fit with a variable: the levels are k * 0.02 rounded, compared with >=, except the level printed
+    1.000, where SAS counts no observation as a predicted event although leave-one-out probabilities
+    equal 1 in double precision: the two separated fits judge/runs/sep_age_gt_55 and sep_age_gt_62
+    (27 and 25 defaulters at probability 1; SAS's last row `1.000,0,165,0,115,...`). So that level
+    is 1 + 1e-12 here too (port/tests/test_classification_level_one.py). Not established: what SAS
+    does with a probability equal to a LOWER printed level on a fit with a variable; the plain >= on
+    the rounded level stays."""
     if y.ndim == 2:  # inventory order (X, y, pd)
         y, x = x, y
     if fit is not None and not isinstance(fit, LogisticFit):
@@ -1292,8 +1299,8 @@ def classification_table(
         cut[0] = klo * 0.02
         for i in range(1, len(cut)):
             cut[i] = cut[i - 2] + 0.04 if i >= 2 and i % 2 == 0 else cut[i - 1] + 0.02
-        if khi == 50:
-            cut[-1] = 1.0 + 1e-12
+    if khi == 50:  # the level printed 1.000: no observation is counted there, on any fit
+        cut[-1] = 1.0 + 1e-12
     n1 = int(y.sum())
     n0 = len(y) - n1
 
