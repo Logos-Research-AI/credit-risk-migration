@@ -200,12 +200,13 @@ def run(
             ),
         )
         .with_columns(
-            # :196  # INV age_income_interaction (reads log_monthly_income assigned above)
-            age_income_interaction=pl.col("age") * pl.col("log_monthly_income"),
-            # :197  # INV utilization_debt_interaction; R§2 A13 (product first, then IEEE division)
-            utilization_debt_interaction=sas_compat.div(
-                pl.col("credit_utilization") * pl.col("debt_ratio"), 100
-            ).alias("utilization_debt_interaction"),
+            # :309-310  # INV age_income_interaction; Q9 (10f447e): age * log(income) when the income is
+            # above 0, else age * log_monthly_income (assigned above); a missing income takes the else
+            age_income_interaction=pl.when(pl.col("monthly_income") > 0)
+            .then(pl.col("age") * sas_compat.sas_log(pl.col("monthly_income")))
+            .otherwise(pl.col("age") * pl.col("log_monthly_income")),
+            # :311  # INV utilization_debt_interaction; Q9 (10f447e): the product, no division by 100
+            utilization_debt_interaction=pl.col("credit_utilization") * pl.col("debt_ratio"),
             # :200-201  # INV credit_utilization_capped, debt_ratio_capped; R§2 min()
             credit_utilization_capped=sas_compat.sas_min(pl.col("credit_utilization"), pl.lit(200.0)).alias(
                 "credit_utilization_capped"
