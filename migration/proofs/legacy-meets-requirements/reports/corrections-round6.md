@@ -157,3 +157,13 @@ All under `migration/legacy-to-lean/experiments/`:
 - `x26_g54_12chars.sas`, `.log`, `.lst`, `_run.py`; inputs `_train.csv`, `_test.csv`; the value
   of each row in `_values.csv`; the stored doubles in `_train_hex.csv`, `_test_hex.csv`.
 - `migration/legacy-to-port/experiments/x09_input_numeric.sas`, `.log` (read, not mine).
+
+## Added 2026-11-16: ruling G56 (counts below 10^8)
+
+Owner's decision (D4 of the equality plan, reopened by port rule H14): the limit is stated, no
+formal item changes. The SAS Lean unit `total_good_bad` has "fewer than 10^8 rows" in its
+precondition (rule R19) and the pipeline counts exactly. In this round's one revision, the text
+of the links paragraph of `def:SasLinks` also says: "the counts of good and bad applicants are
+taken as exact (an idealisation, ruling G56: the program carries them in 8 characters, exact for
+fewer than 10^8 rows)". The round 6 report and the sign-off line state the limit.
+
