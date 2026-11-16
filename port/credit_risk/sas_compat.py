@@ -747,11 +747,13 @@ def fit_logistic(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logistic
 
 
 def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticFit | None:
-    """The estimates SAS keeps for a model whose maximum likelihood estimate does not exist
-    (PROC LOGISTIC, "Existence of Maximum Likelihood Estimates"; SAS warns and continues, "Results
-    shown are based on the last maximum likelihood iteration"). Fisher scoring from the intercept-only
-    estimates (intercept log(events / non-events), every other coefficient 0), no step halving, at
-    most 25 iterations (SAS's MAXITER). From the 8th iteration on, after each iteration:
+    """The estimates SAS keeps for a model it declares separated (PROC LOGISTIC, "Existence of
+    Maximum Likelihood Estimates"; SAS warns and continues, "Results shown are based on the last
+    maximum likelihood iteration"). SAS's own iteration is followed: Fisher scoring from the
+    intercept-only estimates (intercept log(events / non-events), every other coefficient 0), no
+    step halving, at most 25 iterations (SAS's MAXITER). After each iteration, first SAS's
+    convergence test (GCONV: gradient' * inverse information * gradient / (|log likelihood| + 1e-6)
+    below 1e-8): a fit that passes it is not separated, None. Then, from the 8th iteration on:
     complete separation when no observation is on the wrong side, that is every observation has
     probability above 0.5 of its observed response;
     else quasi-complete separation when some observation has probability >= 0.95 of its observed
@@ -763,6 +765,10 @@ def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logist
     there from 0.539 (D11, 382 of 400 observations at 0.95 or above) to 0.9999; 8 quasi-complete
     steps, stopped at iterations 9 to 15, each at the first iteration whose largest diagonal element
     exceeds 5000. The stop iteration and the kept estimates are SAS's in all 26 (to 1e-10 relative).
+    The rule is applied to every fit, also one whose maximum likelihood estimate exists: D6b and D6c
+    (classes that overlap by one swap, 400 and 2000 rows) are declared quasi-complete by SAS at
+    iterations 12 and 13 although the iteration would converge later. The 14 steps of those runs
+    that SAS reports converged (3 to 13 iterations) pass the GCONV test here at SAS's iteration.
     The two-variable run (P3) fixes the start (the estimates of the step before give other numbers).
     Not settled by those runs: an observation at probability exactly 0.5 at the complete test, and
     the divisor of the standard deviation (n and n - 1 agree on the quasi-complete runs)."""
@@ -775,10 +781,13 @@ def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logist
             p = _expit(x @ b)
             w = p * (1.0 - p)
             b = b + np.linalg.solve(x.T @ (x * w[:, None]), x.T @ (y - p))
-            if n_iter < 8:
-                continue
             p = _expit(x @ b)
             w = p * (1.0 - p)
+            g = x.T @ (y - p)
+            if float(g @ np.linalg.solve(x.T @ (x * w[:, None]), g)) / (abs(_loglik(x @ b, y)) + 1e-6) < 1e-8:
+                return None  # SAS's fit converged (GCONV): no separation
+            if n_iter < 8:
+                continue
             p_obs = np.where(y == 1, p, 1.0 - p)
             separation: str | None = None
             if bool(np.all(p_obs > 0.5)):
@@ -844,11 +853,12 @@ def stepwise_logistic(
     def fit(cols: list[str]) -> LogisticFit:
         x = np.column_stack([ones, *[z_all[c] for c in cols]])
         f = fit_logistic(x, y, ["Intercept", *cols])
-        if not f.converged:
-            # separation: SAS warns and continues with the last iteration's estimates
-            sep = _fit_separated(x, y, f.names) if cols else None
-            if sep is None:
-                raise RuntimeError(f"stepwise_logistic: the fit at step {step} ({cols}) did not converge")
+        # separation: SAS warns and continues with the last iteration's estimates, also when the
+        # maximum likelihood estimate exists and `fit_logistic` converged (see `_fit_separated`)
+        sep = _fit_separated(x, y, f.names) if cols else None
+        if sep is None and not f.converged:
+            raise RuntimeError(f"stepwise_logistic: the fit at step {step} ({cols}) did not converge")
+        if sep is not None:
             if sep.separation == "complete":
                 print(
                     f"WARNING: There is a complete separation of data points in Step {step}. "

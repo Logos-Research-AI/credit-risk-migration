@@ -175,4 +175,15 @@ for translation rules once it exists.
   stopped at iteration 8). With the 0.95 test the port iterated on, stopped later as
   quasi-complete and kept other estimates (D11: x1 removed where SAS keeps it). Not settled: an
   observation at exactly 0.5.
+- Corrected 2026-11-16 (same review): SAS applies the separation tests to every fit still
+  iterating at its 8th iteration, also one whose maximum likelihood estimate exists; the port
+  applied them only when its own Newton fit failed. `_fit_separated` now follows SAS's iteration
+  for every step with a variable, with SAS's convergence test (GCONV = 1E-8) before the separation
+  tests, and `stepwise_logistic` keeps its estimates whenever it declares a separation. Evidence:
+  `out/separation/sas` D6b and D6c (classes overlapping by one swap, 400 and 2000 rows: SAS
+  declares quasi-complete separation at iterations 12 and 13 and, in D6c, keeps a variable that
+  the converged fit's Wald test removes); the 14 steps of those runs that SAS reports converged
+  pass the GCONV test at SAS's iteration (3 to 13), among them D6a, D18 and D19, which iterate
+  past the 8th without a separation. A fit SAS reports converged keeps the port's own estimates
+  (`fit_logistic`), as before.
 - A fit that does not converge for another reason still stops with an error.
