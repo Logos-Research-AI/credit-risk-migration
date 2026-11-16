@@ -1,0 +1,20 @@
+1 financial_health - 0x1.c43b3bec30babp+13 0x0.0p+0 None
+2 flag_multiple_delinquencies - 0x1.64dad90493490p+9 0x1.125a1698c1025p-520 None
+3 flag_high_debt_ratio - 0x1.d705e63355e13p+8 0x1.6028197ee6494p-345 None
+4 has_serious_delinquency - 0x1.26a00338baf0ep+8 0x1.076037fbaae64p-217 None
+5 age - 0x1.b036aea1e8ee1p+7 0x1.de4a9bdcbc608p-161 None
+6 num_credit_lines - 0x1.3b10cd4c7c7b7p+7 0x1.4d0b9185cd97cp-118 None
+7 flag_very_high_utilization - 0x1.50e64c0ffec34p+6 0x1.a10e15ac16c7cp-65 None
+8 flag_high_utilization - 0x1.5e0f688af505fp+5 0x1.46f00116f696ap-35 None
+9 total_risk_flags - 0x1.214ed6a3eae28p+5 0x1.f2bb62b3a5602p-30 None
+10 num_real_estate_loans - 0x1.86778e9ea0496p+4 0x1.a34a09269485fp-21 None
+11 debt_ratio_capped - 0x1.10ea0c8699adap+4 0x1.3044ee74ffcaep-15 None
+12 flag_very_high_debt_ratio - 0x1.2a5453a19e4efp+5 0x1.17abf3b7715d0p-30 None
+13 log_num_credit_lines - 0x1.193b93ff20398p+3 0x1.8d521863820bbp-9 None
+14 credit_utilization_capped - 0x1.cd1afcdd49212p+2 0x1.dc8319a3f3327p-8 None
+15 has_delinquency - 0x1.1d38e4fe8b615p+4 0x1.9603a824abc46p-16 None
+16 credit_util_category - 0x1.dc39259bb892ep+4 0x1.a32c5236a3a0ep-25 None
+17 - has_serious_delinquency 0x1.271c5d7ff9583p+0 0x1.21c289fc5b137p-2 None
+18 - credit_utilization_capped 0x1.86531422d49c6p+1 0x1.4ad1c5bf1aeb9p-4 None
+19 flag_recent_late_payments - 0x1.beccd2482195fp+3 0x1.871acb99da567p-13 None
+final ['Intercept', 'financial_health', 'flag_multiple_delinquencies', 'flag_high_debt_ratio', 'age', 'num_credit_lines', 'flag_very_high_utilization', 'flag_high_utilization', 'total_risk_flags', 'num_real_estate_loans', 'debt_ratio_capped', 'flag_very_high_debt_ratio', 'log_num_credit_lines', 'has_delinquency', 'credit_util_category', 'flag_recent_late_payments'] ['-0x1.b4084297ee28ep+0', '-0x1.602c23a0b98d5p-6', '0x1.b37c574b31113p-1', '-0x1.5ef178cd7b4a4p-2', '-0x1.1c6041d8dcdc5p-6', '0x1.5254408de313cp-5', '0x1.ef22dfb9325fdp-2', '-0x1.84f7ba3292a06p-2', '0x1.a9b7cde5c2b32p-4', '0x1.a0153ad05d22ap-5', '-0x1.b89c357ac29e4p-11', '0x1.43a110551abfcp-2', '-0x1.1d055e77f4f5ap-3', '0x1.ebf628b96bb21p-1', '0x1.7670217f1bbddp-2', '-0x1.815edf0e93fa5p-3']

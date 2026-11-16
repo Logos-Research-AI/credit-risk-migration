@@ -824,6 +824,48 @@ class StepwiseResult:
     intercept_only: LogisticFit | None = None
 
 
+def _entry_score_chisq(
+    x: FloatArray, y: FloatArray, cur: LogisticFit, others: Mapping[str, FloatArray]
+) -> list[tuple[str, float]]:
+    """The score chi-square with which each column of `others` (name -> values, in MODEL order)
+    would enter the model `cur` fitted on the columns `x`; a column aliased with the model
+    (relative residual information < 1e-8) is left out.
+    After a converged step it is the candidate's score squared over its residual information.
+    After a separated step the kept estimates are not at a maximum, so the score of the model's
+    own parameters is not zero, and SAS's statistic is U' I^-1 U over ALL parameters of the
+    enlarged model at the kept estimates (the model's and the candidate's), not the candidate's
+    part alone. By blocks: the model's own g' I_m^-1 g, plus the candidate's score corrected for
+    g, squared over its residual information. Measured: the 175 score chi-squares SAS prints
+    after the separated step "age" of five files agree to 1e-10 relative
+    (migration/legacy-to-port/separation-rule.md part 3; port/tests/test_entry_score.py). After
+    a converged step g is zero up to rounding; that branch is the computation as it always was,
+    so its numbers do not change in any bit."""
+    p = _expit(x @ cur.beta)
+    w = p * (1.0 - p)
+    info = x.T @ (x * w[:, None])
+    separated = cur.separation is not None
+    if separated:
+        g = x.T @ (y - p)
+        info_g = np.linalg.solve(info, g)
+        own = float(g @ info_g)
+    out: list[tuple[str, float]] = []
+    for c, z in others.items():
+        zwz = float(z @ (z * w))
+        v = x.T @ (z * w)
+        resid = zwz - float(v @ np.linalg.solve(info, v))
+        # RESOLVED (post-parity): alias alternation not reached on judged inputs (path matches SAS);
+        # a longer cycle would stop at the 500-step cap with RuntimeError.
+        if zwz <= 0.0 or resid / zwz < 1e-8:
+            continue  # aliased with the current model
+        u = float(z @ (y - p))
+        if separated:
+            sc = own + (u - float(v @ info_g)) ** 2 / resid
+        else:
+            sc = u * u / resid
+        out.append((c, sc))
+    return out
+
+
 def stepwise_logistic(
     df: pl.DataFrame,
     response: str,
@@ -834,7 +876,8 @@ def stepwise_logistic(
     """PROC LOGISTIC descending selection=stepwise exactly as RULEBOOK §2 (A5) and the train.sas
     stepwise inventory row: removal before entry; aliased candidates skipped (relative residual
     < 1e-8); enter the largest score chi-square (strict >, ties to the first in MODEL order);
-    stop when nothing enters or the best entry was just removed. Reference implementation:
+    stop when nothing enters or the best entry was just removed. After a separated step the entry
+    score chi-square is over all parameters of the enlarged model (see the entry loop). Reference implementation:
     migration/experiments/x02_stepwise_reference.py. Rows with a missing response or candidate are
     dropped. The model columns of each fit are in ENTRY order (names[0] = "Intercept").
     A step whose fit is separated is kept with the estimates SAS keeps (`_fit_separated`), with SAS's
@@ -902,24 +945,9 @@ def stepwise_logistic(
                 )
                 last_removed = best_w[1]
                 continue
-        x = np.column_stack([ones, *[z_all[c] for c in model]])
-        p = _expit(x @ cur.beta)
-        w = p * (1.0 - p)
-        info = x.T @ (x * w[:, None])
         best: tuple[float, str] | None = None
-        for c in candidates:
-            if c in model:
-                continue
-            z = z_all[c]
-            zwz = float(z @ (z * w))
-            v = x.T @ (z * w)
-            resid = zwz - float(v @ np.linalg.solve(info, v))
-            # RESOLVED (post-parity): alias alternation not reached on judged inputs (path matches SAS);
-            # a longer cycle would stop at the 500-step cap with RuntimeError.
-            if zwz <= 0.0 or resid / zwz < 1e-8:
-                continue  # aliased with the current model
-            u = float(z @ (y - p))
-            sc = u * u / resid
+        x = np.column_stack([ones, *[z_all[c] for c in model]])
+        for c, sc in _entry_score_chisq(x, y, cur, {c: z_all[c] for c in candidates if c not in model}):
             if best is None or sc > best[0]:
                 best = (sc, c)
         if best is None or chi2_sf(best[0], 1) >= slentry or best[1] == last_removed:

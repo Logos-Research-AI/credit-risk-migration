@@ -1,0 +1,318 @@
+{
+ "55": {
+  "steps": [
+   {
+    "entered": "age",
+    "removed": "",
+    "chisq": 173.938946563665
+   }
+  ],
+  "final": {
+   "Intercept": -97.2666184225482,
+   "age": 1.76433595528476
+  },
+  "entry_after_step_1": {
+   "credit_utilization_c": 1.65444622256111,
+   "debt_ratio_capped": 1.71359780543421,
+   "num_late_30_59": 1.86094853166163,
+   "num_late_60_89": 1.66604413523851,
+   "num_late_90_plus": 2.25804025646334,
+   "total_late_payments": 1.70756044116034,
+   "has_delinquency": 1.71968973884119,
+   "has_serious_delinque": 1.66960866580729,
+   "monthly_income": 1.7275654157297,
+   "log_monthly_income": 1.67387148007299,
+   "num_credit_lines": 1.67866284920685,
+   "num_real_estate_loan": 1.71921725097951,
+   "log_num_credit_lines": 1.66110515014811,
+   "num_dependents": 2.59722278200881,
+   "income_per_dependent": 1.71667601735996,
+   "credit_lines_per_per": 1.70594634246406,
+   "flag_high_utilizatio": 1.65298403263096,
+   "flag_very_high_utili": 1.6549843722062,
+   "flag_high_debt_ratio": 1.65233240642348,
+   "flag_very_high_debt_": 1.77014945445066,
+   "flag_recent_late_pay": 1.77517121080852,
+   "flag_serious_delinqu": 1.66960866580729,
+   "flag_multiple_delinq": 1.78851491745882,
+   "flag_low_income": 1.90246480336083,
+   "flag_many_dependents": 1.96851733642503,
+   "flag_few_credit_line": 1.83888061787666,
+   "total_risk_flags": 1.66730621676812,
+   "credit_util_category": 1.67938536207272,
+   "debt_category": 1.65241816694684,
+   "age_category": 1.65691614077855,
+   "financial_health": 1.70345507787966,
+   "age_income_interacti": 1.67228222342022,
+   "utilization_debt_int": 1.67351176648971,
+   "MonthlyIncome_missin": 1.81551528975188,
+   "Dependents_missing": 1.65213201062304
+  }
+ },
+ "62": {
+  "steps": [
+   {
+    "entered": "age",
+    "removed": "",
+    "chisq": 151.811925744594
+   }
+  ],
+  "final": {
+   "Intercept": -154.013122454077,
+   "age": 2.4648932539518
+  },
+  "entry_after_step_1": {
+   "credit_utilization_c": 1.75980740331964,
+   "debt_ratio_capped": 1.50933914511756,
+   "num_late_30_59": 1.51252537463454,
+   "num_late_60_89": 1.51416033570991,
+   "num_late_90_plus": 1.62995806863906,
+   "total_late_payments": 1.57625076560199,
+   "has_delinquency": 1.5091242435729,
+   "has_serious_delinque": 1.76317806318318,
+   "monthly_income": 1.51015121390676,
+   "log_monthly_income": 1.50894955128239,
+   "num_credit_lines": 1.52401157219905,
+   "num_real_estate_loan": 1.61865894940475,
+   "log_num_credit_lines": 1.59392563402099,
+   "num_dependents": 1.65260907879413,
+   "income_per_dependent": 1.53813381700322,
+   "credit_lines_per_per": 1.519572094653,
+   "flag_high_utilizatio": 1.74432377606321,
+   "flag_very_high_utili": 1.63918144144185,
+   "flag_high_debt_ratio": 1.55200756287554,
+   "flag_very_high_debt_": 1.51091580356362,
+   "flag_recent_late_pay": 1.57943570145336,
+   "flag_serious_delinqu": 1.76317806318317,
+   "flag_multiple_delinq": 1.50944155384135,
+   "flag_low_income": 1.5091974472794,
+   "flag_many_dependents": 1.60546387624319,
+   "flag_few_credit_line": 1.58280442876856,
+   "total_risk_flags": 1.50895238453251,
+   "credit_util_category": 1.75525903125863,
+   "debt_category": 1.52925522358007,
+   "age_category": 1.53295105227442,
+   "financial_health": 1.5229317409677,
+   "age_income_interacti": 1.50895668405647,
+   "utilization_debt_int": 1.51736299584332,
+   "MonthlyIncome_missin": 1.50894512273176,
+   "Dependents_missing": 1.51058177722974
+  }
+ },
+ "59": {
+  "steps": [
+   {
+    "entered": "age",
+    "removed": "",
+    "chisq": 165.273227858304
+   },
+   {
+    "entered": "utilization_debt_int",
+    "removed": "",
+    "chisq": 5.4160416237993
+   },
+   {
+    "entered": "",
+    "removed": "utilization_debt_int",
+    "chisq": 0.66053803077824
+   }
+  ],
+  "final": {
+   "Intercept": -153.779511769304,
+   "age": 2.58761156302454
+  },
+  "entry_after_step_1": {
+   "credit_utilization_c": 5.28178097630111,
+   "debt_ratio_capped": 5.32307596183291,
+   "num_late_30_59": 5.28871358944861,
+   "num_late_60_89": 5.2842186153723,
+   "num_late_90_plus": 5.28697818981272,
+   "total_late_payments": 5.29671923229295,
+   "has_delinquency": 5.3332773874411,
+   "has_serious_delinque": 5.27987222478393,
+   "monthly_income": 5.28018676421006,
+   "log_monthly_income": 5.28354471545952,
+   "num_credit_lines": 5.28705090748499,
+   "num_real_estate_loan": 5.29557789485787,
+   "log_num_credit_lines": 5.280462203125,
+   "num_dependents": 5.30102869903459,
+   "income_per_dependent": 5.29055640610876,
+   "credit_lines_per_per": 5.27973744559089,
+   "flag_high_utilizatio": 5.28471527822036,
+   "flag_very_high_utili": 5.2813255256276,
+   "flag_high_debt_ratio": 5.28613336942885,
+   "flag_very_high_debt_": 5.28018484615419,
+   "flag_recent_late_pay": 5.28715692339176,
+   "flag_serious_delinqu": 5.27987222478393,
+   "flag_multiple_delinq": 5.30286867783043,
+   "flag_low_income": 5.28636300746414,
+   "flag_many_dependents": 5.29384622653781,
+   "flag_few_credit_line": 5.3212858242324,
+   "total_risk_flags": 5.28341687026648,
+   "credit_util_category": 5.28537249309669,
+   "debt_category": 5.28706956948112,
+   "age_category": 5.27990218261804,
+   "financial_health": 5.28922635990598,
+   "age_income_interacti": 5.28190309814508,
+   "utilization_debt_int": 5.4160416237993,
+   "MonthlyIncome_missin": 5.28484316498824,
+   "Dependents_missing": 5.27962539202376
+  }
+ },
+ "60": {
+  "steps": [
+   {
+    "entered": "age",
+    "removed": "",
+    "chisq": 158.403429588155
+   },
+   {
+    "entered": "has_delinquency",
+    "removed": "",
+    "chisq": 5.15523204936647
+   },
+   {
+    "entered": "",
+    "removed": "has_delinquency",
+    "chisq": 1.4492813472419
+   }
+  ],
+  "final": {
+   "Intercept": -177.482646177929,
+   "age": 2.93227290728842
+  },
+  "entry_after_step_1": {
+   "credit_utilization_c": 5.09373800239058,
+   "debt_ratio_capped": 5.10641770607331,
+   "num_late_30_59": 5.09070048254524,
+   "num_late_60_89": 5.09198221247145,
+   "num_late_90_plus": 5.08578018972967,
+   "total_late_payments": 5.09366326940445,
+   "has_delinquency": 5.15523204936647,
+   "has_serious_delinque": 5.08568632231507,
+   "monthly_income": 5.09119082391958,
+   "log_monthly_income": 5.08960792059278,
+   "num_credit_lines": 5.09067807280054,
+   "num_real_estate_loan": 5.09651562220774,
+   "log_num_credit_lines": 5.08654728453275,
+   "num_dependents": 5.08889295807352,
+   "income_per_dependent": 5.09187520468025,
+   "credit_lines_per_per": 5.08600015141975,
+   "flag_high_utilizatio": 5.09185933951066,
+   "flag_very_high_utili": 5.0923862157919,
+   "flag_high_debt_ratio": 5.08611197650364,
+   "flag_very_high_debt_": 5.0888975918899,
+   "flag_recent_late_pay": 5.09612158992648,
+   "flag_serious_delinqu": 5.08568632231507,
+   "flag_multiple_delinq": 5.1040635049063,
+   "flag_low_income": 5.09117069470443,
+   "flag_many_dependents": 5.08659996406794,
+   "flag_few_credit_line": 5.09922396047973,
+   "total_risk_flags": 5.08577232525597,
+   "credit_util_category": 5.09721884373604,
+   "debt_category": 5.08600820830085,
+   "age_category": 5.08640115897746,
+   "financial_health": 5.10177803162854,
+   "age_income_interacti": 5.08710379977942,
+   "utilization_debt_int": 5.10871776429575,
+   "MonthlyIncome_missin": 5.0858031118263,
+   "Dependents_missing": 5.08569581608637
+  }
+ },
+ "64": {
+  "steps": [
+   {
+    "entered": "age",
+    "removed": "",
+    "chisq": 143.914637570494
+   },
+   {
+    "entered": "age_category",
+    "removed": "",
+    "chisq": 4.06542476317703
+   },
+   {
+    "entered": "",
+    "removed": "age",
+    "chisq": 0.00606861293716
+   }
+  ],
+  "final": {
+   "Intercept": -66.146855470023,
+   "age_category": 14.7066649093526
+  },
+  "entry_after_step_1": {
+   "credit_utilization_c": 3.08670373470429,
+   "debt_ratio_capped": 3.09551705179979,
+   "num_late_30_59": 3.13416250591792,
+   "num_late_60_89": 3.12012851755567,
+   "num_late_90_plus": 3.07528741529484,
+   "total_late_payments": 3.05147040795116,
+   "has_delinquency": 3.05158360867867,
+   "has_serious_delinque": 3.05487072090297,
+   "monthly_income": 3.05660738949126,
+   "log_monthly_income": 3.09463506308337,
+   "num_credit_lines": 3.0705162057763,
+   "num_real_estate_loan": 3.0889601659065,
+   "log_num_credit_lines": 3.07511357477801,
+   "num_dependents": 3.06813234419826,
+   "income_per_dependent": 3.05884085796613,
+   "credit_lines_per_per": 3.08942817959204,
+   "flag_high_utilizatio": 3.10509399020785,
+   "flag_very_high_utili": 3.11252580442158,
+   "flag_high_debt_ratio": 3.05205252110346,
+   "flag_very_high_debt_": 3.09268030872372,
+   "flag_recent_late_pay": 3.05117989976373,
+   "flag_serious_delinqu": 3.05487072090297,
+   "flag_multiple_delinq": 3.05538183913221,
+   "flag_low_income": 3.15844284176121,
+   "flag_many_dependents": 3.05115707293439,
+   "flag_few_credit_line": 3.05324949001034,
+   "total_risk_flags": 3.05106745694791,
+   "credit_util_category": 3.07297770134295,
+   "debt_category": 3.05107092291892,
+   "age_category": 4.06542476317703,
+   "financial_health": 3.05370682773297,
+   "age_income_interacti": 3.09048088092488,
+   "utilization_debt_int": 3.05311718820951,
+   "MonthlyIncome_missin": 3.08994126564538,
+   "Dependents_missing": 3.14479683747842
+  }
+ },
+ "66": {
+  "steps": [
+   {
+    "entered": "age",
+    "removed": "",
+    "chisq": 138.522540006506
+   },
+   {
+    "entered": "",
+    "removed": "age",
+    "chisq": 3.28014282218866
+   }
+  ],
+  "final": {
+   "Intercept": -1.821235287361
+  },
+  "entry_after_step_1": {}
+ },
+ "71": {
+  "steps": [
+   {
+    "entered": "age",
+    "removed": "",
+    "chisq": 133.594080570027
+   },
+   {
+    "entered": "",
+    "removed": "age",
+    "chisq": 1.69446234993458
+   }
+  ],
+  "final": {
+   "Intercept": -2.12026353620009
+  },
+  "entry_after_step_1": {}
+ }
+}
