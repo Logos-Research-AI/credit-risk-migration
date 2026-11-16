@@ -1,0 +1,73 @@
+real split file: header 'row_id', 105000 ids, distinct 105000, min 1, max 150000, all whole numbers written with digits only: True, sorted: False
+
+== sizes with the real split file, training file = first n data lines of the real file (first column 1 to n)
+   n=   1: completed; train 1 validation 0; ids of the real split file at most n: 1; train ids [1.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 2, 'model_features_validation.csv': 1}
+   n=   2: completed; train 2 validation 0; ids of the real split file at most n: 2; train ids [1.0, 2.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 3, 'model_features_validation.csv': 1}
+   n=   3: completed; train 2 validation 1; ids of the real split file at most n: 2; train ids [1.0, 2.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 3, 'model_features_validation.csv': 2}
+   n=   4: completed; train 3 validation 1; ids of the real split file at most n: 3; train ids [1.0, 2.0, 4.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 2}
+   n=   5: completed; train 4 validation 1; ids of the real split file at most n: 4; train ids [1.0, 2.0, 4.0, 5.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 5, 'model_features_validation.csv': 2}
+   n=   6: completed; train 5 validation 1; ids of the real split file at most n: 5; train ids [1.0, 2.0, 4.0, 5.0, 6.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 6, 'model_features_validation.csv': 2}
+   n=   7: completed; train 6 validation 1; ids of the real split file at most n: 6; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 7, 'model_features_validation.csv': 2}
+   n=   8: completed; train 7 validation 1; ids of the real split file at most n: 7; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 8, 'model_features_validation.csv': 2}
+   n=   9: completed; train 7 validation 2; ids of the real split file at most n: 7; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 8, 'model_features_validation.csv': 3}
+   n=  10: completed; train 8 validation 2; ids of the real split file at most n: 8; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 9, 'model_features_validation.csv': 3}
+   n=  11: completed; train 8 validation 3; ids of the real split file at most n: 8; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 9, 'model_features_validation.csv': 4}
+   n=  12: completed; train 8 validation 4; ids of the real split file at most n: 8; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 9, 'model_features_validation.csv': 5}
+   n=  13: completed; train 8 validation 5; ids of the real split file at most n: 8; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 9, 'model_features_validation.csv': 6}
+   n=  14: completed; train 9 validation 5; ids of the real split file at most n: 9; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 14.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 10, 'model_features_validation.csv': 6}
+   n=  15: completed; train 9 validation 6; ids of the real split file at most n: 9; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 14.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 10, 'model_features_validation.csv': 7}
+   n=  16: completed; train 10 validation 6; ids of the real split file at most n: 10; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 14.0, 16.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 11, 'model_features_validation.csv': 7}
+   n=  17: completed; train 11 validation 6; ids of the real split file at most n: 11; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 14.0, 16.0, 17.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 12, 'model_features_validation.csv': 7}
+   n=  18: completed; train 12 validation 6; ids of the real split file at most n: 12; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 14.0, 16.0, 17.0, 18.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 13, 'model_features_validation.csv': 7}
+   n=  19: completed; train 13 validation 6; ids of the real split file at most n: 13; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 14.0, 16.0, 17.0, 18.0, 19.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 14, 'model_features_validation.csv': 7}
+   n=  20: completed; train 14 validation 6; ids of the real split file at most n: 14; train ids [1.0, 2.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 14.0, 16.0, 17.0, 18.0, 19.0, 20.0]; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 15, 'model_features_validation.csv': 7}
+   n=  50: completed; train 31 validation 19; ids of the real split file at most n: 31; train ids ...; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 32, 'model_features_validation.csv': 20}
+   n= 100: completed; train 67 validation 33; ids of the real split file at most n: 67; train ids ...; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 68, 'model_features_validation.csv': 34}
+   n=1000: completed; train 705 validation 295; ids of the real split file at most n: 705; train ids ...; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 706, 'model_features_validation.csv': 296}
+   real file: completed; rows 150000; train 105000 validation 45000; partition in file order: True; same columns in both sets as in credit_features: True; row_id kind Float64; split ids kind Float64; files {'income_medians.csv': 6, 'model_features_train.csv': 105001, 'model_features_validation.csv': 45001}
+   real file: train row_id increasing: True; validation row_id increasing: True
+
+== split file variants, training file = first 20 data lines
+   ids 1,3,5 (column row_id only)              : completed; split ids read 3; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   ids in another order 5,1,3                  : completed; split ids read 3; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   an id twice: 1,3,3,5                        : completed; split ids read 4; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   ids of no applicant too: 1,3,5,999,150001   : completed; split ids read 5; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   only ids of no applicant: 999,1000          : completed; split ids read 2; train 0 [] validation 20; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 1, 'model_features_validation.csv': 21}
+   every id 1 to 20                            : completed; split ids read 20; train 20 [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0] validation 0; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 21, 'model_features_validation.csv': 1}
+   header only                                 : completed; split ids read 0; train 0 [] validation 20; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 1, 'model_features_validation.csv': 21}
+   header only, no line end                    : completed; split ids read 0; train 0 [] validation 20; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 1, 'model_features_validation.csv': 21}
+   empty file (0 bytes)                        : RAISED NoDataError: empty CSV; files {}
+   row_id second of three columns              : completed; split ids read 3; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   no row_id column (named id)                 : RAISED ColumnNotFoundError: unable to find column "row_id"; valid columns: ["id"]
+
+Resolved plan until failure:
+
+	---> FAILED HERE RESOLVING 'select' ; files {}
+   name in capitals ROW_ID                     : RAISED ColumnNotFoundError: unable to find column "row_id"; valid columns: ["ROW_ID"]
+
+Resolved plan until failure:
+
+	---> FAILED HERE RESOLVING 'sele; files {}
+   quoted header and ids                       : completed; split ids read 3; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   CRLF line ends                              : completed; split ids read 3; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   no final line end                           : completed; split ids read 3; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   a blank line between ids                    : completed; split ids read 4; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   blank id in a two-column file               : completed; split ids read 3; train 2 [1.0, 5.0] validation 18; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 3, 'model_features_validation.csv': 19}
+   id written 3.0                              : RAISED InvalidOperationError: conversion from `str` to `i64` failed in column 'row_id' for 1 out of 3 values: ["3.0"]; files {}
+   id written 3.7                              : RAISED InvalidOperationError: conversion from `str` to `i64` failed in column 'row_id' for 1 out of 3 values: ["3.7"]; files {}
+   id with a space ' 3'                        : RAISED InvalidOperationError: conversion from `str` to `i64` failed in column 'row_id' for 1 out of 3 values: [" 3"]; files {}
+   id written +3                               : completed; split ids read 3; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   id written 03                               : completed; split ids read 3; train 3 [1.0, 3.0, 5.0] validation 17; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 4, 'model_features_validation.csv': 18}
+   id written 1e0                              : RAISED InvalidOperationError: conversion from `str` to `i64` failed in column 'row_id' for 1 out of 3 values: ["1e0"]; files {}
+   id text abc                                 : RAISED InvalidOperationError: conversion from `str` to `i64` failed in column 'row_id' for 1 out of 3 values: ["abc"]; files {}
+   negative id -3                              : completed; split ids read 3; train 2 [1.0, 5.0] validation 18; partition in file order: True; files {'income_medians.csv': 6, 'model_features_train.csv': 3, 'model_features_validation.csv': 19}
+   id beyond 64-bit integers                   : RAISED InvalidOperationError: conversion from `str` to `i64` failed in column 'row_id' for 1 out of 3 values: ["99999999999999999999"]; files {}
+   file absent                                 : RAISED FileNotFoundError: No such file or directory (os error 2): /nonexistent/split.csv; files {}
+
+== the first column of the training file is the id matched, not the position of the row
+   ids 101 to 120                              : completed; train 1 [103.0] validation 19 [101.0, 102.0, 104.0, 105.0, 106.0, 107.0, 108.0, 109.0, 110.0, 111.0, 112.0, 113.0, 114.0, 115.0, 116.0, 117.0, 118.0, 119.0, 120.0]; partition in file order: True
+   ids 20 down to 1                            : completed; train 3 [5.0, 3.0, 1.0] validation 17 [20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 4.0, 2.0]; partition in file order: True
+   ids 5,3,1 first then 21 up                  : completed; train 3 [5.0, 3.0, 1.0] validation 17 [21.0, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0, 32.0, 33.0, 34.0, 35.0, 36.0, 37.0]; partition in file order: True
+   an id twice in the training file (3,3)      : RAISED ValueError: Feature engineering stopped. Nothing is exported.
+   id 3.5 in the training file                 : completed; train 2 [1.0, 5.0] validation 18 [2.0, 3.5, 4.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0]; partition in file order: True
+   blank id in the training file               : RAISED ValueError: Feature engineering stopped. Nothing is exported.

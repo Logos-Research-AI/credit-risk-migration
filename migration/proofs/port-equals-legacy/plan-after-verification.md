@@ -338,6 +338,26 @@ blueprint until that change is formalised and the owner has refreshed the profil
 written meanwhile: `informal-spec-v3-draft.md` and `definitions-v3-draft.md`, next to this file.
 D3 to D9 remain open.
 
+**All nine decided, 2026-11-16.** D1 = ruling G55 and D2 = ruling G54 (owner). D3 to D9 settled
+by the lead as recommended, two of them with the owner's answer:
+- D3: no exception is written into the contracts; equality is stated on all valid input and
+  decides each case; a coverage contract that fails is disproved and reported; the fit stays a
+  parameter taken to return.
+- D4: no bound of 10^8; the port's count round trip is linked to the SAS unit's own BEST8. rule,
+  on the evidence of a run (being made by a port translator).
+- D5: the interface outputs first, then one per-file contract for the six compared files the
+  interface does not carry and the column names of predict's files; none for the coefficient,
+  stepwise and printed files.
+- D6: the SAS `arrange` is paired with the identity; tables are compared in order.
+- D7 (owner): the 84 cleared theorems may be removed from `5365851c`; the 46 kept theorems,
+  `thm:train_run_01_fit_frame_C4` and its negation stay. Judging stays off on `5365851c`
+  (owner's choice): the match of Lean and text rests on the reviews. Record of the 84:
+  `reports/removed-2026-11-16.md`.
+- D8: the shape lemma for Q12 and Q13 lives in the port blueprint.
+- D9: the size of the split is held by link, as a condition on the port's split parameter.
+
+The list below is kept as written before the decisions.
+
 - **D1. Files read back.** `SasLinks` (3) takes every read-back as the identity. The port's is
   not (H4, H5: BEST12. changes 11 feature columns and both score columns), and the SAS program
   exports its feature files with `format _numeric_ best12.` too. Under identity on both sides the

@@ -8,8 +8,8 @@ Each text below is meant to become the informal statement of its item. This file
 Rulings built in: G53 (valid input only), G54 (a present `MonthlyIncome` or `NumberOfDependents`
 is written in at most 12 characters; it reaches these texts through `TrainOK` and `TestOK`), G55
 (the equality is stated for one read-back shared by both sides; the requirements are carried over
-at the identity). Marks `[D3]` to `[D9]` show where a text follows my recommendation on a decision
-not yet settled; `[R1]` to `[R6]` where a real run of the port is still owed before the clause
+at the identity). Marks `[D3]` to `[D9]` show where a decision is applied (all settled on
+2026-11-16 as recommended); `[R1]` to `[R6]` where a real run of the port is still owed before the clause
 may be stated (plan, section 2.5).
 
 Vocabulary. A *read-back* is a function from the table a script writes to the table the next

@@ -1,0 +1,148 @@
+== R1: input_best32 against float(text)
+R1 every stated field of legacy/data (both files): 526817 distinct texts, not the nearest double (or read as missing): 0
+R1 integers of 1 to 32 digits (2000 of each length): 58683 distinct texts, not the nearest double (or read as missing): 0
+R1 decimals of 3 to 32 characters, point at every position (300 of each): 139180 distinct texts, not the nearest double (or read as missing): 0
+R1 0.ddd forms, 3 to 32 characters (2000 of each length): 54763 distinct texts, not the nearest double (or read as missing): 0
+R1 leading zeros in the integer part ('007', '00.5'): 7 distinct texts, not the nearest double (or read as missing): 0
+R1 at most 12 characters: integers, every length (20000 each): 166637 distinct texts, not the nearest double (or read as missing): 0
+R1 at most 12 characters: decimals, every length and point position (5000 each): 257753 distinct texts, not the nearest double (or read as missing): 0
+R1 hard cases: ties, 17+ digits, exponents, signs, '5.', '.5', blanks around: 32 distinct texts, not the nearest double (or read as missing): 0
+   values: [('+7', 7.0), ('-7', -7.0), ('-0', -0.0), ('+0.0', 0.0), ('5.', 5.0), ('.5', 0.5), ('-.5', -0.5), ('+.5', 0.5), ('1.e2', 100.0), (' 12', 12.0), ('12 ', 12.0), ('  12.5  ', 12.5)]
+-- texts read as missing (null) or not as their number
+   ''                                             -> None                         (float(text): 'not a number for Python')
+   ' '                                            -> None                         (float(text): 'not a number for Python')
+   '.'                                            -> None                         (float(text): 'not a number for Python')
+   'NA'                                           -> None                         (float(text): 'not a number for Python')
+   'na'                                           -> None                         (float(text): 'not a number for Python')
+   'N/A'                                          -> None                         (float(text): 'not a number for Python')
+   'abc'                                          -> None                         (float(text): 'not a number for Python')
+   '12abc'                                        -> None                         (float(text): 'not a number for Python')
+   '1,000'                                        -> None                         (float(text): 'not a number for Python')
+   '1 000'                                        -> None                         (float(text): 'not a number for Python')
+   '1e'                                           -> None                         (float(text): 'not a number for Python')
+   'e5'                                           -> None                         (float(text): 'not a number for Python')
+   '+'                                            -> None                         (float(text): 'not a number for Python')
+   '-'                                            -> None                         (float(text): 'not a number for Python')
+   '--1'                                          -> None                         (float(text): 'not a number for Python')
+   '1.2.3'                                        -> None                         (float(text): 'not a number for Python')
+   '0x10'                                         -> None                         (float(text): 'not a number for Python')
+   '1_000'                                        -> None                         (float(text): 1000.0)
+   'inf'                                          -> None                         (float(text): inf)
+   'Infinity'                                     -> None                         (float(text): inf)
+   'nan'                                          -> None                         (float(text): nan)
+   'NaN'                                          -> None                         (float(text): nan)
+   '1e400'                                        -> None                         (float(text): inf)
+   '-1e400'                                       -> None                         (float(text): -inf)
+   '1e-400'                                       -> 0.0                          (float(text): 0.0)
+   '1d3'                                          -> None                         (float(text): 'not a number for Python')
+   '$5'                                           -> None                         (float(text): 'not a number for Python')
+   '5%'                                           -> None                         (float(text): 'not a number for Python')
+   '\t5'                                          -> 5.0                          (float(text): 5.0)
+   '5\t'                                          -> 5.0                          (float(text): 5.0)
+   '\xa05'                                        -> 5.0                          (float(text): 5.0)
+   '１'                                            -> None                         (float(text): 1.0)
+   '11111111111111111111111111111111'             -> 1.1111111111111112e+31       (float(text): 1.1111111111111112e+31)
+   '111111111111111111111111111111111'            -> 1.1111111111111112e+31       (float(text): 1.1111111111111112e+32)
+   '1111111111111111111111111111111111111111'     -> 1.1111111111111112e+31       (float(text): 1.1111111111111112e+39)
+   '999999999999999999999999999999999.5'          -> 1e+32                        (float(text): 1e+33)
+   '0.1111111111111111111111111111111'            -> 0.1111111111111111           (float(text): 0.1111111111111111)
+   ' 11111111111111111111111111111111'            -> 1.111111111111111e+30        (float(text): 1.1111111111111112e+31)
+   '1111111111111111111111111111111e5'            -> None                         (float(text): 1.1111111111111111e+35)
+   '111111111111111111111111111111e55'            -> 1.111111111111111e+34        (float(text): 1.111111111111111e+84)
+   null input -> [None]
+
+== R2: input_best32(sas_best12(float(text))) == float(text), texts of at most 12 characters
+R2 every MonthlyIncome / NumberOfDependents text of legacy/data training: 13599 texts, changed: 0
+R2 all integers 0..200000: 200001 texts, changed: 0
+R2 integers of 6 digits (100000 random + ends): 94576 texts, changed: 0
+R2 integers of 7 digits (100000 random + ends): 99418 texts, changed: 0
+R2 integers of 8 digits (100000 random + ends): 99944 texts, changed: 0
+R2 integers of 9 digits (100000 random + ends): 99997 texts, changed: 0
+R2 integers of 10 digits (100000 random + ends): 100001 texts, changed: 0
+R2 integers of 11 digits (100000 random + ends): 100001 texts, changed: 0
+R2 integers of 12 digits (100000 random + ends): 100002 texts, changed: 0
+R2 3 characters, 2 digits, point after 1 digits, first digit not 0 (20000): 90 texts, changed: 0
+R2 4 characters, 3 digits, point after 1 digits, first digit not 0 (20000): 900 texts, changed: 0
+R2 4 characters, 3 digits, point after 2 digits, first digit not 0 (20000): 900 texts, changed: 0
+R2 5 characters, 4 digits, point after 1 digits, first digit not 0 (20000): 8045 texts, changed: 0
+R2 5 characters, 4 digits, point after 2 digits, first digit not 0 (20000): 8038 texts, changed: 0
+R2 5 characters, 4 digits, point after 3 digits, first digit not 0 (20000): 8017 texts, changed: 0
+R2 6 characters, 5 digits, point after 1 digits, first digit not 0 (20000): 17906 texts, changed: 0
+R2 6 characters, 5 digits, point after 2 digits, first digit not 0 (20000): 17930 texts, changed: 0
+R2 6 characters, 5 digits, point after 3 digits, first digit not 0 (20000): 17962 texts, changed: 0
+R2 6 characters, 5 digits, point after 4 digits, first digit not 0 (20000): 17886 texts, changed: 0
+R2 7 characters, 6 digits, point after 1 digits, first digit not 0 (20000): 19783 texts, changed: 0
+R2 7 characters, 6 digits, point after 2 digits, first digit not 0 (20000): 19791 texts, changed: 0
+R2 7 characters, 6 digits, point after 3 digits, first digit not 0 (20000): 19793 texts, changed: 0
+R2 7 characters, 6 digits, point after 4 digits, first digit not 0 (20000): 19762 texts, changed: 0
+R2 7 characters, 6 digits, point after 5 digits, first digit not 0 (20000): 19786 texts, changed: 0
+R2 8 characters, 7 digits, point after 1 digits, first digit not 0 (20000): 19977 texts, changed: 0
+R2 8 characters, 7 digits, point after 2 digits, first digit not 0 (20000): 19966 texts, changed: 0
+R2 8 characters, 7 digits, point after 3 digits, first digit not 0 (20000): 19974 texts, changed: 0
+R2 8 characters, 7 digits, point after 4 digits, first digit not 0 (20000): 19984 texts, changed: 0
+R2 8 characters, 7 digits, point after 5 digits, first digit not 0 (20000): 19973 texts, changed: 0
+R2 8 characters, 7 digits, point after 6 digits, first digit not 0 (20000): 19973 texts, changed: 0
+R2 9 characters, 8 digits, point after 1 digits, first digit not 0 (20000): 19997 texts, changed: 0
+R2 9 characters, 8 digits, point after 2 digits, first digit not 0 (20000): 19998 texts, changed: 0
+R2 9 characters, 8 digits, point after 3 digits, first digit not 0 (20000): 19997 texts, changed: 0
+R2 9 characters, 8 digits, point after 4 digits, first digit not 0 (20000): 19999 texts, changed: 0
+R2 9 characters, 8 digits, point after 5 digits, first digit not 0 (20000): 19998 texts, changed: 0
+R2 9 characters, 8 digits, point after 6 digits, first digit not 0 (20000): 19997 texts, changed: 0
+R2 9 characters, 8 digits, point after 7 digits, first digit not 0 (20000): 19997 texts, changed: 0
+R2 10 characters, 9 digits, point after 1 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 10 characters, 9 digits, point after 2 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 10 characters, 9 digits, point after 3 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 10 characters, 9 digits, point after 4 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 10 characters, 9 digits, point after 5 digits, first digit not 0 (20000): 19999 texts, changed: 0
+R2 10 characters, 9 digits, point after 6 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 10 characters, 9 digits, point after 7 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 10 characters, 9 digits, point after 8 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 1 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 2 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 3 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 4 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 5 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 6 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 7 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 8 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 11 characters, 10 digits, point after 9 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 1 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 2 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 3 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 4 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 5 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 6 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 7 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 8 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 9 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 12 characters, 11 digits, point after 10 digits, first digit not 0 (20000): 20000 texts, changed: 0
+R2 '0.' + 1 digits (3 characters) (30000): 10 texts, changed: 0
+R2 '0.' + 2 digits (4 characters) (30000): 100 texts, changed: 0
+R2 '0.' + 3 digits (5 characters) (30000): 1000 texts, changed: 0
+R2 '0.' + 4 digits (6 characters) (30000): 9495 texts, changed: 0
+R2 '0.' + 5 digits (7 characters) (30000): 25937 texts, changed: 0
+R2 '0.' + 6 digits (8 characters) (30000): 29544 texts, changed: 0
+R2 '0.' + 7 digits (9 characters) (30000): 29953 texts, changed: 0
+R2 '0.' + 8 digits (10 characters) (30000): 29990 texts, changed: 0
+R2 '0.' + 9 digits (11 characters) (30000): 30000 texts, changed: 0
+R2 '0.' + 10 digits (12 characters) (30000): 30000 texts, changed: 0
+R2 '.' + 1 digits (2 characters, no leading 0) (30000): 10 texts, changed: 0
+R2 '.' + 2 digits (3 characters, no leading 0) (30000): 100 texts, changed: 0
+R2 '.' + 3 digits (4 characters, no leading 0) (30000): 1000 texts, changed: 0
+R2 '.' + 4 digits (5 characters, no leading 0) (30000): 9512 texts, changed: 0
+R2 '.' + 5 digits (6 characters, no leading 0) (30000): 25971 texts, changed: 0
+R2 '.' + 6 digits (7 characters, no leading 0) (30000): 29563 texts, changed: 0
+R2 '.' + 7 digits (8 characters, no leading 0) (30000): 29959 texts, changed: 0
+R2 '.' + 8 digits (9 characters, no leading 0) (30000): 29994 texts, changed: 0
+R2 '.' + 9 digits (10 characters, no leading 0) (30000): 30000 texts, changed: 0
+R2 '.' + 10 digits (11 characters, no leading 0) (30000): 30000 texts, changed: 0
+R2 '.' + 11 digits (12 characters, no leading 0) (30000): 30000 texts, changed: 26990; e.g. (text, BEST12 text, value read) [('.99303984006', '0.9930398401', 0.9930398401), ('.41633803963', '0.4163380396', 0.4163380396), ('.16199103932', '0.1619910393', 0.1619910393)]
+R2 very small plain: '0.' + zeros + digits, 12 characters, every count of zeros: 34729 texts, changed: 0
+R2 smallest plain forms: 7 texts, changed: 0
+R2 zero forms: 7 texts, changed: 0
+R2 trailing zeros and leading zeros: 7 texts, changed: 0
+R2 E-notation texts of 5 characters (20000): 216 texts, changed: 0
+R2 E-notation texts of 8 characters (20000): 13596 texts, changed: 0
+R2 E-notation texts of 10 characters (20000): 19716 texts, changed: 0
+R2 E-notation texts of 12 characters (20000): 19996 texts, changed: 2010; e.g. (text, BEST12 text, value read) [('5.4700011E-5', '0.0000547', 5.47e-05), ('1.1791479E-5', '0.0000117915', 1.17915e-05), ('7.1256817E-5', '0.0000712568', 7.12568e-05)]
+R2 hard: 11 and 12 significant digits around powers of ten: 17 texts, changed: 3; e.g. (text, BEST12 text, value read) [('.99999999999', '1', 1.0), ('.12345678901', '0.123456789', 0.123456789), ('.01234567891', '0.0123456789', 0.0123456789)]

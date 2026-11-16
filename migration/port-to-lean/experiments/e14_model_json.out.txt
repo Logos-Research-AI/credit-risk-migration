@@ -1,0 +1,94 @@
+
+== real data: {'fe': 'completed', 'train': 'completed', 'metrics': 'completed', 'predict': 'completed'}
+   train: intercept type float; coefficients type dict of 15; value types ['float']; all finite: True
+   model.json: 717 characters, top-level keys ['intercept', 'coefficients']; intercept text reads as float; coefficient names equal and in the same order as train's: True
+   model.json parsed == train's values bit for bit: intercept True, coefficients True
+   names in order: ['debt_ratio_capped', 'has_delinquency', 'age', 'num_credit_lines', 'num_real_estate_loans', 'log_num_credit_lines', 'flag_high_utilization', 'flag_very_high_utilization', 'flag_high_debt_ratio', 'flag_very_high_debt_ratio', 'flag_recent_late_payments', 'flag_multiple_delinquencies', 'total_risk_flags', 'credit_util_category', 'financial_health']
+   predict: intercept type float, coefficients dict, value types ['float']
+   predict's model == train's model: intercept bit for bit True; names and order True; every coefficient bit for bit True
+   every coefficient name is a column of predict's scoring frame: True
+   (model_coefficients.csv, the other file train writes about the model: 17 lines, header 'Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_')
+
+== fix2/good (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'completed', 'metrics': 'completed', 'predict': 'completed'}
+   train: intercept type float; coefficients type dict of 4; value types ['float']; all finite: True
+   model.json: 234 characters, top-level keys ['intercept', 'coefficients']; intercept text reads as float; coefficient names equal and in the same order as train's: True
+   model.json parsed == train's values bit for bit: intercept True, coefficients True
+   names in order: ['credit_utilization_capped', 'total_late_payments', 'has_delinquency', 'flag_recent_late_payments']
+   predict: intercept type float, coefficients dict, value types ['float']
+   predict's model == train's model: intercept bit for bit True; names and order True; every coefficient bit for bit True
+   every coefficient name is a column of predict's scoring frame: True
+   (model_coefficients.csv, the other file train writes about the model: 6 lines, header 'Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_')
+
+== fix_round5/good (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'completed', 'metrics': 'completed', 'predict': 'completed'}
+   train: intercept type float; coefficients type dict of 4; value types ['float']; all finite: True
+   model.json: 234 characters, top-level keys ['intercept', 'coefficients']; intercept text reads as float; coefficient names equal and in the same order as train's: True
+   model.json parsed == train's values bit for bit: intercept True, coefficients True
+   names in order: ['credit_utilization_capped', 'total_late_payments', 'has_delinquency', 'flag_recent_late_payments']
+   predict: intercept type float, coefficients dict, value types ['float']
+   predict's model == train's model: intercept bit for bit True; names and order True; every coefficient bit for bit True
+   every coefficient name is a column of predict's scoring frame: True
+   (model_coefficients.csv, the other file train writes about the model: 6 lines, header 'Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_')
+
+== fix_G34/income_zero (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'completed', 'metrics': 'completed', 'predict': 'completed'}
+   train: intercept type float; coefficients type dict of 4; value types ['float']; all finite: True
+   model.json: 234 characters, top-level keys ['intercept', 'coefficients']; intercept text reads as float; coefficient names equal and in the same order as train's: True
+   model.json parsed == train's values bit for bit: intercept True, coefficients True
+   names in order: ['credit_utilization_capped', 'total_late_payments', 'has_delinquency', 'flag_recent_late_payments']
+   predict: intercept type float, coefficients dict, value types ['float']
+   predict's model == train's model: intercept bit for bit True; names and order True; every coefficient bit for bit True
+   every coefficient name is a column of predict's scoring frame: True
+   (model_coefficients.csv, the other file train writes about the model: 6 lines, header 'Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_')
+
+== fix_Q13 (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'completed', 'metrics': 'completed', 'predict': 'completed'}
+   train: intercept type float; coefficients type dict of 4; value types ['float']; all finite: True
+   model.json: 234 characters, top-level keys ['intercept', 'coefficients']; intercept text reads as float; coefficient names equal and in the same order as train's: True
+   model.json parsed == train's values bit for bit: intercept True, coefficients True
+   names in order: ['credit_utilization_capped', 'total_late_payments', 'has_delinquency', 'flag_recent_late_payments']
+   predict: intercept type float, coefficients dict, value types ['float']
+   predict's model == train's model: intercept bit for bit True; names and order True; every coefficient bit for bit True
+   every coefficient name is a column of predict's scoring frame: True
+   (model_coefficients.csv, the other file train writes about the model: 6 lines, header 'Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_')
+
+== fix_Q14 (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'completed', 'metrics': 'completed', 'predict': 'completed'}
+   train: intercept type float; coefficients type dict of 4; value types ['float']; all finite: True
+   model.json: 234 characters, top-level keys ['intercept', 'coefficients']; intercept text reads as float; coefficient names equal and in the same order as train's: True
+   model.json parsed == train's values bit for bit: intercept True, coefficients True
+   names in order: ['credit_utilization_capped', 'total_late_payments', 'has_delinquency', 'flag_recent_late_payments']
+   predict: intercept type float, coefficients dict, value types ['float']
+   predict's model == train's model: intercept bit for bit True; names and order True; every coefficient bit for bit True
+   every coefficient name is a column of predict's scoring frame: True
+   (model_coefficients.csv, the other file train writes about the model: 6 lines, header 'Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_')
+
+== fix_Q7 (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'RAISED RuntimeError: stepwise_logistic: the fit at step 0 ([]) did not converge', 'metrics': 'RAISED ValueError: Model validation stopped. Nothing is exported.', 'predict': 'RAISED ValueError: Test set scoring stopped. Nothing is exported.'}
+   train did not complete; model.json exists: False
+
+== fix_Q9 (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'RAISED RuntimeError: stepwise_logistic: the fit at step 0 ([]) did not converge', 'metrics': 'RAISED ValueError: Model validation stopped. Nothing is exported.', 'predict': 'RAISED ValueError: Test set scoring stopped. Nothing is exported.'}
+   train did not complete; model.json exists: False
+
+== fix_Q27_textid/good (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'completed', 'metrics': 'completed', 'predict': 'completed'}
+   train: intercept type float; coefficients type dict of 4; value types ['float']; all finite: True
+   model.json: 234 characters, top-level keys ['intercept', 'coefficients']; intercept text reads as float; coefficient names equal and in the same order as train's: True
+   model.json parsed == train's values bit for bit: intercept True, coefficients True
+   names in order: ['credit_utilization_capped', 'total_late_payments', 'has_delinquency', 'flag_recent_late_payments']
+   predict: intercept type float, coefficients dict, value types ['float']
+   predict's model == train's model: intercept bit for bit True; names and order True; every coefficient bit for bit True
+   every coefficient name is a column of predict's scoring frame: True
+   (model_coefficients.csv, the other file train writes about the model: 6 lines, header 'Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_')
+
+== fix_round5/train_age_exponent (training file from the scenario, test file from the scenario): {'fe': 'completed', 'train': 'completed', 'metrics': 'completed', 'predict': 'completed'}
+   train: intercept type float; coefficients type dict of 4; value types ['float']; all finite: True
+   model.json: 234 characters, top-level keys ['intercept', 'coefficients']; intercept text reads as float; coefficient names equal and in the same order as train's: True
+   model.json parsed == train's values bit for bit: intercept True, coefficients True
+   names in order: ['credit_utilization_capped', 'total_late_payments', 'has_delinquency', 'flag_recent_late_payments']
+   predict: intercept type float, coefficients dict, value types ['float']
+   predict's model == train's model: intercept bit for bit True; names and order True; every coefficient bit for bit True
+   every coefficient name is a column of predict's scoring frame: True
+   (model_coefficients.csv, the other file train writes about the model: 6 lines, header 'Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_')
+
+== the text form itself: float(json.loads(json.dumps(x))) == x bit for bit
+   finite doubles tried: 999523 changed: 0
+   whole-valued doubles are written with '.0' and read as float: 3.0 float
+   key order kept: True
+   non-finite nan: written 'NaN', read back nan
+   non-finite inf: written 'Infinity', read back inf
+   non-finite -inf: written '-Infinity', read back -inf

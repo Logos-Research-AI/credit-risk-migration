@@ -13,8 +13,11 @@ brought back in line with it; the flags are gone; ruling G53 limits every claim 
 The claim is now stated on the interface the requirements use, `CreditRisk.Pipeline`, so that the
 requirements can be carried over to the port (playbook stage 6).
 
-Rulings built in: G53, G54, G55. Marks `[D3]` to `[D9]` show where the text follows my
-recommendation on a decision the lead has not yet settled.
+Rulings built in: G53, G54, G55. Decisions D1 to D9 of `plan-after-verification.md` are all
+decided (2026-11-16): D1 and D2 by the owner's rulings G55 and G54; D3 to D9 by the lead as
+recommended, D7 with the owner's answer (the 84 cleared theorems may be removed; Judging stays
+off on `5365851c`, so the match of Lean and text rests on the reviews). The marks `[D3]` to
+`[D9]` now show where each decision is applied.
 
 ## 1. Form of every contract
 
@@ -164,7 +167,7 @@ Stated only after every contract of section 2 is proved.
   claim.
 - **Stands, as a recorded fact about the port**: C4 and its proved negation (the fit mask also
   drops a row with a missing outcome). No effect on valid input.
-- **Withdrawn** (the 84 items the update cleared; removal is decision `[D7]`, not the prover's):
+- **Withdrawn** (the 84 items the update cleared; their removal was allowed by the owner on 2026-11-16, `[D7]`; record in `reports/removed-2026-11-16.md`):
   the stage contracts ST1 to ST4 and witnesses W1 to W4 (replaced by sections 2 to 5); the flag
   contracts F1 to F4 of version 2.3 (the flags are gone); every part (b) and the `wf_` domains
   (G53); the intent contracts I1 to I8 (intent is now the 26 requirements); S31 and I8 (now
@@ -195,7 +198,7 @@ lemmas are `lem:` items (plan section 4.3).
 
 1. The requirements change of G54 formalised, and the owner's refresh of both profiles; then the
    profile check again, including the state of the 46 kept theorems.
-2. Decisions D3 to D9.
+2. (Done 2026-11-16: decisions D3 to D9 are settled.)
 3. The runs R1 to R6 of the plan (section 2.5) on the port: `PyLinks` 1, 2, 4, 5, 9 and 10 each
    name the run they wait for.
 4. Review of the three definitions: wiring, and each condition against the port in both
