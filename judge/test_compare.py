@@ -28,7 +28,9 @@ KG, ST, DA, TA = "kaggle_submission.csv", "stepwise_summary.csv", "decile_analys
 HL, HP, FS = "printed_hosmer_lemeshow.csv", "printed_hl_partition.csv", "printed_fit_statistics.csv"
 CT, PM = "printed_confusion_train.csv", "model_performance_metrics.csv"
 AS, PC, IM = "printed_association.csv", "printed_classification.csv", "income_medians.csv"
+TP = "test_predictions.csv"
 CUTS = [cut for cut, _, _ in C.GRADE_CUTS]
+TUPLE = frozenset(C.GRADE_TUPLE)
 PASS = frozenset()
 # grade flips of the positive control that the judge excuses (a fully converged refit against SAS's fit)
 CONV_TRAIN: dict[str, int] = {"risk_grade": 1, "recommendation": 1, "interest_rate": 1}  # applicant 108555, at the 15 % cut
@@ -54,6 +56,11 @@ def cut_gap(pd_: float) -> float:
     """Distance to the nearest grade cut, positive when the probability is below it."""
     cut = min(CUTS, key=lambda k: abs(k - pd_))
     return cut - pd_
+
+
+def flip_to(df: pl.DataFrame, i: int, g: str) -> pl.DataFrame:
+    """Row i given the grade g with its recommendation and rate."""
+    return setc(setc(setc(df, i, "risk_grade", g), i, "recommendation", C.GRADE_TERMS[g][0]), i, "interest_rate", C.GRADE_TERMS[g][1])
 
 
 def rescore(df: pl.DataFrame, pds: list[float]) -> pl.DataFrame:
@@ -99,8 +106,8 @@ def cases():
     pd4 = rs.with_columns(pl.Series("pd_logistic", [f"{p:.4f}" for p in pd_], dtype=pl.Utf8))
     yield "C/D3: pd printed %.4f", RS, {RS: pd4}, ("atleast", {"pd_logistic"}), False, None
     yield "C/D4: pd in E-notation", RS, {RS: setc(rs, far, "pd_logistic", f"{float(PDv):.9E}")}, {"pd_logistic"}, False, {}
-    yield "pd 'nan'", RS, {RS: setc(rs, far, "pd_logistic", "nan")}, {"pd_logistic", "credit_risk_score"}, False, {}
-    yield "pd missing", RS, {RS: setc(rs, far, "pd_logistic", "")}, {"pd_logistic", "credit_risk_score"}, False, {}
+    yield "pd 'nan'", RS, {RS: setc(rs, far, "pd_logistic", "nan")}, {"pd_logistic", "credit_risk_score"} | TUPLE, False, {}
+    yield "pd missing", RS, {RS: setc(rs, far, "pd_logistic", "")}, {"pd_logistic", "credit_risk_score"} | TUPLE, False, {}
     # structure
     yield "row dropped", RS, {RS: rs.slice(1)}, {"rows", "keys"}, False, {}
     yield "row duplicated", RS, {RS: pl.concat([rs, rs.slice(0, 1)])}, {"rows", "keys"}, False, {}
@@ -133,6 +140,13 @@ def cases():
     yield "score rounded to an integer", RS, {RS: setc(rs, far, "credit_risk_score", str(round(float(SCv))))}, {"credit_risk_score"}, False, {}
     yield "score with extra digits", RS, {RS: setc(rs, far, "credit_risk_score", SCv + "1")}, {"credit_risk_score"}, False, {}
     yield "score missing", RS, {RS: setc(rs, far, "credit_risk_score", "")}, {"credit_risk_score"}, False, {}
+    # review of 2026-11-16 (s03, s24, s25): a '%' after the score
+    pct = lambda df: df.with_columns((pl.col("credit_risk_score") + "%").alias("credit_risk_score"))
+    yield "review s03: every score with a '%'", RS, {RS: pct(rs)}, {"credit_risk_score"}, False, {}
+    yield "review s02: one score with a '%'", RS, {RS: setc(rs, far, "credit_risk_score", SCv + "%")}, {"credit_risk_score"}, False, {}
+    yield "review s24: every score with a '%' (final)", FM, {FM: pct(load(FM))}, {"credit_risk_score"}, False, {}
+    yield "review s25: every score with a '%' (test)", TP, {TP: pct(load(TP))}, {"credit_risk_score"}, False, {}
+    yield "score with a leading blank", RS, {RS: setc(rs, far, "credit_risk_score", " " + SCv)}, {"credit_risk_score"}, False, {}
     d1 = rescore(rs, [round(p, 4) for p in pd_]).with_columns(rs["pd_logistic"])
     yield "C/D1: scores from pd rounded to 4dp, pd exact", RS, {RS: d1}, ("atleast", {"credit_risk_score"}), False, None
     old = rs.with_columns(pl.Series("credit_risk_score", [str(round(float(x))) for x in rs["credit_risk_score"].to_list()], dtype=pl.Utf8))
@@ -142,6 +156,22 @@ def cases():
     legit = pl.concat([rs.slice(0, near), rescore(rs.slice(near, 1), [p_up]), rs.slice(near + 1)])
     moved = {c: 1 for c in C.GRADE_TUPLE if legit[c][near] != rs[c][near]}
     yield "legit flip: pd crosses a grade cut, rescored", RS, {RS: legit}, PASS, False, moved
+    # review of 2026-11-16 (g08): the pd crosses the cut and the grade stays: equal to the reference, wrong for its own pd
+    stay = legit
+    for c in C.GRADE_TUPLE:
+        stay = setc(stay, near, c, rs[c][near])
+    yield "review g08: pd crossed a cut, grade not moved", RS, {RS: stay}, set(moved), False, {}
+    # review of 2026-11-16 (g07, g10): a pd exactly on a cut gives a whole-number score; a correct port prints it so
+    at = lambda cut: min((i for i, p in enumerate(pd_) if 0 < cut - p <= C.PD_TOL), key=lambda i: cut - pd_[i])
+    i10, i50 = at(0.10), at(0.50)
+    on10 = pl.concat([rs.slice(0, i10), rescore(rs.slice(i10, 1), [0.10]), rs.slice(i10 + 1)])
+    yield "review g07: pd exactly 0.10, graded B, score 825", RS, {RS: on10}, PASS, False, {"risk_grade": 1, "interest_rate": 1}
+    on50 = pl.concat([rs.slice(0, i50), rescore(rs.slice(i50, 1), [0.50]), rs.slice(i50 + 1)])
+    yield "review g10: pd exactly 0.50, still E, score 725", RS, {RS: on50}, PASS, False, {"pred_logistic": 1}
+    # a pd printed as 0.5 may be 0.50000000001: F is then right, and the print cannot tell (one unit either side)
+    yield "pd printed 0.5, graded F", RS, {RS: flip_to(on50, i50, "F")}, PASS, False, {"risk_grade": 1, "interest_rate": 1, "pred_logistic": 1}
+    below = pl.concat([rs.slice(0, i50), rescore(rs.slice(i50, 1), [0.49999]), rs.slice(i50 + 1)])
+    yield "pd 0.49999 graded F", RS, {RS: flip_to(below, i50, "F")}, TUPLE - {"recommendation"}, False, {}
     flip = lambda df, i, g: setc(setc(setc(df, i, "risk_grade", g), i, "recommendation", C.GRADE_TERMS[g][0]), i, "interest_rate", C.GRADE_TERMS[g][1])
     other = C.sas_grade(p_up)[0]
     yield "grade flipped at a cut but pd unchanged", RS, {RS: flip(rs, near, other)}, set(moved), False, {}
@@ -224,18 +254,35 @@ def cases():
     row = next(i for i, v in enumerate(pc["CorrectEvents"].to_list()) if 100 < int(v) < 1000)
     ce, ie = int(pc["CorrectEvents"][row]), int(pc["IncorrectNonevents"][row])
     yield "classification: one applicant moved", PC, {PC: setc(setc(pc, row, "CorrectEvents", str(ce + 1)), row, "IncorrectNonevents", str(ie - 1))}, PASS, False, {}
-    yield "classification: CorrectEvents +2", PC, {PC: setc(pc, row, "CorrectEvents", str(ce + 2))}, {"CorrectEvents"}, False, {}
+    yield "classification: CorrectEvents +2", PC, {PC: setc(pc, row, "CorrectEvents", str(ce + 2))}, {"CorrectEvents", "counts"}, False, {}
     big = int(pc["CorrectNonevents"][row])
-    yield "classification: large count +2", PC, {PC: setc(pc, row, "CorrectNonevents", str(big + 2))}, {"CorrectNonevents"}, False, {}
-    yield "classification: count '308.0'", PC, {PC: setc(pc, row, "CorrectEvents", f"{ce}.0")}, {"CorrectEvents"}, False, {}
+    yield "classification: large count +2", PC, {PC: setc(pc, row, "CorrectNonevents", str(big + 2))}, {"CorrectNonevents", "counts"}, False, {}
+    yield "classification: count '308.0'", PC, {PC: setc(pc, row, "CorrectEvents", f"{ce}.0")}, {"CorrectEvents", "counts"}, False, {}
+    # review of 2026-11-16 (c01, c02): an applicant moves between the four counts, none is added or lost
+    plus = pc
+    for col in C.CLASSIFICATION_COUNTS:
+        plus = setc(plus, row, col, str(int(pc[col][row]) + 1))
+    yield "review c01: all four counts +1 in a row", PC, {PC: plus}, {"counts"}, False, {}
+    zrow, zcol = next((i, col) for col in C.CLASSIFICATION_COUNTS for i, v in enumerate(pc[col].to_list()) if v == "0")
+    yield "review c02: a count of 0 -> -1", PC, {PC: setc(pc, zrow, zcol, "-1")}, {zcol, "counts"}, False, {}
+    two = setc(setc(pc, row, "CorrectEvents", str(ce + 2)), row, "IncorrectNonevents", str(ie - 2))
+    yield "classification: two applicants moved", PC, {PC: two}, {"CorrectEvents", "IncorrectNonevents"}, False, {}
     yield "classification: Sensitivity +1.0", PC, {PC: setc(pc, row, "Sensitivity", f"{float(pc['Sensitivity'][row]) + 1:.1f}")}, {"Sensitivity"}, False, {}
     # 2026-11-16: income_medians.csv is judged in the fe stage
     im = load(IM)
     yield "income medians identical", IM, {IM: im}, PASS, True, {}
-    yield "income medians: one median +1", IM, {IM: setc(im, 0, "median_income", str(int(im["median_income"][0]) + 1))}, {"median_income"}, False, {}
-    yield "income medians: overall median +0.5", IM, {IM: im.with_columns(pl.lit("5400.5").alias("overall_median_income"))}, {"overall_median_income"}, False, {}
-    yield "income medians: no overall column", IM, {IM: im.drop("overall_median_income")}, {"columns"}, False, {}
-    yield "income medians: age group missing", IM, {IM: im.slice(1)}, {"rows", "keys"}, False, {}
+    yield "income medians: one median +1", IM, {IM: setc(im, 0, "median_income", str(int(im["median_income"][0]) + 1))}, {"median_income", "raw"}, False, {}
+    yield "income medians: overall median +0.5", IM, {IM: im.with_columns(pl.lit("5400.5").alias("overall_median_income"))}, {"overall_median_income", "raw"}, False, {}
+    yield "income medians: no overall column", IM, {IM: im.drop("overall_median_income")}, {"columns", "raw"}, False, {}
+    yield "income medians: age group missing", IM, {IM: im.slice(1)}, {"rows", "keys", "raw"}, False, {}
+    # review of 2026-11-16 (i02, i03, i04, i18, i22): the medians file is the reference's bytes
+    imb = (REF / IM).read_bytes()
+    head, *body = imb.splitlines(keepends=True)
+    yield "review i02: income medians rows reversed", IM, {IM: head + b"".join(reversed(body))}, {"raw"}, True, {}
+    yield "review i03: income medians CRLF", IM, {IM: imb.replace(b"\n", b"\r\n")}, {"raw"}, False, {}
+    yield "review i04: income medians quoted fields", IM, {IM: imb.replace(b"age_group", b'"age_group"')}, {"raw"}, False, {}
+    yield "review i18: income medians no final newline", IM, {IM: imb.rstrip(b"\n")}, {"raw"}, False, {}
+    yield "review i22: income medians with a BOM", IM, {IM: b"\xef\xbb\xbf" + imb}, ("atleast", {"raw"}), False, None
     # Q1 (2026-11-05): Percent Tied absolute 1e-5 percentage points; other cells keep the model rule
     asc = load(AS)
     tied, conc, tau = float(asc["nValue1"][2]), float(asc["nValue1"][0]), float(asc["nValue2"][2])

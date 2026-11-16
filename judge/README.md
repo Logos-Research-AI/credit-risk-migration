@@ -4,7 +4,7 @@ Decides mechanically whether the Python port reproduces the original SAS pipelin
 The original SAS code is the executable spec; the judge queries it on SAS OnDemand
 for Academics (ODA) through saspy and compares output folders.
 
-**Status (2026-11-16):** the judge follows the corrected SAS. Comparator self-test: 104/104
+**Status (2026-11-16):** the judge follows the corrected SAS. Comparator self-test: 122/122
 cases, among them a correct port (fully converged refit), which passes. Mutations of the
 corrected SAS (`validation_report.md`, runs of 2026-11-16): 15 caught, 2 equivalent (every
 output byte-identical to the reference: `predict_no_dep_impute`, `predict_null_compare_false`),
@@ -14,6 +14,10 @@ program and are reported STALE (`train_grade_cutoff`, `train_round_floor`,
 stand in for the first three. The staged metrics run on the reference risk scores reproduces
 the reference byte for byte. The earlier validation (18 of 19 caught, 1 equivalent, 0 missed;
 79/79 self-test cases; three adversarial reviews) was of the judge against the original SAS.
+A fourth review, of the rules of 2026-11-16, found four ways a wrong candidate passed; each
+is closed and has a self-test case (`review ...` in `test_compare.py`). Known and left: a
+port that rounds every pd to five decimals and derives everything from it passes (that is
+`PD_TOL`); a score one printed unit off its formula passes (the two cells are prints).
 
 ## Pieces
 
@@ -103,10 +107,11 @@ Default is **exact**. Each tolerance below is deliberate and is a place a defect
 | **Value**, other numbers (BEST12.): 1 unit in the 12th character | Integers and flags are effectively exact |
 | `pd_logistic`: per row within `PD_TOL = 1e-4`, and per file mean \|Δ\| within `PD_MEAN_TOL = 1e-5` | Tolerance evidence; the mean bound catches systematic bias |
 | Model-fit tables: 2 display units + 0.1% relative; -2 Log L, AIC, SC, LR test 1e-6 relative; Estimate/StdErr 2 display units; integers relative only; HL group Totals and observed counts ±2 (Totals: Q2, 2026-11-05); Association `Percent Tied` absolute 1e-5 percentage points (added 2026-11-05, Q1) | Tolerance evidence |
-| `credit_risk_score` (2026-11-16; the corrected SAS does not round it, Q15): a number within 250 × `PD_TOL` of the reference **and** equal to 600 + 250 × (1 − candidate pd) to the precision of the two printed cells **and** printed as BEST12. prints it | The score is a function of the probability, so it carries the probability's tolerance and nothing more; a score that is not its own pd's formula fails wherever it lies. This replaces the ±1 rule for the rounded score |
-| `risk_grade`, `recommendation`, `interest_rate` (2026-11-16; cut on the probability, Q18): exact text. A difference is excused only where the reference pd is within `PD_TOL` of a grade cut (0.10, 0.15, 0.25, 0.35, 0.50), the candidate pd is within `PD_TOL` of the reference pd **and** the candidate's three values are what the corrected SAS assigns to the candidate's own pd | A legitimate pd difference can cross a cut; the port must be self-consistent. Every excusal is counted and reported |
+| `credit_risk_score` (2026-11-16; the corrected SAS does not round it, Q15): a number within 250 × `PD_TOL` of the reference **and** equal to 600 + 250 × (1 − candidate pd) to the precision of the two printed cells **and** exactly the text BEST12. prints for its own value (no `%`, no blanks; a whole-number score prints as a whole number) | The score is a function of the probability, so it carries the probability's tolerance and nothing more; a score that is not its own pd's formula fails wherever it lies. This replaces the ±1 rule for the rounded score |
+| `risk_grade`, `recommendation`, `interest_rate` (2026-11-16; cut on the probability, Q18): on **every** row the three values must be what the corrected SAS assigns to the candidate's own pd, whether or not they equal the reference. They are compared with the reference as exact text; a difference is excused only where the reference pd is within `PD_TOL` of a grade cut (0.10, 0.15, 0.25, 0.35, 0.50) **and** the candidate pd is within `PD_TOL` of the reference pd | A legitimate pd difference can cross a cut; the port must be self-consistent. Every excusal is counted and reported. The pd is printed with BEST12., so a pd printed within one unit of a cut (`0.5` for 0.50000000001) may take the grade of either side: the print cannot tell |
+| `income_medians.csv` (fe stage): byte for byte the reference file | It is an input of the next step; row order, quoting, line ends and encoding count |
 | 0/1 prediction may flip only within `PD_TOL` of 0.5 and only to (candidate pd ≥ 0.5) | As above |
-| `printed_classification.csv`: the four count columns within 1 (2026-11-16); its percentages keep the model-fit rule | The table counts leave-one-out probabilities against each level; an applicant on a level's boundary moves one count. On the real data the port differs by 1 at five levels |
+| `printed_classification.csv`: the four count columns within 1 (2026-11-16), each a non-negative integer, and the four counts of a row sum to the reference row's sum; its percentages keep the model-fit rule | The table counts leave-one-out probabilities against each level; an applicant on a level's boundary moves one count. On the real data the port differs by 1 at five levels |
 | Each such 0.5 flip widens `model_summary` and `printed_confusion_*` by exactly one flip's worth per metric (accuracy 1/N, recall 1/P, ...), computed from the files independent of `--only` | |
 | `training_date`, `validation_date`: a real DATE9. date within 2 days of the candidate file | Stamped with `today()` |
 

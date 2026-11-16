@@ -29,17 +29,24 @@ port    Python-port-vs-SAS. Two checks on every numeric cell:
             "Percent Tied" absolute 1e-5 percentage points (ABS_CELL_TOL).
           * credit_risk_score (not rounded by the corrected SAS, Q15): a number within
             250 * PD_TOL of the reference AND equal to 600 + 250 * (1 - candidate pd), to
-            the precision of the two printed cells, AND printed as BEST12. prints it.
-          * risk_grade, recommendation, interest_rate (cut on the probability, Q18): exact
-            text; a difference is excused only where the reference pd is within PD_TOL of
-            a grade cut (0.10, 0.15, 0.25, 0.35, 0.50), the candidate pd is within PD_TOL
-            of the reference pd, AND the candidate's three values are what the corrected
-            SAS assigns to the candidate's own pd.
+            the precision of the two printed cells, AND exactly the text BEST12. prints
+            for its own value (no '%', no blanks, no sign).
+          * risk_grade, recommendation, interest_rate (cut on the probability, Q18): on
+            EVERY row the three values must be what the corrected SAS assigns to the
+            candidate's own pd (a pd printed within one unit of a cut may take either
+            side). They are compared with the reference as exact text; a difference is
+            excused only where the reference pd is within PD_TOL of a grade cut (0.10,
+            0.15, 0.25, 0.35, 0.50) and the candidate pd is within PD_TOL of the
+            reference pd.
           * pred_logistic may flip only within PD_TOL of 0.5 and only to
             (candidate pd >= 0.5).
           * printed_classification.csv: the four count columns within 1 (the table counts
             leave-one-out probabilities against each level; one applicant on a level's
-            boundary moves one count).
+            boundary moves one count); each count a non-negative integer, and the four
+            counts of a row sum to the reference row's sum (an applicant moves, none is
+            added or lost).
+          * income_medians.csv: byte for byte the reference file (it is an input of the
+            next step, read by position and by name).
           * Each such 0.5 flip widens the confusion-matrix outputs by exactly one flip's
             worth (computed from the files themselves, independent of --only).
         Every excusal is counted and reported; none are silent.
@@ -139,6 +146,10 @@ ABS_CELL_TOL = {
     # points (human sign-off Q1, 2026-11-05; migration/rulebook-amendments.md A8).
     ("printed_association.csv", "nValue1"): ("Label1", "Percent Tied", 1e-5),
 }
+
+CLASSIFICATION_FILE = "printed_classification.csv"
+CLASSIFICATION_COUNTS = ["CorrectEvents", "CorrectNonevents", "IncorrectEvents", "IncorrectNonevents"]
+BYTE_EXACT_FILES = {"income_medians.csv"}  # port mode: the file must be the reference's bytes
 
 DATE_COLS = {"model_summary.csv": {"training_date"}, "model_performance_metrics.csv": {"validation_date"}}
 DATE_WINDOW_DAYS = 2
@@ -320,7 +331,16 @@ def score_bad(r: pl.Expr, c: pl.Expr, cand_pd_text: pl.Expr) -> pl.Expr:
     near_ref = (rn - cn).abs() <= 250 * PD_TOL + FLOAT_EPS * rn.abs()
     printed = 250 * best12_unit(cand_pd_text) + best12_unit(c)
     own = (cn - (600 + 250 * (1 - cand_pd))).abs() <= printed + FLOAT_EPS * cn.abs()
-    return pl.when(rn.is_not_null()).then(~(near_ref & own).fill_null(False)).otherwise(r != c)
+    ok = near_ref & own & ~c.str.ends_with("%")  # parse_num reads '845.08%' as 845.08: not a score
+    return pl.when(rn.is_not_null()).then(~ok.fill_null(False)).otherwise(r != c)
+
+
+def best12_text_ok(text: str) -> bool:
+    """Is this exactly what BEST12. prints for its own value? (an integer value prints as an integer)"""
+    try:
+        return text == sas_best12(float(text))
+    except ValueError:
+        return False
 
 
 def date_ok(text: str, cand_path: Path) -> bool:
@@ -347,6 +367,8 @@ def compare_file(name: str, ref_path: Path, cand_path: Path, mode: str,
 
 def _compare_file(res: FileResult, name: str, ref_path: Path, cand_path: Path, mode: str,
                   extra_tol: dict[str, float]) -> FileResult:
+    if mode == "port" and name in BYTE_EXACT_FILES and ref_path.read_bytes() != cand_path.read_bytes():
+        res.fail("raw", "not byte for byte the reference file (rows, order, quoting, line ends, encoding)")
     ref, cand = read_text_csv(ref_path), read_text_csv(cand_path)
     dates = DATE_COLS.get(name, set())
     if mode == "strict" and not dates:
@@ -394,14 +416,44 @@ def _compare_file(res: FileResult, name: str, ref_path: Path, cand_path: Path, m
         tuple_cols = [c for c in GRADE_TUPLE if c in data_cols]
         if tuple_cols:
             near_grade_cut = pl.any_horizontal([(ref_pd - cut).abs() <= PD_TOL for cut, _, _ in GRADE_CUTS])
-            own = sas_grade_expr(cand_pd)  # what the corrected SAS assigns to the candidate's own pd
-            self_consistent = pl.all_horizontal([pl.col(f"{c}__c") == own[c] for c in tuple_cols])
+            # What the corrected SAS assigns to the candidate's own pd. The pd is printed with
+            # BEST12., so a pd printed within one unit of a cut may lie on either side of it.
+            unit = best12_unit(pl.col(f"{PD_COL}__c"))
+            sides = [sas_grade_expr(p) for p in (cand_pd, cand_pd - unit, cand_pd + unit)]
+            own_ok = {c: pl.any_horizontal([pl.col(f"{c}__c") == side[c] for side in sides]).fill_null(False)
+                      for c in tuple_cols}
+            self_consistent = pl.any_horizontal(
+                [pl.all_horizontal([pl.col(f"{c}__c") == side[c] for c in tuple_cols]) for side in sides])
+            inconsistent = joined.filter(~self_consistent.fill_null(False))
+            if inconsistent.height:  # every row, whether or not it equals the reference
+                show = [k for k in keys] + [f"{PD_COL}__c"] + [f"{c}__c" for c in tuple_cols]
+                for c in tuple_cols:
+                    n_bad = inconsistent.filter(~own_ok[c]).height
+                    if n_bad:
+                        res.fail(c, f"{n_bad} rows not what the corrected SAS assigns to the candidate's own pd, "
+                                    f"e.g. (key.., candidate pd, candidate values) "
+                                    f"{inconsistent.filter(~own_ok[c]).select(show).head(3).rows()}")
+                if not any(c in res.failed for c in tuple_cols):  # each value fits a side, the three do not agree
+                    res.fail(tuple_cols[0], f"{inconsistent.height} rows whose grade, recommendation and rate "
+                                            f"do not belong to one grade: {inconsistent.select(show).head(3).rows()}")
             row_ok = (near_grade_cut & (cand_pd - ref_pd).abs().le(PD_TOL) & self_consistent).fill_null(False)
             excuse.update({c: row_ok for c in tuple_cols})
         if CUTOFF_COL in data_cols:
             near_cut = (ref_pd - 0.5).abs() <= PD_TOL
             cand_says = pl.when(cand_pd >= 0.5).then(pl.lit("1")).otherwise(pl.lit("0"))
             excuse[CUTOFF_COL] = (near_cut & (pl.col(f"{CUTOFF_COL}__c") == cand_says)).fill_null(False)
+    if mode == "port" and name == CLASSIFICATION_FILE and all(c in data_cols for c in CLASSIFICATION_COUNTS):
+        # counts are non-negative integers, and an applicant moves between the four, none is added or lost
+        for c in CLASSIFICATION_COUNTS:
+            n_bad = joined.filter(~pl.col(f"{c}__c").str.contains(r"^\d+$")).height
+            if n_bad:
+                res.fail(c, f"{n_bad} cells are not a non-negative integer")
+        total = lambda sfx: pl.sum_horizontal([pl.col(f"{c}{sfx}").cast(pl.Int64, strict=False) for c in CLASSIFICATION_COUNTS])
+        off = joined.filter(total("") != total("__c"))
+        if off.height:
+            res.fail("counts", f"{off.height} rows whose four counts do not sum to the reference row's sum, e.g. "
+                               f"(level, reference sum, candidate sum) "
+                               f"{off.select('ProbLevel', total('').alias('r'), total('__c').alias('c')).head(3).rows()}")
 
     for col in compare_cols:
         r, c = pl.col(col), pl.col(f"{col}__c")
@@ -426,7 +478,10 @@ def _compare_file(res: FileResult, name: str, ref_path: Path, cand_path: Path, m
                     bad = value_bad(name, col, r, c, extra_tol.get(col, 0.0))
                 kind = column_kind(name, col)
                 diff = joined.filter((r != c) & parse_num(r).is_not_null()).select(col, f"{col}__c")
-                fmt_bad = [(a, b) for a, b in diff.iter_rows() if not format_ok(a, b, kind)]
+                if col == SCORE_COL and pd_rules:  # the score of another pd may be a whole number where SAS's is not
+                    fmt_bad = [(a, b) for a, b in diff.iter_rows() if not best12_text_ok(b)]
+                else:
+                    fmt_bad = [(a, b) for a, b in diff.iter_rows() if not format_ok(a, b, kind)]
                 if fmt_bad:
                     fmt_flagged = len(fmt_bad)
                     res.fail(col, f"{fmt_flagged} cells not printed as SAS prints them ({kind}), "
