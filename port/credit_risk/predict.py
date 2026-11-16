@@ -209,6 +209,17 @@ def run(
     # Q13 (2d4fdef): the training income medians by age group, exported by feature_engineering
     # INV work.train_income_medians; R§2 PROC IMPORT
     train_income_medians = sas_compat.proc_import_csv(income_medians)
+    # SAS names are case-blind: the three columns the join reads take the spelling it uses
+    medians_upper = [name.upper() for name in train_income_medians.columns]
+    train_income_medians = train_income_medians.rename(
+        {
+            name: name.lower()
+            for i, name in enumerate(train_income_medians.columns)
+            if name.upper() in ("AGE_GROUP", "MEDIAN_INCOME", "OVERALL_MEDIAN_INCOME")
+            and name.upper() not in medians_upper[:i]
+            and (name.lower() == name or name.lower() not in train_income_medians.columns)
+        }
+    )
 
     # predict.sas:75-94 DATA test_cleaned
     # INV age_group; INV MonthlyIncome_missing
