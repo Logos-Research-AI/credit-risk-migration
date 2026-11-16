@@ -164,7 +164,15 @@ for translation rules once it exists.
   (`judge/runs/gen_s16`, `s17`, `s18`, `s20`, `small_sep60`, `oneclass_n60_two_variables` steps 3
   and 4: complete, stopped at iteration 8; `gen_s21`, `gen_s24`, `oneclass_n60_quasi`:
   quasi-complete, stopped at iterations 9, 10 and 9). The two-variable run, where the final model
-  depends on the separated fits, fixes the start. Not settled by them: how close to 1 the
-  probabilities must be for complete separation (0.95 taken; smallest seen 0.97726), and the
-  divisor of the standard deviation in the quasi-complete test.
+  depends on the separated fits, fixes the start. Not settled by them: the divisor of the
+  standard deviation in the quasi-complete test.
+- Corrected 2026-11-16 (review of c1124e1 / 428b5c9): complete separation is declared when no
+  observation is on the wrong side (every observation has probability above 0.5 of its observed
+  response), not when every observation is at 0.95 or above, which was this record's reading of
+  the documentation and is not what SAS does. Evidence: the ITPRINT runs of `out/separation/sas`
+  (D11: SAS declares complete separation at iteration 8 with 382 of 400 observations at 0.95 or
+  above and the smallest at 0.539; D2: 38 of 40, smallest 0.84; 18 complete steps in all, every one
+  stopped at iteration 8). With the 0.95 test the port iterated on, stopped later as
+  quasi-complete and kept other estimates (D11: x1 removed where SAS keeps it). Not settled: an
+  observation at exactly 0.5.
 - A fit that does not converge for another reason still stops with an error.

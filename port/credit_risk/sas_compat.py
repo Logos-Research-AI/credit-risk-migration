@@ -752,18 +752,20 @@ def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logist
     shown are based on the last maximum likelihood iteration"). Fisher scoring from the intercept-only
     estimates (intercept log(events / non-events), every other coefficient 0), no step halving, at
     most 25 iterations (SAS's MAXITER). From the 8th iteration on, after each iteration:
-    complete separation when every observation has probability >= 0.95 of its observed response;
-    else quasi-complete separation when some observation has, and a diagonal element of the inverse
-    information matrix for the standardized columns (mean 0, standard deviation 1, divisor n - 1)
-    exceeds 5000. The iteration stops there and its estimates are returned, `converged=False`.
-    None when neither is found. Measured on judge/runs gen_s16, s17, s18, s20, small_sep60 and
-    oneclass_n60_two_variables steps 3 and 4 (complete, stopped at iteration 8) and gen_s21, gen_s24,
-    oneclass_n60_quasi (quasi-complete, stopped at iterations 9, 10 and 9): -2 Log L, the global
-    tests, R-square and the Wald chi-squares of the removal are SAS's. The two-variable run fixes the
-    start (the estimates of the step before give other numbers).
-    Not settled by those runs: how close to 1 SAS wants the probabilities for complete separation
-    (the smallest seen is 0.97726; 0.95 is the documentation's "extremely large probability"),
-    and the divisor of the standard deviation (n and n - 1 agree on the three quasi-complete runs)."""
+    complete separation when no observation is on the wrong side, that is every observation has
+    probability above 0.5 of its observed response;
+    else quasi-complete separation when some observation has probability >= 0.95 of its observed
+    response and a diagonal element of the inverse information matrix for the standardized columns
+    (mean 0, standard deviation 1, divisor n - 1) exceeds 5000. The iteration stops there and its
+    estimates are returned, `converged=False`. None when neither is found.
+    Measured on the ITPRINT runs of out/separation/sas (`migration/legacy-to-port/small-inputs.md`):
+    18 complete steps, all stopped at iteration 8, the smallest probability of an observed response
+    there from 0.539 (D11, 382 of 400 observations at 0.95 or above) to 0.9999; 8 quasi-complete
+    steps, stopped at iterations 9 to 15, each at the first iteration whose largest diagonal element
+    exceeds 5000. The stop iteration and the kept estimates are SAS's in all 26 (to 1e-10 relative).
+    The two-variable run (P3) fixes the start (the estimates of the step before give other numbers).
+    Not settled by those runs: an observation at probability exactly 0.5 at the complete test, and
+    the divisor of the standard deviation (n and n - 1 agree on the quasi-complete runs)."""
     b = np.zeros(x.shape[1])
     b[0] = math.log(float(y.sum()) / float(len(y) - y.sum()))
     with np.errstate(divide="ignore", invalid="ignore"):
@@ -777,11 +779,13 @@ def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logist
                 continue
             p = _expit(x @ b)
             w = p * (1.0 - p)
-            n_extreme = int(np.count_nonzero(np.where(y == 1, p, 1.0 - p) >= 0.95))
+            p_obs = np.where(y == 1, p, 1.0 - p)
             separation: str | None = None
-            if n_extreme == len(y):
+            if bool(np.all(p_obs > 0.5)):
                 separation = "complete"
-            elif n_extreme > 0 and float(np.diag(np.linalg.inv(xs.T @ (xs * w[:, None]))).max()) > 5000.0:
+            elif bool(np.any(p_obs >= 0.95)) and (
+                float(np.diag(np.linalg.inv(xs.T @ (xs * w[:, None]))).max()) > 5000.0
+            ):
                 separation = "quasicomplete"
             if separation is not None:
                 cov = np.linalg.inv(x.T @ (x * w[:, None]))
