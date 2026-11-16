@@ -95,10 +95,38 @@ def run(input_dir: Path, output_dir: Path) -> None:
         "Logistic Model",
     )
 
-    # metrics_calculation.sas:57-64 auc_summary
-    # INV work.auc_summary: Gini = 2 * Area - 1, formats 8.4 applied at export
-    auc_summary = roc_stats.filter(pl.col("ROCModel") == "Logistic Model").select(
-        "ROCModel", AUC=pl.col("Area"), Gini=2 * pl.col("Area") - 1
+    # metrics_calculation.sas:82-91 auc_pairs: one row per distinct non-missing probability
+    # R§2 SQL aggregates: sum of a comparison counts the rows where it holds (never missing in a group)
+    auc_pairs = (
+        logit_scored_valid.filter(pl.col("pd_logistic").is_not_null())
+        .group_by("pd_logistic", maintain_order=True)
+        .agg(
+            n_bad=sas_compat.flag(pl.col("default_flag") == 1).sum(),
+            n_good=sas_compat.flag(pl.col("default_flag") == 0).sum(),
+        )
+        .sort("pd_logistic", maintain_order=True)  # order by pd_logistic
+    )
+
+    # metrics_calculation.sas:93-113 auc_summary (retain concordant tied cum_good cum_bad 0; end=eof ->
+    # aggregation): the exact pairwise AUC. concordant adds n_bad * cum_good BEFORE cum_good takes the row;
+    # AUC and Gini stay missing with no defaulter or no non-defaulter; no row when auc_pairs has none.
+    # Formats 8.4 applied at export
+    auc_totals = auc_pairs.select(
+        concordant=(pl.col("n_bad") * (pl.col("n_good").cum_sum() - pl.col("n_good"))).sum(),
+        tied=(pl.col("n_bad") * pl.col("n_good")).sum(),
+        cum_good=pl.col("n_good").sum(),
+        cum_bad=pl.col("n_bad").sum(),
+    ).cast(pl.Float64)
+    auc_summary = (
+        auc_totals.with_columns(
+            ROCModel=pl.lit("Logistic Model"),
+            AUC=pl.when(pl.col("cum_bad") * pl.col("cum_good") > 0).then(
+                (pl.col("concordant") + pl.col("tied") / 2) / (pl.col("cum_bad") * pl.col("cum_good"))
+            ),
+        )
+        .with_columns(Gini=2 * pl.col("AUC") - 1)
+        .select("ROCModel", "AUC", "Gini")  # keep list (:111)
+        .head(min(auc_pairs.height, 1))
     )
 
     # listing-only: PROC PRINT auc_summary (AUC and Gini)
