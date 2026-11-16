@@ -150,3 +150,19 @@ for translation rules once it exists.
 - RULEBOOK v1.4: post-parity notes.
 - Cost-log row 06: tokens are a lower bound (the failed agent's final usage was not reported);
   wall-clock is unknown.
+
+## Separation: the port follows SAS — owner's decision 2026-11-16
+- Withdrawn: the deliberate stop of RULEBOOK v1.4 ("a logistic fit that does not converge
+  (separation) raises an error"). It was made when no input in hand separated; on small valid
+  inputs SAS completes and the port wrote nothing of train or predict (`small-inputs.md` (c)).
+- Now: when a variable separates the classes as it enters, the port warns as SAS does, keeps the
+  step with the estimates of the iteration at which SAS declares the separation, and goes on to
+  the removal test. RULEBOOK §2 (stepwise row and post-parity note) is updated in the same commit.
+- The rule for the kept estimates (`sas_compat._fit_separated`) is SAS's documented one (PROC
+  LOGISTIC, "Existence of Maximum Likelihood Estimates"), started from the estimates of the step
+  before. It reproduces the printed tables of the separated step in the seven SAS runs in hand
+  (`judge/runs/gen_s16`, `s17`, `s18`, `s20`, `small_sep60` complete, stopped at iteration 8;
+  `gen_s21`, `gen_s24` quasi-complete, stopped at iterations 9 and 10). Not settled by them: how
+  close to 1 the probabilities must be for complete separation (0.95 taken; smallest seen
+  0.999901), and the divisor of the standard deviation in the quasi-complete test.
+- A fit that does not converge for another reason still stops with an error.

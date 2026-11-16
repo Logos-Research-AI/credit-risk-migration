@@ -671,7 +671,8 @@ def proc_rank_groups(x: pl.Series, k: int, descending: bool = False) -> pl.Serie
 class LogisticFit:
     """A fitted logistic model P(y = 1) on columns `names`. `names[0]` is "Intercept";
     `loglik` is the log-likelihood (-2 Log L = -2 * loglik). `converged` is False after a singular
-    system, complete or quasi-complete separation, an exhausted line search or the iteration cap."""
+    system, complete or quasi-complete separation, an exhausted line search or the iteration cap.
+    `separation` is "complete" or "quasicomplete" on the estimates `_fit_separated` keeps."""
 
     names: list[str]
     beta: FloatArray
@@ -679,6 +680,7 @@ class LogisticFit:
     loglik: float
     n_iter: int
     converged: bool
+    separation: str | None = None
 
 
 def _loglik(eta: FloatArray, y: FloatArray) -> float:
@@ -697,7 +699,8 @@ def fit_logistic(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logistic
     system is singular (LinAlgError), the line search is exhausted, 100 iterations pass, or some row is
     perfectly predicted (pd within 1e-8 of its response) while the standardized information matrix is
     rank-deficient (min eigenvalue < 1e-10): complete or quasi-complete separation.
-    RESOLVED (post-parity): non-convergence/separation fails loudly (RULEBOOK §2); caps are port choices."""
+    RESOLVED (post-parity): caps are port choices. The caller decides what a fit that did not converge
+    means: `stepwise_logistic` keeps SAS's estimates of a separated step (`_fit_separated`)."""
     b = np.zeros(x.shape[1])
     ll = _loglik(x @ b, y)
     converged = False
@@ -743,6 +746,50 @@ def fit_logistic(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logistic
     return LogisticFit(list(names), b, cov, ll, n_iter, converged)
 
 
+def _fit_separated(
+    x: FloatArray, y: FloatArray, names: Sequence[str], start: FloatArray
+) -> LogisticFit | None:
+    """The estimates SAS keeps for a model whose maximum likelihood estimate does not exist
+    (PROC LOGISTIC, "Existence of Maximum Likelihood Estimates"; SAS warns and continues, "Results
+    shown are based on the last maximum likelihood iteration"). Fisher scoring from `start` (the
+    estimates of the step before, 0 for the effect that enters), no step halving, at most 25
+    iterations (SAS's MAXITER). From the 8th iteration on, after each iteration:
+    complete separation when every observation has probability >= 0.95 of its observed response;
+    else quasi-complete separation when some observation has, and a diagonal element of the inverse
+    information matrix for the standardized columns (mean 0, standard deviation 1, divisor n - 1)
+    exceeds 5000. The iteration stops there and its estimates are returned, `converged=False`.
+    None when neither is found. Measured on judge/runs gen_s16, s17, s18, s20, small_sep60 (complete,
+    stopped at iteration 8) and gen_s21, gen_s24 (quasi-complete, stopped at iterations 9 and 10):
+    -2 Log L, the global tests, R-square and the Wald chi-square of the removal are SAS's.
+    Not settled by those runs: how close to 1 SAS wants the probabilities for complete separation
+    (the smallest seen is 0.999901; 0.95 is the documentation's "extremely large probability"),
+    and the divisor of the standard deviation (n and n - 1 agree on both quasi-complete runs)."""
+    b = np.asarray(start, dtype=np.float64)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        xs = np.column_stack([x[:, 0], (x[:, 1:] - x[:, 1:].mean(axis=0)) / x[:, 1:].std(axis=0, ddof=1)])
+    try:
+        for n_iter in range(1, 26):
+            p = _expit(x @ b)
+            w = p * (1.0 - p)
+            b = b + np.linalg.solve(x.T @ (x * w[:, None]), x.T @ (y - p))
+            if n_iter < 8:
+                continue
+            p = _expit(x @ b)
+            w = p * (1.0 - p)
+            n_extreme = int(np.count_nonzero(np.where(y == 1, p, 1.0 - p) >= 0.95))
+            separation: str | None = None
+            if n_extreme == len(y):
+                separation = "complete"
+            elif n_extreme > 0 and float(np.diag(np.linalg.inv(xs.T @ (xs * w[:, None]))).max()) > 5000.0:
+                separation = "quasicomplete"
+            if separation is not None:
+                cov = np.linalg.inv(x.T @ (x * w[:, None]))
+                return LogisticFit(list(names), b, cov, _loglik(x @ b, y), n_iter, False, separation)
+    except np.linalg.LinAlgError:
+        return None
+    return None
+
+
 @dataclass
 class StepwiseStep:
     step: int
@@ -776,8 +823,9 @@ def stepwise_logistic(
     stop when nothing enters or the best entry was just removed. Reference implementation:
     migration/experiments/x02_stepwise_reference.py. Rows with a missing response or candidate are
     dropped. The model columns of each fit are in ENTRY order (names[0] = "Intercept").
-    Raises RuntimeError when a fit does not converge or the 500-step cap is hit.
-    RESOLVED (post-parity): the port stops with an error on separation/non-convergence (RULEBOOK §2)."""
+    A step whose fit is separated is kept with the estimates SAS keeps (`_fit_separated`), with SAS's
+    warning, and the selection goes on to the removal test (owner's decision 2026-11-16, RULEBOOK §2).
+    Raises RuntimeError when a fit does not converge for another reason or the 500-step cap is hit."""
     used = df.select([response, *candidates]).drop_nulls()
     y = np.asarray(used.get_column(response).to_numpy(), dtype=np.float64)
     z_all = {c: np.asarray(used.get_column(c).to_numpy(), dtype=np.float64) for c in candidates}
@@ -788,15 +836,38 @@ def stepwise_logistic(
     def mkey(m: str) -> int:
         return order[m]
 
-    def fit(cols: list[str]) -> LogisticFit:
+    def fit(cols: list[str], prev: LogisticFit | None) -> LogisticFit:
         x = np.column_stack([ones, *[z_all[c] for c in cols]])
         f = fit_logistic(x, y, ["Intercept", *cols])
         if not f.converged:
-            raise RuntimeError(f"stepwise_logistic: the fit at step {step} ({cols}) did not converge")
+            # separation: SAS warns and continues with the last iteration's estimates
+            sep = None
+            if prev is not None and cols:
+                start = np.array(
+                    [prev.beta[prev.names.index(m)] if m in prev.names else 0.0 for m in f.names]
+                )
+                sep = _fit_separated(x, y, f.names, start)
+            if sep is None:
+                raise RuntimeError(f"stepwise_logistic: the fit at step {step} ({cols}) did not converge")
+            if sep.separation == "complete":
+                print(
+                    f"WARNING: There is a complete separation of data points in Step {step}. "
+                    "The maximum likelihood estimate does not exist."
+                )
+            else:
+                print(
+                    f"WARNING: There is possibly a quasicomplete separation of data points in step {step}. "
+                    "The maximum likelihood estimate may not exist."
+                )
+            print(
+                "WARNING: The LOGISTIC procedure continues in spite of the above warning. "
+                "Results shown are based on the last maximum likelihood iteration."
+            )
+            return sep
         return f
 
     model: list[str] = []
-    cur = fit(model)
+    cur = fit(model, None)
     res = StepwiseResult(intercept_only=cur, final=cur)
     last_removed: str | None = None
     while step < 500:
@@ -810,7 +881,7 @@ def stepwise_logistic(
             if best_w is not None and chi2_sf(best_w[0], 1) > slstay:
                 step += 1
                 model.remove(best_w[1])
-                cur = fit(model)
+                cur = fit(model, cur)
                 res.steps.append(
                     StepwiseStep(
                         step, None, best_w[1], 1, len(model), None, best_w[0], chi2_sf(best_w[0], 1), cur
@@ -842,7 +913,7 @@ def stepwise_logistic(
             break
         step += 1
         model.append(best[1])
-        cur = fit(model)
+        cur = fit(model, cur)
         res.steps.append(
             StepwiseStep(step, best[1], None, 1, len(model), best[0], None, chi2_sf(best[0], 1), cur)
         )
