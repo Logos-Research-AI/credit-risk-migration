@@ -224,10 +224,8 @@ def run(
         score_range=pl.lit(250.0),
     )
     test_predictions = test_predictions.with_columns(
-        # R§2 round(x): sas_round, null stays null
-        credit_risk_score=sas_compat.sas_round(
-            pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic"))
-        )
+        # Q15 (b7b1cd4): the score is not rounded
+        credit_risk_score=pl.col("base_score") + pl.col("score_range") * (1 - pl.col("pd_logistic"))
     )
     test_predictions = test_predictions.with_columns(
         # R§2 if/else chain; sas_compat.ge is false for missing so a missing score gets 'F'
