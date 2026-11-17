@@ -88,6 +88,15 @@ Stated by prover-1, reviewed by prover-2.
 
 ## Contract texts changed with the lead's approval
 
+- **E4 feature shape narrowed** (lead, 2026-11-17, W3 run; owner to see at sign-off): the feature
+  table has at least one column, and every term of the model names one of the 42 feature columns
+  of PyLinks 8. Found by E4's prover: a table whose rows have no column scores to two rows on the
+  SAS side and to none on the port (no CSV file or polars frame has such rows); and a term naming
+  another column meets a read-back that may hold text, where the two sides were not compared.
+  Reached models meet both conditions (T2, `lem:sas_fit_term_names`). `lem:py_score_fillers_idle`
+  clause (2) restated with the cleaned frame after the E4 port fix (b394838). `lem:ex_A3_predict`
+  keeps its extra PyLinks and InputOK conjuncts; `lem:ex_E5_train_scores` rests on E1.
+
 - **S13** (`thm:train_run_14_final_and_summary_S13`), 2026-11-17. The port's step 14 has a new
   last argument `roc_valid_created` (from step 13); when false its `model_summary.csv` is the
   table with no row, while step 13 still returns a one-row validation ROC frame. Reading 1 (the
