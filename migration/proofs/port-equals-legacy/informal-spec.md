@@ -1,272 +1,290 @@
-# Informal specification: what the Python port must satisfy
+# Informal specification, version 3: the port equals the corrected SAS
 
-Version 2.3, 2026-11-13. Version 1 was the basis of proving round 1 and version 2 of round 2.
-Version 2.1 followed the code changes made on round 2's findings and was the basis of round 3.
-Version 2.2 closed the gaps round 3 found and was the basis of round 4. Version 2.3 follows the
-audit; section 9 says what round 5 does.
+Version 3, in force from 2026-11-17 by the lead's instruction (it replaces version 2.3, kept as
+`informal-spec-v2.3.md`). It is the text of record for every contract of the equality stage on
+the port blueprint `5365851c-5549-44b7-9207-4bd4c422031d`. The three definitions all contracts
+rest on are in `definitions-v3.md`. This file holds no Lean.
 
-Each contract is a statement about one item of the Logos blueprint `py-credit-risk-port`. It is a
-postcondition on that item, with this text as its informal statement. The SAS definitions it
-mentions come from `sas-credit-risk-spec`, pinned through the profile.
+Why a version 3. Version 2.3 compared each Python unit with a SAS unit on "well-formed" frames,
+with flags and with a part (b) off the domain. Since then: the SAS program was corrected and
+verified against 26 documented requirements on valid input (signed off 2026-11-16); the port was
+brought back in line with it; the flags are gone; ruling G53 limits every claim to valid input.
+The claim is now stated on the interface the requirements use, `CreditRisk.Pipeline`, so that the
+requirements can be carried over to the port (playbook stage 6).
 
-The contracts restate, as things that can be proved, what the migration committed to in writing:
-
-| Source | What it fixed | Becomes |
-|---|---|---|
-| `judge/README.md`, "Contract" and "Comparison policy" | per stage: same files, columns, column order; rows matched by key | stage contracts (section 3) |
-| `migration/RULEBOOK.md` §2 | one canonical Python form for each SAS construct | helper contracts (section 4) |
-| `migration/inventory.tsv` (193 rows) | per site: the translation, and whether an operand can be missing | step contracts and input domains (sections 2 and 5) |
-| RULEBOOK "BUG rule", `post-parity/classification.md`, `bugfix-1/3/4.md` | bugs reproduced by default; three fixes behind flags; rows closed as unreachable | flag and closed-row contracts (sections 6 and 7) |
-| `MODEL_CARD.md`, judge README "Findings" | what the pipeline was meant to do | intent contracts (section 8) |
-
-## What changed from version 1, and why
-
-Round 1 stated 117 contracts: 53 proved, 61 disproved, 3 open. Many disproofs were caused by
-version 1, not by the port: its domains admitted inputs no pipeline produces (an extra column
-named `median_income`, a missing `row_id`, a probability of -3999999999, an empty frame, a format
-function returning empty text). Version 2 changes five things.
-
-1. **Contracts are over the real numbers.** That is the design of the shared number class:
-   each Lean translation was checked against its source at `Float` when it was written, and the
-   two translations are compared by proof at `ℝ`. Version 1 asked for "every number type" first;
-   that aim is dropped.
-2. **Domains are well-formed pipeline inputs** (section 2), so that a disproof is about the port.
-3. **Stage contracts are stated per output file**, so one difference does not hide the rest.
-4. **Two shape differences are stated away**: the `_LEVEL_` column, and ROC units of which the
-   SAS side models two columns (section 5).
-5. **Parameter links exclude degenerate parameters** (section 1).
-
-Results of round 1 that version 2 does not restate stand as they are. Section 9 lists, contract by
-contract, what round 2 must do.
+Rulings built in: G53, G54, G55, G56, G57, G58. Decisions D1 to D9 of `plan-after-verification.md` are all
+decided (2026-11-16): D1 and D2 by the owner's rulings G55 and G54; D3 to D9 by the lead as
+recommended, D7 with the owner's answer (the 84 cleared theorems may be removed; Judging stays
+off on `5365851c`, so the match of Lean and text rests on the reviews). The marks `[D3]` to
+`[D9]` now show where each decision is applied.
 
 ## 1. Form of every contract
 
-**Equivalence.** "At the real numbers, for every input in the stated domain, with all flags off,
-the Python unit's result, as a table, equals the SAS unit's result on the same input":
-`Pl.toTable (python f) = sas (Pl.toTable f)` with `α = ℝ`.
+The contracts are items of the port blueprint `py-credit-risk-port` (`5365851c`). The SAS and
+requirement declarations they name come through the profile from `sas-credit-risk-spec`
+(`3f5df696`) and `credit-risk-requirements` (`006ff04c`).
 
-A contract that fails is disproved with a concrete input, which goes in the contract text. Nothing
-is claimed about `Float`: overflow, NaN and summation order are outside these contracts.
+**The three definitions** all contracts rest on (`definitions-v3.md`): `pyPipeline py`, the
+port as a pipeline; `PyLinks py`, what the port's out-of-scope code is taken to do; `Paired py
+sas`, how the port's parameters relate to the SAS parameters.
 
-**Parameters.** Each side left some behaviour as an explicit input. They may be linked only so:
+**The form.** "At the real numbers: for all port parameters `py` and SAS parameters `sas` with
+`PyLinks py` and `Paired py sas`, for every raw training table, raw test table and seed that are
+valid input (`CreditRisk.InputOK`), this step of `pyPipeline py` returns what the same step of
+`sasPipeline sas` returns, on the arguments named." "Returns what" includes returning nothing:
+if the SAS step stops, so does the port's, and conversely.
 
-| SAS side | Python side | Link |
+**Hypotheses.** `PyLinks py`, `Paired py sas`, `InputOK`, and, where a contract names arguments
+that a run reaches, the equations saying they were reached. No other hypothesis may be added. In
+particular no precondition of a port unit, no `wf_` domain, and no clause of `SasLinks` beyond
+those `Paired` restates. A contract that cannot be proved or disproved as written is left open
+and reported.
+
+**Read-backs (ruling G55).** The files passed between scripts are read by one function shared by
+both sides and otherwise free (`Paired` 4, `PyLinks` 8). Every equality contract therefore holds
+both when hand-off files are taken at full precision and when they are read as the 12-character
+files the programs write.
+
+**Number type.** The reals. Nothing is claimed about `Float`: overflow, NaN, summation order.
+
+**Disproof.** A contract that fails is disproved by its negation, proved with a concrete valid
+input and concrete parameters meeting `PyLinks` and `Paired`; the input and one sentence on what
+differs go in the negation's text. A checked disproof is a difference: the port changes.
+
+## 2. Equality contracts on the interface
+
+Write P for `pyPipeline py` and S for `sasPipeline sas`.
+
+| # | Output | Statement, under the form of section 1 |
 |---|---|---|
-| `arrange` (join order; the judge matches rows by key because SAS guarantees none) | the join keeps the left order | existential: there is an order for which they agree |
-| `agg` (PROC SQL summation, unknown order) | polars summation, modelled | `agg.sum` and `agg.mean` are the sum and the mean of the list |
-| `best8` | `sas_best`, `parse_float` | `parse_float (sas_best x 8) = best8 x` for every present `x`; the text is never empty for a present value, and is empty for a missing one |
-| the SAS unit's own BEST8. rule for counts (`total_good_bad`) | `sas_best`, `parse_float` | for a whole number `n` with `0 ≤ n < 10^8`: `parse_float (sas_best n 8) = n`, and the text is never empty |
-| `model` | `intercept`, `coefficients`; `stepwise.final` | same intercept, same (name, coefficient) list in the same order |
-| `invLink` (PROC LOGISTIC's own probability, unknown) | the Python expression | hypothesis; the contract is labelled *conditional* |
-| `today` | `today` | the same date |
-| `credit_split` | `split_ids` | the selected rows are those whose `row_id` is listed; `Selected` is 0 or 1 on every row |
-| none | `full` (thread-dependent order of polars horizontal sums) | must hold for both values |
-| none | `input_best32` | hypothesis: equals the SAS unit's conversion; CSV parsing is a later pass |
+| E1 | training feature table | `P.features train seed` and `S.features train seed` both return a pair or both return nothing; when they return pairs, the first tables are equal |
+| E2 | validation feature table | when both return pairs, the second tables are equal |
+| E3 | the model | for the tables F1, F2 that `S.features train seed` returns: `P.fit F1` is `S.fit F1` |
+| E4 | scores | for every model m and every table F of feature shape: `P.score m F` is `S.score m F` |
+| E5 | the training scores of the port | for F1 as in E3 and m with `P.fit F1` returning m: the table of `risk_scores_train.csv` that the training chain of the train stage produces (step 04 onward) is `P.score m F1` |
+| E6 | test predictions | for F1 as in E3 and m with `S.fit F1` returning m: `P.scoreTest m test train` is `S.scoreTest m test train` |
+| E8 | validation summary | for F1, F2, m as above and S1, S2 with `S.score m F1` returning S1 and `S.score m F2` returning S2: `P.metrics S1 S2` and `S.metrics S1 S2` both return tables or both return nothing; when they return tables, the summary tables are equal |
+| E9 | KS table | as E8: the KS tables are equal |
+| E10 | decile table | as E8: the decile tables are equal |
+| E11 | threshold table | as E8: the threshold tables are equal |
 
-No other hypothesis may be added. A contract that cannot be proved or disproved as written is left
-open and reported.
+(E7 is in section 5.)
 
-## 2. Domains
+*Feature shape* (E4): every row of F has the same column names in the same order, no name twice;
+every name of a term of m is among them; every cell is numeric. It is wider than "reached by a
+run" on purpose: requirements Q12 and Q13 score a test feature table that no step returns
+(section 6). The reviewer of E4 fixes the exact wording against the port's scoring units and the
+SAS shape lemma of section 6 before it is stated.
 
-### Well-formed inputs
+Tables are compared as tables: same rows in the same order, same column names in the same order,
+same cells. `[D6]`: no contract is "up to the order of rows"; `Paired` 6 takes the SAS join order
+as the identity.
 
-Every contract assumes its input is well formed. For a stage, the input tables are well formed
-when:
+## 3. Faithfulness of the assembly
 
-- each has at least one row and fewer than 10^8 rows;
-- its columns are exactly those of the stage's input file, by name, order and kind (number or
-  text); in particular none carries the name of a column the stage creates;
-- `row_id` (`VAR1` in a raw file) is present on every row and no two rows share it;
-- where the table carries them: `pd_logistic`, when present, lies in [0, 1], and `default_flag`,
-  when present, is 0 or 1.
-
-For a step inside a stage, the input frame is well formed when it has exactly the columns, in
-order and kind, that the preceding Python steps produce from a well-formed stage input, and at
-least one row. It also has what those steps guarantee about its cells: `row_id` present on every
-row; `age_group` present in the frames of step 04, and in the medians frame, which may have no
-row at all; `pred_logistic` 0 or 1 wherever a step created it; `default_flag`, when present, 0 or 1 wherever a
-frame carries it. Its rows are in the order the preceding step returns them: `decile_analysis`
-is in ascending `decile` order. A table supplied from outside (the medians table of `fix_train_medians`) is well
-formed when it has exactly the age groups 1 to 5, once each.
-
-### The migration's "never missing" claims
-
-The rulebook allows a plain polars comparison only where the inventory proves the operand is
-never missing "for every input the program can receive" (amendment A2). 91 of the 193 inventory
-rows make that claim, with the judged files as evidence. The domains state those claims as
-conditions on an arbitrary well-formed input.
-
-| Domain | Conditions beyond well-formedness | Inventory rows |
-|---|---|---|
-| `D_fe` (raw training table) | `age`, utilization, debt ratio, the three late-payment counts and the credit-line count are present; every age group has at least one present income | 8, 13 to 41 |
-| `D_predict` (raw test table) | as `D_fe`, except that income may stay missing after imputation | 152 to 187 |
-| `D_train` (feature tables) | no model variable is missing; both outcomes occur | 46, 58, 61 to 73, 82, 83 |
-| `D_metrics` (score tables) | `pd_logistic` and `default_flag` present; both outcomes occur | 101, 110 to 121, 127 to 136 |
-
-Round 1 showed that non-negativity of the counts, which version 1 also assumed, is never used. It
-is removed.
-
-Every step contract has two parts:
-
-- **(a) on the domain**: the claim the migration made.
-- **(b) on every well-formed input**, without the "never missing" conditions: either it still
-  holds, or the witness shows what the port does on an input nobody tested.
-
-## 3. Stage contracts
-
-One contract **per output file**. Each says: the file's rows, column names and column order equal
-those the composed SAS units give, rows matched by `row_id` where the file has one. Printed
-formats, the `printed_*` files and the model fit are later passes.
-
-| # | On | Files | Domain and links |
-|---|---|---|---|
-| ST1 | `run` (feature engineering) | `model_features_train.csv`, `model_features_validation.csv` | `D_fe`, split link, `input_best32` |
-| ST2 | `run_py_py_py` (train) | `risk_scores_train.csv`, `risk_scores_validation.csv`, `final_model_output.csv`, `model_summary.csv` | `D_train`, model link, `invLink`, `today`. The stage's own precondition covers out-of-scope steps (classification table, Hosmer-Lemeshow); it is assumed, with one input shown to meet it |
-| ST3 | `run_py` (metrics) | `validation_summary.csv`, `decile_analysis.csv`, `threshold_analysis.csv`, `ks_statistic.csv`, `calibration_plot.csv`, `model_performance_metrics.csv` | `D_metrics`, `agg`, both text links, `today` |
-| ST4 | `run_py_py` (predict) | `kaggle_submission.csv`, `test_predictions.csv` | `D_predict`, model link, `input_best32` |
-
-A file that differs only through a finding already established at step level is disproved with
-that finding's witness, and the text names the step contract.
-
-### Witness contracts
-
-A stage contract assumes the Python stage's own precondition, well-formedness, a domain and
-parameter links. If no input met all of them at once the contract would be true and empty. So
-each stage has one more contract:
+`pyPipeline` wires `fit` and `score` from step units, because the train stage does the fit and
+both scorings in one call. So that the contracts are about the port and not about a paraphrase:
 
 | # | On | Statement |
 |---|---|---|
-| W1 | `run` | There are a raw training table, a split and parameters that meet every hypothesis of the ST1 contracts |
-| W2 | `run_py_py_py` | There are two feature tables and parameters that meet every hypothesis of the ST2 contracts, `model_summary.csv` included |
-| W3 | `run_py` | There are two score tables and parameters that meet every hypothesis of the ST3 contracts, the row bounds included |
-| W4 | `run_py_py` | There are a raw test table, a model and parameters that meet every hypothesis of the ST4 contracts |
+| A1 | `run` | on valid input, under `PyLinks`: when `run` returns files on the imported training table and the split, the tables of its two feature files are the pair `P.features` returns |
+| A2 | `run_py_py_py` | when the train stage returns on the two feature tables as read back: the model it returns is `P.fit F1`; its `risk_scores_validation.csv` is `P.score m F2`; its `risk_scores_train.csv` is the table of E5 |
+| A3 | `run_py_py` | when the predict stage returns on the arguments `P.scoreTest` gives it: its `test_predictions.csv` is `P.scoreTest m test train` |
+| A4 | `run_py` | when the metrics stage returns: its four files are the four tables of `P.metrics S1 S2` |
 
-Each is proved at the real numbers, on a concrete small input. Parameters that stand for
-out-of-scope code (linear algebra, format functions) may be any functions that meet the
-hypotheses; the contract says nothing about the real ones.
+A1, A3 and A4 hold by the way `pyPipeline` is written and are expected to be short; A2 is the
+real one.
 
-## 4. Helper contracts
+## 4. Coverage of the stage preconditions
 
-One per row of RULEBOOK §2 that is in scope: the `sas_compat` helper computes the SAS rule the SAS
-side established from evidence.
+The Lean of the port has no way to say "the Python raises": its units are total, and a case
+where the program raises is excluded by the unit's precondition (RULEBOOK of the port, section
+1). A contract of section 2 assumes no precondition, so by itself it does not say the real
+stage completes. **The claim for a stage is therefore the pair**: its equality contracts and its
+coverage contract. One contract per stage says the port's own stated precondition holds where a
+valid run takes it:
 
-| # | On | Statement (RULEBOOK §2 row) | Round 1 |
-|---|---|---|---|
-| H1 | `lt`, `le`, `gt`, `ge`, `eq` | A missing value is smaller than every number and equal to itself; the result is never missing | proved |
-| H2 | `flag` | A Boolean becomes the number 0 or 1 | proved |
-| H3 | `div` | Element-wise division; a missing operand or a zero divisor gives missing | proved |
-| H4 | `sas_sum` | Missing arguments are ignored; all missing gives missing; both values of `full` | proved |
-| H5 | `sas_min`, `sas_max` | Missing arguments are ignored | proved |
-| H6 | `sas_log` | Zero, negative or missing gives missing | proved |
-| H7 | `sas_exp` | Overflow gives missing | proved |
-| H8 | `sas_round` | Half away from zero, with SAS's tolerance; unchanged at or above 2^52 | disproved: a finding |
-| H9 | `sql_sum`, `sql_mean`, `sql_min`, `sql_max` | Missing over zero rows or an all-missing input | proved |
-| H10 | `merge_one_to_one` | Rows as the longest input; shorter inputs give missing on the extra rows. Columns that share a name across inputs have the same kind (SAS rejects a variable that is both character and numeric) | disproved: a finding |
-| H11 | `proc_rank_groups` | Ties get the mean rank; group is floor(rank × k / (n + 1)) | proved |
-| H12 | `roc_association` | For a response that is 0 or 1 on every row and both outcomes present: Area is the SAS area, SAS's tie rule included | restate |
-| H13 | `confusion_metrics` | On a frame with at least one row: equals the SAS unit `confusion_metrics_macro` for one threshold | restate |
+| # | On | Statement |
+|---|---|---|
+| G1 | `run` | on valid input, under `PyLinks`, the precondition of `run` holds of the arguments `P.features` gives it |
+| G2 | `run_py_py_py` | likewise for the train stage on the feature tables a valid run returns, read back |
+| G3 | `run_py_py` | likewise for the predict stage |
+| G4 | `run_py` | likewise for the metrics stage |
 
-## 5. Step contracts
+`[D3]`: no exception is written into these. Where a valid input falls outside a precondition,
+the coverage contract is disproved with that input: a difference, fixed in the port.
 
-One per Python step, against the SAS units it covers, in the two parts of section 2. Three
-conventions apply:
+The empty validation set (rule H13 of the port's RULEBOOK 2.8) is closed by ruling G57: the
+training data has at least 4 rows, a clause of `TrainOK`. With the split count held by link
+(`PyLinks` 5) the validation set then has at least one row on every valid input, so **G2 is no
+longer expected to fail** on that account; the real SAS fails on one to three rows as the port
+does. G2 uses one shared lemma: from `TrainOK` and `PyLinks` 5, neither set of the split is
+empty. A header-only test file is still valid input: the port completes (H13 (d)), so G3 is
+expected to hold there.
 
-- **Row order of the medians tables.** `income_medians` and `test_income_medians` are only ever
-  joined on their key, and SAS fixes no order for them. S2 and S24 compare them as sets of rows.
-  That Python lists groups in order of first appearance and the SAS translation in ascending
-  order is recorded once, as a note on S2.
-- **`_LEVEL_`.** The SAS scored training table carries a `_LEVEL_` column that PROC LOGISTIC
-  creates and the export drops; the port never creates it. S7 compares all columns except
-  `_LEVEL_`. A well-formed Python frame has no such column (section 2), which settles S13.
-- **ROC columns.** The SAS ROC units model two of the eight columns the Python frames carry. S12
-  and S14 compare those two columns.
+The precondition of the train stage also carries conditions on the printed steps
+(Hosmer-Lemeshow, classification table) that depend on the numpy parameters: G2 is stated for
+the part that concerns the compared files, and the rest is reported as not covered.
 
-| # | On | SAS unit(s) | Rows | Round 2 |
-|---|---|---|---|---|
-| S1 | `fe_run_01_clean` | `credit_raw_clean` | 4, 5 | stands |
-| S2 | `fe_run_02_income_medians` | `income_medians` | 6, 7 | restate (a) as sets of rows; (b) stands |
-| S3 | `fe_run_03_cleaned` | `credit_cleaned` | 8 to 10 | stands |
-| S4 | `fe_run_04_imputed` | `credit_imputed` | 11, 12 | restate (a) and (b) on well-formed frames |
-| S5 | `fe_run_05_features` | `credit_features` | 13 to 41 | stands |
-| S6 | `fe_run_06_split` | `credit_train_validation`, the two exports | 42 to 44 | restate (a) and (b) |
-| S7 | `train_run_04_score_train` | `logit_scored_train_output` | 57 | restate, without `_LEVEL_` |
-| S8 | `train_run_09_confusion_train` | `logit_scored_train`, `confusion_matrix_train`, `training_metrics` | 59 to 70 | (a) stands; restate (b) |
-| S9 | `train_run_10_score_valid` | `logit_scored_valid_temp`, `logit_scored_valid` | 72 to 74 | stands |
-| S10 | `train_run_11_confusion_valid` | `confusion_matrix`, `validation_metrics` | 75 to 80 | restate (a) and (b) |
-| S11 | `train_run_12_risk_scores` | `risk_scores_train`, `risk_scores_validation` | 58, 82 to 84 | restate (a) and (b): the probability is in [0, 1] or missing |
-| S12 | `train_run_13_roc` | `roc_train`, `roc_valid` | 88, 89 | restate on the two columns |
-| S13 | `train_run_14_final_and_summary` | the two `_clean` units, `final_model_output`, `model_summary` | 85, 86, 91 to 96 | restate |
-| S14 | `metrics_run_01_roc_auc` | `roc_stats`, `auc_summary` | 100 to 104 | restate on the two columns |
-| S15 | `metrics_run_02_ks` | `logit_scored_valid_sorted`, `total_good_bad`, `ks_calculation`, `ks_statistic` | 106 | sorted part stands; restate the KS part with the count link |
-| S16 | `metrics_run_03_thresholds` | `threshold_analysis` | 107 to 123 | (a) stands; restate (b) |
-| S17 | `metrics_run_04_deciles` | `decile_data`, `decile_analysis` | 124, 125 | stands |
-| S18 | `metrics_run_05_cumulative_lift` | `total_defaults`, `cumulative_lift` | 126 to 132 | restate (a) and (b) |
-| S19 | `metrics_run_06_psi` | `train_bins`, `valid_bins`, `psi_calculation`, `psi_summary` | 133, 134 | stands |
-| S20 | `metrics_run_07_calibration` | `calibration_data`, `calibration_plot` | 135 to 137 | stands |
-| S21 | `metrics_run_08_validation_summary` | `validation_summary` | 138, 139 | (a) stands; restate (b) |
-| S22 | `metrics_run_09_model_performance` | `model_performance_metrics` | 142 to 144 | (a) stands; restate (b) |
-| S23 | `predict_run_01_clean` | `test_raw_clean` | 148 to 150 | stands |
-| S24 | `predict_run_02_medians` | `test_income_medians` | 151 to 154 | restate (a) as sets of rows; (b) stands |
-| S25 | `predict_run_03_cleaned` | `test_cleaned` | 155 to 157 | restate (a); (b) stands |
-| S26 | `predict_run_04_imputed` | `test_imputed` | 158 to 161 | restate (a) and (b) |
-| S27 | `predict_run_05_features` | `test_features` | 162 to 187 | stands |
-| S28 | `predict_run_06_score` | `test_scored_temp`, `test_scored` | 188 | stands |
-| S29 | `predict_run_07_predictions` | `test_predictions` | 189 | restate: the probability is in [0, 1] or missing |
-| S30 | `predict_run_08_outputs` | `kaggle_submission`, `test_predictions_full` | 190 to 193 | restate on well-formed frames |
-| S31 | the predict steps against their feature-engineering twins | | | stands. The copies differ in `flag_low_income` (with `total_risk_flags`), and in `default_flag`, which only the training copy carries |
+## 4a. Coverage of the SAS unit preconditions (stated first)
 
-## 6. Flag contracts
+The SAS units are total too: where SAS would fail or do something the Lean does not model, the
+case is in the unit's precondition. `sasPipeline` applies the units without their preconditions,
+and the 26 `thm:sas_Q` do not assume them. Twice already a precondition turned out not to hold on
+valid input (`total_good_bad` below 10^8 rows: ruling G56; `roc_valid` with both classes: the
+one-class validation set, corrected in SAS round 6). So before any equality contract, one lemma
+per unit of `sasPipeline` that has a precondition: on valid input, under `SasLinks`, the
+precondition holds of the argument the pipeline gives the unit. They are stated in the port
+blueprint, through the profile, about SAS units only (`lem:sas_cov_<unit>`). A lemma that fails
+is a finding about the SAS verification, reported to the lead, not patched.
 
-| # | Flag | On | Frame | Round 2 |
-|---|---|---|---|---|
-| F1 | `fix_psi_bins` (bugfix-4) | Validation rows are binned by the training groups: a value goes to the highest training group whose start is at most the value, and below all of them to the lowest group present. A training bin with no validation rows keeps a share of 0 and its term uses both shares floored at 1e-4. The validation shares sum to 1 | The cells that change are the PSI cells and the cells computed from PSI (`PSI_interpretation`, `status`); every other cell of every output is identical with the flag on and off | settle "on"; restate the frame. Round 1 disproved the frame as bugfix-4 states it ("only PSI cells"): that result stands as a finding against the record |
-| F2 | `fix_train_medians` (bugfix-3) | Test incomes are imputed from the medians supplied, not from the test set | With a well-formed medians table, only rows whose income was missing change | "on" stands; restate the frame |
-| F3 | `export_train_medians` | One more file, the medians, first; the two judged files unchanged | | stands |
-| F4 | `fix_income_truncation` | The Python Lean keeps the flag and ignores it: it changes only the CSV import, out of scope | | stands |
+**Text of each lemma** (`lem:sas_cov_<unit>`): "At the real numbers. For all SAS parameters
+meeting `SasLinks`, for every raw training table, raw test table and seed that are valid input
+(`CreditRisk.InputOK`), the precondition of `<unit>` holds of the argument that `sasPipeline`
+gives `<unit>` in the step named. Where the argument depends on a model or on tables the earlier
+steps return, it is stated for the values a run reaches: F1, F2 with `features train seed`
+returning them; m with `fit F1` returning m; for a scoring unit, F one of F1, F2; S1, S2 with
+`score m F1` and `score m F2` returning them. No other hypothesis." For `total_good_bad` the
+lemma states the second clause only (`default_flag` numeric in every row); the first clause
+(fewer than 10^8 rows) is the stated limit of ruling G56. For `train_bins` there are two
+statements in one lemma: the training use and the validation use (`valid_bins`).
 
-## 7. Closed rows
+The 20 units of `sasPipeline` with a precondition item, read from `3f5df696` on 2026-11-16
+and re-read on 2026-11-17 after the round 6 revision and the owner's refresh of the port
+profile (all 20 unchanged, word for word), and what each asks:
 
-| # | Row | Closed as | Contract | Round 2 |
-|---|---|---|---|---|
-| C2 | 14 | degenerate ROC inputs "return missing, not a crash" | on a single-class input every statistic of `roc_association` is missing | disproved (`TauA` is 0): stands, a finding against the record |
-| C3 | 16 | a model variable absent at scoring raises an error | precondition of `predict_run_06_score`: every coefficient name is a column | stands |
-| C4 | 11 | rows with a missing model variable are excluded from the fit | the mask keeps exactly the rows with no missing candidate | disproved (a missing `default_flag` also drops the row): stands, a finding against the record |
+| Unit | Its precondition asks | Expected |
+|---|---|---|
+| `credit_raw_input_check` | each of the 12 raw columns is, in the whole table, numeric, or absent, or text with no exponent notation; no two column names equal up to capitalisation; `bad_row`, `known_income` not already columns | holds, from `SasLinks` (1) |
+| `credit_raw_clean` | `MonthlyIncome`, `NumberOfDependents` are text cells of at most 32 characters with no letter e, E, d, D; the two `_num` names not already columns | holds, from `SasLinks` (1) c |
+| `income_medians` | `age`, `MonthlyIncome` numeric cells in every row | holds |
+| `income_medians_all` | `age_group`, `median_income` numeric in the medians table; no age group twice; `MonthlyIncome` numeric in the cleaned table | holds |
+| `credit_cleaned` | `age`, `MonthlyIncome`, `NumberOfDependents` numeric; the three new names not already columns | holds |
+| `credit_imputed` | `arrange` returns a permutation; `VAR1` a numeric cell in every row | holds, `SasLinks` (4) |
+| `credit_features` | the nine input columns numeric; the 27 new names not already columns | holds |
+| `credit_train_validation` | `Selected` a numeric cell in every row of the split | holds, from `SasLinks` (5): each row of the split is the row with `Selected` set to 0 or 1 |
+| `logit_scored_valid_temp` | every model variable a numeric cell in every row of the table scored | needs `SasLinks` (6) and what the read-back keeps (`PyLinks` 8 under G55) |
+| `test_raw_input_check` | as the training check, on the test table; a table with no row meets it | holds, `SasLinks` (2) |
+| `test_raw_clean` | as `credit_raw_clean` | holds |
+| `test_cleaned` | as `credit_cleaned`; no row meets it | holds |
+| `test_imputed` | `arrange` returns a permutation | holds |
+| `test_features` | as `credit_features` | holds |
+| `test_scored_temp` | every model variable numeric in the test feature table | needs `SasLinks` (6) |
+| `test_scored` | `predicted_logit` numeric in every row | holds |
+| `test_predictions` | `pd_logistic` numeric in every row | holds |
+| `total_good_bad` | fewer than 10^8 rows; `default_flag` a numeric cell in every row | **first clause does not follow from valid input**: the stated limit of G56. The lemma is stated for the second clause, and the first is reported |
+| `train_bins` (also used for `valid_bins`) | `credit_risk_score` numeric; the names the step creates not already columns; the cuts table has at most one row with numeric cuts | holds; depends on the read-back keeping `credit_risk_score` numeric |
+| `decile_data` | `pd_logistic` numeric; `decile` not already a column | holds; depends on the read-back |
 
-## 8. Intent contracts
+The other units of `sasPipeline` have no precondition item. Units outside it with one
+(`logit_scored_train_output`, `training_metrics`, `validation_metrics`, `roc_train`, `roc_valid`,
+`roc_stats`, `kaggle_submission`, and the two printed-table units; since round 6 the two ROC
+preconditions no longer ask for both classes: a one-class set is inside the unit, which returns
+no row) matter only for the per-file
+contracts of section 5 and get the same lemma there if those contracts are kept.
 
-Stated on the Python item. "Fails" is proved as the negation, with a witness.
+Under ruling G55 three of these depend on the read-back: with the identity (the SAS
+verification's setting) they follow from the SAS shape lemmas; with the shared free read-back
+of the equality contracts they follow from `PyLinks` 8. Both forms are stated.
 
-| # | Property | On | Round 2 |
-|---|---|---|---|
-| I1 | PSI is zero exactly when the two score distributions agree on the bins | `metrics_run_06_psi` | "off" stands, with its text corrected: PSI is 0 on untied tables of equal size whatever the shift. Settle "on": round 1 suspects it false when the differing bins sit at or below the 1e-4 floor. State that as a general lemma about the floored terms, which needs no large table |
-| I2 | Test incomes are imputed with the training medians | `predict_run_02_medians` | stands |
-| I3 | A risk flag is set only when its variable is present and beyond its threshold | both feature steps | stands |
-| I4 | A capped variable equals the original below the cap; after imputation every applicant has an income | `fe_run_05_features`, `fe_run_04_imputed` | stands |
-| I5 | The score lies in 300..850 and each grade is its model-card probability band | `train_run_12_risk_scores` | stands |
-| I6 | A row whose probability is missing is not predicted "no default" | `predict_run_07_predictions` | stands |
-| I7 | `ks_statistic` has exactly one row | `metrics_run_02_ks` | restate on `D_metrics`: the witness must be a well-formed table on which the maximum is attained twice |
-| I8 | The feature engineering applied to the test set is the one applied to the training set | S31 | stands |
+## 5. Outputs outside the interface `[D5]`
 
-## 9. What round 5 does
+The playbook asks for one contract per output of the program. Six compared files are not carried
+by the interface. Each gets a contract of the old per-file form: on valid input, under `PyLinks`
+and `Paired`, the table of the file equals what the composed SAS units give on the same run.
 
-After round 4 all fourteen stage files are proved and no difference between the port and SAS is
-left. Round 5 is small.
+| # | File | SAS units |
+|---|---|---|
+| F1 | `income_medians.csv` | `income_medians_all`, `income_medians_export` |
+| F2 | `kaggle_submission.csv` | `kaggle_submission` |
+| F3 | `final_model_output.csv` | `final_model_output` |
+| F4 | `model_summary.csv` | `model_summary` |
+| F5 | `calibration_plot.csv` | `calibration_data`, `calibration_plot` |
+| F6 | `model_performance_metrics.csv` | `model_performance_metrics` |
+| E7 | column names of `test_predictions.csv` and `kaggle_submission.csv` | the names and order the SAS units give |
 
-- **State and prove W1 to W4** (section 3). Rounds 2 to 4 showed that the stage hypotheses can be
-  met by evaluating hand-written checks at `Float`; these four replace that with proofs.
-- **Restate S12(a), S12(b) and S18(b)** with the two step-frame guarantees section 2 now gives
-  (`default_flag` 0 or 1; `decile_analysis` in ascending order). All three are expected to hold.
-- **Leave alone** everything else.
+Not given a contract, with the reason: `model_coefficients.csv` and `stepwise_summary.csv` (the
+fit is out of scope on both sides and no SAS unit models them); the `printed_*` files (printed
+formats); the ROC tables beyond the area.
 
-## 10. Not covered in this pass
+## 6. Requirements carried over (stage 6)
 
-- CSV import and type guessing (`proc_import_csv`, `input_best32`): the income truncation lives here.
-- Printed formats and the `printed_*` files.
-- The model fit: stepwise selection, the optimiser, and the PROC LOGISTIC tables.
-- The Hosmer-Lemeshow and association tables: the SAS side leaves their arithmetic open.
-- The other six columns of the ROC table (standard error, confidence limits, Somers' D, Gamma,
-  Tau-a): SAS and the port differ there under near ties, and the SAS side has no rule for them.
-- The edge scenarios' score files have three columns, not the stage's 51, so the metrics stage
-  contracts do not cover them literally.
-- Floating-point behaviour: overflow, NaN and summation order. Each translation was checked
-  against its source at `Float`; the judge's tolerance covers last-place differences.
+Stated only after every contract of section 2 is proved.
+
+- **T0, parameters exist.** For every `py` with `PyLinks py` there is `sas` with `Paired py sas`;
+  and when the read-backs of `py` are the identity, that `sas` meets `SasLinks`.
+- **T1, not empty.** There is a `py` meeting `PyLinks` whose read-backs are the identity.
+- **T2, the test feature table has feature shape.** For the SAS pipeline on valid input, the
+  feature table that requirements Q12 and Q13 score meets the feature shape of E4. `[D8]`: an
+  item of the port blueprint, about SAS units seen through the profile; the signed-off SAS
+  blueprint is not touched.
+- **Transport, one per requirement.** For each of Q1 to Q16 and Q18 to Q27: if two pipelines
+  with the same model type agree as the contracts E1 to E4, E6 and E8 to E11 say, and the
+  requirement holds of the second, it holds of the first. These name only `CreditRisk`
+  definitions and neither program.
+- **The 26 carried requirements.** For each: "For every `py` with `PyLinks py` whose read-backs
+  are the identity, requirement Qn holds of `pyPipeline py`. The hand-off files are taken at
+  full precision (ruling G55), as in the verification of the SAS program; what the 12-character
+  files lose between scripts is outside this statement." Proved from `thm:sas_Qn`, the equality
+  contracts, T0 and the transport lemma, and from nothing about the code. If a proof needs an
+  argument about the port, the contracts or the conditions do not line up: that is a finding.
+
+## 7. What stands from version 2.3, and what is withdrawn
+
+- **Stand, as proved** (46 items, checked after the re-base, plan section 0.1): the helper
+  contracts H1 to H11 and H13, and the step contracts S2, S3, S6, S7, S8, S9, S10, S13, S16,
+  S20, S21b, S22b, S25, S28, with `predict_run_03_cleaned_S31` and C3. They are lemmas for the
+  proofs of section 2 where their hypotheses can be met on a valid run; they are no longer the
+  claim.
+- **Stands, as a recorded fact about the port**: C4 and its proved negation (the fit mask also
+  drops a row with a missing outcome). No effect on valid input.
+- **Withdrawn** (the 84 items the update cleared; their removal was allowed by the owner on 2026-11-16, `[D7]`; record in `reports/removed-2026-11-16.md`):
+  the stage contracts ST1 to ST4 and witnesses W1 to W4 (replaced by sections 2 to 5); the flag
+  contracts F1 to F4 of version 2.3 (the flags are gone); every part (b) and the `wf_` domains
+  (G53); the intent contracts I1 to I8 (intent is now the 26 requirements); S31 and I8 (now
+  requirement Q12); the cleared step contracts, which return only as lemmas inside the proofs or
+  as `lem:` items shared by a group; H12 returns as a lemma if F4 is kept; C2 is dropped (a
+  printed column).
+
+## 8. How the work is divided
+
+Stating order: the SAS coverage lemmas of section 4a first; then the three definitions; then
+the contracts. Groups A (E1, E2, A1, G1), B (E3, E4, E5, A2, G2), C (E6, E7, A3, G3), D (E8 to E11, A4, G4) in
+parallel; E (section 6) stated after A to D are stated; F (section 5) last. Every statement is
+checked against this text by a teammate who did not write it before its proof is started. Shared
+lemmas are `lem:` items (plan section 4.3).
+
+## 9. Not covered
+
+- The fit: stepwise selection and the optimiser, on both sides a parameter, assumed to return a
+  model and the same model for both programs (ruling G58, a stated limit). Every report says:
+  the equality is given the same fitted model; the claims hold for inputs whose training part
+  has both outcomes (with one outcome the real SAS fits no model, experiment x27); and the two
+  real fits agree only to the judge's tolerance (SAS stops at GCONV 1E-8).
+- CSV reading itself: the importers and read-backs are parameters, described by `PyLinks` from
+  observed runs (RULEBOOK 2.8), not modelled.
+- What the 12-character and 15-digit hand-off files lose, for the carried requirements (G55).
+  The equality contracts do cover it.
+- Printed formats, the `printed_*` files, the coefficient and stepwise files.
+- Any input that is not valid (G53).
+- Raw files of 10^8 rows or more (ruling G56): the 8-character count round trip is taken as
+  exact on both sides (`PyLinks` 10); beyond that size neither program counts exactly. Every
+  report states this limit.
+- Floating-point behaviour.
+
+## 10. Owed before anything is stated
+
+1. The requirements change of G54 formalised, and the owner's refresh of both profiles; then the
+   profile check again, including the state of the 46 kept theorems.
+2. (Done 2026-11-16: decisions D3 to D9 are settled.)
+3. (Done 2026-11-16: the runs are rules H8 to H14 of the port's RULEBOOK 2.8; each clause of
+   `PyLinks` cites its rule.) D4 is closed by ruling G56 (owner, 2026-11-16): counts are taken as exact on
+   both sides and the claims hold for raw files of fewer than 10^8 rows. The empty validation set (H13) is closed by ruling G57 (at least 4 training
+   rows; neither program changes).
+5. The five differences on small valid inputs (`migration/legacy-to-port/small-inputs.md`),
+   decided by the owner on 2026-11-16: the port follows SAS on separation (c) and is fixed for
+   (a), (b), (d), (e) as parity fixes, its Lean following; the SAS translator corrects
+   `def:roc_train`, `def:roc_valid` and `def:model_summary` (no row when the set has one
+   class) in the round 6 revision. Contract F4 is to be read against the corrected units.
+4. Review of the three definitions: wiring, and each condition against the port in both
+   directions.

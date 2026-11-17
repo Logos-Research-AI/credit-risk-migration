@@ -1,9 +1,11 @@
-# Draft texts of `def:pyPipeline`, `def:PyLinks`, `def:Paired` (2026-11-16)
+# Texts of `def:pyPipeline`, `def:PyLinks`, `def:Paired` (version 3, 2026-11-17)
 
-**Draft, in words only. Nothing here is on a blueprint.** These three items are to be added to the
-port blueprint `5365851c` only after the requirements change of ruling G54 has gone through and the
-owner has refreshed the profiles (SAS, then port); a refresh would clear anything stated before it.
-Each text below is meant to become the informal statement of its item. This file holds no Lean.
+The informal statements of the three definitions, in words. In force from 2026-11-17 with
+`informal-spec.md` version 3. Each text is the informal statement of its item on the port
+blueprint `5365851c`. This file holds no Lean. Since it was drafted the train stage changed
+(`migration/port-to-lean/update-2026-11-17.md`: rules G29, G30; a final model with no effect is
+inside the precondition; `LogisticFit` has a field `separation`): the author of the definitions
+reads that record first and reports to the coordinator any clause it makes wrong.
 
 Rulings built in: G53 (valid input only), G58 (the fit assumed, clause 6 and `Paired` 3), G56 (counts exact, clause 10), G57 (at least 4
 training rows, through `TrainOK`), G54 (a present `MonthlyIncome` or `NumberOfDependents`
