@@ -477,6 +477,16 @@ every n (G56), `PyLinks` 6 for every table (G58).
   width 8 gives E-notation from 10^8, so the real pair fails from 100000001 (G56); `PyLinks` 6
   is asked of every table while the real stepwise fit raises on non-convergence (G58).
 
+- Phase 2 re-review by prover-2 of the C-d revisions: **agrees** on `def:pyPipeline` (3a33a3de),
+  `def:PyLinks` (8c70e384), `def:Paired` (bdcb9e35), `lem:sas_split_input_ids` (429ede2e),
+  `lem:py_score_fillers_idle`. `Paired` 5 compared clause against clause with `SasLinks` (8):
+  six iff clauses, same order, quantifiers and bodies, the `sas.` prefix apart;
+  `sasPipelineOf` is `sasPipeline` at the 17 fields in order. `run_py_py_py` returns nothing
+  when either feature table is absent, so `fit` testing both flags matches the real stage and
+  `sasPipeline.fit`. Still to review: `PyLinks` 11 (C-e) after prover-1's restatement.
+- Wording rule for per-file contracts (answer to prover-9): the port side spells out the stage
+  function's call character for character as in `def:pyPipeline`; no helper item.
+
 ## Blueprint behaviour met
 
 - `write_statement` on an old `thm:` item replaces its contract text with a generated summary
