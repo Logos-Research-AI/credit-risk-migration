@@ -278,6 +278,80 @@ for the owner at the final sign-off.
   outside it (`model_performance_metrics`; contracts F4, F6).
 - **Condition**: F4 and F6 quantify `today` once, shared through `Paired`.
 
+### C-d. The existence flags: `Paired` 5, `PyLinks` 7, `pyPipeline.fit`
+
+Found by prover-1 while stating (the doubt on T0), checked by the coordinator on the Lean of
+`def:SasLinks`, `def:sasPipeline`, `def:PyLinks`, `def:Paired`, `def:pyPipeline`; approved by
+the lead 2026-11-17.
+
+- **Before.** `Paired` 5: "Existence flags are shared. `featTrainExists`, `featValidExists`,
+  `mediansExist`, `coefExists` and the two score-file flags of the SAS side are the port's."
+  `PyLinks` 7: "Each existence flag is true exactly when the producing step returned a result:
+  the feature flags on every table, the medians flag on every training table for which the
+  feature-engineering steps return, the coefficients flag on every model, the score flags on
+  every table." `pyPipeline.fit`: "nothing when the flag says the training feature file is
+  absent for `F`".
+- **After.**
+  - `Paired` 5: the SAS existence flags meet clause (8) of `SasLinks`, restated word for word,
+    with P the SAS pipeline at `sas`: for every table F, `featTrainExists F` is true exactly
+    when F is one of the two feature tables of a result of the features step of P (for some raw
+    training table and seed), and the same for `featValidExists`; for every table S,
+    `scoresTrainExists S` is true exactly when the score step of P returned S for some model
+    and feature table, and the same for `scoresValidExists`; for every raw training table,
+    `mediansExist` of it is true exactly when the features step of P returned a result on it
+    for some seed; for every model m, `coefExists m` is true exactly when the fit step of P
+    returned m for some feature table. No clause relates the SAS flags to the port's.
+  - `PyLinks` 7 (Lean as stated; text made unambiguous): the same six statements for the
+    port's flags, with P the pipeline `pyPipeline py`: each flag is true of a value exactly
+    when the producing step of P returned that value for some argument.
+  - `pyPipeline.fit`: nothing when the flags say either feature file is absent for `F` (the
+    conjunction of `featTrainExists F` and `featValidExists F`), as `sasPipeline` and the real
+    train stage do (the reviewer confirms against `run_py_py_py` that the real stage stops when
+    either file is absent). This reverses the addition below about `fit`.
+- **Reason.** One function cannot be "returned by the SAS pipeline for some argument" and
+  "returned by the port pipeline for some argument" for every value, unless the two pipelines
+  return the same values over all inputs, invalid ones included, which nobody claims (G53). No
+  `py` and `sas` could meet `PyLinks`, `Paired` and `SasLinks` together; T0 had no witness.
+- **What each contract family uses of the flags** (from the two pipeline definitions):
+
+  | Family | SAS side reads | Port side reads | Applied to | Port flag true by |
+  |---|---|---|---|---|
+  | features (E1, E2) | none | none | | |
+  | fit (E3) | both feature flags of the one table | both feature flags (after C-d) | F1 returned by `S.features` on the valid run | E1 (F1 is a port feature table) |
+  | score (E4, E5) | none | none | (so E4's free table of feature shape is untouched) | |
+  | scoreTest (E6) | medians, coefficients | medians, coefficients | `train`; m returned by `S.fit F1` | E1, E3 |
+  | metrics (E8 to E11) | the two score flags | the two score flags | S1, S2 returned by `S.score` | E4 and the feature-shape lemma |
+  | F1 to F6, E7 | as the stage | as the stage | the same reached values | as above |
+  | port coverage G1 to G4 | | the port's | reached values | `PyLinks` 7 |
+
+  The SAS side always reads its flags on values its own pipeline returned, which clause (8)
+  makes true at once.
+- **Rejected forms.** (i) Shared flags (the draft): unsatisfiable with the two reachability
+  clauses, as above. (ii) No clause at all on the SAS flags (the coordinator's first proposal):
+  the contracts assume `PyLinks` and `Paired` only, so a `sas` whose flags are false everywhere
+  would be paired with any `py`; `S.fit F1` is nothing while `P.fit F1` returns, and E3 is
+  false. Also considered and withdrawn by prover-1: flags agreeing only on values a valid run
+  reaches (T0 would need the equality), and a "valid runs only" reading of `PyLinks` 7 (the
+  same).
+- **Conditions and consequences.**
+  1. Binding on every contract of phase 3: a flag appears only applied to a value named by a
+     reached-equation on the valid input in question. A contract needing a flag on a free value
+     goes to the lead; no hypothesis is added.
+  2. Order of proof: E1 and E2, then E3, then E6; E4 before E8 to E11.
+  3. `Paired` 5 and `SasLinks` (8) must be literally the same clause (a shared definition, or
+     compared character against character by the reviewer), so that section 6 of the
+     specification does not carry two versions.
+  4. In the review of the fit contract it is shown that on a valid run every flag either side
+     reads is true, each by its own clause; a valid input on which the two stops differ would
+     be a finding.
+  5. T0's witness: each side's flags are its own reachability, built stage by stage (features
+     and score read no flag; fit reads the feature flags; scoreTest and metrics read flags of
+     earlier stages only). prover-3's paper witness covers all clauses after C-a to C-d and is
+     the plan of T0; T0 is stated and proved first in phase 3.
+- **For the owner.** C-a to C-d change assumptions of the claim and are listed together in the
+  final report under "definitions corrected before stating"; two of them (C-a, C-d) removed
+  assumptions that could not be met.
+
 ### Additions that are not changes of wording
 
 - **Two record items.** The server takes one declaration per item, so the parameters are two
@@ -290,7 +364,8 @@ for the owner at the final sign-off.
   looks up `risk_scores_validation.csv` in the result. The independence of the validation
   output from the idle slots is a required lemma, proved before any F-contract cites
   `pyPipeline`.
-- **`pyPipeline.fit`** stops on the training feature flag only, as the text says; under
+- **`pyPipeline.fit`**: superseded by C-d (it tests both feature flags). The first form of
+  this addition read: it stops on the training feature flag only, as the text says; under
   `PyLinks` 7 the two flags agree, so E3 is not affected.
 - **Importers** are optional-valued (`importTrain`, `importTest`); `PyLinks` 3 and 4 say a valid
   table gives a value and say nothing of other tables.

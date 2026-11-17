@@ -326,6 +326,50 @@ on the SAS blueprint or in `SasLinks` now.
   link; every contract applies a flag only to what its own side produced on the valid run).
   prover-3 searches, on paper, for any other joint clash of the three sets of clauses.
 
+- The flags and T0, as sent to the lead (2026-11-17, proposal C-d, awaiting decision). Read
+  first-hand from `def:SasLinks`, `def:sasPipeline`, `def:PyLinks`, `def:Paired`,
+  `def:pyPipeline`: features and score read no flag on either side; fit reads the feature
+  flags of the one table given (SAS both, the port definition the training one); scoreTest the
+  medians and coefficients flags; metrics the two score flags. In every contract a flag is
+  applied only to a value reached by the valid run and named by an equation. Proposal: `Paired`
+  5 restates clause (8) of `SasLinks` on `sas` (no sharing); `PyLinks` 7 keeps its Lean, its
+  text is made unambiguous; `pyPipeline.fit` tests both feature flags, as `sasPipeline` and
+  the real stage do. The coordinator's first proposal ("no clause at all") was incomplete (the
+  SAS flags would be free and E3 false) and is withdrawn. Order of proof that follows: E3 uses
+  E1; E6 uses E1 and E3; E8 to E11 use E4 and the feature-shape lemma.
+- S13 text, sequence: `write_statement` replaced the item's text with a generated summary; the
+  lead and prover-8 each restored it with `edit_text`, prover-8 last (after being told to hold,
+  on the ground that its own write had lost the text). Text at the coordinator's fetch: the
+  version 2.3 contract followed by the approved version 3 sentence; state TheoremStated, Lean
+  unchanged. prover-10 reviewed the Lean against that text: agrees. Whether the lead's order
+  (sentence first) is to be restored is with the lead; no proof before the lead closes it.
+- C4 reference corrected by prover-10 in the negation's proof text and the disproof file:
+  "train.py line 98, in the assignment of fit_mask at lines 97 to 101, applied by the filter of
+  line 102 (commit 9640913)"; states, Leans and C4's contract text read back untouched.
+- Draft collision: partial drafts by another writer were found on S8a, S10b (lead) and S8b
+  (prover-5: 900 then 1050 lines); rule from the lead: a live writer keeps the item; owners to
+  be entered when prover-7 answers. prover-5 wrote nothing to S8b.
+- Second, independent reads of the phase 2 items by free provers (read only): prover-4
+  (`def:pyPipeline` against the Python), prover-5 (`PyLinks` 1 to 4, 9, 10 against the rules and
+  the real functions), prover-6 (`PyLinks` 8 names; `Paired` 1, 2, 6 against `SasLinks`),
+  prover-3 (joint clashes blocking T0).
+
+- C-d approved by the lead in full (2026-11-17) and entered in `definitions-v3.md`: `Paired` 5
+  restates `SasLinks` (8) on `sas`; `PyLinks` 7 Lean unchanged, text clarified;
+  `pyPipeline.fit` tests both feature flags. prover-1 restates.
+- S13 text closed by the lead as it stands (the 2.3 text followed by the version 3 sentence,
+  prover-8's edit; the lead's own edit, sentence first, made within the same minutes, is
+  superseded). prover-8's edit after being told to hold: recorded, no consequence (the text
+  had been lost by its own write and the content is the approved one). No third review; the
+  proof is released.
+- Owners, final: S8a, S8b, S10b stay with prover-7 and its helpers (live drafts); provers 4, 5,
+  6 are free of them and wrote nothing to them.
+- Phase 2 review: prover-9 on `def:PyParams`, `def:SasParams`, `def:sasPipelineOf`,
+  `def:SasLinksOf`: agrees, all four (fields only, no default, no proposition; the 17 binders
+  one by one against `sasPipeline`, `today` last; the 36 field types of `PyParams` against the
+  stage functions). Remark: the text of `def:PyParams` does not spell out the types of the
+  eight numpy routines.
+
 ## Blueprint behaviour met
 
 - `write_statement` on an old `thm:` item replaces its contract text with a generated summary
