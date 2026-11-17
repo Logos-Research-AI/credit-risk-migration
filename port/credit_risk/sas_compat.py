@@ -817,6 +817,42 @@ def _left_out(fit: LogisticFit) -> list[str]:
     return [n for i, n in enumerate(fit.names) if float(fit.cov[i, i]) == 0.0]
 
 
+# global-wald-rule.md (experiment X20): SAS leaves a slope out of the global Wald test when its pivot is
+# not above an absolute tolerance measured between 1e-16 (T1: left out) and 2e-16 (T2: kept); the port
+# takes the midpoint. Not settled: the value inside the bracket, pivot or diagonal element (0.7% apart
+# on seed 6), the order when two slopes are near it (only one ever was).
+_GLOBAL_WALD_TOL = 1.5e-16
+
+
+def global_wald(fit: LogisticFit, order: Sequence[str]) -> tuple[float, int]:
+    """The Wald test of the global null hypothesis as SAS prints it: (chi-square, DF).
+    A step with a parameter left out of a singular information matrix (`_left_out`) has no
+    chi-square (NaN, the cells are empty) and DF = the variables not left out
+    (singular-information.md). Otherwise the chi-square is b' G b over the slopes, G the inverse of
+    the slopes' block of `fit.cov` (intercept left out) taken by sweeping the slopes in `order` (the
+    MODEL statement's): a slope whose pivot, its variance given the slopes swept before it, is not
+    above `_GLOBAL_WALD_TOL` is left out (its row and column of G are 0). The DF stays the number of
+    slopes (global-wald-rule.md: seed 6 step 7, 406.4827 with DF 7)."""
+    slopes = sorted(fit.names[1:], key=list(order).index)
+    q = len(slopes)
+    idx = [fit.names.index(s) for s in slopes]
+    singular = [s for s in _left_out(fit) if s != "Intercept"]
+    if singular:
+        return math.nan, q - len(singular)
+    v = fit.cov[np.ix_(idx, idx)]
+    b = fit.beta[idx]
+    kept: list[int] = []
+    for i in range(q):
+        pivot = float(v[i, i])
+        if kept:
+            c = v[kept, i]
+            pivot -= float(c @ np.linalg.solve(v[np.ix_(kept, kept)], c))
+        if pivot > _GLOBAL_WALD_TOL:
+            kept.append(i)
+    bk = b[kept]
+    return float(bk @ np.linalg.solve(v[np.ix_(kept, kept)], bk)), q
+
+
 def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticFit | None:
     """The estimates PROC LOGISTIC ends with for a model with a variable, as `train.sas` calls it:
     SAS's own iteration, stopped where SAS stops it. Fisher scoring from the intercept-only

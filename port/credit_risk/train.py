@@ -226,23 +226,21 @@ def run(input_dir: Path, output_dir: Path) -> None:
         u0 = x_k.T @ (y_train - ybar)
         i0 = ybar * (1.0 - ybar) * (x_k.T @ x_k)
         score = float(u0 @ np.linalg.solve(i0, u0))
-        b_slope = st.fit.beta[1:]
-        # a step with a parameter left out of a singular information matrix (variance exactly 0) has
-        # no Wald test of the global null hypothesis: empty chi-square and probability, DF = the
-        # variables not left out (singular-information.md)
-        n_left_out = sum(float(v) == 0.0 for v in np.diag(st.fit.cov)[1:].tolist())
-        wald = math.nan if n_left_out else float(b_slope @ np.linalg.solve(st.fit.cov[1:, 1:], b_slope))
-        for test, stat in (("Likelihood Ratio", lr), ("Score", score), ("Wald", wald)):
+        # Wald: SAS's generalized inverse of the slopes' covariance, swept in MODEL order; a step with a
+        # parameter left out of a singular information matrix has an empty chi-square and probability
+        # and DF = the variables not left out (singular-information.md); a slope with a pivot not above
+        # 1.5e-16 is left out of the chi-square but not of the DF (global-wald-rule.md)
+        wald, wald_df = sas_compat.global_wald(st.fit, candidates)
+        for test, stat, df in (("Likelihood Ratio", lr, q), ("Score", score, q), ("Wald", wald, wald_df)):
             gt_step.append(str(st.step))
             gt_test.append(test)
+            gt_df.append(str(df))
             if math.isnan(stat):
                 gt_chisq.append("")
-                gt_df.append(str(q - n_left_out))
                 gt_prob.append("")
                 continue
             gt_chisq.append(sas_compat.fmt_wd(stat, 10, 4))
-            gt_df.append(str(q))
-            gt_prob.append(sas_compat.sas_pvalue(sas_compat.chi2_sf(stat, q)))
+            gt_prob.append(sas_compat.sas_pvalue(sas_compat.chi2_sf(stat, df)))
         # R-square: Cox-Snell and Nagelkerke (max-rescaled)
         cox_snell = 1.0 - math.exp(-lr / n_obs)
         nagelkerke = cox_snell / (1.0 - math.exp(-m2ll0 / n_obs))

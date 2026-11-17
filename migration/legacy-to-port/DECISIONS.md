@@ -345,3 +345,26 @@ for translation rules once it exists.
   the entry score test itself still forms its weights as p * (1 - p) (a model with a left-out
   parameter never reaches an entry test, and elsewhere the two agree up to rounding); the final
   model's scores when a weight is 0 (no final model in hand has one).
+
+## The global Wald test leaves out a slope with a tiny pivot: the port follows SAS (2026-11-17)
+- Owner's ruling as above; the rule is `global-wald-rule.md` (experiment X20, 17 SAS runs). Seed 6
+  step 7: SAS 406.4827 with DF 7, the port 407.3550 with DF 7.
+- `sas_compat.global_wald(fit, order)` (new public function; no dataclass field, existing
+  signature or file layout changes): the chi-square is b' G b over the slopes, G the inverse of
+  the slopes' block of the covariance swept in MODEL order; a slope whose pivot (its variance given
+  the slopes swept before it) is not above **1.5e-16, absolute** is left out of G. The DF stays the
+  number of slopes. A step with a parameter left out of a singular information matrix keeps the
+  rule above (empty chi-square, DF = the variables not left out).
+- **The tolerance 1.5e-16 is the port's choice**: SAS's runs bracket it in (1e-16, 2e-16] (T1 left
+  out at a pivot of 1.0e-16, T2 kept at 2.0e-16); the port takes the midpoint. Machine epsilon
+  (2.2e-16) on the pivot would leave T2 out and is excluded.
+- Tests: `port/tests/test_global_wald.py`: the 17 X20 runs from SAS's estimates and COVB
+  (`port/tests/data/sas_global_wald_cases.json`), and `train.run` on seed 6 against SAS's
+  printed_global_tests.csv cell by cell (needs `judge/runs/gen_s06`, git-ignored). Caught: a
+  tolerance relative to the largest slope variance (two constants), relative to the slope's own
+  variance, epsilon, no tolerance, the DF reduced to the slopes kept (in `sas_compat` or in
+  `train.py`).
+- Not measured, and what the port does: the value inside (1e-16, 2e-16]; whether SAS tests the
+  pivot or the diagonal element (0.7% apart on seed 6; the port tests the pivot, as the rule file
+  states); two slopes near the tolerance (only one ever was; the port applies the sweep in MODEL
+  order to each, so a slope's pivot is taken given the kept slopes before it).
