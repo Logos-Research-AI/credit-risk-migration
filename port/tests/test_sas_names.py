@@ -1,4 +1,4 @@
-"""SAS names in DROP lists: case-insensitive, a name matching no column skipped (finding E4).
+"""SAS names in DROP and KEEP lists: case-insensitive, a name matching no column skipped (finding E4).
 
 cd port && uv run python tests/test_sas_names.py        (or: uv run pytest tests)
 """
@@ -51,6 +51,29 @@ def test_drop_nothing_matches() -> None:
     frame = pl.DataFrame({"row_id": [1, 2], "pd_logistic": [0.1, None], "interest_rate": [0.05, 0.2]})
     out = sas_compat.drop_sas_names(frame, PREFIXES, NAMES)
     assert out.equals(frame)
+
+
+def test_keep_any_case_pdv_order_stored_spelling() -> None:
+    # predict.sas:426 keeps `age` from a test file headed AGE and SAS writes AGE in its PDV place
+    # (judge/runs/ev11_round5_before/14_test_header_age_upper/test_predictions.csv)
+    frame = pl.DataFrame(
+        {
+            "row_id": [1, 2],
+            "AGE": [30.0, 41.0],
+            "Monthly_Income": [None, 2500.0],
+            "flag_low_income": [1, 0],
+            "PD_Logistic": [0.1, 0.2],
+        }
+    )
+    out = sas_compat.keep_sas_names(frame, {"pd_logistic", "age", "row_id", "monthly_income", "absent"})
+    assert out.columns == ["row_id", "AGE", "Monthly_Income", "PD_Logistic"]
+    assert out.equals(frame.select(out.columns))
+
+
+def test_keep_exact_names_unchanged() -> None:
+    frame = pl.DataFrame({"row_id": [1, 2, 3], "x": [1, 2, 3], "pd_logistic": [0.5, None, 0.25]})
+    out = sas_compat.keep_sas_names(frame, {"row_id", "pd_logistic"})
+    assert out.equals(frame.select([c for c in frame.columns if c in {"row_id", "pd_logistic"}]))
 
 
 if __name__ == "__main__":

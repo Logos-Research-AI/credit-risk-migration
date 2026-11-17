@@ -442,11 +442,11 @@ def run(
         .otherwise(pl.col("base_rate") + 0.15)
     )  # format interest_rate percent8.2 -> applied at export below (R§2 format attach)
 
-    # predict.sas:417-421 DATA kaggle_submission; R§2 keep keeps input column order (A12)
+    # predict.sas:417-421 DATA kaggle_submission; R§2 keep (:420) keeps input column order (A12), any case
     KEEP_KAGGLE = {"row_id", "pd_logistic"}
-    kaggle_submission = test_predictions.select([c for c in test_predictions.columns if c in KEEP_KAGGLE])
+    kaggle_submission = sas_compat.keep_sas_names(test_predictions, KEEP_KAGGLE)
 
-    # predict.sas:423-430 DATA test_predictions_full
+    # predict.sas:423-430 DATA test_predictions_full (keep :426-429: PDV order, SAS names in any case)
     KEEP_FULL = {
         "row_id",
         "pd_logistic",
@@ -464,9 +464,9 @@ def run(
         "financial_health",
         "total_risk_flags",
     }
-    test_predictions_full = test_predictions.select(
-        [c for c in test_predictions.columns if c in KEEP_FULL]
-    ).rename({"age": age_name})  # SAS names are case-blind and keep the spelling of the test file
+    test_predictions_full = sas_compat.keep_sas_names(test_predictions, KEEP_FULL).rename(
+        {"age": age_name}
+    )  # SAS names are case-blind and keep the spelling of the test file
 
     # predict.sas:436-441 PROC EXPORT kaggle_submission
     # R§2 PROC EXPORT; INV kaggle_submission.csv

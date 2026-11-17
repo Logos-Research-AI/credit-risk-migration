@@ -27,7 +27,7 @@ import datetime as dt
 import json
 import math
 import re
-from collections.abc import Mapping, Sequence
+from collections.abc import Collection, Mapping, Sequence
 from dataclasses import dataclass, field
 from decimal import ROUND_DOWN, ROUND_HALF_UP, Context, Decimal
 from pathlib import Path
@@ -1614,6 +1614,20 @@ def drop_sas_names(frame: pl.DataFrame, prefixes: Sequence[str], names: Sequence
     return frame.drop(
         [c for c in frame.columns if c.upper().startswith(upper_prefixes) or c.upper() in upper_names]
     )
+
+
+def keep_sas_names(frame: pl.DataFrame, names: Collection[str]) -> pl.DataFrame:
+    """A DATA step `keep N1 N2 ...;` (train.sas:379-381, predict.sas:420, predict.sas:426-429).
+
+    Keeps every column whose upper-cased name equals one of the upper-cased `names`: SAS names are
+    case-insensitive, and SAS keeps the variable's stored name (judge/runs/ev11_round5_before,
+    14_test_header_age_upper: predict.sas:426's `age` keeps the test file's `AGE`, written as `AGE`).
+    The columns come in the frame's (PDV) order, never the order of the list (A12), with their own
+    spelling; nothing is renamed. A listed name no column has is skipped (SAS only warns for a KEEP
+    statement). Every row is kept.
+    """
+    upper_names = {n.upper() for n in names}
+    return frame.select([c for c in frame.columns if c.upper() in upper_names])
 
 
 # PORT STATUS: confidence=medium todos=0

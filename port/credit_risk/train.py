@@ -757,7 +757,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         formats={"interest_rate": "percent8.2"},
     )
 
-    # train.sas:377-383 data work.final_model_output (keep keeps PDV order)
+    # train.sas:377-383 data work.final_model_output (keep :379-381: PDV order, SAS names in any case)
     # R§2 keep, A12, INV final_model_output.csv
     keep = {
         "row_id",
@@ -774,7 +774,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
         "total_late_payments",
         "num_credit_lines",
     }
-    final_model_output = risk_scores_train.select([c for c in risk_scores_train.columns if c in keep])
+    final_model_output = sas_compat.keep_sas_names(risk_scores_train, keep)
 
     # train.sas:385-389 PROC EXPORT final_model_output
     sas_compat.write_sas_csv(
