@@ -279,7 +279,7 @@ for translation rules once it exists.
   are the same under both readings. If the step is not zero, the log likelihood before and
   after would have to agree in every bit, which no input could be made to do. No more work on it.
 
-## Hosmer-Lemeshow on extreme fits: measured 2026-11-17
+## Hosmer-Lemeshow on extreme fits: two rules measured 2026-11-17
 - **Limits on a group's probability.** SAS computes a group's expected events from the group's
   average probability kept within [1e-6, 0.999999], and prints "In calculating the Expected
   values, predicted probabilities less than 1E-6 and greater than 0.999999 were changed to 1E-6
@@ -293,3 +293,13 @@ for translation rules once it exists.
   67.7310 against 67.7309). Brackets: the upper limit between 1 - 1.31e-6 (kept) and 1 - 9.31e-7
   (changed); the lower limit only from far below (groups at 7e-27 and less), so 1e-6 there is the
   note's figure, not a measured one. The partition printed with 2 decimals is the same either way.
+- **No table below 3 groups.** When the partition has fewer than 3 groups SAS prints neither the
+  partition nor the test and creates neither ODS table (the log warns that LackFitPartition and
+  LackFitChiSq were not created, and the export steps then fail with their ERROR lines); the port
+  wrote both files whenever the final model had a variable. Evidence: every SAS run in hand
+  with a variable in the final model: 4 with 2 groups (`rawfit_Dd`, `Dn2`, `Dn6`, `small60_16`)
+  have no table, 38 with 3 to 10 groups have both (3 groups: `rawfit_small90_15`). The number of
+  groups is the port's partition on SAS's probabilities, which equals SAS's NGroups on all 38. It
+  does not depend on what happened in the selection: small60_16 has a separated step and four
+  distinct probabilities, Dd, Dn2 and Dn6 a final model of one two-valued variable. Not seen: a
+  final model with a variable and a single group.

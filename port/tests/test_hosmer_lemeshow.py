@@ -1,4 +1,5 @@
-"""The Hosmer-Lemeshow tables on extreme fits: SAS's limits on a group's probability.
+"""The Hosmer-Lemeshow tables on extreme fits: SAS's limits on a group's probability, and no table
+below 3 groups.
 
     cd port && uv run python tests/test_hosmer_lemeshow.py        (or: uv run pytest tests)
 
@@ -93,10 +94,23 @@ def test_the_limit_is_on_the_group_not_on_the_observation() -> None:
     print("  floorC (observations beyond the limit, no group) is not limited")
 
 
+def test_no_table_below_three_groups() -> None:
+    """SAS creates the two tables with 3 groups or more and neither with 2."""
+    seen: dict[int, set[bool]] = {}
+    for case in CASES:
+        table, _ = tables(case)
+        printed = sas_compat.hosmer_lemeshow_is_printed(table.height)
+        assert printed == (case["test"] is not None), (case["run"], table.height)
+        seen.setdefault(table.height, set()).add(printed)
+    assert seen[2] == {False} and seen[3] == {True} and seen[4] == {True}, seen
+    print(f"  groups -> tables created: { ({k: next(iter(v)) for k, v in sorted(seen.items())}) }")
+
+
 if __name__ == "__main__":
     for t in (
         test_tables_are_sas,
         test_the_limit_is_on_the_group_not_on_the_observation,
+        test_no_table_below_three_groups,
     ):
         print(t.__name__)
         t()

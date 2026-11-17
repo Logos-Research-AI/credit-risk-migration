@@ -398,7 +398,9 @@ def run(input_dir: Path, output_dir: Path) -> None:
             ],
         }
     )
-    if final_effects:
+    # SAS creates neither table when the partition has fewer than 3 groups (nor without an effect)
+    hl_written = bool(final_effects) and sas_compat.hosmer_lemeshow_is_printed(hl_table.height)
+    if hl_written:
         sas_compat.write_sas_csv(printed_hl_partition, output_dir / "printed_hl_partition.csv", formats={})
     printed_hosmer_lemeshow = pl.DataFrame(
         {
@@ -408,7 +410,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
             "NGroups": [str(hl_table.height)],
         }
     )
-    if final_effects:
+    if hl_written:
         sas_compat.write_sas_csv(
             printed_hosmer_lemeshow, output_dir / "printed_hosmer_lemeshow.csv", formats={}
         )

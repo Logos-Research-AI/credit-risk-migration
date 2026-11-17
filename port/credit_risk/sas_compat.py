@@ -1263,6 +1263,8 @@ def hosmer_lemeshow(y: pl.Series, pd: pl.Series) -> tuple[pl.DataFrame, float | 
     against 67.7309 on floorA). The upper limit is bracketed by 1 - 1.31e-6 (kept) and
     1 - 9.31e-7 (limited); the lower one only by groups far below it (7e-27 and less), so 1e-6
     there is the note's figure. The expected counts printed with 2 decimals do not show it.
+    With fewer than 3 groups SAS prints no partition and no test and creates neither table
+    (4 runs with 2 groups, 38 with 3 to 10): the caller writes no file then.
     RESOLVED (post-parity): an empty input returns an empty table with missing statistics (DF 0)."""
     d = pl.DataFrame({"y": y.cast(pl.Float64), "p": pd.cast(pl.Float64)}).drop_nulls()
     if d.height == 0:
@@ -1327,6 +1329,14 @@ def hosmer_lemeshow(y: pl.Series, pd: pl.Series) -> tuple[pl.DataFrame, float | 
         },
     )
     return table, chisq, dof, pv
+
+
+def hosmer_lemeshow_is_printed(n_groups: int) -> bool:
+    """Whether SAS prints the Hosmer-Lemeshow partition and test and creates their two tables: only
+    with 3 groups or more. Measured on the SAS runs in hand with a variable in the final model: the
+    4 whose partition has 2 groups have neither table (and nothing in the listing; the ODS OUTPUT
+    statement warns that the tables were not created), the 38 with 3 to 10 groups have both."""
+    return n_groups >= 3
 
 
 def classification_table(
