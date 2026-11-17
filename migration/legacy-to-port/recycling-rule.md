@@ -91,7 +91,9 @@ is `Da`, 42 rows.
 
 ## Smallest fix
 
-In `sas_compat.stepwise_logistic`, about ten lines:
+In `sas_compat.stepwise_logistic`, about ten lines (as a patch against the branch with the ridge floor
+and the 5000 test corrected: `experiments/x18_recycling_fix.patch`; its `recycled` lines are the
+search's bookkeeping and are not needed):
 
 ```python
     visited = [frozenset()]                      # before the loop: the models the selection has had
