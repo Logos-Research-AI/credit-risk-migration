@@ -1598,4 +1598,22 @@ def classification_table(
     )
 
 
+def drop_sas_names(frame: pl.DataFrame, prefixes: Sequence[str], names: Sequence[str]) -> pl.DataFrame:
+    """A DATA step `drop P1: P2: N1 N2 ...;` (train.sas:350-360, finding E4).
+
+    Drops every column whose upper-cased name starts with one of the upper-cased `prefixes` (the
+    name prefix lists `IP_:`, `XP_:`) or equals one of the upper-cased `names`. SAS names are
+    case-insensitive, so the comparison is on upper-cased names, as the port already compares SAS
+    names (predict.py and feature_engineering.py, the input-column checks). A prefix or name that
+    matches no column is skipped: SAS only warns ("never referenced",
+    judge/reference/listings/train.sas.log:636-639). The kept columns keep their order and their
+    spelling; every row is kept.
+    """
+    upper_prefixes = tuple(p.upper() for p in prefixes)
+    upper_names = {n.upper() for n in names}
+    return frame.drop(
+        [c for c in frame.columns if c.upper().startswith(upper_prefixes) or c.upper() in upper_names]
+    )
+
+
 # PORT STATUS: confidence=medium todos=0

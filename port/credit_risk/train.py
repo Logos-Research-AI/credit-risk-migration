@@ -738,9 +738,14 @@ def run(input_dir: Path, output_dir: Path) -> None:
     # listing-only: PROC PRINT Area of roc_train (Training Set AUC)
     # listing-only: PROC PRINT Area of roc_valid (Validation Set AUC)
 
-    # train.sas:351-360 drop IP_: XP_: _FROM_ _INTO_ _LEVEL_  # INV work.risk_scores_train_clean: identity
-    risk_scores_train_clean = risk_scores_train
-    risk_scores_validation_clean = risk_scores_validation
+    # train.sas:351-360 drop IP_: XP_: _FROM_ _INTO_ _LEVEL_ (SAS names: any case; finding E4)
+    # INV work.risk_scores_train_clean / work.risk_scores_validation_clean
+    risk_scores_train_clean = sas_compat.drop_sas_names(
+        risk_scores_train, ("IP_", "XP_"), ("_FROM_", "_INTO_", "_LEVEL_")
+    )
+    risk_scores_validation_clean = sas_compat.drop_sas_names(
+        risk_scores_validation, ("IP_", "XP_"), ("_FROM_", "_INTO_", "_LEVEL_")
+    )
 
     # train.sas:363-374 PROC EXPORT scored sets  # INV risk_scores_train.csv, risk_scores_validation.csv
     sas_compat.write_sas_csv(
