@@ -6,6 +6,8 @@ The parity contract judges the port on the real data and on four hand-made scena
 
 **Result: no difference of the port was found.** Eleven of the fourteen seeds pass every line. The other three fail only in the train and predict stages, and in each the cause is that SAS stops its model fit before full convergence; the port's fit is the converged one. The two stages that do not depend on the fit (feature engineering and metrics) pass on all fourteen seeds. No generated row turned out to be invalid input, and no seed was rejected for a fit that did not converge.
 
+**Position since 2026-11-17 (owner's decision; section "After the port took SAS's fit" at the end).** The port no longer iterates to the optimum: its fit is SAS's iteration stopped at SAS's convergence test. Seeds 2 and 8 (and 26 and 27 of the later seeds) now pass every line. Seed 6 still fails on its one cell, which was not an effect of where SAS stops, as this report took it to be. The text below is the measurement of 2026-11-16, kept as it was.
+
 ## Method
 
 1. **Generate.** `judge/generated_inputs.py make --seed N --out <folder>` writes `cs-training.csv` and `cs-test.csv`, deterministically in the seed.
@@ -105,3 +107,11 @@ None of the three is a real difference of the port, and none is an invalid row. 
 - **Not targeted.** The grade cuts (10, 15, 25, 35, 50 %) and the 0.5 prediction cut lie on the fitted probability, which a generator of raw rows cannot place. Every grade is populated, but no probability was steered onto a cut.
 - **Not covered.** Ways of writing a number other than plain decimals; inputs outside section 3 (ruling G53: not required).
 - **Sample.** Fourteen seeds. The generator takes further seeds by adding a line to its table.
+
+## After the port took SAS's fit (2026-11-17)
+
+By the owner's decision the port's fit of a model SAS reports converged is SAS's own iteration, stopped at SAS's convergence test (GCONV = 1E-8), with everything downstream computed at those estimates (`DECISIONS.md`, "A converged fit is SAS's fit"; RULEBOOK §2, row "model fitting"). The 29 seeds in hand (1 to 14 of this report, 15 to 29 of `small-inputs.md`) were judged again against the same SAS runs.
+
+- **Seeds 2, 8, 26, 27**, which failed only on the fit tolerance, pass every line. On each of them every cell of every train and predict file is now SAS's text (before: up to 1.2e-4 on a probability, 0.0008 on an estimate, 0.016 on a printed chi-square).
+- **Every other seed** passes as before, and there too no cell of a train or predict file differs from SAS's. Over the 29 seeds the cells that differ at all are the run date, two feature values in the last printed digit (seeds 6 and 9, 1e-8), and the cell of seed 6.
+- **Seed 6 still fails** on the same cell: `printed_global_tests.csv`, the Wald test of step 7, SAS `406.4827`, port `407.3550`. This is not a tolerance effect of the fit, as recorded above: the port's estimates at step 7 are now SAS's (SAS's iteration history, 9 iterations, largest difference 1e-14), and the value still differs. SAS's printed value is the Wald statistic of the six other variables without `utilization_debt_interaction`: computed from the port's estimates and covariance with that parameter left out, 406.48270947217, against SAS's 406.482709472169. In this seed the variable reaches 1.7e14, its estimate is of the order 1e-13 and its variance 6e-25; SAS prints 7 degrees of freedom. So SAS's global Wald test treats the parameter as redundant on this badly scaled model, and the port does not. The rule by which SAS decides it is not measured (one case); the variable is removed at step 8 and nothing else of the run depends on it. Left as it is, for the owner.

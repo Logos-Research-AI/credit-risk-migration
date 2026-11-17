@@ -672,7 +672,9 @@ class LogisticFit:
     """A fitted logistic model P(y = 1) on columns `names`. `names[0]` is "Intercept";
     `loglik` is the log-likelihood (-2 Log L = -2 * loglik). `converged` is False after a singular
     system, complete or quasi-complete separation, an exhausted line search or the iteration cap.
-    `separation` is "complete" or "quasicomplete" on the estimates `_fit_separated` keeps."""
+    `separation` is "complete" or "quasicomplete" on the estimates `_fit_as_sas` keeps. On a fit
+    with a variable `n_iter` is SAS's iteration count and the estimates are those of that
+    iteration, converged or separated (`_fit_as_sas`)."""
 
     names: list[str]
     beta: FloatArray
@@ -699,8 +701,10 @@ def fit_logistic(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logistic
     system is singular (LinAlgError), the line search is exhausted, 100 iterations pass, or some row is
     perfectly predicted (pd within 1e-8 of its response) while the standardized information matrix is
     rank-deficient (min eigenvalue < 1e-10): complete or quasi-complete separation.
-    RESOLVED (post-parity): caps are port choices. The caller decides what a fit that did not converge
-    means: `stepwise_logistic` keeps SAS's estimates of a separated step (`_fit_separated`)."""
+    RESOLVED (post-parity): caps are port choices.
+    Since 2026-11-17 (owner's decision) `stepwise_logistic` uses this fit for the intercept-only
+    model alone, whose estimate is log(events / non-events) either way; every fit with a variable
+    is `_fit_as_sas`, which stops where SAS stops."""
     b = np.zeros(x.shape[1])
     ll = _loglik(x @ b, y)
     converged = False
@@ -746,20 +750,42 @@ def fit_logistic(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logistic
     return LogisticFit(list(names), b, cov, ll, n_iter, converged)
 
 
-def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticFit | None:
-    """The estimates SAS keeps for a model it declares separated (PROC LOGISTIC, "Existence of
-    Maximum Likelihood Estimates"; SAS warns and continues, "Results shown are based on the last
-    maximum likelihood iteration"). SAS's own iteration is followed: Fisher scoring from the
-    intercept-only estimates (intercept log(events / non-events), every other coefficient 0), no
-    step halving, at most 25 iterations (SAS's MAXITER). After each iteration, first SAS's
-    convergence test (GCONV: gradient' * inverse information * gradient / (|log likelihood| + 1e-6)
-    below 1e-8): a fit that passes it is not separated, None. Then, from the 8th iteration on:
+def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticFit | None:
+    """The estimates PROC LOGISTIC ends with for a model with a variable, as `train.sas` calls it:
+    SAS's own iteration, stopped where SAS stops it. Fisher scoring from the intercept-only
+    estimates (intercept log(events / non-events), every other coefficient 0), at most 25
+    iterations (SAS's MAXITER). An iteration whose step would lower the log likelihood is taken
+    with SAS's ridge instead (RIDGING=RELATIVE, the default): the diagonal of the information
+    matrix is multiplied by 1 + ridge, ridge = 1e-4 * 4**j, and j goes up by one until the log
+    likelihood is not lower than before the iteration. j is kept from one ridged iteration of
+    the fit to the next, and goes down by one after an iteration whose first ridge was accepted.
+    Measured (experiment x17, ITPRINT on the reference feature file and on 12 row subsets of it,
+    3,000 to 80,000 rows): 185 converged steps, 393 ridged iterations, ridges 0.0064 to 104.8576;
+    every iteration line (ridge, -2 Log L, estimates) and every stop iteration is reproduced.
+    Two other readings fail there: j kept after a first-trial success (17 steps, among them step
+    8 of the reference data), j back to 0 after one (7 steps of the subsets). On the reference data 18 of the 19 steps are
+    ridged at iteration 1; without the ridge the iteration breaks down at iteration 3.
+    Not settled by x17: the first ridge (no run needed one below 0.0064, so 1e-4 is the
+    documented start, not a measured one; any start up to 0.0064 on this ladder gives the same
+    histories), a step that leaves the log likelihood exactly equal (taken here), and a ridged
+    iteration on a separated fit (no run has both).
+    After each iteration, first SAS's convergence test (GCONV:
+    gradient' * inverse information * gradient / (|log likelihood| + 1e-6) below 1e-8, all at the
+    new estimates): the fit has converged and the estimates of THIS iteration are returned with
+    the inverse information at them, `converged=True` (owner's decision 2026-11-17: SAS's
+    estimates, not the fully converged ones; on few rows the two differ in the fourth digit of a
+    coefficient, generated-inputs.md seeds 2, 6, 8, 26, 27). Then, from the 8th iteration on, the
+    estimates SAS keeps for a model it declares separated ("Existence of Maximum Likelihood
+    Estimates"; SAS warns and continues, "Results shown are based on the last maximum likelihood
+    iteration"):
     complete separation when no observation is on the wrong side, that is every observation has
     probability above 0.5 of its observed response;
     else quasi-complete separation when some observation has probability >= 0.95 of its observed
     response and a diagonal element of the inverse information matrix for the standardized columns
     (mean 0, standard deviation 1, divisor n - 1) exceeds 5000. The iteration stops there and its
-    estimates are returned, `converged=False`. None when neither is found.
+    estimates are returned, `converged=False`. None when neither is found in 25 iterations, a
+    system is singular or no ridge up to 1e-4 * 4**40 keeps the log likelihood: what SAS does
+    then is not measured, and the caller stops with an error.
     Measured on the ITPRINT runs of out/separation/sas (`migration/legacy-to-port/small-inputs.md`):
     18 complete steps, all stopped at iteration 8, the smallest probability of an observed response
     there from 0.539 (D11, 382 of 400 observations at 0.95 or above) to 0.9999; 8 quasi-complete
@@ -776,16 +802,36 @@ def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logist
     b[0] = math.log(float(y.sum()) / float(len(y) - y.sum()))
     with np.errstate(divide="ignore", invalid="ignore"):
         xs = np.column_stack([x[:, 0], (x[:, 1:] - x[:, 1:].mean(axis=0)) / x[:, 1:].std(axis=0, ddof=1)])
+    ll = _loglik(x @ b, y)
+    j = 0  # the next ridge to try is 1e-4 * 4**j
     try:
         for n_iter in range(1, 26):
             p = _expit(x @ b)
             w = p * (1.0 - p)
-            b = b + np.linalg.solve(x.T @ (x * w[:, None]), x.T @ (y - p))
+            info = x.T @ (x * w[:, None])
+            g = x.T @ (y - p)
+            new_b = b + np.linalg.solve(info, g)
+            new_ll = _loglik(x @ new_b, y)
+            if new_ll < ll:  # the step lowers the log likelihood: SAS's ridge
+                first_trial = True
+                while True:
+                    if j > 40:
+                        return None
+                    new_b = b + np.linalg.solve(info + np.diag(1e-4 * 4.0**j * np.diag(info)), g)
+                    new_ll = _loglik(x @ new_b, y)
+                    if not new_ll < ll:
+                        break
+                    j += 1
+                    first_trial = False
+                if first_trial and j > 0:
+                    j -= 1
+            b, ll = new_b, new_ll
             p = _expit(x @ b)
             w = p * (1.0 - p)
             g = x.T @ (y - p)
-            if float(g @ np.linalg.solve(x.T @ (x * w[:, None]), g)) / (abs(_loglik(x @ b, y)) + 1e-6) < 1e-8:
-                return None  # SAS's fit converged (GCONV): no separation
+            if float(g @ np.linalg.solve(x.T @ (x * w[:, None]), g)) / (abs(ll) + 1e-6) < 1e-8:
+                # SAS's fit converged (GCONV): its estimates are those of this iteration
+                return LogisticFit(list(names), b, np.linalg.inv(x.T @ (x * w[:, None])), ll, n_iter, True)
             if n_iter < 8:
                 continue
             p_obs = np.where(y == 1, p, 1.0 - p)
@@ -798,7 +844,7 @@ def _fit_separated(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logist
                 separation = "quasicomplete"
             if separation is not None:
                 cov = np.linalg.inv(x.T @ (x * w[:, None]))
-                return LogisticFit(list(names), b, cov, _loglik(x @ b, y), n_iter, False, separation)
+                return LogisticFit(list(names), b, cov, ll, n_iter, False, separation)
     except np.linalg.LinAlgError:
         return None
     return None
@@ -830,24 +876,23 @@ def _entry_score_chisq(
     """The score chi-square with which each column of `others` (name -> values, in MODEL order)
     would enter the model `cur` fitted on the columns `x`; a column aliased with the model
     (relative residual information < 1e-8) is left out.
-    After a converged step it is the candidate's score squared over its residual information.
-    After a separated step the kept estimates are not at a maximum, so the score of the model's
-    own parameters is not zero, and SAS's statistic is U' I^-1 U over ALL parameters of the
-    enlarged model at the kept estimates (the model's and the candidate's), not the candidate's
-    part alone. By blocks: the model's own g' I_m^-1 g, plus the candidate's score corrected for
-    g, squared over its residual information. Measured: the 175 score chi-squares SAS prints
-    after the separated step "age" of five files agree to 1e-10 relative
-    (migration/legacy-to-port/separation-rule.md part 3; port/tests/test_entry_score.py). After
-    a converged step g is zero up to rounding; that branch is the computation as it always was,
-    so its numbers do not change in any bit."""
+    SAS's estimates are not at a maximum, neither after a separated step nor after a converged
+    one (the iteration stops at the GCONV test, `_fit_as_sas`), so the score of the model's own
+    parameters is not zero, and SAS's statistic is U' I^-1 U over ALL parameters of the enlarged
+    model at those estimates (the model's and the candidate's), not the candidate's part alone.
+    By blocks: the model's own g' I_m^-1 g, plus the candidate's score corrected for g, squared
+    over its residual information. Measured: the 175 score chi-squares SAS prints after the
+    separated step "age" of five files agree to 1e-10 relative
+    (migration/legacy-to-port/separation-rule.md part 3; port/tests/test_entry_score.py); after
+    the converged steps of the reference data the 18 printed entry chi-squares are SAS's to the
+    4 decimals printed, where the candidate's part alone at SAS's estimates is not (step 13:
+    8.8017 against SAS's 8.7885; step 16: 29.7077 against 29.7637)."""
     p = _expit(x @ cur.beta)
     w = p * (1.0 - p)
     info = x.T @ (x * w[:, None])
-    separated = cur.separation is not None
-    if separated:
-        g = x.T @ (y - p)
-        info_g = np.linalg.solve(info, g)
-        own = float(g @ info_g)
+    g = x.T @ (y - p)
+    info_g = np.linalg.solve(info, g)
+    own = float(g @ info_g)
     out: list[tuple[str, float]] = []
     for c, z in others.items():
         zwz = float(z @ (z * w))
@@ -858,11 +903,7 @@ def _entry_score_chisq(
         if zwz <= 0.0 or resid / zwz < 1e-8:
             continue  # aliased with the current model
         u = float(z @ (y - p))
-        if separated:
-            sc = own + (u - float(v @ info_g)) ** 2 / resid
-        else:
-            sc = u * u / resid
-        out.append((c, sc))
+        out.append((c, own + (u - float(v @ info_g)) ** 2 / resid))
     return out
 
 
@@ -880,9 +921,12 @@ def stepwise_logistic(
     score chi-square is over all parameters of the enlarged model (see the entry loop). Reference implementation:
     migration/experiments/x02_stepwise_reference.py. Rows with a missing response or candidate are
     dropped. The model columns of each fit are in ENTRY order (names[0] = "Intercept").
-    A step whose fit is separated is kept with the estimates SAS keeps (`_fit_separated`), with SAS's
-    warning, and the selection goes on to the removal test (owner's decision 2026-11-16, RULEBOOK §2).
-    Raises RuntimeError when a fit does not converge for another reason or the 500-step cap is hit."""
+    Every fit with a variable is SAS's own iteration stopped where SAS stops it (`_fit_as_sas`): at
+    its convergence test, or at the iteration where it declares a separation, whose estimates SAS
+    keeps with a warning before going on to the removal test (owner's decisions 2026-11-16 and
+    2026-11-17, RULEBOOK §2).
+    Raises RuntimeError when a fit neither converges nor separates in SAS's 25 iterations, or the
+    500-step cap is hit."""
     used = df.select([response, *candidates]).drop_nulls()
     y = np.asarray(used.get_column(response).to_numpy(), dtype=np.float64)
     z_all = {c: np.asarray(used.get_column(c).to_numpy(), dtype=np.float64) for c in candidates}
@@ -895,13 +939,20 @@ def stepwise_logistic(
 
     def fit(cols: list[str]) -> LogisticFit:
         x = np.column_stack([ones, *[z_all[c] for c in cols]])
-        f = fit_logistic(x, y, ["Intercept", *cols])
-        # separation: SAS warns and continues with the last iteration's estimates, also when the
-        # maximum likelihood estimate exists and `fit_logistic` converged (see `_fit_separated`)
-        sep = _fit_separated(x, y, f.names) if cols else None
-        if sep is None and not f.converged:
-            raise RuntimeError(f"stepwise_logistic: the fit at step {step} ({cols}) did not converge")
-        if sep is not None:
+        if not cols:  # intercept only: log(events / non-events)
+            f = fit_logistic(x, y, ["Intercept"])
+            if not f.converged:
+                raise RuntimeError(f"stepwise_logistic: the fit at step {step} ({cols}) did not converge")
+            return f
+        # SAS's iteration, stopped where SAS stops: converged (GCONV) or separated, where SAS warns and
+        # continues with that iteration's estimates, also when the maximum likelihood estimate exists
+        sep = _fit_as_sas(x, y, ["Intercept", *cols])
+        if sep is None:
+            raise RuntimeError(
+                f"stepwise_logistic: the fit at step {step} ({cols}) neither converged nor separated "
+                "in 25 iterations of SAS's iteration"
+            )
+        if sep.separation is not None:
             if sep.separation == "complete":
                 print(
                     f"WARNING: There is a complete separation of data points in Step {step}. "
@@ -916,8 +967,7 @@ def stepwise_logistic(
                 "WARNING: The LOGISTIC procedure continues in spite of the above warning. "
                 "Results shown are based on the last maximum likelihood iteration."
             )
-            return sep
-        return f
+        return sep
 
     model: list[str] = []
     cur = fit(model)

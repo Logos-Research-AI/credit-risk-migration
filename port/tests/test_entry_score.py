@@ -10,7 +10,8 @@ Data, all under tests/data:
                          with their chi-squares, the final estimates, and for 55, 59, 60, 62 and 64
                          the score chi-square of all 35 candidates after step 1 (age, separated).
   real_data_steps_before.txt  the port's 19 steps on judge/reference/model_features_train.csv as
-                         hex floats, written by the port BEFORE this change (commit 237b5cc).
+                         hex floats, written by the port BEFORE this change (commit 237b5cc),
+                         with the fully converged estimates the port then had on a converged step.
 """
 
 from __future__ import annotations
@@ -80,7 +81,7 @@ def test_entry_chisq_after_the_separated_step_is_sas() -> None:
         df = frame(int(cut))
         y = df["default_flag"].to_numpy().astype(np.float64)
         x = np.column_stack([np.ones(len(y)), df["age"].to_numpy().astype(np.float64)])
-        fit = sas_compat._fit_separated(x, y, ["Intercept", "age"])
+        fit = sas_compat._fit_as_sas(x, y, ["Intercept", "age"])
         assert fit is not None and fit.separation == "complete" and fit.n_iter == 8, cut
         others = {c: df[c].to_numpy().astype(np.float64) for c in CANDIDATES if c != "age"}
         got = dict(sas_compat._entry_score_chisq(x, y, fit, others))
@@ -93,25 +94,35 @@ def test_entry_chisq_after_the_separated_step_is_sas() -> None:
     print(f"  largest relative difference from SAS over the 175 numbers: {worst:.1e}")
 
 
-def test_converged_steps_do_not_change_in_any_bit() -> None:
-    """The real data (no separated step): the 19 steps and the final estimates are bit for bit what
-    the port computed before this change."""
+def test_real_data_keeps_its_steps() -> None:
+    """The real data (no separated step): the same 19 steps and the same final variables as before
+    the entry score change (commit 237b5cc). Since SAS's estimates replaced the fully converged
+    ones on a converged step (`_fit_as_sas`, 2026-11-17) the numbers are no longer the same bits:
+    they are within 1e-3 relative of the earlier ones (test_fit_as_sas.py compares them with SAS)."""
     df = pl.read_csv(HERE.parents[1] / "judge" / "reference" / "model_features_train.csv", infer_schema_length=None)
     res = stepwise(df)
-    lines = []
-    for s in res.steps:
-        v = s.score_chisq if s.entered else s.wald_chisq
-        lines.append(f"{s.step} {s.entered or '-'} {s.removed or '-'} {float(v).hex()} {float(s.p_value).hex()} {s.fit.separation}")
     assert res.final is not None
-    lines.append(f"final {res.final.names} {[float(b).hex() for b in res.final.beta]}")
-    before = (DATA / "real_data_steps_before.txt").read_text().splitlines()
-    assert lines == before, [(a, b) for a, b in zip(lines, before) if a != b][:2]
-    print(f"  real data: {len(res.steps)} steps and {len(res.final.names)} final estimates, bit for bit as before")
+    text = (DATA / "real_data_steps_before.txt").read_text().splitlines()
+    before = [line.split(" ") for line in text[:-1]]
+    assert len(res.steps) == len(before)
+    worst = 0.0
+    for s, b in zip(res.steps, before):
+        assert [str(s.step), s.entered or "-", s.removed or "-", str(s.fit.separation)] == [b[0], b[1], b[2], b[5]], b
+        v = s.score_chisq if s.entered else s.wald_chisq
+        assert v is not None
+        worst = max(worst, abs(float(v) - float.fromhex(b[3])) / float.fromhex(b[3]))
+    assert text[-1].startswith(f"final {res.final.names} "), text[-1][:80]
+    old_beta = [float.fromhex(h) for h in re.findall(r"'(-?0x[^']+)'", text[-1])]
+    assert len(old_beta) == len(res.final.beta)
+    worst_beta = max(abs(float(n) - o) for n, o in zip(res.final.beta, old_beta))
+    assert worst < 1e-3 and worst_beta < 1e-3, (worst, worst_beta)
+    print(f"  real data: the same {len(res.steps)} steps and final variables; chi-squares within {worst:.1e} relative,")
+    print(f"  final estimates within {worst_beta:.1e} of the fully converged ones")
 
 
 if __name__ == "__main__":
     for t in (test_steps_and_final_model_are_sas, test_entry_chisq_after_the_separated_step_is_sas,
-              test_converged_steps_do_not_change_in_any_bit):
+              test_real_data_keeps_its_steps):
         print(t.__name__)
         t()
     print("ALL OK")

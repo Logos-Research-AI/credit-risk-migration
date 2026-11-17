@@ -190,3 +190,46 @@ for translation rules once it exists.
   past the 8th without a separation. A fit SAS reports converged keeps the port's own estimates
   (`fit_logistic`), as before.
 - A fit that does not converge for another reason still stops with an error.
+
+## A converged fit is SAS's fit: owner's decision 2026-11-17
+- Withdrawn: "A fit SAS reports converged keeps the port's own estimates (`fit_logistic`)" (the
+  entry above) and RULEBOOK amendment A17 (Newton-Raphson from all-zero coefficients, to full
+  convergence). The port's fully converged estimates were closer to the maximum than SAS's, and
+  for that reason not SAS's: on few rows the fourth digit of a coefficient differed
+  (`generated-inputs.md`, seeds 2, 8, 26, 27).
+- Now: every fit with a variable is SAS's own iteration stopped where SAS stops it
+  (`sas_compat._fit_as_sas`, the function that was `_fit_separated`): from the intercept-only
+  estimates, the convergence test GCONV = 1E-8 after each iteration, the estimates of that
+  iteration returned, and everything downstream computed at them. RULEBOOK §2 (rows "stepwise"
+  and "model fitting") is updated in the same commit.
+- SAS's ridge had to be measured for it (experiment X17). On the reference data the plain
+  iteration lowers the log likelihood at iteration 1 on 18 of the 19 steps and breaks down at
+  iteration 3; SAS retakes such a step with a ridge (its Ridge column; RIDGING=RELATIVE is the
+  default). No history in hand showed one: the runs of `out/separation/sas` and the generated
+  seeds never ridge. X17 ran the same PROC LOGISTIC with ITPRINT on the reference feature file,
+  on 12 row subsets of it (3,000 to 80,000 rows) and on seeds 2, 6, 8, 26, 27: 211 steps, 393
+  ridged iterations, ridges from 0.0064 to 104.8576. The rule that reproduces every iteration
+  line of all of them: the diagonal of the information matrix times 1 + 1e-4 * 4^j, j one up
+  until the log likelihood is not lower than before the iteration; j is kept through the fit and
+  goes one down after an iteration whose first ridge was accepted. Two neighbouring readings
+  were tried and fail (j never down: 17 steps; j back to 0: 7 steps).
+- The entry score chi-square is SAS's statistic over all parameters on every step, not only after
+  a separated one (the form of commit "entry score after a separated step"): at SAS's estimates
+  the model's own score is not zero. With the candidate's part alone the reference data's steps
+  13 and 16 printed 8.8017 and 29.7077 against SAS's 8.7885 and 29.7637.
+- Measured on the reference data (contract run, every line passes before and after). Cells of
+  the port's files whose text differs from SAS's reference, before -> after: score files and
+  predictions (five files) 814,511 -> 25, each of the 25 one unit in the last printed digit
+  (pd_logistic: largest difference 8.2e-6 -> 1e-10; score: 0.002 -> 1e-8; no grade differs any
+  more); coefficients 18 -> 0; step summary 12 -> 0; global tests 21 -> 0; fit statistics,
+  association, Hosmer-Lemeshow and its partition, odds ratios, classification table 34 -> 0.
+  Only the run date differs otherwise.
+- Generated inputs, seeds 1 to 29: seeds 2, 8, 26 and 27 now pass every line, and on every seed
+  every cell of the train and predict files is SAS's text, except one: seed 6, the Wald test of
+  the global null hypothesis at step 7, which still fails (`generated-inputs.md`).
+- Not settled by X17, and what the port does: the first ridge (1e-4, the start of the ladder; no
+  run needed one below 0.0064, and any start up to there gives the same histories); a step that
+  leaves the log likelihood exactly equal (taken without a ridge); a ridged iteration on a
+  separated fit (the two rules are applied together; no run has both). A fit that neither
+  converges nor separates in 25 iterations, a singular system, or no ridge that keeps the log
+  likelihood: the port stops with an error; what SAS does there is not measured.
