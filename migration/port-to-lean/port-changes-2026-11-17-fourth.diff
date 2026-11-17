@@ -1,3 +1,21 @@
+diff --git a/port/credit_risk/feature_engineering.py b/port/credit_risk/feature_engineering.py
+index 93faaf6..78f16ba 100644
+--- a/port/credit_risk/feature_engineering.py
++++ b/port/credit_risk/feature_engineering.py
+@@ -339,11 +339,11 @@ def run(
+     # RESOLVED (post-parity): the split is an explicit input (--split-ids), so row order cannot change it
+     # (SAS drew a different split in judge run x_split_drift_m_metrics_threshold, judge/README.md:75-81)
+     # the split is an INPUT (A27): selected = row_id is a training row_id in split_ids
++    # G1: the ids are SAS numbers (doubles, R§2 input best32.), matched by value; no whole-number cast
+     train_ids = (
+         pl.read_csv(split_ids, columns=["row_id"], infer_schema=False)  # R§1 CSV I/O: all text
++        .select(sas_compat.input_best32(pl.col("row_id")))
+         .get_column("row_id")
+-        .cast(pl.Int64)
+-        .cast(pl.Float64)
+     )
+     credit_split = credit_features.with_columns(selected=pl.col("row_id").is_in(train_ids.implode()))
+     credit_train = credit_split.filter(pl.col("selected")).drop("selected")
 diff --git a/port/credit_risk/predict.py b/port/credit_risk/predict.py
 index da32249..93b1933 100644
 --- a/port/credit_risk/predict.py
@@ -209,3 +227,64 @@ index 0000000..92dfd55
 +        if name.startswith("test_") and callable(fn):
 +            fn()
 +            print(f"{name}: ok")
+diff --git a/port/tests/test_split_ids.py b/port/tests/test_split_ids.py
+new file mode 100644
+index 0000000..8ae51bf
+--- /dev/null
++++ b/port/tests/test_split_ids.py
+@@ -0,0 +1,55 @@
++"""The split file's row_id values are SAS numbers (doubles), matched by value (finding G1).
++
++cd port && uv run python tests/test_split_ids.py        (or: uv run pytest tests)
++"""
++
++from __future__ import annotations
++
++import sys
++import tempfile
++from pathlib import Path
++
++import polars as pl
++
++HERE = Path(__file__).resolve().parent
++sys.path.insert(0, str(HERE.parent))
++from credit_risk import feature_engineering  # noqa: E402
++
++HEADER = (
++    ",SeriousDlqin2yrs,RevolvingUtilizationOfUnsecuredLines,age,NumberOfTime30-59DaysPastDueNotWorse,"
++    "DebtRatio,MonthlyIncome,NumberOfOpenCreditLinesAndLoans,NumberOfTimes90DaysLate,"
++    "NumberRealEstateLoansOrLines,NumberOfTime60-89DaysPastDueNotWorse,NumberOfDependents"
++)
++
++
++def _run(ids: list[str], split: list[str]) -> tuple[list[float], list[float]]:
++    with tempfile.TemporaryDirectory() as tmp:
++        d = Path(tmp)
++        (d / "cs-training.csv").write_text(
++            HEADER + "\n" + "".join(f"{i},0,0,0,0,0,0,0,0,0,0,0\n" for i in ids)
++        )
++        (d / "split_ids.csv").write_text("row_id\n" + "".join(f"{i}\n" for i in split))
++        feature_engineering.run(d, d, split_ids=d / "split_ids.csv")
++        train = pl.read_csv(d / "model_features_train.csv").get_column("row_id").cast(pl.Float64)
++        valid = pl.read_csv(d / "model_features_validation.csv").get_column("row_id").cast(pl.Float64)
++        return sorted(train.to_list()), sorted(valid.to_list())
++
++
++def test_fractional_ids_g1_witness() -> None:
++    # finding G1: VAR1 = 1/2, 1/4, 3/4, 1/5 is valid input; the split lists three of them
++    train, valid = _run(["0.5", "0.25", "0.75", "0.2"], ["0.5", "0.25", "0.75"])
++    assert train == [0.25, 0.5, 0.75]
++    assert valid == [0.2]
++
++
++def test_whole_ids_match_by_value() -> None:
++    # whole ids as before; the text 3.0 names the id 3
++    train, valid = _run(["1", "2", "3", "4"], ["1", "3.0", "4"])
++    assert train == [1.0, 3.0, 4.0]
++    assert valid == [2.0]
++
++
++if __name__ == "__main__":
++    test_fractional_ids_g1_witness()
++    test_whole_ids_match_by_value()
++    print("ok")
