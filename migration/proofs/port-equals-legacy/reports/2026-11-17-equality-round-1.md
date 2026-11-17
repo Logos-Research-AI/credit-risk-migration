@@ -564,6 +564,11 @@ every n (G56), `PyLinks` 6 for every table (G58).
      `features` returns for `train` and some seed. On E6's arguments it is true through E1. In
      the real run, `income_medians.csv` is written with the two feature files
      (`feature_engineering.py:365-371`), after the only stop (`:128`).
+- **E7 vacuous on a header-only test file** (`thm:E7_predict_column_names`, rev 8e048ede;
+  reviewer prover-13, lead 2026-11-17): the SAS table carries its names in its rows and has none.
+  This is the same class as the recorded limit on header-only files. E7 and F2 also assert that
+  the two files are among those `run_py_py` returns. That is a stronger conclusion than spec E7's
+  one line, with no added hypothesis; accepted by the lead.
 
 ## Blueprint behaviour met
 
@@ -587,3 +592,5 @@ every n (G56), `PyLinks` 6 for every table (G58).
 
 - 2026-11-17 (prover-16) Phase 3 metrics stated, texts read back intact, sent to prover-17 for review: `thm:E8_validation_summary` 1e28bf63, `thm:E9_ks` 88639528, `thm:E10_decile` 6dcd89f7, `thm:E11_threshold` 30b57d66, `thm:F5_calibration_plot` 277fd78e, `thm:F6_model_performance_metrics` df8e3fac (run_py call spelled out, no new definition; `today` only through `Paired` 7), `thm:G4_metrics_coverage` fa022cc3; examples `lem:ex_metrics_run` 1481f51f (shared by E8-E11, F5, F6), `lem:ex_G4_run` b6a95273. F5, F6 rest on E4 as E8-E11 do. G4 expected false through `PyLinks` 8 (cell kinds of the unlisted score columns free; `run_py_precond` asks one kind per column); put to the lead.
 - 2026-11-17 (prover-16) Review by prover-17: agrees, all nine (E8, E9, E10, E11, F5, F6, G4, `lem:ex_metrics_run`, `lem:ex_G4_run`), each read fresh. G4 expected false through a looseness of PyLinks 8 (cell kinds constrained only on four columns of the score files; the real reader gives one kind per column); a definitions question for the lead, no disproof built. On hold by the lead's word (owner redefining the final product): nothing proved, nothing started; E8-E11, F5, F6 wait for E4; the two examples are unproved.
+
+- 2026-11-17 (prover-15) phase 3 groups A and C, stated, all reviewed "agrees" by prover-13, no proof started (held by the lead): thm:E1_features_train fb81cd8e, thm:E2_features_valid 1bcf134a, thm:G1_run_coverage c3428270, thm:F1_income_medians 5ccec9ec, thm:E6_score_test 5a86e01e, thm:E7_predict_column_names 8e048ede, thm:F2_kaggle_submission 8e8d466c, thm:G3_predict_coverage dc41d36b, example lem:ex_reached_features_predict 9075bfd4 (reached-equations of F1, E6, E7, F2, G3); texts read back intact. Reviewer's notes for the lead: E7 and F2 also claim the file is present (stronger, in the text); E7 is vacuous on a header-only test file (SAS tables carry names in rows; a limit of the table model). Planned order when released: G1, then E1, E2 (steps 00, 01, 02b, 04, 05 have no kept step contract; the old S1, S4b, S5b, ST1 drafts on b41b22d4 are against earlier units, a model only); E6, E7, F2, G3 after E3.
