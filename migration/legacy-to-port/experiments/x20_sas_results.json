@@ -1,0 +1,512 @@
+{
+"A0": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225628E-100",
+"Test=Wald ChiSq=406.482709472169 DF=7 ProbChiSq=9.709652642634E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155978 StdErr=0.24383750706596 WaldChiSq=9.23786317623487 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964611 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594763E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793981 ProbChiSq=4.9796407290065E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754844 ProbChiSq=2.8844872298018E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603645 ProbChiSq=3.3426970964544E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-13 StdErr=7.9608408599967E-13 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=1.8239213366539E-15",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080185E-6 utilization_debt_interaction=-7.212880269874E-16",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-4.3877476941722E-15",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-3.0720777044649E-15",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=2.9097657992453E-15",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912086E-6 utilization_debt_interaction=2.905356364969E-16",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080185E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912086E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-5.0198393030965E-17",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366539E-15 log_num_credit_lines=-7.212880269874E-16 flag_high_utilization=-4.3877476941722E-15 flag_high_debt_ratio=-3.0720777044649E-15 flag_multiple_delinquencies=2.9097657992453E-15 age_category=2.905356364969E-16 financial_health=-5.0198393030965E-17 utilization_debt_interaction=6.3374987198193E-25"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"A1": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225629E-100",
+"Test=Wald ChiSq=406.482709472169 DF=7 ProbChiSq=9.7096526426324E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155979 StdErr=0.24383750706596 WaldChiSq=9.23786317623499 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964614 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594764E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290063E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754844 ProbChiSq=2.8844872298018E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603645 ProbChiSq=3.3426970964607E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-12 StdErr=7.9608408599967E-12 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=1.8239213366539E-14",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080182E-6 utilization_debt_interaction=-7.2128802698741E-15",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-4.3877476941722E-14",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-3.0720777044649E-14",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=2.9097657992453E-14",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912084E-6 utilization_debt_interaction=2.905356364969E-15",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080182E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912084E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-5.0198393030966E-16",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366539E-14 log_num_credit_lines=-7.2128802698741E-15 flag_high_utilization=-4.3877476941722E-14 flag_high_debt_ratio=-3.0720777044649E-14 flag_multiple_delinquencies=2.9097657992453E-14 age_category=2.905356364969E-15 financial_health=-5.0198393030966E-16 utilization_debt_interaction=6.3374987198193E-23"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"A2": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919338 DF=7 ProbChiSq=3.723504022563E-100",
+"Test=Wald ChiSq=406.482709472169 DF=7 ProbChiSq=9.7096526426316E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155978 StdErr=0.24383750706596 WaldChiSq=9.237863176235 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964611 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274569 ProbChiSq=8.8234985594761E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290062E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754845 ProbChiSq=2.8844872298016E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659623 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603646 ProbChiSq=3.3426970964527E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-11 StdErr=7.9608408599967E-11 WaldChiSq=1.55694303245868 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=1.8239213366538E-13",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080182E-6 utilization_debt_interaction=-7.2128802698742E-14",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-4.3877476941722E-13",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-3.0720777044649E-13",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=2.9097657992453E-13",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912083E-6 utilization_debt_interaction=2.9053563649691E-14",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080182E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912083E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-5.0198393030965E-15",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366538E-13 log_num_credit_lines=-7.2128802698742E-14 flag_high_utilization=-4.3877476941722E-13 flag_high_debt_ratio=-3.0720777044649E-13 flag_multiple_delinquencies=2.9097657992453E-13 age_category=2.9053563649691E-14 financial_health=-5.0198393030965E-15 utilization_debt_interaction=6.3374987198193E-21"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"A3": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225628E-100",
+"Test=Wald ChiSq=406.482709472169 DF=7 ProbChiSq=9.7096526426321E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155978 StdErr=0.24383750706596 WaldChiSq=9.237863176235 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964612 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274569 ProbChiSq=8.8234985594765E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290062E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754845 ProbChiSq=2.8844872298016E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603646 ProbChiSq=3.3426970964527E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-10 StdErr=7.9608408599967E-10 WaldChiSq=1.55694303245868 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=1.8239213366538E-12",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080182E-6 utilization_debt_interaction=-7.2128802698741E-13",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-4.3877476941722E-12",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-3.0720777044649E-12",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=2.9097657992453E-12",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912083E-6 utilization_debt_interaction=2.9053563649691E-13",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080182E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912083E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-5.0198393030965E-14",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366538E-12 log_num_credit_lines=-7.2128802698741E-13 flag_high_utilization=-4.3877476941722E-12 flag_high_debt_ratio=-3.0720777044649E-12 flag_multiple_delinquencies=2.9097657992453E-12 age_category=2.9053563649691E-13 financial_health=-5.0198393030965E-14 utilization_debt_interaction=6.3374987198193E-19"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"A4": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225629E-100",
+"Test=Wald ChiSq=406.482709472169 DF=7 ProbChiSq=9.7096526426335E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155978 StdErr=0.24383750706596 WaldChiSq=9.2378631762349 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964611 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594764E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290064E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754843 ProbChiSq=2.8844872298019E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603645 ProbChiSq=3.3426970964544E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-9 StdErr=7.9608408599967E-9 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=1.8239213366539E-11",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080184E-6 utilization_debt_interaction=-7.2128802698741E-12",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-4.3877476941722E-11",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-3.0720777044649E-11",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=2.9097657992453E-11",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912086E-6 utilization_debt_interaction=2.905356364969E-12",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080184E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912086E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-5.0198393030966E-13",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366539E-11 log_num_credit_lines=-7.2128802698741E-12 flag_high_utilization=-4.3877476941722E-11 flag_high_debt_ratio=-3.0720777044649E-11 flag_multiple_delinquencies=2.9097657992453E-11 age_category=2.905356364969E-12 financial_health=-5.0198393030966E-13 utilization_debt_interaction=6.3374987198193E-17"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"A5": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430949 DF=7 ProbChiSq=4.9118574689253E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225628E-100",
+"Test=Wald ChiSq=407.355047318151 DF=7 ProbChiSq=6.3109397259881E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155979 StdErr=0.24383750706596 WaldChiSq=9.23786317623489 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964614 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594766E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290064E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754842 ProbChiSq=2.884487229802E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603644 ProbChiSq=3.3426970964622E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-8 StdErr=7.9608408599967E-8 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=1.8239213366539E-10",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080185E-6 utilization_debt_interaction=-7.2128802698742E-11",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-4.3877476941722E-10",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-3.0720777044649E-10",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=2.9097657992453E-10",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912089E-6 utilization_debt_interaction=2.905356364969E-11",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080185E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912089E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-5.0198393030966E-12",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366539E-10 log_num_credit_lines=-7.2128802698742E-11 flag_high_utilization=-4.3877476941722E-10 flag_high_debt_ratio=-3.0720777044649E-10 flag_multiple_delinquencies=2.9097657992453E-10 age_category=2.905356364969E-11 financial_health=-5.0198393030966E-12 utilization_debt_interaction=6.3374987198193E-15"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"B1": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919359 DF=7 ProbChiSq=3.7235040225261E-100",
+"Test=Wald ChiSq=406.482709472168 DF=7 ProbChiSq=9.7096526426401E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155978 StdErr=0.24383750706596 WaldChiSq=9.23786317623487 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.01199461139298 StdErr=0.00385705929495 WaldChiSq=9.67074057964619 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.0448124845474 StdErr=0.01008344917668 WaldChiSq=19.7505784274566 ProbChiSq=8.8234985594776E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.04244226825755 StdErr=0.00929600984474 WaldChiSq=20.8451018793979 ProbChiSq=4.9796407290071E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.06512749755599 StdErr=0.01096784319643 WaldChiSq=35.2603254754837 ProbChiSq=2.8844872298027E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.01503238564435 StdErr=0.00349900854879 WaldChiSq=18.4571996659627 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.00296885833591 StdErr=0.00024346724387 WaldChiSq=148.695515603642 ProbChiSq=3.3426970964667E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-13 StdErr=7.9608408599967E-13 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00027739645086 flag_high_utilization=-0.00106384219217 flag_high_debt_ratio=-0.00116080739621 flag_multiple_delinquencies=-0.00154804597481 age_category=-0.00042295387009 financial_health=-0.0000432249387 utilization_debt_interaction=1.8239213366541E-15",
+"Parameter=log_num_credit_lines Intercept=-0.00027739645086 log_num_credit_lines=0.0000148769064 flag_high_utilization=2.9863125159444E-7 flag_high_debt_ratio=2.873894368628E-7 flag_multiple_delinquencies=-4.7857419667694E-7 age_category=-2.7576553949343E-7 financial_health=3.024589708019E-8 utilization_debt_interaction=-7.2128802698743E-17",
+"Parameter=flag_high_utilization Intercept=-0.00106384219217 log_num_credit_lines=2.9863125159444E-7 flag_high_utilization=0.00010167594729 flag_high_debt_ratio=0.00002456494443 flag_multiple_delinquencies=0.00002538841758 age_category=1.2840749344571E-7 financial_health=1.0979369315559E-6 utilization_debt_interaction=-4.3877476941722E-16",
+"Parameter=flag_high_debt_ratio Intercept=-0.00116080739621 log_num_credit_lines=2.873894368628E-7 flag_high_utilization=0.00002456494443 flag_high_debt_ratio=0.00008641579903 flag_multiple_delinquencies=0.00002130323517 age_category=9.1068123835192E-7 financial_health=1.1272926021738E-6 utilization_debt_interaction=-3.0720777044649E-16",
+"Parameter=flag_multiple_delinquencies Intercept=-0.00154804597481 log_num_credit_lines=-4.7857419667694E-7 flag_high_utilization=0.00002538841758 flag_high_debt_ratio=0.00002130323517 flag_multiple_delinquencies=0.00012029358438 age_category=-1.9253678955926E-7 financial_health=1.0428100088313E-6 utilization_debt_interaction=2.9097657992453E-16",
+"Parameter=age_category Intercept=-0.00042295387009 log_num_credit_lines=-2.7576553949343E-7 flag_high_utilization=1.2840749344571E-7 flag_high_debt_ratio=9.1068123835192E-7 flag_multiple_delinquencies=-1.9253678955926E-7 age_category=0.00001224306082 financial_health=4.7174563912071E-8 utilization_debt_interaction=2.905356364969E-17",
+"Parameter=financial_health Intercept=-0.0000432249387 log_num_credit_lines=3.024589708019E-8 flag_high_utilization=1.0979369315559E-6 flag_high_debt_ratio=1.1272926021738E-6 flag_multiple_delinquencies=1.0428100088313E-6 age_category=4.7174563912071E-8 financial_health=5.9276298837744E-8 utilization_debt_interaction=-5.0198393030968E-18",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366541E-15 log_num_credit_lines=-7.2128802698743E-17 flag_high_utilization=-4.3877476941722E-16 flag_high_debt_ratio=-3.0720777044649E-16 flag_multiple_delinquencies=2.9097657992453E-16 age_category=2.905356364969E-17 financial_health=-5.0198393030968E-18 utilization_debt_interaction=6.3374987198193E-25"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"B2": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430949 DF=7 ProbChiSq=4.9118574689253E-109",
+"Test=Score ChiSq=482.940196919278 DF=7 ProbChiSq=3.7235040226746E-100",
+"Test=Wald ChiSq=406.482709472172 DF=7 ProbChiSq=9.7096526426169E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155979 StdErr=0.24383750706594 WaldChiSq=9.23786317623639 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.00119946113929 StdErr=0.00038570592949 WaldChiSq=9.67074057964604 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.00448124845474 StdErr=0.00100834491766 WaldChiSq=19.7505784274574 ProbChiSq=8.8234985594738E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.00424422682575 StdErr=0.00092960098447 WaldChiSq=20.8451018793988 ProbChiSq=4.9796407290049E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.00651274975559 StdErr=0.00109678431964 WaldChiSq=35.2603254754874 ProbChiSq=2.8844872297971E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.00150323856443 StdErr=0.00034990085487 WaldChiSq=18.4571996659627 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.00029688583359 StdErr=0.00002434672438 WaldChiSq=148.695515603661 ProbChiSq=3.3426970964278E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-13 StdErr=7.9608408599967E-13 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985213 log_num_credit_lines=-0.00002773964508 flag_high_utilization=-0.00010638421921 flag_high_debt_ratio=-0.00011608073962 flag_multiple_delinquencies=-0.00015480459748 age_category=-0.000042295387 financial_health=-4.322493870076E-6 utilization_debt_interaction=1.823921336654E-15",
+"Parameter=log_num_credit_lines Intercept=-0.00002773964508 log_num_credit_lines=1.4876906404826E-7 flag_high_utilization=2.986312515939E-9 flag_high_debt_ratio=2.8738943686223E-9 flag_multiple_delinquencies=-4.7857419667743E-9 age_category=-2.7576553949339E-9 financial_health=3.0245897080162E-10 utilization_debt_interaction=-7.2128802698741E-18",
+"Parameter=flag_high_utilization Intercept=-0.00010638421921 log_num_credit_lines=2.986312515939E-9 flag_high_utilization=1.0167594729883E-6 flag_high_debt_ratio=2.4564944438435E-7 flag_multiple_delinquencies=2.5388417584299E-7 age_category=1.2840749344479E-9 financial_health=1.0979369315557E-8 utilization_debt_interaction=-4.3877476941722E-17",
+"Parameter=flag_high_debt_ratio Intercept=-0.00011608073962 log_num_credit_lines=2.8738943686223E-9 flag_high_utilization=2.4564944438435E-7 flag_high_debt_ratio=8.6415799033673E-7 flag_multiple_delinquencies=2.1303235173658E-7 age_category=9.1068123835116E-9 financial_health=1.1272926021737E-8 utilization_debt_interaction=-3.0720777044649E-17",
+"Parameter=flag_multiple_delinquencies Intercept=-0.00015480459748 log_num_credit_lines=-4.7857419667743E-9 flag_high_utilization=2.5388417584299E-7 flag_high_debt_ratio=2.1303235173658E-7 flag_multiple_delinquencies=1.2029358438153E-6 age_category=-1.9253678956129E-9 financial_health=1.042810008831E-8 utilization_debt_interaction=2.9097657992453E-17",
+"Parameter=age_category Intercept=-0.000042295387 log_num_credit_lines=-2.7576553949339E-9 flag_high_utilization=1.2840749344479E-9 flag_high_debt_ratio=9.1068123835116E-9 flag_multiple_delinquencies=-1.9253678956129E-9 age_category=1.2243060824513E-7 financial_health=4.7174563912037E-10 utilization_debt_interaction=2.9053563649688E-18",
+"Parameter=financial_health Intercept=-4.322493870076E-6 log_num_credit_lines=3.0245897080162E-10 flag_high_utilization=1.0979369315557E-8 flag_high_debt_ratio=1.1272926021737E-8 flag_multiple_delinquencies=1.042810008831E-8 age_category=4.7174563912037E-10 financial_health=5.9276298837737E-10 utilization_debt_interaction=-5.0198393030966E-19",
+"Parameter=utilization_debt_interaction Intercept=1.823921336654E-15 log_num_credit_lines=-7.2128802698741E-18 flag_high_utilization=-4.3877476941722E-17 flag_high_debt_ratio=-3.0720777044649E-17 flag_multiple_delinquencies=2.9097657992453E-17 age_category=2.9053563649688E-18 financial_health=-5.0198393030966E-19 utilization_debt_interaction=6.3374987198193E-25"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"B3": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689264E-109",
+"Test=Score ChiSq=482.940196919281 DF=7 ProbChiSq=3.7235040226691E-100",
+"Test=Wald ChiSq=406.482709472175 DF=7 ProbChiSq=9.7096526426062E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155978 StdErr=0.24383750706595 WaldChiSq=9.23786317623557 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.00011994611392 StdErr=0.00003857059294 WaldChiSq=9.67074057964617 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.00044812484547 StdErr=0.00010083449176 WaldChiSq=19.7505784274572 ProbChiSq=8.8234985594747E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.00042442268257 StdErr=0.00009296009844 WaldChiSq=20.8451018793986 ProbChiSq=4.9796407290055E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.00065127497555 StdErr=0.00010967843196 WaldChiSq=35.2603254754856 ProbChiSq=2.8844872298E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.00015032385644 StdErr=0.00003499008548 WaldChiSq=18.4571996659618 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.00002968858335 StdErr=2.4346724387017E-6 WaldChiSq=148.695515603656 ProbChiSq=3.3426970964361E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-13 StdErr=7.9608408599967E-13 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-2.7739645086758E-6 flag_high_utilization=-0.00001063842192 flag_high_debt_ratio=-0.00001160807396 flag_multiple_delinquencies=-0.00001548045974 age_category=-4.2295387009186E-6 financial_health=-4.3224938700763E-7 utilization_debt_interaction=1.8239213366537E-15",
+"Parameter=log_num_credit_lines Intercept=-2.7739645086758E-6 log_num_credit_lines=1.4876906404826E-9 flag_high_utilization=2.9863125159383E-11 flag_high_debt_ratio=2.873894368621E-11 flag_multiple_delinquencies=-4.7857419667743E-11 age_category=-2.7576553949341E-11 financial_health=3.0245897080163E-12 utilization_debt_interaction=-7.212880269874E-19",
+"Parameter=flag_high_utilization Intercept=-0.00001063842192 log_num_credit_lines=2.9863125159383E-11 flag_high_utilization=1.0167594729883E-8 flag_high_debt_ratio=2.4564944438436E-9 flag_multiple_delinquencies=2.5388417584302E-9 age_category=1.2840749344558E-11 financial_health=1.0979369315558E-10 utilization_debt_interaction=-4.3877476941721E-18",
+"Parameter=flag_high_debt_ratio Intercept=-0.00001160807396 log_num_credit_lines=2.873894368621E-11 flag_high_utilization=2.4564944438436E-9 flag_high_debt_ratio=8.6415799033673E-9 flag_multiple_delinquencies=2.1303235173661E-9 age_category=9.1068123835199E-11 financial_health=1.1272926021737E-10 utilization_debt_interaction=-3.0720777044649E-18",
+"Parameter=flag_multiple_delinquencies Intercept=-0.00001548045974 log_num_credit_lines=-4.7857419667743E-11 flag_high_utilization=2.5388417584302E-9 flag_high_debt_ratio=2.1303235173661E-9 flag_multiple_delinquencies=1.2029358438153E-8 age_category=-1.9253678955975E-11 financial_health=1.0428100088311E-10 utilization_debt_interaction=2.9097657992454E-18",
+"Parameter=age_category Intercept=-4.2295387009186E-6 log_num_credit_lines=-2.7576553949341E-11 flag_high_utilization=1.2840749344558E-11 flag_high_debt_ratio=9.1068123835199E-11 flag_multiple_delinquencies=-1.9253678955975E-11 age_category=1.2243060824514E-9 financial_health=4.7174563912068E-12 utilization_debt_interaction=2.905356364969E-19",
+"Parameter=financial_health Intercept=-4.3224938700763E-7 log_num_credit_lines=3.0245897080163E-12 flag_high_utilization=1.0979369315558E-10 flag_high_debt_ratio=1.1272926021737E-10 flag_multiple_delinquencies=1.0428100088311E-10 age_category=4.7174563912068E-12 financial_health=5.9276298837739E-12 utilization_debt_interaction=-5.0198393030964E-20",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366537E-15 log_num_credit_lines=-7.212880269874E-19 flag_high_utilization=-4.3877476941721E-18 flag_high_debt_ratio=-3.0720777044649E-18 flag_multiple_delinquencies=2.9097657992454E-18 age_category=2.905356364969E-19 financial_health=-5.0198393030964E-20 utilization_debt_interaction=6.3374987198193E-25"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"B4": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689264E-109",
+"Test=Score ChiSq=482.940196919315 DF=7 ProbChiSq=3.7235040226056E-100",
+"Test=Wald ChiSq=406.48270947217 DF=7 ProbChiSq=9.7096526426269E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155979 StdErr=0.24383750706596 WaldChiSq=9.23786317623508 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.00001199461139 StdErr=3.8570592949586E-6 WaldChiSq=9.6707405796462 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.00004481248454 StdErr=0.00001008344917 WaldChiSq=19.7505784274569 ProbChiSq=8.8234985594759E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.00004244226825 StdErr=9.2960098447492E-6 WaldChiSq=20.8451018793984 ProbChiSq=4.9796407290059E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.00006512749755 StdErr=0.00001096784319 WaldChiSq=35.2603254754837 ProbChiSq=2.8844872298028E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.00001503238564 StdErr=3.4990085487913E-6 WaldChiSq=18.4571996659616 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-2.9688583359187E-6 StdErr=2.4346724387018E-7 WaldChiSq=148.695515603648 ProbChiSq=3.3426970964563E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-13 StdErr=7.9608408599967E-13 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-2.7739645086758E-7 flag_high_utilization=-1.06384219217E-6 flag_high_debt_ratio=-1.1608073962192E-6 flag_multiple_delinquencies=-1.5480459748117E-6 age_category=-4.2295387009187E-7 financial_health=-4.3224938700766E-8 utilization_debt_interaction=1.8239213366535E-15",
+"Parameter=log_num_credit_lines Intercept=-2.7739645086758E-7 log_num_credit_lines=1.4876906404826E-11 flag_high_utilization=2.98631251594E-13 flag_high_debt_ratio=2.873894368621E-13 flag_multiple_delinquencies=-4.7857419667699E-13 age_category=-2.7576553949358E-13 financial_health=3.0245897080166E-14 utilization_debt_interaction=-7.2128802698739E-20",
+"Parameter=flag_high_utilization Intercept=-1.06384219217E-6 log_num_credit_lines=2.98631251594E-13 flag_high_utilization=1.0167594729883E-10 flag_high_debt_ratio=2.4564944438438E-11 flag_multiple_delinquencies=2.5388417584305E-11 age_category=1.2840749344576E-13 financial_health=1.0979369315558E-12 utilization_debt_interaction=-4.3877476941721E-19",
+"Parameter=flag_high_debt_ratio Intercept=-1.1608073962192E-6 log_num_credit_lines=2.873894368621E-13 flag_high_utilization=2.4564944438438E-11 flag_high_debt_ratio=8.6415799033674E-11 flag_multiple_delinquencies=2.1303235173664E-11 age_category=9.1068123835195E-13 financial_health=1.1272926021738E-12 utilization_debt_interaction=-3.0720777044648E-19",
+"Parameter=flag_multiple_delinquencies Intercept=-1.5480459748117E-6 log_num_credit_lines=-4.7857419667699E-13 flag_high_utilization=2.5388417584305E-11 flag_high_debt_ratio=2.1303235173664E-11 flag_multiple_delinquencies=1.2029358438154E-10 age_category=-1.9253678955882E-13 financial_health=1.0428100088313E-12 utilization_debt_interaction=2.9097657992454E-19",
+"Parameter=age_category Intercept=-4.2295387009187E-7 log_num_credit_lines=-2.7576553949358E-13 flag_high_utilization=1.2840749344576E-13 flag_high_debt_ratio=9.1068123835195E-13 flag_multiple_delinquencies=-1.9253678955882E-13 age_category=1.2243060824514E-11 financial_health=4.7174563912077E-14 utilization_debt_interaction=2.9053563649695E-20",
+"Parameter=financial_health Intercept=-4.3224938700766E-8 log_num_credit_lines=3.0245897080166E-14 flag_high_utilization=1.0979369315558E-12 flag_high_debt_ratio=1.1272926021738E-12 flag_multiple_delinquencies=1.0428100088313E-12 age_category=4.7174563912077E-14 financial_health=5.9276298837742E-14 utilization_debt_interaction=-5.0198393030964E-21",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366535E-15 log_num_credit_lines=-7.2128802698739E-20 flag_high_utilization=-4.3877476941721E-19 flag_high_debt_ratio=-3.0720777044648E-19 flag_multiple_delinquencies=2.9097657992454E-19 age_category=2.9053563649695E-20 financial_health=-5.0198393030964E-21 utilization_debt_interaction=6.3374987198193E-25"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"B5": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919321 DF=7 ProbChiSq=3.7235040225955E-100",
+"Test=Wald ChiSq=406.482709472171 DF=7 ProbChiSq=9.7096526426225E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155979 StdErr=0.24383750706595 WaldChiSq=9.23786317623557 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-1.1994611392986E-6 StdErr=3.8570592949586E-7 WaldChiSq=9.67074057964618 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=4.4812484547407E-6 StdErr=1.0083449176687E-6 WaldChiSq=19.750578427457 ProbChiSq=8.8234985594757E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-4.2442268257558E-6 StdErr=9.2960098447492E-7 WaldChiSq=20.8451018793985 ProbChiSq=4.9796407290056E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=6.5127497555992E-6 StdErr=1.0967843196432E-6 WaldChiSq=35.2603254754862 ProbChiSq=2.8844872297992E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-1.5032385644353E-6 StdErr=3.4990085487912E-7 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-2.9688583359187E-7 StdErr=2.4346724387017E-8 WaldChiSq=148.695515603651 ProbChiSq=3.3426970964444E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601402E-13 StdErr=7.9608408599967E-13 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-2.7739645086757E-8 flag_high_utilization=-1.06384219217E-7 flag_high_debt_ratio=-1.1608073962192E-7 flag_multiple_delinquencies=-1.5480459748115E-7 age_category=-4.2295387009185E-8 financial_health=-4.3224938700765E-9 utilization_debt_interaction=1.8239213366539E-15",
+"Parameter=log_num_credit_lines Intercept=-2.7739645086757E-8 log_num_credit_lines=1.4876906404826E-13 flag_high_utilization=2.986312515937E-15 flag_high_debt_ratio=2.8738943686212E-15 flag_multiple_delinquencies=-4.7857419667803E-15 age_category=-2.7576553949346E-15 financial_health=3.0245897080159E-16 utilization_debt_interaction=-7.2128802698742E-21",
+"Parameter=flag_high_utilization Intercept=-1.06384219217E-7 log_num_credit_lines=2.986312515937E-15 flag_high_utilization=1.0167594729883E-12 flag_high_debt_ratio=2.4564944438437E-13 flag_multiple_delinquencies=2.5388417584303E-13 age_category=1.2840749344566E-15 financial_health=1.0979369315558E-14 utilization_debt_interaction=-4.3877476941722E-20",
+"Parameter=flag_high_debt_ratio Intercept=-1.1608073962192E-7 log_num_credit_lines=2.8738943686212E-15 flag_high_utilization=2.4564944438437E-13 flag_high_debt_ratio=8.6415799033674E-13 flag_multiple_delinquencies=2.1303235173661E-13 age_category=9.1068123835185E-15 financial_health=1.1272926021737E-14 utilization_debt_interaction=-3.0720777044649E-20",
+"Parameter=flag_multiple_delinquencies Intercept=-1.5480459748115E-7 log_num_credit_lines=-4.7857419667803E-15 flag_high_utilization=2.5388417584303E-13 flag_high_debt_ratio=2.1303235173661E-13 flag_multiple_delinquencies=1.2029358438153E-12 age_category=-1.925367895598E-15 financial_health=1.0428100088312E-14 utilization_debt_interaction=2.9097657992453E-20",
+"Parameter=age_category Intercept=-4.2295387009185E-8 log_num_credit_lines=-2.7576553949346E-15 flag_high_utilization=1.2840749344566E-15 flag_high_debt_ratio=9.1068123835185E-15 flag_multiple_delinquencies=-1.925367895598E-15 age_category=1.2243060824514E-13 financial_health=4.7174563912075E-16 utilization_debt_interaction=2.905356364969E-21",
+"Parameter=financial_health Intercept=-4.3224938700765E-9 log_num_credit_lines=3.0245897080159E-16 flag_high_utilization=1.0979369315558E-14 flag_high_debt_ratio=1.1272926021737E-14 flag_multiple_delinquencies=1.0428100088312E-14 age_category=4.7174563912075E-16 financial_health=5.9276298837741E-16 utilization_debt_interaction=-5.0198393030966E-22",
+"Parameter=utilization_debt_interaction Intercept=1.8239213366539E-15 log_num_credit_lines=-7.2128802698742E-21 flag_high_utilization=-4.3877476941722E-20 flag_high_debt_ratio=-3.0720777044649E-20 flag_multiple_delinquencies=2.9097657992453E-20 age_category=2.905356364969E-21 financial_health=-5.0198393030966E-22 utilization_debt_interaction=6.3374987198193E-25"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"S1": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430956 DF=7 ProbChiSq=4.9118574689077E-109",
+"Test=Score ChiSq=482.940196749784 DF=7 ProbChiSq=3.7235043349773E-100",
+"Test=Wald ChiSq=407.355047385295 DF=7 ProbChiSq=6.3109395167062E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=120.687230071496 StdErr=38.6432143593508 WaldChiSq=9.75385177375632 ProbChiSq=0.00178947377714 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392993 StdErr=0.03857059281776 WaldChiSq=9.67074064576017 ProbChiSq=0.00187225820171 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547406 StdErr=0.10083449176684 WaldChiSq=19.7505784274674 ProbChiSq=8.8234985594278E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844746 WaldChiSq=20.8451018794117 ProbChiSq=4.9796407289713E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196429 WaldChiSq=35.2603254755071 ProbChiSq=2.8844872297681E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548787 WaldChiSq=18.4571996660047 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.00243467243869 WaldChiSq=148.695515604872 ProbChiSq=3.3426970943957E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=9.9333400601406E-8 StdErr=7.9608408599816E-8 WaldChiSq=1.55694303246471 ProbChiSq=0.21211338101759 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=1493.29801602274 log_num_credit_lines=-1.49046459480341 flag_high_utilization=-0.04050154683165 flag_high_debt_ratio=-0.04034701740708 flag_multiple_delinquencies=0.03237695963549 age_category=0.02334701507719 financial_health=-0.00345683907265 utilization_debt_interaction=7.2311194337836E-8",
+"Parameter=log_num_credit_lines Intercept=-1.49046459480341 log_num_credit_lines=0.00148769063031 flag_high_utilization=0.00002986312491 flag_high_debt_ratio=0.00002873894344 flag_multiple_delinquencies=-0.00004785741938 age_category=-0.00002757655377 financial_health=3.0245896856895E-6 utilization_debt_interaction=-7.2128802205101E-11",
+"Parameter=flag_high_utilization Intercept=-0.04050154683165 log_num_credit_lines=0.00002986312491 flag_high_utilization=0.01016759472987 flag_high_debt_ratio=0.00245649444383 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-4.3877476940514E-10",
+"Parameter=flag_high_debt_ratio Intercept=-0.04034701740708 log_num_credit_lines=0.00002873894344 flag_high_utilization=0.00245649444383 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351737 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-3.072077704348E-10",
+"Parameter=flag_multiple_delinquencies Intercept=0.03237695963549 log_num_credit_lines=-0.00004785741938 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351737 flag_multiple_delinquencies=0.01202935843814 age_category=-0.00001925367896 financial_health=0.00010428100088 utilization_debt_interaction=2.9097657991076E-10",
+"Parameter=age_category Intercept=0.02334701507719 log_num_credit_lines=-0.00002757655377 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367896 age_category=0.00122430608244 financial_health=4.7174563915856E-6 utilization_debt_interaction=2.9053563641395E-11",
+"Parameter=financial_health Intercept=-0.00345683907265 log_num_credit_lines=3.0245896856895E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563915856E-6 financial_health=5.9276298837254E-6 utilization_debt_interaction=-5.0198393020127E-12",
+"Parameter=utilization_debt_interaction Intercept=7.2311194337836E-8 log_num_credit_lines=-7.2128802205101E-11 flag_high_utilization=-4.3877476940514E-10 flag_high_debt_ratio=-3.072077704348E-10 flag_multiple_delinquencies=2.9097657991076E-10 age_category=2.9053563641395E-11 financial_health=-5.0198393020127E-12 utilization_debt_interaction=6.3374987197953E-15"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"T1": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225628E-100",
+"Test=Wald ChiSq=406.482709472169 DF=7 ProbChiSq=9.7096526426329E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155979 StdErr=0.24383750706596 WaldChiSq=9.2378631762349 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964612 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594768E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290064E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754843 ProbChiSq=2.884487229802E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603645 ProbChiSq=3.3426970964545E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=1.2522785637572E-8 StdErr=1.0036090879904E-8 WaldChiSq=1.55694303245868 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=2.2993852803211E-11",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080184E-6 utilization_debt_interaction=-9.0931502296551E-12",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-5.5315556976003E-11",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-3.8729138761042E-11",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=3.6682901359337E-11",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912087E-6 utilization_debt_interaction=3.6627312403468E-12",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080184E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912087E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-6.3284223782882E-13",
+"Parameter=utilization_debt_interaction Intercept=2.2993852803211E-11 log_num_credit_lines=-9.0931502296551E-12 flag_high_utilization=-5.5315556976003E-11 flag_high_debt_ratio=-3.8729138761042E-11 flag_multiple_delinquencies=3.6682901359337E-11 age_category=3.6627312403468E-12 financial_health=-6.3284223782882E-13 utilization_debt_interaction=1.007231201497E-16"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"T2": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225628E-100",
+"Test=Wald ChiSq=407.355047318152 DF=7 ProbChiSq=6.3109397259856E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155979 StdErr=0.24383750706596 WaldChiSq=9.23786317623492 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964612 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594768E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290064E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754843 ProbChiSq=2.884487229802E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603645 ProbChiSq=3.3426970964544E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=1.7709893287345E-8 StdErr=1.419317583557E-8 WaldChiSq=1.55694303245868 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=3.2518218485514E-11",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080184E-6 utilization_debt_interaction=-1.2859656379474E-11",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-7.8228010885685E-11",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-5.4771273294895E-11",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=5.1877456609569E-11",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912085E-6 utilization_debt_interaction=5.1798841954259E-12",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080184E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912085E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-8.9497407558007E-13",
+"Parameter=utilization_debt_interaction Intercept=3.2518218485514E-11 log_num_credit_lines=-1.2859656379474E-11 flag_high_utilization=-7.8228010885685E-11 flag_high_debt_ratio=-5.4771273294895E-11 flag_multiple_delinquencies=5.1877456609569E-11 age_category=5.1798841954259E-12 financial_health=-8.9497407558007E-13 utilization_debt_interaction=2.014462402994E-16"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"T3": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689264E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225628E-100",
+"Test=Wald ChiSq=407.355047318151 DF=7 ProbChiSq=6.3109397259883E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155978 StdErr=0.24383750706596 WaldChiSq=9.23786317623485 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964612 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594766E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793981 ProbChiSq=4.9796407290067E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754843 ProbChiSq=2.8844872298019E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603644 ProbChiSq=3.3426970964624E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=2.8001799953269E-8 StdErr=2.2441381435832E-8 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=5.1415817932604E-11",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080185E-6 utilization_debt_interaction=-2.0332902043126E-11",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-1.236893456116E-10",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-8.6600986979711E-11",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=8.2025461051398E-11",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912088E-6 utilization_debt_interaction=8.1901160367274E-12",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080185E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912088E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-1.4150782628183E-12",
+"Parameter=utilization_debt_interaction Intercept=5.1415817932604E-11 log_num_credit_lines=-2.0332902043126E-11 flag_high_utilization=-1.236893456116E-10 flag_high_debt_ratio=-8.6600986979711E-11 flag_multiple_delinquencies=8.2025461051398E-11 age_category=8.1901160367274E-12 financial_health=-1.4150782628183E-12 utilization_debt_interaction=5.0361560074851E-16"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"T4": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225629E-100",
+"Test=Wald ChiSq=407.355047318152 DF=7 ProbChiSq=6.3109397259854E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155978 StdErr=0.24383750706596 WaldChiSq=9.2378631762349 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.67074057964611 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594764E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290064E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754843 ProbChiSq=2.8844872298019E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603645 ProbChiSq=3.3426970964614E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=3.9600525264771E-8 StdErr=3.1736905984941E-8 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=7.2712947040793E-11",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080184E-6 utilization_debt_interaction=-2.8755065831793E-11",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-1.7492315008498E-10",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-1.224722903016E-10",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=1.1600151947879E-10",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912086E-6 utilization_debt_interaction=1.1582573176549E-11",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080184E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912086E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-2.001222871097E-12",
+"Parameter=utilization_debt_interaction Intercept=7.2712947040793E-11 log_num_credit_lines=-2.8755065831793E-11 flag_high_utilization=-1.7492315008498E-10 flag_high_debt_ratio=-1.224722903016E-10 flag_multiple_delinquencies=1.1600151947879E-10 age_category=1.1582573176549E-11 financial_health=-2.001222871097E-12 utilization_debt_interaction=1.007231201497E-15"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+},
+"T5": {
+"GT": [
+"Test=Likelihood Ratio ChiSq=524.241417430948 DF=7 ProbChiSq=4.9118574689275E-109",
+"Test=Score ChiSq=482.940196919339 DF=7 ProbChiSq=3.7235040225628E-100",
+"Test=Wald ChiSq=407.355047318151 DF=7 ProbChiSq=6.3109397259876E-84"
+],
+"PE": [
+"Variable=Intercept DF=1 Estimate=0.74111614155979 StdErr=0.24383750706596 WaldChiSq=9.23786317623484 ProbChiSq=0.0023706143089 _ESTTYPE_=MLE",
+"Variable=log_num_credit_lines DF=1 Estimate=-0.11994611392986 StdErr=0.03857059294958 WaldChiSq=9.6707405796461 ProbChiSq=0.00187225826909 _ESTTYPE_=MLE",
+"Variable=flag_high_utilizatio DF=1 Estimate=0.44812484547407 StdErr=0.10083449176687 WaldChiSq=19.7505784274568 ProbChiSq=8.8234985594766E-6 _ESTTYPE_=MLE",
+"Variable=flag_high_debt_ratio DF=1 Estimate=-0.42442268257558 StdErr=0.09296009844749 WaldChiSq=20.8451018793982 ProbChiSq=4.9796407290064E-6 _ESTTYPE_=MLE",
+"Variable=flag_multiple_delinq DF=1 Estimate=0.65127497555992 StdErr=0.10967843196432 WaldChiSq=35.2603254754842 ProbChiSq=2.884487229802E-9 _ESTTYPE_=MLE",
+"Variable=age_category DF=1 Estimate=-0.15032385644353 StdErr=0.03499008548791 WaldChiSq=18.4571996659622 ProbChiSq=0.00001737631235 _ESTTYPE_=MLE",
+"Variable=financial_health DF=1 Estimate=-0.02968858335918 StdErr=0.0024346724387 WaldChiSq=148.695515603644 ProbChiSq=3.3426970964623E-34 _ESTTYPE_=MLE",
+"Variable=utilization_debt_int DF=1 Estimate=5.6003599906538E-8 StdErr=4.4882762871664E-8 WaldChiSq=1.55694303245869 ProbChiSq=0.21211338101847 _ESTTYPE_=MLE"
+],
+"CB": [
+"Parameter=Intercept Intercept=0.05945672985214 log_num_credit_lines=-0.00277396450867 flag_high_utilization=-0.0106384219217 flag_high_debt_ratio=-0.01160807396219 flag_multiple_delinquencies=-0.01548045974811 age_category=-0.00422953870091 financial_health=-0.000432249387 utilization_debt_interaction=1.028316358652E-10",
+"Parameter=log_num_credit_lines Intercept=-0.00277396450867 log_num_credit_lines=0.00148769064048 flag_high_utilization=0.00002986312515 flag_high_debt_ratio=0.00002873894368 flag_multiple_delinquencies=-0.00004785741966 age_category=-0.00002757655394 financial_health=3.0245897080186E-6 utilization_debt_interaction=-4.0665804086253E-11",
+"Parameter=flag_high_utilization Intercept=-0.0106384219217 log_num_credit_lines=0.00002986312515 flag_high_utilization=0.01016759472988 flag_high_debt_ratio=0.00245649444384 flag_multiple_delinquencies=0.00253884175843 age_category=0.00001284074934 financial_health=0.00010979369315 utilization_debt_interaction=-2.4737869122321E-10",
+"Parameter=flag_high_debt_ratio Intercept=-0.01160807396219 log_num_credit_lines=0.00002873894368 flag_high_utilization=0.00245649444384 flag_high_debt_ratio=0.00864157990336 flag_multiple_delinquencies=0.00213032351736 age_category=0.00009106812383 financial_health=0.00011272926021 utilization_debt_interaction=-1.7320197395942E-10",
+"Parameter=flag_multiple_delinquencies Intercept=-0.01548045974811 log_num_credit_lines=-0.00004785741966 flag_high_utilization=0.00253884175843 flag_high_debt_ratio=0.00213032351736 flag_multiple_delinquencies=0.01202935843815 age_category=-0.00001925367895 financial_health=0.00010428100088 utilization_debt_interaction=1.6405092210279E-10",
+"Parameter=age_category Intercept=-0.00422953870091 log_num_credit_lines=-0.00002757655394 flag_high_utilization=0.00001284074934 flag_high_debt_ratio=0.00009106812383 flag_multiple_delinquencies=-0.00001925367895 age_category=0.00122430608245 financial_health=4.7174563912089E-6 utilization_debt_interaction=1.6380232073454E-11",
+"Parameter=financial_health Intercept=-0.000432249387 log_num_credit_lines=3.0245897080186E-6 flag_high_utilization=0.00010979369315 flag_high_debt_ratio=0.00011272926021 flag_multiple_delinquencies=0.00010428100088 age_category=4.7174563912089E-6 financial_health=5.9276298837743E-6 utilization_debt_interaction=-2.8301565256366E-12",
+"Parameter=utilization_debt_interaction Intercept=1.028316358652E-10 log_num_credit_lines=-4.0665804086253E-11 flag_high_utilization=-2.4737869122321E-10 flag_high_debt_ratio=-1.7320197395942E-10 flag_multiple_delinquencies=1.6405092210279E-10 age_category=1.6380232073454E-11 financial_health=-2.8301565256366E-12 utilization_debt_interaction=2.014462402994E-15"
+],
+"CS": [
+"NullModel=0 Reason=Convergence criterion (GCONV=1E-8) satisfied. Status=0"
+]
+}
+}
