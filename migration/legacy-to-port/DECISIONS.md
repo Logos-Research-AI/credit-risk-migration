@@ -244,3 +244,10 @@ for translation rules once it exists.
   Still not settled: how far below 1e-4 SAS goes (the port sets no floor), and a step that
   leaves the log likelihood exactly equal. The error message of a fit that neither converges nor
   separates no longer says "in 25 iterations" for a singular system or a failed ridge search.
+- Corrected 2026-11-17 (same review): the quasi-complete test does not count the intercept's
+  diagonal element of the standardized inverse information. With it the port stopped one or two
+  iterations before SAS when events are few (6 steps of the reviewer's runs; whole runs
+  `rawfit_small12_43` and `rawfit_small90_15` failed the step summary and the global tests).
+  Over the 18 quasi-complete steps in hand one limit fits only without the intercept: at most
+  4,678 before SAS's stop, at least 5,932 at it. `separation-rule.md` is corrected in the same
+  commit.

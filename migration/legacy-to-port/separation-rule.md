@@ -19,7 +19,8 @@ iteration k, **for k = 8 and every later iteration**, in this order:
 2. Otherwise **quasi-complete separation** when some observation has a probability of its response
    of 0.95 or more and a diagonal element of the inverse information matrix, computed on the
    standardized columns (each variable minus its mean, divided by its standard deviation; intercept
-   column left), exceeds 5000.
+   column left), exceeds 5000. The intercept's own diagonal element is not counted (corrected
+   2026-11-17, section "Correction: the intercept's element" below).
 
 When either holds the iteration stops there. **The estimates kept are those of iteration k** (after
 its update), with the inverse information at those estimates as their covariance. -2 Log L, the
@@ -228,8 +229,9 @@ nothing else changes.
 
 - **The 0.95 of the quasi-complete condition.** In every quasi-complete run some observation was
   above 0.999 well before the stop, so 0.95 is the documentation's figure, not a measured one.
-- **The limit of 5000** is bracketed between 4,615 and 5,932; the divisor of the standard deviation
-  (n or n − 1) and whether the intercept's element counts do not change any of the nine verdicts.
+- **The limit of 5000** is bracketed between 4,678 and 5,932 (18 quasi-complete steps, correction
+  below); the divisor of the standard deviation (n or n − 1) does not change any verdict. Whether
+  the intercept's element counts was left open here and is now settled: it does not.
 - **A probability of exactly 0.5** at iteration 8 (the smallest seen is 0.5008).
 - **The quasi-complete check before iteration 8**: no quasi-complete run met the condition before
   iteration 9, so "from iteration 8" is measured for the complete check and taken for the other.
@@ -237,3 +239,37 @@ nothing else changes.
 - **Equal Wald chi-squares.** In the two symmetric designed sets (D7, D10) the variables tie exactly
   and SAS removed the first in model order; the port's commit `f2791d1` now does the same.
 - One designed run (one swap on 20,000 rows) hung the SAS session and was dropped.
+
+## Correction: the intercept's element (2026-11-17, review of 2461757)
+
+The quasi-complete test takes the largest diagonal element of the standardized inverse information
+**over the variables only**. This report's rule counted the intercept's element too. On the nine
+quasi-complete steps it was written from, a variable's element is the largest, so the two readings
+agree.
+When events are few the intercept's element is the largest and passes 5000 first, and the port
+then stopped one or two iterations before SAS and kept other estimates.
+
+Evidence: the reviewer's ITPRINT runs (`out/review_fit/sas`, git-ignored; five of the steps are in
+`port/tests/data/sas_fit_cases.json`). Largest element at the iteration before SAS's stop and at
+it, without the intercept's and with it:
+
+| Run, step | Rows | Variables only: before | at the stop | With the intercept: before | SAS stops at | With the intercept the port stopped at |
+|---|---|---|---|---|---|---|
+| raw12, 1 | 12 | 3,355 | 9,120 | 9,226 | 11 | 10 |
+| raw90, 2 | 90 | 2,216 | 6,023 | 9,408 | 13 | 12 |
+| small12_43, 1 | 12 | 3,697 | 10,048 | 16,941 | 11 | 9 |
+| small120_6, 2 | 120 | 3,675 | 9,990 | 13,849 | 14 | 12 |
+| sep_credit_utilization_0p85_n400_s0_sw2, 1 | 400 | 4,419 | 12,013 | 16,583 | 15 | 13 |
+| sep_credit_utilization_0p85_n2000_s0_sw0, 1 | 2,000 | 3,550 | 9,649 | 15,787 | 17 | 15 |
+| rnd150_3, 3 | 150 | 3,046 | 8,280 | 3,046 | 12 | 12 |
+| small30_7, 2 | 30 | 2,913 | 8,080 | 4,062 | 10 | 10 |
+| sep_monthly_income_0p5_n2000_s0_sw0, 1 | 2,000 | 4,678 | 20,747 | 4,678 | 13 | 13 |
+
+Over all 18 quasi-complete steps in hand (these nine and the nine of this report) the variables'
+largest element is at most 4,678 before SAS's stop and at least 5,932 at it, so one limit between
+the two fits them all, and 5000 is inside. With the intercept's element no limit fits: 16,941
+before a stop (small12_43) is above 5,932 at one (D6b).
+
+On whole runs: the raw inputs `raw/small12_43` (17 rows) and `raw/small90_15` (128 rows) of the
+review failed the judge on `stepwise_summary.csv` (Wald 0.0041 against SAS's 0.0097; 0.0049
+against 0.0114) and `printed_global_tests.csv`; with the correction both pass every file.

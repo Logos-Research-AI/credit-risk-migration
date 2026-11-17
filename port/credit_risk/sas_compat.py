@@ -768,7 +768,7 @@ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticF
     Review of 2026-11-17 (21 more inputs, SAS logs under out/review_fit, the cases of
     port/tests/data/sas_fit_cases.json): the first ridge of a fit is 1e-4 (9 fits start there);
     j has no floor at 0 (a separated step with ridges 0.0001 and then 0.000025; with a floor the
-    kept estimates are 1.9% off); the ridge and the separation tests work together (7 separated
+    kept estimates are 1.9% off); the ridge and the separation tests work together (9 separated
     steps with ridged iterations); ridges from 0.000025 to 419.4304.
     Not settled: how far below 1e-4 SAS goes (0.000025 is the smallest seen; no floor here), and
     a step that leaves the log likelihood exactly equal (taken here without a ridge).
@@ -785,7 +785,11 @@ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticF
     probability above 0.5 of its observed response;
     else quasi-complete separation when some observation has probability >= 0.95 of its observed
     response and a diagonal element of the inverse information matrix for the standardized columns
-    (mean 0, standard deviation 1, divisor n - 1) exceeds 5000. The iteration stops there and its
+    (mean 0, standard deviation 1, divisor n - 1), the intercept's own element left out, exceeds
+    5000 (review of 2026-11-17: with the intercept's element, the largest when events are few,
+    the port stopped one or two iterations before SAS on 6 steps; over the 18 quasi-complete
+    steps in hand the variables' largest element is at most 4,678 before SAS's stop and at least
+    5,932 at it, and no single limit fits when the intercept's counts). The iteration stops there and its
     estimates are returned, `converged=False`. None when neither is found in 25 iterations, a
     system is singular or no ridge up to 1e-4 * 4**40 keeps the log likelihood: what SAS does
     then is not measured, and the caller stops with an error.
@@ -842,7 +846,7 @@ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticF
             if bool(np.all(p_obs > 0.5)):
                 separation = "complete"
             elif bool(np.any(p_obs >= 0.95)) and (
-                float(np.diag(np.linalg.inv(xs.T @ (xs * w[:, None]))).max()) > 5000.0
+                float(np.diag(np.linalg.inv(xs.T @ (xs * w[:, None])))[1:].max()) > 5000.0
             ):
                 separation = "quasicomplete"
             if separation is not None:

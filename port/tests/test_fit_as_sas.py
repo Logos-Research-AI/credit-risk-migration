@@ -12,7 +12,8 @@ tests/data/sas_fit_cases.json holds single steps of the reviewer's ITPRINT runs 
 logs under out/review_fit/sas, git-ignored): the model's columns, the outcome, and SAS's history
 (ridge per iteration, how the step ended, the last -2 Log L and estimates). They cover what X17
 does not: a first ridge of 1e-4, ridges below 0.0064 and below 1e-4, ridged iterations on
-separated steps, ridges up to 419.4304.
+separated steps, ridges up to 419.4304, and quasi-complete steps with few events, where the
+intercept's element of the standardized inverse information is the largest.
 """
 
 from __future__ import annotations
@@ -90,6 +91,7 @@ def test_subset_with_large_ridges_is_sas() -> None:
 
 
 CASES = json.loads((HERE / "data" / "sas_fit_cases.json").read_text())
+INTERCEPT_FIRST = ("raw12", "raw90", "small12_43", "small120_6", "sep_credit_utilization_0p85_n400_s0_sw2")
 
 
 def check_step(case: dict[str, Any]) -> None:
@@ -136,6 +138,25 @@ def test_ridge_ladder_starts_at_1e_4_and_has_no_floor() -> None:
     print(f"  {len(ridged_separated)} separated steps with ridged iterations")
 
 
+def test_quasi_complete_test_leaves_the_intercept_out() -> None:
+    """Five quasi-complete steps on which the intercept's element of the standardized inverse
+    information passes 5000 one or two iterations before a variable's does: SAS stops at the
+    variable's (iterations 11 to 15), and `test_single_steps_are_sas` holds the port to it."""
+    late = [c for c in CASES if c["case"] in INTERCEPT_FIRST]
+    assert len(late) == len(INTERCEPT_FIRST) and all(c["separation"] == "quasicomplete" for c in late)
+    for c in late:
+        y = np.array(c["y"], dtype=float)
+        x = np.column_stack([np.ones(len(y)), *[np.array(c["columns"][v]) for v in c["variables"]]])
+        xs = np.column_stack([x[:, 0], (x[:, 1:] - x[:, 1:].mean(axis=0)) / x[:, 1:].std(axis=0, ddof=1)])
+        p = 1.0 / (1.0 + np.exp(-(x @ np.array(c["estimates"]))))
+        d = np.diag(np.linalg.inv(xs.T @ (xs * (p * (1.0 - p))[:, None])))
+        assert d[0] > d[1:].max() > 5000.0, (
+            c["case"],
+            d,
+        )  # at SAS's stop: both above, the intercept's the larger
+    print(f"  {len(late)} quasi-complete steps where the intercept's element is the larger one")
+
+
 def test_a_step_that_keeps_the_log_likelihood_is_taken() -> None:
     """The port's own choice, not measured in SAS (docstring of `_fit_as_sas`): a step that leaves
     the log likelihood exactly equal is taken without a ridge. Here the variable's score is exactly
@@ -174,6 +195,7 @@ if __name__ == "__main__":
         test_subset_with_large_ridges_is_sas,
         test_single_steps_are_sas,
         test_ridge_ladder_starts_at_1e_4_and_has_no_floor,
+        test_quasi_complete_test_leaves_the_intercept_out,
         test_a_step_that_keeps_the_log_likelihood_is_taken,
         test_reference_data_selection_is_the_reference,
     ):
