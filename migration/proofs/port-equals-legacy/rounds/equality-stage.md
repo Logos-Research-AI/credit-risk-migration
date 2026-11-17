@@ -97,6 +97,18 @@ again.
 All ids carry the prefix `thm:`. Reviewer of a restated statement: prover-9 for prover-10's,
 prover-10 for prover-8's.
 
+**Proof before review (lead, 2026-11-17).** For the phase 1 coverage lemmas and the small
+supporting lemmas of phase 2 only, a proof may be built and submitted while the statement
+review is pending: if the review asks a change, the item is restated and proved again, and the
+order is reported for the record. Strict as before, reviewed before any proof or any use: the
+three definitions and two records, T0, and every contract of phase 3. Reviewers answer review
+requests before continuing their own proofs.
+
+**Seams when appending a draft.** Found by prover-5: an append with `edit_solution_draft` drops
+a leading blank line of the chunk and adds no line break after a chunk that ends without one
+(two lines are joined). After every append read the seam back and compare it and the line count
+with the old draft; repair whitespace only, and report each repair.
+
 **Restating an old `thm:` item replaces its text.** `write_statement` on an existing `thm:` item
 replaces its `statement_text` (the contract) with a generated summary. Remedy, for every old
 item restated: save `statement_text` first; `write_statement`; then `edit_text` with the saved

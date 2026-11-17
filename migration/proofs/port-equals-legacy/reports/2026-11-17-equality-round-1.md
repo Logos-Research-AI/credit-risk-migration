@@ -93,6 +93,16 @@ on the SAS blueprint or in `SasLinks` now.
   text is being checked by prover-1 with the statement of `def:PyLinks`; a difference there
   would be one F3/F4 must exclude.
 
+- Port side, checked by prover-1 (read, not evaluated): (a) `PyLinks` 1 to 4 speak only of
+  number texts with no blank and of the missing forms, so the port links admit no padded
+  number text; (b) the Python reader cuts to 32 characters and then trims
+  (`port/credit_risk/sas_compat.py:241`), as the real informat; in the port Lean
+  `input_best32` is a parameter with no body, applied to the unstripped column; (c) a padded
+  text can be delivered on the SAS side only; within 32 characters both orders read the same
+  number, beyond 32 the port links admit nothing. So under `PyLinks` and `Paired` no input
+  makes the two Leans read different numbers, and F3/F4 need no exclusion on this account. The
+  limit stays one of the SAS-side claim (SAS Lean against the real SAS).
+
 ### Results received (to be merged into the phase tables at the end of each phase)
 
 - Phase 0, typed resubmissions by prover-6 ("resubmitted from the accepted text, identity not
@@ -132,6 +142,120 @@ on the SAS blueprint or in `SasLinks` now.
   three definitions, allowed by the coordinator and told to the lead: `def:PyParams`,
   `def:SasParams` (author prover-1, reviewer prover-9).
 - Text comparison of every kept `thm:` item across the two ids: prover-9 (moved from prover-3).
+
+- Phase 0, typed resubmissions by prover-2 (flag_H2, div_H3, sas_sum_H4, sas_min_H5_min,
+  sas_max_H5_max): no stored draft existed, `get_items` then `write_solution` with the text
+  copied; each accepted first time; "resubmitted from the accepted text, identity not shown,
+  accepted".
+- Phase 1 review "agrees": prover-2 on prover-10's train_bins and decile_data (owed: the forms
+  under the free read-back, after `def:PyLinks`).
+- Phase 2: the lead approved C-a, C-b, C-c (entered in `definitions-v3.md`) and the two record
+  items (fields only, no default, no proposition; `today` last in `def:SasParams`).
+
+- Text comparison across the two ids (prover-9, read only, fetched about 05:08 CET): the 42
+  kept `thm:` items plus S7a, S7b, C4, S13: 46 compared, all 46 identical character for
+  character (string equality and SHA-256 of each text, by script over its session record).
+  `thm:sas_round_H8` exists on b41b22d4 only. S13 still carried its old text (version 3 text
+  not yet written by prover-8). S7a, S7b, C4 equal again to the old texts. So the text
+  replacement hit only the three restated items, and `write_solution` touched no text.
+
+- Phase 1: `lem:sas_cov_credit_cleaned` and `lem:sas_cov_credit_imputed` proved by prover-3
+  (statements reviewed "agrees" by prover-4); use link (1) first clause, link (4) and the
+  column-names clause of `TrainOK`; no carrier.
+
+- Phase 1: prover-3's review of prover-2's income_medians and income_medians_all: agrees, both.
+  For the audit: the review came after the proofs (rule 5's order not kept for these two; the
+  lead accepted it once); no consequence, the statements agree with their texts.
+
+- Phase 0, typed resubmissions by prover-1 ("resubmitted from the accepted text, identity not
+  shown, accepted"): lt 0b0762bd135046afa6e4a6a6eb3ca25a, le 6f343f58039648d1ae35ba8bc8f8ff04,
+  gt aa43428270444c1bb0d4742b99c65346, ge 661dc530d0874dad86b588954f787702,
+  eq 9950f7cf075a40b1969a7bae744c2475.
+- Phase 2: `lem:sas_feature_rows` gives no distinctness of `row_id`, so the lemma of C-b is
+  needed: `lem:sas_split_input_ids`, stated by prover-1 under `Paired` after `def:Paired`.
+
+- Phase 0, the restated three (prover-10; statements reviewed "agrees" by prover-9; contract
+  texts read back after the proofs):
+  - S7b: proved with the proof it had on b41b22d4, unchanged; accepted first time.
+  - S7a: proved with the old proof and one token added (`none` for the new separation field of
+    `LogisticFit`, built positionally in the witness); rests on S7b. Recorded as changed, not as
+    unchanged.
+  - C4: disproved, flagged false; `neg:train_run_01_fit_frame_C4_neg` proved with the old proof
+    unchanged. The difference of round 2 (report.md, row C4): the mask of
+    `train_run_01_fit_frame` also drops a row whose `default_flag` is missing (train.py 78-82);
+    no effect on valid input. Input: two rows, the 36 candidates each [0, 0], `default_flag`
+    [0, missing], a stepwise result with no step and empty fits; mask [true, false]. Check by a
+    prover who neither wrote it nor supplied its input: prover-9 (verdict pending).
+  - Revisions: S7b 0d3121a1ef6e4f54a0e27827f5dced7d, S7a 0ef7d36fa0ce4ad18bed1c3521730966,
+    negation of C4 a7a601a3fbd74becb13a4983f3f44c66. Disproof text:
+    `rounds/disproof-C4-2026-11-17.md`. Order, for the audit: S7b was submitted on prover-9's
+    first "agrees" on the restored texts, before the fresh review made at the lead's request;
+    the Lean was not changed in between, so the fresh review covers what was proved.
+  - Checker's disclosure (prover-9, before starting): it did not write the negation and
+    supplied no input in an earlier round; today, in its reviews, it told prover-10 that C4
+    looked false because the mask also tests `default_flag`, and advised a witness "with every
+    candidate a plain present number and default_flag null". The coordinator's judgement: not
+    "supplied its input" (the input is the two-row input of round 2, fixed before; the advice
+    repeats the contract text); the check goes on, the disclosure goes to the lead with the
+    verdict, and a second checker is named if the lead judges otherwise.
+
+- Phase 0, large-proof route (stored draft on b41b22d4 read in ranges, written as a draft on
+  5365851c, submitted), prover-5; nothing written to b41b22d4; statements on the two ids
+  compared first, equal:
+  - S2a: from revision 67e9690ed988415dac495a7cba5cdd16 (796 lines); accepted at
+    4b8e927502594fdca92cd92d2477c7f0 (796 lines).
+  - S2b: from revision cb3c2347c45242bab2ffbab0f9385c3b (777 lines); accepted at
+    229feffdeb2a4cd9a2afbe020564770b (777 lines).
+  - Identity evidence: line counts after each chunk and at the end, every chunk seam and the
+    last lines read back and compared; the body of each chunk not re-read in full. Whitespace
+    repairs at seams before submitting (the append drops a leading blank line and adds no line
+    break after a chunk ending without one): S2a blank line 200; S2b blank line 200, lines
+    600/601 split again, final newline. No other character changed.
+  - Tool behaviour for the other large-proof items: `edit_solution_draft` append drops a
+    leading blank line and joins lines at a seam; read every seam back.
+
+- C4 disproof check by prover-9: **confirmed**, without reading prover-10's proof.
+  (1) the `neg:` statement is exactly the negation of C4, nothing weaker, no extra hypothesis;
+  (2) input built by the checker and run once with `eval_decl` at Float (`def:zz_carrier_t` as
+  evaluation carrier only): output `[1, 36, 2, 2, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]`: mask
+  [true, false], no candidate missing in either row, `default_flag` missing in row 1, the six
+  clauses of the precondition true (evaluated as Boolean tests written by the checker; the
+  precondition item itself did not return under `eval_decl`); (3) Python: the test is at
+  `port/credit_risk/train.py` lines 97 to 102 today (the earlier record says 78-82), the
+  response is in `all_horizontal(... is_not_null())`; run first-hand with polars on a two-row
+  frame: mask [True, False]; the Lean unit is faithful; (4) not reachable on valid input
+  (`TrainOK` makes the outcome 0 or 1; `default_flag` is that value: proved on the SAS side by
+  `lem:sas_feature_rows`, read from the code on the port side, not a proved item).
+  Accepted by the lead, with the checker's disclosure as judged. Line reference: the mask is at
+  `port/credit_risk/train.py` line 98 at commit 9640913; "78 to 82" is the earlier revision
+  (prover-10 corrects the negation's proof text and the disproof file). Nothing goes to the
+  code side: the difference is on record since round 2. **For the final report**: "the witness
+  is not reachable on valid input" is proved on the SAS side alone; the port-side fact follows
+  only once the E-contracts of the feature stage are proved, and may not be cited before then.
+- Phase 0, prover-4. Large-proof route (nothing written to b41b22d4; statements equal on both):
+  H10 from 83c5fb06ad614f8da5e13253f0538ab1 (774 lines), accepted at
+  a7a04e9592e74c31b9b3183def81b51a (774 lines, 31275 characters), both drafts read back whole
+  and compared by eye; H13 from 24a126639d5148d9a064d1d16a5bbc9d (1402 lines), accepted at
+  5a40a0f6cbfe4e6ea966fd2f8af1d49a (1402 lines, 61044 characters), read back: total lines and
+  the 8 chunk boundaries only. No repair. Typed ("resubmitted from the accepted text, identity
+  not shown, accepted"): sql_mean 4b6ea7401e404ba6b911fc4916825bc4, sql_max
+  0aeb9410c3a74fe3b6c8d578f0b08855, proc_rank_groups_H11 ff00e3f0fba648b09ae68a1462871139.
+
+- Phase 1, prover-6, all proved: `lem:sas_cov_credit_raw_input_check` (second conjunct of link
+  (1), `TrainOK`) and `lem:sas_cov_test_raw_input_check` (second conjunct of link (2),
+  `TestOK`), each reviewed "agrees" by prover-7 before the proof. `lem:sas_cov_test_raw_clean`
+  restated as ruled (the precondition with the one conjunct `t.length ≤ 32` removed; the text
+  quotes `def:test_raw_clean` in full to show the length is not read), proved at
+  e71270ba8fd3449abf81dd0a9c2a3a1a; order: proved before prover-7's review of the restated
+  statement (review pending; restate and prove again if it asks a change).
+- Phase 0, prover-4, seams of H10 and H13: all read back after the last append and equal to the
+  old drafts; no repair (H13: 8 chunks, 7 seams and the tail; H10: 5 chunks, whole draft
+  compared).
+
+- Phase 1, prover-4, both proved, reviewed "agrees" by prover-5 before the proofs:
+  `lem:sas_cov_credit_features` b6fe165921d54037a869562cf584060b (link (4) only; `InputOK` not
+  used); `lem:sas_cov_credit_train_validation` 9cd8f9fb05b84af38f1875a93626dd5f (link (5) only;
+  `InputOK` not used). No carrier.
 
 ## Blueprint behaviour met
 
