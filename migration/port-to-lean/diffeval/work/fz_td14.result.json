@@ -1,0 +1,66 @@
+[
+ {
+  "id": "fz_td14/seeds 300000..300599: kept (543 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td14/seeds 300000..300599: rejected, a column `shared` Float64 in one metrics frame and text in the other (57 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td14/seeds 300600..301199: kept (557 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td14/seeds 300600..301199: rejected, a column `shared` Float64 in one metrics frame and text in the other (43 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td14/seeds 301200..301799: kept (549 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td14/seeds 301200..301799: rejected, a column `shared` Float64 in one metrics frame and text in the other (51 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td14/seeds 301800..302399: kept (553 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td14/seeds 301800..302399: rejected, a column `shared` Float64 in one metrics frame and text in the other (47 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

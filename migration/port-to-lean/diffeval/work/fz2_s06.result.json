@@ -1,0 +1,570 @@
+[
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300000..300049 (31 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16148901688339894964,
+    17218695527519157078
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300050..300099 (39 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300100..300149 (27 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300150..300199 (32 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300200..300249 (23 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300250..300299 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300300..300349 (32 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300350..300399 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300400..300449 (26 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300450..300499 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300500..300549 (29 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300550..300599 (25 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300600..300649 (38 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300650..300699 (38 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300700..300749 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300750..300799 (32 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300800..300849 (29 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300850..300899 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300900..300949 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 300950..300999 (35 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301000..301049 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301050..301099 (32 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301100..301149 (29 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301150..301199 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301200..301249 (33 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2126445398903676309,
+    16418016741101544356
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301250..301299 (26 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301300..301349 (31 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301350..301399 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301400..301449 (27 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301450..301499 (24 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301500..301549 (33 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7649283516142493192,
+    7258199431137192863
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301550..301599 (35 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301600..301649 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301650..301699 (26 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301700..301749 (31 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301750..301799 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301800..301849 (33 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301850..301899 (33 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301900..301949 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 301950..301999 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302000..302049 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302050..302099 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302100..302149 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302150..302199 (36 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302200..302249 (31 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302250..302299 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302300..302349 (25 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302350..302399 (24 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302400..302449 (31 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302450..302499 (35 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302500..302549 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302550..302599 (27 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302600..302649 (32 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302650..302699 (27 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302700..302749 (35 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302750..302799 (30 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302800..302849 (32 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302850..302899 (32 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302900..302949 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 302950..302999 (35 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 303000..303049 (34 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 303050..303099 (32 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 303100..303149 (33 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 303150..303199 (33 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 303200..303249 (31 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 303250..303299 (39 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 303300..303349 (31 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06/final / final_index / intercept of seeds 303350..303399 (35 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2957482815461480057,
+    16658793274265605783
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ }
+]

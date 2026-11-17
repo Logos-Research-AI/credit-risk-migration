@@ -1,0 +1,1250 @@
+[
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, pd=.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 1/6 and 1/3, fit.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all ones, pd= 0.9.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd): number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0.4 and 0.6, (X, y, pd).NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 0 and 0.1, fit.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, two rows, pd=.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, all zeros, (X, y, pd) 0.2.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/intercept, means 4/9 and 5/9, pd=.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, pd=.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd): number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, (X, y, pd).NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double: number of columns",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.ProbLevel",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.CorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.CorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.IncorrectEvents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.IncorrectNonevents",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.Correct",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.Sensitivity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.Specificity",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.FalsePositive",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.FalseNegative",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.PPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_ct/two columns, fit with probabilities 1 and 0 in double.NPV",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

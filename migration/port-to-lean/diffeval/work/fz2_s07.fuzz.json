@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator-10",
+ "generator": "diffeval/units/fz2_s567_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "train_run_07_hl": {
+   "seeds": "200000..202399 (tame pd), 250000..250599 (wild pd)",
+   "generated": 3000,
+   "kept": 3000,
+   "python_raises_inside_precondition": [],
+   "note": "fit_scored of 0-60 rows built in Lean from the seed: pd k/64 with ties, 30 % from null, 0, 1, 0.5 and neighbours, 0.25, 1e-300, the float below 1 (wild seeds: also NaN, +-inf, -0.0, 2.0, -1.0); default_flag 0/1 with 5 % null, class share by seed (one-class seeds included); final_effects [], [x] or two names; chi2 = x/(df+3) on both sides, formatters = encodings; pow2 on the Lean side = x * x plus a table of the arguments where Python's ** 2 differs (0 to 21 entries per input); one case = digest of the kept seeds of a block of 50"
+  }
+ }
+}

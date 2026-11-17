@@ -1,0 +1,552 @@
+[
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300000..300049 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300050..300099 (0 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300100..300149 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300150..300199 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300200..300249 (5 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300250..300299 (6 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300300..300349 (5 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300350..300399 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300400..300449 (5 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15376482740738440535,
+    5875552480246759568
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300450..300499 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300500..300549 (8 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300550..300599 (6 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300600..300649 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300650..300699 (5 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300700..300749 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300750..300799 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300800..300849 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300850..300899 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300900..300949 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 300950..300999 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301000..301049 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301050..301099 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301100..301149 (7 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301150..301199 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301200..301249 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301250..301299 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301300..301349 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301350..301399 (0 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301400..301449 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301450..301499 (6 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301500..301549 (1 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301550..301599 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301600..301649 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301650..301699 (6 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301700..301749 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301750..301799 (5 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301800..301849 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301850..301899 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301900..301949 (5 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 301950..301999 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302000..302049 (6 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302050..302099 (6 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302100..302149 (1 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302150..302199 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302200..302249 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302250..302299 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302300..302349 (5 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302350..302399 (8 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302400..302449 (6 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302450..302499 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302500..302549 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302550..302599 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302600..302649 (7 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302650..302699 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302700..302749 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302750..302799 (1 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302800..302849 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302850..302899 (5 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302900..302949 (6 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 302950..302999 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 303000..303049 (2 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 303050..303099 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 303100..303149 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 303150..303199 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 303200..303249 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 303250..303299 (0 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 303300..303349 (4 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_s06_rej/rejected by the precondition, Python returns, seeds 303350..303399 (3 inputs)",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

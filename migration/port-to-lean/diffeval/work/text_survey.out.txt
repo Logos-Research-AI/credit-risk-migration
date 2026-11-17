@@ -1,0 +1,125 @@
+record files read: 1; items fetched with both fields since 2026-11-17: 51
+
+== sas_compat and helpers
+  SOURCE    def:LogisticFit  (1 lines only in statement_text, 3 only in code)
+        -    system, complete or quasi-complete separation, an exhausted line search or the iteration cap."""
+        +    system, complete or quasi-complete separation, an exhausted line search or the iteration cap.
+        +    `separation` is "complete" or "quasicomplete" on the estimates `_fit_separated` keeps."""
+        +    separation: str | None = None
+  SOURCE    def:_ROUND_FUZZ_CAP  (1 lines only in statement_text, 1 only in code)
+        -_TWO52 = 2.0**52
+        +_ROUND_FUZZ_CAP = 1e-6
+  SOURCE    def:_TIE_EPS  (1 lines only in statement_text, 1 only in code)
+        -_TIE_EPS = 1e-8
+        +_TIE_EPS = math.nextafter(math.sqrt(2.0**-53), 1.0)
+  SOURCE    def:_pairs  (6 lines only in statement_text, 12 only in code)
+        -    ev = np.sort(ss[yy == 1])
+        -    ne = np.sort(ss[yy == 0])
+        +    gg = _groups(ss, _TIE_EPS)
+        +    ev = np.sort(gg[yy == 1])
+        +    ne = np.sort(gg[yy == 0])
+        -    lo_ne = np.searchsorted(ne, ev - _TIE_EPS, side="left")
+        -    le_ne = np.searchsorted(ne, ev + _TIE_EPS, side="right")
+        -    lo_ev = np.searchsorted(ev, ne - _TIE_EPS, side="left")
+        -    le_ev = np.searchsorted(ev, ne + _TIE_EPS, side="right")
+        +    lo_ne = np.searchsorted(ne, ev, side="left")
+        +    le_ne = np.searchsorted(ne, ev, side="right")
+        +    fg = _groups(ss, _SE_EPS)
+        ... 6 more
+  SOURCE    def:association_table  (3 lines only in statement_text, 3 only in code)
+        -    """ODS Association of the fitted model: pairs tied when |dpd| <= 1e-8 (A8).
+        +    """ODS Association of the fitted model: pairs tied when in the same ROCEPS group (`_pairs`; X07 C).
+        -    denominator (single-class response, all pairs tied) is None.
+        -    RESOLVED (post-parity): degenerate inputs are outside the pipeline domain; missing is returned."""
+        +    denominator (single-class response, all pairs tied) is None; tau_a is 0 on a single-class response.
+        +    RESOLVED (post-parity): degenerate inputs are outside the pipeline domain (R1: not all missing)."""
+  SOURCE    def:classification_table  (5 lines only in statement_text, 35 only in code)
+        -    RESOLVED (post-parity): every SAS run starts the grid at 0.000; the helper reproduces all 19 runs."""
+        +    RESOLVED (post-parity): every SAS run starts the grid at 0.000; the helper reproduces all 19 runs.
+        +    Intercept-only fit (`x` has the one column): SAS's probability is the exact leave-one-out mean
+        +    (events - y) / (n - 1), not the logit step, and it is compared, exactly (>=), with SAS's own level
+        +    values, which are not k * 0.02: the first level is k * 0.02, the second the first + 0.02, and from
+        +    the third on a level at an even position is the level two before + 0.04 and one at an odd
+        +    position the level before + 0.02; the level printed 1.000 is 1 + 1e-12. So a probability equal to
+        +    a printed level is counted at some levels (0.200, 0.400, 0.500 from 0.000) and not at others
+        +    (0.300 from 0.200, 0.700 as a first level, never at 1.000). Experiment X16
+        +    (`migration/legacy-to-port/experiments/x16_ctable_intercept_only`: 40 fits of 2 to 101 rows, SAS's
+        +    cross-validated probabilities and its 357 levels bit for bit, every count) and the 17
+        +    intercept-only runs of judge/runs (small-inputs.md (b)). A probability that equals a printed level
+        ... 28 more
+  SOURCE    def:merge_one_to_one  (3 lines only in statement_text, 9 only in code)
+        -    column with the same name OVERWRITES the earlier one, including with null on its padded rows
+        -    (the shorter input's values are missing there)."""
+        +    column with the same name OVERWRITES the earlier one on the rows the later frame has; on the rows
+        +    after its end the earlier value is kept (finding P9; SAS experiment X15A)."""
+        -            cols[s.name] = s if pad == 0 else pl.concat([s, pl.Series(s.name, [None] * pad, dtype=s.dtype)])
+        +            prev = cols.get(s.name)
+        +            rest = pl.Series(s.name, [None] * pad, dtype=s.dtype) if prev is None else prev.slice(s.len())
+        +            cols[s.name] = (
+        +                s
+        +                if pad == 0
+        +                else pl.concat([s.to_frame(), rest.to_frame()], how="vertical_relaxed").to_series()
+        +            )
+  SOURCE    def:roc_association  (8 lines only in statement_text, 15 only in code)
+        -    Tied = |difference| <= 1e-8. Without `label`: a RocAssociation of numbers (the caller adds the
+        +    Tied = same ROCEPS group (`_pairs`). Without `label`: a RocAssociation of numbers (the caller adds the
+        -    Float64). An undefined statistic (empty class, all pairs tied, one observation in a class for the
+        -    standard error) is None.
+        -    RESOLVED (post-parity): degenerate inputs are outside the pipeline domain; missing is returned."""
+        +    Float64). The standard error takes each class's components (`_pairs`: compared by the _SE_EPS
+        +    groups) around the Area, sum of squares / (n - 1) / n; for a class of one observation the divisor
+        +    is _SQRTBIG, not 0: it adds nothing that shows beside a class of two or more (X10: one defaulter and
+        +    two others gives 0.5) and gives 6.1e-78, not 0, when both classes have one observation and the two
+        +    probabilities are tied for the Area and different here (X07 groups 91, 92; X12).
+        +    The limits stay within 0 and 1 (X07, X10; fix_Q26_small: UpperArea 1.0000). An undefined statistic
+        +    (empty class; Gamma when all pairs are tied) is None, except TauA: on a single-class input it is 0
+        ... 11 more
+  SOURCE    def:sas_round  (6 lines only in statement_text, 6 only in code)
+        -    """SAS round(x) to an integer: half away from zero, with SAS's fuzz: |frac - 0.5| <= 1e-12 *
+        -    max(1, |x|) counts as half (experiment X05: 1e-14 below .5 rounds up, 1e-10 below does not);
+        -    |x| >= 2^52 is returned unchanged. Missing stays missing. Float64 result, no -0.0."""
+        +    """SAS round(x) to an integer (finding P8): with a = |x| and eps = min(1e-6, a * 1e-12), the result is
+        +    floor((a + 0.5) + eps) with the sign of x (SAS's documented fuzz; SAS experiment X11 reproduces nine
+        +    half-way thresholds to the bit); an integer is returned unchanged. Missing stays missing."""
+        -    up = (a - fl) >= (0.5 - pl.max_horizontal(pl.lit(1.0), a) * _ROUND_FUZZ)
+        -    r = xf.sign() * (fl + up.cast(pl.Float64))
+        -    return _named(x, pl.when(a >= _TWO52).then(xf).otherwise(r) + 0.0)
+        +    eps = pl.min_horizontal(pl.lit(_ROUND_FUZZ_CAP), a * _ROUND_FUZZ)
+        +    r = xf.sign() * ((a + 0.5) + eps).floor()
+        +    return _named(x, pl.when(a == fl).then(xf).otherwise(r) + 0.0)
+  SAME: 38   NO CODE: 0
+  no code: 
+
+== feature engineering
+  SAME: 0   NO CODE: 0
+  no code: 
+
+== train
+  SOURCE    def:train_run_13_roc  (0 lines only in statement_text, 4 only in code)
+        +    roc_valid_used = risk_scores_validation.filter(
+        +        pl.col("default_flag").is_not_null() & pl.col("pd_logistic").is_not_null()
+        +    ).get_column("default_flag")
+        +    roc_valid_created = bool((roc_valid_used == 1).any()) and bool((roc_valid_used != 1).any())
+  SOURCE    def:train_run_14_final_and_summary  (0 lines only in statement_text, 4 only in code)
+        +    if not roc_valid_created:
+        +        model_summary = model_summary.clear().select(
+        +            [c for c in model_summary.columns if c != "Valid_AUC"] + ["Valid_AUC"]
+        +        )
+  SOURCE    def:train_run_15_printed_roc  (1 lines only in statement_text, 4 only in code)
+        -    sas_compat.write_sas_csv(printed_roc_validation, output_dir / "printed_roc_validation.csv", formats={})
+        +    if roc_valid_created:
+        +        sas_compat.write_sas_csv(
+        +            printed_roc_validation, output_dir / "printed_roc_validation.csv", formats={}
+        +        )
+  SAME: 0   NO CODE: 1
+  no code: train_run_14_final_and_summary_precond
+
+== metrics
+  SAME: 0   NO CODE: 0
+  no code: 
+
+== predict
+  SAME: 0   NO CODE: 0
+  no code: 
+
+totals: {'SAME': 38, 'SOURCE': 12, 'NO CODE': 1}

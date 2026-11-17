@@ -1,0 +1,330 @@
+[
+ {
+  "id": "tc_train/real: the run's final_effects ['has_delinquency', 'income_per_dependent']: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: the run's final_effects ['has_delinquency', 'income_per_dependent']: printed_association.csv",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: final_effects [] (no file): number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: final_effects [\"x\"] (the table Python computed, written): number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: final_effects [\"x\"] (the table Python computed, written): printed_association.csv",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: model_coefficients: 3 rows",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: the run's final_effects ['has_delinquency', 'income_per_dependent']: number of files",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: the run's final_effects ['has_delinquency', 'income_per_dependent']: printed_odds_ratios.csv",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: the run's final_effects ['has_delinquency', 'income_per_dependent']: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: the run's final_effects ['has_delinquency', 'income_per_dependent']: printed_hl_partition.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: the run's final_effects ['has_delinquency', 'income_per_dependent']: printed_hosmer_lemeshow.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: final_effects [] (no file): number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: final_effects [\"x\"] (the two tables Python computed, written): number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: final_effects [\"x\"] (the two tables Python computed, written): printed_hl_partition.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/real: final_effects [\"x\"] (the two tables Python computed, written): printed_hosmer_lemeshow.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: the run's final_effects ['num_late_30_59', 'flag_many_dependents', 'utilization_debt_interaction']: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: the run's final_effects ['num_late_30_59', 'flag_many_dependents', 'utilization_debt_interaction']: printed_association.csv",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: final_effects [] (no file): number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: final_effects [\"x\"] (the table Python computed, written): number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: final_effects [\"x\"] (the table Python computed, written): printed_association.csv",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: model_coefficients: 4 rows",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: the run's final_effects ['num_late_30_59', 'flag_many_dependents', 'utilization_debt_interaction']: number of files",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: the run's final_effects ['num_late_30_59', 'flag_many_dependents', 'utilization_debt_interaction']: printed_odds_ratios.csv",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: the run's final_effects ['num_late_30_59', 'flag_many_dependents', 'utilization_debt_interaction']: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: the run's final_effects ['num_late_30_59', 'flag_many_dependents', 'utilization_debt_interaction']: printed_hl_partition.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: the run's final_effects ['num_late_30_59', 'flag_many_dependents', 'utilization_debt_interaction']: printed_hosmer_lemeshow.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: final_effects [] (no file): number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: final_effects [\"x\"] (the two tables Python computed, written): number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: final_effects [\"x\"] (the two tables Python computed, written): printed_hl_partition.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/effects: final_effects [\"x\"] (the two tables Python computed, written): printed_hosmer_lemeshow.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: the run's final_effects []: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: final_effects [] (no file): number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: final_effects [\"x\"] (the table Python computed, written): number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: final_effects [\"x\"] (the table Python computed, written): printed_association.csv",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: model_coefficients: 1 rows",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: the run's final_effects []: number of files",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: the run's final_effects []: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: final_effects [] (no file): number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: final_effects [\"x\"] (the two tables Python computed, written): number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: final_effects [\"x\"] (the two tables Python computed, written): printed_hl_partition.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "tc_train/icpt_only: final_effects [\"x\"] (the two tables Python computed, written): printed_hosmer_lemeshow.csv",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

@@ -1,0 +1,674 @@
+[
+ {
+  "id": "t14p_formats/base: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/base / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate Int64: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate Int64 / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate Null dtype: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate Null dtype / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate Float64 all null: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: interest_rate Float64 all null / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: no row: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: no row / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: no row and interest_rate text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_train: no row and interest_rate text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate Int64: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate Int64 / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate Null dtype: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate Null dtype / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate Float64 all null: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: interest_rate Float64 all null / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: no row: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: no row / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: no row and interest_rate text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/risk_scores_validation: no row and interest_rate text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_precision absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_precision absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_precision text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_precision text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_recall absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_recall absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_recall text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_recall text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_f1_score absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_f1_score absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_f1_score text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_f1_score text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_accuracy absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_accuracy absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_accuracy text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_accuracy text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_precision absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_precision absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_precision text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_precision text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_recall absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_recall absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_recall text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_recall text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_f1_score absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_f1_score absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_f1_score text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_f1_score text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_accuracy absent: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_accuracy absent / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_accuracy text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics: valid_accuracy text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/roc_train: Area text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/roc_train: Area text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/roc_valid: Area text: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/roc_valid: Area text / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/roc_train: Area Int64: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/roc_train: Area Int64 / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics brings a text Train_AUC: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics brings a text Train_AUC / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics brings a text Valid_AUC: Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics brings a text Valid_AUC / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics brings a numeric Train_AUC: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics brings a numeric Train_AUC / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics holds a text valid_recall, replaced by validation_metrics: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics holds a text valid_recall, replaced by validation_metrics / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics holds a text train_recall (replaces the numeric one): Python raises",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/validation_metrics holds a text train_recall (replaces the numeric one) / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: a text training_date and an unformatted text column: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: a text training_date and an unformatted text column / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics and validation_metrics: no row: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics and validation_metrics: no row / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_f1_score Null dtype: Python returns",
+  "primitive": "train_run_14_final_and_summary_precond",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "t14p_formats/training_metrics: train_f1_score Null dtype / inputs",
+  "primitive": "train_run_14_final_and_summary_precond (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

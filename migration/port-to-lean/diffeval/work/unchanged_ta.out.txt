@@ -1,0 +1,7 @@
+T-A 2026-11-17: def:train_run_08_ctable and def:train_run_08_ctable_precond resubmitted unchanged.
+unchanged_check.py cannot serve (its divider is a write_code call; both fetches of port-translator-6 come after its write_code on def:classification_table, record 545): MISSING (before 0, after 4).
+Fallback, same session record, every get_items result holding statement_lean of the two ids:
+  record 598 = the text on the stale copy b41b22d4 (read only), before the resubmission
+  record 678 = the accepted text on 5365851c after the resubmission
+def:train_run_08_ctable          records [598, 678]  distinct texts 1  sha256 58c11b560d7fdd9c  4439 chars  IDENTICAL
+def:train_run_08_ctable_precond  records [598, 678]  distinct texts 1  sha256 4b61706cf3b05145  2438 chars  IDENTICAL

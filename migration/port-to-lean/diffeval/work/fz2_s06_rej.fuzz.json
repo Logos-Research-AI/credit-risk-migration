@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator-10",
+ "generator": "diffeval/units/fz2_s567_gen.py (rejected class)",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "train_run_06_coefficients_odds": {
+   "seeds": "300000..303399",
+   "generated": 3400,
+   "kept": 0,
+   "python_raises_inside_precondition": [],
+   "note": "final model of 1-4 names built in Lean from the seed: beta and |cov| from gF with pools (0, -0, +-1, 1e-300, 5e-324, 700, -745, 709, 710, 1e300 / 1, 4, 0.25, 1e-300, 1e300, 0, 5e-324, NaN, inf); final_index in order, reversed or without the first effect; of 3400: 2139 kept, 249 rejected with Python returning (suite fz2_s06_rej), 1012 rejected with Python raising; chi2 = x/(df+3), formatters = encodings; pow2 on the Lean side = x * x plus a table of the arguments where Python's ** 2 differs (7 entries); THIS ROW: the rejected class only (249 inputs the precondition rejects and Python returns on); 1 of its 68 blocks differs (seed 300445, one odds-ratio cell, last bit of exp), so its 5 inputs are not counted as narrowings"
+  }
+ }
+}

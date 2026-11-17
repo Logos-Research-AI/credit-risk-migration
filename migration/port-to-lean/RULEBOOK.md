@@ -474,6 +474,45 @@ for row. No change to G23; this is the evidence for its "in right order" on repe
 `select` after the join reads a name the left frame also has from the LEFT column (the right one
 is `<name>_right`): a `test_cleaned` with its own `median_income` is imputed from that column.
 
+**G29. A Series compared with an int; `.any()`; `df.clear().select(names)`** (train steps 13 and
+14, port-translator-5, 2026-11-17; evidence `experiments/e09_series_eq_any.py`, output
+`experiments/e09_series_eq_any.out.txt`, E09). `s == 1` and `s != 1` on a Float64 or integer
+Series give the same Boolean values as the expressions `pl.col(..) == 1` / `!= 1` in select
+context on a frame holding that column (6,000 cases, 0 differences: null gives null, a NaN is not
+equal to 1 and is different from 1, `1.0000000000000002` is different from 1): evaluate
+`(Pl.col n).eq (Pl.litI 1)` / `.ne` on the one-column frame `[(n, s)]`. On a Boolean or a
+Null-dtype Series polars raises `NotImplementedError` (precondition of the unit: Float64 or
+integer); on a String Series it compares without an error. `b.any()` on a Boolean Series is a
+Python bool: true when some element is true, false on an empty or all-null Series.
+`df.clear().select([n1, n2, …])` is `(df.takeRows []).cols [n1, n2, …]` (G11, §2.3): no row, the
+listed columns in list order; a name that is not a column raises `ColumnNotFoundError`.
+`write_sas_csv` of such a frame writes the header line only; at a stage boundary it is the empty
+table (section 6, decision D2 of 2026-11-17).
+
+**G30. `write_sas_csv` with a non-empty `formats`: two raises that belong in the precondition**
+(train step 14, port-translator-8, 2026-11-17; evidence `experiments/e10_step14_formats.py`, output
+`experiments/e10_step14_formats.out.txt`, E10). `sas_compat.write_sas_csv` raises `ValueError`
+when a key of `formats` names no column of the frame, or names a String column
+(`sas_compat.py:645-650`); it does not raise on an Int64 or a Null-dtype column, nor on a frame
+with no row (the check is on the schema). The Lean of a step returns the table whatever the
+formats, so the precondition of a unit that exports with a non-empty `formats` states, for each
+key, on the frame as the unit builds it: `∃ c, fr.lookup k = some c ∧ ∀ v, c ≠ Pl.Col.str v`. A key
+whose column the unit itself always creates with a non-text dtype needs no clause (`training_date`
+at `train.py:771`). Stated in `def:train_run_14_final_and_summary_precond` (46 of 46 runs of E10:
+the Python raises without each clause and returns with all of them).
+No such clause is needed at the other exports with a non-empty `formats`
+(`feature_engineering.py:365`, `predict.py:476`, `metrics_calculation.py:449-530`; decision of the
+lead, 2026-11-17): their lines lie outside every step unit, in the compositions (`def:run`,
+`def:run_py_py`, `def:run_py`), where the formatted columns are always built by the steps
+themselves (an aggregate, a `pl.lit(..., dtype=pl.Float64)`, a `with_columns` that replaces any
+column of that name) and are Float64 or Date. Evidence `experiments/e11_formats_other_stages.py`,
+output `experiments/e11_formats_other_stages.out.txt` (E11): 46 formatted columns over the four
+real stages chained, none text or absent; the metrics stage still returns when 16 text columns
+named like the formatted ones are added to both score files; a text `median_income` /
+`interest_rate` column in `cs-training.csv` / `cs-test.csv` is stopped by the stage's input check
+before any export. Train step 14 is the only unit whose source range holds such exports and that
+takes the frames from its caller.
+
 ### 2.8 Batch 8 (2026-11-16): what the port's readers deliver on VALID input
 
 Observed on real runs; no Lean. These are the facts the conditions on the input parameters of the
@@ -877,6 +916,20 @@ narrowed, because the equality contracts are stated at the reals, where there is
   fuzzed runs, seeds 30930, 31316, 31393; the port's frames recomputed from the Lean's `exp` value give
   the Lean digest, `experiments/fz_run_py_py_exp_last_bit.py`). Smallest case: one row, one coefficient
   (MonthlyIncome_missing, -0.0), intercept -25.386958717439118.
+  Also seen in `def:train_run_06_coefficients_odds` (fuzz of 2026-11-17, port-translator-10): the
+  odds-ratio cells of `printed_odds_ratios.csv` (`math.exp(b)`, `math.exp(b ± Z975 * se)`) differ
+  by one unit in the last place on 5 of 3,400 seeds (300006, 301212, 301515, 303397, 300445); every
+  other value of those runs is equal. Smallest case, seed 303397: `beta[2] = 0.0`,
+  `cov[2][2] = 0.4976756833448731`, LowerCL bits ...620 in Python and ...621 in Lean
+  (`diffeval/work/fz2_dbg06c.py`). Through that step it reaches `def:run_py_py_py`.
+- **`** 2` on a Python float is not always `x * x`** (found by the same fuzz): on about 0.13 % of
+  floats `x ** 2` differs from `x * x` by one unit in the last place (for example
+  `(-0.06915923590149525) ** 2`). Count on this machine (macOS arm64, the port's Python): 1,314 of
+  1,000,000 generated floats (exponents 2^-40 to 2^40, both signs), each time by exactly one unit in
+  the last place (`diffeval/work/fz2_pow2_count.py`); in the step suites of that fuzz the Lean side
+  passes `pow2 := x * x` plus a table of the arguments where Python's value differs (0 to 21
+  entries per input). No item is affected: `pow2` is an explicit parameter (§3). Whoever
+  gives `pow2` a value must take Python's `** 2`, not `x * x`.
 
 Known points on the T4 units (2026-11-16, from the review by port-translator-6; the items stay as
 accepted, decision of the lead):
@@ -910,6 +963,32 @@ accepted, decision of the lead):
   on both sides), so the clause is stricter than fidelity requires. `run` never reaches step 04
   with no row (the input check stops first). The step 05 precondition has no such clause. Probe:
   `experiments/rev_t4_empty.py`.
+- **A train file with a header and no row is "no row" (decision of the lead, 2026-11-17, D2 of
+  `update-2026-11-17.md`).** The result of `def:run_py_py_py` is `List (String × Tabular.Table α)`
+  and a `Tabular.Table` with no row cannot carry its column names. Since the port changes of
+  2026-11-16 two files of the train stage can have a header and no row inside the precondition:
+  `stepwise_summary.csv` when no variable entered (`stepwise.steps = []`), and `model_summary.csv`
+  when the validation set has one class (the port then also moves `Valid_AUC` to the last
+  column). For such a file the Lean states the file name and the empty table; the column names
+  and their order are **not stated**. The result type is not changed to the form of G4 (predict):
+  the comparison side cannot state the header either, so no contract could use it. The former
+  narrowing `final_effects ≠ []` of `def:run_py_py_py_precond` (made for a header-only
+  `printed_odds_ratios.csv`, which the port no longer writes) is dropped.
+- **ROC labels that are all null (`def:train_run_15_printed_roc_precond`; decision of the lead,
+  2026-11-17).** At `train.py:824-829` and `:831-836` the port passes the `ROCModel` labels to
+  `pl.DataFrame` as a Python list. From a non-empty list of `None` polars infers a **Null-dtype**
+  column, so the exported cells are numeric missing cells; the unit states a String column (text
+  missing cells). The CSV bytes are the same. The port does not raise. The precondition excludes
+  the case with a `-- narrowing:` comment: `roc_train` with rows has a label that is not null;
+  `roc_valid` the same when `roc_valid_created` is true. Not excluded, because nothing differs:
+  a frame with no row (Null dtype, no cell); `roc_valid` with all-null labels when
+  `roc_valid_created` is false (no file is written, `:837`); a frame with one null and one text
+  label (String). The unit is unchanged. Unreachable in the pipeline: step 13 writes the labels
+  `"Training Set"` and `"Validation Set"`. Found by port-translator-7's fuzz (`fz_td15`).
+  Evidence: `experiments/e12_step15_null_labels.py`; suite `t15p_labels`
+  (`diffeval/units/t15p_gen.py`) on the 2,400 seeds of that fuzz, one seed at a time: 212
+  rejected before, 2,045 inside with unit = Python on each, 143 excluded with unit ≠ Python on
+  each (the fuzz's folded class of 191 = these 143 + 48 inside).
 
 ## 7. Deviation log
 

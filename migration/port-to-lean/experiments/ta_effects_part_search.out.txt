@@ -1,0 +1,10 @@
+0 55 raised: RuntimeError: stepwise_logistic: the fit at step 1 (['num_late_60_89']) did not converge
+10 60 raised: RuntimeError: stepwise_logistic: the fit at step 1 (['num_late_60_89']) did not converge
+20 70 ['Intercept'] 50
+30 80 raised: RuntimeError: stepwise_logistic: the fit at step 2 (['num_late_30_59', 'flag_many_dependen
+35 90 ['Intercept', 'num_late_30_59', 'flag_many_dependents'] 55
+40 90 raised: RuntimeError: stepwise_logistic: the fit at step 2 (['flag_recent_late_payments', 'flag_ma
+0 45 raised: RuntimeError: stepwise_logistic: the fit at step 1 (['num_late_30_59']) did not converge
+45 90 ['Intercept', 'flag_recent_late_payments'] 45
+5 55 raised: RuntimeError: stepwise_logistic: the fit at step 1 (['num_late_60_89']) did not converge
+25 75 raised: RuntimeError: stepwise_logistic: 500 steps reached without stopping

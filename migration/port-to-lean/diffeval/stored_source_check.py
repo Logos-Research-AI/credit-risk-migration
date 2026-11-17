@@ -83,7 +83,7 @@ def main() -> int:
     rows = list(csv.DictReader((HERE.parent / "manifest.tsv").open(), delimiter="\t"))
     bad = 0
     for r in rows:
-        upd = r["update_2026_11_16"]
+        upd = r.get("update_2026_11_17") or r["update_2026_11_16"]  # the latest update column
         if upd.startswith("unchanged") or upd.startswith("REMOVE"):
             continue
         item = r["item_id"]

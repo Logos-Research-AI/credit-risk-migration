@@ -1,0 +1,11 @@
+divider: write_code on def:LogisticFit at record 1424
+item	before_record	after_record	chars	sha256_before	sha256_after	verdict
+def:StepwiseStep	1352	1490	590	dfdae56474641c28	dfdae56474641c28	IDENTICAL
+def:StepwiseResult	1352	1490	535	fa4a0c5851f94e99	fa4a0c5851f94e99	IDENTICAL
+def:train_run_01_fit_frame	1419	1490	4407	7433bc2c5d61c6a5	7433bc2c5d61c6a5	IDENTICAL
+def:train_run_01_fit_frame_precond	1361	1490	1360	b9d319efec879d03	b9d319efec879d03	IDENTICAL
+def:train_run_02_stepwise_summary	1361	1490	3189	e0dad94806b4cbe1	e0dad94806b4cbe1	IDENTICAL
+def:train_run_04_score_train	1419	1490	2916	f5d42f3735d15dfd	f5d42f3735d15dfd	IDENTICAL
+def:train_run_04_score_train_precond	1419	1490	2253	c8fbfa07b7cbcb74	c8fbfa07b7cbcb74	IDENTICAL
+def:train_run_06_coefficients_odds_precond	1361	1490	1880	ef008a5290becec5	ef008a5290becec5	IDENTICAL
+all identical

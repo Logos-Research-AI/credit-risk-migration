@@ -1,0 +1,202 @@
+[
+ {
+  "id": "u18b_real/completed run is some .. stop: both absent",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/file names in write order",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: stepwise_summary.csv: file name .. run: stepwise_summary.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_fit_statistics.csv: file name .. run: printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_global_tests.csv: file name .. run: printed_global_tests.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_rsquare.csv: file name .. run: printed_rsquare.csv.nValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_association.csv: file name .. run: printed_association.csv.nValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_odds_ratios.csv: file name .. run: printed_odds_ratios.csv.UpperCL",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_hl_partition.csv: file name .. run: printed_hl_partition.csv.NoneventsExpected",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_hosmer_lemeshow.csv: file name .. run: printed_hosmer_lemeshow.csv.NGroups",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_classification.csv: file name .. run: printed_classification.csv.NPV",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: risk_scores_train.csv: file name .. run: risk_scores_train.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: risk_scores_validation.csv: file name .. run: risk_scores_validation.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: final_model_output.csv: file name .. run: final_model_output.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: model_summary.csv: file name .. run: model_summary.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: model_coefficients.csv: file name .. run: model_coefficients.csv._ESTTYPE_",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_roc_train.csv: file name .. run: printed_roc_train.csv.TauA",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_confusion_train.csv: file name .. run: printed_confusion_train.csv.PERCENT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/run: printed_confusion_validation.csv: file name .. run: printed_confusion_validation.csv.PERCENT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/no pair after the last file: name .. no pair after the last file: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/model.json intercept .. model.json coefficients (names, order, values)",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/stepwise: steps .. stepwise: separation of each step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/localisation mask (bit i: value i differs modulo 26)",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u18b_real/number of compared values",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

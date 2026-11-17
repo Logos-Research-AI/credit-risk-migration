@@ -1,0 +1,698 @@
+[
+ {
+  "id": "u03_fit/input fit_frame: number of columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/input fit_frame.default_flag",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/input fit_frame.age",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/input fit_frame.total_late_payments",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/input fit_frame.has_delinquency",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/input fit_frame.income_per_dependent",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/input fit_frame.age_group",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: number of files",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv: columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv.Step",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv.RowId",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv.Criterion",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv.Equals",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv.InterceptOnly",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_global_tests.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_global_tests.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_global_tests.csv: columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_global_tests.csv.Step",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_global_tests.csv.Test",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_global_tests.csv.ChiSq",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_global_tests.csv.DF",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_global_tests.csv.ProbChiSq",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv: columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv.Step",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv.Label1",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv.cValue1",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv.nValue1",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv.Label2",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv.cValue2",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/real: printed_rsquare.csv.nValue2",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: number of files",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv: columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv.Step",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv.RowId",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv.Criterion",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv.Equals",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv.InterceptOnly",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_global_tests.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_global_tests.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_global_tests.csv: columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_global_tests.csv.Step",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_global_tests.csv.Test",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_global_tests.csv.ChiSq",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_global_tests.csv.DF",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_global_tests.csv.ProbChiSq",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv: columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv.Step",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv.Label1",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv.cValue1",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv.nValue1",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv.Label2",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv.cValue2",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/q0: printed_rsquare.csv.nValue2",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: number of files",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv: columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv.Step",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv.RowId",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv.Criterion",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv.Equals",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv.InterceptOnly",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_global_tests.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_global_tests.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_rsquare.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/only0: printed_rsquare.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: number of files",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv: file name",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv: rows",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv: columns",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv.Step",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv.RowId",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv.Criterion",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv.Equals",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv.InterceptOnly",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "u03_fit/empty: printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "train_run_03_fit_global_rsquare",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

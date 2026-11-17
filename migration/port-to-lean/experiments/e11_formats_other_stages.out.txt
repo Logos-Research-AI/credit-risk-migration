@@ -1,0 +1,91 @@
+polars 2.1.0
+== A feature_engineering.run: returns
+   income_medians.csv               median_income          Float64  rows=5
+   income_medians.csv               overall_median_income  Float64  rows=5
+   formatted columns: 2; text or absent: 0
+== A train.run: returns
+   risk_scores_train.csv            interest_rate          Float64  rows=2072
+   risk_scores_validation.csv       interest_rate          Float64  rows=928
+   final_model_output.csv           interest_rate          Float64  rows=2072
+   model_summary.csv                Train_AUC              Float64  rows=1
+   model_summary.csv                Valid_AUC              Float64  rows=1
+   model_summary.csv                train_precision        Float64  rows=1
+   model_summary.csv                train_recall           Float64  rows=1
+   model_summary.csv                train_f1_score         Float64  rows=1
+   model_summary.csv                train_accuracy         Float64  rows=1
+   model_summary.csv                valid_precision        Float64  rows=1
+   model_summary.csv                valid_recall           Float64  rows=1
+   model_summary.csv                valid_f1_score         Float64  rows=1
+   model_summary.csv                valid_accuracy         Float64  rows=1
+   model_summary.csv                training_date          Date     rows=1
+   formatted columns: 14; text or absent: 0
+== A metrics_calculation.run: returns
+   validation_summary.csv           AUC                    Float64  rows=1
+   validation_summary.csv           Gini                   Float64  rows=1
+   validation_summary.csv           KS_Statistic           Float64  rows=1
+   validation_summary.csv           KS_Cutoff              Float64  rows=1
+   validation_summary.csv           PSI                    Float64  rows=1
+   decile_analysis.csv              default_rate           Float64  rows=10
+   decile_analysis.csv              avg_pd                 Float64  rows=10
+   decile_analysis.csv              min_pd                 Float64  rows=10
+   decile_analysis.csv              max_pd                 Float64  rows=10
+   decile_analysis.csv              capture_rate           Float64  rows=10
+   decile_analysis.csv              lift                   Float64  rows=10
+   ks_statistic.csv                 KS_Statistic           Float64  rows=1
+   ks_statistic.csv                 KS_Cutoff              Float64  rows=1
+   calibration_plot.csv             mean_predicted         Float64  rows=20
+   calibration_plot.csv             mean_actual            Float64  rows=20
+   model_performance_metrics.csv    AUC                    Float64  rows=1
+   model_performance_metrics.csv    Gini                   Float64  rows=1
+   model_performance_metrics.csv    KS_Statistic           Float64  rows=1
+   model_performance_metrics.csv    KS_Cutoff              Float64  rows=1
+   model_performance_metrics.csv    PSI                    Float64  rows=1
+   model_performance_metrics.csv    validation_date        Date     rows=1
+   printed_cumulative_lift.csv      default_rate           Float64  rows=10
+   printed_cumulative_lift.csv      avg_pd                 Float64  rows=10
+   printed_cumulative_lift.csv      min_pd                 Float64  rows=10
+   printed_cumulative_lift.csv      max_pd                 Float64  rows=10
+   printed_cumulative_lift.csv      capture_rate           Float64  rows=10
+   printed_cumulative_lift.csv      lift                   Float64  rows=10
+   printed_cumulative_lift.csv      cum_capture_rate       Float64  rows=10
+   printed_cumulative_lift.csv      cum_lift               Float64  rows=10
+   formatted columns: 29; text or absent: 0
+== A predict.run: returns
+   test_predictions.csv             interest_rate          Float64  rows=300
+   formatted columns: 1; text or absent: 0
+hostile score files: columns ['AUC', 'Gini', 'KS_Statistic', 'KS_Cutoff', 'PSI', 'validation_date', 'default_rate', 'avg_pd', 'min_pd', 'max_pd', 'capture_rate', 'lift', 'cum_capture_rate', 'cum_lift', 'mean_predicted', 'mean_actual']
+== B metrics_calculation.run on score files with text columns named like the formatted ones: returns
+   validation_summary.csv           AUC                    Float64  rows=1
+   validation_summary.csv           Gini                   Float64  rows=1
+   validation_summary.csv           KS_Statistic           Float64  rows=1
+   validation_summary.csv           KS_Cutoff              Float64  rows=1
+   validation_summary.csv           PSI                    Float64  rows=1
+   decile_analysis.csv              default_rate           Float64  rows=10
+   decile_analysis.csv              avg_pd                 Float64  rows=10
+   decile_analysis.csv              min_pd                 Float64  rows=10
+   decile_analysis.csv              max_pd                 Float64  rows=10
+   decile_analysis.csv              capture_rate           Float64  rows=10
+   decile_analysis.csv              lift                   Float64  rows=10
+   ks_statistic.csv                 KS_Statistic           Float64  rows=1
+   ks_statistic.csv                 KS_Cutoff              Float64  rows=1
+   calibration_plot.csv             mean_predicted         Float64  rows=20
+   calibration_plot.csv             mean_actual            Float64  rows=20
+   model_performance_metrics.csv    AUC                    Float64  rows=1
+   model_performance_metrics.csv    Gini                   Float64  rows=1
+   model_performance_metrics.csv    KS_Statistic           Float64  rows=1
+   model_performance_metrics.csv    KS_Cutoff              Float64  rows=1
+   model_performance_metrics.csv    PSI                    Float64  rows=1
+   model_performance_metrics.csv    validation_date        Date     rows=1
+   printed_cumulative_lift.csv      default_rate           Float64  rows=10
+   printed_cumulative_lift.csv      avg_pd                 Float64  rows=10
+   printed_cumulative_lift.csv      min_pd                 Float64  rows=10
+   printed_cumulative_lift.csv      max_pd                 Float64  rows=10
+   printed_cumulative_lift.csv      capture_rate           Float64  rows=10
+   printed_cumulative_lift.csv      lift                   Float64  rows=10
+   printed_cumulative_lift.csv      cum_capture_rate       Float64  rows=10
+   printed_cumulative_lift.csv      cum_lift               Float64  rows=10
+   formatted columns: 29; text or absent: 0
+== C feature_engineering.run, cs-training.csv with text columns median_income / overall_median_income: RAISES ValueError: Feature engineering stopped. Nothing is exported.
+   formatted columns: 0; text or absent: 0
+== C predict.run, cs-test.csv with a text column interest_rate: RAISES ValueError: Test set scoring stopped. Nothing is exported.
+   formatted columns: 0; text or absent: 0

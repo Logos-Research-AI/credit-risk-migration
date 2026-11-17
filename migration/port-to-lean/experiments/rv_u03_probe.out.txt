@@ -1,0 +1,5 @@
+empty: EQUAL (158 characters; files ['printed_fit_statistics.csv'])
+only0: EQUAL (337 characters; files ['printed_fit_statistics.csv', 'printed_global_tests.csv', 'printed_rsquare.csv'])
+mixed: EQUAL (2789 characters; files ['printed_fit_statistics.csv', 'printed_global_tests.csv', 'printed_rsquare.csv'])
+intcol: EQUAL (1021 characters; files ['printed_fit_statistics.csv', 'printed_global_tests.csv', 'printed_rsquare.csv'])
+blueprint 5365851c-5549-44b7-9207-4bd4c422031d; scenarios 4; not equal 0

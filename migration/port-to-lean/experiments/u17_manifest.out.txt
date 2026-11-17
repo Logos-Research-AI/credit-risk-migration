@@ -1,0 +1,32 @@
+def:LogisticFit	670-681 -> 670-683	CHANGE (field separation, D1)
+def:_expit	688-690 -> 690-692	moved
+def:StepwiseStep	746-756 -> 749-817	moved
+def:StepwiseResult	759-763 -> 820-824	moved
+def:RocAssociation	856-864 -> 968-976	moved
+def:_TIE_EPS	867-870 -> 979-982	moved
+def:_Pairs	881-889 -> 993-1001	moved
+def:_pairs	906-930 -> 1018-1042	moved
+def:_ratio	933-934 -> 1045-1046	moved
+def:roc_association	937-993 -> 1049-1105	moved
+def:AssociationTable	996-1007 -> 1108-1119	moved
+def:association_table	1010-1032 -> 1122-1144	moved
+def:_hl_groups	1035-1049 -> 1147-1161	moved
+def:hosmer_lemeshow	1052-1121 -> 1164-1233	moved
+def:classification_table	1124-1199 -> 1236-1341	CHANGE (b; level 1.000 on every fit)
+def:run_py_py_py	20-814 -> 20-851	CHANGE (wiring; precondition without final_effects != [])
+def:train_run_03_fit_global_rsquare	154-255 -> 154-268	CHANGE (d, e)
+def:train_run_04_score_train	259-275 -> 272-288	moved
+def:train_run_05_association	279-312 -> 292-328	CHANGE (d)
+def:train_run_06_coefficients_odds	318-358 -> 334-375	CHANGE (d)
+def:train_run_07_hl	363-393 -> 380-414	CHANGE (d)
+def:train_run_08_ctable	397-434 -> 418-455	moved
+def:train_run_09_confusion_train	443-502 -> 464-523	moved
+def:train_run_10_score_valid	509-524 -> 530-545	moved
+def:train_run_11_confusion_valid	528-578 -> 549-599	moved
+def:train_run_12_risk_scores	584-673 -> 605-694	moved
+def:train_run_13_roc	681-690 -> 702-718	CHANGE (a)
+def:train_run_14_final_and_summary	697-785 -> 725-819	CHANGE (a; precondition G30)
+def:train_run_15_printed_roc	789-805 -> 823-842	CHANGE (a)
+def:_SE_EPS	871-874 -> 983-986	moved
+def:_SQRTBIG	875-878 -> 987-990	moved
+def:_groups	892-903 -> 1004-1015	moved

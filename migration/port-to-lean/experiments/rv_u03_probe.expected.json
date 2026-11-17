@@ -1,0 +1,36 @@
+[
+ {
+  "scenario": "empty",
+  "files": [
+   "printed_fit_statistics.csv"
+  ],
+  "text": "printed_fit_statistics.csv#Step=0,RowId=M2LOGL0,Criterion=-2 Log L,Equals==,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4618441417868443648/9/3"
+ },
+ {
+  "scenario": "only0",
+  "files": [
+   "printed_fit_statistics.csv",
+   "printed_global_tests.csv",
+   "printed_rsquare.csv"
+  ],
+  "text": "printed_fit_statistics.csv#Step=0,RowId=M2LOGL0,Criterion=-2 Log L,Equals==,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4618441417868443648/9/3;Step=3,RowId=M2LOGL0,Criterion=-2 Log L,Equals==,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4618441417868443648/9/3\nprinted_global_tests.csv#\nprinted_rsquare.csv#"
+ },
+ {
+  "scenario": "mixed",
+  "files": [
+   "printed_fit_statistics.csv",
+   "printed_global_tests.csv",
+   "printed_rsquare.csv"
+  ],
+  "text": "printed_fit_statistics.csv#Step=0,RowId=M2LOGL0,Criterion=-2 Log L,Equals==,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4618441417868443648/9/3;Step=1,RowId=AIC,Criterion=AIC,Equals=,InterceptOnly=t4620693217682128896,InterceptAndCovariates=w4621256167635550208/9/3;Step=1,RowId=SBC,Criterion=SC,Equals=,InterceptOnly=t4620002246560484988,InterceptAndCovariates=w4620437175345683704/9/3;Step=1,RowId=M2LOGL,Criterion=-2 Log L,Equals=,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4617315517961601024/9/3;Step=2,RowId=AIC,Criterion=AIC,Equals=,InterceptOnly=t4620693217682128896,InterceptAndCovariates=w4621819117588971520/9/3;Step=2,RowId=SBC,Criterion=SC,Equals=,InterceptOnly=t4620002246560484988,InterceptAndCovariates=w4620782660906505658/9/3;Step=2,RowId=M2LOGL,Criterion=-2 Log L,Equals=,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4616189618054758400/9/3;Step=3,RowId=M2LOGL0,Criterion=-2 Log L,Equals==,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4618441417868443648/9/3;Step=4,RowId=AIC,Criterion=AIC,Equals=,InterceptOnly=t4620693217682128896,InterceptAndCovariates=w4621537642612260864/9/3;Step=4,RowId=SBC,Criterion=SC,Equals=,InterceptOnly=t4620002246560484988,InterceptAndCovariates=w4620846671490616956/9/3;Step=4,RowId=M2LOGL,Criterion=-2 Log L,Equals=,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4617878467915022336/9/3\nprinted_global_tests.csv#Step=1,Test=Likelihood Ratio,ChiSq=w4607182418800017408/10/4,DF=1,ProbChiSq=p4609434218613702656;Step=1,Test=Score,ChiSq=w4617315517961601024/10/4,DF=1,ProbChiSq=p4615063718147915776;Step=1,Test=Wald,ChiSq=w13824924956120580096/10/4,DF=1,ProbChiSq=p4605212093963042816;Step=2,Test=Likelihood Ratio,ChiSq=w4611686018427387904/10/4,DF=2,ProbChiSq=p4613937818241073152;Step=2,Test=Score,ChiSq=w4612811918334230528/10/4,DF=2,ProbChiSq=p4614500768194494464;Step=2,Test=Wald,ChiSq=w4619778424007819264/10/4,DF=2,ProbChiSq=p4617984021031288832;Step=4,Test=Likelihood Ratio,ChiSq=w4602678819172646912/10/4,DF=1,ProbChiSq=p4608308318706860032;Step=4,Test=Score,ChiSq=w13837309855095848960/10/4,DF=1,ProbChiSq=p13826050856027422720;Step=4,Test=Wald,ChiSq=w4617315517961601024/10/4,DF=1,ProbChiSq=p4615063718147915776\nprinted_rsquare.csv#Step=1,Label1=R-Square,cValue1=w4597137561978009556/6/4,nValue1=t4597137561978009556,Label2=Max-rescaled R-Square,cValue2=w4598800884357491323/6/4,nValue2=t4598800884357491323;Step=2,Label1=R-Square,cValue1=w4600759733415105516/6/4,nValue1=t4600759733415105516,Label2=Max-rescaled R-Square,cValue2=w4602737189346133829/6/4,nValue2=t4602737189346133829;Step=4,Label1=R-Square,cValue1=w4593131411154923248/6/4,nValue1=t4593131411154923248,Label2=Max-rescaled R-Square,cValue2=w4594617446988176328/6/4,nValue2=t4594617446988176328"
+ },
+ {
+  "scenario": "intcol",
+  "files": [
+   "printed_fit_statistics.csv",
+   "printed_global_tests.csv",
+   "printed_rsquare.csv"
+  ],
+  "text": "printed_fit_statistics.csv#Step=0,RowId=M2LOGL0,Criterion=-2 Log L,Equals==,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4618441417868443648/9/3;Step=1,RowId=AIC,Criterion=AIC,Equals=,InterceptOnly=t4620693217682128896,InterceptAndCovariates=w4621256167635550208/9/3;Step=1,RowId=SBC,Criterion=SC,Equals=,InterceptOnly=t4620002246560484988,InterceptAndCovariates=w4620437175345683704/9/3;Step=1,RowId=M2LOGL,Criterion=-2 Log L,Equals=,InterceptOnly=t4618441417868443648,InterceptAndCovariates=w4617315517961601024/9/3\nprinted_global_tests.csv#Step=1,Test=Likelihood Ratio,ChiSq=w4607182418800017408/10/4,DF=1,ProbChiSq=p4609434218613702656;Step=1,Test=Score,ChiSq=w4617315517961601024/10/4,DF=1,ProbChiSq=p4615063718147915776;Step=1,Test=Wald,ChiSq=w13824924956120580096/10/4,DF=1,ProbChiSq=p4605212093963042816\nprinted_rsquare.csv#Step=1,Label1=R-Square,cValue1=w4597137561978009556/6/4,nValue1=t4597137561978009556,Label2=Max-rescaled R-Square,cValue2=w4598800884357491323/6/4,nValue2=t4598800884357491323"
+ }
+]

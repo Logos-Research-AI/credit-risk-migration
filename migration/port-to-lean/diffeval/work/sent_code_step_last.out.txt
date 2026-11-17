@@ -1,0 +1,2 @@
+def:run_py_py_py	../../port/credit_risk/train.py:20-851	sent 37733 chars	file 37733 chars	57bb1630625a1bfd	57bb1630625a1bfd	IDENTICAL
+def:LogisticFit	../../port/credit_risk/sas_compat.py:670-683	sent 621 chars	file 621 chars	ae67c9acbac15d0c	ae67c9acbac15d0c	IDENTICAL

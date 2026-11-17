@@ -1,0 +1,140 @@
+[
+ {
+  "id": "fz_td15/seeds 400000..400599: kept (513 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td15/seeds 400000..400599: rejected, TauA of roc_valid is Int64 (55 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8339498607007218625,
+    11291096874866528921
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_td15/seeds 400000..400599: rejected, an exported ROC frame with rows whose labels are all null (32 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9694784293833799399,
+    11824636442416542573
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_td15/seeds 400600..401199: kept (527 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td15/seeds 400600..401199: rejected, TauA of roc_valid is Int64 (46 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td15/seeds 400600..401199: rejected, an exported ROC frame with rows whose labels are all null (27 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16751989985123430834,
+    12147920256154141651
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_td15/seeds 401200..401799: kept (494 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td15/seeds 401200..401799: rejected, TauA of roc_valid is Int64 (58 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10856082421462770123,
+    12869720101125264651
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_td15/seeds 401200..401799: rejected, an exported ROC frame with rows whose labels are all null (48 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7302172414237501612,
+    7997727309408465474
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_td15/seeds 401800..402399: kept (511 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz_td15/seeds 401800..402399: rejected, TauA of roc_valid is Int64 (53 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    16070396874237781267,
+    3341464975019019215
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz_td15/seeds 401800..402399: rejected, an exported ROC frame with rows whose labels are all null (36 inputs)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7314820488868567859,
+    12190558402673987461
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ }
+]

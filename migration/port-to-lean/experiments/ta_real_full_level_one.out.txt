@@ -1,0 +1,3 @@
+rows 105000 columns 16 names ['Intercept', 'financial_health', 'flag_multiple_delinquencies', 'flag_high_debt_ratio', 'age', 'num_credit_lines', 'flag_very_high_utilization', 'flag_high_utilization', 'total_risk_flags', 'num_real_estate_loans', 'debt_ratio_capped', 'flag_very_high_debt_ratio', 'log_num_credit_lines', 'has_delinquency', 'credit_util_category', 'flag_recent_late_payments']
+max ps 0.8546451524255072 khi 43 levels 44 last level 0.86
+ps >= 1.0: 0 -> the table does not change with the second diff

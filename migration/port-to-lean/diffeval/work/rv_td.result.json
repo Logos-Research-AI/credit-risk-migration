@@ -1,0 +1,2112 @@
+[
+ {
+  "id": "rv_td/13 real rb / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real rb / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real rb / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real rb / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real rb, all 90 training rows / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real rb, all 90 training rows / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real rb, all 90 training rows / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real rb, all 90 training rows / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real r1 / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real r1 / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real r1 / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real r1 / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real r0 / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real r0 / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real r0 / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 real r0 / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcome with a null [1, null, 0] / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcome with a null [1, null, 0] / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcome with a null [1, null, 0] / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcome with a null [1, null, 0] / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcomes 2 only / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcomes 2 only / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcomes 2 only / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcomes 2 only / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcomes 1 and 2 / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcomes 1 and 2 / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcomes 1 and 2 / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 outcomes 1 and 2 / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 0 and NaN / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 0 and NaN / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 0 and NaN / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 0 and NaN / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes NaN only / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes NaN only / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes NaN only / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes NaN only / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 both classes, no probability at all / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 both classes, no probability at all / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 both classes, no probability at all / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 both classes, no probability at all / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 both classes, the non-events have no probability / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 both classes, the non-events have no probability / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 both classes, the non-events have no probability / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 both classes, the non-events have no probability / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 null outcome with a probability, event without: only the non-event is used / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 null outcome with a probability, event without: only the non-event is used / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 null outcome with a probability, event without: only the non-event is used / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 null outcome with a probability, event without: only the non-event is used / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 probability / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 probability / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 probability / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Int64 probability / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Boolean probability [true, null] / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Boolean probability [true, null] / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Boolean probability [true, null] / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Boolean probability [true, null] / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Null-dtype probability / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Null-dtype probability / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Null-dtype probability / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 Null-dtype probability / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 no row, Int64 outcome / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 no row, Int64 outcome / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 no row, Int64 outcome / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 no row, Int64 outcome / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 one row, an event / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 one row, an event / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 one row, an event / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 one row, an event / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 one row, a non-event / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 one row, a non-event / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 one row, a non-event / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 one row, a non-event / created = False",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes -0.0 and 1 / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes -0.0 and 1 / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes -0.0 and 1 / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes -0.0 and 1 / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 1 and 1 - one ulp / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 1 and 1 - one ulp / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 1 and 1 - one ulp / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 1 and 1 - one ulp / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 1 and +inf, probabilities +inf and NaN / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 1 and +inf, probabilities +inf and NaN / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 1 and +inf, probabilities +inf and NaN / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 outcomes 1 and +inf, probabilities +inf and NaN / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 another column order, a third column, a tie / inputs",
+  "primitive": "train_run_13_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 another column order, a third column, a tie / roc_train",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 another column order, a third column, a tie / roc_valid",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/13 another column order, a third column, a tie / created = True",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 created=False / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 created=False / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 created=False / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 created=False / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 created=False / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 created=False / model_summary.csv (0 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 created=False / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 with the Boolean flipped created=True / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 with the Boolean flipped created=True / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 with the Boolean flipped created=True / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 with the Boolean flipped created=True / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 with the Boolean flipped created=True / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 with the Boolean flipped created=True / model_summary.csv (1 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real r1 with the Boolean flipped created=True / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb created=True / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb created=True / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb created=True / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb created=True / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb created=True / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb created=True / model_summary.csv (1 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb created=True / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb with the Boolean flipped created=False / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb with the Boolean flipped created=False / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb with the Boolean flipped created=False / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb with the Boolean flipped created=False / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb with the Boolean flipped created=False / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb with the Boolean flipped created=False / model_summary.csv (0 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 real rb with the Boolean flipped created=False / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=True / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=True / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=True / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=True / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=True / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=True / model_summary.csv (1 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=True / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=False / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=False / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=False / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=False / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=False / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=False / model_summary.csv (0 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid labelled otherwise (no row passes the filter) created=False / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=True / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=True / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=True / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=True / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=True / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=True / model_summary.csv (1 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=True / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=False / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=False / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=False / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=False / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=False / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=False / model_summary.csv (0 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with no row created=False / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=True / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=True / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=True / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=True / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=True / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=True / model_summary.csv (1 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=True / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=False / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=False / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=False / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=False / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=False / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=False / model_summary.csv (0 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid with a null label and null statistics created=False / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=True / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=True / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=True / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=True / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=True / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=True / model_summary.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=True / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=False / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=False / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=False / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=False / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=False / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=False / model_summary.csv (0 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: roc_valid of two rows, both labelled Validation Set created=False / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=True / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=True / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=True / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=True / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=True / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=True / model_summary.csv (1 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=True / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=False / inputs",
+  "primitive": "train_run_14_final_and_summary (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=False / number of files = 5",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=False / risk_scores_train.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=False / risk_scores_validation.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=False / final_model_output.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=False / model_summary.csv (0 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/14 hand: metrics and roc_train with no row created=False / model_coefficients.csv (2 rows)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 created=False / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 created=False / number of files = 3",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 created=False / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 created=False / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 created=False / printed_confusion_validation.csv (2 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 with the Boolean flipped created=True / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 with the Boolean flipped created=True / number of files = 4",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 with the Boolean flipped created=True / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 with the Boolean flipped created=True / printed_roc_validation.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 with the Boolean flipped created=True / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real r1 with the Boolean flipped created=True / printed_confusion_validation.csv (2 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb created=True / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb created=True / number of files = 4",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb created=True / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb created=True / printed_roc_validation.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb created=True / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb created=True / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb with the Boolean flipped created=False / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb with the Boolean flipped created=False / number of files = 3",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb with the Boolean flipped created=False / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb with the Boolean flipped created=False / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 real rb with the Boolean flipped created=False / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=True / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=True / number of files = 4",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=True / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=True / printed_roc_validation.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=True / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=True / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=False / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=False / number of files = 3",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=False / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=False / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid labelled otherwise (no row passes the filter) created=False / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=True / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=True / number of files = 4",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=True / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=True / printed_roc_validation.csv (0 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=True / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=True / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=False / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=False / number of files = 3",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=False / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=False / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with no row created=False / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=True / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=True / number of files = 4",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=True / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=True / printed_roc_validation.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    11438840882661438094,
+    15258797937451209341
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=True / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=True / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=False / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=False / number of files = 3",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=False / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=False / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid with a null label and null statistics created=False / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=True / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=True / number of files = 4",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=True / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=True / printed_roc_validation.csv (2 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=True / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=True / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=False / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=False / number of files = 3",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=False / printed_roc_train.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=False / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: roc_valid of two rows, both labelled Validation Set created=False / printed_confusion_validation.csv (3 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=True / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=True / number of files = 4",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=True / printed_roc_train.csv (0 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=True / printed_roc_validation.csv (1 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=True / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=True / printed_confusion_validation.csv (0 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=False / inputs",
+  "primitive": "train_run_15_printed_roc (input)",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=False / number of files = 3",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=False / printed_roc_train.csv (0 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=False / printed_confusion_train.csv (4 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_td/15 hand: confusion_matrix and roc_train with no row created=False / printed_confusion_validation.csv (0 rows)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

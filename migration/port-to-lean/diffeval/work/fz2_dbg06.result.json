@@ -1,0 +1,2494 @@
+[
+ {
+  "id": "fz2_dbg06/seed 300000 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300001 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300002 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    453048020690390521
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300003 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300004 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300005 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300006 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    10567422711233737454,
+    6490853795930971043
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300007 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300008 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300009 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    8031849941435371980
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300010 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300011 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300012 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300013 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    17381316579134887576
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300014 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    8868074919303851954
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300015 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    12616892306860408652
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300016 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300017 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    11079266788356584764
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300018 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300019 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    16037465196742526507
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300020 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300021 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    14669375473690712618
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300022 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300023 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300024 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    3645308511212558539
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300025 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300026 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300027 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300028 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300029 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300030 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    17109698083574317814
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300031 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300032 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300033 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    3057921437463966298
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300034 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    7242888825380673527
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300035 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    6264539072096449931
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300036 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300037 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300038 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300039 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    4856824785508475469
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300040 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300041 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300042 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300043 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300044 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    807989583048845124
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300045 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300046 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300047 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300048 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300049 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    11783914616797191511
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301200 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301201 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301202 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    678735676854617260
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301203 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301204 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301205 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    10653466357638223386
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301206 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    4129210621536839746
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301207 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301208 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    16326155942433218357
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301209 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301210 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301211 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301212 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    18036563665766208282,
+    6191161874493043637
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301213 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    8895739697941382145
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301214 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301215 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301216 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301217 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301218 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301219 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301220 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301221 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    11508069611360963063
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301222 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    8878965921699888770
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301223 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301224 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301225 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301226 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    5992666114601196841
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301227 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301228 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301229 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301230 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301231 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    2229956407675661254
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301232 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301233 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301234 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    9881979695591394589
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301235 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301236 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301237 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    294814872919232418
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301238 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301239 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301240 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301241 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    12246445510370215118
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301242 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301243 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    14167607622084923284
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301244 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301245 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301246 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301247 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301248 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301249 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    465440285188407374
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301500 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301501 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301502 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    6151363544014184916
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301503 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301504 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    13749027915045767974
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301505 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301506 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301507 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301508 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    1422525102947894514
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301509 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301510 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301511 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301512 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    2350281968249750316
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301513 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    9361059683698316785
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301514 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301515 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6919449145974123730,
+    8644901061924122588
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301516 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301517 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301518 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    7468967802091977455
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301519 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    10043781575988565860
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301520 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301521 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301522 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301523 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301524 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    11973759870316949155
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301525 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    11730312327417410684
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301526 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301527 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301528 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301529 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301530 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301531 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301532 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301533 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301534 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301535 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    16809365381126097655
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301536 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301537 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301538 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301539 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301540 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301541 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    13467199496674040243
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301542 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301543 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    16970142352403526349
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301544 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    3421517683258758112
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301545 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    641359700420659647
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301546 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 301547 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    10912705417420434307
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301548 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    2133779032492933029
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 301549 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303350 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303351 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303352 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303353 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303354 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303355 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303356 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303357 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303358 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303359 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303360 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303361 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303362 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303363 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303364 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    16609472944226722272
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303365 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    1591161898700665674
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303366 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    3055190839051020292
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303367 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303368 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    6273153248541774788
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303369 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303370 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303371 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    12646246994964297656
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303372 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    7271157619495734872
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303373 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    3131203285341744355
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303374 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    3639156616049327167
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303375 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303376 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303377 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303378 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303379 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303380 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303381 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303382 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    1774019008347350885
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303383 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    17729253140663961584
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303384 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    776823227894981625
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303385 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303386 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303387 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303388 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303389 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303390 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303391 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303392 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303393 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303394 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    6115257626939731766
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303395 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303396 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303397 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17929118425067003967,
+    17205793914802595965
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 303398 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 303399 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300400 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300401 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300402 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300403 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    17837069681215181600
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300404 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300405 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300406 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300407 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    4068552481963471173
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300408 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300409 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    1530390707498181462
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300410 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    1507952194189031625
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300411 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300412 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    657041961875544564
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300413 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300414 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    6098938522946346227
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300415 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300416 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    17239530330779644434
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300417 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    8684323500475639250
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300418 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    2464216547779976310
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300419 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    4128734807844663106
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300420 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300421 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300422 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300423 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300424 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300425 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    5633002619800353311
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300426 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    133894371363830785
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300427 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300428 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300429 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300430 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300431 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    3891778796263974453
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300432 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    4512758076159097078
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300433 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300434 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300435 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    2912321158528701407
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300436 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300437 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300438 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300439 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300440 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    10957799662749790165
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300441 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300442 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300443 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    10079396691959465499
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300444 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    8959565409722342197
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300445 rejected",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    596869910019555502,
+    4173872084624628363
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300446 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300447 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz2_dbg06/seed 300448 drop",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    0,
+    2816532025794681917
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz2_dbg06/seed 300449 kept",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

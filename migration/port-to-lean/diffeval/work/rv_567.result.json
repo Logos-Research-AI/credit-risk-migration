@@ -1,0 +1,946 @@
+[
+ {
+  "id": "rv_567/05 distinct / effects: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv: file name",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv: rows",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv: columns",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv.Label1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv.cValue1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv.nValue1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv.Label2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv.cValue2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / effects: printed_association.csv.nValue2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv: file name",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv: rows",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv: columns",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv.Group",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv.Total",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv.EventsObserved",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv.EventsExpected",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv.NoneventsObserved",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hl_partition.csv.NoneventsExpected",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hosmer_lemeshow.csv: file name",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hosmer_lemeshow.csv: rows",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hosmer_lemeshow.csv: columns",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hosmer_lemeshow.csv.ChiSq",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hosmer_lemeshow.csv.DF",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hosmer_lemeshow.csv.ProbChiSq",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / effects: printed_hosmer_lemeshow.csv.NGroups",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 distinct / no effect: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 distinct / no effect: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv: file name",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv: rows",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv: columns",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv.Label1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv.cValue1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv.nValue1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv.Label2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv.cValue2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / effects: printed_association.csv.nValue2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv: file name",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv: rows",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv: columns",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv.Group",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv.Total",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv.EventsObserved",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv.EventsExpected",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv.NoneventsObserved",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hl_partition.csv.NoneventsExpected",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hosmer_lemeshow.csv: file name",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hosmer_lemeshow.csv: rows",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hosmer_lemeshow.csv: columns",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hosmer_lemeshow.csv.ChiSq",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hosmer_lemeshow.csv.DF",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hosmer_lemeshow.csv.ProbChiSq",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / effects: printed_hosmer_lemeshow.csv.NGroups",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 ties / no effect: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 ties / no effect: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv: file name",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv: rows",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv: columns",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv.Label1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv.cValue1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv.nValue1",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv.Label2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv.cValue2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / effects: printed_association.csv.nValue2",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv: file name",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv: rows",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv: columns",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv.Group",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv.Total",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv.EventsObserved",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv.EventsExpected",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv.NoneventsObserved",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hl_partition.csv.NoneventsExpected",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hosmer_lemeshow.csv: file name",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hosmer_lemeshow.csv: rows",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hosmer_lemeshow.csv: columns",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hosmer_lemeshow.csv.ChiSq",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hosmer_lemeshow.csv.DF",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hosmer_lemeshow.csv.ProbChiSq",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / effects: printed_hosmer_lemeshow.csv.NGroups",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/05 constant / no effect: number of files",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/07 constant / no effect: number of files",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: model_coefficients: number of columns",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: model_coefficients.Variable",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: model_coefficients.DF",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: model_coefficients.Estimate",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: model_coefficients.StdErr",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: model_coefficients.WaldChiSq",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: model_coefficients.ProbChiSq",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: model_coefficients._ESTTYPE_",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: number of files",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: printed_odds_ratios.csv: file name",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: printed_odds_ratios.csv: rows",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: printed_odds_ratios.csv: columns",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: printed_odds_ratios.csv.Effect",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: printed_odds_ratios.csv.OddsRatioEst",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: printed_odds_ratios.csv.LowerCL",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 two effects: printed_odds_ratios.csv.UpperCL",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: model_coefficients: number of columns",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: model_coefficients.Variable",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: model_coefficients.DF",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: model_coefficients.Estimate",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: model_coefficients.StdErr",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: model_coefficients.WaldChiSq",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: model_coefficients.ProbChiSq",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: model_coefficients._ESTTYPE_",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/06 intercept only: number of files",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/probe Float.exp vs math.exp: two effects idx 2",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/probe Float.exp vs math.exp: two effects idx 2",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/probe Float.exp vs math.exp: two effects idx 2",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/probe Float.exp vs math.exp: two effects idx 1",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/probe Float.exp vs math.exp: two effects idx 1",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "rv_567/probe Float.exp vs math.exp: two effects idx 1",
+  "primitive": "train_run_06_coefficients_odds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

@@ -20,12 +20,15 @@ is replaced.
 
 from __future__ import annotations
 
+import os
 import json
 import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-TSV = HERE / "receipts" / "fuzz_2026-11-16.tsv"
+# the receipts file: fuzz_2026-11-16.tsv unless FUZZ_RECEIPTS names another file of receipts/
+# (update 2026-11-17: FUZZ_RECEIPTS=fuzz_2026-11-17.tsv)
+TSV = HERE / "receipts" / os.environ.get("FUZZ_RECEIPTS", "fuzz_2026-11-16.tsv")
 # the blueprint id the suite was evaluated on: key "blueprint" of work/<suite>.fuzz.json; rows without it ran
 # on the id in use before the owner's re-base of 2026-11-16 (the new id is 5365851c-5549-44b7-9207-4bd4c422031d)
 OLD = "b41b22d4-720d-4290-b593-39ceab961986"

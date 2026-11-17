@@ -1,0 +1,21 @@
+cases 6000 | Series == 1 differs from the expression: 0 | != 1: 0 | .any() is not `some element is True` (a Python bool): 0
+[] == 1: [] any False | != 1: [] any False
+[None] == 1: [None] any False | != 1: [None] any False
+[nan] == 1: [False] any False | != 1: [True] any True
+[1.0] == 1: [True] any True | != 1: [False] any False
+[None, 1.0] == 1: [None, True] any True | != 1: [None, False] any False
+[nan, 1.0] == 1: [False, True] any True | != 1: [True, False] any True
+[0.0] == 1: [False] any False | != 1: [True] any True
+[1.0, 1.0] == 1: [True, True] any True | != 1: [False, False] any False
+[1.0, 0.0] == 1: [True, False] any True | != 1: [False, True] any True
+[1.0000000000000002] == 1: [False] any False | != 1: [True] any True
+String == 1: [True, False] Boolean
+String != 1: [False, True] Boolean
+Boolean == 1 raises NotImplementedError Series of type Boolean does not have eq operator
+Boolean != 1 raises NotImplementedError Series of type Boolean does not have neq operator
+Null == 1 raises NotImplementedError Series of type Null does not have eq operator
+Null != 1 raises NotImplementedError Series of type Null does not have neq operator
+used: [1.0, nan, 1.0] created: True
+clear().select: Schema({'Train_AUC': Float64, 'train_precision': Float64, 'model_name': String, 'Valid_AUC': Float64}) height 0
+select of an absent Valid_AUC raises ColumnNotFoundError
+written file: 'Train_AUC,train_precision,model_name,Valid_AUC\n'

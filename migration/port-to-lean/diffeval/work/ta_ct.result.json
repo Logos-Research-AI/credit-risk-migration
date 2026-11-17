@@ -1,0 +1,954 @@
+[
+ {
+  "id": "ta_ct/icpt n=2 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=2 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=2 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=3 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=3 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=3 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=3 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=4 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=4 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=4 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=4 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=4 events=4 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=5 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=5 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=5 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=5 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=5 events=4 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=5 events=5 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 events=4 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 events=5 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 events=6 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=7 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=7 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=7 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=7 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=7 events=4 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=7 events=5 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=7 events=6 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=7 events=7 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=4 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=5 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=6 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=7 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=8 events=8 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=4 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=5 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=6 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=7 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=8 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=9 events=9 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=4 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=5 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=6 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=7 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=8 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=9 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 events=10 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=0 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=1 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=2 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=3 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=4 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=5 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=6 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=7 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=8 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=9 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=10 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 events=11 (events first)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=2 alternating 0,1",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=2 every third an event (fit given)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=3 alternating 0,1",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=3 every third an event (fit given)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=5 alternating 0,1",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=5 every third an event (fit given)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 alternating 0,1",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 every third an event (fit given)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 alternating 0,1",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=10 every third an event (fit given)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 alternating 0,1",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=11 every third an event (fit given)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=26 events=0 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=26 events=1 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=26 events=5 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=26 events=13 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=26 events=25 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=26 events=26 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=51 events=1 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=51 events=10 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=51 events=15 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=51 events=25 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=51 events=35 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=51 events=50 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=101 events=7 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=101 events=50 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=101 events=100 (spread)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=6 y=[2,0,0,0,1,0]: a value 2, probabilities up to 0.6",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=4 y=[1,1,0,0], pd 0.999",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/icpt n=3 y=[0,1,0], pd 1e-300 (the logit step is discarded)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: kw pd, n=24 k=2",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: inventory order (X, y, pd), n=24 k=2",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: kw pd, n=40 k=3",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: kw pd low, n=30",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: kw pd high, n=30 (khi = 50)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: y all 0",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: y in {0,1,2}",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: fit beta = 0 (eta = 0, p = 0.5)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: fit and pd keyword: pd is used",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: positional array and pd keyword",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: fit beta = (-0.75, 0.5)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: fit beta = (0, 20): probabilities 0 and 1 (separated)",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: fit beta = (30, 5): every probability near 1",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_ct/effects: pd one ulp below 1 on four rows",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

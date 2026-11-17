@@ -1,0 +1,58 @@
+[
+ {
+  "id": "ta_real/real: step 08: number of files",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_real/real: step 08: printed_classification.csv (47 rows)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_real/effects_part: step 08: number of files",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_real/effects_part: step 08: printed_classification.csv (30 rows)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_real/icpt_only: step 08: number of files",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_real/icpt_only: step 08: printed_classification.csv (3 rows)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "ta_real/icpt_only: classification_table on the arguments of train.run (40 rows, 1 column(s))",
+  "primitive": "classification_table",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

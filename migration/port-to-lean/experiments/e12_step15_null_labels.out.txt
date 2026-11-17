@@ -1,0 +1,24 @@
+--- labels present (roc_valid_created=True)
+    built: printed_roc_train ROCModel String | printed_roc_validation ROCModel String
+    written printed_roc_train.csv: ROCModel dtype String, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\nTraining Set,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+    written printed_roc_validation.csv: ROCModel dtype String, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\nValidation Set,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+--- roc_valid: one row, label null (roc_valid_created=True)
+    built: printed_roc_train ROCModel String | printed_roc_validation ROCModel Null
+    written printed_roc_train.csv: ROCModel dtype String, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\nTraining Set,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+    written printed_roc_validation.csv: ROCModel dtype Null, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\n,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+--- roc_valid: one row, label null (roc_valid_created=False)
+    built: printed_roc_train ROCModel String | printed_roc_validation ROCModel Null
+    written printed_roc_train.csv: ROCModel dtype String, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\nTraining Set,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+    printed_roc_validation.csv: not written
+--- roc_train: two rows, labels null (roc_valid_created=True)
+    built: printed_roc_train ROCModel Null | printed_roc_validation ROCModel String
+    written printed_roc_train.csv: ROCModel dtype Null, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\n,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+    written printed_roc_validation.csv: ROCModel dtype String, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\nValidation Set,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+--- roc_valid: two rows, one label null (roc_valid_created=True)
+    built: printed_roc_train ROCModel String | printed_roc_validation ROCModel String
+    written printed_roc_train.csv: ROCModel dtype String, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\nTraining Set,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+    written printed_roc_validation.csv: ROCModel dtype String, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\n,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\nx,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+--- roc_valid: no row (roc_valid_created=True)
+    built: printed_roc_train ROCModel String | printed_roc_validation ROCModel Null
+    written printed_roc_train.csv: ROCModel dtype String, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\nTraining Set,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000,0.5000\n'
+    written printed_roc_validation.csv: ROCModel dtype Null, file text 'ROCModel,Area,StdErr,LowerArea,UpperArea,SomersD,Gamma,TauA\n'

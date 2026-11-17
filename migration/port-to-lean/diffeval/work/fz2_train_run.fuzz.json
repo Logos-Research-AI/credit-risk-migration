@@ -1,0 +1,21 @@
+{
+ "fuzzer": "port-translator-10",
+ "generator": "diffeval/units/fz2_train_run_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "run_py_py_py": {
+   "seeds": "70000..70199 generated; sent [70055, 70087, 70029, 70034, 70039, 70002, 70011, 70000, 70004]",
+   "generated": 200,
+   "kept": 9,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one value (number of files, model.json intercept and coefficients, one digest per exported file in call order) of the whole train.run on one seed; feature files of 30-59 / 1-14 rows built inside Lean, small integers as floats (ties), nulls; of the 200 seeds 189 are inside the rendered precondition ({'no step': 8, 'final intercept only': 30, 'a q == 0 step': 22, 'validation of one class': 96, 'a separated step': 34}), 0 rejected, 10 have no stepwise result (the real stepwise_logistic raises: the parameter does not exist), 1 import a String column (one-row validation file with a null outcome: outside the model); sent to Lean: [70055, 70087, 70029, 70034, 70039, 70002, 70011, 70000, 70004] (each input carries the routine tables of its seeds, typed first-hand); classes of the sent seeds: {70000: ['separated step'], 70002: [], 70004: ['validation of one class'], 70011: ['validation of one class'], 70029: ['final intercept only', 'q == 0 step', 'separated step'], 70034: ['final intercept only', 'q == 0 step', 'validation of one class', 'separated step'], 70039: ['final intercept only', 'q == 0 step', 'validation of one class'], 70055: ['no step', 'final intercept only'], 70087: ['no step', 'final intercept only', 'validation of one class']}"
+  },
+  "train_run_03_fit_global_rsquare": {
+   "seeds": "step lists 0..249 of each of the seeds [70055, 70087, 70029, 70034, 70039, 70002, 70011, 70000, 70004]",
+   "generated": 2250,
+   "kept": 2250,
+   "python_raises_inside_precondition": [],
+   "note": "step lists of 0-6 steps built inside Lean from the real stepwise result of the seed: real steps in any order, with repeats, and steps whose fit is the intercept-only fit (q == 0); fit frame, n_obs, y_train, m2ll0, ybar from step 01 on the seed's training file; expected = train.py:154-268 executed on each list; one case = digest of 50 lists"
+  }
+ }
+}

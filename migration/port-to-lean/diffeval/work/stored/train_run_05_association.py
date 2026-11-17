@@ -31,4 +31,7 @@
             ],
         }
     )
-    sas_compat.write_sas_csv(printed_association, output_dir / "printed_association.csv", formats={})
+    # SAS makes no Association, Odds Ratios or Hosmer-Lemeshow table for a final model with the
+    # intercept only (small-inputs.md (d)): the four files below are written when it has a variable
+    if final_effects:
+        sas_compat.write_sas_csv(printed_association, output_dir / "printed_association.csv", formats={})
