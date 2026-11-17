@@ -339,11 +339,11 @@ def run(
     # RESOLVED (post-parity): the split is an explicit input (--split-ids), so row order cannot change it
     # (SAS drew a different split in judge run x_split_drift_m_metrics_threshold, judge/README.md:75-81)
     # the split is an INPUT (A27): selected = row_id is a training row_id in split_ids
+    # G1: the ids are SAS numbers (doubles, R§2 input best32.), matched by value; no whole-number cast
     train_ids = (
         pl.read_csv(split_ids, columns=["row_id"], infer_schema=False)  # R§1 CSV I/O: all text
+        .select(sas_compat.input_best32(pl.col("row_id")))
         .get_column("row_id")
-        .cast(pl.Int64)
-        .cast(pl.Float64)
     )
     credit_split = credit_features.with_columns(selected=pl.col("row_id").is_in(train_ids.implode()))
     credit_train = credit_split.filter(pl.col("selected")).drop("selected")
