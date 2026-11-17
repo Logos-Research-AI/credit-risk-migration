@@ -569,6 +569,10 @@ every n (G56), `PyLinks` 6 for every table (G58).
   This is the same class as the recorded limit on header-only files. E7 and F2 also assert that
   the two files are among those `run_py_py` returns. That is a stronger conclusion than spec E7's
   one line, with no added hypothesis; accepted by the lead.
+  A3 (`thm:A3_predict`) likewise asserts that `test_predictions.csv` is among the returned
+  files; accepted by the lead on the same grounds (reviewer's note in the contracts run,
+  2026-11-17). Wording fix: definitions-v3.md said "five read-backs" and listed four; now "four"
+  (no Lean change; T1 unaffected).
 
 ## Blueprint behaviour met
 

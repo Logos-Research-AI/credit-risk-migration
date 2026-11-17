@@ -38,7 +38,7 @@ The parameters `py` are:
 - the split, as a function of the seed and of the row ids of the training table as cleaned: the
   table of selected ids;
 - the fit, as a function of the training feature table as read: the stepwise result;
-- five read-backs: of the two feature files (one function for both), of the medians file, of the
+- four read-backs: of the two feature files (one function for both), of the medians file, of the
   validation score file and of the training score file;
 - five existence flags, each a function of the value the producing step returned: the two feature
   files, the medians file, the coefficients file, the two score files (one flag each for the
@@ -373,6 +373,49 @@ Found by prover-3 while writing the witness of T0 on paper; approved by the lead
   constrained by `Paired` while free in `PyLinks`: clauses 1 and 6 speak of `sas` only; 2, 3, 4
   define `sas.split`, `sas.fit` and the SAS read-backs from the port's, for any port value; 5
   speaks of the SAS flags only.
+
+### C-f. `PyLinks` 8, one kind of cell per column
+
+Found in the review of G4 (`thm:G4_metrics_coverage`, "PyLinks 8 too loose"); form chosen and
+approved by the lead 2026-11-17. Entered on `5365851c` the same day.
+
+- **Before**: "Each read-back returns a table with the same number of rows in the same order, each row
+  with the same column names in the same order; a numeric cell of a column listed here stays
+  numeric, and a missing one missing: all 42 feature columns; the three medians columns;
+  `row_id`, `default_flag`, `pd_logistic` and `credit_risk_score` of the score files. Nothing is
+  asked of the values, nor of the other score columns." (Lean: `keeps R cols` is the row-by-row
+  shape clause only.)
+- **After**: the same, and each read-back also keeps one kind of cell per column, for every
+  column, the other score columns included: for every table t in which each column holds one
+  kind of cell in every row (for each column name, the cells under that name are numeric in
+  every row that has it, or text in every row that has it), each column of the read-back of t
+  does too. In the Lean, `keeps R cols` is the shape clause for every t, conjoined with
+  `oneKind t -> oneKind (R t)`, where `oneKind t` says: for every name c, every cell `r.get c`
+  of a row of t is numeric, or every one is text. It applies to all four read-backs.
+- **Reason**: the clause constrained the kind of cell only for four columns of the score files,
+  while the real reader (`proc_import_csv` in `port/credit_risk/sas_compat.py`) gives every
+  column a single kind across all rows. A read-back that turns one cell of another score column
+  into text while its neighbours stay numeric met `PyLinks` 8 but is no reader the port has, and
+  G4 was false through this looseness alone. The lead's form keeps the identity read-back, which
+  T1 and the carried requirements need: both the real reader and the identity meet it.
+- **Consequence**: G4 then needs, as a fact proved about the port's score output and not
+  assumed, that the score tables of a valid run have one kind of cell per column. This is noted
+  in the item text. No hypothesis is added to G4.
+- **Cleared by the edit** (`edit_text` on `def:PyLinks`; statements only, none of them had a
+  proof): `thm:G1_run_coverage`, `thm:G3_predict_coverage`, `thm:G4_metrics_coverage`,
+  `thm:E1_features_train`, `thm:E2_features_valid`, `thm:E6_score_test`,
+  `thm:E7_predict_column_names`, `thm:E8_validation_summary`, `thm:E9_ks`, `thm:E10_decile`,
+  `thm:E11_threshold`, `thm:F1_income_medians`, `thm:F2_kaggle_submission`,
+  `thm:F5_calibration_plot`, `thm:F6_model_performance_metrics`, `lem:py_split_input_ids`,
+  `lem:ex_reached_features_predict`, `lem:ex_metrics_run`, `lem:ex_G4_run` (19). Their statement
+  drafts remain on the server (`read_scratch`) and are to be resubmitted and reviewed again.
+  `def:PyLinks` itself was restated and accepted.
+- **Note for the reviewer**: on the first submission the judge rejected the Lean over clause 4
+  (unchanged since its acceptance): the Lean says the outcome column is text *only when* the
+  table has no row or some cell is missing, not the converse the text might be read to say. The
+  Lean of clause 4 was not changed; one comment line saying so was added above it, and the
+  second submission was accepted. Whether the text of clause 4 overstates (a missing cell
+  written empty leaves the column numeric in `proc_import_csv`) is left to the lead.
 
 ### Additions that are not changes of wording
 
