@@ -1253,8 +1253,17 @@ def hosmer_lemeshow(y: pl.Series, pd: pl.Series) -> tuple[pl.DataFrame, float | 
     NoneventsObserved, NoneventsExpected (Int64 counts, Float64 expected; the caller renders
     the expected columns with 2 decimals). The chi-square is None when a group's expected count is 0;
     the p-value is None when it is None or DF < 1 (fewer than 3 groups).
-    RESOLVED (post-parity): an empty input returns an empty table with missing statistics (DF 0); fewer
-    than 3 groups gives DF < 1 and a missing p-value. SAS output for these inputs is unverified."""
+    A group's expected events are its size times its average probability, and SAS keeps that
+    average within [1e-6, 0.999999]. Measured 2026-11-17 on the six SAS runs with a group average
+    beyond 0.99999 or below 0.00001 (rawfit_floorA to floorD, sep_age_gt_55, sep_age_gt_62): five
+    have a group outside the limits, print SAS's note and the chi-square with the group's average
+    limited (floorB 0.3656; unlimited 0.3644); floorC's most extreme group is at 1 - 1.31e-6,
+    inside, and it has no note and the unlimited value, although 62 of its observations are
+    above 0.999999: limiting each observation gives 95.1048 against SAS's 95.1047 (and 67.7310
+    against 67.7309 on floorA). The upper limit is bracketed by 1 - 1.31e-6 (kept) and
+    1 - 9.31e-7 (limited); the lower one only by groups far below it (7e-27 and less), so 1e-6
+    there is the note's figure. The expected counts printed with 2 decimals do not show it.
+    RESOLVED (post-parity): an empty input returns an empty table with missing statistics (DF 0)."""
     d = pl.DataFrame({"y": y.cast(pl.Float64), "p": pd.cast(pl.Float64)}).drop_nulls()
     if d.height == 0:
         cols0 = [
@@ -1286,7 +1295,10 @@ def hosmer_lemeshow(y: pl.Series, pd: pl.Series) -> tuple[pl.DataFrame, float | 
     chisq: float | None = 0.0
     for gi, size in enumerate(sizes, 1):
         o1 = int(yy[start : start + size].sum())
-        e1 = float(p[start : start + size].sum())
+        # SAS limits the group's average probability to [1e-6, 0.999999] ("In calculating the Expected
+        # values, predicted probabilities less than 1E-6 and greater than 0.999999 were changed to
+        # 1E-6 and 0.999999 respectively"): the group's, not each observation's (docstring)
+        e1 = size * min(max(float(p[start : start + size].sum()) / size, 1e-6), 0.999999)
         start += size
         o0, e0 = size - o1, size - e1
         chisq = (

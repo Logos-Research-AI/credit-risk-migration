@@ -278,3 +278,18 @@ for translation rules once it exists.
   zero), the first ridge gives the same zero step and is accepted, so the estimates and the stop
   are the same under both readings. If the step is not zero, the log likelihood before and
   after would have to agree in every bit, which no input could be made to do. No more work on it.
+
+## Hosmer-Lemeshow on extreme fits: measured 2026-11-17
+- **Limits on a group's probability.** SAS computes a group's expected events from the group's
+  average probability kept within [1e-6, 0.999999], and prints "In calculating the Expected
+  values, predicted probabilities less than 1E-6 and greater than 0.999999 were changed to 1E-6
+  and 0.999999 respectively." The port summed the probabilities as they are. Evidence, the port's
+  function on SAS's own probabilities (`risk_scores_train.csv`) of the 38 SAS runs with the
+  tables: the 5 runs with the note (`rawfit_floorA`, `floorB`, `floorD`, `sep_age_gt_55`,
+  `sep_age_gt_62`) each had the chi-square off (floorB 0.3644 against SAS's 0.3656) and all 38
+  are SAS's with the limit on the group. The limit is not on each observation: `rawfit_floorC`
+  has 62 observations above 0.999999, its most extreme group is at 1 - 1.31e-6, SAS prints no
+  note there and the unlimited chi-square 95.1047 (95.1048 with each observation limited; floorA
+  67.7310 against 67.7309). Brackets: the upper limit between 1 - 1.31e-6 (kept) and 1 - 9.31e-7
+  (changed); the lower limit only from far below (groups at 7e-27 and less), so 1e-6 there is the
+  note's figure, not a measured one. The partition printed with 2 decimals is the same either way.
