@@ -251,3 +251,30 @@ for translation rules once it exists.
   Over the 18 quasi-complete steps in hand one limit fits only without the intercept: at most
   4,678 before SAS's stop, at least 5,932 at it. `separation-rule.md` is corrected in the same
   commit.
+
+## The selection ends rather than have a model twice (2026-11-17)
+- Owner's ruling: the port follows SAS until no difference is left. The rule is the one measured
+  in `recycling-rule.md` (coding-agent-2: 164 selections read, 13 raw inputs predicted and
+  confirmed): the models had are kept as sets of variables from the empty model of step 0 on; a
+  removal onto one of them is the last step; a best candidate whose entry would give one of them
+  does not enter, and the second-best is not tried.
+- `sas_compat.stepwise_logistic` had two special cases of it (`best[1] == last_removed`, and the
+  variable entered and removed at once, which that test also ended) and otherwise went round to
+  its cap: "500 steps reached without stopping" on all 13 inputs, where SAS completes.
+- `StepwiseResult.ended` is SAS's note for the way the selection ended. The port writes it to no
+  file; it is there because two parts of the rule cannot be told from the steps and the final
+  model alone: without the test after a removal, or without the empty model in the list, the
+  selection makes the same steps and ends one test later, on the next entry. The note differs
+  ("recycling of previous steps" against "the next effect to be added recycles previous steps"),
+  and `port/tests/test_recycling.py` compares it with SAS's listing on 19 selections.
+- Not measured (from `recycling-rule.md`): a tie of chi-squares at the recycling step; SAS's own
+  cap on the number of steps.
+
+## Recorded 2026-11-17: one reading of the ridge test cannot be told apart
+- In `_fit_as_sas` a step is retaken with a ridge when it lowers the log likelihood (`<`). The
+  reading `<=` (a ridge also when the log likelihood is exactly unchanged) survives every test,
+  and no case could be constructed that tells the two apart. Reason: the two differ only on a
+  step that leaves the log likelihood exactly equal. If that step is zero (the score is exactly
+  zero), the first ridge gives the same zero step and is accepted, so the estimates and the stop
+  are the same under both readings. If the step is not zero, the log likelihood before and
+  after would have to agree in every bit, which no input could be made to do. No more work on it.
