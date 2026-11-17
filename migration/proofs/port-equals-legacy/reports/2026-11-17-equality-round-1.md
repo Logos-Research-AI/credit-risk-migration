@@ -257,6 +257,75 @@ on the SAS blueprint or in `SasLinks` now.
   used); `lem:sas_cov_credit_train_validation` 9cd8f9fb05b84af38f1875a93626dd5f (link (5) only;
   `InputOK` not used). No carrier.
 
+- Phase 1, prover-5, both proved, reviewed "agrees" by prover-6 before the proofs:
+  `lem:sas_cov_logit_scored_valid_temp` (links (3) readFeatures, (6), `lem:sas_feature_rows`);
+  `lem:sas_cov_test_scored_temp` (links (4), (6) only; `InputOK` not needed; holds on an empty
+  test table). SasLinks form only; the second form is owed after `def:PyLinks` (for
+  test_scored_temp it needs nothing of the read-back).
+
+- Phase 0, prover-8, large-proof route (nothing written to b41b22d4; no repair):
+  - S20b: from fca6ebb82c11453381e018588530045b (1226 lines); accepted at
+    8f2c981effc74cdab2bf62cf8c1cf5aa (1226 lines); read back before submit: total and four
+    seams. The stored text opens with old comments "DRAFT ... Open: the main theorem" and
+    "PLAN (not done)"; the theorem is complete and compiled with no sorry; comments left.
+  - S21b: from 38695223dd704a23b89c1ca9dc4a50dd (842 lines); accepted at
+    ce48168d560240d1b194a2ec2dd98244 (842 lines). Deviation: submitted before the read-back;
+    afterwards the line count and two seams matched.
+  - S22b: from 3095068f46de40c6b1a29e8d886ce461 (798 lines); accepted at
+    e0f62bab31744248b2a7e4bbdea2b87e (798 lines); read back: total, one seam, the tail.
+- Phase 1 reassignment by the coordinator: proofs of `lem:sas_cov_test_features` and
+  `lem:sas_cov_test_scored` (stated by prover-8, reviewed "agrees" by prover-9, not started)
+  moved to prover-5, so that prover-8 states S13.
+
+- Phase 0, prover-3 (the three reassigned by the lead; no call refused; no repair; statements
+  equal on the two ids):
+  - S10a: small (14 lines); `proof_lean` on 5365851c and the stored draft on b41b22d4
+    (2b99ea79abc645c1be728602929b9043) read identical; accepted at
+    85907e52d1b34d8f91398dab6a487eef; read back the same. Rests on S10b.
+  - S9a: large-proof route, from d15a3e54e6ae401682fa19d80ff395ba (582 lines); accepted at
+    bd44a04ff0134e88b9436b3f7b76b4a0 (582 lines, 24547 characters).
+  - S9b: large-proof route, from 77ecb0171a674ad4a53e4d8565b4ee43 (574 lines); accepted at
+    d0d68de98d3d4b5d985fd4b673cc26f0 (574 lines, 24081 characters).
+  - Evidence for S9a, S9b: four ranges, line counts matching at each step, the whole new draft
+    read back and compared before submitting; the two share their first 450 lines and the two
+    copies have equal character counts at each boundary. Limit stated by prover-3 and true of
+    every large-proof item: text passes from one call to the next only through the prover, so
+    "passed exactly as read" is the prover's copying, not a tool's.
+- Owners changed by the lead directly (2026-11-17): S8a to prover-4, S8b to prover-5, S10b to
+  prover-6 (from prover-7, which keeps S16a, S16b and its coverage lemmas).
+
+- Phase 0, S13 stated by prover-8 (statement revision 862fba02fff644bc9bec99ff502d389a): the
+  2.3 statement with `roc_valid_created : Bool` universally quantified, given to the
+  precondition and the unit; the SAS `model_summary` receives the port's `roc_valid` table when
+  it is true and no row when false. **Open**: the item's `statement_text` still reads version 2
+  (prover-8 held on the role rule against rewording an existing contract; the approved sentence
+  is a comment at the head of the Lean); put to the lead 2026-11-17. Review by prover-10; no
+  proof before the review agrees and the text question is closed.
+- Phase 0, prover-3, seams of S9a and S9b: intact, no repair.
+- Phase 1, prover-10, both proved (statements reviewed "agrees" by prover-2):
+  `lem:sas_cov_decile_data` 4e69ffd59de84d589a9c2187d37eeac3; `lem:sas_cov_train_bins` (both
+  uses) 6519b73a9ecd402480c60e519a978ac4. Rest on links (3), (4), first clause of (5); no
+  clause of `InputOK`. Two facts proved inside, candidates for shared items if a second proof
+  needs them: (a) no row of F1 or F2 has a column `score_bin`, `k`, `cut1` to `cut9` or
+  `decile`; (b) every row of a score table has `pd_logistic` and `credit_risk_score` as numeric
+  cells and has a name of that list exactly when its feature row has it.
+
+- Phase 1, prover-5: `lem:sas_cov_test_features` proved 5e9bf3fb296b4d69affac2d0bd0a64b0 (link
+  (4) only); `lem:sas_cov_test_scored` proved 826def1076364bb3b1ccef17f1a569d7 (no link). Both
+  stated by prover-8, reviewed "agrees" by prover-9. The coordinator's move of test_scored to
+  prover-3 came after prover-5 had proved it; prover-3 touched nothing; owner prover-5.
+- Phase 2 stated by prover-1 (statements only): `def:PyParams`, `def:SasParams`,
+  `def:sasPipelineOf`, `def:SasLinksOf`, `def:pyPipeline`, `lem:py_score_fillers_idle`,
+  `def:PyLinks`, `def:Paired`, `lem:sas_split_input_ids`. Reviewers: prover-9 (records and the
+  two applications), prover-2 (the three definitions).
+- **Finding on the draft definitions (prover-1, checked by the coordinator; sent to the lead
+  for decision)**: `Paired` 5 (flags shared) with `PyLinks` 7 and `SasLinks` (8) (each flag true
+  exactly when its own pipeline returns the value for some argument, valid or not) can be met
+  together only if the two pipelines have the same reachable outputs over all inputs; T0 would
+  have no witness. Recommendation: drop the sharing (each side's flags governed by its own
+  link; every contract applies a flag only to what its own side produced on the valid run).
+  prover-3 searches, on paper, for any other joint clash of the three sets of clauses.
+
 ## Blueprint behaviour met
 
 - `write_statement` on an old `thm:` item replaces its contract text with a generated summary

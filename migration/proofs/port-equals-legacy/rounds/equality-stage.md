@@ -91,7 +91,7 @@ again.
 | prover-6 | `fe_run_06_split_S6a`, `_S6b`, `predict_run_03_cleaned_S25a`, `_S25b` |
 | prover-7 | `predict_run_03_cleaned_S31`, `predict_run_06_score_S28`, `predict_run_06_score_C3`, `metrics_run_03_thresholds_S16a`, `_S16b` |
 | prover-8 | `metrics_run_07_calibration_S20a`, `_S20b`, `metrics_run_08_validation_summary_S21b`, `metrics_run_09_model_performance_S22b`; restate and decide `train_run_14_final_and_summary_S13` |
-| prover-9 | `train_run_09_confusion_train_S8a`, `_S8b`, `train_run_10_score_valid_S9a`, `_S9b`, `train_run_11_confusion_valid_S10a`, `_S10b` |
+| (was prover-9; owners set by the lead 2026-11-17) | `train_run_10_score_valid_S9a`, `_S9b`, `train_run_11_confusion_valid_S10a`: prover-3. `train_run_09_confusion_train_S8a`: prover-4. `_S8b`: prover-5. `train_run_11_confusion_valid_S10b`: prover-6. |
 | prover-10 | restate and decide `train_run_04_score_train_S7a`, `_S7b`, `train_run_01_fit_frame_C4` |
 
 All ids carry the prefix `thm:`. Reviewer of a restated statement: prover-9 for prover-10's,
