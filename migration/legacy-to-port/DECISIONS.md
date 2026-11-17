@@ -261,8 +261,11 @@ for translation rules once it exists.
 - `sas_compat.stepwise_logistic` had two special cases of it (`best[1] == last_removed`, and the
   variable entered and removed at once, which that test also ended) and otherwise went round to
   its cap: "500 steps reached without stopping" on all 13 inputs, where SAS completes.
-- `StepwiseResult.ended` is SAS's note for the way the selection ended. The port writes it to no
-  file; it is there because two parts of the rule cannot be told from the steps and the final
+- SAS's note for the way the selection ended is returned by the inner function
+  `_stepwise_logistic_with_note`, for the tests only (first committed as a field `ended` of
+  `StepwiseResult`, taken off again: the dataclass is mirrored in the port's Lean and must not
+  change; `stepwise_logistic` returns the result alone, as before). The port writes the note to no
+  file; it is kept because two parts of the rule cannot be told from the steps and the final
   model alone: without the test after a removal, or without the empty model in the list, the
   selection makes the same steps and ends one test later, on the next entry. The note differs
   ("recycling of previous steps" against "the next effect to be added recycles previous steps"),

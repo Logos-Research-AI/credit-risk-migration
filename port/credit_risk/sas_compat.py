@@ -875,7 +875,6 @@ class StepwiseResult:
     steps: list[StepwiseStep] = field(default_factory=list[StepwiseStep])
     final: LogisticFit | None = None
     intercept_only: LogisticFit | None = None
-    ended: str = ""  # SAS's note on why the selection ended (its listing; the port writes it nowhere)
 
 
 def _entry_score_chisq(
@@ -928,7 +927,7 @@ def stepwise_logistic(
     stop when nothing enters, or rather than have a model twice (recycling-rule.md: the models had
     are kept as sets of variables from the empty model of step 0 on; a removal that gives one of
     them is the last step; a best candidate whose entry would give one of them does not enter and
-    the second-best is not tried). `ended` is SAS's note for the case. After a separated step the entry
+    the second-best is not tried). After a separated step the entry
     score chi-square is over all parameters of the enlarged model (see the entry loop). Reference implementation:
     migration/experiments/x02_stepwise_reference.py. Rows with a missing response or candidate are
     dropped. The model columns of each fit are in ENTRY order (names[0] = "Intercept").
@@ -938,6 +937,20 @@ def stepwise_logistic(
     2026-11-17, RULEBOOK §2).
     Raises RuntimeError when a fit neither converges nor separates in SAS's 25 iterations, or the
     500-step cap is hit."""
+    return _stepwise_logistic_with_note(df, response, candidates, slentry, slstay)[0]
+
+
+def _stepwise_logistic_with_note(
+    df: pl.DataFrame,
+    response: str,
+    candidates: Sequence[str],
+    slentry: float = 0.05,
+    slstay: float = 0.05,
+) -> tuple[StepwiseResult, str]:
+    """`stepwise_logistic` with SAS's note on why the selection ended (the NOTE of its listing). The
+    port writes the note to no file and the pipeline does not carry it; it is returned here for the
+    tests, because two parts of the recycling rule cannot be told from the steps and the final model
+    alone (port/tests/test_recycling.py)."""
     used = df.select([response, *candidates]).drop_nulls()
     y = np.asarray(used.get_column(response).to_numpy(), dtype=np.float64)
     z_all = {c: np.asarray(used.get_column(c).to_numpy(), dtype=np.float64) for c in candidates}
@@ -983,6 +996,7 @@ def stepwise_logistic(
     model: list[str] = []
     cur = fit(model)
     res = StepwiseResult(intercept_only=cur, final=cur)
+    note = ""
     # The models the selection has had, each the set of its variables, from the model without a
     # variable of step 0 on (recycling-rule.md): SAS ends the selection rather than have one twice.
     had: list[frozenset[str]] = [frozenset()]
@@ -1009,7 +1023,7 @@ def stepwise_logistic(
                 if frozenset(model) in had:
                     # a model it has had: the removal is the last step and this model is final
                     entered_before = len(res.steps) > 1 and res.steps[-2].entered == best_w[1]
-                    res.ended = (
+                    note = (
                         "Model building terminates because the last effect entered is removed by the Wald "
                         "statistic criterion."
                         if entered_before
@@ -1024,7 +1038,7 @@ def stepwise_logistic(
             if best is None or sc > best[0]:
                 best = (sc, c)
         if best is None or chi2_sf(best[0], 1) >= slentry:
-            res.ended = (
+            note = (
                 "All effects have been entered into the model."
                 if len(model) == len(candidates)
                 else f"No (additional) effects met the {slentry:g} significance level for entry into the model."
@@ -1032,9 +1046,7 @@ def stepwise_logistic(
             break
         if frozenset([*model, best[1]]) in had:
             # the best candidate would give a model it has had: nothing enters, the second-best is not tried
-            res.ended = (
-                "Model building terminates because the next effect to be added recycles previous steps."
-            )
+            note = "Model building terminates because the next effect to be added recycles previous steps."
             break
         step += 1
         model.append(best[1])
@@ -1046,7 +1058,7 @@ def stepwise_logistic(
     else:
         raise RuntimeError("stepwise_logistic: 500 steps reached without stopping")
     res.final = cur
-    return res
+    return res, note
 
 
 @dataclass

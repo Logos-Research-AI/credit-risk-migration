@@ -31,10 +31,10 @@ LAST_ENTERED = (
 )
 
 
-def select(case: dict[str, Any]) -> sas_compat.StepwiseResult:
+def select(case: dict[str, Any]) -> tuple[sas_compat.StepwiseResult, str]:
     df = pl.DataFrame({"default_flag": case["y"], **case["columns"]})
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-        return sas_compat.stepwise_logistic(df, "default_flag", list(case["columns"]), 0.05, 0.05)
+        return sas_compat._stepwise_logistic_with_note(df, "default_flag", list(case["columns"]), 0.05, 0.05)
 
 
 def steps(res: sas_compat.StepwiseResult) -> list[list[str]]:
@@ -47,14 +47,14 @@ def test_steps_final_model_and_note_are_sas() -> None:
     onto the empty model is the last step because the empty model of step 0 is one the selection
     has had (note "recycling of previous steps"), not because the next entry would recycle."""
     for case in CASES:
-        res = select(case)
+        res, note = select(case)
         assert steps(res) == case["steps"], (case["case"], steps(res), case["steps"])
         assert res.final is not None
         assert sorted(n[:20] for n in res.final.names[1:]) == sorted(case["final"]), (
             case["case"],
             res.final.names,
         )
-        assert res.ended == case["note"], (case["case"], res.ended, case["note"])
+        assert note == case["note"], (case["case"], note, case["note"])
     by_note: dict[str, int] = {}
     for case in CASES:
         by_note[case["note"]] = by_note.get(case["note"], 0) + 1
