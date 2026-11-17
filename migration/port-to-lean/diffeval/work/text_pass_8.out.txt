@@ -1,0 +1,64 @@
+def:AssociationTable	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:LogisticFit	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:RocAssociation	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:StepwiseResult	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:StepwiseStep	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:Z975	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_Pairs	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_ROUND_FUZZ	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_ROUND_FUZZ_CAP	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:_SE_EPS	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_SQRTBIG	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_TIE_EPS	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:_e	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_expit	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_groups	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_has_bare_column	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_hl_groups	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_into_float	not edited	stored (last fetch) = code: True	
+def:_is_scalar	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_named	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:_pairs	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:_ratio	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:association_table	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:chi2_sf	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:classification_table	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:confusion_metrics	not edited	stored (last fetch) = code: True	
+def:div	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:eq	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:flag	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:ge	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:gt	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:hosmer_lemeshow	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:le	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:lt	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:merge_one_to_one	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:proc_rank_groups	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:roc_association	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:run_py_py_py	edited	sent = ../../port/credit_risk/train.py:20-851: True (37733 / 37733 chars)	DefinitionFormalized
+def:sas_exp	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:sas_log	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:sas_max	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:sas_min	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:sas_round	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:sas_sum	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:sql_max	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:sql_mean	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:sql_min	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:sql_sum	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_01_fit_frame	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_02_stepwise_summary	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_03_fit_global_rsquare	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_04_score_train	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_05_association	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_06_coefficients_odds	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_07_hl	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_08_ctable	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_09_confusion_train	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_10_score_valid	not edited	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_11_confusion_valid	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_12_risk_scores	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_13_roc	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_14_final_and_summary	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+def:train_run_15_printed_roc	edited	sent = code: True	stored (last fetch) = code: True	DefinitionFormalized
+items: 63 edited: 21 failures: 0
