@@ -140,7 +140,8 @@ blueprint, through the profile, about SAS units only (`lem:sas_cov_<unit>`). A l
 is a finding about the SAS verification, reported to the lead, not patched.
 
 The 20 units of `sasPipeline` with a precondition item, read from `3f5df696` on 2026-11-16
-(before the round 6 revision: to be re-read after it), and what each asks:
+and re-read on 2026-11-17 after the round 6 revision and the owner's refresh of the port
+profile (all 20 unchanged, word for word), and what each asks:
 
 | Unit | Its precondition asks | Expected |
 |---|---|---|
@@ -151,7 +152,7 @@ The 20 units of `sasPipeline` with a precondition item, read from `3f5df696` on 
 | `credit_cleaned` | `age`, `MonthlyIncome`, `NumberOfDependents` numeric; the three new names not already columns | holds |
 | `credit_imputed` | `arrange` returns a permutation; `VAR1` a numeric cell in every row | holds, `SasLinks` (4) |
 | `credit_features` | the nine input columns numeric; the 27 new names not already columns | holds |
-| `credit_train_validation` | `Selected` a numeric cell in every row of the split | from `SasLinks` (5), to check: is it asked of `split` |
+| `credit_train_validation` | `Selected` a numeric cell in every row of the split | holds, from `SasLinks` (5): each row of the split is the row with `Selected` set to 0 or 1 |
 | `logit_scored_valid_temp` | every model variable a numeric cell in every row of the table scored | needs `SasLinks` (6) and what the read-back keeps (`PyLinks` 8 under G55) |
 | `test_raw_input_check` | as the training check, on the test table; a table with no row meets it | holds, `SasLinks` (2) |
 | `test_raw_clean` | as `credit_raw_clean` | holds |
@@ -167,7 +168,9 @@ The 20 units of `sasPipeline` with a precondition item, read from `3f5df696` on 
 
 The other units of `sasPipeline` have no precondition item. Units outside it with one
 (`logit_scored_train_output`, `training_metrics`, `validation_metrics`, `roc_train`, `roc_valid`,
-`roc_stats`, `kaggle_submission`, and the two printed-table units) matter only for the per-file
+`roc_stats`, `kaggle_submission`, and the two printed-table units; since round 6 the two ROC
+preconditions no longer ask for both classes: a one-class set is inside the unit, which returns
+no row) matter only for the per-file
 contracts of section 5 and get the same lemma there if those contracts are kept.
 
 Under ruling G55 three of these depend on the read-back: with the identity (the SAS

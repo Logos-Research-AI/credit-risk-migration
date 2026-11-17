@@ -85,6 +85,36 @@ The owner re-based the port blueprint. Its id is now `5365851c-5549-44b7-9207-4b
     tables (for example `auc_summary` with no row) meet them is a question for the faithfulness
     lemmas of group D, not a staleness of the theorems.
 
+### 0.2 Profile check after the second refresh (2026-11-17, read-only)
+
+After the SAS round 6 sign-off and the owner's refresh of the port profile. Result: **pass, with
+one item to re-verify.**
+
+- `get_status` of `5365851c`: 235 items, 234 formalised, nothing to write, no proof to write,
+  flagged `thm:train_run_01_fit_frame_C4`. `verification_approved` now reads true (it read false
+  before the refresh), although one item is flagged and no contract is stated yet.
+  `3f5df696`: 146 items, all formalised, nothing open. `006ff04c`: 60 items, all formalised.
+- Requirements seen from `5365851c`: `TrainOK` has the two `decimal12` clauses and "at least 4
+  rows"; `TestOK` has the `decimal12` clauses; `decimal12` and `Spec` (the 26 requirements)
+  resolve. Each agrees clause by clause with the statement in `006ff04c`, and `TrainOK` seen
+  from `3f5df696` is the same text as seen from `5365851c`.
+- `sasPipeline` and `SasLinks` seen from `5365851c` are character for character what `3f5df696`
+  shows, and unchanged since 0.1 (the round 6 change to `SasLinks` is in its comment lines,
+  which name G55 at clause (3) and G57 at clause (5); the profile shows no comments). The 26
+  `sas_Q` theorems and `sas_Q27_clause1` resolve.
+- Corrected units: `roc_train`, `roc_valid` (no row when the set has one class) and
+  `model_summary` (no row when either ROC table has none) resolve from `5365851c` and equal the
+  statements of `3f5df696`; the two ROC preconditions no longer ask for both classes.
+- The 46 kept theorems: all still in state proved, none cleared or marked failed by the
+  refresh; C4 stated and flagged, its negation proved. **One names a unit that changed:**
+  `thm:train_run_14_final_and_summary_S13` states the port's `model_summary.csv` equal to the
+  SAS `model_summary`, whose body changed in round 6. Its recorded state is still "proved", but
+  that proof was accepted against the old body; nothing read-only shows it was checked again.
+  It must be re-verified (or it will be cleared anyway when the port's step 14 changes for the
+  one-class case). None of the other 45 names `roc_train`, `roc_valid`, `model_summary` or the
+  ROC preconditions.
+- The 20 preconditions of section 4a of the v3 draft: unchanged.
+
 ## 1. The shape of the claim
 
 ### 1.1 The target: the port as a `CreditRisk.Pipeline`
