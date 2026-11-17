@@ -1,0 +1,1348 @@
+{
+ "taken_at": "2026-11-16T22:34:34+00:00",
+ "read_window_utc": [
+  "2026-11-16T22:17:13.689Z",
+  "2026-11-16T22:19:08.289Z"
+ ],
+ "round": 6,
+ "blueprint_id": "3f5df696-7c80-45cc-809f-b2881714663d",
+ "blueprint_name": "sas-credit-risk-spec",
+ "status": {
+  "blueprint_id": "3f5df696-7c80-45cc-809f-b2881714663d",
+  "language": "lean",
+  "verification_approved": true,
+  "total_items": 146,
+  "statements_formalized": 146,
+  "statements_pinned": 0,
+  "statements_to_write": [],
+  "proofs_to_write": [],
+  "waiting": []
+ },
+ "notes": [
+  "statement_sha256 is SHA-256 of the UTF-8 bytes of statement_lean exactly as get_items returned it (accepted Lean), computed by python3 hashlib from the raw tool results in the transcript of a read-only fetch; no Lean was retyped.",
+  "Taken by the round 6 auditor after the second pass (rulings G54 to G58, rule R46). Nothing was changed on the blueprint.",
+  "No Lean is stored in this file: hashes and byte counts only. same_as_round5 compares with snapshot-round5.json.",
+  "Items of snapshot-round5.json no longer on the blueprint: neg:sas_Q27_neg"
+ ],
+ "item_count": 146,
+ "counts_by_state": {
+  "TheoremProved": 37,
+  "DefinitionFormalized": 109
+ },
+ "items": [
+  {
+   "id": "thm:score_chains_agree",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "63a78082c4dc4bbbeaa862d1ca84827edb05826407e744a30daf0c172b4755c4",
+   "statement_bytes": 1920,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q9",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "ea274d79ca03466f209d2abf5593395299d5acc1d24b0ed748b1cb6796e0c52d",
+   "statement_bytes": 1407,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q8",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "48a58765d9b20b1380fbfed6bd5260e2de089d56cd50edb7505cd28de41b4590",
+   "statement_bytes": 1407,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q7",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "eda0703d37a6c5f01a6c7f18dd72ff4a9269aa37e0dfe96170602175727dabd1",
+   "statement_bytes": 1226,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q6",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "64988dd18a2573d4fff24bb9384f720b1e93a88264cde6225e3823ecb2762a4b",
+   "statement_bytes": 1226,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q5",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "ec0c39f3b98cf604ef6152fa7502850b1eab80eb43d895acb22eff9aedaa1ec7",
+   "statement_bytes": 1226,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q4",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "5749616da241b4b3d7ea8283786ccada8461ba4a53bca699a3b733ee661b7fad",
+   "statement_bytes": 1226,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q3",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "f877d206a95c282b21e9a206cc1ddd0521ff109803208bd99f1e4cdce16cb445",
+   "statement_bytes": 1226,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q27",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "d8c44f915d2ee95ce54d15a7569a82b4a06003b6e218eaa76d471b52acfca756",
+   "statement_bytes": 1377,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q26",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "77b57ce397f8919b2b9aa1178d31fb42748f9415479334f8d0da662212ca7719",
+   "statement_bytes": 1377,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q25",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "3fbebb4905629d88a31cc8b0ce7adcb617a5fb0024266bcb3c3a270031ae01fa",
+   "statement_bytes": 1377,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q24",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "986d3e6c3fbe674d4b30e1b905e9de6b93336d2db94b8b729eb622a8a49a5660",
+   "statement_bytes": 1377,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q23",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "38a40cfec9ac0f726e6427368a3a54bd9ad192b5a14d8241fbcc8b7cdc0066f8",
+   "statement_bytes": 1377,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q22",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "20024ca227e5a3df090970c8c7f42c9bd7ac39cc30c143d58d60b97b3495ef17",
+   "statement_bytes": 1327,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q21",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "53baeadae8457c23ebc57ca398cd05773eae90ab2811e7b121433d5a26f21a45",
+   "statement_bytes": 1327,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q20",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "a191aad96e5f1bf228df31a57d8c9d12d5d4799b4657233235c1ff35a84c671e",
+   "statement_bytes": 1327,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q2",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "543b94169ffb2f7d072e1a4d27ad5a3a472ce6d13294ebfd4e3af5e282a14f1d",
+   "statement_bytes": 1226,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q19",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "4b987e7121c6961c0b8771139f7dcac191f9d15eee829305d9448d2314b54d62",
+   "statement_bytes": 1327,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q18",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "9cfd99f9ea29767dee7ec182734d2db1fd579a35fef5c28a9c6c95cb36c016d8",
+   "statement_bytes": 1327,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q16",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "a66257f9e5b4e701562fe399f0ad848394cd0c501e8b05ceed117307f34c3586",
+   "statement_bytes": 1327,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q15",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "3513e9d6873bccb0b627e46ea0553cfa5a32e1823df3856681f051d08a2a187b",
+   "statement_bytes": 1327,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q14",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "47a21dbd7f93ea245bd5783edf140d6588d976fde32a852a52883e6f303a2cd7",
+   "statement_bytes": 1462,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q13",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "ebecb6a1777a825f02b3eb2ad33067c488b41db55cf6e48d7697c14350c3f895",
+   "statement_bytes": 1410,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q12",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "6a1a80b50c9a7a799c767ec5129e39ef7ca05613a00a04be07bf606b703e088b",
+   "statement_bytes": 1410,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q11",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "66d75c6bb75931c5197dfb365fb0d5cb633c4a93f4c22e4995c5bd4fe9a9357e",
+   "statement_bytes": 1410,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q10",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "92cb3024b6dd7089829bcc31072906879eaaa6b5db3d6e76e435f8c02e5ae088",
+   "statement_bytes": 1481,
+   "same_as_round5": true
+  },
+  {
+   "id": "thm:sas_Q1",
+   "kind": "theorem",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "529646fef3d76c26f0e0c038e12f1f910d87eb28f92e23a1ea3f12e8e7ad424a",
+   "statement_bytes": 1226,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_test_feature_rows",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "4df186c9e9d305bbe953efda5bcb934fc32608487cffc745413e1d33fc49f607",
+   "statement_bytes": 2290,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_test_chain_agree",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "2db4d5819b2c1a523757435a8e968ec1075353bc17e439c6b138ec9d715f7fc3",
+   "statement_bytes": 1077,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_split_sat",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "b76b87dc01c5107ac442d3469753f878ad09c5542e5d59ff6409be90bf547652",
+   "statement_bytes": 863,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_score_rows",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "baa20635d70f1936fadd81739386f832c09959d03f974fad08a17d80a2c4a5b1",
+   "statement_bytes": 974,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_links_sat",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "ee68548c1fc23d5a1487729fca23d23551059a46e9190114437ea9caf986cc22",
+   "statement_bytes": 2342,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_features_some",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "840965c13f938e1094f47b95aaf879027f3f94e8682b1d81c735faf469575116",
+   "statement_bytes": 1534,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_features_row_total",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "fd17acbbde641a9216f89ddaf64eb98bc1ce1612d5d2c8af70e5c5c210d201d0",
+   "statement_bytes": 1891,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_feature_rows",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "c52aa820fbe1076c62a6d5c2486a33c977c9b3b62d6d392f99601d6355196291",
+   "statement_bytes": 2763,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sas_Q27_clause1",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "96592d83cb1dbf7bedf09daa914c1b07750c6cc5f202ab5f6f6b94ec9c966b4a",
+   "statement_bytes": 3065,
+   "same_as_round5": true
+  },
+  {
+   "id": "lem:sasLinks_witness",
+   "kind": "lemma",
+   "state": "TheoremProved",
+   "is_auxiliary": false,
+   "statement_sha256": "1c395e455114a67c72ba0040b9045a5d1e5958fcbe90118d1f216995bbf7e18b",
+   "statement_bytes": 2258,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:validation_summary",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "502ba550d83d71b38617b5042375eafbff6544211bdaa6965ea1e5f63d1ac702",
+   "statement_bytes": 2057,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:validation_metrics_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "0551358cc1a8fb1cf8c57aa5f9497621a2867bcaa3f4967eb5673b1391a0cb59",
+   "statement_bytes": 478,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:validation_metrics",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "09ac15d8d2fba0344cef240e64b65fbedd8ba6570f3cbd57c6449e400d98704e",
+   "statement_bytes": 3159,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:valid_bins",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "3b80884fc75a9a325150bad8075cd47cdcc3d38cdbe4da08ed18932641dd1871",
+   "statement_bytes": 1345,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:training_metrics_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "5a014e974efbedb099801f1fce41a34e2940aa791e0ae8af7cac5dabf208d4d0",
+   "statement_bytes": 488,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:training_metrics",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "91008e0fd96e93327d720fc789d9a6266793a2d70faf6b867e5ddc5d6a7f2734",
+   "statement_bytes": 3167,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:train_scores_sorted",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "2cca173df16a55489ce9608aec3d81e784f90400bd555b39db82b9432afc3ff9",
+   "statement_bytes": 493,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:train_inputs_stop",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "2a8a54398b2b962e14ba30419a44cce118bb0fd8b8facf2b373863ca658f9dd1",
+   "statement_bytes": 1508,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:train_bins_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "d3551470eb6d4efec79908fc3ae0aed93278d322a8817672a88f2ffac37430f9",
+   "statement_bytes": 841,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:train_bins",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "d644cd53a596a41309118c8b4c5a87fcc046ff41a5dc9e16235a91447bba300b",
+   "statement_bytes": 1732,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:total_good_bad_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "9e687a5eb63da08f0027fea3cd9fef757ce053ccc5efc61ead2ed90ed8dd7ce5",
+   "statement_bytes": 428,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:total_good_bad",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "d372ba5227b0cd2a5cf8f6268e4a5078079323e0006c91c2ab0474739a3a1092",
+   "statement_bytes": 3228,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:total_defaults",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "43868fc57e7b658e091a58cd5566e44ba34cd50b7a6322ee9ce644c869849fb1",
+   "statement_bytes": 1014,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:threshold_analysis",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "0f778193acc4e63f965974d168a76809d8bf10f90ee73101862ea2e106e4256f",
+   "statement_bytes": 593,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_scored_temp_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "c397e118f63e229348878ae2c52fe925c8fb5570d36a909b79f78bab2f1f278d",
+   "statement_bytes": 351,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_scored_temp",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "864e09663c0f5981774b4df0155e92348ffea6ab5752a0ec34ef6560f68a1794",
+   "statement_bytes": 804,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_scored_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "cce1c372de76a37f0cce83fe8f4d9b2e365a14915dc3c631f04c4656502dbc38",
+   "statement_bytes": 295,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_scored",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "621571027bcaae5d6ca6aa105ebc340f1cee168ae54fb5921ba4a726b8cacfe9",
+   "statement_bytes": 973,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_raw_stop",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "ac711b0ddd1bbb33be79c84e7eb63a3adb47c3ccdfbd3873c9bfbb08de4b7767",
+   "statement_bytes": 1521,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_raw_input_check_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "b9aa5a2ff624d17b42386b4bae9fb0a04254fb2595a000309895457247f286e0",
+   "statement_bytes": 2502,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_raw_input_check",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "7d524436d78191fc144a7bddc65dd6f59dde4e27ab43a43907219f01bf7c6965",
+   "statement_bytes": 4222,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_raw_columns_ok_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "3e95afc5c01e9b72607c43a6f82638369e276d8211de349416907fc085e8d5a1",
+   "statement_bytes": 836,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_raw_columns_ok",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "058d4078abf720b25f70d87d1175ef7f0e2431e026dae54b3c32270c07b19159",
+   "statement_bytes": 3242,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_raw_clean_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "d1ecf02cbe6b6ccb2358928165e09ffa0e603f8a7fa5eab05498ad6f8fdcf309",
+   "statement_bytes": 780,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_raw_clean",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "0455ff730ce47181f070f61d82f1f4f963ebe12bcc9acc2ae656ce364f09c3c1",
+   "statement_bytes": 1421,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_raw_check_totals",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "4dacba0ca4b564fc1c75c5a6bbb3cc076d4afe74f8ef56e255e759eb6a95b66e",
+   "statement_bytes": 1740,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_predictions_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "b7488f5f2023c1e538e15e61ea2fe5b72f8d42b5c5255a5b36151c7a1afc98ef",
+   "statement_bytes": 282,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_predictions_full",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "6284902d195008b3524e77bfb52df83a1d636d4ae96675e1abc351a6841c8d21",
+   "statement_bytes": 2186,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_predictions",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "3b0ff471947c9ac1248b9ab2ff57b506280fc22f5cd1da94d40f58b44ac08c08",
+   "statement_bytes": 3087,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_num_macro",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "a9421fd17c05d7f3aa8cb3ad2442f1c8a80208724c2b128d581e71e50c81820e",
+   "statement_bytes": 2381,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_imputed_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "0694ebc80592aaa1972fcb9fbd9014708c66a2046ed1cb2ec254bea3dab48ed1",
+   "statement_bytes": 336,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_imputed",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "ddb71b0d78c0b472dc901bfb55df853016925c03881c22649707052d665d60db",
+   "statement_bytes": 3688,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_features_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "4b5be8a45fdb506d4f4aaaa92831ef5fc8cf240265e21b115f44610b9a41f032",
+   "statement_bytes": 1382,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_features",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "067b224c2829830523a992e71fdebbe39998a278aef06d65440e70fe7281a3d7",
+   "statement_bytes": 6549,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_cleaned_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "3ff78a52a574f00a15799f9f9e1fd730c3bb06762f98a1a269b983dae2d223ea",
+   "statement_bytes": 545,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:test_cleaned",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "500fe1a25389c138bc0e4f2f081564cbc060718738035582711cf8dadbb4a024",
+   "statement_bytes": 1392,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:sasPipeline",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "3eecc55cc2c2b2d98acb0d5ad14640bd17cbb757744542ca7469f6ea59ce2e7f",
+   "statement_bytes": 6819,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:roc_valid_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "34bec76b38802e398787924a8d663c4518cb1b9338cba0ea4193fdc6b01387ca",
+   "statement_bytes": 663,
+   "same_as_round5": false
+  },
+  {
+   "id": "def:roc_valid",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "6b627f7f27cb0428488ac4988f2c7b0e4acab2e81d0ce64ac4c04d5aaed5025d",
+   "statement_bytes": 1147,
+   "same_as_round5": false
+  },
+  {
+   "id": "def:roc_train_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "19d091a6be486a26a4ea493ee21de745dee74a1043b0125bfb896fb0627c1d17",
+   "statement_bytes": 653,
+   "same_as_round5": false
+  },
+  {
+   "id": "def:roc_train",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "d9da5481c250f9b8017ca1af7ecec8921ee371e3001bbd64e5950240414d2d11",
+   "statement_bytes": 5298,
+   "same_as_round5": false
+  },
+  {
+   "id": "def:roc_stats_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "1e57df01826a1024bd4e92c9ef7c30b40942a293212bc2af52f5111e85d6ba7e",
+   "statement_bytes": 907,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:roc_stats",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "02b64776833ad41464e695b66e26d888662d6ee18917077de47180542ebf11a9",
+   "statement_bytes": 563,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:risk_scores_validation_clean",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "fdd5d7e2c0bcf7efc7fc5f1b24751b354d761d1b32d0fb6b70ca48639e669920",
+   "statement_bytes": 951,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:risk_scores_validation",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "316f680f953bf4be1417e082e75a1c70116d01c5f38a86fe0b3bb56a58c5c7d8",
+   "statement_bytes": 2729,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:risk_scores_train_clean",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "451d450ee4024517156e9baf899e62b888c143fa86859f83a8751090e7e918e2",
+   "statement_bytes": 936,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:risk_scores_train",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "ae4f333ab191ee99b3a0d8cfb409dc4f5bcb40755dbc37aa590347d9a817a32c",
+   "statement_bytes": 2776,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:psi_summary",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "4179f86f28e1d792bbc3497a3f788246f7cfc2e6b89e90d2ba82f06c71968154",
+   "statement_bytes": 891,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:psi_floor",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "1813f7974090dc9dfab1177f3069aa2d38593cfe0035daaf088d8fce935003c9",
+   "statement_bytes": 1435,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:psi_cuts",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "a2841ac390ad5c518198675112ad4fb19fa2a3151d511d50a266b59fc8d3a4cc",
+   "statement_bytes": 1808,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:psi_calculation",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "88bf72da892fe941277e9006bcdbf3f560238eaf2c3b227b48dae93ac359fe3a",
+   "statement_bytes": 2554,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:psi_bins",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "eb14a4945bf1f3f43d90c7f15932107476633932de9afb04e53c610a396a2fcc",
+   "statement_bytes": 658,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:predict_inputs_stop",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "2f93629e899cd1369b6cd216b70234847e33f17497370f83091defed15529923",
+   "statement_bytes": 1049,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:num_macro",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "4bb1ed6cf90cb9c02dafeb2e5d7cd279b6f22c3eeccda1778b51c3f4568aa7db",
+   "statement_bytes": 5767,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:model_summary",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "8f27e23653a04586564724fe6a0863d17e331fba91e875a9e3c0462a16f4e0e8",
+   "statement_bytes": 4866,
+   "same_as_round5": false
+  },
+  {
+   "id": "def:model_performance_metrics",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "ee8acf2eae92238960560d08e78b125ed4369eea187e3a5293566eb0f649459d",
+   "statement_bytes": 2741,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:metrics_inputs_stop",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "e71f100f67e4f9cfa6820314b25931e3c8d1e8a3a23964e4acf8bc1c1cd7a45a",
+   "statement_bytes": 1015,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logit_scored_valid_temp_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "818a2da663416b1d0ea6546a8de438b896a601cf67d1d4eb3b994f3457192a63",
+   "statement_bytes": 358,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logit_scored_valid_temp",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "69cc8a7de4be41fb028ae6709cd4aa1ef20a37d16160ab200a54bd405d63852c",
+   "statement_bytes": 790,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logit_scored_valid_sorted",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "b6a37a7cc6f4b34adfbee2854507c891229384938b6fbb8066dcba0e19c2475f",
+   "statement_bytes": 274,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logit_scored_valid",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "c3687daa0b9b2cdb3584b1db86c0d61ae682c8475881083cbfa9890e95a61afc",
+   "statement_bytes": 1260,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logit_scored_train_output_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "6b1b3eede46c2a5ce1a5adbe046f0d98c997c73fdead4b7ac433adeee8c1426c",
+   "statement_bytes": 738,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logit_scored_train_output",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "6bf75908665337c96f56580bb09ffbde2997c599b5d93d8162b5bbc3b5ecb148",
+   "statement_bytes": 2774,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logit_scored_train",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "c97c2749b6891870698f2d2d26a611e0c3790625279322cd3327ded4447781d7",
+   "statement_bytes": 434,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logistic_lackfit_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "e432a350d6edb0a77c8848cf9b96dc7f4b46e4834901a0748f7b225bea9cb18d",
+   "statement_bytes": 875,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logistic_lackfit",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "9c0be5d0769037695518a3605a56ac793ea89bcb2c5906c501fff7e07f8936da",
+   "statement_bytes": 4043,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logistic_association_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "0867191649705ab368d6345f236cb16d87d09c8cea715393ec4e45c9f16d6450",
+   "statement_bytes": 879,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:logistic_association",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "39daa1ebdbf833a80590c7eaafd3122a7e70f48397b91239a25c2fb5d7bba6aa",
+   "statement_bytes": 4363,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:ks_statistic",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "44cdcd4aa4fec68690cf37a8aea3d7dcd68bf4d8bd31dbcb22287cf3b4e6e6af",
+   "statement_bytes": 1177,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:ks_calculation",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "c7e6cecc668341315b82bfd97be47ae748a5f5f4298901f2436d769b4486a23a",
+   "statement_bytes": 2883,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:kaggle_submission_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "4219ee551edbf35c78a5892d2539ac077e8c6311a849d36d6993b632b12a8d45",
+   "statement_bytes": 498,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:kaggle_submission",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "46dec676c5f1b1da6f5e6f6a0f685fbd52b227bacc221e864800aed3e7d9a9b0",
+   "statement_bytes": 1051,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:income_medians_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "5add6cbc83f8d484ee70a6c56e52512a1c1cd065990988b337586eaa276e1d67",
+   "statement_bytes": 301,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:income_medians_export",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "afea29424c09e9b581455335e38bf039d96d2497eb7675c74a42101dc7a71e47",
+   "statement_bytes": 502,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:income_medians_all_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "dac6985939de9e4eb7bc1a7c291558cd5f85b1369fa2ff037242768cefb9a252",
+   "statement_bytes": 810,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:income_medians_all",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "0a670f5c89a089a776ec0afcf917d7e1ea97a0a33a730a47de366dbe920a5694",
+   "statement_bytes": 3258,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:income_medians",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "1d188b0b798ade5aafc8974c9acccf6cf35b85a847b48dbc7fab6faa7b5cf4c4",
+   "statement_bytes": 3155,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:final_model_output",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "ec7469d0605f190d88a14492152db88fafbe30c5b85d0557355f95ae6a6f90a4",
+   "statement_bytes": 552,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:decile_list",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "a9aa891d2025fe672901b786ff2101b28715a9a6d27fae6c5344cbca8a22e1e8",
+   "statement_bytes": 631,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:decile_data_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "cd1548c80ac55ad33b3050fa83bd5ee09e8204ae625114cc62176532c388835c",
+   "statement_bytes": 401,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:decile_data",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "17dd149de19ee0b9838b5c3668740673deeafff2c18f8b7590eb1443c13231f0",
+   "statement_bytes": 2364,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:decile_analysis",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "e9b604cbdc56b3dce7c4346943371f54fd06c12e36f66baa5b4b2f2d50356d9e",
+   "statement_bytes": 3777,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:cumulative_lift",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "f678176284efa030962a4fd2b818c68b6b88885cb334693347ab6cdff676441a",
+   "statement_bytes": 3035,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_validation_export",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "715a1cc1f72532f25ceaa7cc41c56bd4496c86ca2f1c1a969816823cbb384623",
+   "statement_bytes": 391,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_train_validation_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "c776674fd2799bb848d57ce751a19f2f3c1de50519b300f59ccb65ecf31b87e9",
+   "statement_bytes": 314,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_train_validation",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "7f213ff28f98ee245b2ee603e228e5c266d01a84108264417eb78510d884ba80",
+   "statement_bytes": 858,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_train_export",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "cfb3022e1ac65ebbccdabe62c669beb52c5e0d87dc91ec0f9b874a254638c918",
+   "statement_bytes": 366,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_raw_stop",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "2d2b0343ca2586091c0738bd5aa35055c02d6be54575f4e863ebf44b18ddf2ab",
+   "statement_bytes": 1082,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_raw_input_check_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "5427ad473c75d99eaa830726b87f6f567bccfe71761c041ec50e3f86ceebb779",
+   "statement_bytes": 2412,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_raw_input_check",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "b6b4ba396bb3d8b4e0159f124eef45e4a9c5a0da3912ad1226232cc30a6156ce",
+   "statement_bytes": 3519,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_raw_columns_ok",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "65ec00625757a7cacca2a2b9a31e3fe815c604cc6bd3b45e727d651a5803c653",
+   "statement_bytes": 1659,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_raw_clean_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "078c6f660bde636719b4b4747958e63d471031cd6537bb9caa57f0c47d58cf72",
+   "statement_bytes": 835,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_raw_clean",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "246d2e30046eef206a413011e78267a9cdad6ff6e555e959914fa8343e66192a",
+   "statement_bytes": 8501,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_raw_check_totals",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "6bdc9318512310debf6e257922d5c68da94253ae873f22ac4873da823ddeaa13",
+   "statement_bytes": 3648,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_imputed_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "a149298d39046e654cad60665a228139dffb17a566b4ae4993273e401e827053",
+   "statement_bytes": 833,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_imputed",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "b3118b9784b243b189c02b3e59106f4d278e8513ebd0262442dedf0bd8af5651",
+   "statement_bytes": 2657,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_features_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "8fef44bfb3bfd6a2b74dbf442edf883c7c395477908fc4427b42d42099066fd7",
+   "statement_bytes": 1363,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_features",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "2a8ae0cdce792178726df45ab06b2069ac093ed5baad1b9dc861344c989c5c67",
+   "statement_bytes": 6821,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_cleaned_precond",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "c988d2b3d5c60accfb2630399ce71e8bd5f6b660450ac0232431fbd5de2b16b9",
+   "statement_bytes": 524,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:credit_cleaned",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "c53be5d31217450909a93c6c0e8fd0be81fa92913152a5f5c78b53e7aba55799",
+   "statement_bytes": 1314,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:confusion_metrics_macro",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "b40af29f45eaa1131eba3e389a9b95cbe503129cdde3119984b4d31eb0ff670a",
+   "statement_bytes": 4162,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:confusion_matrix_train",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "710bd6eaa651b5754a3a08f1432733093e3a56827e76fbb381ad86383bd8c175",
+   "statement_bytes": 1697,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:confusion_matrix",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "4e06a2b9751498d6f610a1ee1402df48787c0b1610f285a6fc2ed64ec42e68d4",
+   "statement_bytes": 319,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:calibration_plot",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "f2e2a377cee59fdbd5c2facd05638b5005ae98afaeb3b0eabf21c94d5a83cc4a",
+   "statement_bytes": 779,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:calibration_data",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "711e9d26a5fd73ad915c6d21b7912ee5605655fad410803d70c5102f79c4cb8d",
+   "statement_bytes": 266,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:auc_summary",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "1fa4fcc8d62e5165dc99372896c20ea7a206c2400e043493e739e689acca53f5",
+   "statement_bytes": 2566,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:auc_pairs",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "23853a84b10c42f46ce28723ceb23813369ba1c6c3c668306128bdde51ef7f00",
+   "statement_bytes": 1643,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:age_groups",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "098685756c59dcb5c12d7d54e8ff1e4ec62bad2c7cd9c8d97bdce23ce863ab6c",
+   "statement_bytes": 481,
+   "same_as_round5": true
+  },
+  {
+   "id": "def:SasLinks",
+   "kind": "definition",
+   "state": "DefinitionFormalized",
+   "is_auxiliary": false,
+   "statement_sha256": "2bee5eaed0b70a0f543bcca77eb376235ccebd67ed52851dd71f5253f354393b",
+   "statement_bytes": 9438,
+   "same_as_round5": false
+  }
+ ]
+}
