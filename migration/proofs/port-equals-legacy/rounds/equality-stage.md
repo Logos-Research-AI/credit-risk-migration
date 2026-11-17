@@ -104,6 +104,24 @@ order is reported for the record. Strict as before, reviewed before any proof or
 three definitions and two records, T0, and every contract of phase 3. Reviewers answer review
 requests before continuing their own proofs.
 
+**Hypotheses must be shown inhabited (lead, 2026-11-17).** Every contract with hypotheses
+beyond `PyLinks`, `Paired` and valid input (reached-equations, feature shape, a step's
+well-formedness) carries an example showing they can be met together, as a `lem:` item of its
+own beside the contract, reviewed and proved. For `PyLinks`, `Paired` and `SasLinks` themselves
+the example is T0.
+
+**Reviewers' checklist for phase 3 (binding).** The form of section 1 of the specification
+exactly; no SAS unit precondition and no port precondition as hypothesis; no clause of
+`SasLinks` beyond those `Paired` restates; `sasPipeline` only through `def:sasPipelineOf`; a
+flag only applied to a value named by a reached-equation on the valid input (a contract needing
+a flag on a free value goes to the lead); no coverage lemma used for the raw-length clause;
+hypotheses beyond `PyLinks`, `Paired` and valid input shown inhabited by an example item; G2
+stated on the real arguments of `run_py_py_py` on the valid run, not on the filler frames of
+`pyPipeline.score`; F4's Boolean is step 13's output; F6 quantifies `today` once; each group B
+statement names the train units it unfolds; the author reads `statement_text` back after
+`write_statement`. Proof order: T0; E1, E2; then E3, E4; then E5, E6, E8 to E11; F-contracts
+after the E-contract of their stage; F4 last.
+
 **Seams when appending a draft.** Found by prover-5: an append with `edit_solution_draft` drops
 a leading blank line of the chunk and adds no line break after a chunk that ends without one
 (two lines are joined). After every append read the seam back and compare it and the line count

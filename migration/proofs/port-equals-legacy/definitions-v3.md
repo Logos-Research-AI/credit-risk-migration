@@ -352,6 +352,28 @@ the lead 2026-11-17.
   final report under "definitions corrected before stating"; two of them (C-a, C-d) removed
   assumptions that could not be met.
 
+### C-e. `PyLinks` 11, the date
+
+Found by prover-3 while writing the witness of T0 on paper; approved by the lead 2026-11-17.
+
+- **Before**: `PyLinks` asked nothing of `today` ("Nothing is asked of the formatters, the
+  numpy routines, `fsum`, `today` or `full`").
+- **After**: `PyLinks` gains a clause 11: the `today` cell is a numeric cell (there is a SAS
+  number d, possibly the missing one, with `py.today` the numeric cell holding d). The sentence
+  above no longer names `today`.
+- **Reason**: `Paired` 7 says `py.today` is the numeric cell holding `sas.today`, so a `py`
+  whose `today` is a text cell has no paired `sas`, while `PyLinks` admitted it. T0 in the form
+  section 6 of the specification needs ("for every `py` with `PyLinks py` there is `sas` with
+  `Paired py sas`") was false. The contracts were not affected (each has the fact through
+  `Paired` 7).
+- **Why it is an assumption of the right kind**: it says what the port's out-of-scope code hands
+  the stages: the run date as a SAS date number. The reviewer points to the line of the port
+  where `today` is computed.
+- **Checked on the same occasion** (prover-3, clause by clause): no other parameter of `py` is
+  constrained by `Paired` while free in `PyLinks`: clauses 1 and 6 speak of `sas` only; 2, 3, 4
+  define `sas.split`, `sas.fit` and the SAS read-backs from the port's, for any port value; 5
+  speaks of the SAS flags only.
+
 ### Additions that are not changes of wording
 
 - **Two record items.** The server takes one declaration per item, so the parameters are two

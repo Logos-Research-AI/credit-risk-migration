@@ -370,6 +370,113 @@ on the SAS blueprint or in `SasLinks` now.
   stage functions). Remark: the text of `def:PyParams` does not spell out the types of the
   eight numpy routines.
 
+- Second read by prover-6 (by reading, not by machine): `PyLinks` 8: the 42 feature names equal
+  name for name and in order what the port writes (fe steps 04, 05, 06, `run`) and the SAS
+  feature columns; the three medians names and four score names correct (not checked: that the
+  four are all the columns the metrics units read). `Paired` 1 against `def:SasLinks`: the four
+  local definitions and clauses (1), (2), (2b) identical token for token (comments and the
+  `sas.` prefix apart). `Paired` 2 with `PyLinks` 5 implies both halves of `SasLinks` (5) on
+  tables with present, distinct `row_id`; `Paired` 6 gives (7) word for word and (4) at once.
+  Notes acted on: (a) E1 needs the list the port gives its split to equal the `row_id` list of
+  the SAS split's input, not only distinctness: `lem:sas_split_input_ids` to be extended
+  (prover-1); (b) `Paired` has no counterpart of `SasLinks` (6); it must follow from `PyLinks` 6
+  and `Paired` 3 through steps 01 and 04 (to be checked by prover-1 and in prover-3's witness).
+
+- Second read by prover-4, `def:pyPipeline` against the Python and the stage functions: agrees
+  field by field except **fit**: `train.py` 36-42 (and `def:run_py_py_py`) stop when either
+  feature file is absent; the first statement tested the training flag only and returned a
+  model where the real stage raises. Corrected by C-d (both flags). The medians term of
+  `scoreTest` is the very term `run` writes as `income_medians.csv`. Outside the model, for the
+  "not covered" section: the split file as an input (missing or unreadable raises); a raise in
+  train steps 02 to 08 before `model.json` is written; predict reads `model.json` but tests
+  `model_coefficients.csv`; written formats (best32. medians, percent8.2 interest_rate) sit in
+  the read-backs. Not opened: the bodies of the step units.
+- S13 proof (prover-8): a 759-line draft from the 2.3 proof with the Boolean threaded through,
+  `model_summary` unfolded for non-empty ROC tables, a new false case; the one-row inhabitant
+  of the old proof file (`zz_s13_input`) is dropped (the precondition has two new clauses), so
+  S13's hypotheses are not shown inhabited in this round. Submission released.
+- Answers sent to the lead on prover-6's notes: the id lists as two one-sided lemmas through
+  the raw VAR1 list, provable before E1; `SasLinks` (6) as a lemma from `PyLinks` 6, `Paired` 3
+  and the two train units, unless the units do not give it for every table (then to the lead).
+- Phase 3 split proposed to the lead (awaiting approval): first T0, T1 (prover-3; prover-9),
+  the id-list and (6) lemmas and the fillers lemma (prover-1; prover-6, prover-2); A features
+  E1, E2, G1, F1 (prover-4; prover-6); B train E3, E5 (prover-10), E4, feature shape, T2
+  (prover-5), G2, F3, F4 (prover-8), cross-reviewed; C predict E6, E7, F2, G3 (prover-6;
+  prover-4); D metrics E8, E9, G4 (prover-2), E10, E11, F5, F6 (prover-9), cross-reviewed.
+
+- Phase 0, S13 **proved** by prover-8 at d586653faf46489a99026a230d01f15f (759 lines, first
+  compile; no restatement; statement 862fba02fff644bc9bec99ff502d389a; text read back
+  unchanged). Base: the stored draft on b41b22d4, 0e8d349c4f3b49c7beea5fec948edf7e (760 lines).
+  Changes: `zz_ms` now assumes both ROC tables non-empty (the SAS unit returns no row on an
+  empty one), fed by `wf_tr_roc`'s "at least one row"; the Boolean passed through the four
+  lookup lemmas; new lemmas for the false case (cleared frame gives the empty table;
+  `model_summary` on an empty validation ROC table is the empty table); the old one-row
+  inhabitant removed. Result: equality on all four compared outputs for both values of
+  `roc_valid_created`; no hypothesis added. The copied parts were not re-read line by line.
+  The lead requires the inhabitant rebuilt for both values of the Boolean: a new item by
+  prover-8 (reviewer prover-10). Standing rule for phase 3 added to the brief.
+- Asked of prover-4 for the lead: each stop the real train stage has and `pyPipeline.fit` has
+  not (excluded by which clause, or reachable on valid input), and confirmation that the
+  medians table of `scoreTest` is read only where `run` returned.
+
+- Phase 3 split **approved by the lead** as proposed, with: the inhabitant rule on the
+  checklist; group B caveat (code fixes on a side branch will change train units: the
+  Hosmer-Lemeshow files, the expected counts' limit, the step summary; state and review E3, E4,
+  E5, G2, F3, F4 now, each naming the train units it unfolds; prove only E4 and the
+  feature-shape lemma until the lead says the port's Lean is updated); prover-7 out of phase 3
+  until it reports. Assignments sent to all authors; stating starts when prover-2 agrees on the
+  restated definitions.
+- Phase 2 review by prover-2 (on the statements before C-d): `def:pyPipeline` agrees;
+  `lem:py_score_fillers_idle` agrees; `def:Paired` agrees; `def:PyLinks` agrees on clauses 1 to
+  6 and 8 to 10; clause 7: the same clash C-d settles, found independently, and the Lean
+  (reachability) differed from the drafted text. Every clause tried on degenerate arguments:
+  no other unmeetable. To re-review after the restatement: `pyPipeline.fit`, `Paired` 5, the
+  text of `PyLinks` 7 (and C-e if approved). Note for G2: stated on the real arguments of
+  `run_py_py_py` (step 14's precondition is not met by the filler frames).
+
+### Plan of T0: the paper witness (prover-3, read only, after C-a to C-d)
+
+`py`: `input_best32` maps a text column cell by cell, a digit text to its number, anything else
+to missing (a digit text has one reading and is never a missing form; clause 2 follows from
+1); `sas_best12` a digit text of x for non-negative `decimal12` x (the one place with real
+arithmetic); `importTrain`, `importTest` deliver numeric cells of the raw values under the
+twelve names (test header flags text exactly when the table has no row); `split` the first
+(7n+9)/10 of the present ids without repeats; `fit` constant, intercept-only final model; each
+flag its own reachability, stage by stage (no circle, with fit testing both flags); read-backs
+the identity; `modelFile` the identity; `sas_best` at width 8 the digits of n, `parse_float`
+its inverse; `today` a numeric cell; the rest arbitrary.
+`sas`: `arrange` the identity; `split` as `Paired` 2 on tables with present distinct ids and
+the first (7n+9)/10 rows elsewhere; `fit` the model of `Paired` 3; then `lem:sas_links_sat` of
+the SAS blueprint gives importers, column names, `agg` and flags meeting `SasLinks` at identity
+read-backs. For the first half of T0 without identity read-backs: its importers and `agg`, and
+the SAS flags by reachability at the port's read-backs.
+`SasLinks` (6) follows for every `py` and every table from `Paired` 3 and steps 01 and 04
+alone (terms are a zip over the final effects, which are the candidates filtered; the 36 names
+coincide); stated as a lemma (prover-1), no clause in `Paired`.
+**One new clash, with the lead (proposed C-e)**: `Paired` 7 forces `py.today` numeric and
+`PyLinks` says nothing of `today`, so "for every `py` with `PyLinks` there is a paired `sas`"
+fails for a `py` with a text date. Proposal: `PyLinks` gains "today is a numeric cell".
+Clauses the real routines meet only on realistic input, both rulings already: `PyLinks` 10 for
+every n (G56), `PyLinks` 6 for every table (G58).
+
+- C-d restated by prover-1 (2026-11-17): `def:pyPipeline` rev 3a33a3de (fit tests both feature
+  flags; nothing else moved); `def:PyLinks` rev 8c70e384 (Lean unchanged but the comment over
+  clause 7; item text of clause 7 left, already in terms of `pyPipeline py` "for some ...");
+  `def:Paired` rev bdcb9e35 (clause 5: the six iff clauses of `SasLinks` (8) on the SAS flags
+  with P = `sasPipelineOf sas`; a word-for-word copy, since (8) is inline in `SasLinks` on the
+  read-only SAS blueprint and cannot be shared; new dependency on `def:sasPipelineOf`).
+  Cleared by the edit of `def:Paired`'s text and restated unchanged: `lem:sas_split_input_ids`
+  (rev 429ede2e). Not cleared: `lem:py_score_fillers_idle`, the two records, the two
+  applications. So `edit_text` on a `def:` item can clear a dependent `lem:` statement.
+- C-e approved by the lead and entered in `definitions-v3.md`: `PyLinks` 11, `today` is a
+  numeric cell. `def:PyLinks` is restated once more for it (prover-1); prover-2's re-review
+  then covers `pyPipeline.fit`, `Paired` 5, `PyLinks` 7 and 11 together. `SasLinks` (6) as a
+  lemma: agreed by the lead. T0 note: `lem:sas_links_sat` cannot be used as it stands for the
+  first half of T0 without identity read-backs.
+- Limits, as prover-3 notes: `PyLinks` 10 is asked of every whole n while the real `sas_best` at
+  width 8 gives E-notation from 10^8, so the real pair fails from 100000001 (G56); `PyLinks` 6
+  is asked of every table while the real stepwise fit raises on non-convergence (G58).
+
 ## Blueprint behaviour met
 
 - `write_statement` on an old `thm:` item replaces its contract text with a generated summary
