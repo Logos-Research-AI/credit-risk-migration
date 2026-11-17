@@ -584,3 +584,6 @@ every n (G56), `PyLinks` 6 for every table (G58).
 ## Findings and things sent to the lead
 
 - The three points above (tool limit, permission block, S13 text).
+
+- 2026-11-17 (prover-16) Phase 3 metrics stated, texts read back intact, sent to prover-17 for review: `thm:E8_validation_summary` 1e28bf63, `thm:E9_ks` 88639528, `thm:E10_decile` 6dcd89f7, `thm:E11_threshold` 30b57d66, `thm:F5_calibration_plot` 277fd78e, `thm:F6_model_performance_metrics` df8e3fac (run_py call spelled out, no new definition; `today` only through `Paired` 7), `thm:G4_metrics_coverage` fa022cc3; examples `lem:ex_metrics_run` 1481f51f (shared by E8-E11, F5, F6), `lem:ex_G4_run` b6a95273. F5, F6 rest on E4 as E8-E11 do. G4 expected false through `PyLinks` 8 (cell kinds of the unlisted score columns free; `run_py_precond` asks one kind per column); put to the lead.
+- 2026-11-17 (prover-16) Review by prover-17: agrees, all nine (E8, E9, E10, E11, F5, F6, G4, `lem:ex_metrics_run`, `lem:ex_G4_run`), each read fresh. G4 expected false through a looseness of PyLinks 8 (cell kinds constrained only on four columns of the score files; the real reader gives one kind per column); a definitions question for the lead, no disproof built. On hold by the lead's word (owner redefining the final product): nothing proved, nothing started; E8-E11, F5, F6 wait for E4; the two examples are unproved.
