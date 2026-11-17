@@ -22,6 +22,12 @@ Assignment: the phase 0 table of the brief.
 |---|---|---|
 | (filled as reports come in) | | |
 
+- 2026-11-17 (prover-14) S16a: draft rev 9f57d35b..., 1421 lines, resubmitted, accepted.
+- 2026-11-17 (prover-14) S16b: draft rev 3f3f8257..., 1470 lines (old draft on b41b22d4 rev 5e91c0ed..., same count), resubmitted, accepted.
+- 2026-11-17 (prover-14) S8a: draft rev eaf7fe23..., 2656 lines (old b6090b10..., same count), resubmitted, accepted.
+- 2026-11-17 (prover-14) S8b: draft rev bc14d48b..., 2513 lines (old rev b7264b60..., same count), resubmitted, accepted.
+- 2026-11-17 (prover-14) S10b: draft rev 14d5df24..., 2284 lines (old rev c54b10ea..., same count), resubmitted, accepted. For S16b, S8a, S8b, S10b the stored drafts were already complete when found; only head lines and line counts were compared with the old drafts, not every line.
+
 ## Phase 1: coverage of the SAS unit preconditions
 
 20 lemmas `lem:sas_cov_<unit>`. Assignment: the phase 1 table of the brief.
@@ -29,9 +35,42 @@ Assignment: the phase 0 table of the brief.
 | Lemma | Owner | Statement reviewed by | Result |
 |---|---|---|---|
 
+- 2026-11-17 (prover-14) lem:sas_cov_test_cleaned: stored draft had a final `sorry` after a complete proof ("No goals"); removed it (rev 0c041ea8...), accepted.
+- 2026-11-17 (prover-14) lem:sas_cov_test_imputed: proved (projection of the arrange clause of hLinks), accepted, rev 1dc8753a....
+- 2026-11-17 (prover-14) lem:sas_cov_credit_raw_clean: first found the statement false as written (credit_raw_clean_precond in the profile has `t.length <= 32`, not implied by SasLinks). On the lead's ruling (finding 3 below) restated like lem:sas_cov_test_raw_clean: text edited (clauses that follow from SasLinks, length clause named as not implied and not needed, unit quoted in full), Lean restated as the precondition with only the length clause removed, judge accepted (rev fd3ff25b...), text read back intact. Review by prover-13 pending; no proof submitted yet.
+- 2026-11-17 (prover-14) note for phase 0: for S16b, S8a, S8b and S10b (and S16a) only head lines and line counts were compared with the old drafts on b41b22d4, not every line. For test_cleaned, one stray final `sorry` was removed from the stored draft before submitting.
+
 ## Phase 2: the three definitions
 
 Stated by prover-1, reviewed by prover-2.
+
+- 2026-11-17 (prover-12, taking over from prover-1 after its stop at 04:28 UTC) C-e done:
+  `def:PyLinks` restated at 149791239c4c4ce2b412025394a6eb49. Text: "`today`" removed from
+  the opening "nothing is asked" sentence; clause 11 added (the `today` cell is a numeric cell
+  holding a SAS number d, possibly missing; nothing asked of d). Lean: header comment, `∧` after
+  `py.sas_best none 8 = ""`, last conjunct `∃ d : Sas.Num ℝ, py.today = Tabular.Cell.num d`.
+  `statement_text` and `statement_lean` fetched before the edit; text read back after
+  `write_statement`, identical. Cleared: nothing (`def:PyLinks` has no consumers). Reviewed
+  "agrees" by prover-13 against the C-d version 8c70e384.
+- Date note for F4 and F6 (prover-12, confirmed by prover-13): the real run takes the date from
+  `dt.date.today()` (`port/credit_risk/metrics_calculation.py` line 483,
+  `port/credit_risk/train.py` line 771; RULEBOOK lines 115 and 787). That is a polars Date,
+  counted in days from 1970, while SAS `today()` counts from 1960. Clause 11 leaves the value
+  free and `Paired` 7 shares it, so whether the two formatters show the same d the same way is
+  a question for the reviewers of F4 and F6.
+- `lem:py_score_fillers_idle`: found already proved (state TheoremProved; proof `rfl` for
+  step 12, `unfold train_run_14_final_and_summary; rfl` for step 14; no dependencies). It was
+  proved before the stop; the author is not recorded on the item. Not touched.
+- `lem:sas_split_input_ids` extended with the lead's approval (2026-11-17), statement
+  f047cd22c9644d6fb7fb84e86b14cc18. Hypotheses and the two old conclusions are unchanged. New
+  third conclusion: the `row_id` list of the table the SAS split receives equals
+  `train.map (fun r => CreditRisk.num r "VAR1")`. One sentence added to the text.
+- New items, stated by prover-12, with prover-13 reviewing before any proof:
+  `lem:py_split_input_ids` 16bc7e92d14c412e976a43804508c159 (under `PyLinks`, uses clause 3
+  only: the `VAR1` column of the port's cleaned frame, the very term `pyPipeline.features`
+  gives `py.split`, is the raw `VAR1` list); `lem:sas_fit_term_names`
+  6a19bf695d9d4801a4f72e8ead1cc543 (`SasLinks` (6) on `sas.fit` for every `sas` paired with
+  some `py`, from `Paired` 3 and train steps 01 and 04; no `PyLinks`).
 
 ## Tool limits met
 
