@@ -487,6 +487,45 @@ every n (G56), `PyLinks` 6 for every table (G58).
 - Wording rule for per-file contracts (answer to prover-9): the port side spells out the stage
   function's call character for character as in `def:pyPipeline`; no helper item.
 
+## Limits
+
+- **The train stage after the fit (lead's ruling, 2026-11-17; check by the phase 2 reviewer,
+  prover-13, from the Lean and `port/credit_risk/train.py`, `sas_compat.py`).** The question:
+  where the real train stage raises or gives no model while `pyPipeline.fit` returns one.
+  1. No final model (`train.py:106-107`): excluded on every argument by `PyLinks` 6
+     (`final.isSome`, `intercept_only.isSome`, for every table). The real `stepwise_logistic`
+     sets both whenever it returns (`sas_compat.py:924`, `:964`). Its own raises are under "the
+     fit is taken to return a result" (G58): `:903` when a fit does not converge, which
+     includes a training part with one outcome only; `:963` at the 500-step cap.
+  2. The stop when a feature file is absent (`train.py:36-42`): `pyPipeline.fit` tests both
+     feature flags, as `run_py_py_py` does. On the arguments a contract gives it, both flags are
+     true by `PyLinks` 7 and E1.
+  3. **Not covered, as an extension of G58.** Steps 03 and 05 to 08 run before `model.json` is
+     written (`train.py:154-455`). `PyLinks` 6 gives only the facts about the stepwise result
+     that steps 01 and 04 ask for. It leaves free `final.cov`, `intercept_only.loglik`, the
+     fits of `stepwise.steps`, and names of `final` beyond the candidates.
+     - Concrete `py` meeting `PyLinks` 6: `final` = `intercept_only` = names `["Intercept"]`,
+       beta `d1 [0]`, cov `d2 [[0]]`, no step. On it the precondition of step 06 fails
+       (se = 0). In Python this is a ZeroDivisionError at `train.py:347`, before `model.json`,
+       while `pyPipeline.fit` returns a model.
+     - The real fit does not return this: on a training part with both outcomes, cov is the
+       inverse of a positive-definite information matrix. No valid input reaching a raise with
+       the real fit was found.
+     - Lead's ruling: no change to `PyLinks` 6. The train stage's completion after the fit
+       (steps 03 and 05 to 08 succeeding on the fit's output) is reported as not covered. G2 on
+       the train stage is stated for what `PyLinks` gives (steps 01 and 04), and its text names
+       the steps not covered and why.
+     - **Correction to section 4 of the specification.** It calls these conditions those of the
+       printed steps, outside "the part that concerns the compared files". They are not about
+       printed files only: a raise there stops `model.json` and every output after it (the two
+       risk-score files, `final_model_output.csv`, `model_summary.csv`,
+       `model_coefficients.csv`, and through them predict and metrics).
+  4. The medians table of `scoreTest` is read only where the feature run returned. It is passed
+     only when `py.mediansExist train` holds, and `PyLinks` 7 makes that true exactly when
+     `features` returns for `train` and some seed. On E6's arguments it is true through E1. In
+     the real run, `income_medians.csv` is written with the two feature files
+     (`feature_engineering.py:365-371`), after the only stop (`:128`).
+
 ## Blueprint behaviour met
 
 - `write_statement` on an old `thm:` item replaces its contract text with a generated summary
