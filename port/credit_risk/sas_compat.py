@@ -765,10 +765,13 @@ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticF
     Two other readings fail there: j kept after a first-trial success (17 steps, among them step
     8 of the reference data), j back to 0 after one (7 steps of the subsets). On the reference data 18 of the 19 steps are
     ridged at iteration 1; without the ridge the iteration breaks down at iteration 3.
-    Not settled by x17: the first ridge (no run needed one below 0.0064, so 1e-4 is the
-    documented start, not a measured one; any start up to 0.0064 on this ladder gives the same
-    histories), a step that leaves the log likelihood exactly equal (taken here), and a ridged
-    iteration on a separated fit (no run has both).
+    Review of 2026-11-17 (21 more inputs, SAS logs under out/review_fit, the cases of
+    port/tests/data/sas_fit_cases.json): the first ridge of a fit is 1e-4 (9 fits start there);
+    j has no floor at 0 (a separated step with ridges 0.0001 and then 0.000025; with a floor the
+    kept estimates are 1.9% off); the ridge and the separation tests work together (7 separated
+    steps with ridged iterations); ridges from 0.000025 to 419.4304.
+    Not settled: how far below 1e-4 SAS goes (0.000025 is the smallest seen; no floor here), and
+    a step that leaves the log likelihood exactly equal (taken here without a ridge).
     After each iteration, first SAS's convergence test (GCONV:
     gradient' * inverse information * gradient / (|log likelihood| + 1e-6) below 1e-8, all at the
     new estimates): the fit has converged and the estimates of THIS iteration are returned with
@@ -823,8 +826,8 @@ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticF
                         break
                     j += 1
                     first_trial = False
-                if first_trial and j > 0:
-                    j -= 1
+                if first_trial:
+                    j -= 1  # also below 0: SAS's next ridge after 1e-4 is 0.000025
             b, ll = new_b, new_ll
             p = _expit(x @ b)
             w = p * (1.0 - p)
@@ -949,8 +952,8 @@ def stepwise_logistic(
         sep = _fit_as_sas(x, y, ["Intercept", *cols])
         if sep is None:
             raise RuntimeError(
-                f"stepwise_logistic: the fit at step {step} ({cols}) neither converged nor separated "
-                "in 25 iterations of SAS's iteration"
+                f"stepwise_logistic: the fit at step {step} ({cols}) neither converged nor separated: "
+                "SAS's iteration ended on 25 iterations, a singular system or no ridge that keeps the log likelihood"
             )
         if sep.separation is not None:
             if sep.separation == "complete":

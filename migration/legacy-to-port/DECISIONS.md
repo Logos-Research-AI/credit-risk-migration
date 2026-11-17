@@ -233,3 +233,14 @@ for translation rules once it exists.
   separated fit (the two rules are applied together; no run has both). A fit that neither
   converges nor separates in 25 iterations, a singular system, or no ridge that keeps the log
   likelihood: the port stops with an error; what SAS does there is not measured.
+- Corrected 2026-11-17 (review of 2461757): the ridge ladder has no floor at 1e-4. The first
+  version stopped j at 0; SAS goes below. Evidence: the reviewer's ITPRINT run
+  `sep_monthly_income_0p5_n2000_s0_sw0` (out/review_fit), step 3, complete separation at
+  iteration 8 with ridges 0.0001 and 0.000025 at iterations 5 and 6; with the floor the port
+  ridged 0.0001 twice and the kept estimates were 1.9% off, without it they are SAS's to 2e-6.
+  X17 is unchanged by it. The same review measured two of the points X17 left open: the first
+  ridge of a fit is 1e-4 (ridges from 0.000025 to 419.4304 on 21 further inputs), and ridged
+  iterations occur on separated fits and are reproduced with the two rules applied together.
+  Still not settled: how far below 1e-4 SAS goes (the port sets no floor), and a step that
+  leaves the log likelihood exactly equal. The error message of a fit that neither converges nor
+  separates no longer says "in 25 iterations" for a singular system or a failed ridge search.
