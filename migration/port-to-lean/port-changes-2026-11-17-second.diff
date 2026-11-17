@@ -1,0 +1,117 @@
+diff --git a/port/credit_risk/sas_compat.py b/port/credit_risk/sas_compat.py
+index fcc2e91..2eb66e0 100644
+--- a/port/credit_risk/sas_compat.py
++++ b/port/credit_risk/sas_compat.py
+@@ -824,6 +824,48 @@ class StepwiseResult:
+     intercept_only: LogisticFit | None = None
+ 
+ 
++def _entry_score_chisq(
++    x: FloatArray, y: FloatArray, cur: LogisticFit, others: Mapping[str, FloatArray]
++) -> list[tuple[str, float]]:
++    """The score chi-square with which each column of `others` (name -> values, in MODEL order)
++    would enter the model `cur` fitted on the columns `x`; a column aliased with the model
++    (relative residual information < 1e-8) is left out.
++    After a converged step it is the candidate's score squared over its residual information.
++    After a separated step the kept estimates are not at a maximum, so the score of the model's
++    own parameters is not zero, and SAS's statistic is U' I^-1 U over ALL parameters of the
++    enlarged model at the kept estimates (the model's and the candidate's), not the candidate's
++    part alone. By blocks: the model's own g' I_m^-1 g, plus the candidate's score corrected for
++    g, squared over its residual information. Measured: the 175 score chi-squares SAS prints
++    after the separated step "age" of five files agree to 1e-10 relative
++    (migration/legacy-to-port/separation-rule.md part 3; port/tests/test_entry_score.py). After
++    a converged step g is zero up to rounding; that branch is the computation as it always was,
++    so its numbers do not change in any bit."""
++    p = _expit(x @ cur.beta)
++    w = p * (1.0 - p)
++    info = x.T @ (x * w[:, None])
++    separated = cur.separation is not None
++    if separated:
++        g = x.T @ (y - p)
++        info_g = np.linalg.solve(info, g)
++        own = float(g @ info_g)
++    out: list[tuple[str, float]] = []
++    for c, z in others.items():
++        zwz = float(z @ (z * w))
++        v = x.T @ (z * w)
++        resid = zwz - float(v @ np.linalg.solve(info, v))
++        # RESOLVED (post-parity): alias alternation not reached on judged inputs (path matches SAS);
++        # a longer cycle would stop at the 500-step cap with RuntimeError.
++        if zwz <= 0.0 or resid / zwz < 1e-8:
++            continue  # aliased with the current model
++        u = float(z @ (y - p))
++        if separated:
++            sc = own + (u - float(v @ info_g)) ** 2 / resid
++        else:
++            sc = u * u / resid
++        out.append((c, sc))
++    return out
++
++
+ def stepwise_logistic(
+     df: pl.DataFrame,
+     response: str,
+@@ -834,7 +876,8 @@ def stepwise_logistic(
+     """PROC LOGISTIC descending selection=stepwise exactly as RULEBOOK §2 (A5) and the train.sas
+     stepwise inventory row: removal before entry; aliased candidates skipped (relative residual
+     < 1e-8); enter the largest score chi-square (strict >, ties to the first in MODEL order);
+-    stop when nothing enters or the best entry was just removed. Reference implementation:
++    stop when nothing enters or the best entry was just removed. After a separated step the entry
++    score chi-square is over all parameters of the enlarged model (see the entry loop). Reference implementation:
+     migration/experiments/x02_stepwise_reference.py. Rows with a missing response or candidate are
+     dropped. The model columns of each fit are in ENTRY order (names[0] = "Intercept").
+     A step whose fit is separated is kept with the estimates SAS keeps (`_fit_separated`), with SAS's
+@@ -902,24 +945,9 @@ def stepwise_logistic(
+                 )
+                 last_removed = best_w[1]
+                 continue
+-        x = np.column_stack([ones, *[z_all[c] for c in model]])
+-        p = _expit(x @ cur.beta)
+-        w = p * (1.0 - p)
+-        info = x.T @ (x * w[:, None])
+         best: tuple[float, str] | None = None
+-        for c in candidates:
+-            if c in model:
+-                continue
+-            z = z_all[c]
+-            zwz = float(z @ (z * w))
+-            v = x.T @ (z * w)
+-            resid = zwz - float(v @ np.linalg.solve(info, v))
+-            # RESOLVED (post-parity): alias alternation not reached on judged inputs (path matches SAS);
+-            # a longer cycle would stop at the 500-step cap with RuntimeError.
+-            if zwz <= 0.0 or resid / zwz < 1e-8:
+-                continue  # aliased with the current model
+-            u = float(z @ (y - p))
+-            sc = u * u / resid
++        x = np.column_stack([ones, *[z_all[c] for c in model]])
++        for c, sc in _entry_score_chisq(x, y, cur, {c: z_all[c] for c in candidates if c not in model}):
+             if best is None or sc > best[0]:
+                 best = (sc, c)
+         if best is None or chi2_sf(best[0], 1) >= slentry or best[1] == last_removed:
+@@ -1234,7 +1262,14 @@ def classification_table(
+     cross-validated probabilities and its 357 levels bit for bit, every count) and the 17
+     intercept-only runs of judge/runs (small-inputs.md (b)). A probability that equals a printed level
+     starts or ends the grid at that level (tolerance 1e-9 on the range, the port's choice: SAS's is
+-    not known; it gives SAS's rows in all 57 fits)."""
++    not known; it gives SAS's rows in all 57 fits).
++    Fit with a variable: the levels are k * 0.02 rounded, compared with >=, except the level printed
++    1.000, where SAS counts no observation as a predicted event although leave-one-out probabilities
++    equal 1 in double precision: the two separated fits judge/runs/sep_age_gt_55 and sep_age_gt_62
++    (27 and 25 defaulters at probability 1; SAS's last row `1.000,0,165,0,115,...`). So that level
++    is 1 + 1e-12 here too (port/tests/test_classification_level_one.py). Not established: what SAS
++    does with a probability equal to a LOWER printed level on a fit with a variable; the plain >= on
++    the rounded level stays."""
+     if y.ndim == 2:  # inventory order (X, y, pd)
+         y, x = x, y
+     if fit is not None and not isinstance(fit, LogisticFit):
+@@ -1264,8 +1299,8 @@ def classification_table(
+         cut[0] = klo * 0.02
+         for i in range(1, len(cut)):
+             cut[i] = cut[i - 2] + 0.04 if i >= 2 and i % 2 == 0 else cut[i - 1] + 0.02
+-        if khi == 50:
+-            cut[-1] = 1.0 + 1e-12
++    if khi == 50:  # the level printed 1.000: no observation is counted there, on any fit
++        cut[-1] = 1.0 + 1e-12
+     n1 = int(y.sum())
+     n0 = len(y) - n1
+ 
