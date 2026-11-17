@@ -131,7 +131,15 @@ def run(input_dir: Path, output_dir: Path) -> None:
         ss_score.append(
             "_" if st.score_chisq is None else sas_compat.fmt_wd(st.score_chisq, 10, 4)
         )  # '_' = ODS ._
-        ss_wald.append("_" if st.wald_chisq is None else sas_compat.fmt_wd(st.wald_chisq, 10, 4))
+        # a removal of a parameter left out of a singular information matrix has DF 0 and no Wald
+        # test: wald_chisq and p_value are NaN and both cells are empty (singular-information.md)
+        ss_wald.append(
+            "_"
+            if st.wald_chisq is None
+            else ""
+            if math.isnan(st.wald_chisq)
+            else sas_compat.fmt_wd(st.wald_chisq, 10, 4)
+        )
         ss_prob.append(sas_compat.sas_pvalue(st.p_value))
     stepwise_summary = pl.DataFrame(
         {
@@ -219,10 +227,19 @@ def run(input_dir: Path, output_dir: Path) -> None:
         i0 = ybar * (1.0 - ybar) * (x_k.T @ x_k)
         score = float(u0 @ np.linalg.solve(i0, u0))
         b_slope = st.fit.beta[1:]
-        wald = float(b_slope @ np.linalg.solve(st.fit.cov[1:, 1:], b_slope))
+        # a step with a parameter left out of a singular information matrix (variance exactly 0) has
+        # no Wald test of the global null hypothesis: empty chi-square and probability, DF = the
+        # variables not left out (singular-information.md)
+        n_left_out = sum(float(v) == 0.0 for v in np.diag(st.fit.cov)[1:].tolist())
+        wald = math.nan if n_left_out else float(b_slope @ np.linalg.solve(st.fit.cov[1:, 1:], b_slope))
         for test, stat in (("Likelihood Ratio", lr), ("Score", score), ("Wald", wald)):
             gt_step.append(str(st.step))
             gt_test.append(test)
+            if math.isnan(stat):
+                gt_chisq.append("")
+                gt_df.append(str(q - n_left_out))
+                gt_prob.append("")
+                continue
             gt_chisq.append(sas_compat.fmt_wd(stat, 10, 4))
             gt_df.append(str(q))
             gt_prob.append(sas_compat.sas_pvalue(sas_compat.chi2_sf(stat, q)))

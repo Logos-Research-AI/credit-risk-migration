@@ -750,6 +750,73 @@ def fit_logistic(x: FloatArray, y: FloatArray, names: Sequence[str]) -> Logistic
     return LogisticFit(list(names), b, cov, ll, n_iter, converged)
 
 
+def _p_w_r(eta: FloatArray, y: FloatArray) -> tuple[FloatArray, FloatArray, FloatArray]:
+    """Probability, weight and residual y - p of each row as SAS's fit forms them
+    (singular-information.md, rule 1). With e = exp(-|eta|), hi = 1 / (1 + e) is the probability of
+    the likelier outcome and lo = e * hi that of the other; lo is exactly 0 when hi rounds to 1
+    (|eta| > 53 ln 2 = 36.7368). The weight is hi * lo, and the residual is taken from hi and lo, so
+    a probability near 0 is treated as one near 1 and a row beyond the limit has weight 0."""
+    e = np.exp(-np.abs(eta))
+    hi = 1.0 / (1.0 + e)
+    lo = np.where(hi == 1.0, 0.0, e * hi)
+    up = eta >= 0
+    p = np.where(up, hi, lo)
+    r = np.where(y == 1, np.where(up, lo, hi), -p)
+    return (
+        np.asarray(p, dtype=np.float64),
+        np.asarray(hi * lo, dtype=np.float64),
+        np.asarray(r, dtype=np.float64),
+    )
+
+
+def _kept(a: FloatArray) -> list[int]:
+    """The parameters SAS does not leave out of a singular information matrix `a`
+    (singular-information.md, rule 2): taken in order, intercept first, a parameter is left out
+    when its pivot (its diagonal element after the kept parameters before it are swept out) is not
+    above 1e-9 times its own diagonal element. Measured on the designed cases of experiment x19:
+    left out up to a relative pivot of about 8.6e-10, kept from about 1.18e-9, the same when a
+    column is multiplied by 1000."""
+    kept: list[int] = []
+    for i in range(a.shape[0]):
+        pivot = float(a[i, i])
+        if kept:
+            c = a[kept, i]
+            pivot -= float(c @ np.linalg.solve(a[np.ix_(kept, kept)], c))
+        if pivot > 1e-9 * float(a[i, i]):
+            kept.append(i)
+    return kept
+
+
+def _solve_sas(a: FloatArray, g: FloatArray) -> FloatArray:
+    """inverse(a) @ g with the left-out parameters' part 0 (`_kept`); an ordinary solve when none is."""
+    kept = _kept(a)
+    if len(kept) == a.shape[0]:
+        return np.asarray(np.linalg.solve(a, g), dtype=np.float64)
+    out = np.zeros(a.shape[0])
+    if kept:
+        out[kept] = np.linalg.solve(a[np.ix_(kept, kept)], g[kept])
+    return out
+
+
+def _inv_sas(a: FloatArray) -> FloatArray:
+    """The inverse of `a` with the rows and columns of the left-out parameters 0 (`_kept`); the
+    ordinary inverse when none is left out. A parameter left out at the last iteration of a fit is
+    known afterwards by the exact 0 of its diagonal element in `LogisticFit.cov` (`_left_out`)."""
+    kept = _kept(a)
+    if len(kept) == a.shape[0]:
+        return np.asarray(np.linalg.inv(a), dtype=np.float64)
+    out = np.zeros(a.shape)
+    if kept:
+        out[np.ix_(kept, kept)] = np.linalg.inv(a[np.ix_(kept, kept)])
+    return out
+
+
+def _left_out(fit: LogisticFit) -> list[str]:
+    """The parameters SAS left out at the last iteration of `fit` (singular information): those
+    whose variance in `fit.cov` is exactly 0. They have no standard error and no Wald test."""
+    return [n for i, n in enumerate(fit.names) if float(fit.cov[i, i]) == 0.0]
+
+
 def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticFit | None:
     """The estimates PROC LOGISTIC ends with for a model with a variable, as `train.sas` calls it:
     SAS's own iteration, stopped where SAS stops it. Fisher scoring from the intercept-only
@@ -793,6 +860,13 @@ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticF
     estimates are returned, `converged=False`. None when neither is found in 25 iterations, a
     system is singular or no ridge up to 1e-4 * 4**40 keeps the log likelihood: what SAS does
     then is not measured, and the caller stops with an error.
+    A singular information matrix (singular-information.md; experiment x19, 44 designed fits and
+    10 raw inputs): the weights and residuals are those of `_p_w_r`, exactly 0 beyond
+    |eta| = 36.7368, and wherever the inverse of the information is needed (the step, the ridged
+    step, the convergence test, the 5000 test, the covariance) a parameter whose pivot is not above
+    1e-9 of its own diagonal element is left out: its step is 0 and its row and column of the
+    inverse are 0 (`_kept`). A parameter left out at the last iteration has variance 0 in the
+    returned `cov` (`_left_out`); the caller gives it no Wald test and removes it at the next step.
     Measured on the ITPRINT runs of out/separation/sas (`migration/legacy-to-port/small-inputs.md`):
     18 complete steps, all stopped at iteration 8, the smallest probability of an observed response
     there from 0.539 (D11, 382 of 400 observations at 0.95 or above) to 0.9999; 8 quasi-complete
@@ -813,18 +887,17 @@ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticF
     j = 0  # the next ridge to try is 1e-4 * 4**j
     try:
         for n_iter in range(1, 26):
-            p = _expit(x @ b)
-            w = p * (1.0 - p)
+            _, w, r = _p_w_r(x @ b, y)
             info = x.T @ (x * w[:, None])
-            g = x.T @ (y - p)
-            new_b = b + np.linalg.solve(info, g)
+            g = x.T @ r
+            new_b = b + _solve_sas(info, g)
             new_ll = _loglik(x @ new_b, y)
             if new_ll < ll:  # the step lowers the log likelihood: SAS's ridge
                 first_trial = True
                 while True:
                     if j > 40:
                         return None
-                    new_b = b + np.linalg.solve(info + np.diag(1e-4 * 4.0**j * np.diag(info)), g)
+                    new_b = b + _solve_sas(info + np.diag(1e-4 * 4.0**j * np.diag(info)), g)
                     new_ll = _loglik(x @ new_b, y)
                     if not new_ll < ll:
                         break
@@ -833,25 +906,24 @@ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticF
                 if first_trial:
                     j -= 1  # also below 0: SAS's next ridge after 1e-4 is 0.000025
             b, ll = new_b, new_ll
-            p = _expit(x @ b)
-            w = p * (1.0 - p)
-            g = x.T @ (y - p)
-            if float(g @ np.linalg.solve(x.T @ (x * w[:, None]), g)) / (abs(ll) + 1e-6) < 1e-8:
+            _, w, r = _p_w_r(x @ b, y)
+            info = x.T @ (x * w[:, None])
+            g = x.T @ r
+            if float(g @ _solve_sas(info, g)) / (abs(ll) + 1e-6) < 1e-8:
                 # SAS's fit converged (GCONV): its estimates are those of this iteration
-                return LogisticFit(list(names), b, np.linalg.inv(x.T @ (x * w[:, None])), ll, n_iter, True)
+                return LogisticFit(list(names), b, _inv_sas(info), ll, n_iter, True)
             if n_iter < 8:
                 continue
-            p_obs = np.where(y == 1, p, 1.0 - p)
+            p_obs = 1.0 - np.abs(r)  # the probability of the observed response, from hi and lo
             separation: str | None = None
             if bool(np.all(p_obs > 0.5)):
                 separation = "complete"
             elif bool(np.any(p_obs >= 0.95)) and (
-                float(np.diag(np.linalg.inv(xs.T @ (xs * w[:, None])))[1:].max()) > 5000.0
+                float(np.diag(_inv_sas(xs.T @ (xs * w[:, None])))[1:].max()) > 5000.0
             ):
                 separation = "quasicomplete"
             if separation is not None:
-                cov = np.linalg.inv(x.T @ (x * w[:, None]))
-                return LogisticFit(list(names), b, cov, ll, n_iter, False, separation)
+                return LogisticFit(list(names), b, _inv_sas(info), ll, n_iter, False, separation)
     except np.linalg.LinAlgError:
         return None
     return None
@@ -976,6 +1048,11 @@ def _stepwise_logistic_with_note(
                 f"stepwise_logistic: the fit at step {step} ({cols}) neither converged nor separated: "
                 "SAS's iteration ended on 25 iterations, a singular system or no ridge that keeps the log likelihood"
             )
+        if _left_out(sep):
+            print(
+                "WARNING: The information matrix is singular and thus the convergence is questionable. "
+                "Try specifying a larger SINGULAR= value."
+            )
         if sep.separation is not None:
             if sep.separation == "complete":
                 print(
@@ -1003,6 +1080,32 @@ def _stepwise_logistic_with_note(
     while step < 500:
         if model:  # removal first: smallest Wald chi-square, ties to the first in MODEL order
             best_w: tuple[float, str] | None = None
+            singular = [c for c in _left_out(cur) if c in model]
+            if len(singular) > 1:
+                raise RuntimeError(
+                    f"stepwise_logistic: step {step} left {singular} out of a singular information matrix; "
+                    "which of two SAS removes first is not measured"
+                )
+            if singular:
+                # a parameter left out at the last iteration has no Wald test and is removed at the next
+                # step whatever the others' tests are: DF 0, no chi-square, no probability
+                step += 1
+                model.remove(singular[0])
+                cur = fit(model)
+                res.steps.append(
+                    StepwiseStep(step, None, singular[0], 0, len(model), None, math.nan, math.nan, cur)
+                )
+                if frozenset(model) in had:
+                    entered_before = len(res.steps) > 1 and res.steps[-2].entered == singular[0]
+                    note = (
+                        "Model building terminates because the last effect entered is removed by the Wald "
+                        "statistic criterion."
+                        if entered_before
+                        else "Model building terminates because of recycling of previous steps."
+                    )
+                    break
+                had.append(frozenset(model))
+                continue
             for c in sorted(model, key=mkey):
                 i = cur.names.index(c)
                 wv = float(cur.beta[i] ** 2 / cur.cov[i, i])

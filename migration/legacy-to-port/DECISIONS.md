@@ -306,3 +306,42 @@ for translation rules once it exists.
   does not depend on what happened in the selection: small60_16 has a separated step and four
   distinct probabilities, Dd, Dn2 and Dn6 a final model of one two-valued variable. Not seen: a
   final model with a variable and a single group.
+
+## A singular information matrix: the port follows SAS (2026-11-17)
+- Owner's ruling: the port follows SAS until no difference is left. The rule is the one measured
+  in `singular-information.md` (coding-agent-2: experiment X19, 44 designed fits, 10 raw inputs).
+  The port stopped ("neither converged nor separated") on seven raw inputs where SAS completes,
+  and completed with wrong cells on two (Cm2, Cm3: DF 1 and Wald 0.0000 for SAS's DF 0 and empty
+  cells).
+- In the fit (`_fit_as_sas`): probabilities, weights and residuals from `_p_w_r` (a row beyond
+  |eta| = 36.7368 has weight exactly 0, on both sides); every inverse of the information through
+  `_kept` (parameters in model order, one whose pivot is not above 1e-9 of its own diagonal
+  element left out, its step and its row and column of the inverse 0).
+- No dataclass changes. A parameter left out at the last iteration is known by its variance being
+  exactly 0 in `LogisticFit.cov` (`_left_out`); a positive definite covariance has no such
+  element. The removal of such a variable is a `StepwiseStep` with `df = 0` and `wald_chisq` and
+  `p_value` NaN (the fields and their types are as before; NaN and DF 0 are new VALUES), and
+  `train.py` writes the empty cells from them.
+- The port prints SAS's warning ("The information matrix is singular and thus the convergence is
+  questionable...") on a fit with a parameter left out at the last iteration, before a
+  separation warning, as SAS's log has it; on the 14 designed stepwise runs it is printed on the
+  same runs as SAS.
+- Tests: `port/tests/test_singular_information.py` on the 40 designed cases of X19
+  (`port/tests/data/sas_singular_cases.json`): the 44 fits, the 14 stepwise runs, and the same 14
+  runs through `train.run` (stepwise_summary.csv and printed_global_tests.csv cell by cell against
+  SAS). Each of these mutations fails a test: tolerance 1e-12; tolerance relative to the largest
+  diagonal element; weight not 0 beyond |eta| 36.7368; the left-out variable left to the ordinary
+  Wald test; DF 1 for its removal (in `sas_compat` or in `train.py`); Wald 0.0000 for its removal;
+  the global Wald test's DF counting the left-out variable or its chi-square printed 0.0000; the
+  warning not printed.
+- Where the fit leaves nothing out, the systems are solved as before (`np.linalg.solve`,
+  `np.linalg.inv`); the weights are hi * lo in place of p * (1 - p), which is the same number up
+  to rounding below the limit.
+- Not measured, and what the port does: two parameters left out on the same step (the port stops
+  with an error: which SAS removes first is not known); a left-out parameter beside a variable
+  whose own Wald test would also remove it (the left-out one is removed, as the rule says, "whatever
+  the others' tests"; measured only beside a variable that stays, J5); the entry test's alias
+  tolerance stays the port's 1e-8 (SAS's fit uses 1e-9; whether its entry test does was not run);
+  the entry score test itself still forms its weights as p * (1 - p) (a model with a left-out
+  parameter never reaches an entry test, and elsewhere the two agree up to rounding); the final
+  model's scores when a weight is 0 (no final model in hand has one).
