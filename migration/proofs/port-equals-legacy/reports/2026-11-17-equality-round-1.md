@@ -594,3 +594,12 @@ every n (G56), `PyLinks` 6 for every table (G58).
 - 2026-11-17 (prover-16) Review by prover-17: agrees, all nine (E8, E9, E10, E11, F5, F6, G4, `lem:ex_metrics_run`, `lem:ex_G4_run`), each read fresh. G4 expected false through a looseness of PyLinks 8 (cell kinds constrained only on four columns of the score files; the real reader gives one kind per column); a definitions question for the lead, no disproof built. On hold by the lead's word (owner redefining the final product): nothing proved, nothing started; E8-E11, F5, F6 wait for E4; the two examples are unproved.
 
 - 2026-11-17 (prover-15) phase 3 groups A and C, stated, all reviewed "agrees" by prover-13, no proof started (held by the lead): thm:E1_features_train fb81cd8e, thm:E2_features_valid 1bcf134a, thm:G1_run_coverage c3428270, thm:F1_income_medians 5ccec9ec, thm:E6_score_test 5a86e01e, thm:E7_predict_column_names 8e048ede, thm:F2_kaggle_submission 8e8d466c, thm:G3_predict_coverage dc41d36b, example lem:ex_reached_features_predict 9075bfd4 (reached-equations of F1, E6, E7, F2, G3); texts read back intact. Reviewer's notes for the lead: E7 and F2 also claim the file is present (stronger, in the text); E7 is vacuous on a header-only test file (SAS tables carry names in rows; a limit of the table model). Planned order when released: G1, then E1, E2 (steps 00, 01, 02b, 04, 05 have no kept step contract; the old S1, S4b, S5b, ST1 drafts on b41b22d4 are against earlier units, a model only); E6, E7, F2, G3 after E3.
+
+## Owner's decision, 2026-11-17: number forms in the input files (stated limit)
+
+The port links (clauses 1, 3, 4) assume numbers written as plain digits and missing values written
+blank, `.` or `NA`. The requirements also accept `+5000`, `5e3`, numbers padded with blanks, and
+`na`, ` NA`, `NA ` as missing; on such a valid file the real importer does not meet the links
+(found by prover-5's first-hand runs). The owner chose a stated limit: the equality claim covers
+input files written in plain digits with missing values blank, `.` or `NA`, as the real data are;
+the other forms are listed with G53 to G58. No change to the definitions.
