@@ -1,0 +1,5315 @@
+{
+"G1_n45_one_event_flagged": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+9.59093629452176,
+0.71630247274425,
+0.26204412646302,
+0.09620422646764,
+0.0353650902775,
+0.01300651348925,
+0.00478434521828,
+0.00175999679834,
+0.00064745778206
+],
+"estimates": [
+[
+-3.78418963391826,
+0.0
+],
+[
+-4.80691690664553,
+46.0227272727272
+],
+[
+-5.81508992571972,
+46.0227272727272
+],
+[
+-6.81807213785756,
+46.0227272727272
+],
+[
+-7.81916596549736,
+46.0227272727272
+],
+[
+-8.81956792228622,
+46.0227272727272
+],
+[
+-9.819715734499,
+46.0227272727272
+],
+[
+-10.8197701035362,
+48.0227816417645
+],
+[
+-11.8197901036997,
+48.0227816417645
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -11.8197901036997,
+"stderr": 55.579120067249,
+"wald": 0.04522683486801
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": 48.0227816417645,
+"stderr": 72674110.7994515,
+"wald": 4.3665171590002e-13
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 9.59028883673974,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 45.0,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": 4.3665171590002e-13,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points in Step 1. The maximum likelihood estimate does not exist."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 45.0,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 1,
+"score": null,
+"wald": 4.3665171590002e-13
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 1,
+"wald": 4.3665171590002e-13
+}
+]
+},
+"G2_n60_one_event_flagged": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118513626454,
+0.26419914529024,
+0.09704454847419,
+0.03568061082324,
+0.01312344844483,
+0.00482747964463,
+0.00177588082212,
+0.00065330331976
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0
+],
+[
+-5.09448659644809,
+61.0169491525423
+],
+[
+-6.10061704967159,
+61.0169491525423
+],
+[
+-7.10285853385719,
+61.0169491525423
+],
+[
+-8.10368128355794,
+61.0169491525423
+],
+[
+-9.10398370733662,
+61.0169491525423
+],
+[
+-10.1040949291861,
+61.0169491525423
+],
+[
+-11.1041358408674,
+61.0169491525423
+],
+[
+-12.1041508908181,
+61.0169491525423
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1041508908181,
+"stderr": 55.3298341770684,
+"wald": 0.0478574903763
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757824573,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 59.9999999999999,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points in Step 1. The maximum likelihood estimate does not exist."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 59.9999999999999,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"G3_n120_three_events_one_flagged": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+28.0576437930075,
+20.3197683487921,
+20.3101120174034,
+20.3101018956411
+],
+"estimates": [
+[
+-3.66356164612964,
+0.0
+],
+[
+-3.99969609991115,
+40.3361344537815
+],
+[
+-4.06675879522692,
+41.4031971490972
+],
+[
+-4.06902427080966,
+41.4031971490972
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -4.06902427080966,
+"stderr": 0.71312396402051,
+"wald": 32.5574587483828
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 7.74754189736608,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 39.3277310924369,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 39.3277310924369,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"G4a_n202_k5_below": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+46.8635015029776,
+39.2578859106755,
+39.2559492421812,
+39.2559490280215
+],
+"estimates": [
+[
+-3.67376581630388,
+0.0
+],
+[
+-3.8747608411795,
+40.6009950248756
+],
+[
+-3.89667565260887,
+41.6229098363049
+],
+[
+-3.89690934139588,
+41.6229098363049
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -3.89690934139588,
+"stderr": 0.50505062687767,
+"wald": 59.5347831062931
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 7.60755247495689,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 39.5960199004975,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 39.5960199004975,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"G4b_n283_k7_above": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0
+],
+"neg2loglike": [
+65.6189241034315,
+58.0738821563078,
+58.0731965205778
+],
+"estimates": [
+[
+-3.67449071666183,
+0.0
+],
+[
+-3.81785444513195,
+40.5719351570415
+],
+[
+-3.82858590169124,
+40.5719351570415
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -3.82858590169124,
+"stderr": 0.41265095087602,
+"wald": 86.0817507421337
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 7.54572758285391,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 39.5683890577507,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 39.5683890577507,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"G5_n100_two_events_both_flagged": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+19.6078226559464,
+1.43651405415638,
+0.52581200425396,
+0.19308036305628,
+0.07098243209538,
+0.02610650910983,
+0.00960317305145,
+0.00353269154971,
+0.00129958857248
+],
+"estimates": [
+[
+-3.89182029811062,
+0.0
+],
+[
+-4.91222846137593,
+51.0204081632653
+],
+[
+-5.91958453869425,
+51.0204081632653
+],
+[
+-6.92227085469975,
+51.0204081632653
+],
+[
+-7.92325644396711,
+51.0204081632653
+],
+[
+-8.92361866481904,
+51.0204081632653
+],
+[
+-9.92375187016513,
+51.0204081632653
+],
+[
+-10.9238008671463,
+51.0204081632653
+],
+[
+-11.9238188912452,
+51.0204081632653
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -11.9238188912452,
+"stderr": 39.2296303225359,
+"wald": 0.0923851803091
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 19.6065230673739,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 100.0,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points in Step 1. The maximum likelihood estimate does not exist."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 100.0,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"G6_flag_enters_second": {
+"model": "a x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"a"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+6.5536,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+57.0875268519206,
+42.7851198573879,
+37.5195158227949,
+36.7670743767145,
+36.7574556285499,
+36.7574454512495
+],
+"estimates": [
+[
+-3.74557479779048,
+0.0
+],
+[
+-3.75685263951547,
+2.21489593660133
+],
+[
+-4.4215152061704,
+4.42067185392399
+],
+[
+-4.75165677943238,
+4.35165670840805
+],
+[
+-4.8180175262487,
+4.41255537760725
+],
+[
+-4.82027904560805,
+4.41481393750076
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -4.82027904560805,
+"stderr": 0.70995141258319,
+"wald": 46.0985330231449
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 4.41481393750076,
+"stderr": 0.95952992391872,
+"wald": 21.1693617071029
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 20.3300814006715,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 65.5391076115485,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": 21.1693617071029,
+"df": 1
+}
+]
+},
+"2": {
+"variables": [
+"a",
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+1.6384,
+1.6384,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+57.0875268519206,
+49.8544525270111,
+28.6700364154691,
+26.7403591894678,
+26.4996396633199,
+26.4911338969046,
+26.4911177964436
+],
+"estimates": [
+[
+-3.74557479779048,
+0.0,
+0.0
+],
+[
+-3.86260460081592,
+6.38121206337641,
+16.4684517648418
+],
+[
+-4.36170507849682,
+3.68433073962185,
+17.0366384802894
+],
+[
+-5.05155631735564,
+4.65689333014001,
+18.7264928477218
+],
+[
+-5.42232567005727,
+5.01687202056721,
+20.0972633513577
+],
+[
+-5.50943542009203,
+5.103970311997,
+21.184373524797
+],
+[
+-5.51342084748406,
+5.1079557393759,
+22.1883591079508
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -5.51342084748406,
+"stderr": 1.00201017522986,
+"wald": 30.2759671039442
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 5.1079557393759,
+"stderr": 1.19192745497821,
+"wald": 18.3651552459431
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": 22.1883591079508,
+"stderr": 4177.50399298781,
+"wald": 2.821087943e-05
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 30.5964090554774,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 109.364492089091,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 18.3651750241532,
+"df": 2
+}
+]
+},
+"3": {
+"variables": [
+"a"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+6.5536,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+57.0875268519206,
+42.7851198573879,
+37.5195158227949,
+36.7670743767145,
+36.7574556285499,
+36.7574454512495
+],
+"estimates": [
+[
+-3.74557479779048,
+0.0
+],
+[
+-3.75685263951547,
+2.21489593660133
+],
+[
+-4.4215152061704,
+4.42067185392399
+],
+[
+-4.75165677943238,
+4.35165670840805
+],
+[
+-4.8180175262487,
+4.41255537760725
+],
+[
+-4.82027904560805,
+4.41481393750076
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -4.82027904560805,
+"stderr": 0.70995141258319,
+"wald": 46.0985330231449
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 4.41481393750076,
+"stderr": 0.95952992391872,
+"wald": 21.1693617071029
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 20.3300814006715,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 65.5391076115485,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": 21.1693617071029,
+"df": 1
+}
+]
+}
+},
+"warnings": [],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "a",
+"removed": "",
+"df": 1,
+"score": 65.5391076115485,
+"wald": null
+},
+{
+"step": 2,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 124.497683253461,
+"wald": null
+},
+{
+"step": 3,
+"entered": "",
+"removed": "x1",
+"df": 1,
+"score": null,
+"wald": 2.821087943e-05
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "a",
+"df": 1,
+"wald": 21.1693617071029
+},
+{
+"step": 2,
+"effect": "a",
+"df": 1,
+"wald": 18.3651552459431
+},
+{
+"step": 2,
+"effect": "x1",
+"df": 1,
+"wald": 2.821087943e-05
+},
+{
+"step": 3,
+"effect": "a",
+"df": 1,
+"wald": 21.1693617071029
+}
+]
+},
+"G6n_same_not_stepwise": {
+"model": "a x1",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"a",
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+1.6384,
+1.6384,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+57.0875268519206,
+49.8544525270111,
+28.6700364154691,
+26.7403591894678,
+26.4996396633199,
+26.4911338969046,
+26.4911177964436
+],
+"estimates": [
+[
+-3.74557479779048,
+0.0,
+0.0
+],
+[
+-3.86260460081592,
+6.38121206337641,
+16.4684517648418
+],
+[
+-4.36170507849682,
+3.68433073962185,
+17.0366384802894
+],
+[
+-5.05155631735564,
+4.65689333014001,
+18.7264928477218
+],
+[
+-5.42232567005727,
+5.01687202056721,
+20.0972633513577
+],
+[
+-5.50943542009203,
+5.103970311997,
+21.184373524797
+],
+[
+-5.51342084748406,
+5.1079557393759,
+22.1883591079508
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -5.51342084748406,
+"stderr": 1.00201017522986,
+"wald": 30.2759671039442
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 5.1079557393759,
+"stderr": 1.19192745497821,
+"wald": 18.3651552459431
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": 22.1883591079508,
+"stderr": 4177.50399298781,
+"wald": 2.821087943e-05
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 30.5964090554774,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 109.364492089091,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 18.3651750241532,
+"df": 2
+}
+]
+}
+},
+"warnings": [],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G7a_collinear_after_x1_x2": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118513626454,
+0.26419914529024,
+0.09704454847419,
+0.03568061082324,
+0.01312344844483,
+0.00482747964463,
+0.00177588082212,
+0.00065330331976
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09448659644809,
+-61.016949152541,
+61.016949152541
+],
+[
+-6.1006170496716,
+-61.016949152541,
+61.016949152541
+],
+[
+-7.1028585338572,
+-61.016949152541,
+61.016949152541
+],
+[
+-8.10368128355795,
+-61.016949152541,
+61.016949152541
+],
+[
+-9.10398370733663,
+-61.016949152541,
+61.016949152541
+],
+[
+-10.1040949291861,
+-61.016949152541,
+61.016949152541
+],
+[
+-11.1041358408674,
+-61.016949152541,
+61.016949152541
+],
+[
+-12.1041508908181,
+-61.016949152541,
+61.016949152541
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1041508908181,
+"stderr": 97.5008886474088,
+"wald": 0.01541173418897
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.016949152541,
+"stderr": 39.4714726076888,
+"wald": 2.38965012504357
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757824573,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999999999986,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G7b_collinear_after_x2_x1": {
+"model": "x2 x1",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x2",
+"x1"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118513626449,
+0.26419914529024,
+0.09704454847418,
+0.03568061082324,
+0.01312344844483,
+0.00482747964463,
+0.00177588082212,
+0.00065330331976
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09448659644823,
+61.0169491525443,
+-61.0169491525442
+],
+[
+-6.10061704967173,
+61.0169491525443,
+-61.0169491525442
+],
+[
+-7.10285853385732,
+61.0169491525443,
+-61.0169491525442
+],
+[
+-8.10368128355808,
+61.0169491525443,
+-61.0169491525442
+],
+[
+-9.10398370733675,
+61.0169491525443,
+-61.0169491525442
+],
+[
+-10.1040949291862,
+61.0169491525443,
+-61.0169491525442
+],
+[
+-11.1041358408675,
+61.0169491525443,
+-61.0169491525442
+],
+[
+-12.1041508908182,
+61.0169491525443,
+-61.0169491525442
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1041508908182,
+"stderr": 97.5008886474132,
+"wald": 0.01541173418897
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 61.0169491525443,
+"stderr": 39.4714726076895,
+"wald": 2.38965012504374
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757824573,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 60.0000000000018,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8a_near_1e-5": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118649465191,
+0.2641996368026,
+0.09704472819234,
+0.03568067678971,
+0.01312347269252,
+0.00482748856215,
+0.00177588410231,
+0.00065330452644
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09754811476217,
+-61.0200324210643,
+61.0200071120471
+],
+[
+-6.10367860256491,
+-61.020032420749,
+61.0200071120471
+],
+[
+-7.10592009937961,
+-61.0200324206345,
+61.0200071120471
+],
+[
+-8.10674285371409,
+-61.0200324205926,
+61.0200071120471
+],
+[
+-9.10704527919576,
+-61.0200324205772,
+61.0200071120471
+],
+[
+-10.1071565016715,
+-61.0200324205716,
+61.0200071120471
+],
+[
+-11.1071974135831,
+-61.0200324205695,
+61.0200071120471
+],
+[
+-12.1072124636186,
+-61.0200324205687,
+61.0200071120471
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1072124636186,
+"stderr": 97.5009634734193,
+"wald": 0.01541950786578
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0200324205687,
+"stderr": 39.4715368233218,
+"wald": 2.38988385942831
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757812506,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999964411906,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8b_near_1e-7": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118513640027,
+0.26419914533937,
+0.09704454849214,
+0.03568061082985,
+0.01312344844726,
+0.00482747964553,
+0.00177588082244,
+0.00065330331989
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09451721196691,
+-61.0169800201738,
+61.0169797677144
+],
+[
+-6.10064766519387,
+-61.0169800201738,
+61.0169797677144
+],
+[
+-7.10288914938073,
+-61.0169800201738,
+61.0169797677144
+],
+[
+-8.10371189908194,
+-61.0169800201738,
+61.0169797677144
+],
+[
+-9.10401432286079,
+-61.0169800201738,
+61.0169797677144
+],
+[
+-10.1041255447103,
+-61.0169800201738,
+61.0169797677144
+],
+[
+-11.1041664563916,
+-61.0169800201738,
+61.0169797677144
+],
+[
+-12.1041815063423,
+-61.0169800201738,
+61.0169797677144
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1041815063423,
+"stderr": 97.5008903165983,
+"wald": 0.01541181162444
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0169800201738,
+"stderr": 39.4714736063554,
+"wald": 2.38965242190519
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757824572,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999999996531,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8c_near_3e-6": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118525851232,
+0.2641991895238,
+0.09704456464787,
+0.03568061675989,
+0.013123450627,
+0.00482748044717,
+0.00177588111731,
+0.00065330342836
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09540505906762,
+-61.0178748742164,
+61.0178672948886
+],
+[
+-6.10153551540308,
+-61.017874874188,
+61.0178672948886
+],
+[
+-7.10377700072523,
+-61.0178748741777,
+61.0178672948886
+],
+[
+-8.10459975084299,
+-61.017874874174,
+61.0178672948886
+],
+[
+-9.10490217477493,
+-61.0178748741726,
+61.0178672948886
+],
+[
+-10.1050133966807,
+-61.0178748741721,
+61.0178672948886
+],
+[
+-11.1050543083828,
+-61.0178748741719,
+61.0178672948886
+],
+[
+-12.1050693583411,
+-61.0178748741718,
+61.0178672948886
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1050693583411,
+"stderr": 97.5009306302845,
+"wald": 0.01541405989982
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0178748741718,
+"stderr": 39.4714994348318,
+"wald": 2.38971938659145
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757823487,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999996797266,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8d_near_3e-7": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118513748687,
+0.26419914573254,
+0.0970445486359,
+0.03568061088262,
+0.01312344846666,
+0.00482747965266,
+0.00177588082506,
+0.00065330332085
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09457844298374,
+-61.0170417533015,
+61.0170409958848
+],
+[
+-6.10070889623836,
+-61.0170417533012,
+61.0170409958848
+],
+[
+-7.10295038043533,
+-61.0170417533011,
+61.0170409958848
+],
+[
+-8.10377313014025,
+-61.0170417533011,
+61.0170409958848
+],
+[
+-9.10407555392046,
+-61.0170417533011,
+61.0170409958848
+],
+[
+-10.1041867757705,
+-61.0170417533011,
+61.0170409958848
+],
+[
+-11.104227687452,
+-61.0170417533011,
+61.0170409958848
+],
+[
+-12.1042427374028,
+-61.0170417533011,
+61.0170409958848
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1042427374028,
+"stderr": 97.5008935991479,
+"wald": 0.01541196651363
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0170417533011,
+"stderr": 39.4714755820801,
+"wald": 2.38965701808031
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757824562,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999999968067,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8e_near_1e-7_x2_times_1000": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118513640051,
+0.26419914533946,
+0.09704454849217,
+0.03568061082986,
+0.01312344844726,
+0.00482747964553,
+0.00177588082244,
+0.00065330331989
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09451721196593,
+-61.0169800201514,
+0.06101697976769
+],
+[
+-6.1006476651929,
+-61.0169800201514,
+0.06101697976769
+],
+[
+-7.10288914937976,
+-61.0169800201513,
+0.06101697976769
+],
+[
+-8.10371189908098,
+-61.0169800201513,
+0.06101697976769
+],
+[
+-9.10401432285982,
+-61.0169800201513,
+0.06101697976769
+],
+[
+-10.1041255447093,
+-61.0169800201513,
+0.06101697976769
+],
+[
+-11.1041664563906,
+-61.0169800201513,
+0.06101697976769
+],
+[
+-12.1041815063414,
+-61.0169800201513,
+0.06101697976769
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1041815063414,
+"stderr": 97.5008903165618,
+"wald": 0.01541181162445
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0169800201513,
+"stderr": 39.4714736063484,
+"wald": 2.38965242190428
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757824572,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999999996314,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8f_near_3e-5": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.7211973638229,
+0.2642035692835,
+0.09704616611913,
+0.03568120459814,
+0.01312366670378,
+0.00482755991347,
+0.00177591034809,
+0.00065331418133
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.10367094457815,
+-61.0261777743009,
+61.0261014649606
+],
+[
+-6.10974519802529,
+-60.6520815587854,
+60.6520057170293
+],
+[
+-7.11196625933193,
+-60.5161388003324,
+60.5160631284926
+],
+[
+-8.11278152943952,
+-60.4663520700596,
+60.4662764604489
+],
+[
+-9.11308120613306,
+-60.4480665860399,
+60.4479909992844
+],
+[
+-10.113191417999,
+-60.441343817733,
+60.4412682393804
+],
+[
+-11.1132319582093,
+-60.4388711902477,
+60.4387956149857
+],
+[
+-12.1132468715008,
+-60.4379615448198,
+60.4378859706947
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1132468715008,
+"stderr": 131.759190880107,
+"wald": 0.0084519963007
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -60.4379615448198,
+"stderr": 586671.538556884,
+"wald": 1.061279014755e-08
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.4378859706947,
+"stderr": 586670.808406296,
+"wald": 1.0612790022811e-08
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757715957,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.999967964288,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 1.0612790178163e-08,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8g_near_6e-5": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72123405927009,
+0.26421684588698,
+0.09705102074505,
+0.03568298654357,
+0.01312432170882,
+0.00482780080388,
+0.00177599895692,
+0.00065334677737
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.11285465434023,
+-61.0353427951169,
+61.0351890291424
+],
+[
+-6.11887291554444,
+-60.6611943779568,
+60.6610415537993
+],
+[
+-7.12107362849925,
+-60.5252327037636,
+60.525080221856
+],
+[
+-8.12188144618394,
+-60.47543903315,
+60.4752866765862
+],
+[
+-9.12217838578058,
+-60.4571510843256,
+60.4569987737974
+],
+[
+-10.1222875913267,
+-60.4504273883594,
+60.4502750947566
+],
+[
+-11.122327761415,
+-60.4479544262766,
+60.4478021388989
+],
+[
+-12.1223425385727,
+-60.4470447538864,
+60.4468924687985
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1223425385727,
+"stderr": 131.974352969917,
+"wald": 0.00843711600277
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -60.4470447538864,
+"stderr": 293361.224093264,
+"wald": 4.2456552672687e-08
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.4468924687985,
+"stderr": 293360.491935035,
+"wald": 4.2456550672353e-08
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757389997,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9998718187078,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 4.2456553166197e-08,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8h_near_1e-4": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72132108256668,
+0.26424833133725,
+0.09706253348103,
+0.03568721242318,
+0.01312587505173,
+0.00482837207492,
+0.00177620909253,
+0.00065342407879
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.12509855185282,
+-61.0474637346734,
+61.0472049071895
+],
+[
+-6.13104246644237,
+-60.6732188253068,
+60.672961582479
+],
+[
+-7.13321615948965,
+-60.5372222925834,
+60.5369656256116
+],
+[
+-8.13401408118284,
+-60.4874158983888,
+60.4871594423156
+],
+[
+-9.13430738618082,
+-60.4691232860437,
+60.4688669074283
+],
+[
+-10.1344152554332,
+-60.462397876279,
+60.4621415261416
+],
+[
+-11.1344549340278,
+-60.4599242711574,
+60.4596679314941
+],
+[
+-12.1344695303913,
+-60.4590143634035,
+60.4587580275931
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1344695303913,
+"stderr": 132.260343805506,
+"wald": 0.00841748393874
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -60.4590143634035,
+"stderr": 176037.851728463,
+"wald": 1.1795327550203e-07
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.4587580275931,
+"stderr": 176037.11691048,
+"wald": 1.1795326002099e-07
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712756616983,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9996437992423,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 1.1795327934878e-07,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8i_near_2e-4": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72172944748147,
+0.26439607871669,
+0.09711655755719,
+0.03570704255193,
+0.01313316418028,
+0.00483105278856,
+0.00177719516281,
+0.000653786819
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.15570257612517,
+-61.0772693462238,
+61.0767389239406
+],
+[
+-6.16146205953974,
+-60.7026474827725,
+60.7021203065625
+],
+[
+-7.1635687187292,
+-60.5665155030814,
+60.5659895064782
+],
+[
+-8.16434208861572,
+-60.5166597026788,
+60.5161341380889
+],
+[
+-9.16462637612116,
+-60.4983489713054,
+60.4978235653832
+],
+[
+-10.1647309300001,
+-60.4916169085995,
+60.4910915610127
+],
+[
+-11.1647693892087,
+-60.4891408695366,
+60.4886155434055
+],
+[
+-12.1647835370193,
+-60.4882300613768,
+60.487704743138
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1647835370193,
+"stderr": 132.97083112399,
+"wald": 0.00836943236736
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -60.4882300613768,
+"stderr": 88047.2216973693,
+"wald": 4.7196570347653e-07
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.487704743138,
+"stderr": 88046.4803158855,
+"wald": 4.7196545393254e-07
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712752989581,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.998573791721,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 4.7196576663623e-07,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8j_near_3e-4": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.7224111341844,
+0.2646427100577,
+0.09720673813129,
+0.03574014424065,
+0.01314533163808,
+0.00483552759779,
+0.00177884117072,
+0.00065439232679
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.18629746882529,
+-61.1063627410789,
+61.105547929311
+],
+[
+-6.19187434162779,
+-60.7311693414199,
+60.7303595183194
+],
+[
+-7.19391462186463,
+-60.5948325079008,
+60.5940244976324
+],
+[
+-8.19466367890389,
+-60.5449020564301,
+60.5440947100811
+],
+[
+-9.19493903655984,
+-60.5265639569431,
+60.5257568544347
+],
+[
+-10.1950403072668,
+-60.5198218372698,
+60.5190148244112
+],
+[
+-11.1950775589276,
+-60.5173421022375,
+60.5165351223519
+],
+[
+-12.1950912625412,
+-60.516429934052,
+60.5156229662955
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1950912625412,
+"stderr": 133.674821780442,
+"wald": 0.00832282727871
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -60.516429934052,
+"stderr": 58718.8144154651,
+"wald": 1.0621651374543e-06
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.5156229662955,
+"stderr": 58718.0665940997,
+"wald": 1.0621638648496e-06
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712746934503,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9967879043914,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 1.0621654657977e-06,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8k_near_1e-3": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.73494437960684,
+0.26917602972756,
+0.09886419218663,
+0.0363485092702,
+0.013368950616,
+0.00491776727441,
+0.00180909205485,
+0.00066552054477
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.40010438909156,
+-61.2898107640288,
+61.2866448619105
+],
+[
+-6.40442884031684,
+-60.9050464074115,
+60.9019004217762
+],
+[
+-7.40601384003864,
+-60.7652907106308,
+60.762151958862
+],
+[
+-8.40659613639012,
+-60.7141159624861,
+60.7109798595261
+],
+[
+-9.40681024414544,
+-60.6953219109606,
+60.6921867807771
+],
+[
+-10.4068889954998,
+-60.6884122987679,
+60.6852775262239
+],
+[
+-11.4069179645433,
+-60.6858709803551,
+60.682736339349
+],
+[
+-12.4069286213941,
+-60.6849361609099,
+60.6818015682897
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.4069286213941,
+"stderr": 138.412719371287,
+"wald": 0.00803482764011
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -60.6849361609099,
+"stderr": 17673.6202825457,
+"wald": 1.17899173e-05
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.6818015682897,
+"stderr": 17672.8308961114,
+"wald": 1.17897525e-05
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712635652323,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9640779167246,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 1.178996688e-05,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8l_near_1e-2": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+2.95072903369642,
+1.02695216615476,
+0.37090137839387,
+0.1355564532659,
+0.04974988803409,
+0.01828601398482,
+0.00672489516044,
+0.00247365947213
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-7.91804059095967,
+-60.2371310271346,
+60.1474551413547
+],
+[
+-8.79493695165804,
+-57.7692591433161,
+57.6858131657504
+],
+[
+-9.75598555317132,
+-56.9718768884321,
+56.8903916897421
+],
+[
+-10.7423553585065,
+-56.6908631771453,
+56.6100630359113
+],
+[
+-11.7374295079286,
+-56.5890484343965,
+56.508495735125
+],
+[
+-12.7356290691191,
+-56.5517998192713,
+56.4713375446884
+],
+[
+-13.734968291631,
+-56.5381245933866,
+56.4576955031661
+],
+[
+-14.7347254165578,
+-56.5330975062785,
+56.4526806129741
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -14.7347254165578,
+"stderr": 154.9044107124,
+"wald": 0.00904808197028
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -56.5330975062785,
+"stderr": 1699.52269718221,
+"wald": 0.00110650052711
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 56.4526806129741,
+"stderr": 1698.65098344202,
+"wald": 0.0011044875582
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1694554263049,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 56.3069519943006,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 0.0011118387496,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8m_near_1.2e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118709237538,
+0.26419985308003,
+0.09704480727272,
+0.03568070581656,
+0.01312348336209,
+0.00482749248608,
+0.00177588554568,
+0.0006533050574
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09816041023782,
+-61.0206482276375,
+61.0206178415271
+],
+[
+-6.10429091325625,
+-61.0206482271833,
+61.0206178415271
+],
+[
+-7.10653241562805,
+-61.0206482270184,
+61.0206178415271
+],
+[
+-8.10735517200148,
+-61.0206482269581,
+61.0206178415271
+],
+[
+-9.10765759823252,
+-61.0206482269359,
+61.0206178415271
+],
+[
+-10.1077688209838,
+-61.0206482269278,
+61.0206178415271
+],
+[
+-11.1078097329968,
+-61.0206482269248,
+61.0206178415271
+],
+[
+-12.1078247830696,
+-61.0206482269237,
+61.0206178415271
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1078247830696,
+"stderr": 97.5009561111625,
+"wald": 0.01542106991014
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0206482269237,
+"stderr": 39.4715410230816,
+"wald": 2.38993158789953
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757807197,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.999994875195,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8m_near_1.6e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118861391173,
+0.26420040362555,
+0.09704500857598,
+0.03568077970594,
+0.01312351052204,
+0.00482750247463,
+0.00177588921986,
+0.000653306409
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09938499292811,
+-61.021878993503,
+61.0218384379156
+],
+[
+-6.10551553467887,
+-61.0218789926951,
+61.0218384379156
+],
+[
+-7.10775705119657,
+-61.0218789924019,
+61.0218384379156
+],
+[
+-8.10857981276025,
+-61.0218789922945,
+61.0218384379156
+],
+[
+-9.10888224089882,
+-61.0218789922551,
+61.0218384379156
+],
+[
+-10.1089934643516,
+-61.0218789922406,
+61.0218384379156
+],
+[
+-11.1090343766227,
+-61.0218789922353,
+61.0218384379156
+],
+[
+-12.1090494267903,
+-61.0218789922333,
+61.0218384379156
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1090494267903,
+"stderr": 97.5009190564498,
+"wald": 0.01542420131425
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0218789922333,
+"stderr": 39.4715407782878,
+"wald": 2.39002802669899
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757793681,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999908888931,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8m_near_2e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72119057027215,
+0.26420111150584,
+0.09704526740766,
+0.03568087471142,
+0.01312354544377,
+0.00482751531772,
+0.00177589394403,
+0.00065330814686
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.10060956453647,
+-61.0231086294022,
+61.0230578839476
+],
+[
+-6.10674015608845,
+-61.0231086281393,
+61.0230578839476
+],
+[
+-7.10898169079466,
+-61.0231086276809,
+61.0230578839476
+],
+[
+-8.10980445903184,
+-61.0231086275131,
+61.0230578839476
+],
+[
+-9.11010688962309,
+-61.0231086274515,
+61.0230578839476
+],
+[
+-10.1102181139778,
+-61.0231086274288,
+61.0230578839476
+],
+[
+-11.1102590265807,
+-61.0231086274205,
+61.0230578839476
+],
+[
+-12.1102740768704,
+-61.0231086274174,
+61.0230578839476
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1102740768704,
+"stderr": 97.5008522256901,
+"wald": 0.01542734247764
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0231086274174,
+"stderr": 39.4715290069279,
+"wald": 2.3901257748563
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757776302,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999857633167,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8m_near_2.3e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72119232292245,
+0.26420174567667,
+0.09704549928796,
+0.03568095982426,
+0.0131235767292,
+0.00482752682349,
+0.0017758981763,
+0.00065330970375
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.10152798592553,
+-61.0240301146865,
+61.0239717134496
+],
+[
+-6.10765862209307,
+-61.0240301130157,
+61.0239717134496
+],
+[
+-7.10990017309386,
+-61.0240301124092,
+61.0239717134496
+],
+[
+-8.11072294730966,
+-61.0240301121872,
+61.0239717134496
+],
+[
+-9.11102538009819,
+-61.0240301121057,
+61.0239717134496
+],
+[
+-10.111136605261,
+-61.0240301120757,
+61.0239717134496
+],
+[
+-11.111177518161,
+-61.0240301120647,
+61.0239717134496
+],
+[
+-12.1111925685601,
+-61.0240301120606,
+61.0239717134496
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1111925685601,
+"stderr": 97.5007825604984,
+"wald": 0.01542970475857
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -61.0240301120606,
+"stderr": 39.4715126135526,
+"wald": 2.39019994539903
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757760733,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999811714297,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G8m_near_2.7e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72119504033296,
+0.26420272863279,
+0.09704585873293,
+0.03568109176855,
+0.01312362523004,
+0.00482754466072,
+0.00177590473754,
+0.0006533121174
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.10275253795813,
+-61.0252577726772,
+61.0251891458862
+],
+[
+-6.10883240189524,
+-60.6511656532172,
+60.6510974469548
+],
+[
+-7.11105550209955,
+-60.5152245068195,
+60.5151564533735
+],
+[
+-8.11187151891709,
+-60.4654382701778,
+60.4653702726984
+],
+[
+-9.11217146984269,
+-60.4471528325539,
+60.4470848556299
+],
+[
+-10.1122817825277,
+-60.4404300505634,
+60.4403620811967
+],
+[
+-11.1123223598215,
+-60.4379574347982,
+60.4378894682111
+],
+[
+-12.1123372867875,
+-60.4370480288354,
+60.4369800632706
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1123372867875,
+"stderr": 131.73764464383,
+"wald": 0.00845349155488
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -60.4370480288354,
+"stderr": 651851.722210694,
+"wald": 8.5962463446481e-09
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.4369800632706,
+"stderr": 651850.992261457,
+"wald": 8.5962462628255e-09
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757736597,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999740518337,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 8.5962463647184e-09,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"G9a_mirror_n45": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+9.59093629452176,
+0.71630247274425,
+0.26204412646302,
+0.09620422646764,
+0.0353650902775,
+0.01300651348925,
+0.00478434521828,
+0.00175999679834,
+0.00064745778206
+],
+"estimates": [
+[
+3.78418963391826,
+0.0
+],
+[
+4.80691690664553,
+-46.0227272727272
+],
+[
+5.81508992571972,
+-46.0227272727272
+],
+[
+6.81807213785756,
+-46.0227272727272
+],
+[
+7.81916596549736,
+-46.0227272727272
+],
+[
+8.81956792228622,
+-46.0227272727272
+],
+[
+9.819715734499,
+-46.0227272727272
+],
+[
+10.8197701035362,
+-48.0227816417644
+],
+[
+11.8197901036997,
+-48.0227816417644
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": 11.8197901036997,
+"stderr": 55.579120067249,
+"wald": 0.04522683486801
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -48.0227816417644,
+"stderr": 72674110.7994491,
+"wald": 4.3665171590004e-13
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 9.59028883673974,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 44.9999999999999,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": 4.3665171590004e-13,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points in Step 1. The maximum likelihood estimate does not exist."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 44.9999999999999,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 1,
+"score": null,
+"wald": 4.3665171590004e-13
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 1,
+"wald": 4.3665171590004e-13
+}
+]
+},
+"G9b_mirror_n60": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118513626454,
+0.26419914529024,
+0.09704454847419,
+0.03568061082324,
+0.01312344844483,
+0.00482747964463,
+0.00177588082212,
+0.00065330331976
+],
+"estimates": [
+[
+4.07753744390571,
+0.0
+],
+[
+5.09448659644809,
+-61.0169491525421
+],
+[
+6.10061704967159,
+-61.0169491525421
+],
+[
+7.10285853385719,
+-61.0169491525421
+],
+[
+8.10368128355794,
+-61.0169491525421
+],
+[
+9.10398370733662,
+-61.0169491525421
+],
+[
+10.1040949291861,
+-61.0169491525421
+],
+[
+11.1041358408674,
+-61.0169491525421
+],
+[
+12.1041508908181,
+-61.0169491525421
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": 12.1041508908181,
+"stderr": 55.3298341770683,
+"wald": 0.0478574903763
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757824573,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 59.9999999999998,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points in Step 1. The maximum likelihood estimate does not exist."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 59.9999999999998,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"G9c_mirror_n120_k3": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+28.0576437930075,
+20.3197683487921,
+20.3101120174034,
+20.3101018956411
+],
+"estimates": [
+[
+3.66356164612964,
+0.0
+],
+[
+3.99969609991115,
+-40.3361344537814
+],
+[
+4.06675879522691,
+-41.4031971490972
+],
+[
+4.06902427080966,
+-41.4031971490972
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": 4.06902427080966,
+"stderr": 0.71312396402051,
+"wald": 32.5574587483828
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 7.74754189736608,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 39.3277310924369,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 39.3277310924369,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"G9d_mirror_n202_k5_below": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+46.8635015029776,
+39.2578859106755,
+39.2559492421799,
+39.2559490280215
+],
+"estimates": [
+[
+3.67376581630388,
+0.0
+],
+[
+3.8747608411795,
+-40.6009950248756
+],
+[
+3.89667565260888,
+-41.6229098363049
+],
+[
+3.89690934139589,
+-41.6229098363049
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": 3.89690934139589,
+"stderr": 0.50505062687767,
+"wald": 59.5347831062931
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 7.60755247495688,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 39.5960199004974,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 39.5960199004974,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"G9e_mirror_n283_k7_above": {
+"model": "x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0
+],
+"neg2loglike": [
+65.6189241034316,
+58.0738821563078,
+58.0731965205778
+],
+"estimates": [
+[
+3.67449071666183,
+0.0
+],
+[
+3.81785444513195,
+-40.5719351570416
+],
+[
+3.82858590169124,
+-40.5719351570416
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": 3.82858590169124,
+"stderr": 0.41265095087602,
+"wald": 86.0817507421331
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 7.54572758285389,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 39.5683890577508,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 0
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 39.5683890577508,
+"wald": null
+},
+{
+"step": 2,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "x1",
+"df": 0,
+"wald": null
+}
+]
+},
+"H1_x1_times_1000_near_1e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72118649465198,
+0.26419963680263,
+0.09704472819235,
+0.03568067678971,
+0.01312347269252,
+0.00482748856215,
+0.00177588410231,
+0.00065330452644
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.09754811476188,
+-0.06102003242105,
+61.0200071120414
+],
+[
+-6.10367860256462,
+-0.06102003242074,
+61.0200071120414
+],
+[
+-7.10592009937932,
+-0.06102003242062,
+61.0200071120414
+],
+[
+-8.10674285371379,
+-0.06102003242058,
+61.0200071120414
+],
+[
+-9.10704527919547,
+-0.06102003242057,
+61.0200071120414
+],
+[
+-10.1071565016712,
+-0.06102003242056,
+61.0200071120414
+],
+[
+-11.1071974135828,
+-0.06102003242056,
+61.0200071120414
+],
+[
+-12.1072124636183,
+-0.06102003242056,
+61.0200071120414
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1072124636183,
+"stderr": 97.5009634734079,
+"wald": 0.01541950786578
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -0.06102003242056,
+"stderr": 0.03947153682331,
+"wald": 2.38988385942814
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757812506,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999964411852,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"H1_x1_times_1000_near_2.3e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72119232292247,
+0.26420174567667,
+0.09704549928796,
+0.03568095982426,
+0.0131235767292,
+0.00482752682349,
+0.0017758981763,
+0.00065330970375
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.10152798592539,
+-0.06102403011468,
+61.0239717134478
+],
+[
+-6.10765862209294,
+-0.06102403011301,
+61.0239717134478
+],
+[
+-7.10990017309372,
+-0.0610240301124,
+61.0239717134478
+],
+[
+-8.11072294730953,
+-0.06102403011218,
+61.0239717134478
+],
+[
+-9.11102538009806,
+-0.0610240301121,
+61.0239717134478
+],
+[
+-10.1111366052609,
+-0.06102403011207,
+61.0239717134478
+],
+[
+-11.1111775181609,
+-0.06102403011206,
+61.0239717134478
+],
+[
+-12.11119256856,
+-0.06102403011205,
+61.0239717134478
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.11119256856,
+"stderr": 97.500782560494,
+"wald": 0.01542970475857
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -0.06102403011205,
+"stderr": 0.03947151261355,
+"wald": 2.39019994539891
+},
+{
+"variable": "x2",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757760733,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999811714281,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"H1_x1_times_1000_near_2.7e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72119504033293,
+0.26420272863277,
+0.09704585873293,
+0.03568109176855,
+0.01312362523004,
+0.00482754466072,
+0.00177590473754,
+0.0006533121174
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.10275253795823,
+-0.06102525777268,
+61.02518914589
+],
+[
+-6.1088324018737,
+-0.06065116549398,
+60.6510972877262
+],
+[
+-7.11105550206366,
+-0.06051522424208,
+60.5151561886433
+],
+[
+-8.11187151886389,
+-0.06046543787801,
+60.4653698805367
+],
+[
+-9.11217146982069,
+-0.06044715267002,
+60.4470846931022
+],
+[
+-10.1122817825161,
+-0.06044042996423,
+60.4403619948682
+],
+[
+-11.1123223598398,
+-0.06043795756924,
+60.4378896026546
+],
+[
+-12.1123372867938,
+-0.06043704807432,
+60.4369801087605
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1123372867938,
+"stderr": 131.73764848954,
+"wald": 0.00845349106133
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -0.06043704807432,
+"stderr": 651.851764288742,
+"wald": 8.5962452477864e-09
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.4369801087605,
+"stderr": 651851.034339457,
+"wald": 8.5962451659639e-09
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757736597,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999740518373,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 8.5962452678567e-09,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"H1_x1_times_1000_near_3e-05": {
+"model": "x1 x2",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"x1",
+"x2"
+],
+"status": "Complete separation of data points detected.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+10.1719290857772,
+0.72119736382291,
+0.2642035692835,
+0.09704616611913,
+0.03568120459814,
+0.01312366670378,
+0.00482755991347,
+0.00177591034809,
+0.00065331418133
+],
+"estimates": [
+[
+-4.07753744390571,
+0.0,
+0.0
+],
+[
+-5.10367094457811,
+-0.0610261777743,
+61.0261014649609
+],
+[
+-6.10974519801881,
+-0.06065208151618,
+60.6520056744265
+],
+[
+-7.11196625934242,
+-0.06051613887003,
+60.5160631981994
+],
+[
+-8.11278152942952,
+-0.06046635200411,
+60.4662763945077
+],
+[
+-9.11308120613895,
+-0.06044806662528,
+60.4479910385336
+],
+[
+-10.1131914179968,
+-0.06044134380295,
+60.4412682245977
+],
+[
+-11.1132319582064,
+-0.06043887117177,
+60.4387955965164
+],
+[
+-12.1132468715227,
+-0.06043796168985,
+60.4378861157266
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -12.1132468715227,
+"stderr": 131.75917649285,
+"wald": 0.00845199814654
+},
+{
+"variable": "x1",
+"df": 1,
+"estimate": -0.06043796168985,
+"stderr": 586.671396947097,
+"wald": 1.0612795321881e-08
+},
+{
+"variable": "x2",
+"df": 1,
+"estimate": 60.4378861157266,
+"stderr": 586670.666796686,
+"wald": 1.0612795197142e-08
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 10.1712757715957,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 59.9999679642884,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": 1.0612795352494e-08,
+"df": 2
+}
+]
+}
+},
+"warnings": [
+"WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"J5_regular_then_flag": {
+"model": "a x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"a"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+196.078226559471,
+187.180618639834,
+141.195089612017,
+136.702672415204,
+136.445852457991,
+136.444075027062
+],
+"estimates": [
+[
+-3.89182029811062,
+0.0
+],
+[
+-3.91595240952315,
+1.72532433063195
+],
+[
+-4.6023235433094,
+1.50515683053839
+],
+[
+-5.17304573881516,
+1.65075936917435
+],
+[
+-5.38110029971434,
+1.73244496980683
+],
+[
+-5.40087927417015,
+1.74104332812163
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -5.40087927417015,
+"stderr": 0.47819210361764,
+"wald": 127.562827936466
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 1.74104332812163,
+"stderr": 0.26478354416498,
+"wald": 43.2351705562789
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 59.6341515324024,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 62.0534634598348,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": 43.2351705562789,
+"df": 1
+}
+]
+},
+"2": {
+"variables": [
+"a",
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+196.078226559471,
+174.267685529857,
+133.09350911348,
+128.646420305738,
+128.367473056255,
+128.365205062958
+],
+"estimates": [
+[
+-3.89182029811062,
+0.0,
+0.0
+],
+[
+-3.96412184477757,
+1.68838258546964,
+48.6861394439963
+],
+[
+-4.69711585067369,
+1.53286070130621,
+48.6861394439963
+],
+[
+-5.29483119002777,
+1.69355065330716,
+48.6861394439963
+],
+[
+-5.52303856692028,
+1.78405645403341,
+48.6861394439963
+],
+[
+-5.54666784592651,
+1.79429071369335,
+48.6861394439963
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -5.54666784592651,
+"stderr": 0.50656145031808,
+"wald": 119.894716731555
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 1.79429071369335,
+"stderr": 0.27565173367339,
+"wald": 42.3705559421851
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 67.7130214965063,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 108.437223703589,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+},
+"3": {
+"variables": [
+"a"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+196.078226559471,
+187.180618639834,
+141.195089612017,
+136.702672415204,
+136.445852457991,
+136.444075027062
+],
+"estimates": [
+[
+-3.89182029811062,
+0.0
+],
+[
+-3.91595240952315,
+1.72532433063195
+],
+[
+-4.6023235433094,
+1.50515683053839
+],
+[
+-5.17304573881516,
+1.65075936917435
+],
+[
+-5.38110029971434,
+1.73244496980683
+],
+[
+-5.40087927417015,
+1.74104332812163
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -5.40087927417015,
+"stderr": 0.47819210361764,
+"wald": 127.562827936466
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 1.74104332812163,
+"stderr": 0.26478354416498,
+"wald": 43.2351705562789
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 59.6341515324024,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 62.0534634598348,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": 43.2351705562789,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [
+"NOTE: Model building terminates because the last effect entered is removed by the Wald statistic criterion."
+],
+"summary": [
+{
+"step": 1,
+"entered": "a",
+"removed": "",
+"df": 1,
+"score": 62.0534634598348,
+"wald": null
+},
+{
+"step": 2,
+"entered": "x1",
+"removed": "",
+"df": 1,
+"score": 53.1581931339215,
+"wald": null
+},
+{
+"step": 3,
+"entered": "",
+"removed": "x1",
+"df": 0,
+"score": null,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "a",
+"df": 1,
+"wald": 43.2351705562789
+},
+{
+"step": 2,
+"effect": "a",
+"df": 1,
+"wald": 42.3705559421851
+},
+{
+"step": 2,
+"effect": "x1",
+"df": 0,
+"wald": null
+},
+{
+"step": 3,
+"effect": "a",
+"df": 1,
+"wald": 43.2351705562789
+}
+]
+},
+"J5n_not_stepwise": {
+"model": "a x1",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"a",
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+196.078226559471,
+174.267685529857,
+133.09350911348,
+128.646420305738,
+128.367473056255,
+128.365205062958
+],
+"estimates": [
+[
+-3.89182029811062,
+0.0,
+0.0
+],
+[
+-3.96412184477757,
+1.68838258546964,
+48.6861394439963
+],
+[
+-4.69711585067369,
+1.53286070130621,
+48.6861394439963
+],
+[
+-5.29483119002777,
+1.69355065330716,
+48.6861394439963
+],
+[
+-5.52303856692028,
+1.78405645403341,
+48.6861394439963
+],
+[
+-5.54666784592651,
+1.79429071369335,
+48.6861394439963
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -5.54666784592651,
+"stderr": 0.50656145031808,
+"wald": 119.894716731555
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 1.79429071369335,
+"stderr": 0.27565173367339,
+"wald": 42.3705559421851
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 67.7130214965063,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 108.437223703589,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+},
+"J6_regular_then_flag": {
+"model": "a x1 z",
+"options": "selection=stepwise slentry=0.05 slstay=0.05 itprint details covb",
+"steps": {
+"1": {
+"variables": [
+"a"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+196.078226559471,
+187.892909469734,
+140.31903972994,
+135.344691495553,
+135.024089014821,
+135.021293664527
+],
+"estimates": [
+[
+-3.89182029811062,
+0.0
+],
+[
+-4.04244954187945,
+1.72773641385191
+],
+[
+-4.74410596462329,
+1.53196644176147
+],
+[
+-5.36580403469952,
+1.69395548811343
+],
+[
+-5.61251736374484,
+1.78968259332134
+],
+[
+-5.6391666632984,
+1.80092010332528
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -5.6391666632984,
+"stderr": 0.51733477965432,
+"wald": 118.81916816369
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 1.80092010332528,
+"stderr": 0.27306725376722,
+"wald": 43.4960327292801
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 61.0569328949376,
+"df": 1
+},
+{
+"test": "Score",
+"chisq": 62.4167931171949,
+"df": 1
+},
+{
+"test": "Wald",
+"chisq": 43.4960327292801,
+"df": 1
+}
+]
+}
+},
+"warnings": [],
+"notes": [
+"NOTE: No (additional) effects met the 0.05 significance level for entry into the model."
+],
+"summary": [
+{
+"step": 1,
+"entered": "a",
+"removed": "",
+"df": 1,
+"score": 62.4167931171949,
+"wald": null
+}
+],
+"removal_table": [
+{
+"step": 1,
+"effect": "a",
+"df": 1,
+"wald": 43.4960327292801
+}
+]
+},
+"J6n_not_stepwise": {
+"model": "a x1",
+"options": "itprint covb",
+"steps": {
+"1": {
+"variables": [
+"a",
+"x1"
+],
+"status": "Convergence criterion (GCONV=1E-8) satisfied.",
+"ridge": [
+0.0,
+0.0,
+0.0,
+0.0,
+0.0
+],
+"neg2loglike": [
+196.078226559471,
+172.518351937903,
+136.251932294368,
+132.339308533346,
+132.125203362494,
+132.123901698811
+],
+"estimates": [
+[
+-3.89182029811062,
+0.0,
+0.0
+],
+[
+-4.07948288216469,
+1.62340636810261,
+46.1291466637975
+],
+[
+-4.810621957396,
+1.51647168868525,
+46.1291466637975
+],
+[
+-5.38461994456706,
+1.66638904661046,
+46.1291466637975
+],
+[
+-5.58940263740885,
+1.74508695196191,
+46.1291466637975
+],
+[
+-5.60753679497371,
+1.75267387840182,
+46.1291466637975
+]
+],
+"parameter_estimates": [
+{
+"variable": "Intercept",
+"df": 1,
+"estimate": -5.60753679497371,
+"stderr": 0.51413113616841,
+"wald": 118.958766484499
+},
+{
+"variable": "a",
+"df": 1,
+"estimate": 1.75267387840182,
+"stderr": 0.27269279291041,
+"wald": 41.3099727160849
+},
+{
+"variable": "x1",
+"df": 0,
+"estimate": 0.0,
+"stderr": null,
+"wald": null
+}
+],
+"global_tests": [
+{
+"test": "Likelihood Ratio",
+"chisq": 63.9543248606535,
+"df": 2
+},
+{
+"test": "Score",
+"chisq": 103.854294142761,
+"df": 2
+},
+{
+"test": "Wald",
+"chisq": null,
+"df": 1
+}
+]
+}
+},
+"warnings": [
+"WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+],
+"notes": [],
+"summary": [],
+"removal_table": []
+}
+}

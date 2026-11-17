@@ -1,0 +1,45 @@
+--- a/port/credit_risk/sas_compat.py	2026-11-17 04:30:55
++++ b/port/credit_risk/sas_compat.py	2026-11-17 04:44:58
+@@ -973,6 +973,9 @@
+     cur = fit(model)
+     res = StepwiseResult(intercept_only=cur, final=cur)
+     last_removed: str | None = None
++    visited = [frozenset()]
++    last_entered: str | None = None
++    res.recycled = False
+     while step < 500:
+         if model:  # removal first: smallest Wald chi-square, ties to the first in MODEL order
+             best_w: tuple[float, str] | None = None
+@@ -994,14 +997,23 @@
+                     )
+                 )
+                 last_removed = best_w[1]
++                if frozenset(model) in visited:
++                    res.recycled = ('immediate' if best_w[1] == last_entered else ('removal to empty' if not model else 'removal to visited'))
++                    break
++                last_entered = None
++                visited.append(frozenset(model))
+                 continue
+         best: tuple[float, str] | None = None
+         x = np.column_stack([ones, *[z_all[c] for c in model]])
+         for c, sc in _entry_score_chisq(x, y, cur, {c: z_all[c] for c in candidates if c not in model}):
+             if best is None or sc > best[0]:
+                 best = (sc, c)
+-        if best is None or chi2_sf(best[0], 1) >= slentry or best[1] == last_removed:
++        if best is None or chi2_sf(best[0], 1) >= slentry:
++            break
++        if frozenset([*model, best[1]]) in visited:
++            res.recycled = 'next entry is the last removed' if best[1] == last_removed else 'next entry, not the last removed'
+             break
++        last_entered = best[1]
+         step += 1
+         model.append(best[1])
+         cur = fit(model)
+@@ -1009,6 +1021,7 @@
+             StepwiseStep(step, best[1], None, 1, len(model), best[0], None, chi2_sf(best[0], 1), cur)
+         )
+         last_removed = None
++        visited.append(frozenset(model))
+     else:
+         raise RuntimeError("stepwise_logistic: 500 steps reached without stopping")
+     res.final = cur

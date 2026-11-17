@@ -1,0 +1,149 @@
+--- a/port/credit_risk/sas_compat.py	2026-11-17 04:44:58
++++ b/port/credit_risk/sas_compat.py	2026-11-17 05:06:42
+@@ -683,6 +683,7 @@
+     n_iter: int
+     converged: bool
+     separation: str | None = None
++    singular: tuple[int, ...] = ()  # parameters left out of the inverse at the last iteration (`_ginv`)
+ 
+ 
+ def _loglik(eta: FloatArray, y: FloatArray) -> float:
+@@ -748,6 +749,32 @@
+         cov = np.full((x.shape[1], x.shape[1]), np.nan)
+         converged = False
+     return LogisticFit(list(names), b, cov, ll, n_iter, converged)
++
++
++def _p_w_r(eta: FloatArray, y: FloatArray) -> tuple[FloatArray, FloatArray, FloatArray]:
++    """Probability, weight and residual y - p as SAS has them when a probability is near 0 or 1: with
++    e = exp(-|eta|), hi = 1 / (1 + e) is the probability of the likelier outcome and lo = e * hi that of the
++    other; lo is 0 when hi rounds to 1 (|eta| > 53 ln 2 = 36.74). Weight hi * lo; residual from hi and lo."""
++    e = np.exp(-np.abs(eta))
++    hi = 1.0 / (1.0 + e)
++    lo = np.where(hi < 1.0, e * hi, 0.0)
++    p1 = np.where(eta >= 0, hi, lo)
++    return p1, hi * lo, np.where(y == 1, np.where(eta >= 0, lo, hi), -p1)
++
++
++def _ginv(a: FloatArray) -> tuple[FloatArray, tuple[int, ...]]:
++    """SAS's inverse of an information matrix that may be singular: the parameters are taken in order, and
++    one whose pivot (its diagonal element after the earlier ones are swept out) is not above 1e-9 times
++    its own diagonal element is left out: its row and column of the inverse are 0."""
++    keep: list[int] = []
++    for j in range(a.shape[0]):
++        piv = a[j, j] - (a[j, keep] @ np.linalg.solve(a[np.ix_(keep, keep)], a[keep, j]) if keep else 0.0)
++        if a[j, j] > 0.0 and piv > 1e-9 * a[j, j]:
++            keep.append(j)
++    g = np.zeros_like(a)
++    if keep:
++        g[np.ix_(keep, keep)] = np.linalg.inv(a[np.ix_(keep, keep)])
++    return g, tuple(j for j in range(a.shape[0]) if j not in keep)
+ 
+ 
+ def _fit_as_sas(x: FloatArray, y: FloatArray, names: Sequence[str]) -> LogisticFit | None:
+@@ -806,18 +833,17 @@
+     j = 0  # the next ridge to try is 1e-4 * 4**j
+     try:
+         for n_iter in range(1, 26):
+-            p = _expit(x @ b)
+-            w = p * (1.0 - p)
++            p, w, r = _p_w_r(x @ b, y)
+             info = x.T @ (x * w[:, None])
+-            g = x.T @ (y - p)
+-            new_b = b + np.linalg.solve(info, g)
++            g = x.T @ r
++            new_b = b + _ginv(info)[0] @ g
+             new_ll = _loglik(x @ new_b, y)
+             if new_ll < ll:  # the step lowers the log likelihood: SAS's ridge
+                 first_trial = True
+                 while True:
+                     if j > 40:
+                         return None
+-                    new_b = b + np.linalg.solve(info + np.diag(1e-4 * 4.0**j * np.diag(info)), g)
++                    new_b = b + _ginv(info + np.diag(1e-4 * 4.0**j * np.diag(info)))[0] @ g
+                     new_ll = _loglik(x @ new_b, y)
+                     if not new_ll < ll:
+                         break
+@@ -826,12 +852,12 @@
+                 if first_trial:
+                     j -= 1
+             b, ll = new_b, new_ll
+-            p = _expit(x @ b)
+-            w = p * (1.0 - p)
+-            g = x.T @ (y - p)
+-            if float(g @ np.linalg.solve(x.T @ (x * w[:, None]), g)) / (abs(ll) + 1e-6) < 1e-8:
++            p, w, r = _p_w_r(x @ b, y)
++            g = x.T @ r
++            cov, singular = _ginv(x.T @ (x * w[:, None]))
++            if float(g @ cov @ g) / (abs(ll) + 1e-6) < 1e-8:
+                 # SAS's fit converged (GCONV): its estimates are those of this iteration
+-                return LogisticFit(list(names), b, np.linalg.inv(x.T @ (x * w[:, None])), ll, n_iter, True)
++                return LogisticFit(list(names), b, cov, ll, n_iter, True, None, singular)
+             if n_iter < 8:
+                 continue
+             p_obs = np.where(y == 1, p, 1.0 - p)
+@@ -839,12 +865,11 @@
+             if bool(np.all(p_obs > 0.5)):
+                 separation = "complete"
+             elif bool(np.any(p_obs >= 0.95)) and (
+-                float(np.diag(np.linalg.inv(xs.T @ (xs * w[:, None])))[1:].max()) > 5000.0
++                float(np.diag(_ginv(xs.T @ (xs * w[:, None]))[0])[1:].max()) > 5000.0
+             ):
+                 separation = "quasicomplete"
+             if separation is not None:
+-                cov = np.linalg.inv(x.T @ (x * w[:, None]))
+-                return LogisticFit(list(names), b, cov, ll, n_iter, False, separation)
++                return LogisticFit(list(names), b, cov, ll, n_iter, False, separation, singular)
+     except np.linalg.LinAlgError:
+         return None
+     return None
+@@ -979,6 +1004,18 @@
+     while step < 500:
+         if model:  # removal first: smallest Wald chi-square, ties to the first in MODEL order
+             best_w: tuple[float, str] | None = None
++            sing = [c for c in sorted(model, key=mkey) if cur.names.index(c) in cur.singular]
++            if sing:  # SAS: no Wald test for it (DF 0), and it is removed
++                step += 1
++                model.remove(sing[0])
++                cur = fit(model)
++                res.steps.append(StepwiseStep(step, None, sing[0], 0, len(model), None, float("nan"), float("nan"), cur))
++                last_removed = sing[0]
++                if frozenset(model) in visited:
++                    break
++                last_entered = None
++                visited.append(frozenset(model))
++                continue
+             for c in sorted(model, key=mkey):
+                 i = cur.names.index(c)
+                 wv = float(cur.beta[i] ** 2 / cur.cov[i, i])
+--- a/port/credit_risk/train.py	2026-11-17 04:43:54
++++ b/port/credit_risk/train.py	2026-11-17 05:06:42
+@@ -131,6 +131,10 @@
+         ss_score.append(
+             "_" if st.score_chisq is None else sas_compat.fmt_wd(st.score_chisq, 10, 4)
+         )  # '_' = ODS ._
++        if st.df == 0:  # a singular parameter removed: SAS has no Wald test for it
++            ss_wald.append("")
++            ss_prob.append("")
++            continue
+         ss_wald.append("_" if st.wald_chisq is None else sas_compat.fmt_wd(st.wald_chisq, 10, 4))
+         ss_prob.append(sas_compat.sas_pvalue(st.p_value))
+     stepwise_summary = pl.DataFrame(
+@@ -219,10 +223,16 @@
+         i0 = ybar * (1.0 - ybar) * (x_k.T @ x_k)
+         score = float(u0 @ np.linalg.solve(i0, u0))
+         b_slope = st.fit.beta[1:]
+-        wald = float(b_slope @ np.linalg.solve(st.fit.cov[1:, 1:], b_slope))
++        n_sing = len(st.fit.singular)
++        wald = float("nan") if n_sing else float(b_slope @ np.linalg.solve(st.fit.cov[1:, 1:], b_slope))
+         for test, stat in (("Likelihood Ratio", lr), ("Score", score), ("Wald", wald)):
+             gt_step.append(str(st.step))
+             gt_test.append(test)
++            if test == "Wald" and n_sing:  # SAS: no chi-square, DF = the parameters not singular
++                gt_chisq.append("")
++                gt_df.append(str(q - n_sing))
++                gt_prob.append("")
++                continue
+             gt_chisq.append(sas_compat.fmt_wd(stat, 10, 4))
+             gt_df.append(str(q))
+             gt_prob.append(sas_compat.sas_pvalue(sas_compat.chi2_sf(stat, q)))
