@@ -52,6 +52,27 @@ compiled against the present profile. For each of yours: read the accepted proof
 change the statement. Result per item: accepted, or the compile error. **If it does not compile,
 do not repair it: report the error first.** A kept theorem that no longer compiles is a finding.
 
+**Large proofs (accepted proof over the 30 KB response limit, no stored draft on `5365851c`).**
+The stale blueprint `b41b22d4-720d-4290-b593-39ceab961986` still holds the stored solution
+drafts, readable in line ranges. It is read only: nothing is ever written to that id. Procedure
+(lead's instruction, 2026-11-17):
+1. On `b41b22d4`: confirm the item is in state proved and its `statement_lean` equals the one on
+   `5365851c`. If it differs, stop and report.
+2. `read_scratch` (part "solution") on `b41b22d4` in line ranges; note its revision and
+   `total_lines`.
+3. On `5365851c`: build the draft with `write_solution_draft` then `edit_solution_draft`
+   (append), each chunk passed exactly as read, never retyped.
+4. `read_scratch` the new draft back in ranges; check `total_lines` and each range against the
+   old one.
+5. `submit_solution`. If it does not compile, stop and report; no repair.
+Report for each such item: "proof text from the stored draft of the same item on b41b22d4,
+revision ..., N lines; accepted on 5365851c at revision ...". Identity with the accepted proof
+on `5365851c` cannot be shown for this class and is not claimed. An item with no draft on either
+id: report it; it goes to the owner.
+
+The linter (`lint`) fails on every item with "Unknown constant Pl.Json.rec_1": a tool limit, not
+a result; do not use it as a check.
+
 Four items were cleared when the train stage changed and are to be restated and decided again:
 `thm:train_run_04_score_train_S7a`, `_S7b`, `thm:train_run_14_final_and_summary_S13`,
 `thm:train_run_01_fit_frame_C4`. Their texts are on the items (contracts S7, S13, C4 of
@@ -75,6 +96,12 @@ again.
 
 All ids carry the prefix `thm:`. Reviewer of a restated statement: prover-9 for prover-10's,
 prover-10 for prover-8's.
+
+**Restating an old `thm:` item replaces its text.** `write_statement` on an existing `thm:` item
+replaces its `statement_text` (the contract) with a generated summary. Remedy, for every old
+item restated: save `statement_text` first; `write_statement`; then `edit_text` with the saved
+text (this keeps the Lean); read `statement_text` back and compare. New items made with
+`add_item` keep their text, but read it back after `write_statement` all the same.
 
 ## Phase 1: coverage of the SAS unit preconditions (start when your phase 0 items are reported)
 

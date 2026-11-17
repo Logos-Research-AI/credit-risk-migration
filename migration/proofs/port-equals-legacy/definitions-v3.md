@@ -223,3 +223,74 @@ specification v3, section 6).
 clause of `SasLinks sas` follows (needed to use the 26 `thm:sas_Q`); and that for every `py`
 meeting `PyLinks` some `sas` is paired with it (needed so that the SAS parameters disappear from
 the carried-over requirements).
+
+---
+
+## Corrections before stating (2026-11-17)
+
+Found by prover-1 on reading the texts against the present units, before anything was stated;
+approved by the lead the same day. The texts above are left as drafted; where a correction
+applies, the correction is the text in force. They are assumptions of the claim and are listed
+for the owner at the final sign-off.
+
+### C-a. `PyLinks` 5, the count
+
+- **Before**: "the ids listed are distinct ids among those given, and their number is seven
+  tenths of the number of ids, rounded up", for every seed and list of ids.
+- **After**: for every seed and list of ids, the split table has the one numeric column
+  `row_id`, and the ids listed are distinct and among those given. For a list of present,
+  pairwise distinct ids, their number is seven tenths of the number of ids, rounded up.
+- **Reason**: unsatisfiable as drafted. For the list (1, 1, 1, 1) three distinct ids among those
+  given do not exist, so no `py` would meet `PyLinks` and every contract would hold emptily.
+- **Conditions**: every clause of `PyLinks` and of `Paired` is covered by a witness: T0 exhibits
+  a concrete `py` and `sas` meeting `PyLinks`, `Paired` and `SasLinks` together, and is stated
+  and proved before any contract that takes them as hypotheses is proved. The reviewer of the
+  definitions tries each clause by hand on a degenerate argument (empty list, repeated ids, one
+  row, all missing).
+
+### C-b. `Paired` 2, the tables it is asked of
+
+- **Before**: "For every seed and table of feature-engineering rows, the rows the SAS `split`
+  selects are exactly the rows whose `row_id` is in the port's split table for that seed and
+  those ids."
+- **After**: for every seed and every table whose `row_id` is a present number in every row,
+  no two equal: `split seed t` is `t` with `Selected` set to 1 on the rows whose `row_id` is
+  listed by the port's split for that seed and the ids of `t`, and 0 on the others. Nothing is
+  asked for other tables.
+- **Reason**: asked of every table, a table with a repeated `row_id` contradicts the count of
+  clause (5) of `SasLinks`, which is asked of every table; T0 would be false.
+- **Consequence, accepted**: clause (5) of `SasLinks` is not derived from `PyLinks` and `Paired`
+  for every paired `sas`; it holds for the `sas` T0 exhibits, which is what section 6 of the
+  specification uses. This replaces, for clause (5), the first half of the reviewer note of
+  section 3 above. If a contract later needs clause (5) for every paired `sas`, it goes to the
+  lead; it is not added as a hypothesis.
+- **Condition**: a lemma that on valid input the table the split receives has `row_id` present
+  in every row and pairwise distinct is stated and proved, so that E1 and the contracts after
+  it carry no extra hypothesis.
+
+### C-c. `Paired` 7, the date
+
+- **Before**: "The same `today`."
+- **After**: the SAS side of `Paired` is the 17 parameters of `sasPipeline` together with
+  `today`, a SAS number (`def:SasParams`); clause 7 says the port's `today` cell is the numeric
+  cell holding that number.
+- **Reason**: `sasPipeline` has no date among its 17 parameters; the date belongs to SAS units
+  outside it (`model_performance_metrics`; contracts F4, F6).
+- **Condition**: F4 and F6 quantify `today` once, shared through `Paired`.
+
+### Additions that are not changes of wording
+
+- **Two record items.** The server takes one declaration per item, so the parameters are two
+  items of their own: `def:PyParams` (the port parameters of section 1, fields only, no
+  condition) and `def:SasParams` (the 17 parameters of `sasPipeline` in its order and types,
+  then `today`). Author prover-1; reviewer prover-9.
+- **`pyPipeline.score` and the changed train stage.** Step 12 takes two frames and step 14 eight
+  frames and a Boolean; the validation output depends on none of the others. `score` calls the
+  units themselves with the risk-scored validation frame in the idle slots and `false`, and
+  looks up `risk_scores_validation.csv` in the result. The independence of the validation
+  output from the idle slots is a required lemma, proved before any F-contract cites
+  `pyPipeline`.
+- **`pyPipeline.fit`** stops on the training feature flag only, as the text says; under
+  `PyLinks` 7 the two flags agree, so E3 is not affected.
+- **Importers** are optional-valued (`importTrain`, `importTest`); `PyLinks` 3 and 4 say a valid
+  table gives a value and say nothing of other tables.
