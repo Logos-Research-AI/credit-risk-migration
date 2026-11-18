@@ -88,6 +88,14 @@ Stated by prover-1, reviewed by prover-2.
 
 ## Contract texts changed with the lead's approval
 
+- **G2 and G4: hypothesis on `fsum`** (lead, 2026-11-18, W4 run; owner to see at sign-off): PyLinks
+  says nothing of the summation parameter `fsum` (Python's `math.fsum`), while the ROC unit's
+  precondition (`roc_association_precond`, reached through `run_py_precond` and
+  `train_run_13_roc_precond`) needs a sum of squares not below 0. With an arbitrary `fsum` G2 and G4
+  fail on that alone (G4's prover, no port defect). Chosen over a correction C-g to PyLinks (same
+  assumption, but it would clear every dependent again): G2 and G4 assume that `fsum` of a list of
+  reals all >= 0 is >= 0, true of `math.fsum`.
+
 - **E4 feature shape narrowed** (lead, 2026-11-17, W3 run; owner to see at sign-off): the feature
   table has at least one column, and every term of the model names one of the 42 feature columns
   of PyLinks 8. Found by E4's prover: a table whose rows have no column scores to two rows on the
