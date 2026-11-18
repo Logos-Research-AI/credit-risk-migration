@@ -111,8 +111,31 @@ def test_raw_input_r3_both_orders() -> None:
         print(f"  {tag}: 1 - h of row id 276 = {1.0 - h[i]:.2e}; {len(got)} rows as SAS")
 
 
+def test_rule_is_on_one_minus_h() -> None:
+    """X23 (migration/legacy-to-port/experiments/x23_leverage_tolerance.py): estimates fixed (INEST=,
+    MAXITER=0), so the observation of leverage near 1 has probability 0.5, 1e-9 or 0.999 and its column
+    scale 1e-3, 1 or 1e3. SAS keeps its probability at 1 - h = 5e-9 and 9.5e-9 and adjusts it at 1.2e-8,
+    1.4e-8 and 2e-8, whatever the weight, the scale and the outcome: a test on 1 - h alone, inside
+    (9.5e-9, 1.2e-8]. The port's table is SAS's on all 17 fits."""
+    cases: list[dict[str, Any]] = json.loads((DATA / "sas_x23_leverage.json").read_text())
+    kept = 0
+    for case in cases:
+        arr = np.array(case["rows"], dtype=float)
+        y = arr[:, 0]
+        x = np.column_stack([np.ones(len(arr)), arr[:, 1], arr[:, 2]])
+        p = sas_compat._expit(x @ np.array(case["estimates"]))
+        sas_keeps = float(case["sas_xp"]) == float(case["sas_p"])
+        assert (1.0 - leverage(x, p)[7] <= 1e-8) == sas_keeps, (case["case"], 1.0 - leverage(x, p)[7])
+        kept += sas_keeps
+        got = rows_of(sas_compat.classification_table(y, x, pd=p))
+        want = [tuple(r) for r in case["classification"]]
+        assert got == want, (case["case"], [(a, b) for a, b in zip(got, want, strict=False) if a != b][:3])
+    assert len(cases) == 17 and kept == 6, (len(cases), kept)
+    print(f"  {len(cases)} fits: SAS's table; SAS keeps the probability on {kept}, all with 1 - h below 1e-8")
+
+
 if __name__ == "__main__":
-    for t in (test_designed_fits_are_sas, test_raw_input_r3_both_orders):
+    for t in (test_designed_fits_are_sas, test_raw_input_r3_both_orders, test_rule_is_on_one_minus_h):
         print(t.__name__)
         t()
     print("ALL OK")
