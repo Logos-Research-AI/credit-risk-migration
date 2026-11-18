@@ -641,3 +641,13 @@ blank, `.` or `NA`. The requirements also accept `+5000`, `5e3`, numbers padded 
 (found by prover-5's first-hand runs). The owner chose a stated limit: the equality claim covers
 input files written in plain digits with missing values blank, `.` or `NA`, as the real data are;
 the other forms are listed with G53 to G58. No change to the definitions.
+
+## Owner's decision, 2026-11-18: no transports, no carried requirements
+
+The owner: "I don't want to reprove all the properties of the SAS blueprint again for the python
+blueprint. If we proved equality I am happy to assume the other properties translate over."
+Section 6 of `informal-spec.md` is dropped apart from T0, T1 and T2 (already proved): no
+`Agree` definition, no 26 transport lemmas, no 26 carried requirements. The final claim is the
+equality of port and SAS (sections 2 to 5, with the stated limits and the lead's rulings above);
+that the 26 requirements proved of the SAS program hold of the port is an inference from the
+equality, stated as such in the report, not a theorem on the port blueprint.

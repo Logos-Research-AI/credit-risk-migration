@@ -209,6 +209,10 @@ formats); the ROC tables beyond the area.
 
 ## 6. Requirements carried over (stage 6)
 
+**Owner, 2026-11-18: only T0, T1 and T2 of this section are kept.** The transports and the 26
+carried requirements are dropped; the requirements are taken to hold of the port by the equality
+(round record, owner's decision of 2026-11-18).
+
 Stated only after every contract of section 2 is proved.
 
 - **T0, parameters exist.** For every `py` with `PyLinks py` there is `sas` with `Paired py sas`;
