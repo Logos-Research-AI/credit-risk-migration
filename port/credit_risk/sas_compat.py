@@ -1043,6 +1043,9 @@ def stepwise_logistic(
     its convergence test, or at the iteration where it declares a separation, whose estimates SAS
     keeps with a warning before going on to the removal test (owner's decisions 2026-11-16 and
     2026-11-17, RULEBOOK §2).
+    When the rows used hold one response value (or none) SAS fits nothing ("All observations have the
+    same response. No statistics are computed."; x27 C60, E60): the result has no step and no fit
+    (`final` and `intercept_only` None).
     Raises RuntimeError when a fit neither converges nor separates in SAS's 25 iterations, or the
     500-step cap is hit."""
     return _stepwise_logistic_with_note(df, response, candidates, slentry, slstay)[0]
@@ -1061,6 +1064,10 @@ def _stepwise_logistic_with_note(
     alone (port/tests/test_recycling.py)."""
     used = df.select([response, *candidates]).drop_nulls()
     y = np.asarray(used.get_column(response).to_numpy(), dtype=np.float64)
+    if np.unique(y).size < 2:
+        # PROC LOGISTIC stops before any fit and computes nothing (x27 C60, E60)
+        print("ERROR: All observations have the same response.  No statistics are computed.")
+        return StepwiseResult(), ""
     z_all = {c: np.asarray(used.get_column(c).to_numpy(), dtype=np.float64) for c in candidates}
     order = {c: i for i, c in enumerate(candidates)}
     ones = np.ones(len(y))

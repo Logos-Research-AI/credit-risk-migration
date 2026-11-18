@@ -103,11 +103,11 @@ def run(input_dir: Path, output_dir: Path) -> None:
     stepwise = sas_compat.stepwise_logistic(fit_frame, "default_flag", candidates, 0.05, 0.05)
     final = stepwise.final
     intercept_only = stepwise.intercept_only
-    if final is None or intercept_only is None:
-        raise RuntimeError("stepwise_logistic returned no final model")
+    # x27 C60, E60 (RULEBOOK R46): with one response value among the rows used SAS fits nothing (final and
+    # intercept_only None): no ODS table, no item store, every pd_logistic missing; train.sas runs on
     n_obs = fit_frame.height
     y_train = np.asarray(fit_frame.get_column("default_flag").to_numpy(), dtype=np.float64)
-    m2ll0 = -2.0 * intercept_only.loglik  # -2 Log L of the intercept-only fit
+    m2ll0 = math.nan if intercept_only is None else -2.0 * intercept_only.loglik  # -2 Log L, intercept only
     ybar = float(y_train.mean())
 
     # ODS StepwiseSummary (ModelBuildingSummary) -> stepwise_summary.csv
@@ -153,7 +153,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
             "ProbChiSq": ss_prob,
         }
     )
-    sas_compat.write_sas_csv(stepwise_summary, output_dir / "stepwise_summary.csv", formats={})
+    if final is not None:  # no fit: no ODS table (x27)
+        sas_compat.write_sas_csv(stepwise_summary, output_dir / "stepwise_summary.csv", formats={})
 
     # ODS FitStatistics -> printed_fit_statistics.csv  # INV printed_fit_statistics.csv
     # (complete cases only: x_k, n_obs and y_train come from fit_frame)
@@ -261,7 +262,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
             "InterceptAndCovariates": fs_cov,
         }
     )
-    sas_compat.write_sas_csv(printed_fit_statistics, output_dir / "printed_fit_statistics.csv", formats={})
+    if final is not None:  # no fit: no ODS table (x27)
+        sas_compat.write_sas_csv(
+            printed_fit_statistics, output_dir / "printed_fit_statistics.csv", formats={}
+        )
     printed_global_tests = pl.DataFrame(
         {"Step": gt_step, "Test": gt_test, "ChiSq": gt_chisq, "DF": gt_df, "ProbChiSq": gt_prob}
     )
@@ -284,11 +288,17 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # OUTPUT OUT=work.logit_scored_train PREDICTED=pd_logistic  # R§2 `output out= predicted=`
     # final model effects in MODEL statement order (ParameterEstimates order), Intercept first
-    final_effects = [c for c in candidates if c in final.names]
-    final_index = [final.names.index(c) for c in final_effects]
-    intercept = float(final.beta[0])
-    coefficients = {c: float(final.beta[i]) for c, i in zip(final_effects, final_index, strict=True)}
-    eta_train = pl.lit(intercept)
+    # (no fit: no effect, no intercept, every pd_logistic missing; x27)
+    final_names = [] if final is None else final.names
+    final_effects = [c for c in candidates if c in final_names]
+    final_index = [final_names.index(c) for c in final_effects]
+    intercept = None if final is None else float(final.beta[0])
+    coefficients = (
+        {}
+        if final is None
+        else {c: float(final.beta[i]) for c, i in zip(final_effects, final_index, strict=True)}
+    )
+    eta_train = pl.lit(intercept, pl.Float64)
     for c, b in coefficients.items():
         eta_train = eta_train + b * pl.col(c)
     logit_scored_train = model_features_train.with_columns(
@@ -346,8 +356,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
     # INV model_coefficients.csv
     # stored formats: Variable $20., DF 2., Estimate d8., StdErr d8., WaldChiSq 10.4,
     # ProbChiSq pvalue6.4, _ESTTYPE_ $4. (S7)
-    mc_variable: list[str] = ["Intercept"]
-    mc_estimate: list[str] = [sas_compat.sas_d8(intercept)]
+    mc_variable: list[str] = [] if final is None else ["Intercept"]  # no fit: no table (x27)
+    mc_estimate: list[str] = [] if final is None else [sas_compat.sas_d8(intercept)]
     mc_stderr: list[str] = []
     mc_wald: list[str] = []
     mc_prob: list[str] = []
@@ -357,6 +367,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
     or_lower: list[str] = []
     or_upper: list[str] = []
     for idx, name in [(0, "Intercept"), *zip(final_index, final_effects, strict=True)]:
+        if final is None:  # no fit: no table (x27)
+            break
         b = float(final.beta[idx])
         se = math.sqrt(float(final.cov[idx, idx]))
         wald_b = (b / se) ** 2
@@ -435,7 +447,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     x_final = np.column_stack(
         [
             np.ones(n_obs),
-            *[np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64) for c in final.names[1:]],
+            *[np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64) for c in final_names[1:]],
         ]
     )
     # CTABLE uses the complete cases only: x_final, y_train and pd_train are all on the fit frame
@@ -469,11 +481,15 @@ def run(input_dir: Path, output_dir: Path) -> None:
             "NPV": [sas_compat.fmt_wd(v, 5, 1) for v in ctable.get_column("NPV").to_list()],
         }
     )
-    sas_compat.write_sas_csv(printed_classification, output_dir / "printed_classification.csv", formats={})
+    if final is not None:  # no fit: no ODS table (x27)
+        sas_compat.write_sas_csv(
+            printed_classification, output_dir / "printed_classification.csv", formats={}
+        )
 
     # STORE work.logit_model -> model.json  # R§2 PROC LOGISTIC store / PROC PLM restore, RULEBOOK §0
-    with (output_dir / "model.json").open("w", encoding="utf-8") as fh:
-        json.dump({"intercept": intercept, "coefficients": coefficients}, fh)
+    if final is not None:  # no fit: no item store (x27)
+        with (output_dir / "model.json").open("w", encoding="utf-8") as fh:
+            json.dump({"intercept": intercept, "coefficients": coefficients}, fh)
 
     # title "Logistic Regression Model - Credit Default Prediction"  # R§2 title dropped
 
@@ -547,11 +563,20 @@ def run(input_dir: Path, output_dir: Path) -> None:
     eta_valid = pl.lit(intercept)
     for c, b in coefficients.items():
         eta_valid = eta_valid + b * pl.col(c)
-    logit_scored_valid_temp = model_features_validation.with_columns(predicted_logit=eta_valid)
+    # no item store (no fit): PROC PLM stops and the table does not exist (None; x27)
+    logit_scored_valid_temp = (
+        None if final is None else model_features_validation.with_columns(predicted_logit=eta_valid)
+    )
 
-    # train.sas:181-191 inverse logit and binary prediction
+    # train.sas:181-191 inverse logit and binary prediction; SET of a table that does not exist: the step
+    # stops at compile time and leaves 0 rows and its own variables (x27: pd_logistic, pred_logistic)
+    valid_temp_read = (
+        pl.DataFrame(schema={"predicted_logit": pl.Float64})
+        if logit_scored_valid_temp is None
+        else logit_scored_valid_temp
+    )
     logit_scored_valid = (
-        logit_scored_valid_temp.with_columns(
+        valid_temp_read.with_columns(
             pd_logistic=1
             / (
                 1 + sas_compat.sas_exp(-pl.col("predicted_logit"))
@@ -563,8 +588,11 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # train.sas:194-196 PROC FREQ out=work.confusion_matrix
     # R§2 PROC FREQ, INV printed_confusion_validation.csv
+    # x27: "Variable DEFAULT_FLAG not found": the out= table exists with no row and no variable
     confusion_matrix = (
-        logit_scored_valid.group_by(["default_flag", "pred_logistic"], maintain_order=True)
+        pl.DataFrame()
+        if "default_flag" not in logit_scored_valid.columns
+        else logit_scored_valid.group_by(["default_flag", "pred_logistic"], maintain_order=True)
         .agg(COUNT=pl.len().cast(pl.Int64))
         .sort(["default_flag", "pred_logistic"], maintain_order=True)
         .with_columns(
@@ -584,7 +612,13 @@ def run(input_dir: Path, output_dir: Path) -> None:
     # listing-only: PROC PRINT confusion_matrix
 
     # train.sas:203-224 data work.validation_metrics (retain + end=eof)  # INV work.validation_metrics
-    validation_metrics = confusion_matrix.select(
+    # (x27: SET of the table with no variable reads no row; end=eof never holds and nothing is output)
+    confusion_matrix_read = (
+        pl.DataFrame(schema={"default_flag": pl.Float64, "pred_logistic": pl.Int64, "COUNT": pl.Int64})
+        if confusion_matrix.width == 0
+        else confusion_matrix
+    )
+    validation_metrics = confusion_matrix_read.select(
         TP=pl.col("COUNT").filter((pl.col("default_flag") == 1) & (pl.col("pred_logistic") == 1)).sum(),
         TN=pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 0)).sum(),
         FP=pl.col("COUNT").filter((pl.col("default_flag") == 0) & (pl.col("pred_logistic") == 1)).sum(),
@@ -611,9 +645,11 @@ def run(input_dir: Path, output_dir: Path) -> None:
         )
         .otherwise(None)
     )
-    validation_metrics = validation_metrics.select(
-        "valid_precision", "valid_recall", "valid_f1_score", "valid_accuracy"
-    ).cast(pl.Float64)
+    validation_metrics = (
+        validation_metrics.select("valid_precision", "valid_recall", "valid_f1_score", "valid_accuracy")
+        .cast(pl.Float64)
+        .head(min(confusion_matrix.height, 1))
+    )
 
     # train.sas:226-229
     # listing-only: PROC PRINT validation_metrics
@@ -721,17 +757,28 @@ def run(input_dir: Path, output_dir: Path) -> None:
         risk_scores_train.get_column("pd_logistic"),
         label="Training Set",
     )
+    # (x27: a table without default_flag: "Variable DEFAULT_FLAG not found", read as an outcome with no row)
+    no_flag = pl.Series("default_flag", [], pl.Float64)
     roc_valid = sas_compat.roc_association(
-        risk_scores_validation.get_column("default_flag"),
+        risk_scores_validation.get_column("default_flag", default=no_flag),
         risk_scores_validation.get_column("pd_logistic"),
         label="Validation Set",
     )
-    # train.sas:325-331: when the rows the step uses (outcome and probability present) hold no event or
-    # no non-event, SAS stops the step ("All observations have the same response") and work.roc_valid
-    # is not created (small-inputs.md (a); judge/runs/gen_s15, s19, s23, s29)
-    roc_valid_used = risk_scores_validation.filter(
+    # train.sas:318-331: when the rows a step uses (outcome and probability present) hold no event or
+    # no non-event, SAS stops the step ("All observations have the same response", "There are no valid
+    # observations") and its table is not created (RULEBOOK R46; small-inputs.md (a); judge/runs/gen_s15, s19,
+    # s23, s29; x27 C60, E60: neither table)
+    roc_train_used = risk_scores_train.filter(
         pl.col("default_flag").is_not_null() & pl.col("pd_logistic").is_not_null()
     ).get_column("default_flag")
+    roc_train_created = bool((roc_train_used == 1).any()) and bool((roc_train_used != 1).any())
+    roc_valid_used = (
+        risk_scores_validation.with_columns(
+            risk_scores_validation.get_column("default_flag", default=no_flag)
+        )
+        .filter(pl.col("default_flag").is_not_null() & pl.col("pd_logistic").is_not_null())
+        .get_column("default_flag")
+    )
     roc_valid_created = bool((roc_valid_used == 1).any()) and bool((roc_valid_used != 1).any())
 
     # train.sas:334-344
@@ -811,11 +858,15 @@ def run(input_dir: Path, output_dir: Path) -> None:
         "valid_accuracy",
     }
     model_summary = model_summary.select([c for c in model_summary.columns if c in summary_keep])
-    if not roc_valid_created:
+    if not (roc_train_created and roc_valid_created):
         # the merge names a table that does not exist: the data step stops and leaves 0 rows and the
-        # kept variables in the order it met them, Valid_AUC last; the export writes the header only
+        # kept variables in the order it met them, an AUC of a missing table last (FORMAT order: Train_AUC,
+        # Valid_AUC; x27 C60, E60); the export writes the header only
+        missing_auc = [
+            c for c, ok in (("Train_AUC", roc_train_created), ("Valid_AUC", roc_valid_created)) if not ok
+        ]
         model_summary = model_summary.clear().select(
-            [c for c in model_summary.columns if c != "Valid_AUC"] + ["Valid_AUC"]
+            [c for c in model_summary.columns if c not in missing_auc] + missing_auc
         )
 
     # train.sas:413-417 PROC EXPORT model_summary  # INV model_summary.csv
@@ -838,7 +889,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
     )
 
     # train.sas:420-424 PROC EXPORT model_coefficients  # INV model_coefficients.csv
-    sas_compat.write_sas_csv(model_coefficients, output_dir / "model_coefficients.csv", formats={})
+    if final is not None:  # no fit: the table does not exist and the export writes no file (x27)
+        sas_compat.write_sas_csv(model_coefficients, output_dir / "model_coefficients.csv", formats={})
 
     # judge-instrumented exports of printed datasets (EXPORT_AFTER)  # R§2 datasets the judge exports (A21)
     # ROC tables: stored formats ROCModel $12./$14., seven statistics d8. (S7)
@@ -849,7 +901,8 @@ def run(input_dir: Path, output_dir: Path) -> None:
             **{c: [sas_compat.sas_d8(v) for v in roc_train.get_column(c).to_list()] for c in roc_cols},
         }
     )
-    sas_compat.write_sas_csv(printed_roc_train, output_dir / "printed_roc_train.csv", formats={})
+    if roc_train_created:  # the judge's export of a table that does not exist writes no file (x27)
+        sas_compat.write_sas_csv(printed_roc_train, output_dir / "printed_roc_train.csv", formats={})
     printed_roc_validation = pl.DataFrame(
         {
             "ROCModel": roc_valid.get_column("ROCModel").to_list(),
@@ -861,7 +914,10 @@ def run(input_dir: Path, output_dir: Path) -> None:
             printed_roc_validation, output_dir / "printed_roc_validation.csv", formats={}
         )
     sas_compat.write_sas_csv(confusion_matrix_train, output_dir / "printed_confusion_train.csv", formats={})
-    sas_compat.write_sas_csv(confusion_matrix, output_dir / "printed_confusion_validation.csv", formats={})
+    if confusion_matrix.width > 0:  # a table with no variable: the export fails and writes no file (x27)
+        sas_compat.write_sas_csv(
+            confusion_matrix, output_dir / "printed_confusion_validation.csv", formats={}
+        )
 
     # train.sas:426-432 %put
     print("NOTE: Model training completed successfully")
