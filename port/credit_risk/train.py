@@ -292,11 +292,17 @@ def run(input_dir: Path, output_dir: Path) -> None:
     final_names = [] if final is None else final.names
     final_effects = [c for c in candidates if c in final_names]
     final_index = [final_names.index(c) for c in final_effects]
-    intercept = None if final is None else float(final.beta[0])
+    # a parameter left out of a singular information matrix at the last iteration (variance exactly 0)
+    # predicts with 0, as SAS's OUTPUT and PROC PLM do (X21 S1, X22): its estimate is SAS's printed 0
+    left_out = [] if final is None else [i for i in range(len(final_names)) if float(final.cov[i, i]) == 0.0]
+    intercept = None if final is None else 0.0 if 0 in left_out else float(final.beta[0])
     coefficients = (
         {}
         if final is None
-        else {c: float(final.beta[i]) for c, i in zip(final_effects, final_index, strict=True)}
+        else {
+            c: 0.0 if i in left_out else float(final.beta[i])
+            for c, i in zip(final_effects, final_index, strict=True)
+        }
     )
     eta_train = pl.lit(intercept, pl.Float64)
     for c, b in coefficients.items():
@@ -314,8 +320,17 @@ def run(input_dir: Path, output_dir: Path) -> None:
 
     # ODS Association -> printed_association.csv  # INV printed_association.csv, R§2 A8
     # stored formats: Label1 $18., cValue1 $9., nValue1 d12.3, Label2 $9., cValue2 $5., nValue2 d12.3 (S7)
+    # X22: SAS's Association is of the last iteration's estimates, a left-out parameter's value included
+    # (the OUTPUT probabilities, and Hosmer-Lemeshow below, use 0 for it)
+    estimates = [] if final is None else [float(v) for v in final.beta]
+    eta_iteration = pl.lit(estimates[0] if estimates else None, pl.Float64)
+    for c, i in zip(final_effects, final_index, strict=True):
+        eta_iteration = eta_iteration + estimates[i] * pl.col(c)
+    assoc_scored = (
+        fit_scored.with_columns(pd_logistic=1 / (1 + (-eta_iteration).exp())) if left_out else fit_scored
+    )
     assoc = sas_compat.association_table(
-        fit_scored.get_column("default_flag"), fit_scored.get_column("pd_logistic")
+        assoc_scored.get_column("default_flag"), assoc_scored.get_column("pd_logistic")
     )
     printed_association = pl.DataFrame(
         {
@@ -357,6 +372,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     # stored formats: Variable $20., DF 2., Estimate d8., StdErr d8., WaldChiSq 10.4,
     # ProbChiSq pvalue6.4, _ESTTYPE_ $4. (S7)
     mc_variable: list[str] = [] if final is None else ["Intercept"]  # no fit: no table (x27)
+    mc_df: list[str] = []
     mc_estimate: list[str] = [] if final is None else [sas_compat.sas_d8(intercept)]
     mc_stderr: list[str] = []
     mc_wald: list[str] = []
@@ -369,9 +385,20 @@ def run(input_dir: Path, output_dir: Path) -> None:
     for idx, name in [(0, "Intercept"), *zip(final_index, final_effects, strict=True)]:
         if final is None:  # no fit: no table (x27)
             break
+        if idx in left_out:
+            # X22: a parameter left out has DF 0, Estimate 0, no standard error, Wald test or odds ratio
+            if idx != 0:
+                mc_variable.append(name[:20])
+                mc_estimate.append(sas_compat.sas_d8(0.0))
+            mc_df.append("0")
+            mc_stderr.append("")
+            mc_wald.append("")
+            mc_prob.append("")
+            continue
         b = float(final.beta[idx])
         se = math.sqrt(float(final.cov[idx, idx]))
         wald_b = (b / se) ** 2
+        mc_df.append("1")
         if idx != 0:
             mc_variable.append(name[:20])
             mc_estimate.append(sas_compat.sas_d8(b))
@@ -386,7 +413,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
     model_coefficients = pl.DataFrame(
         {
             "Variable": mc_variable,
-            "DF": ["1"] * len(mc_variable),
+            "DF": mc_df,
             "Estimate": mc_estimate,
             "StdErr": mc_stderr,
             "WaldChiSq": mc_wald,
@@ -453,10 +480,12 @@ def run(input_dir: Path, output_dir: Path) -> None:
     # CTABLE uses the complete cases only: x_final, y_train and pd_train are all on the fit frame
     pd_train = np.asarray(logit_scored_train.get_column("pd_logistic").to_numpy(), dtype=np.float64)[fit_mask]
     # no fit: no table and nothing to classify, on any number of rows used (x27; one row:
-    # judge/runs/emptyval_n1_class0, n1_class1)
+    # judge/runs/emptyval_n1_class0, n1_class1); none either when a parameter is left out of an
+    # information matrix singular through the weights (X22)
+    ctable_made = final is not None and sas_compat.classification_is_made(final, x_final)
     ctable = (
         sas_compat.classification_table(y_train, x_final, pd=pd_train)
-        if final is not None
+        if ctable_made
         else pl.DataFrame(
             schema=dict.fromkeys(
                 (
@@ -495,7 +524,7 @@ def run(input_dir: Path, output_dir: Path) -> None:
             "NPV": [sas_compat.fmt_wd(v, 5, 1) for v in ctable.get_column("NPV").to_list()],
         }
     )
-    if final is not None:  # no fit: no ODS table (x27)
+    if ctable_made:  # no fit: no ODS table (x27); X22
         sas_compat.write_sas_csv(
             printed_classification, output_dir / "printed_classification.csv", formats={}
         )

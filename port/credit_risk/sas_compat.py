@@ -1555,7 +1555,7 @@ def classification_table(
     else:
         raise ValueError("classification_table needs pd or a fit")
     w = p * (1.0 - p)
-    v = np.linalg.inv(x.T @ (x * w[:, None]))
+    v = _inv_sas(x.T @ (x * w[:, None]))  # a linearly dependent column left out (X22 B)
     q = np.einsum("ij,jk,ik->i", x, v, x)
     h = w * q
     # an observation whose leverage is within 1e-8 of 1 keeps its probability: SAS makes no one-step
@@ -1646,6 +1646,21 @@ def keep_sas_names(frame: pl.DataFrame, names: Collection[str]) -> pl.DataFrame:
     """
     upper_names = {n.upper() for n in names}
     return frame.select([c for c in frame.columns if c.upper() in upper_names])
+
+
+def classification_is_made(fit: LogisticFit, x: FloatArray) -> bool:
+    """Whether SAS makes the Classification table (`ctable`) of the final model `fit`, `x` its columns
+    in `fit.names` order. Not when a parameter left out at the last iteration (`_left_out`, variance
+    exactly 0) is not a linear combination of the other columns, that is when the information matrix
+    is singular only through the weights (a row beyond |eta| = 36.7368 has weight 0): SAS warns "The
+    information matrix is singular", its H= and cross-validated probabilities are missing on every
+    row and it makes no table. A parameter that is a linear combination of the others (left out of
+    X'X itself, `_kept`; SAS notes "set to 0, since the variables are a linear combination") does
+    not stop the table. Experiment X22 (`migration/legacy-to-port/experiments/x22_left_out_final.py`,
+    train.sas with the final model fixed): designs A (X21 S1) and C (weight 0 at the last iteration)
+    have no table, design B (a column twice another) has one; X21 S1 has none either."""
+    dependent = set(range(x.shape[1])) - set(_kept(x.T @ x))
+    return all(fit.names.index(n) in dependent for n in _left_out(fit))
 
 
 # PORT STATUS: confidence=medium todos=0
