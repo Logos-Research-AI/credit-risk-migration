@@ -124,9 +124,11 @@ precondition item exists it states this; where none exists, this paragraph is th
 
 **Stated condition: one SAS session per script (owner, 2026-11-18).** The SAS Lean describes each
 script run in a SAS session of its own: when a script starts, the WORK library holds no table of an
-earlier script, and a step that reads a WORK table the script itself has not created finds none.
-Recorded with two facts beside it: predict.sas 356 restores `work.logit_model`, the item store
-train.sas makes (the Lean takes that model as the parameter `model` of `test_scored_temp`, P4);
+earlier script, except the item store `work.logit_model` that train.sas makes and predict.sas
+restores (predict.sas 356), and a step that reads any other WORK table the script itself has not
+created finds none (amended 2026-11-18, lead's decision).
+Recorded with two facts beside it: the Lean takes the restored `work.logit_model` as the parameter
+`model` of `test_scored_temp` (P4);
 and the SAS runs cited here ran all scripts in one session (`judge/run_sas.py` 14-15, 156-159). In
 the staged runs of R46-R48 the outcome is the same either way (R47: the failed import leaves no
 `work.logit_scored_valid`, although train.sas had made one).
