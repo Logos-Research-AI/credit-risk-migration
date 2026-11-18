@@ -452,7 +452,21 @@ def run(input_dir: Path, output_dir: Path) -> None:
     )
     # CTABLE uses the complete cases only: x_final, y_train and pd_train are all on the fit frame
     pd_train = np.asarray(logit_scored_train.get_column("pd_logistic").to_numpy(), dtype=np.float64)[fit_mask]
-    ctable = sas_compat.classification_table(y_train, x_final, pd=pd_train)
+    # no fit: no table and nothing to classify, on any number of rows used (x27; one row:
+    # judge/runs/emptyval_n1_class0, n1_class1)
+    ctable = (
+        sas_compat.classification_table(y_train, x_final, pd=pd_train)
+        if final is not None
+        else pl.DataFrame(
+            schema=dict.fromkeys(
+                (
+                    "ProbLevel CorrectEvents CorrectNonevents IncorrectEvents IncorrectNonevents Correct "
+                    "Sensitivity Specificity FalsePositive FalseNegative PPV NPV"
+                ).split(),
+                pl.Float64,
+            )
+        )
+    )
     printed_classification = pl.DataFrame(
         {
             "ProbLevel": [sas_compat.fmt_wd(v, 5, 3) for v in ctable.get_column("ProbLevel").to_list()],

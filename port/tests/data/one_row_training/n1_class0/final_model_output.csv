@@ -1,0 +1,2 @@
+row_id,default_flag,age,monthly_income,credit_utilization,debt_ratio,num_credit_lines,total_late_payments,pd_logistic,credit_risk_score,risk_grade,recommendation,interest_rate
+1,0,40,5000,20,30,6,0,,,F,Decline,20.00%

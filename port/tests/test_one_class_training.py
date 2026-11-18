@@ -143,6 +143,31 @@ def test_threshold_metrics_have_no_row_without_a_row_read() -> None:
     assert metrics.columns == ["threshold", "accuracy", "precision", "recall", "f1_score", "specificity"]
 
 
+ONE_ROW = HERE / "data" / "one_row_training"
+
+
+def test_one_row_training_part_writes_what_sas_writes() -> None:
+    # a training part of one row (one outcome by force) and so an empty validation part: SAS fits nothing,
+    # imports no validation table and runs on (judge/runs/emptyval_n1_class0, n1_class1; SAS's files and its
+    # feature files in data/one_row_training/<case>). The port stopped in the classification table of the fit
+    # it did not make (a leave-one-out mean over 0 rows)
+    for case in ("n1_class0", "n1_class1"):
+        with tempfile.TemporaryDirectory() as tmp:
+            scores = Path(tmp) / "train"
+            train.run(ONE_ROW / case, scores)
+            written = {f for f in TRAIN_FILES if (scores / f).exists()}
+            assert written == SAS_TRAIN_FILES, (case, written ^ SAS_TRAIN_FILES)
+            for f in sorted(SAS_TRAIN_FILES):
+                assert (scores / f).read_bytes() == (ONE_ROW / case / f).read_bytes(), (case, f)
+            for source in (ONE_ROW / case, scores):
+                out = Path(tmp) / "metrics"
+                metrics_calculation.run(source, out)
+                written = {f for f in METRICS_FILES if (out / f).exists()}
+                assert written == SAS_METRICS_FILES, (case, source, written ^ SAS_METRICS_FILES)
+                for f in sorted(SAS_METRICS_FILES):
+                    assert (out / f).read_bytes() == (ONE_ROW / case / f).read_bytes(), (case, source, f)
+
+
 def test_predict_stops_after_a_training_without_model() -> None:
     for case in CASES:
         with tempfile.TemporaryDirectory() as tmp:
