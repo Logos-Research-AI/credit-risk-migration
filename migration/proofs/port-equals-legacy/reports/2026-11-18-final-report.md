@@ -329,7 +329,7 @@ evaluation carriers were removed. The server does not return accepted solution r
 | `thm:A3_predict` | proved |
 | `thm:A4_metrics` | proved |
 
-- **Totals:** 317 items after the carriers were removed, 134 theorem, lemma and negation items:
+- **Totals:** 323 items after the carriers were removed, 134 theorem, lemma and negation items:
   133 proved, the one that is not is C4 (below). Every equality contract and every example item
   (which shows a contract's hypotheses can be met together) is proved.
 - The last three examples (`lem:ex_A2_train`, `lem:ex_G2_run`, `lem:ex_G4_run`), restated with
