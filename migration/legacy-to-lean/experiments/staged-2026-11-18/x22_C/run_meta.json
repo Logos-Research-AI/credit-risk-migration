@@ -1,0 +1,39 @@
+{
+  "run_id": "x22_C",
+  "mutation": null,
+  "scripts": [
+    "train.sas",
+    "metrics_calculation.sas",
+    "predict.sas"
+  ],
+  "data_dir": "(staged inputs)",
+  "stage_inputs": "(staged inputs)",
+  "sas_version": "9.04.01M9P06052025",
+  "errors": {
+    "train.sas": [
+      "ERROR: File WORK._J_MODELBUILDINGSUMMARY.DATA does not exist. ",
+      "ERROR: Export unsuccessful.  See SAS Log for details.",
+      "ERROR: File WORK._J_CLASSIFICATION.DATA does not exist. ",
+      "ERROR: Export unsuccessful.  See SAS Log for details."
+    ],
+    "metrics_calculation.sas": [],
+    "predict.sas": []
+  },
+  "new_warnings": {
+    "train.sas": [
+      "WARNING: Output 'Classification' was not created. Make sure that the output object name, label, or path is spelled correctly.",
+      "WARNING: Output 'ModelBuildingSummary' was not created. Make sure that the output object name, label, or path is spelled",
+      "WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value."
+    ],
+    "metrics_calculation.sas": [],
+    "predict.sas": []
+  },
+  "experiment": "x22_left_out_final.py",
+  "model": [
+    "age",
+    "flag_recent_late_payments"
+  ],
+  "selection": "none",
+  "remote_run_root": "/home/u64643823/sasmig/runs/x22_C-20261118T152300",
+  "wall_clock_s": 30
+}

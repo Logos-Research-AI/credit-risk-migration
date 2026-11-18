@@ -1,0 +1,31 @@
+
+                                                  Confusion Matrix - Training Set              Monday, 16 November 2026 21:52:00   7
+
+                                                                 pred_
+                                        Obs    default_flag    logistic    COUNT    PERCENT
+
+                                         1                1        0         42       100  
+
+                                                 Training Set - Performance Metrics            Monday, 16 November 2026 21:52:00   8
+
+                                                train_        train_     train_      train_
+                                        Obs    precision      recall    f1_score    accuracy
+
+                                         1        .           0.0000       .          0.0000
+
+                                             Default Rate by Risk Grade - Training Set         Monday, 16 November 2026 21:52:00   9
+
+                                                         The FREQ Procedure
+
+                                                Table of risk_grade by default_flag
+
+                                                     risk_grade
+                                                               default_flag
+
+                                                     Frequency|
+                                                     Row Pct  |       1|  Total
+                                                     ---------+--------+
+                                                     F        |     42 |     42
+                                                              | 100.00 |
+                                                     ---------+--------+
+                                                     Total          42       42

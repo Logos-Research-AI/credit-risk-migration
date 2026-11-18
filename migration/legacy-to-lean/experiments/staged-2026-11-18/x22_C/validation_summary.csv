@@ -1,0 +1,2 @@
+ROCModel,AUC,Gini,KS_Statistic,KS_Cutoff,PSI,PSI_interpretation,model,status
+Logistic Model,0.3382,-0.3235,0.3137,0.0206,3.5149578716,Significant change,Logistic Regression,Needs Improvement

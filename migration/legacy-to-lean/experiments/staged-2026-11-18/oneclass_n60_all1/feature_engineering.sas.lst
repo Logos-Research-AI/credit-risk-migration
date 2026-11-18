@@ -1,0 +1,83 @@
+
+                                           Raw Data Summary - Kaggle Give Me Some Credit       Monday, 16 November 2026 21:52:00   1
+
+                                                        The MEANS Procedure
+
+                                                        N
+           Variable                             N    Miss            Mean         Std Dev         Minimum         Maximum
+           --------------------------------------------------------------------------------------------------------------
+           VAR1                                60       0      30.5000000      17.4642492       1.0000000      60.0000000
+           SeriousDlqin2yrs                    60       0       1.0000000               0       1.0000000       1.0000000
+           RevolvingUtilizationOfUnsecuredL    60       0         2535.86        11144.71               0        50708.00
+           age                                 60       0      52.9333333      17.0192978      21.0000000     109.0000000
+           NumberOfTime30-59DaysPastDueNotW    60       0       8.9333333      24.3921818               0      98.0000000
+           DebtRatio                           60       0      55.7603459     425.4056320               0         3296.00
+           NumberOfOpenCreditLinesAndLoans     60       0       9.4166667       8.9826418               0      58.0000000
+           NumberOfTimes90DaysLate             60       0      13.0166667      31.3506639               0      98.0000000
+           NumberRealEstateLoansOrLines        60       0       7.4166667      16.0415685               0      54.0000000
+           NumberOfTime60-89DaysPastDueNotW    60       0      10.8833333      29.3939298               0      98.0000000
+           --------------------------------------------------------------------------------------------------------------
+
+                                           Raw Data Summary - Kaggle Give Me Some Credit       Monday, 16 November 2026 21:52:00   2
+
+                                                     The SURVEYSELECT Procedure
+
+                                             Selection Method    Simple Random Sampling
+
+                                              Input Data Set           CREDIT_FEATURES
+                                              Random Number Seed                    42
+                                              Sampling Rate                        0.7
+                                              Sample Size                           42
+                                              Selection Probability                0.7
+                                              Sampling Weight                        0
+                                              Output Data Set             CREDIT_SPLIT
+
+                                                  Training Set Summary Statistics              Monday, 16 November 2026 21:52:00   3
+
+                                                        The MEANS Procedure
+
+                    Variable                  N            Mean         Std Dev         Minimum         Maximum
+                    -------------------------------------------------------------------------------------------
+                    age                      42      50.1190476      16.0672404      21.0000000     109.0000000
+                    monthly_income           42        79474.99       463265.54       0.0100000      3008750.00
+                    credit_utilization       42       241518.43      1092949.88               0      5070800.00
+                    debt_ratio               42      80.8753418     142.2406372               0     500.0000100
+                    total_late_payments      42      25.7380952      46.3554978               0     196.0000000
+                    num_credit_lines         42       9.6190476       9.8425467               0      58.0000000
+                    num_real_estate_loans    42       4.5952381      11.7868458               0      54.0000000
+                    default_flag             42       1.0000000               0       1.0000000       1.0000000
+                    -------------------------------------------------------------------------------------------
+
+                                                    Training Set - Default Rate                Monday, 16 November 2026 21:52:00   4
+
+                                                         The FREQ Procedure
+
+                                                                          Cumulative    Cumulative
+                                 default_flag    Frequency     Percent     Frequency      Percent
+                                 -----------------------------------------------------------------
+                                            1          42      100.00            42       100.00  
+
+                                                 Validation Set Summary Statistics             Monday, 16 November 2026 21:52:00   5
+
+                                                        The MEANS Procedure
+
+                    Variable                  N            Mean         Std Dev         Minimum         Maximum
+                    -------------------------------------------------------------------------------------------
+                    age                      18      59.5000000      17.8168790      29.0000000      90.0000000
+                    monthly_income           18       282556.20       752100.92       0.0100000      3008750.00
+                    credit_utilization       18       281743.96      1195190.83       0.0389939      5070800.00
+                    debt_ratio               18        18398.07        77665.91               0       329600.00
+                    total_late_payments      18      49.3888889      49.8906320               0     115.0000000
+                    num_credit_lines         18       8.9444444       6.7864244               0      20.0000000
+                    num_real_estate_loans    18      14.0000000      22.1916784               0      54.0000000
+                    default_flag             18       1.0000000               0       1.0000000       1.0000000
+                    -------------------------------------------------------------------------------------------
+
+                                                   Validation Set - Default Rate               Monday, 16 November 2026 21:52:00   6
+
+                                                         The FREQ Procedure
+
+                                                                          Cumulative    Cumulative
+                                 default_flag    Frequency     Percent     Frequency      Percent
+                                 -----------------------------------------------------------------
+                                            1          18      100.00            18       100.00  

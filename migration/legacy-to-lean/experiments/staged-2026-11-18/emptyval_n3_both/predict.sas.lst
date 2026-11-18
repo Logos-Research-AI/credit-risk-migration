@@ -1,0 +1,102 @@
+
+                                                      Test Data - Column Check                 Monday, 16 November 2026 16:32:00  12
+
+                                                       The CONTENTS Procedure
+
+               Data Set Name        WORK.TEST_RAW                                            Observations          2 
+               Member Type          DATA                                                     Variables             12
+               Engine               V9                                                       Indexes               0 
+               Created              16/11/2026 16:32:28                                      Observation Length    96
+               Last Modified        16/11/2026 16:32:28                                      Deleted Observations  0 
+               Protection                                                                    Compressed            NO
+               Data Set Type                                                                 Sorted                NO
+               Label                                                                                                 
+               Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                            
+               Encoding             utf-8  Unicode (UTF-8)                                                           
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    1                                                                                                       
+First Data Page             1                                                                                                       
+Max Obs per Page            1363                                                                                                    
+Obs in First Data Page      2                                                                                                       
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work529A000109D3_odaws01-euw1.oda.sas.com/SAS_                                             
+                            work5AA7000109D3_odaws01-euw1.oda.sas.com/test_raw.sas7bdat                                             
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                1074947309                                                                                              
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   256KB                                                                                                   
+File Size (bytes)           262144                                                                                                  
+
+
+                                             Alphabetic List of Variables and Attributes
+ 
+                             #    Variable                            Type    Len    Format     Informat
+
+                             6    DebtRatio                           Num       8    BEST12.    BEST32. 
+                             7    MonthlyIncome                       Num       8    BEST12.    BEST32. 
+                            12    NumberOfDependents                  Num       8    BEST12.    BEST32. 
+                             8    NumberOfOpenCreditLinesAndLoans     Num       8    BEST12.    BEST32. 
+                             5    NumberOfTime30-59DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                            11    NumberOfTime60-89DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                             9    NumberOfTimes90DaysLate             Num       8    BEST12.    BEST32. 
+                            10    NumberRealEstateLoansOrLines        Num       8    BEST12.    BEST32. 
+                             3    RevolvingUtilizationOfUnsecuredL    Num       8    BEST12.    BEST32. 
+                             2    SeriousDlqin2yrs                    Char      1    $1.        $1.     
+                             1    VAR1                                Num       8    BEST12.    BEST32. 
+                             4    age                                 Num       8    BEST12.    BEST32. 
+
+                                                      Test Data - Column Check                 Monday, 16 November 2026 16:32:00  13
+
+                                                         The PLM Procedure
+
+                                                         Store Information
+
+                                        Item Store               WORK.LOGIT_MODEL          
+                                        Data Set Created From    WORK.MODEL_FEATURES_TRAIN 
+                                        Created By               PROC LOGISTIC             
+                                        Date Created             16NOV26:16:32:25          
+                                        Response Variable        default_flag              
+                                        Link Function            Logit                     
+                                        Distribution             Binary                    
+                                        Class Variable           default_flag              
+                                        Model Effect             Intercept                 
+
+                                                 Test Set - Risk Grade Distribution            Monday, 16 November 2026 16:32:00  14
+
+                                                         The FREQ Procedure
+
+                                     risk_                             Cumulative    Cumulative
+                                     grade    Frequency     Percent     Frequency      Percent
+                                     ----------------------------------------------------------
+                                     D               2      100.00             2       100.00  
+
+
+                                                                           Cumulative    Cumulative
+                                recommendation    Frequency     Percent     Frequency      Percent
+                                -------------------------------------------------------------------
+                                Decline                  2      100.00             2       100.00  
+
+                                                   Test Set - Prediction Summary               Monday, 16 November 2026 16:32:00  15
+
+                                                        The MEANS Procedure
+
+                       Variable             N            Mean         Std Dev         Minimum         Maximum
+                       --------------------------------------------------------------------------------------
+                       pd_logistic          2       0.3333333               0       0.3333333       0.3333333
+                       credit_risk_score    2     766.6666667               0     766.6666667     766.6666667
+                       --------------------------------------------------------------------------------------
+
+                                                    Sample Test Set Predictions                Monday, 16 November 2026 16:32:00  16
+
+                                                                      credit_
+                                                            pred_      risk_     risk_
+                                 row_id    pd_logistic    logistic     score     grade    recommendation
+
+                                      1      0.33333          0       766.667      D         Decline    
+                                      2      0.33333          0       766.667      D         Decline    

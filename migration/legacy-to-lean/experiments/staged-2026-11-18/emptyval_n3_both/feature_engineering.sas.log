@@ -1,0 +1,925 @@
+35                                                         The SAS System                          Monday, 16 November 2026 16:32:00
+
+192        
+193        /*****************************************************************************
+194         * Credit Risk Scoring Model - Feature Engineering
+195         *
+196         * Purpose: Load Kaggle "Give Me Some Credit" data and create features
+197         * Author: Risk Analytics Team
+198         * Date: 2025
+199         *
+200         * Data Source: Kaggle "Give Me Some Credit" competition
+201         * https://www.kaggle.com/c/GiveMeSomeCredit
+202         *
+203         * This script:
+204         * - Loads cs-training.csv from data/ directory
+205         * - Handles missing values
+206         * - Creates derived features and risk indicators
+207         * - Splits into training (70%) and validation (30%) sets
+208         * - Exports engineered features for modeling
+209         *****************************************************************************/
+210        
+211        /* Define base paths */
+212        %let data_path = /home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/data;
+213        %let output_path = /home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/output;
+214        
+215        /* Remove the results of an earlier run first: a run that stops leaves no result */
+216        data _null_;
+217            length fref $8 fname $64;
+218            do fname = 'income_medians.csv', 'model_features_train.csv',
+219                       'model_features_validation.csv';
+220                fref = ' ';
+221                if filename(fref, cats("&output_path/", fname)) = 0 then do;
+222                    if fexist(fref) then rc = fdelete(fref);
+223                    rc = filename(fref);
+224                end;
+225            end;
+226        run;
+227        
+228        /*****************************************************************************
+229         * 1. Load Kaggle Training Data
+230         *****************************************************************************/
+231        
+232        /* Import Kaggle training data */
+233        proc import datafile="&data_path/cs-training.csv"
+234            out=work.credit_raw
+235            dbms=csv
+236            replace;
+237            getnames=yes;
+238            guessingrows=max;
+239        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+Name  is not a valid SAS name.
+Name RevolvingUtilizationOfUnsecuredLines truncated to RevolvingUtilizationOfUnsecuredL.
+Name NumberOfTime30-59DaysPastDueNotWorse truncated to NumberOfTime30-59DaysPastDueNotW.
+Name NumberOfTime60-89DaysPastDueNotWorse truncated to NumberOfTime60-89DaysPastDueNotW.
+Problems were detected with provided names.  See LOG. 
+240         /**********************************************************************
+241         *   PRODUCT:   SAS
+242         *   VERSION:   9.4
+243         *   CREATOR:   External File Interface
+244         *   DATE:      16NOV26
+245         *   DESC:      Generated SAS Datastep Code
+246         *   TEMPLATE SOURCE:  (None Specified.)
+247         ***********************************************************************/
+248            data WORK.CREDIT_RAW    ;
+249            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+250            infile '/home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/data/cs-training.csv' delimiter = ',' MISSOVER
+250      ! DSD lrecl=32767 firstobs=2 ;
+251               informat VAR1 best32. ;
+252               informat SeriousDlqin2yrs best32. ;
+253               informat RevolvingUtilizationOfUnsecuredL best32. ;
+254               informat age best32. ;
+255               informat "NumberOfTime30-59DaysPastDueNotW"N best32. ;
+256               informat DebtRatio best32. ;
+257               informat MonthlyIncome best32. ;
+258               informat NumberOfOpenCreditLinesAndLoans best32. ;
+259               informat NumberOfTimes90DaysLate best32. ;
+260               informat NumberRealEstateLoansOrLines best32. ;
+261               informat "NumberOfTime60-89DaysPastDueNotW"N best32. ;
+262               informat NumberOfDependents best32. ;
+263               format VAR1 best12. ;
+264               format SeriousDlqin2yrs best12. ;
+265               format RevolvingUtilizationOfUnsecuredL best12. ;
+266               format age best12. ;
+267               format "NumberOfTime30-59DaysPastDueNotW"N best12. ;
+268               format DebtRatio best12. ;
+269               format MonthlyIncome best12. ;
+270               format NumberOfOpenCreditLinesAndLoans best12. ;
+271               format NumberOfTimes90DaysLate best12. ;
+272               format NumberRealEstateLoansOrLines best12. ;
+273               format "NumberOfTime60-89DaysPastDueNotW"N best12. ;
+274               format NumberOfDependents best12. ;
+275            input
+276                        VAR1
+277                        SeriousDlqin2yrs
+278                        RevolvingUtilizationOfUnsecuredL
+279                        age
+280                        "NumberOfTime30-59DaysPastDueNotW"N
+281                        DebtRatio
+282                        MonthlyIncome
+283                        NumberOfOpenCreditLinesAndLoans
+284                        NumberOfTimes90DaysLate
+285                        NumberRealEstateLoansOrLines
+286                        "NumberOfTime60-89DaysPastDueNotW"N
+287                        NumberOfDependents
+288            ;
+289            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+290            run;
+3 rows created in WORK.CREDIT_RAW from /home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/data/cs-training.csv.
+  
+  
+  
+291        
+292        /* Check the input conditions: stop with an error before anything is exported */
+293        /* The numeric value of a raw column: a numeric column as it is; a character column
+294           read as a number, missing when the text is no number or is longer than 32 characters */
+295        %macro num(v);
+296            %local dsid pos vtype;
+297            %let vtype = ;
+298            %let dsid = %sysfunc(open(work.credit_raw));
+299            %let pos = %sysfunc(varnum(&dsid, &v));
+300            %if &pos > 0 %then %let vtype = %sysfunc(vartype(&dsid, &pos));
+301            %let dsid = %sysfunc(close(&dsid));
+302            %if &vtype = N %then "&v"n;
+303            %else ifn(lengthn(strip("&v"n)) <= 32, input(strip("&v"n), ?? best32.), .);
+304        %mend;
+305        
+306        %let columns_ok = 0;
+307        %let bad_rows = 1;
+308        %let duplicate_ids = 1;
+309        %let known_incomes = 0;
+310        
+311        proc sql noprint;
+312            /* The expected columns and no others */
+313            select (count(*) = 12 and sum(upcase(name) in
+314                       ('VAR1', 'SERIOUSDLQIN2YRS', 'AGE', 'MONTHLYINCOME', 'NUMBEROFDEPENDENTS',
+315                        'REVOLVINGUTILIZATIONOFUNSECUREDL', 'DEBTRATIO',
+316                        'NUMBEROFTIME30-59DAYSPASTDUENOTW', 'NUMBEROFTIME60-89DAYSPASTDUENOTW',
+317                        'NUMBEROFTIMES90DAYSLATE', 'NUMBEROFOPENCREDITLINESANDLOANS',
+318                        'NUMBERREALESTATELOANSORLINES')) = 12)
+319            into :columns_ok trimmed
+320            from dictionary.columns
+321            where libname = 'WORK' and memname = 'CREDIT_RAW';
+322        quit;
+323        
+324        /* Only MonthlyIncome and NumberOfDependents may be missing (blank or NA);
+325           the outcome is 0 or 1; the counts are whole numbers, zero or more;
+326           a known MonthlyIncome is zero or more */
+327        data work.input_check;
+328            set work.credit_raw;
+329            bad_row = (missing(%num(VAR1))
+330                or %num(SeriousDlqin2yrs) not in (0, 1)
+331                or missing(%num(age))
+332                or missing(%num(RevolvingUtilizationOfUnsecuredL))
+333                or missing(%num(DebtRatio))
+334                or missing(%num(NumberRealEstateLoansOrLines))
+335                or not (%num(NumberOfTime30-59DaysPastDueNotW) >= 0 and
+336                        %num(NumberOfTime30-59DaysPastDueNotW) = int(%num(NumberOfTime30-59DaysPastDueNotW)))
+337                or not (%num(NumberOfTime60-89DaysPastDueNotW) >= 0 and
+338                        %num(NumberOfTime60-89DaysPastDueNotW) = int(%num(NumberOfTime60-89DaysPastDueNotW)))
+339                or not (%num(NumberOfTimes90DaysLate) >= 0 and
+340                        %num(NumberOfTimes90DaysLate) = int(%num(NumberOfTimes90DaysLate)))
+341                or not (%num(NumberOfOpenCreditLinesAndLoans) >= 0 and
+342                        %num(NumberOfOpenCreditLinesAndLoans) = int(%num(NumberOfOpenCreditLinesAndLoans)))
+343                or (upcase(cats(MonthlyIncome)) not in ('', '.', 'NA') and missing(%num(MonthlyIncome)))
+344                or (not missing(%num(MonthlyIncome)) and %num(MonthlyIncome) < 0)
+345                or (upcase(cats(NumberOfDependents)) not in ('', '.', 'NA') and
+346                    not (%num(NumberOfDependents) >= 0 and
+347                         %num(NumberOfDependents) = int(%num(NumberOfDependents)))));
+348            known_income = not missing(%num(MonthlyIncome));
+349            keep VAR1 bad_row known_income;
+350        run;
+351        
+352        /* Bad rows, repeated row ids, known incomes */
+353        proc sql noprint;
+354            select coalesce(sum(bad_row), 0), count(*) - count(distinct VAR1), coalesce(sum(known_income), 0)
+355            into :bad_rows trimmed, :duplicate_ids trimmed, :known_incomes trimmed
+356            from work.input_check;
+357        quit;
+358        
+359        data _null_;
+360            if &columns_ok ne 1 or &bad_rows ne 0 or &duplicate_ids ne 0 or &known_incomes < 1 then do;
+361                put "ERROR: cs-training.csv does not meet the input conditions: "
+362                    "columns_ok=&columns_ok bad_rows=&bad_rows duplicate_ids=&duplicate_ids known_incomes=&known_incomes..";
+363                put "ERROR: Feature engineering stopped. Nothing is exported.";
+364                abort cancel;
+365            end;
+366        run;
+367        
+368        /* Display basic statistics */
+369        proc means data=work.credit_raw n nmiss mean std min max;
+370            title "Raw Data Summary - Kaggle Give Me Some Credit";
+371        run;
+372        
+373        /*****************************************************************************
+374         * 2. Data Cleaning and Missing Value Handling
+375         *****************************************************************************/
+376        
+377        /* First convert MonthlyIncome to numeric if needed */
+378        data work.credit_raw_clean;
+379            set work.credit_raw;
+380        
+381            /* Convert to numeric - input function handles character to numeric */
+382            MonthlyIncome_num = input(MonthlyIncome, best32.);
+383            NumberOfDependents_num = input(NumberOfDependents, best32.);
+384        
+385            /* Keep the numeric versions, drop character if they exist */
+386            drop MonthlyIncome NumberOfDependents;
+387            rename MonthlyIncome_num = MonthlyIncome
+388                   NumberOfDependents_num = NumberOfDependents;
+389        run;
+390        
+391        /* Calculate income medians by age group for imputation */
+392        proc sql;
+393            create table work.income_medians as
+394            select
+395                case
+396                    when age < 30 then 1
+397                    when age < 40 then 2
+398                    when age < 50 then 3
+399                    when age < 60 then 4
+400                    else 5
+401                end as age_group,
+402                median(MonthlyIncome) as median_income
+403            from work.credit_raw_clean
+404            where MonthlyIncome is not missing
+405            group by calculated age_group;
+406        quit;
+407        
+408        /* One row per age group, with the median of all known incomes:
+409           the fallback for an age group that has no known income */
+410        data work.age_groups;
+411            do age_group = 1 to 5;
+412                output;
+413            end;
+414        run;
+415        
+416        proc sql;
+417            create table work.income_medians_all as
+418            select
+419                g.age_group,
+420                m.median_income,
+421                (select median(MonthlyIncome) from work.credit_raw_clean
+422                 where MonthlyIncome is not missing) as overall_median_income
+423            from work.age_groups g
+424            left join work.income_medians m
+425            on g.age_group = m.age_group
+426            order by g.age_group;
+427        quit;
+428        
+429        data work.credit_cleaned;
+430            set work.credit_raw_clean;
+431        
+432            /* Create age group for income imputation */
+433            if age < 30 then age_group = 1;
+434            else if age < 40 then age_group = 2;
+435            else if age < 50 then age_group = 3;
+436            else if age < 60 then age_group = 4;
+437            else age_group = 5;
+438        
+439            /* Handle missing values - create flags */
+440            if missing(MonthlyIncome) then MonthlyIncome_missing = 1;
+441            else MonthlyIncome_missing = 0;
+442        
+443            if missing(NumberOfDependents) then do;
+444                NumberOfDependents = 0;
+445                Dependents_missing = 1;
+446            end;
+447            else Dependents_missing = 0;
+448        run;
+449        
+450        /* Merge and impute income - rename columns in SQL */
+451        proc sql;
+452            create table work.credit_imputed as
+453            select
+454                a.VAR1 as row_id,
+455                a.SeriousDlqin2yrs as default_flag,
+456                a.age,
+457                case when a.MonthlyIncome_missing = 1 then coalesce(b.median_income, b.overall_median_income)
+458                     else a.MonthlyIncome
+459                end as monthly_income,
+460                a.MonthlyIncome_missing,
+461                a.NumberOfDependents as num_dependents,
+462                a.Dependents_missing,
+463                a.age_group,
+464                a."NumberOfTime30-59DaysPastDueNotW"n as num_late_30_59,
+465                a."NumberOfTime60-89DaysPastDueNotW"n as num_late_60_89,
+466                a.NumberOfTimes90DaysLate as num_late_90_plus,
+467                a.RevolvingUtilizationOfUnsecuredL * 100 as credit_utilization,
+468                a.DebtRatio * 100 as debt_ratio,
+469                a.NumberOfOpenCreditLinesAndLoans as num_credit_lines,
+470                a.NumberRealEstateLoansOrLines as num_real_estate_loans
+471            from work.credit_cleaned a
+472            left join work.income_medians_all b
+473            on a.age_group = b.age_group;
+474        quit;
+475        
+476        /*****************************************************************************
+477         * 3. Feature Engineering
+478         *****************************************************************************/
+479        
+480        data work.credit_features;
+481            set work.credit_imputed;
+482        
+483            /* Total late payments across all categories */
+484            total_late_payments = sum(num_late_30_59, num_late_60_89, num_late_90_plus);
+485        
+486            /* Has any delinquency indicator */
+487            has_delinquency = (total_late_payments > 0);
+488        
+489            /* Has serious delinquency (90+ days) */
+490            has_serious_delinquency = (num_late_90_plus > 0);
+491        
+492            /* Credit utilization categories */
+493            if credit_utilization < 30 then credit_util_category = 1; /* Low */
+494            else if credit_utilization < 50 then credit_util_category = 2; /* Medium */
+495            else if credit_utilization < 75 then credit_util_category = 3; /* High */
+496            else credit_util_category = 4; /* Very High */
+497        
+498            /* Debt ratio categories */
+499            if debt_ratio < 30 then debt_category = 1; /* Low */
+500            else if debt_ratio < 43 then debt_category = 2; /* Medium */
+501            else if debt_ratio < 60 then debt_category = 3; /* High */
+502            else debt_category = 4; /* Very High */
+503        
+504            /* Income per dependent (handle division by zero) */
+505            if num_dependents > 0 then income_per_dependent = monthly_income / (num_dependents + 1);
+506            else income_per_dependent = monthly_income;
+507        
+508            /* Credit lines per person in household */
+509            credit_lines_per_person = num_credit_lines / (num_dependents + 1);
+510        
+511            /* Age categories for risk assessment */
+512            if age < 25 then age_category = 1; /* Young */
+513            else if age < 35 then age_category = 2; /* Young Adult */
+514            else if age < 50 then age_category = 3; /* Middle Age */
+515            else if age < 65 then age_category = 4; /* Mature */
+516            else age_category = 5; /* Senior */
+517        
+518            /* Risk flags */
+519            flag_high_utilization = (credit_utilization > 75);
+520            flag_very_high_utilization = (credit_utilization > 100);
+521            flag_high_debt_ratio = (debt_ratio > 43);
+522            flag_very_high_debt_ratio = (debt_ratio > 60);
+523            flag_recent_late_payments = (num_late_30_59 > 0);
+524            flag_serious_delinquency = (num_late_90_plus > 0);
+525            flag_multiple_delinquencies = (total_late_payments >= 3);
+526            flag_low_income = (monthly_income < 2500);
+527            flag_many_dependents = (num_dependents >= 3);
+528            flag_few_credit_lines = (num_credit_lines <= 2);
+529        
+530            /* Total risk flags */
+531            total_risk_flags = sum(flag_high_utilization, flag_very_high_utilization,
+532                                  flag_high_debt_ratio,
+533                                  flag_serious_delinquency, flag_multiple_delinquencies,
+534                                  flag_low_income, flag_many_dependents,
+535                                  flag_few_credit_lines);
+536        
+537            /* Financial health score (0-100) */
+538            financial_health = 100;
+539            if credit_utilization > 30 then financial_health = financial_health - 15;
+540            if credit_utilization > 75 then financial_health = financial_health - 15;
+541            if debt_ratio > 43 then financial_health = financial_health - 20;
+542            if has_delinquency then financial_health = financial_health - 20;
+543            if num_late_90_plus > 0 then financial_health = financial_health - 30;
+544            financial_health = max(0, financial_health);
+545        
+546            /* Log transformations for skewed variables (add 1 to handle zeros) */
+547            log_monthly_income = log(monthly_income + 1);
+548            log_num_credit_lines = log(num_credit_lines + 1);
+549            log_total_late_payments = log(total_late_payments + 1);
+550        
+551            /* Interaction features */
+552            if monthly_income > 0 then age_income_interaction = age * log(monthly_income);
+553            else age_income_interaction = age * log_monthly_income;
+554            utilization_debt_interaction = credit_utilization * debt_ratio;
+555        
+556            /* Cap extreme outliers in credit_utilization and debt_ratio */
+557            credit_utilization_capped = min(credit_utilization, 200);
+558            debt_ratio_capped = min(debt_ratio, 500);
+559        run;
+560        
+561        /*****************************************************************************
+562         * 4. Split into Training and Validation Sets (70/30)
+563         *****************************************************************************/
+564        
+565        /* Set random seed for reproducibility */
+566        proc surveyselect data=work.credit_features
+567                          out=work.credit_split
+568                          samprate=0.7
+569                          seed=42
+570                          outall;
+571        run;
+572        
+573        data work.credit_train work.credit_validation;
+574            set work.credit_split;
+575            if selected = 1 then output work.credit_train;
+576            else output work.credit_validation;
+577            drop selected;
+578        run;
+579        
+580        /*****************************************************************************
+581         * 5. Summary Statistics
+582         *****************************************************************************/
+583        
+584        proc means data=work.credit_train n mean std min max;
+585            var age monthly_income credit_utilization debt_ratio total_late_payments
+586                num_credit_lines num_real_estate_loans default_flag;
+587            title "Training Set Summary Statistics";
+588        run;
+589        
+590        proc freq data=work.credit_train;
+591            tables default_flag;
+592            title "Training Set - Default Rate";
+593        run;
+594        
+595        proc means data=work.credit_validation n mean std min max;
+596            var age monthly_income credit_utilization debt_ratio total_late_payments
+597                num_credit_lines num_real_estate_loans default_flag;
+598            title "Validation Set Summary Statistics";
+599        run;
+600        
+601        proc freq data=work.credit_validation;
+602            tables default_flag;
+603            title "Validation Set - Default Rate";
+604        run;
+605        
+606        /*****************************************************************************
+607         * 6. Export Engineered Features
+608         *****************************************************************************/
+609        
+610        /* Ensure all variables are numeric before export */
+611        data work.credit_train_export;
+612            set work.credit_train;
+613            /* Force numeric format for all variables */
+614            format _numeric_ best12.;
+615        run;
+616        
+617        data work.credit_validation_export;
+618            set work.credit_validation;
+619            /* Force numeric format for all variables */
+620            format _numeric_ best12.;
+621        run;
+622        
+623        /* Export the training income medians (per age group, and overall):
+624           predict.sas imputes the test set from them */
+625        data work.income_medians_export;
+626            set work.income_medians_all;
+627            format median_income overall_median_income best32.;
+628        run;
+629        
+630        proc export data=work.income_medians_export
+631            outfile="&output_path/income_medians.csv"
+632            dbms=csv
+633            replace;
+634        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+635         /**********************************************************************
+636         *   PRODUCT:   SAS
+637         *   VERSION:   9.4
+638         *   CREATOR:   External File Interface
+639         *   DATE:      16NOV26
+640         *   DESC:      Generated SAS Datastep Code
+641         *   TEMPLATE SOURCE:  (None Specified.)
+642         ***********************************************************************/
+643            data _null_;
+644            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+645            %let _EFIREC_ = 0;     /* clear export record count macro variable */
+646            file '/home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/output/income_medians.csv' delimiter=',' DSD
+646      ! DROPOVER lrecl=32767;
+647            if _n_ = 1 then        /* write column names or labels */
+648             do;
+649               put
+650                  "age_group"
+651               ','
+652                  "median_income"
+653               ','
+654                  "overall_median_income"
+655               ;
+656             end;
+657           set  WORK.INCOME_MEDIANS_EXPORT   end=EFIEOD;
+658               format age_group best12. ;
+659               format median_income best32. ;
+660               format overall_median_income best32. ;
+661             do;
+662               EFIOUT + 1;
+663               put age_group @;
+664               put median_income @;
+665               put overall_median_income ;
+666               ;
+667             end;
+668            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+669            if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+670            run;
+5 records created in /home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/output/income_medians.csv from 
+WORK.INCOME_MEDIANS_EXPORT.
+  
+  
+671        
+672        /* Export training set */
+673        proc export data=work.credit_train_export
+674            outfile="&output_path/model_features_train.csv"
+675            dbms=csv
+676            replace;
+677        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+678         /**********************************************************************
+679         *   PRODUCT:   SAS
+680         *   VERSION:   9.4
+681         *   CREATOR:   External File Interface
+682         *   DATE:      16NOV26
+683         *   DESC:      Generated SAS Datastep Code
+684         *   TEMPLATE SOURCE:  (None Specified.)
+685         ***********************************************************************/
+686            data _null_;
+687            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+688            %let _EFIREC_ = 0;     /* clear export record count macro variable */
+689            file '/home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/output/model_features_train.csv' delimiter=',' DSD
+689      !  DROPOVER lrecl=32767;
+690            if _n_ = 1 then        /* write column names or labels */
+691             do;
+692               put
+693                  "row_id"
+694               ','
+695                  "default_flag"
+696               ','
+697                  "age"
+698               ','
+699                  "monthly_income"
+700               ','
+701                  "MonthlyIncome_missing"
+702               ','
+703                  "num_dependents"
+704               ','
+705                  "Dependents_missing"
+706               ','
+707                  "age_group"
+708               ','
+709                  "num_late_30_59"
+710               ','
+711                  "num_late_60_89"
+712               ','
+713                  "num_late_90_plus"
+714               ','
+715                  "credit_utilization"
+716               ','
+717                  "debt_ratio"
+718               ','
+719                  "num_credit_lines"
+720               ','
+721                  "num_real_estate_loans"
+722               ','
+723                  "total_late_payments"
+724               ','
+725                  "has_delinquency"
+726               ','
+727                  "has_serious_delinquency"
+728               ','
+729                  "credit_util_category"
+730               ','
+731                  "debt_category"
+732               ','
+733                  "income_per_dependent"
+734               ','
+735                  "credit_lines_per_person"
+736               ','
+737                  "age_category"
+738               ','
+739                  "flag_high_utilization"
+740               ','
+741                  "flag_very_high_utilization"
+742               ','
+743                  "flag_high_debt_ratio"
+744               ','
+745                  "flag_very_high_debt_ratio"
+746               ','
+747                  "flag_recent_late_payments"
+748               ','
+749                  "flag_serious_delinquency"
+750               ','
+751                  "flag_multiple_delinquencies"
+752               ','
+753                  "flag_low_income"
+754               ','
+755                  "flag_many_dependents"
+756               ','
+757                  "flag_few_credit_lines"
+758               ','
+759                  "total_risk_flags"
+760               ','
+761                  "financial_health"
+762               ','
+763                  "log_monthly_income"
+764               ','
+765                  "log_num_credit_lines"
+766               ','
+767                  "log_total_late_payments"
+768               ','
+769                  "age_income_interaction"
+770               ','
+771                  "utilization_debt_interaction"
+772               ','
+773                  "credit_utilization_capped"
+774               ','
+775                  "debt_ratio_capped"
+776               ;
+777             end;
+778           set  WORK.CREDIT_TRAIN_EXPORT   end=EFIEOD;
+779               format row_id best12. ;
+780               format default_flag best12. ;
+781               format age best12. ;
+782               format monthly_income best12. ;
+783               format MonthlyIncome_missing best12. ;
+784               format num_dependents best12. ;
+785               format Dependents_missing best12. ;
+786               format age_group best12. ;
+787               format num_late_30_59 best12. ;
+788               format num_late_60_89 best12. ;
+789               format num_late_90_plus best12. ;
+790               format credit_utilization best12. ;
+791               format debt_ratio best12. ;
+792               format num_credit_lines best12. ;
+793               format num_real_estate_loans best12. ;
+794               format total_late_payments best12. ;
+795               format has_delinquency best12. ;
+796               format has_serious_delinquency best12. ;
+797               format credit_util_category best12. ;
+798               format debt_category best12. ;
+799               format income_per_dependent best12. ;
+800               format credit_lines_per_person best12. ;
+801               format age_category best12. ;
+802               format flag_high_utilization best12. ;
+803               format flag_very_high_utilization best12. ;
+804               format flag_high_debt_ratio best12. ;
+805               format flag_very_high_debt_ratio best12. ;
+806               format flag_recent_late_payments best12. ;
+807               format flag_serious_delinquency best12. ;
+808               format flag_multiple_delinquencies best12. ;
+809               format flag_low_income best12. ;
+810               format flag_many_dependents best12. ;
+811               format flag_few_credit_lines best12. ;
+812               format total_risk_flags best12. ;
+813               format financial_health best12. ;
+814               format log_monthly_income best12. ;
+815               format log_num_credit_lines best12. ;
+816               format log_total_late_payments best12. ;
+817               format age_income_interaction best12. ;
+818               format utilization_debt_interaction best12. ;
+819               format credit_utilization_capped best12. ;
+820               format debt_ratio_capped best12. ;
+821             do;
+822               EFIOUT + 1;
+823               put row_id @;
+824               put default_flag @;
+825               put age @;
+826               put monthly_income @;
+827               put MonthlyIncome_missing @;
+828               put num_dependents @;
+829               put Dependents_missing @;
+830               put age_group @;
+831               put num_late_30_59 @;
+832               put num_late_60_89 @;
+833               put num_late_90_plus @;
+834               put credit_utilization @;
+835               put debt_ratio @;
+836               put num_credit_lines @;
+837               put num_real_estate_loans @;
+838               put total_late_payments @;
+839               put has_delinquency @;
+840               put has_serious_delinquency @;
+841               put credit_util_category @;
+842               put debt_category @;
+843               put income_per_dependent @;
+844               put credit_lines_per_person @;
+845               put age_category @;
+846               put flag_high_utilization @;
+847               put flag_very_high_utilization @;
+848               put flag_high_debt_ratio @;
+849               put flag_very_high_debt_ratio @;
+850               put flag_recent_late_payments @;
+851               put flag_serious_delinquency @;
+852               put flag_multiple_delinquencies @;
+853               put flag_low_income @;
+854               put flag_many_dependents @;
+855               put flag_few_credit_lines @;
+856               put total_risk_flags @;
+857               put financial_health @;
+858               put log_monthly_income @;
+859               put log_num_credit_lines @;
+860               put log_total_late_payments @;
+861               put age_income_interaction @;
+862               put utilization_debt_interaction @;
+863               put credit_utilization_capped @;
+864               put debt_ratio_capped ;
+865               ;
+866             end;
+867            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+868            if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+869            run;
+3 records created in /home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/output/model_features_train.csv from 
+WORK.CREDIT_TRAIN_EXPORT.
+  
+  
+870        
+871        /* Export validation set */
+872        proc export data=work.credit_validation_export
+873            outfile="&output_path/model_features_validation.csv"
+874            dbms=csv
+875            replace;
+876        run;
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+877         /**********************************************************************
+878         *   PRODUCT:   SAS
+879         *   VERSION:   9.4
+880         *   CREATOR:   External File Interface
+881         *   DATE:      16NOV26
+882         *   DESC:      Generated SAS Datastep Code
+883         *   TEMPLATE SOURCE:  (None Specified.)
+884         ***********************************************************************/
+885            data _null_;
+886            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+887            %let _EFIREC_ = 0;     /* clear export record count macro variable */
+888            file '/home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/output/model_features_validation.csv'
+888      ! delimiter=',' DSD DROPOVER lrecl=32767;
+889            if _n_ = 1 then        /* write column names or labels */
+890             do;
+891               put
+892                  "row_id"
+893               ','
+894                  "default_flag"
+895               ','
+896                  "age"
+897               ','
+898                  "monthly_income"
+899               ','
+900                  "MonthlyIncome_missing"
+901               ','
+902                  "num_dependents"
+903               ','
+904                  "Dependents_missing"
+905               ','
+906                  "age_group"
+907               ','
+908                  "num_late_30_59"
+909               ','
+910                  "num_late_60_89"
+911               ','
+912                  "num_late_90_plus"
+913               ','
+914                  "credit_utilization"
+915               ','
+916                  "debt_ratio"
+917               ','
+918                  "num_credit_lines"
+919               ','
+920                  "num_real_estate_loans"
+921               ','
+922                  "total_late_payments"
+923               ','
+924                  "has_delinquency"
+925               ','
+926                  "has_serious_delinquency"
+927               ','
+928                  "credit_util_category"
+929               ','
+930                  "debt_category"
+931               ','
+932                  "income_per_dependent"
+933               ','
+934                  "credit_lines_per_person"
+935               ','
+936                  "age_category"
+937               ','
+938                  "flag_high_utilization"
+939               ','
+940                  "flag_very_high_utilization"
+941               ','
+942                  "flag_high_debt_ratio"
+943               ','
+944                  "flag_very_high_debt_ratio"
+945               ','
+946                  "flag_recent_late_payments"
+947               ','
+948                  "flag_serious_delinquency"
+949               ','
+950                  "flag_multiple_delinquencies"
+951               ','
+952                  "flag_low_income"
+953               ','
+954                  "flag_many_dependents"
+955               ','
+956                  "flag_few_credit_lines"
+957               ','
+958                  "total_risk_flags"
+959               ','
+960                  "financial_health"
+961               ','
+962                  "log_monthly_income"
+963               ','
+964                  "log_num_credit_lines"
+965               ','
+966                  "log_total_late_payments"
+967               ','
+968                  "age_income_interaction"
+969               ','
+970                  "utilization_debt_interaction"
+971               ','
+972                  "credit_utilization_capped"
+973               ','
+974                  "debt_ratio_capped"
+975               ;
+976             end;
+977           set  WORK.CREDIT_VALIDATION_EXPORT   end=EFIEOD;
+978               format row_id best12. ;
+979               format default_flag best12. ;
+980               format age best12. ;
+981               format monthly_income best12. ;
+982               format MonthlyIncome_missing best12. ;
+983               format num_dependents best12. ;
+984               format Dependents_missing best12. ;
+985               format age_group best12. ;
+986               format num_late_30_59 best12. ;
+987               format num_late_60_89 best12. ;
+988               format num_late_90_plus best12. ;
+989               format credit_utilization best12. ;
+990               format debt_ratio best12. ;
+991               format num_credit_lines best12. ;
+992               format num_real_estate_loans best12. ;
+993               format total_late_payments best12. ;
+994               format has_delinquency best12. ;
+995               format has_serious_delinquency best12. ;
+996               format credit_util_category best12. ;
+997               format debt_category best12. ;
+998               format income_per_dependent best12. ;
+999               format credit_lines_per_person best12. ;
+1000              format age_category best12. ;
+1001              format flag_high_utilization best12. ;
+1002              format flag_very_high_utilization best12. ;
+1003              format flag_high_debt_ratio best12. ;
+1004              format flag_very_high_debt_ratio best12. ;
+1005              format flag_recent_late_payments best12. ;
+1006              format flag_serious_delinquency best12. ;
+1007              format flag_multiple_delinquencies best12. ;
+1008              format flag_low_income best12. ;
+1009              format flag_many_dependents best12. ;
+1010              format flag_few_credit_lines best12. ;
+1011              format total_risk_flags best12. ;
+1012              format financial_health best12. ;
+1013              format log_monthly_income best12. ;
+1014              format log_num_credit_lines best12. ;
+1015              format log_total_late_payments best12. ;
+1016              format age_income_interaction best12. ;
+1017              format utilization_debt_interaction best12. ;
+1018              format credit_utilization_capped best12. ;
+1019              format debt_ratio_capped best12. ;
+1020            do;
+1021              EFIOUT + 1;
+1022              put row_id @;
+1023              put default_flag @;
+1024              put age @;
+1025              put monthly_income @;
+1026              put MonthlyIncome_missing @;
+1027              put num_dependents @;
+1028              put Dependents_missing @;
+1029              put age_group @;
+1030              put num_late_30_59 @;
+1031              put num_late_60_89 @;
+1032              put num_late_90_plus @;
+1033              put credit_utilization @;
+1034              put debt_ratio @;
+1035              put num_credit_lines @;
+1036              put num_real_estate_loans @;
+1037              put total_late_payments @;
+1038              put has_delinquency @;
+1039              put has_serious_delinquency @;
+1040              put credit_util_category @;
+1041              put debt_category @;
+1042              put income_per_dependent @;
+1043              put credit_lines_per_person @;
+1044              put age_category @;
+1045              put flag_high_utilization @;
+1046              put flag_very_high_utilization @;
+1047              put flag_high_debt_ratio @;
+1048              put flag_very_high_debt_ratio @;
+1049              put flag_recent_late_payments @;
+1050              put flag_serious_delinquency @;
+1051              put flag_multiple_delinquencies @;
+1052              put flag_low_income @;
+1053              put flag_many_dependents @;
+1054              put flag_few_credit_lines @;
+1055              put total_risk_flags @;
+1056              put financial_health @;
+1057              put log_monthly_income @;
+1058              put log_num_credit_lines @;
+1059              put log_total_late_payments @;
+1060              put age_income_interaction @;
+1061              put utilization_debt_interaction @;
+1062              put credit_utilization_capped @;
+1063              put debt_ratio_capped ;
+1064              ;
+1065            end;
+1066           if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1067           if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1068           run;
+0 records created in /home/u64643823/sasmig/runs/emptyval_n3_both-20261116T173218/output/model_features_validation.csv from 
+WORK.CREDIT_VALIDATION_EXPORT.
+  
+  
+1069       
+1070       %put NOTE: Feature engineering completed successfully;
+1071       %put NOTE: Training set: exported to &output_path/model_features_train.csv;
+1072       %put NOTE: Validation set: exported to &output_path/model_features_validation.csv;
+1073       %put NOTE: Missing value imputation completed;
+1074       %put NOTE: Ready for model training;
+1075       
+1076       
+1077       
+1078       
+36                                                         The SAS System                          Monday, 16 November 2026 16:32:00
+
+1079       

@@ -1,0 +1,4 @@
+RowId,Criterion,InterceptOnly,InterceptAndCovariates
+AIC,AIC,12.172,6.001
+SBC,SC,14.266,12.284
+M2LOGL,-2 Log L,10.172,0.001

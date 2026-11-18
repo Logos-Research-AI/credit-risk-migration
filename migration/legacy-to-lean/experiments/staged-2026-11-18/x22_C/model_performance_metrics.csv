@@ -1,0 +1,2 @@
+AUC,Gini,KS_Statistic,KS_Cutoff,PSI,PSI_interpretation,accuracy_at_50,precision_at_50,recall_at_50,f1_score_at_50,specificity_at_50,model_name,validation_date,dataset
+0.3382,-0.3235,0.3137,0.0206,3.5149578716,Significant change,0.85,,0,,1,Logistic Regression,18NOV2026,Kaggle Give Me Some Credit

@@ -1,0 +1,51 @@
+41                                                         The SAS System                          Monday, 16 November 2026 21:52:00
+
+3310       
+3311       /*****************************************************************************
+3312        * Credit Risk Scoring Model - Prediction on Test Set
+3313        *
+3314        * Purpose: Score Kaggle test set using trained model
+3315        * Author: Risk Analytics Team
+3316        * Date: 2025
+3317        *
+3318        * Data Source: Kaggle "Give Me Some Credit" competition test set
+3319        *
+3320        * This script:
+3321        * - Loads cs-test.csv from data/ directory
+3322        * - Applies same feature engineering as training
+3323        * - Scores using trained logistic regression model
+3324        * - Generates risk scores, grades, and recommendations
+3325        * - Exports predictions for submission
+3326        *****************************************************************************/
+3327       
+3328       /* Define paths */
+3329       %let data_path = /home/u64643823/sasmig/runs/oneclass_n60_all1-20261116T225259/data;
+3330       %let output_path = /home/u64643823/sasmig/runs/oneclass_n60_all1-20261116T225259/output;
+3331       
+3332       /* Remove the results of an earlier run first: a run that stops leaves no result */
+3333       data _null_;
+3334           length fref $8 fname $64;
+3335           do fname = 'kaggle_submission.csv', 'test_predictions.csv';
+3336               fref = ' ';
+3337               if filename(fref, cats("&output_path/", fname)) = 0 then do;
+3338                   if fexist(fref) then rc = fdelete(fref);
+3339                   rc = filename(fref);
+3340               end;
+3341           end;
+3342       run;
+3343       
+3344       /* Stop when the step before did not produce its result */
+3345       data _null_;
+3346           if not fileexist("&output_path/income_medians.csv")
+3347              or not fileexist("&output_path/model_coefficients.csv") then do;
+3348               put "ERROR: The training medians or the model are not in the output folder: the training steps did not complete."
+3348     ! ;
+3349               put "ERROR: Test set scoring stopped. Nothing is exported.";
+3350               abort cancel;
+3351           end;
+3352       run;
+ERROR: The training medians or the model are not in the output folder: the training steps did not complete.
+ERROR: Test set scoring stopped. Nothing is exported.
+ERROR: Execution terminated by an ABORT CANCEL statement at line 3350 column 9.
+_ERROR_=1 _N_=1
+3353       

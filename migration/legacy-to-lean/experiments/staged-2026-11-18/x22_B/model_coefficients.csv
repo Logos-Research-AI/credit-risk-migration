@@ -1,0 +1,5 @@
+Variable,DF,Estimate,StdErr,WaldChiSq,ProbChiSq,_ESTTYPE_
+Intercept,1,-6.5768,1.1836,30.8760,<.0001,MLE
+num_late_90_plus,1,0.1873,0.2925,0.4098,0.5221,MLE
+age,1,0.1622,0.0280,33.6270,<.0001,MLE
+flag_recent_late_pay,0,0,,,,MLE

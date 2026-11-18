@@ -1,0 +1,2866 @@
+{
+ "A": {
+  "model": [
+   "age",
+   "flag_recent_late_payments"
+  ],
+  "logs": {
+   "train.sas": {
+    "errors": [
+     "ERROR: File WORK._J_MODELBUILDINGSUMMARY.DATA does not exist. ",
+     "ERROR: Export unsuccessful.  See SAS Log for details.",
+     "ERROR: File WORK._J_LACKFITPARTITION.DATA does not exist. ",
+     "ERROR: Export unsuccessful.  See SAS Log for details.",
+     "ERROR: File WORK._J_LACKFITCHISQ.DATA does not exist. ",
+     "ERROR: Export unsuccessful.  See SAS Log for details.",
+     "ERROR: File WORK._J_CLASSIFICATION.DATA does not exist. ",
+     "ERROR: Export unsuccessful.  See SAS Log for details."
+    ],
+    "warnings": [
+     "WARNING: Multiple lengths were specified for the variable ROCModel by input data set(s). This can cause truncation of data.",
+     "WARNING: Output 'Classification' was not created. Make sure that the output object name, label, or path is spelled correctly.",
+     "WARNING: Output 'LackFitChiSq' was not created. Make sure that the output object name, label, or path is spelled correctly. Also,",
+     "WARNING: Output 'LackFitPartition' was not created. Make sure that the output object name, label, or path is spelled correctly.",
+     "WARNING: Output 'ModelBuildingSummary' was not created. Make sure that the output object name, label, or path is spelled",
+     "WARNING: The LOGISTIC procedure continues in spite of the above warning. Results shown are based on the last maximum likelihood",
+     "WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+     "WARNING: The variable 'IP_:'n in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable 'XP_:'n in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _FROM_ in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _INTO_ in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _LEVEL_ in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: There is a complete separation of data points. The maximum likelihood estimate does not exist."
+    ]
+   },
+   "metrics_calculation.sas": {
+    "errors": [],
+    "warnings": []
+   },
+   "predict.sas": {
+    "errors": [],
+    "warnings": [
+     "WARNING: Limit set by ERRORS= option reached. Further errors of this type will not be printed."
+    ]
+   }
+  },
+  "PE": [
+   {
+    "Variable": "Intercept",
+    "DF": "1",
+    "Estimate": "-12.1041508908181",
+    "StdErr": "99.993370134654",
+    "WaldChiSq": "0.01465298976134",
+    "ProbChiSq": "0.90365180090532"
+   },
+   {
+    "Variable": "age",
+    "DF": "1",
+    "Estimate": "2.1896391470313E-15",
+    "StdErr": "27.6074777857893",
+    "WaldChiSq": "6.2905936913867E-33",
+    "ProbChiSq": "1",
+    "_ESTTYPE_": "MLE"
+   },
+   {
+    "Variable": "flag_recent_late_pay",
+    "DF": "0",
+    "Estimate": "0",
+    "StdErr": ".",
+    "WaldChiSq": ".",
+    "ProbChiSq": ".",
+    "_ESTTYPE_": "MLE"
+   }
+  ],
+  "OR": [
+   {
+    "Effect": "age",
+    "OddsRatioEst": "1",
+    "LowerCL": "3.1657185749328E-24",
+    "UpperCL": "315884048543770082279424"
+   }
+  ],
+  "CS": [
+   {
+    "NullModel": "0",
+    "Reason": "Complete",
+    "Status": "1"
+   }
+  ],
+  "CT": null,
+  "AS": [
+   {
+    "Label1": "Percent",
+    "cValue1": "100.0",
+    "nValue1": "100",
+    "Label2": "Somers'",
+    "cValue2": "1.000",
+    "nValue2": "1"
+   },
+   {
+    "Label1": "Percent",
+    "cValue1": "0.0",
+    "nValue1": "0",
+    "Label2": "Gamma",
+    "cValue2": "1.000",
+    "nValue2": "1"
+   },
+   {
+    "Label1": "Percent",
+    "cValue1": "0.0",
+    "nValue1": "0",
+    "Label2": "Tau-a",
+    "cValue2": "0.033",
+    "nValue2": "0.03333333333333"
+   },
+   {
+    "Label1": "Pairs",
+    "cValue1": "59",
+    "nValue1": "59",
+    "Label2": "c",
+    "cValue2": "1.000",
+    "nValue2": "1"
+   }
+  ],
+  "HL": null,
+  "PDT": [
+   {
+    "row_id": "85073",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "84238",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "115026",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "68989",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "79707",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "88179",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "65744",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "100475",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "104507",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "93713",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "75354",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "81321",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "115495",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "105837",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "86138",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "95837",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "72458",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "101188",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "101184",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "91833",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "95711",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "98663",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "122049",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "107623",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "63588",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "113856",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "64995",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "69586",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "108961",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "97317",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "81306",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "115213",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "74894",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "105340",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "111735",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "62226",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "77443",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "104512",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "99096",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "121120",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "63766",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "79505",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "66676",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "92498",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "87038",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "110278",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "97530",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "69223",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "120397",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "91000",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "62114",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "85624",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "107385",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "115542",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "65807",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "114337",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "83973",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "83869",
+    "pd_logistic": "5.5364534854086E-6"
+   },
+   {
+    "row_id": "109712",
+    "pd_logistic": "5.5364534854085E-6"
+   },
+   {
+    "row_id": "77474",
+    "pd_logistic": "5.5364534854086E-6"
+   }
+  ],
+  "PDV": [
+   {
+    "row_id": "70959",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "98758",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "93492",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "67482",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "117880",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "104703",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "99066",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "84456",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "75536",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "123409",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "119126",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "86891",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "117160",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "97723",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "118385",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "78470",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "122434",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "106488",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "97916",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "66007",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "114740",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "95328",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "95174",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "95858",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "81246",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "80106",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "102975",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "99024",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "98424",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "66406",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "105953",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "107442",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "87314",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "65854",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "73904",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "97337",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "100622",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "73096",
+    "pd_logistic": "5.5364534854088E-6"
+   },
+   {
+    "row_id": "84202",
+    "pd_logistic": "5.5364534854089E-6"
+   },
+   {
+    "row_id": "67439",
+    "pd_logistic": "5.5364534854089E-6"
+   }
+  ],
+  "files": [
+   "calibration_plot.csv",
+   "decile_analysis.csv",
+   "final_model_output.csv",
+   "kaggle_submission.csv",
+   "ks_statistic.csv",
+   "model_coefficients.csv",
+   "model_performance_metrics.csv",
+   "model_summary.csv",
+   "printed_association.csv",
+   "printed_confusion_train.csv",
+   "printed_confusion_validation.csv",
+   "printed_cumulative_lift.csv",
+   "printed_fit_statistics.csv",
+   "printed_global_tests.csv",
+   "printed_odds_ratios.csv",
+   "printed_psi_calculation.csv",
+   "printed_roc_metrics.csv",
+   "printed_roc_train.csv",
+   "printed_roc_validation.csv",
+   "printed_rsquare.csv",
+   "risk_scores_train.csv",
+   "risk_scores_validation.csv",
+   "test_predictions.csv",
+   "threshold_analysis.csv",
+   "validation_summary.csv"
+  ]
+ },
+ "B": {
+  "model": [
+   "num_late_90_plus",
+   "age",
+   "flag_recent_late_payments"
+  ],
+  "logs": {
+   "train.sas": {
+    "errors": [
+     "ERROR: File WORK._J_MODELBUILDINGSUMMARY.DATA does not exist. ",
+     "ERROR: Export unsuccessful.  See SAS Log for details."
+    ],
+    "warnings": [
+     "WARNING: Multiple lengths were specified for the variable ROCModel by input data set(s). This can cause truncation of data.",
+     "WARNING: Output 'ModelBuildingSummary' was not created. Make sure that the output object name, label, or path is spelled",
+     "WARNING: The variable 'IP_:'n in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable 'XP_:'n in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _FROM_ in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _INTO_ in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _LEVEL_ in the DROP, KEEP, or RENAME list has never been referenced."
+    ]
+   },
+   "metrics_calculation.sas": {
+    "errors": [],
+    "warnings": []
+   },
+   "predict.sas": {
+    "errors": [],
+    "warnings": [
+     "WARNING: Limit set by ERRORS= option reached. Further errors of this type will not be printed."
+    ]
+   }
+  },
+  "PE": [
+   {
+    "Variable": "Intercept",
+    "DF": "1",
+    "Estimate": "-6.57675113966786",
+    "StdErr": "1.18358894996446",
+    "WaldChiSq": "30.8759986749871"
+   },
+   {
+    "Variable": "num_late_90_plus",
+    "DF": "1",
+    "Estimate": "0.18727349692839",
+    "StdErr": "0.2925460371224",
+    "WaldChiSq": "0.40979268449497"
+   },
+   {
+    "Variable": "age",
+    "DF": "1",
+    "Estimate": "0.16222949019464",
+    "StdErr": "0.02797599458038",
+    "WaldChiSq": "33.6270319484497",
+    "ProbChiSq": "6.6758501929262E-9"
+   },
+   {
+    "Variable": "flag_recent_late_pay",
+    "DF": "0",
+    "Estimate": "0",
+    "StdErr": ".",
+    "WaldChiSq": ".",
+    "ProbChiSq": ".",
+    "_ESTTYPE_": "MLE"
+   }
+  ],
+  "OR": [
+   {
+    "Effect": "num_late_90_plus",
+    "OddsRatioEst": "1.20595706550409",
+    "LowerCL": "0.67969833812065",
+    "UpperCL": "2.13967338490254"
+   },
+   {
+    "Effect": "age",
+    "OddsRatioEst": "1.1761301206828",
+    "LowerCL": "1.11337678765359",
+    "UpperCL": "1.24242042416976"
+   }
+  ],
+  "CS": [
+   {
+    "NullModel": "0",
+    "Reason": "Convergence",
+    "(GCONV": "1E-8)",
+    "Status": "0"
+   }
+  ],
+  "CT": [
+   {
+    "ProbLevel": "0.02",
+    "CorrectEvents": "59",
+    "CorrectNonevents": "0",
+    "IncorrectEvents": "61",
+    "IncorrectNonevents": "0",
+    "Correct": "49.1666666666666"
+   },
+   {
+    "ProbLevel": "0.04",
+    "CorrectEvents": "59",
+    "CorrectNonevents": "3",
+    "IncorrectEvents": "58",
+    "IncorrectNonevents": "0",
+    "Correct": "51.6666666666666"
+   },
+   {
+    "ProbLevel": "0.06",
+    "CorrectEvents": "59",
+    "CorrectNonevents": "10",
+    "IncorrectEvents": "51",
+    "IncorrectNonevents": "0",
+    "Correct": "57.5",
+    "Sensitivity": "100"
+   },
+   {
+    "ProbLevel": "0.08",
+    "CorrectEvents": "58",
+    "CorrectNonevents": "16",
+    "IncorrectEvents": "45",
+    "IncorrectNonevents": "1",
+    "Correct": "61.6666666666666"
+   },
+   {
+    "ProbLevel": "0.1",
+    "CorrectEvents": "57",
+    "CorrectNonevents": "19",
+    "IncorrectEvents": "42",
+    "IncorrectNonevents": "2",
+    "Correct": "63.3333333333333"
+   },
+   {
+    "ProbLevel": "0.12",
+    "CorrectEvents": "57",
+    "CorrectNonevents": "21",
+    "IncorrectEvents": "40",
+    "IncorrectNonevents": "2",
+    "Correct": "65"
+   },
+   {
+    "ProbLevel": "0.14",
+    "CorrectEvents": "57",
+    "CorrectNonevents": "24",
+    "IncorrectEvents": "37",
+    "IncorrectNonevents": "2",
+    "Correct": "67.5"
+   },
+   {
+    "ProbLevel": "0.16",
+    "CorrectEvents": "57",
+    "CorrectNonevents": "28",
+    "IncorrectEvents": "33",
+    "IncorrectNonevents": "2",
+    "Correct": "70.8333333333333"
+   },
+   {
+    "ProbLevel": "0.18",
+    "CorrectEvents": "57",
+    "CorrectNonevents": "30",
+    "IncorrectEvents": "31",
+    "IncorrectNonevents": "2",
+    "Correct": "72.5"
+   },
+   {
+    "ProbLevel": "0.2",
+    "CorrectEvents": "56",
+    "CorrectNonevents": "33",
+    "IncorrectEvents": "28",
+    "IncorrectNonevents": "3",
+    "Correct": "74.1666666666666"
+   },
+   {
+    "ProbLevel": "0.22",
+    "CorrectEvents": "56",
+    "CorrectNonevents": "36",
+    "IncorrectEvents": "25",
+    "IncorrectNonevents": "3",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.24",
+    "CorrectEvents": "55",
+    "CorrectNonevents": "37",
+    "IncorrectEvents": "24",
+    "IncorrectNonevents": "4",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.26",
+    "CorrectEvents": "55",
+    "CorrectNonevents": "38",
+    "IncorrectEvents": "23",
+    "IncorrectNonevents": "4",
+    "Correct": "77.5"
+   },
+   {
+    "ProbLevel": "0.28",
+    "CorrectEvents": "53",
+    "CorrectNonevents": "39",
+    "IncorrectEvents": "22",
+    "IncorrectNonevents": "6",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.3",
+    "CorrectEvents": "53",
+    "CorrectNonevents": "39",
+    "IncorrectEvents": "22",
+    "IncorrectNonevents": "6",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.32",
+    "CorrectEvents": "52",
+    "CorrectNonevents": "40",
+    "IncorrectEvents": "21",
+    "IncorrectNonevents": "7",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.34",
+    "CorrectEvents": "52",
+    "CorrectNonevents": "40",
+    "IncorrectEvents": "21",
+    "IncorrectNonevents": "7",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.36",
+    "CorrectEvents": "51",
+    "CorrectNonevents": "42",
+    "IncorrectEvents": "19",
+    "IncorrectNonevents": "8",
+    "Correct": "77.5"
+   },
+   {
+    "ProbLevel": "0.38",
+    "CorrectEvents": "50",
+    "CorrectNonevents": "43",
+    "IncorrectEvents": "18",
+    "IncorrectNonevents": "9",
+    "Correct": "77.5"
+   },
+   {
+    "ProbLevel": "0.4",
+    "CorrectEvents": "50",
+    "CorrectNonevents": "44",
+    "IncorrectEvents": "17",
+    "IncorrectNonevents": "9",
+    "Correct": "78.3333333333333"
+   },
+   {
+    "ProbLevel": "0.42",
+    "CorrectEvents": "47",
+    "CorrectNonevents": "45",
+    "IncorrectEvents": "16",
+    "IncorrectNonevents": "12",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.44",
+    "CorrectEvents": "47",
+    "CorrectNonevents": "45",
+    "IncorrectEvents": "16",
+    "IncorrectNonevents": "12",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.46",
+    "CorrectEvents": "47",
+    "CorrectNonevents": "45",
+    "IncorrectEvents": "16",
+    "IncorrectNonevents": "12",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.48",
+    "CorrectEvents": "45",
+    "CorrectNonevents": "47",
+    "IncorrectEvents": "14",
+    "IncorrectNonevents": "14",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.5",
+    "CorrectEvents": "45",
+    "CorrectNonevents": "47",
+    "IncorrectEvents": "14",
+    "IncorrectNonevents": "14",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.52",
+    "CorrectEvents": "44",
+    "CorrectNonevents": "47",
+    "IncorrectEvents": "14",
+    "IncorrectNonevents": "15",
+    "Correct": "75.8333333333333"
+   },
+   {
+    "ProbLevel": "0.54",
+    "CorrectEvents": "44",
+    "CorrectNonevents": "49",
+    "IncorrectEvents": "12",
+    "IncorrectNonevents": "15",
+    "Correct": "77.5"
+   },
+   {
+    "ProbLevel": "0.56",
+    "CorrectEvents": "44",
+    "CorrectNonevents": "49",
+    "IncorrectEvents": "12",
+    "IncorrectNonevents": "15",
+    "Correct": "77.5"
+   },
+   {
+    "ProbLevel": "0.58",
+    "CorrectEvents": "43",
+    "CorrectNonevents": "51",
+    "IncorrectEvents": "10",
+    "IncorrectNonevents": "16",
+    "Correct": "78.3333333333333"
+   },
+   {
+    "ProbLevel": "0.6",
+    "CorrectEvents": "43",
+    "CorrectNonevents": "51",
+    "IncorrectEvents": "10",
+    "IncorrectNonevents": "16",
+    "Correct": "78.3333333333333"
+   },
+   {
+    "ProbLevel": "0.62",
+    "CorrectEvents": "41",
+    "CorrectNonevents": "52",
+    "IncorrectEvents": "9",
+    "IncorrectNonevents": "18",
+    "Correct": "77.5"
+   },
+   {
+    "ProbLevel": "0.64",
+    "CorrectEvents": "41",
+    "CorrectNonevents": "53",
+    "IncorrectEvents": "8",
+    "IncorrectNonevents": "18",
+    "Correct": "78.3333333333333"
+   },
+   {
+    "ProbLevel": "0.66",
+    "CorrectEvents": "39",
+    "CorrectNonevents": "53",
+    "IncorrectEvents": "8",
+    "IncorrectNonevents": "20",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.68",
+    "CorrectEvents": "38",
+    "CorrectNonevents": "54",
+    "IncorrectEvents": "7",
+    "IncorrectNonevents": "21",
+    "Correct": "76.6666666666666"
+   },
+   {
+    "ProbLevel": "0.7",
+    "CorrectEvents": "37",
+    "CorrectNonevents": "54",
+    "IncorrectEvents": "7",
+    "IncorrectNonevents": "22",
+    "Correct": "75.8333333333333"
+   },
+   {
+    "ProbLevel": "0.72",
+    "CorrectEvents": "35",
+    "CorrectNonevents": "54",
+    "IncorrectEvents": "7",
+    "IncorrectNonevents": "24",
+    "Correct": "74.1666666666666"
+   },
+   {
+    "ProbLevel": "0.74",
+    "CorrectEvents": "34",
+    "CorrectNonevents": "55",
+    "IncorrectEvents": "6",
+    "IncorrectNonevents": "25",
+    "Correct": "74.1666666666666"
+   },
+   {
+    "ProbLevel": "0.76",
+    "CorrectEvents": "32",
+    "CorrectNonevents": "55",
+    "IncorrectEvents": "6",
+    "IncorrectNonevents": "27",
+    "Correct": "72.5"
+   },
+   {
+    "ProbLevel": "0.78",
+    "CorrectEvents": "30",
+    "CorrectNonevents": "56",
+    "IncorrectEvents": "5",
+    "IncorrectNonevents": "29",
+    "Correct": "71.6666666666666"
+   },
+   {
+    "ProbLevel": "0.8",
+    "CorrectEvents": "28",
+    "CorrectNonevents": "57",
+    "IncorrectEvents": "4",
+    "IncorrectNonevents": "31",
+    "Correct": "70.8333333333333"
+   },
+   {
+    "ProbLevel": "0.82",
+    "CorrectEvents": "25",
+    "CorrectNonevents": "57",
+    "IncorrectEvents": "4",
+    "IncorrectNonevents": "34",
+    "Correct": "68.3333333333333"
+   },
+   {
+    "ProbLevel": "0.84",
+    "CorrectEvents": "23",
+    "CorrectNonevents": "57",
+    "IncorrectEvents": "4",
+    "IncorrectNonevents": "36",
+    "Correct": "66.6666666666666"
+   },
+   {
+    "ProbLevel": "0.86",
+    "CorrectEvents": "22",
+    "CorrectNonevents": "57",
+    "IncorrectEvents": "4",
+    "IncorrectNonevents": "37",
+    "Correct": "65.8333333333333"
+   },
+   {
+    "ProbLevel": "0.88",
+    "CorrectEvents": "19",
+    "CorrectNonevents": "58",
+    "IncorrectEvents": "3",
+    "IncorrectNonevents": "40",
+    "Correct": "64.1666666666666"
+   },
+   {
+    "ProbLevel": "0.9",
+    "CorrectEvents": "16",
+    "CorrectNonevents": "59",
+    "IncorrectEvents": "2",
+    "IncorrectNonevents": "43",
+    "Correct": "62.5"
+   },
+   {
+    "ProbLevel": "0.92",
+    "CorrectEvents": "11",
+    "CorrectNonevents": "60",
+    "IncorrectEvents": "1",
+    "IncorrectNonevents": "48",
+    "Correct": "59.1666666666666"
+   },
+   {
+    "ProbLevel": "0.94",
+    "CorrectEvents": "6",
+    "CorrectNonevents": "60",
+    "IncorrectEvents": "1",
+    "IncorrectNonevents": "53",
+    "Correct": "55"
+   },
+   {
+    "ProbLevel": "0.96",
+    "CorrectEvents": "0",
+    "CorrectNonevents": "61",
+    "IncorrectEvents": "0",
+    "IncorrectNonevents": "59",
+    "Correct": "50.8333333333333",
+    "Sensitivity": "0"
+   }
+  ],
+  "AS": [
+   {
+    "Label1": "Percent",
+    "cValue1": "87.3",
+    "nValue1": "87.2742428452347",
+    "Label2": "Somers'",
+    "cValue2": "0.746",
+    "nValue2": "0.74631842178382"
+   },
+   {
+    "Label1": "Percent",
+    "cValue1": "12.6",
+    "nValue1": "12.6424006668519",
+    "Label2": "Gamma",
+    "cValue2": "0.747",
+    "nValue2": "0.74694104560622"
+   },
+   {
+    "Label1": "Percent",
+    "cValue1": "0.1",
+    "nValue1": "0.0833564879133",
+    "Label2": "Tau-a",
+    "cValue2": "0.376",
+    "nValue2": "0.37619047619047"
+   },
+   {
+    "Label1": "Pairs",
+    "cValue1": "3599",
+    "nValue1": "3599",
+    "Label2": "c",
+    "cValue2": "0.873",
+    "nValue2": "0.87315921089191"
+   }
+  ],
+  "HL": [
+   {
+    "ChiSq": "7.57512173563322",
+    "DF": "8",
+    "ProbChiSq": "0.4760330639668",
+    "NGroups": "10"
+   }
+  ],
+  "PDT": [
+   {
+    "row_id": "85073",
+    "pd_logistic": "0.04937786783655"
+   },
+   {
+    "row_id": "84238",
+    "pd_logistic": "0.33813918216722"
+   },
+   {
+    "row_id": "115026",
+    "pd_logistic": "0.87963369631081"
+   },
+   {
+    "row_id": "68989",
+    "pd_logistic": "0.12959529278221"
+   },
+   {
+    "row_id": "79707",
+    "pd_logistic": "0.6804894047937"
+   },
+   {
+    "row_id": "88179",
+    "pd_logistic": "0.05936005260405"
+   },
+   {
+    "row_id": "65744",
+    "pd_logistic": "0.38297914018699"
+   },
+   {
+    "row_id": "100475",
+    "pd_logistic": "0.89877084836638"
+   },
+   {
+    "row_id": "104507",
+    "pd_logistic": "0.15318104071342"
+   },
+   {
+    "row_id": "93713",
+    "pd_logistic": "0.7212553700355"
+   },
+   {
+    "row_id": "75354",
+    "pd_logistic": "0.07120906349537"
+   },
+   {
+    "row_id": "81321",
+    "pd_logistic": "0.42990299995795"
+   },
+   {
+    "row_id": "115495",
+    "pd_logistic": "0.9151588303441"
+   },
+   {
+    "row_id": "105837",
+    "pd_logistic": "0.18017075427156"
+   },
+   {
+    "row_id": "86138",
+    "pd_logistic": "0.75866468757631"
+   },
+   {
+    "row_id": "95837",
+    "pd_logistic": "0.08520902997956"
+   },
+   {
+    "row_id": "72458",
+    "pd_logistic": "0.4781210972713"
+   },
+   {
+    "row_id": "101188",
+    "pd_logistic": "0.92910304098881"
+   },
+   {
+    "row_id": "101184",
+    "pd_logistic": "0.21073251432371"
+   },
+   {
+    "row_id": "91833",
+    "pd_logistic": "0.79249783192415"
+   },
+   {
+    "row_id": "95711",
+    "pd_logistic": "0.10166017486926"
+   },
+   {
+    "row_id": "98663",
+    "pd_logistic": "0.52675039729872"
+   },
+   {
+    "row_id": "122049",
+    "pd_logistic": "0.94090342286012"
+   },
+   {
+    "row_id": "107623",
+    "pd_logistic": "0.24492958122746"
+   },
+   {
+    "row_id": "63588",
+    "pd_logistic": "0.82269634882653"
+   },
+   {
+    "row_id": "113856",
+    "pd_logistic": "0.12086785286095"
+   },
+   {
+    "row_id": "64995",
+    "pd_logistic": "0.57487741022203"
+   },
+   {
+    "row_id": "69586",
+    "pd_logistic": "0.95084361612388"
+   },
+   {
+    "row_id": "108961",
+    "pd_logistic": "0.28268844519911"
+   },
+   {
+    "row_id": "97317",
+    "pd_logistic": "0.84933549869305"
+   },
+   {
+    "row_id": "81306",
+    "pd_logistic": "0.14312643041927"
+   },
+   {
+    "row_id": "115213",
+    "pd_logistic": "0.62162579573573"
+   },
+   {
+    "row_id": "74894",
+    "pd_logistic": "0.95918437233117"
+   },
+   {
+    "row_id": "105340",
+    "pd_logistic": "0.32377227154507"
+   },
+   {
+    "row_id": "111735",
+    "pd_logistic": "0.87259206552696"
+   },
+   {
+    "row_id": "62226",
+    "pd_logistic": "0.16869749345799"
+   },
+   {
+    "row_id": "77443",
+    "pd_logistic": "0.6662182583985"
+   },
+   {
+    "row_id": "104512",
+    "pd_logistic": "0.0390763420789"
+   },
+   {
+    "row_id": "99096",
+    "pd_logistic": "0.36776567634142"
+   },
+   {
+    "row_id": "121120",
+    "pd_logistic": "0.89271222236716"
+   },
+   {
+    "row_id": "63766",
+    "pd_logistic": "0.19778259361018"
+   },
+   {
+    "row_id": "79505",
+    "pd_logistic": "0.70802379843612"
+   },
+   {
+    "row_id": "66676",
+    "pd_logistic": "0.04707911695641"
+   },
+   {
+    "row_id": "92498",
+    "pd_logistic": "0.41407644648418"
+   },
+   {
+    "row_id": "87038",
+    "pd_logistic": "0.90998279901271"
+   },
+   {
+    "row_id": "110278",
+    "pd_logistic": "0.23049188419708"
+   },
+   {
+    "row_id": "97530",
+    "pd_logistic": "0.74658495902096"
+   },
+   {
+    "row_id": "69223",
+    "pd_logistic": "0.05662426921914"
+   },
+   {
+    "row_id": "120397",
+    "pd_logistic": "0.46195783053943"
+   },
+   {
+    "row_id": "91000",
+    "pd_logistic": "0.92470773450529"
+   },
+   {
+    "row_id": "62114",
+    "pd_logistic": "0.26681149120271"
+   },
+   {
+    "row_id": "85624",
+    "pd_logistic": "0.78162412408578"
+   },
+   {
+    "row_id": "107385",
+    "pd_logistic": "0.06796664206226"
+   },
+   {
+    "row_id": "115542",
+    "pd_logistic": "0.5105514483497"
+   },
+   {
+    "row_id": "65807",
+    "pd_logistic": "0.93719023307144"
+   },
+   {
+    "row_id": "114337",
+    "pd_logistic": "0.3065740628821"
+   },
+   {
+    "row_id": "83973",
+    "pd_logistic": "0.81303178475792"
+   },
+   {
+    "row_id": "83869",
+    "pd_logistic": "0.08138499472382"
+   },
+   {
+    "row_id": "109712",
+    "pd_logistic": "0.55894646791049"
+   },
+   {
+    "row_id": "77474",
+    "pd_logistic": "0.94772029115988"
+   },
+   {
+    "row_id": "94282",
+    "pd_logistic": "0.34943817548543"
+   },
+   {
+    "row_id": "67061",
+    "pd_logistic": "0.84084208176639"
+   },
+   {
+    "row_id": "82376",
+    "pd_logistic": "0.09717626834887"
+   },
+   {
+    "row_id": "96833",
+    "pd_logistic": "0.60624679759964"
+   },
+   {
+    "row_id": "119525",
+    "pd_logistic": "0.95656679905105"
+   },
+   {
+    "row_id": "91609",
+    "pd_logistic": "0.39488252553751"
+   },
+   {
+    "row_id": "78415",
+    "pd_logistic": "0.86520161586892"
+   },
+   {
+    "row_id": "97302",
+    "pd_logistic": "0.11564581793405"
+   },
+   {
+    "row_id": "62042",
+    "pd_logistic": "0.65163600256223"
+   },
+   {
+    "row_id": "65434",
+    "pd_logistic": "0.03671126498696"
+   },
+   {
+    "row_id": "84482",
+    "pd_logistic": "0.44221956019111"
+   },
+   {
+    "row_id": "94769",
+    "pd_logistic": "0.8863368417575"
+   },
+   {
+    "row_id": "107925",
+    "pd_logistic": "0.13709268864269"
+   },
+   {
+    "row_id": "114012",
+    "pd_logistic": "0.69443024041157"
+   },
+   {
+    "row_id": "83617",
+    "pd_logistic": "0.04425198140515"
+   },
+   {
+    "row_id": "111097",
+    "pd_logistic": "0.49063021742711"
+   },
+   {
+    "row_id": "65976",
+    "pd_logistic": "0.90452393051822"
+   },
+   {
+    "row_id": "105605",
+    "pd_logistic": "0.16178929887399"
+   },
+   {
+    "row_id": "87121",
+    "pd_logistic": "0.73411250035264"
+   },
+   {
+    "row_id": "104017",
+    "pd_logistic": "0.0532559743748"
+   },
+   {
+    "row_id": "89820",
+    "pd_logistic": "0.53921724818078"
+   },
+   {
+    "row_id": "118360",
+    "pd_logistic": "0.92006338197531"
+   },
+   {
+    "row_id": "83120",
+    "pd_logistic": "0.18995551549639"
+   },
+   {
+    "row_id": "64103",
+    "pd_logistic": "0.77034572641017"
+   },
+   {
+    "row_id": "101867",
+    "pd_logistic": "0.06396939696021"
+   },
+   {
+    "row_id": "97724",
+    "pd_logistic": "0.58707031077572"
+   },
+   {
+    "row_id": "76673",
+    "pd_logistic": "0.93326028300927"
+   },
+   {
+    "row_id": "81610",
+    "pd_logistic": "0.22172813990598"
+   },
+   {
+    "row_id": "99117",
+    "pd_logistic": "0.80296658676781"
+   },
+   {
+    "row_id": "66201",
+    "pd_logistic": "0.07666350271063"
+   },
+   {
+    "row_id": "80919",
+    "pd_logistic": "0.63333308715873"
+   },
+   {
+    "row_id": "98214",
+    "pd_logistic": "0.94441011690098"
+   },
+   {
+    "row_id": "62453",
+    "pd_logistic": "0.25712824199131"
+   },
+   {
+    "row_id": "99433",
+    "pd_logistic": "0.83196459242217"
+   },
+   {
+    "row_id": "71955",
+    "pd_logistic": "0.09163003804463"
+   },
+   {
+    "row_id": "63157",
+    "pd_logistic": "0.67726214940941"
+   },
+   {
+    "row_id": "90286",
+    "pd_logistic": "0.95378944392064"
+   },
+   {
+    "row_id": "95306",
+    "pd_logistic": "0.29603038683726"
+   },
+   {
+    "row_id": "123731",
+    "pd_logistic": "0.85745250586141"
+   },
+   {
+    "row_id": "64205",
+    "pd_logistic": "0.1091729274941"
+   },
+   {
+    "row_id": "116880",
+    "pd_logistic": "0.71826940209355"
+   },
+   {
+    "row_id": "110174",
+    "pd_logistic": "0.03448419608502"
+   },
+   {
+    "row_id": "116363",
+    "pd_logistic": "0.33813918216722"
+   },
+   {
+    "row_id": "80441",
+    "pd_logistic": "0.87963369631081"
+   },
+   {
+    "row_id": "105882",
+    "pd_logistic": "0.12959529278221"
+   },
+   {
+    "row_id": "115832",
+    "pd_logistic": "0.75594385587098"
+   },
+   {
+    "row_id": "65660",
+    "pd_logistic": "0.04158720827887"
+   },
+   {
+    "row_id": "107986",
+    "pd_logistic": "0.38297914018699"
+   },
+   {
+    "row_id": "76473",
+    "pd_logistic": "0.89877084836638"
+   },
+   {
+    "row_id": "107725",
+    "pd_logistic": "0.15318104071342"
+   },
+   {
+    "row_id": "76033",
+    "pd_logistic": "0.79005288145551"
+   },
+   {
+    "row_id": "65785",
+    "pd_logistic": "0.05007740664891"
+   },
+   {
+    "row_id": "64492",
+    "pd_logistic": "0.42990299995795"
+   },
+   {
+    "row_id": "82658",
+    "pd_logistic": "0.9151588303441"
+   },
+   {
+    "row_id": "86708",
+    "pd_logistic": "0.18017075427156"
+   },
+   {
+    "row_id": "106816",
+    "pd_logistic": "0.82052663913138"
+   },
+   {
+    "row_id": "107120",
+    "pd_logistic": "0.06019205514845"
+   },
+   {
+    "row_id": "84736",
+    "pd_logistic": "0.4781210972713"
+   },
+   {
+    "row_id": "63785",
+    "pd_logistic": "0.92910304098881"
+   },
+   {
+    "row_id": "83980",
+    "pd_logistic": "0.21073251432371"
+   }
+  ],
+  "PDV": [
+   {
+    "row_id": "70959",
+    "pd_logistic": "0.07792168536775"
+   },
+   {
+    "row_id": "98758",
+    "pd_logistic": "0.08637007004004"
+   },
+   {
+    "row_id": "93492",
+    "pd_logistic": "0.05491580289393"
+   },
+   {
+    "row_id": "67482",
+    "pd_logistic": "0.10006028670984"
+   },
+   {
+    "row_id": "117880",
+    "pd_logistic": "0.11564581793405"
+   },
+   {
+    "row_id": "104703",
+    "pd_logistic": "0.06396939696021"
+   },
+   {
+    "row_id": "99066",
+    "pd_logistic": "0.11564581793405"
+   },
+   {
+    "row_id": "84456",
+    "pd_logistic": "0.05491580289393"
+   },
+   {
+    "row_id": "75536",
+    "pd_logistic": "0.10466184064136"
+   },
+   {
+    "row_id": "123409",
+    "pd_logistic": "0.13329939287739"
+   },
+   {
+    "row_id": "119126",
+    "pd_logistic": "0.10006028670984"
+   },
+   {
+    "row_id": "86891",
+    "pd_logistic": "0.11564581793405"
+   },
+   {
+    "row_id": "117160",
+    "pd_logistic": "0.06396939696021"
+   },
+   {
+    "row_id": "97723",
+    "pd_logistic": "0.08637007004004"
+   },
+   {
+    "row_id": "118385",
+    "pd_logistic": "0.06396939696021"
+   },
+   {
+    "row_id": "78470",
+    "pd_logistic": "0.08637007004004"
+   },
+   {
+    "row_id": "122434",
+    "pd_logistic": "0.07792168536775"
+   },
+   {
+    "row_id": "106488",
+    "pd_logistic": "0.10006028670984"
+   },
+   {
+    "row_id": "97916",
+    "pd_logistic": "0.13329939287739"
+   },
+   {
+    "row_id": "66007",
+    "pd_logistic": "0.13329939287739"
+   },
+   {
+    "row_id": "114740",
+    "pd_logistic": "0.11564581793405"
+   },
+   {
+    "row_id": "95328",
+    "pd_logistic": "0.07439809586268"
+   },
+   {
+    "row_id": "95174",
+    "pd_logistic": "0.08637007004004"
+   },
+   {
+    "row_id": "95858",
+    "pd_logistic": "0.05491580289393"
+   },
+   {
+    "row_id": "81246",
+    "pd_logistic": "0.12086785286095"
+   },
+   {
+    "row_id": "80106",
+    "pd_logistic": "0.05491580289393"
+   },
+   {
+    "row_id": "102975",
+    "pd_logistic": "0.08637007004004"
+   },
+   {
+    "row_id": "99024",
+    "pd_logistic": "0.13329939287739"
+   },
+   {
+    "row_id": "98424",
+    "pd_logistic": "0.06396939696021"
+   },
+   {
+    "row_id": "66406",
+    "pd_logistic": "0.07439809586268"
+   },
+   {
+    "row_id": "105953",
+    "pd_logistic": "0.06396939696021"
+   },
+   {
+    "row_id": "107442",
+    "pd_logistic": "0.10006028670984"
+   },
+   {
+    "row_id": "87314",
+    "pd_logistic": "0.07792168536775"
+   },
+   {
+    "row_id": "65854",
+    "pd_logistic": "0.13329939287739"
+   },
+   {
+    "row_id": "73904",
+    "pd_logistic": "0.04707911695641"
+   },
+   {
+    "row_id": "97337",
+    "pd_logistic": "0.11564581793405"
+   },
+   {
+    "row_id": "100622",
+    "pd_logistic": "0.05491580289393"
+   },
+   {
+    "row_id": "73096",
+    "pd_logistic": "0.05491580289393"
+   },
+   {
+    "row_id": "84202",
+    "pd_logistic": "0.13329939287739"
+   },
+   {
+    "row_id": "67439",
+    "pd_logistic": "0.11564581793405"
+   }
+  ],
+  "files": [
+   "calibration_plot.csv",
+   "decile_analysis.csv",
+   "final_model_output.csv",
+   "kaggle_submission.csv",
+   "ks_statistic.csv",
+   "model_coefficients.csv",
+   "model_performance_metrics.csv",
+   "model_summary.csv",
+   "printed_association.csv",
+   "printed_classification.csv",
+   "printed_confusion_train.csv",
+   "printed_confusion_validation.csv",
+   "printed_cumulative_lift.csv",
+   "printed_fit_statistics.csv",
+   "printed_global_tests.csv",
+   "printed_hl_partition.csv",
+   "printed_hosmer_lemeshow.csv",
+   "printed_odds_ratios.csv",
+   "printed_psi_calculation.csv",
+   "printed_roc_metrics.csv",
+   "printed_roc_train.csv",
+   "printed_roc_validation.csv",
+   "printed_rsquare.csv",
+   "risk_scores_train.csv",
+   "risk_scores_validation.csv",
+   "test_predictions.csv",
+   "threshold_analysis.csv",
+   "validation_summary.csv"
+  ]
+ },
+ "C": {
+  "model": [
+   "age",
+   "flag_recent_late_payments"
+  ],
+  "logs": {
+   "train.sas": {
+    "errors": [
+     "ERROR: File WORK._J_MODELBUILDINGSUMMARY.DATA does not exist. ",
+     "ERROR: Export unsuccessful.  See SAS Log for details.",
+     "ERROR: File WORK._J_CLASSIFICATION.DATA does not exist. ",
+     "ERROR: Export unsuccessful.  See SAS Log for details."
+    ],
+    "warnings": [
+     "WARNING: Multiple lengths were specified for the variable ROCModel by input data set(s). This can cause truncation of data.",
+     "WARNING: Output 'Classification' was not created. Make sure that the output object name, label, or path is spelled correctly.",
+     "WARNING: Output 'ModelBuildingSummary' was not created. Make sure that the output object name, label, or path is spelled",
+     "WARNING: The information matrix is singular and thus the convergence is questionable. Try specifying a larger SINGULAR= value.",
+     "WARNING: The variable 'IP_:'n in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable 'XP_:'n in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _FROM_ in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _INTO_ in the DROP, KEEP, or RENAME list has never been referenced.",
+     "WARNING: The variable _LEVEL_ in the DROP, KEEP, or RENAME list has never been referenced."
+    ]
+   },
+   "metrics_calculation.sas": {
+    "errors": [],
+    "warnings": []
+   },
+   "predict.sas": {
+    "errors": [],
+    "warnings": [
+     "WARNING: Limit set by ERRORS= option reached. Further errors of this type will not be printed."
+    ]
+   }
+  },
+  "PE": [
+   {
+    "Variable": "Intercept",
+    "DF": "1",
+    "Estimate": "0.65581071075122",
+    "StdErr": "3.23239523227201",
+    "WaldChiSq": "0.04116310203754",
+    "ProbChiSq": "0.83922341851622"
+   },
+   {
+    "Variable": "age",
+    "DF": "1",
+    "Estimate": "-0.1673836034902",
+    "StdErr": "0.12166841600575",
+    "WaldChiSq": "1.8926491691923",
+    "ProbChiSq": "0.16890342401738"
+   },
+   {
+    "Variable": "flag_recent_late_pay",
+    "DF": "0",
+    "Estimate": "0",
+    "StdErr": ".",
+    "WaldChiSq": ".",
+    "ProbChiSq": ".",
+    "_ESTTYPE_": "MLE"
+   }
+  ],
+  "OR": [
+   {
+    "Effect": "age",
+    "OddsRatioEst": "0.84587506846473",
+    "LowerCL": "0.66641057665959",
+    "UpperCL": "1.07366938117445"
+   }
+  ],
+  "CS": [
+   {
+    "NullModel": "0",
+    "Reason": "Convergence",
+    "(GCONV": "1E-8)",
+    "Status": "0"
+   }
+  ],
+  "CT": null,
+  "AS": [
+   {
+    "Label1": "Percent",
+    "cValue1": "90.2",
+    "nValue1": "90.1861252115059",
+    "Label2": "Somers'",
+    "cValue2": "0.807",
+    "nValue2": "0.80710659898477"
+   },
+   {
+    "Label1": "Percent",
+    "cValue1": "9.5",
+    "nValue1": "9.47546531302876",
+    "Label2": "Gamma",
+    "cValue2": "0.810",
+    "nValue2": "0.80984719864176"
+   },
+   {
+    "Label1": "Percent",
+    "cValue1": "0.3",
+    "nValue1": "0.33840947546531",
+    "Label2": "Tau-a",
+    "cValue2": "0.024",
+    "nValue2": "0.02396984924623"
+   },
+   {
+    "Label1": "Pairs",
+    "cValue1": "591",
+    "nValue1": "591",
+    "Label2": "c",
+    "cValue2": "0.904",
+    "nValue2": "0.90355329949238"
+   }
+  ],
+  "HL": [
+   {
+    "ChiSq": "222.947217774961",
+    "DF": "8",
+    "ProbChiSq": "9.1776398983318E-44",
+    "NGroups": "10"
+   }
+  ],
+  "PDT": [
+   {
+    "row_id": "85073",
+    "pd_logistic": "0.06345531019763"
+   },
+   {
+    "row_id": "84238",
+    "pd_logistic": "0.00433386407527"
+   },
+   {
+    "row_id": "115026",
+    "pd_logistic": "0.00027955174611"
+   },
+   {
+    "row_id": "68989",
+    "pd_logistic": "0.01529468457273"
+   },
+   {
+    "row_id": "79707",
+    "pd_logistic": "0.00099683479984"
+   },
+   {
+    "row_id": "88179",
+    "pd_logistic": "0.05251453125858"
+   },
+   {
+    "row_id": "65744",
+    "pd_logistic": "0.00354801458351"
+   },
+   {
+    "row_id": "100475",
+    "pd_logistic": "0.00022869242115"
+   },
+   {
+    "row_id": "104507",
+    "pd_logistic": "0.01254637946572"
+   },
+   {
+    "row_id": "93713",
+    "pd_logistic": "0.00081558540895"
+   },
+   {
+    "row_id": "75354",
+    "pd_logistic": "0.04337276850498"
+   },
+   {
+    "row_id": "81321",
+    "pd_logistic": "0.00290424570662"
+   },
+   {
+    "row_id": "115495",
+    "pd_logistic": "0.00018708428818"
+   },
+   {
+    "row_id": "105837",
+    "pd_logistic": "0.01028675893101"
+   },
+   {
+    "row_id": "86138",
+    "pd_logistic": "0.00066726965875"
+   },
+   {
+    "row_id": "95837",
+    "pd_logistic": "0.03576234287838"
+   },
+   {
+    "row_id": "72458",
+    "pd_logistic": "0.00237700671614"
+   },
+   {
+    "row_id": "101188",
+    "pd_logistic": "0.00015304514986"
+   },
+   {
+    "row_id": "101184",
+    "pd_logistic": "0.00843062469639"
+   },
+   {
+    "row_id": "91833",
+    "pd_logistic": "0.00054591067237"
+   },
+   {
+    "row_id": "95711",
+    "pd_logistic": "0.02944618031171"
+   },
+   {
+    "row_id": "98663",
+    "pd_logistic": "0.00194529635881"
+   },
+   {
+    "row_id": "122049",
+    "pd_logistic": "0.00012519850295"
+   },
+   {
+    "row_id": "107623",
+    "pd_logistic": "0.00690707242506"
+   },
+   {
+    "row_id": "63588",
+    "pd_logistic": "0.0004466138632"
+   },
+   {
+    "row_id": "113856",
+    "pd_logistic": "0.02421752885125"
+   },
+   {
+    "row_id": "64995",
+    "pd_logistic": "0.00159186783465"
+   },
+   {
+    "row_id": "69586",
+    "pd_logistic": "0.00010241804934"
+   },
+   {
+    "row_id": "108961",
+    "pd_logistic": "0.0056572801908"
+   },
+   {
+    "row_id": "97317",
+    "pd_logistic": "0.00036537175112"
+   },
+   {
+    "row_id": "81306",
+    "pd_logistic": "0.01989827536195"
+   },
+   {
+    "row_id": "115213",
+    "pd_logistic": "0.00130256768766"
+   },
+   {
+    "row_id": "74894",
+    "pd_logistic": "0.00008378225857"
+   },
+   {
+    "row_id": "105340",
+    "pd_logistic": "0.00463257526028"
+   },
+   {
+    "row_id": "111735",
+    "pd_logistic": "0.00029890371479"
+   },
+   {
+    "row_id": "62226",
+    "pd_logistic": "0.01633647381376"
+   },
+   {
+    "row_id": "77443",
+    "pd_logistic": "0.00106578775017"
+   },
+   {
+    "row_id": "104512",
+    "pd_logistic": "0.05594748870519"
+   },
+   {
+    "row_id": "99096",
+    "pd_logistic": "0.00379276749212"
+   },
+   {
+    "row_id": "121120",
+    "pd_logistic": "0.00024452451438"
+   },
+   {
+    "row_id": "63766",
+    "pd_logistic": "0.0134035174795"
+   },
+   {
+    "row_id": "79505",
+    "pd_logistic": "0.00087201193941"
+   },
+   {
+    "row_id": "66676",
+    "pd_logistic": "0.04623727798025"
+   },
+   {
+    "row_id": "92498",
+    "pd_logistic": "0.00310472783638"
+   },
+   {
+    "row_id": "87038",
+    "pd_logistic": "0.0002000364782"
+   },
+   {
+    "row_id": "110278",
+    "pd_logistic": "0.01099124348258"
+   },
+   {
+    "row_id": "97530",
+    "pd_logistic": "0.00071344224465"
+   },
+   {
+    "row_id": "69223",
+    "pd_logistic": "0.03814427111995"
+   },
+   {
+    "row_id": "120397",
+    "pd_logistic": "0.00254118592406"
+   },
+   {
+    "row_id": "91000",
+    "pd_logistic": "0.00016364113332"
+   },
+   {
+    "row_id": "62114",
+    "pd_logistic": "0.00900914975632"
+   },
+   {
+    "row_id": "85624",
+    "pd_logistic": "0.00058369057133"
+   },
+   {
+    "row_id": "107385",
+    "pd_logistic": "0.03142113315891"
+   },
+   {
+    "row_id": "115542",
+    "pd_logistic": "0.00207971961074"
+   },
+   {
+    "row_id": "65807",
+    "pd_logistic": "0.00013386679967"
+   },
+   {
+    "row_id": "114337",
+    "pd_logistic": "0.00738182683436"
+   },
+   {
+    "row_id": "83973",
+    "pd_logistic": "0.00047752518231"
+   },
+   {
+    "row_id": "83869",
+    "pd_logistic": "0.02585113714123"
+   },
+   {
+    "row_id": "109712",
+    "pd_logistic": "0.00170191022675"
+   },
+   {
+    "row_id": "77474",
+    "pd_logistic": "0.00010950928165"
+   },
+   {
+    "row_id": "94282",
+    "pd_logistic": "0.00604665375617"
+   },
+   {
+    "row_id": "67061",
+    "pd_logistic": "0.00039066228783"
+   },
+   {
+    "row_id": "82376",
+    "pd_logistic": "0.02124686983501"
+   },
+   {
+    "row_id": "96833",
+    "pd_logistic": "0.00139263927957"
+   },
+   {
+    "row_id": "119525",
+    "pd_logistic": "0.00008958329952"
+   },
+   {
+    "row_id": "91609",
+    "pd_logistic": "0.00495177269236"
+   },
+   {
+    "row_id": "78415",
+    "pd_logistic": "0.00031959489518"
+   },
+   {
+    "row_id": "97302",
+    "pd_logistic": "0.01744796661597"
+   },
+   {
+    "row_id": "62042",
+    "pd_logistic": "0.0011395048662"
+   },
+   {
+    "row_id": "65434",
+    "pd_logistic": "0.05959074953623"
+   },
+   {
+    "row_id": "84482",
+    "pd_logistic": "0.00405433550935"
+   },
+   {
+    "row_id": "94769",
+    "pd_logistic": "0.0002614523572"
+   },
+   {
+    "row_id": "107925",
+    "pd_logistic": "0.01431836396788"
+   },
+   {
+    "row_id": "114012",
+    "pd_logistic": "0.00093233871423"
+   },
+   {
+    "row_id": "83617",
+    "pd_logistic": "0.04928122510627"
+   },
+   {
+    "row_id": "111097",
+    "pd_logistic": "0.0033190033221"
+   },
+   {
+    "row_id": "65976",
+    "pd_logistic": "0.00021388518038"
+   },
+   {
+    "row_id": "105605",
+    "pd_logistic": "0.01174340191057"
+   },
+   {
+    "row_id": "87121",
+    "pd_logistic": "0.00076280736349"
+   },
+   {
+    "row_id": "104017",
+    "pd_logistic": "0.04067815337593"
+   },
+   {
+    "row_id": "89820",
+    "pd_logistic": "0.00271667406527"
+   },
+   {
+    "row_id": "118360",
+    "pd_logistic": "0.00017497059456"
+   },
+   {
+    "row_id": "83120",
+    "pd_logistic": "0.00962698884019"
+   },
+   {
+    "row_id": "64103",
+    "pd_logistic": "0.00062408340603"
+   },
+   {
+    "row_id": "101867",
+    "pd_logistic": "0.03352397062028"
+   },
+   {
+    "row_id": "97724",
+    "pd_logistic": "0.00222341104236"
+   },
+   {
+    "row_id": "76673",
+    "pd_logistic": "0.00014313517236"
+   },
+   {
+    "row_id": "81610",
+    "pd_logistic": "0.00788895404408"
+   },
+   {
+    "row_id": "99117",
+    "pd_logistic": "0.00051057486221"
+   },
+   {
+    "row_id": "66201",
+    "pd_logistic": "0.02759182551091"
+   },
+   {
+    "row_id": "80919",
+    "pd_logistic": "0.00181954574887"
+   },
+   {
+    "row_id": "98214",
+    "pd_logistic": "0.00011709143999"
+   },
+   {
+    "row_id": "62453",
+    "pd_logistic": "0.00646265255124"
+   },
+   {
+    "row_id": "99433",
+    "pd_logistic": "0.00041770266968"
+   },
+   {
+    "row_id": "71955",
+    "pd_logistic": "0.02268474905757"
+   },
+   {
+    "row_id": "63157",
+    "pd_logistic": "0.00148892996969"
+   },
+   {
+    "row_id": "90286",
+    "pd_logistic": "0.00009578596312"
+   },
+   {
+    "row_id": "95306",
+    "pd_logistic": "0.00529284677248"
+   },
+   {
+    "row_id": "123731",
+    "pd_logistic": "0.00034171790322"
+   },
+   {
+    "row_id": "64205",
+    "pd_logistic": "0.01863365006867"
+   },
+   {
+    "row_id": "116880",
+    "pd_logistic": "0.00121831453988"
+   },
+   {
+    "row_id": "110174",
+    "pd_logistic": "0.06345531019763"
+   },
+   {
+    "row_id": "116363",
+    "pd_logistic": "0.00433386407527"
+   },
+   {
+    "row_id": "80441",
+    "pd_logistic": "0.00027955174611"
+   },
+   {
+    "row_id": "105882",
+    "pd_logistic": "0.01529468457273"
+   },
+   {
+    "row_id": "115832",
+    "pd_logistic": "0.00099683479984"
+   },
+   {
+    "row_id": "65660",
+    "pd_logistic": "0.05251453125858"
+   },
+   {
+    "row_id": "107986",
+    "pd_logistic": "0.00354801458351"
+   },
+   {
+    "row_id": "76473",
+    "pd_logistic": "0.00022869242115"
+   },
+   {
+    "row_id": "107725",
+    "pd_logistic": "0.01254637946572"
+   },
+   {
+    "row_id": "76033",
+    "pd_logistic": "0.00081558540895"
+   },
+   {
+    "row_id": "65785",
+    "pd_logistic": "0.04337276850498"
+   },
+   {
+    "row_id": "64492",
+    "pd_logistic": "0.00290424570662"
+   },
+   {
+    "row_id": "82658",
+    "pd_logistic": "0.00018708428818"
+   },
+   {
+    "row_id": "86708",
+    "pd_logistic": "0.01028675893101"
+   },
+   {
+    "row_id": "106816",
+    "pd_logistic": "0.00066726965875"
+   },
+   {
+    "row_id": "107120",
+    "pd_logistic": "0.03576234287838"
+   },
+   {
+    "row_id": "84736",
+    "pd_logistic": "0.00237700671614"
+   },
+   {
+    "row_id": "63785",
+    "pd_logistic": "0.00015304514986"
+   },
+   {
+    "row_id": "83980",
+    "pd_logistic": "0.00843062469639"
+   },
+   {
+    "row_id": "73542",
+    "pd_logistic": "0.00054591067237"
+   },
+   {
+    "row_id": "67459",
+    "pd_logistic": "0.02944618031171"
+   },
+   {
+    "row_id": "84032",
+    "pd_logistic": "0.00194529635881"
+   },
+   {
+    "row_id": "121934",
+    "pd_logistic": "0.00012519850295"
+   },
+   {
+    "row_id": "74911",
+    "pd_logistic": "0.00690707242506"
+   },
+   {
+    "row_id": "103827",
+    "pd_logistic": "0.0004466138632"
+   },
+   {
+    "row_id": "105700",
+    "pd_logistic": "0.02421752885125"
+   },
+   {
+    "row_id": "62574",
+    "pd_logistic": "0.00159186783465"
+   },
+   {
+    "row_id": "65332",
+    "pd_logistic": "0.00010241804934"
+   },
+   {
+    "row_id": "86818",
+    "pd_logistic": "0.0056572801908"
+   },
+   {
+    "row_id": "104117",
+    "pd_logistic": "0.00036537175112"
+   },
+   {
+    "row_id": "103718",
+    "pd_logistic": "0.01989827536195"
+   },
+   {
+    "row_id": "123168",
+    "pd_logistic": "0.00130256768766"
+   },
+   {
+    "row_id": "82345",
+    "pd_logistic": "0.00008378225857"
+   },
+   {
+    "row_id": "90208",
+    "pd_logistic": "0.00463257526028"
+   },
+   {
+    "row_id": "118655",
+    "pd_logistic": "0.00029890371479"
+   },
+   {
+    "row_id": "119858",
+    "pd_logistic": "0.01633647381376"
+   },
+   {
+    "row_id": "81941",
+    "pd_logistic": "0.00106578775017"
+   },
+   {
+    "row_id": "81471",
+    "pd_logistic": "0.05594748870519"
+   },
+   {
+    "row_id": "76537",
+    "pd_logistic": "0.00379276749212"
+   },
+   {
+    "row_id": "100825",
+    "pd_logistic": "0.00024452451438"
+   },
+   {
+    "row_id": "97862",
+    "pd_logistic": "0.0134035174795"
+   },
+   {
+    "row_id": "118857",
+    "pd_logistic": "0.00087201193941"
+   },
+   {
+    "row_id": "88557",
+    "pd_logistic": "0.04623727798025"
+   },
+   {
+    "row_id": "103861",
+    "pd_logistic": "0.00310472783638"
+   },
+   {
+    "row_id": "115551",
+    "pd_logistic": "0.0002000364782"
+   },
+   {
+    "row_id": "94105",
+    "pd_logistic": "0.01099124348258"
+   },
+   {
+    "row_id": "73419",
+    "pd_logistic": "0.00071344224465"
+   },
+   {
+    "row_id": "114660",
+    "pd_logistic": "0.03814427111995"
+   },
+   {
+    "row_id": "110520",
+    "pd_logistic": "0.00254118592406"
+   },
+   {
+    "row_id": "108398",
+    "pd_logistic": "0.00016364113332"
+   },
+   {
+    "row_id": "84041",
+    "pd_logistic": "0.00900914975632"
+   },
+   {
+    "row_id": "109757",
+    "pd_logistic": "0.00058369057133"
+   },
+   {
+    "row_id": "63419",
+    "pd_logistic": "0.03142113315891"
+   },
+   {
+    "row_id": "73458",
+    "pd_logistic": "0.00207971961074"
+   },
+   {
+    "row_id": "69880",
+    "pd_logistic": "0.00013386679967"
+   },
+   {
+    "row_id": "82857",
+    "pd_logistic": "0.00738182683436"
+   },
+   {
+    "row_id": "117712",
+    "pd_logistic": "0.00047752518231"
+   },
+   {
+    "row_id": "123224",
+    "pd_logistic": "0.02585113714123"
+   },
+   {
+    "row_id": "92495",
+    "pd_logistic": "0.00170191022675"
+   },
+   {
+    "row_id": "70463",
+    "pd_logistic": "0.00010950928165"
+   },
+   {
+    "row_id": "109619",
+    "pd_logistic": "0.00604665375617"
+   },
+   {
+    "row_id": "116898",
+    "pd_logistic": "0.00039066228783"
+   },
+   {
+    "row_id": "68220",
+    "pd_logistic": "0.02124686983501"
+   },
+   {
+    "row_id": "77622",
+    "pd_logistic": "0.00139263927957"
+   },
+   {
+    "row_id": "83546",
+    "pd_logistic": "0.00008958329952"
+   },
+   {
+    "row_id": "104380",
+    "pd_logistic": "0.00495177269236"
+   },
+   {
+    "row_id": "117346",
+    "pd_logistic": "0.00031959489518"
+   },
+   {
+    "row_id": "82955",
+    "pd_logistic": "0.01744796661597"
+   },
+   {
+    "row_id": "77413",
+    "pd_logistic": "0.0011395048662"
+   },
+   {
+    "row_id": "123532",
+    "pd_logistic": "0.05959074953623"
+   },
+   {
+    "row_id": "95316",
+    "pd_logistic": "0.00405433550935"
+   },
+   {
+    "row_id": "68196",
+    "pd_logistic": "0.0002614523572"
+   },
+   {
+    "row_id": "102702",
+    "pd_logistic": "0.01431836396788"
+   },
+   {
+    "row_id": "118491",
+    "pd_logistic": "0.00093233871423"
+   },
+   {
+    "row_id": "79276",
+    "pd_logistic": "0.04928122510627"
+   },
+   {
+    "row_id": "81128",
+    "pd_logistic": "0.0033190033221"
+   },
+   {
+    "row_id": "76118",
+    "pd_logistic": "0.00021388518038"
+   },
+   {
+    "row_id": "119765",
+    "pd_logistic": "0.01174340191057"
+   },
+   {
+    "row_id": "99385",
+    "pd_logistic": "0.00076280736349"
+   },
+   {
+    "row_id": "80560",
+    "pd_logistic": "0.04067815337593"
+   },
+   {
+    "row_id": "81450",
+    "pd_logistic": "0.00271667406527"
+   },
+   {
+    "row_id": "91731",
+    "pd_logistic": "0.00017497059456"
+   },
+   {
+    "row_id": "123578",
+    "pd_logistic": "0.00962698884019"
+   },
+   {
+    "row_id": "101258",
+    "pd_logistic": "0.00062408340603"
+   },
+   {
+    "row_id": "76323",
+    "pd_logistic": "0.03352397062028"
+   },
+   {
+    "row_id": "76508",
+    "pd_logistic": "0.00222341104236"
+   },
+   {
+    "row_id": "81076",
+    "pd_logistic": "0.00014313517236"
+   },
+   {
+    "row_id": "90667",
+    "pd_logistic": "0.00788895404408"
+   },
+   {
+    "row_id": "71050",
+    "pd_logistic": "0.00051057486221"
+   },
+   {
+    "row_id": "121477",
+    "pd_logistic": "0.02759182551091"
+   },
+   {
+    "row_id": "121059",
+    "pd_logistic": "0.00181954574887"
+   },
+   {
+    "row_id": "101011",
+    "pd_logistic": "0.00011709143999"
+   },
+   {
+    "row_id": "97675",
+    "pd_logistic": "0.00646265255124"
+   },
+   {
+    "row_id": "76935",
+    "pd_logistic": "0.00041770266968"
+   },
+   {
+    "row_id": "122257",
+    "pd_logistic": "0.02268474905757"
+   },
+   {
+    "row_id": "102566",
+    "pd_logistic": "0.00148892996969"
+   },
+   {
+    "row_id": "100057",
+    "pd_logistic": "0.00009578596312"
+   },
+   {
+    "row_id": "71467",
+    "pd_logistic": "0.00529284677248"
+   },
+   {
+    "row_id": "92257",
+    "pd_logistic": "0.00034171790322"
+   }
+  ],
+  "PDV": [
+   {
+    "row_id": "70959",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "98758",
+    "pd_logistic": "0.02421752885125"
+   },
+   {
+    "row_id": "93492",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "67482",
+    "pd_logistic": "0.02056175112472"
+   },
+   {
+    "row_id": "117880",
+    "pd_logistic": "0.01744796661597"
+   },
+   {
+    "row_id": "104703",
+    "pd_logistic": "0.03352397062028"
+   },
+   {
+    "row_id": "99066",
+    "pd_logistic": "0.01744796661597"
+   },
+   {
+    "row_id": "84456",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "75536",
+    "pd_logistic": "0.02850436959157"
+   },
+   {
+    "row_id": "123409",
+    "pd_logistic": "0.01479859584642"
+   },
+   {
+    "row_id": "119126",
+    "pd_logistic": "0.02056175112472"
+   },
+   {
+    "row_id": "86891",
+    "pd_logistic": "0.01744796661597"
+   },
+   {
+    "row_id": "117160",
+    "pd_logistic": "0.03352397062028"
+   },
+   {
+    "row_id": "97723",
+    "pd_logistic": "0.02421752885125"
+   },
+   {
+    "row_id": "118385",
+    "pd_logistic": "0.03352397062028"
+   },
+   {
+    "row_id": "78470",
+    "pd_logistic": "0.02421752885125"
+   },
+   {
+    "row_id": "122434",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "106488",
+    "pd_logistic": "0.02056175112472"
+   },
+   {
+    "row_id": "97916",
+    "pd_logistic": "0.01479859584642"
+   },
+   {
+    "row_id": "66007",
+    "pd_logistic": "0.01479859584642"
+   },
+   {
+    "row_id": "114740",
+    "pd_logistic": "0.01744796661597"
+   },
+   {
+    "row_id": "95328",
+    "pd_logistic": "0.02850436959157"
+   },
+   {
+    "row_id": "95174",
+    "pd_logistic": "0.02421752885125"
+   },
+   {
+    "row_id": "95858",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "81246",
+    "pd_logistic": "0.02421752885125"
+   },
+   {
+    "row_id": "80106",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "102975",
+    "pd_logistic": "0.02421752885125"
+   },
+   {
+    "row_id": "99024",
+    "pd_logistic": "0.01479859584642"
+   },
+   {
+    "row_id": "98424",
+    "pd_logistic": "0.03352397062028"
+   },
+   {
+    "row_id": "66406",
+    "pd_logistic": "0.02850436959157"
+   },
+   {
+    "row_id": "105953",
+    "pd_logistic": "0.03352397062028"
+   },
+   {
+    "row_id": "107442",
+    "pd_logistic": "0.02056175112472"
+   },
+   {
+    "row_id": "87314",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "65854",
+    "pd_logistic": "0.01479859584642"
+   },
+   {
+    "row_id": "73904",
+    "pd_logistic": "0.04623727798025"
+   },
+   {
+    "row_id": "97337",
+    "pd_logistic": "0.01744796661597"
+   },
+   {
+    "row_id": "100622",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "73096",
+    "pd_logistic": "0.03939167827566"
+   },
+   {
+    "row_id": "84202",
+    "pd_logistic": "0.01479859584642"
+   },
+   {
+    "row_id": "67439",
+    "pd_logistic": "0.01744796661597"
+   }
+  ],
+  "files": [
+   "calibration_plot.csv",
+   "decile_analysis.csv",
+   "final_model_output.csv",
+   "kaggle_submission.csv",
+   "ks_statistic.csv",
+   "model_coefficients.csv",
+   "model_performance_metrics.csv",
+   "model_summary.csv",
+   "printed_association.csv",
+   "printed_confusion_train.csv",
+   "printed_confusion_validation.csv",
+   "printed_cumulative_lift.csv",
+   "printed_fit_statistics.csv",
+   "printed_global_tests.csv",
+   "printed_hl_partition.csv",
+   "printed_hosmer_lemeshow.csv",
+   "printed_odds_ratios.csv",
+   "printed_psi_calculation.csv",
+   "printed_roc_metrics.csv",
+   "printed_roc_train.csv",
+   "printed_roc_validation.csv",
+   "printed_rsquare.csv",
+   "risk_scores_train.csv",
+   "risk_scores_validation.csv",
+   "test_predictions.csv",
+   "threshold_analysis.csv",
+   "validation_summary.csv"
+  ]
+ }
+}

@@ -1,0 +1,61 @@
+
+                                           Raw Data Summary - Kaggle Give Me Some Credit       Monday, 16 November 2026 16:32:00   1
+
+                                                        The MEANS Procedure
+
+                                                       N
+           Variable                            N    Miss            Mean         Std Dev         Minimum         Maximum
+           -------------------------------------------------------------------------------------------------------------
+           VAR1                                3       0       2.0000000       1.0000000       1.0000000       3.0000000
+           SeriousDlqin2yrs                    3       0       0.3333333       0.5773503               0       1.0000000
+           RevolvingUtilizationOfUnsecuredL    3       0       0.3833333       0.4536886       0.0500000       0.9000000
+           age                                 3       0      43.3333333      16.2583312      29.0000000      61.0000000
+           NumberOfTime30-59DaysPastDueNotW    3       0       0.6666667       1.1547005               0       2.0000000
+           DebtRatio                           3       0       0.4000000       0.3605551       0.1000000       0.8000000
+           MonthlyIncome                       3       0         5100.00         3051.23         2100.00         8200.00
+           NumberOfOpenCreditLinesAndLoans     3       0       6.6666667       4.0414519       3.0000000      11.0000000
+           NumberOfTimes90DaysLate             3       0       0.3333333       0.5773503               0       1.0000000
+           NumberRealEstateLoansOrLines        3       0       1.0000000       1.0000000               0       2.0000000
+           NumberOfTime60-89DaysPastDueNotW    3       0       0.3333333       0.5773503               0       1.0000000
+           NumberOfDependents                  3       0       1.0000000       1.0000000               0       2.0000000
+           -------------------------------------------------------------------------------------------------------------
+
+                                           Raw Data Summary - Kaggle Give Me Some Credit       Monday, 16 November 2026 16:32:00   2
+
+                                                     The SURVEYSELECT Procedure
+
+                                             Selection Method    Simple Random Sampling
+
+                                              Input Data Set           CREDIT_FEATURES
+                                              Random Number Seed                    42
+                                              Sampling Rate                        0.7
+                                              Sample Size                            3
+                                              Selection Probability                  1
+                                              Sampling Weight                        1
+                                              Output Data Set             CREDIT_SPLIT
+
+                                                  Training Set Summary Statistics              Monday, 16 November 2026 16:32:00   3
+
+                                                        The MEANS Procedure
+
+                     Variable                 N            Mean         Std Dev         Minimum         Maximum
+                     ------------------------------------------------------------------------------------------
+                     age                      3      43.3333333      16.2583312      29.0000000      61.0000000
+                     monthly_income           3         5100.00         3051.23         2100.00         8200.00
+                     credit_utilization       3      38.3333333      45.3688586       5.0000000      90.0000000
+                     debt_ratio               3      40.0000000      36.0555128      10.0000000      80.0000000
+                     total_late_payments      3       1.3333333       2.3094011               0       4.0000000
+                     num_credit_lines         3       6.6666667       4.0414519       3.0000000      11.0000000
+                     num_real_estate_loans    3       1.0000000       1.0000000               0       2.0000000
+                     default_flag             3       0.3333333       0.5773503               0       1.0000000
+                     ------------------------------------------------------------------------------------------
+
+                                                    Training Set - Default Rate                Monday, 16 November 2026 16:32:00   4
+
+                                                         The FREQ Procedure
+
+                                                                          Cumulative    Cumulative
+                                 default_flag    Frequency     Percent     Frequency      Percent
+                                 -----------------------------------------------------------------
+                                            0           2       66.67             2        66.67  
+                                            1           1       33.33             3       100.00  

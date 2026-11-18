@@ -1,0 +1,120 @@
+
+                                                      Test Data - Column Check              Wednesday, 18 November 2026 15:23:00  21
+
+                                                       The CONTENTS Procedure
+
+              Data Set Name        WORK.TEST_RAW                                            Observations          300
+              Member Type          DATA                                                     Variables             12 
+              Engine               V9                                                       Indexes               0  
+              Created              18/11/2026 15:23:09                                      Observation Length    80 
+              Last Modified        18/11/2026 15:23:09                                      Deleted Observations  0  
+              Protection                                                                    Compressed            NO 
+              Data Set Type                                                                 Sorted                NO 
+              Label                                                                                                  
+              Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                             
+              Encoding             utf-8  Unicode (UTF-8)                                                            
+
+
+                                                 Engine/Host Dependent Information
+
+Data Set Page Size          131072                                                                                                  
+Number of Data Set Pages    1                                                                                                       
+First Data Page             1                                                                                                       
+Max Obs per Page            1635                                                                                                    
+Obs in First Data Page      300                                                                                                     
+Number of Data Set Repairs  0                                                                                                       
+Filename                    /saswork/SAS_work198B0000DE9F_odaws02-euw1.oda.sas.com/SAS_                                             
+                            work389B0000DE9F_odaws02-euw1.oda.sas.com/test_raw.sas7bdat                                             
+Release Created             9.0401M9                                                                                                
+Host Created                Linux                                                                                                   
+Inode Number                1610895332                                                                                              
+Access Permission           rw-r--r--                                                                                               
+Owner Name                  u64643823                                                                                               
+File Size                   256KB                                                                                                   
+File Size (bytes)           262144                                                                                                  
+
+
+                                             Alphabetic List of Variables and Attributes
+ 
+                             #    Variable                            Type    Len    Format     Informat
+
+                             6    DebtRatio                           Num       8    BEST12.    BEST32. 
+                             7    MonthlyIncome                       Char      5    $5.        $5.     
+                            12    NumberOfDependents                  Char      2    $2.        $2.     
+                             8    NumberOfOpenCreditLinesAndLoans     Num       8    BEST12.    BEST32. 
+                             5    NumberOfTime30-59DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                            11    NumberOfTime60-89DaysPastDueNotW    Num       8    BEST12.    BEST32. 
+                             9    NumberOfTimes90DaysLate             Num       8    BEST12.    BEST32. 
+                            10    NumberRealEstateLoansOrLines        Num       8    BEST12.    BEST32. 
+                             3    RevolvingUtilizationOfUnsecuredL    Num       8    BEST12.    BEST32. 
+                             2    SeriousDlqin2yrs                    Char      1    $1.        $1.     
+                             1    VAR1                                Num       8    BEST12.    BEST32. 
+                             4    age                                 Num       8    BEST12.    BEST32. 
+
+                                                      Test Data - Column Check              Wednesday, 18 November 2026 15:23:00  22
+
+                                                         The PLM Procedure
+
+                                                         Store Information
+
+                                    Item Store               WORK.LOGIT_MODEL                   
+                                    Data Set Created From    WORK.MODEL_FEATURES_TRAIN          
+                                    Created By               PROC LOGISTIC                      
+                                    Date Created             18NOV26:15:23:05                   
+                                    Response Variable        default_flag                       
+                                    Link Function            Logit                              
+                                    Distribution             Binary                             
+                                    Class Variable           default_flag                       
+                                    Model Effects            Intercept age flag_recent_late_pay 
+
+                                                 Test Set - Risk Grade Distribution         Wednesday, 18 November 2026 15:23:00  23
+
+                                                         The FREQ Procedure
+
+                                     risk_                             Cumulative    Cumulative
+                                     grade    Frequency     Percent     Frequency      Percent
+                                     ----------------------------------------------------------
+                                     A             300      100.00           300       100.00  
+
+
+                                                                           Cumulative    Cumulative
+                                recommendation    Frequency     Percent     Frequency      Percent
+                                -------------------------------------------------------------------
+                                Approve                300      100.00           300       100.00  
+
+                                                   Test Set - Prediction Summary            Wednesday, 18 November 2026 15:23:00  24
+
+                                                        The MEANS Procedure
+
+                      Variable               N            Mean         Std Dev         Minimum         Maximum
+                      ----------------------------------------------------------------------------------------
+                      pd_logistic          300       0.0027042       0.0063284    3.3442114E-7       0.0462373
+                      credit_risk_score    300     849.3239554       1.5821078     838.4406805     849.9999164
+                      ----------------------------------------------------------------------------------------
+
+                                                    Sample Test Set Predictions             Wednesday, 18 November 2026 15:23:00  25
+
+                                                                      credit_
+                                                            pred_      risk_     risk_
+                                 row_id    pd_logistic    logistic     score     grade    recommendation
+
+                                     90      0.028504         0       842.874      A         Approve    
+                                      5      0.020562         0       844.860      A         Approve    
+                                    231      0.020562         0       844.860      A         Approve    
+                                     89      0.024218         0       843.946      A         Approve    
+                                    239      0.020562         0       844.860      A         Approve    
+                                     16      0.017448         0       845.638      A         Approve    
+                                     10      0.039392         0       840.152      A         Approve    
+                                    211      0.033524         0       841.619      A         Approve    
+                                     83      0.028504         0       842.874      A         Approve    
+                                     87      0.046237         0       838.441      A         Approve    
+                                     19      0.014799         0       846.300      A         Approve    
+                                     58      0.014799         0       846.300      A         Approve    
+                                    260      0.020562         0       844.860      A         Approve    
+                                    291      0.033524         0       841.619      A         Approve    
+                                    106      0.028504         0       842.874      A         Approve    
+                                    100      0.017448         0       845.638      A         Approve    
+                                    221      0.003921         0       849.020      A         Approve    
+                                    112      0.009009         0       847.748      A         Approve    
+                                     29      0.006463         0       848.384      A         Approve    
+                                     63      0.009009         0       847.748      A         Approve    

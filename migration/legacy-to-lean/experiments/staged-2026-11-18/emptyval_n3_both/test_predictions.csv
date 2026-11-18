@@ -1,0 +1,3 @@
+row_id,age,monthly_income,credit_utilization,debt_ratio,num_credit_lines,total_late_payments,total_risk_flags,financial_health,pd_logistic,pred_logistic,credit_risk_score,risk_grade,recommendation,interest_rate
+1,43,5700,88.551908,17.7512717,4,0,1,70,0.3333333333,0,766.66666667,D,Decline,12.00%
+2,57,9141,46.3295269,52.7236928,15,0,1,65,0.3333333333,0,766.66666667,D,Decline,12.00%

@@ -1,0 +1,279 @@
+
+                                       Logistic Regression Model - Credit Default Prediction                                       1
+                                                                                                Wednesday, 18 November 2026 15:21:00
+
+                                                       The LOGISTIC Procedure
+
+                                                         Model Information
+
+                                      Data Set                      WORK.MODEL_FEATURES_TRAIN
+                                      Response Variable             default_flag             
+                                      Number of Response Levels     2                        
+                                      Model                         binary logit             
+                                      Optimization Technique        Fisher's scoring         
+
+
+                                              Number of Observations Read          60
+                                              Number of Observations Used          60
+
+
+                                                          Response Profile
+ 
+                                               Ordered                          Total
+                                                 Value     default_flag     Frequency
+
+                                                     1     1                        1
+                                                     2     0                       59
+
+                                              Probability modeled is default_flag='1'.
+
+
+                                                      Model Convergence Status
+
+                                            Complete separation of data points detected.          
+
+                                      WARNING: The maximum likelihood estimate does not exist.
+WARNING: The LOGISTIC procedure continues in spite of the above warning. Results shown are based on the last maximum likelihood 
+         iteration. Validity of the model fit is questionable.
+
+
+                                                        Model Fit Statistics
+ 
+                                                                            Intercept
+                                                             Intercept            and
+                                               Criterion          Only     Covariates
+
+                                               AIC              12.172          6.001
+                                               SC               14.266         12.284
+                                               -2 Log L         10.172          0.001
+
+
+                                       R-Square    0.1559    Max-rescaled R-Square    0.9999
+
+
+                                              Testing Global Null Hypothesis: BETA=0
+ 
+                                      Test                 Chi-Square       DF     Pr > ChiSq
+
+                                      Likelihood Ratio        10.1713        2         0.0062
+                                      Score                   60.0000        2         <.0001
+                                      Wald                      .            1          .    
+
+
+                       WARNING: The information matrix is singular and thus the convergence is questionable.
+
+
+                                              Analysis of Maximum Likelihood Estimates
+ 
+                                                                     Standard          Wald
+                           Parameter               DF    Estimate       Error    Chi-Square    Pr > ChiSq
+
+                           Intercept                1    -12.1042     99.9934        0.0147        0.9037
+                           age                      1    2.19E-15     27.6075        0.0000        1.0000
+                           flag_recent_late_pay     0           0           .         .             .    
+
+
+                                                        Odds Ratio Estimates
+                                                                  
+                                                                 Point          95% Wald
+                                      Effect                  Estimate      Confidence Limits
+
+                                      age                        1.000      <0.001    >999.999
+
+
+                                   Association of Predicted Probabilities and Observed Responses
+
+                                         Percent Concordant    100.0    Somers' D    1.000
+                                         Percent Discordant      0.0    Gamma        1.000
+                                         Percent Tied            0.0    Tau-a        0.033
+                                         Pairs                    59    c            1.000
+
+                                                  Confusion Matrix - Training Set           Wednesday, 18 November 2026 15:21:00   2
+
+                                                                 pred_
+                                        Obs    default_flag    logistic    COUNT    PERCENT
+
+                                         1                0        0         59     98.3333
+                                         2                1        0          1      1.6667
+
+                                                 Training Set - Performance Metrics         Wednesday, 18 November 2026 15:21:00   3
+
+                                                train_        train_     train_      train_
+                                        Obs    precision      recall    f1_score    accuracy
+
+                                         1        .           0.0000       .          0.9833
+
+                                                 Training Set - Performance Metrics         Wednesday, 18 November 2026 15:21:00   4
+
+                                                         The PLM Procedure
+
+                                                         Store Information
+
+                                    Item Store               WORK.LOGIT_MODEL                   
+                                    Data Set Created From    WORK.MODEL_FEATURES_TRAIN          
+                                    Created By               PROC LOGISTIC                      
+                                    Date Created             18NOV26:15:21:56                   
+                                    Response Variable        default_flag                       
+                                    Link Function            Logit                              
+                                    Distribution             Binary                             
+                                    Class Variable           default_flag                       
+                                    Model Effects            Intercept age flag_recent_late_pay 
+
+                                                 Confusion Matrix - Validation Set          Wednesday, 18 November 2026 15:21:00   5
+
+                                                                 pred_
+                                        Obs    default_flag    logistic    COUNT    PERCENT
+
+                                         1                0        0         34        85  
+                                         2                1        0          6        15  
+
+                                                Validation Set - Performance Metrics        Wednesday, 18 November 2026 15:21:00   6
+
+                                                valid_        valid_     valid_      valid_
+                                        Obs    precision      recall    f1_score    accuracy
+
+                                         1        .           0.0000       .          0.8500
+
+                                             Default Rate by Risk Grade - Training Set      Wednesday, 18 November 2026 15:21:00   7
+
+                                                         The FREQ Procedure
+
+                                                Table of risk_grade by default_flag
+
+                                                risk_grade     default_flag
+
+                                                Frequency|
+                                                Row Pct  |       0|       1|  Total
+                                                ---------+--------+--------+
+                                                A        |     59 |      1 |     60
+                                                         |  98.33 |   1.67 |
+                                                ---------+--------+--------+
+                                                Total          59        1       60
+
+                                            Default Rate by Risk Grade - Validation Set     Wednesday, 18 November 2026 15:21:00   8
+
+                                                         The FREQ Procedure
+
+                                                Table of risk_grade by default_flag
+
+                                                risk_grade     default_flag
+
+                                                Frequency|
+                                                Row Pct  |       0|       1|  Total
+                                                ---------+--------+--------+
+                                                A        |     34 |      6 |     40
+                                                         |  85.00 |  15.00 |
+                                                ---------+--------+--------+
+                                                Total          34        6       40
+
+                                                      ROC Curve - Training Set              Wednesday, 18 November 2026 15:21:00   9
+
+                                                       The LOGISTIC Procedure
+
+                                                         Model Information
+
+                                        Data Set                      WORK.RISK_SCORES_TRAIN
+                                        Response Variable             default_flag          
+                                        Number of Response Levels     2                     
+                                        Model                         binary logit          
+                                        Optimization Technique        Fisher's scoring      
+
+
+                                              Number of Observations Read          60
+                                              Number of Observations Used          60
+
+
+                                                          Response Profile
+ 
+                                               Ordered                          Total
+                                                 Value     default_flag     Frequency
+
+                                                     1     0                       59
+                                                     2     1                        1
+
+                                              Probability modeled is default_flag='1'.
+
+
+                                                Score Test for Global Null Hypothesis
+ 
+                                                 Chi-Square       DF     Pr > ChiSq
+
+                                                     0.0000        0         <.0001
+
+
+                                                      ROC Model: Training Set
+
+                                                       ROC Model Information
+
+                                ROC Contrast Coefficients     pd_logistic     Estimated Probability
+
+
+                                                    ROC Association Statistics
+ 
+                                 --------------- Mann-Whitney ---------------
+                                             Standard          95% Wald
+                 ROC Model           Area       Error      Confidence Limits     Somers' D       Gamma       Tau-a
+
+                 Training Set      0.5000           0      0.5000      0.5000            0           .           0
+
+                                                     ROC Curve - Validation Set             Wednesday, 18 November 2026 15:21:00  10
+
+                                                       The LOGISTIC Procedure
+
+                                                         Model Information
+
+                                     Data Set                      WORK.RISK_SCORES_VALIDATION
+                                     Response Variable             default_flag               
+                                     Number of Response Levels     2                          
+                                     Model                         binary logit               
+                                     Optimization Technique        Fisher's scoring           
+
+
+                                              Number of Observations Read          40
+                                              Number of Observations Used          40
+
+
+                                                          Response Profile
+ 
+                                               Ordered                          Total
+                                                 Value     default_flag     Frequency
+
+                                                     1     0                       34
+                                                     2     1                        6
+
+                                              Probability modeled is default_flag='1'.
+
+
+                                                Score Test for Global Null Hypothesis
+ 
+                                                 Chi-Square       DF     Pr > ChiSq
+
+                                                     0.0000        0         <.0001
+
+
+                                                     ROC Model: Validation Set
+
+                                                       ROC Model Information
+
+                                             ROC Contrast Coefficients     pd_logistic
+
+
+                                                    ROC Association Statistics
+ 
+                                  --------------- Mann-Whitney ---------------
+                                              Standard          95% Wald
+                ROC Model             Area       Error      Confidence Limits     Somers' D       Gamma       Tau-a
+
+                Validation Set      0.5000           0      0.5000      0.5000            0           .           0
+
+                                                          Training Set AUC                  Wednesday, 18 November 2026 15:21:00  11
+
+                                                          Obs        Area
+
+                                                           1       0.5000
+
+                                                         Validation Set AUC                 Wednesday, 18 November 2026 15:21:00  12
+
+                                                          Obs        Area
+
+                                                           1       0.5000
