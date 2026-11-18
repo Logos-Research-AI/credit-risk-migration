@@ -1,0 +1,10 @@
+{
+ "fuzzer": "fuzz-agent",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "generator": "diffeval/units/fz4_split_gen.py",
+ "generated": 2500,
+ "kept": 2176,
+ "rejected": 324,
+ "python_raises_inside_precondition": [],
+ "mismatch_ids": []
+}

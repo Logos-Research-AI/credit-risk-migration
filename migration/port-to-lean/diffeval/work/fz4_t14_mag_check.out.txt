@@ -1,0 +1,552 @@
+ok       old=True  new=True  returns=True                     as generated (seed 300002)
+ok       old=True  new=True  returns=True                     probe: train_precision = 9.999999999999994e+75
+ok       old=True  new=True  returns=True                     probe: interest_rate = 9.999999999999994e+75 (train set)
+ok       old=True  new=True  returns=True                     probe: Area (roc_train) = 9.999999999999994e+75
+ok       old=True  new=False returns=False InvalidOperation   probe: train_precision = 9.999999999999996e+75
+ok       old=True  new=True  returns=True                     probe: interest_rate = 9.999999999999996e+75 (train set)
+ok       old=True  new=False returns=False InvalidOperation   probe: Area (roc_train) = 9.999999999999996e+75
+ok       old=True  new=False returns=False InvalidOperation   probe: train_precision = 1e+76
+ok       old=True  new=True  returns=True                     probe: interest_rate = 1e+76 (train set)
+ok       old=True  new=False returns=False InvalidOperation   probe: Area (roc_train) = 1e+76
+ok       old=True  new=False returns=False InvalidOperation   probe: train_precision = -1e+76
+ok       old=True  new=True  returns=True                     probe: interest_rate = -1e+76 (train set)
+ok       old=True  new=False returns=False InvalidOperation   probe: Area (roc_train) = -1e+76
+ok       old=True  new=False returns=False InvalidOperation   probe: train_precision = 1e+300
+ok       old=True  new=True  returns=True                     probe: interest_rate = 1e+300 (train set)
+ok       old=True  new=False returns=False InvalidOperation   probe: Area (roc_train) = 1e+300
+ok       old=True  new=False returns=False InvalidOperation   probe: risk_scores_train = [interest_rate 1e76]
+ok       old=True  new=False returns=False InvalidOperation   probe: risk_scores_validation = [interest_rate 1e76]
+ok       old=True  new=True  returns=True                     probe: risk_scores_train = [interest_rate 9.999999999999994e75]
+ok       old=True  new=False returns=False InvalidOperation   probe: risk_scores_train = [interest_rate 1e76, age 1e300]
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = inf, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -inf, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = nan, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = nan, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 0.0, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -0.0, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -0.0, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 0.0, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = inf, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -inf, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = nan, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = nan, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 0.0, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -0.0, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -0.0, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 0.0, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_train.Area = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_train.Area = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_train.Area = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_train.Area = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_train.Area = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_train.Area = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_train.Area = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_train.Area = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = inf, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -inf, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = nan, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = nan, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 0.0, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -0.0, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -0.0, created True
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 0.0, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_valid.Area = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_valid.Area = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_valid.Area = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_valid.Area = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_valid.Area = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_valid.Area = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_valid.Area = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: roc_valid.Area = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = inf, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -inf, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = nan, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = nan, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 0.0, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -0.0, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -0.0, created True
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_precision = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_precision = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_precision = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_precision = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_precision = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_precision = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_precision = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_precision = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = inf, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -inf, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = nan, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = nan, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_recall = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_recall = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_recall = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_recall = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_recall = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_recall = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_recall = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_recall = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = inf, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -inf, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = nan, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = nan, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_f1_score = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_f1_score = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_f1_score = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_f1_score = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_f1_score = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_f1_score = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_f1_score = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_f1_score = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = inf, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -inf, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = nan, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = nan, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_accuracy = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_accuracy = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_accuracy = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_accuracy = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_accuracy = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_accuracy = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_accuracy = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: training_metrics.train_accuracy = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = inf, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -inf, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = nan, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = nan, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -0.0, created True
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_precision = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_precision = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_precision = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_precision = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_precision = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_precision = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_precision = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_precision = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = inf, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -inf, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = nan, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = nan, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_recall = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_recall = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_recall = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_recall = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_recall = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_recall = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_recall = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_recall = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = inf, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -inf, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = nan, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = nan, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_f1_score = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_f1_score = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_f1_score = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_f1_score = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_f1_score = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_f1_score = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_f1_score = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_f1_score = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = inf, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -inf, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = nan, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = nan, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 9.999999999999994e+75, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -9.999999999999994e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_accuracy = 9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_accuracy = -9.999999999999996e+75, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_accuracy = 1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_accuracy = -1e+76, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_accuracy = 1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_accuracy = -1e+300, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_accuracy = 1.7976931348623157e+308, created True
+ok       old=True  new=False returns=False InvalidOperation   table: validation_metrics.valid_accuracy = -1.7976931348623157e+308, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = inf, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -inf, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = nan, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = nan, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 5e-324, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -5e-324, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 1e+22, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -1e+22, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -0.0, created True
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 0.0, created True
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -9.999999999999994e+75, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = 9.999999999999996e+75, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = -9.999999999999996e+75, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = 1e+76, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = -1e+76, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = 1e+300, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = -1e+300, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = 1.7976931348623157e+308, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_train.interest_rate = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = inf, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -inf, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = nan, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = nan, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 0.0, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -0.0, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = -0.0, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_train.interest_rate = 0.0, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -9.999999999999994e+75, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = 9.999999999999996e+75, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = -9.999999999999996e+75, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = 1e+76, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = -1e+76, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = 1e+300, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = -1e+300, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = 1.7976931348623157e+308, created False
+ok       old=True  new=False returns=False InvalidOperation   table: risk_scores_validation.interest_rate = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = inf, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -inf, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = nan, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = nan, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 0.0, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -0.0, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = -0.0, created False
+ok       old=True  new=True  returns=True                     table: risk_scores_validation.interest_rate = 0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = inf, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -inf, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = nan, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = nan, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = -0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_train.Area = 0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = inf, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -inf, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = nan, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = nan, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = -0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_valid.Area = 0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = inf, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -inf, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = nan, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = nan, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = -0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_precision = 0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = inf, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -inf, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = nan, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = nan, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = -0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_recall = 0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = inf, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -inf, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = nan, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = nan, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = -0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_f1_score = 0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = inf, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -inf, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = nan, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = nan, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = -0.0, created False
+ok       old=True  new=True  returns=True                     table: training_metrics.train_accuracy = 0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = inf, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -inf, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = nan, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = nan, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = -0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_precision = 0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = inf, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -inf, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = nan, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = nan, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = -0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_recall = 0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = inf, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -inf, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = nan, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = nan, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = -0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_f1_score = 0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -9.999999999999994e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -9.999999999999996e+75, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 1e+76, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -1e+76, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 1e+300, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -1e+300, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -1.7976931348623157e+308, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = inf, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -inf, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = nan, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = nan, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 5e-324, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -5e-324, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 1e+22, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -1e+22, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = -0.0, created False
+ok       old=True  new=True  returns=True                     table: validation_metrics.valid_accuracy = 0.0, created False
+ok       old=True  new=True  returns=True                     table: roc_train Area 1e76 in a row labelled x
+ok       old=True  new=True  returns=True                     table: interest_rate Int64 2**63-1
+hand-made inputs: 550; new precondition == Python returns on 550; admitted by the old precondition and raising: 123
+suite fz4_t14 seeds 300000..302999: 3000; new precondition == Python returns on 2919; excluded and Python returns (the suite's known narrowing): 81; admitted and Python raises: 0; seeds whose class the new clauses change: 0

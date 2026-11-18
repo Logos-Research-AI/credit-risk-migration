@@ -1,0 +1,29 @@
+{
+ "generator": "diffeval/units/fz3_p08_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "predict_run_08_outputs": {
+   "seeds": "0..3272",
+   "generated": 3273,
+   "kept": 2100,
+   "rejected_by_precondition": 1173,
+   "python_raises_inside_precondition": [],
+   "python_ran_on_rejected": {
+    "raised": 963,
+    "ran": 210
+   },
+   "coverage": {
+    "rows0": 364,
+    "rows1": 362,
+    "age_name==age": 278,
+    "age_name_fresh_or_other": 1822,
+    "has_upper_kept_nonexact": 2071,
+    "full_ne_kaggle_cols": 2100,
+    "renamed_age_name_in_full": 1822,
+    "kaggle_empty": 282,
+    "kaggle_one_col": 425,
+    "kaggle_order_reversed_vs_list": 30
+   }
+  }
+ }
+}

@@ -1,0 +1,482 @@
+[
+ {
+  "id": "fz3_hl/tame pd, seeds 400000..400049 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400050..400099 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400100..400149 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400150..400199 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400200..400249 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400250..400299 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400300..400349 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400350..400399 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400400..400449 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400450..400499 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400500..400549 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400550..400599 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400600..400649 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400650..400699 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400700..400749 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400750..400799 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400800..400849 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400850..400899 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400900..400949 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 400950..400999 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401000..401049 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401050..401099 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401100..401149 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401150..401199 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401200..401249 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401250..401299 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401300..401349 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401350..401399 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401400..401449 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401450..401499 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401500..401549 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401550..401599 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401600..401649 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401650..401699 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401700..401749 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401750..401799 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401800..401849 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401850..401899 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401900..401949 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 401950..401999 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402000..402049 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402050..402099 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402100..402149 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402150..402199 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402200..402249 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402250..402299 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402300..402349 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402350..402399 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402400..402449 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/tame pd, seeds 402450..402499 (50 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500000..500049 (19 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500050..500099 (22 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500100..500149 (17 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500150..500199 (23 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500200..500249 (21 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500250..500299 (18 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500300..500349 (21 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500350..500399 (20 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500400..500449 (26 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz3_hl/wild pd/outcomes, seeds 500450..500499 (24 inputs)",
+  "primitive": "train_run_07_hl",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

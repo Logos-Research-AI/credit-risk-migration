@@ -1,0 +1,3 @@
+kept: chunks 120 (seeds 2400); python chunk digest = stored expected: 120; lean = expected: 120; lean = R-F2I model of the port: 120; seeds where the model differs from the port: 0
+rejected: chunks 21 (seeds 105); python chunk digest = stored expected: 21; lean = expected: 0; lean = R-F2I model of the port: 21; seeds where the model differs from the port: 105
+failing precondition clauses per seed: {"kept: none": 2400, "rejected: (3) integral": 105}

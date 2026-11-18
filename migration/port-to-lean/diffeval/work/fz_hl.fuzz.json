@@ -1,0 +1,16 @@
+{
+ "fuzzer": "port-translator-hl-fuzz",
+ "generator": "diffeval/units/fz_hl_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "hosmer_lemeshow": {
+   "seeds": "1000..3524 (kept); rejected sample drawn from 1000..5199",
+   "generated": 2525,
+   "kept": 2400,
+   "python_raises_inside_precondition": [],
+   "note": "pools: n 0..300, y f64/int/bool pools (clean, edges, few/many events, integral, halves, all zero/null, signed zeros), pd structured a/100+jitter with ties at 1e-6, edge pool, low/high end pools around 1e-6 and 0.999999 +- ulp, non-finite, huge/tiny, duplicates, grid; chi2 stub x*3+df, pow2 lookup of squares != x*x; one case = chunk of 20 digests",
+   "rejected_sent": 105,
+   "dropped_python_raises_outside_precondition": 63
+  }
+ }
+}
