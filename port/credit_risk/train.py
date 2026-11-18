@@ -203,6 +203,11 @@ def run(input_dir: Path, output_dir: Path) -> None:
                 *[np.asarray(fit_frame.get_column(c).to_numpy(), dtype=np.float64) for c in names_k[1:]],
             ]
         )
+        # X28 (X22 B): a variable that is a linear combination of the others (left out of X'X itself,
+        # `_kept`) counts in no DF and no parameter count, and the score test is over the others
+        kept_k = sas_compat._kept(x_k.T @ x_k)  # pyright: ignore[reportPrivateUsage]
+        dependent_k = [n for i, n in enumerate(names_k) if i not in kept_k]
+        q = len(kept_k) - 1
         # fit statistics: AIC, SC, -2 Log L for each step
         fs_step.extend([str(st.step)] * 3)
         fs_rowid.extend(["AIC", "SBC", "M2LOGL"])
@@ -226,12 +231,12 @@ def run(input_dir: Path, output_dir: Path) -> None:
         lr = m2ll0 - m2ll
         u0 = x_k.T @ (y_train - ybar)
         i0 = ybar * (1.0 - ybar) * (x_k.T @ x_k)
-        score = float(u0 @ np.linalg.solve(i0, u0))
+        score = float(u0 @ sas_compat._solve_sas(i0, u0))  # pyright: ignore[reportPrivateUsage]
         # Wald: SAS's generalized inverse of the slopes' covariance, swept in MODEL order; a step with a
         # parameter left out of a singular information matrix has an empty chi-square and probability
         # and DF = the variables not left out (singular-information.md); a slope with a pivot not above
         # 1.5e-16 is left out of the chi-square but not of the DF (global-wald-rule.md)
-        wald, wald_df = sas_compat.global_wald(st.fit, candidates)
+        wald, wald_df = sas_compat.global_wald(st.fit, candidates, dependent_k)
         for test, stat, df in (("Likelihood Ratio", lr, q), ("Score", score, q), ("Wald", wald, wald_df)):
             gt_step.append(str(st.step))
             gt_test.append(test)

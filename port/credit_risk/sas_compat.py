@@ -824,7 +824,7 @@ def _left_out(fit: LogisticFit) -> list[str]:
 _GLOBAL_WALD_TOL = 1.5e-16
 
 
-def global_wald(fit: LogisticFit, order: Sequence[str]) -> tuple[float, int]:
+def global_wald(fit: LogisticFit, order: Sequence[str], dependent: Collection[str] = ()) -> tuple[float, int]:
     """The Wald test of the global null hypothesis as SAS prints it: (chi-square, DF).
     A step with a parameter left out of a singular information matrix (`_left_out`) has no
     chi-square (NaN, the cells are empty) and DF = the variables not left out
@@ -833,10 +833,12 @@ def global_wald(fit: LogisticFit, order: Sequence[str]) -> tuple[float, int]:
     MODEL statement's): a slope whose pivot, its variance given the slopes swept before it, is not
     above `_GLOBAL_WALD_TOL` is left out (its row and column of G are 0). The DF stays the number of
     slopes (global-wald-rule.md: seed 6 step 7, 406.4827 with DF 7)."""
-    slopes = sorted(fit.names[1:], key=list(order).index)
+    # X28 (X22 B): a variable in `dependent`, a linear combination of the others (left out of X'X itself),
+    # is in neither the chi-square nor the DF, and its variance 0 does not empty the test
+    slopes = sorted((n for n in fit.names[1:] if n not in dependent), key=list(order).index)
     q = len(slopes)
     idx = [fit.names.index(s) for s in slopes]
-    singular = [s for s in _left_out(fit) if s != "Intercept"]
+    singular = [s for s in _left_out(fit) if s != "Intercept" and s not in dependent]
     if singular:
         return math.nan, q - len(singular)
     v = fit.cov[np.ix_(idx, idx)]
