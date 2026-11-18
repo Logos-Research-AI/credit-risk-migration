@@ -100,6 +100,14 @@ Stated by prover-1, reviewed by prover-2.
   frame. G2 and G4 also assume that their read-backs (G2 `readFeatures`; G4 `readScoresValid`,
   `readScoresTrain`) keep a present number present in the columns PyLinks 8 lists. True of the real
   reader and of the identity; chosen over a PyLinks correction for the same cost reason.
+- **F4: training part with both outcomes, under G58** (lead, 2026-11-18, W4 run; owner to see at
+  sign-off): with a one-outcome training part and a two-outcome validation part, SAS's
+  `model_summary` has no row and the port's Lean has one (`Train_AUC` missing), because step 13
+  always writes the training ROC row and `roc_valid_created` tests the validation set only. The
+  real programs never reach it (the port's fit raises, SAS fits no model); only the Lean's total
+  fit (PyLinks 6, G58) does. F4 gets the condition that the training table holds both outcomes.
+  Not taken: a port change (dead code in the real port, and a Lean update under `pyPipeline`
+  would clear every statement again). Owner may overrule.
 
 - **E4 feature shape narrowed** (lead, 2026-11-17, W3 run; owner to see at sign-off): the feature
   table has at least one column, and every term of the model names one of the 42 feature columns
