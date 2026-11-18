@@ -339,6 +339,26 @@ evaluation carriers were removed. The server does not return accepted solution r
 - **C4:** `thm:train_run_01_fit_frame_C4` stays flagged false, with
   `neg:train_run_01_fit_frame_C4_neg` proved: a recorded fact about the port (the fit mask also
   drops a row with a missing outcome; no effect on valid input).
+  **Superseded 2026-11-18 (owner's decision):** C4 restated to the true statement (the mask is
+  true exactly when no candidate and not `default_flag` is missing; `train.py:97-101`) and
+  proved, revision `280bfccba6014ff4aa1dd1277d50e8c3` (prover-20). `unflag_false` cleared the
+  flag and deleted the negation in one call. Blueprint: 322 items, none flagged,
+  `verification_approved` true.
+
+## Owner's decisions at sign-off (2026-11-18)
+
+- Corrections C-a to C-f: signed off.
+- C4: restated and proved (above).
+- "Either we remove the contracts or we prove them all": no contract keeps a hypothesis of its
+  own. One bundled round follows: correction C-g to `PyLinks` (fsum non-negative; read-backs keep
+  a present number present and keep `default_flag`), `PyLinks` 6 strengthened so that G2 also
+  covers train steps 03 and 05 to 08, and the port changed to follow SAS on a training part with
+  one outcome (x27 C60/E60) so that F4 loses its two-outcome condition. The 47 consumers of
+  `def:PyLinks` are proved again.
+- Padded text: `SasLinks` (1) and (2) tightened on the SAS blueprint; its 34 dependents proved
+  again and the SAS blueprint signed off again.
+- Push: branch `initial` pushed to origin (89c15e6).
+- The remaining rulings of section 5 are to be revisited once the round is in.
 - **The negations of E4 and G1** (`neg:E4_score_neg`, `neg:G1_run_coverage_neg`) are gone from
   the blueprint: the port Lean update for the two fixes removed them.
 - **Helper lemmas:** every `lem:` item a prover added during proving was reviewed afterwards by a
