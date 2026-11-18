@@ -75,6 +75,7 @@ def confusion_metrics(
     metrics = metrics.select("threshold", "accuracy", "precision", "recall", "f1_score", "specificity").cast(
         pl.Float64
     )  # keep list (:207); explicit Float64 so an all-null column is not dtype Null
+    metrics = metrics.head(min(conf_matrix.height, 1))  # no row read: end=eof never holds, no output (x27)
     return confusion, conf_matrix, metrics
 
 
@@ -104,6 +105,15 @@ def run(input_dir: Path, output_dir: Path) -> None:
     # metrics_calculation.sas:51-64 PROC IMPORT of the scored data
     # INV work.logit_scored_valid / logit_scored_train (R§2 PROC IMPORT, default guessingrows=20)
     logit_scored_valid = sas_compat.proc_import_csv(input_dir / "risk_scores_validation.csv", guessingrows=20)
+    # x27 C60, E60: a file with its header and no row ("Unable to sample external file, no data in first 5
+    # records", "Import unsuccessful"): WORK.LOGIT_SCORED_VALID does not exist (valid_exists False). The steps
+    # below then read a table with no row; where SAS's step makes no table from a table that does not exist
+    # (PROC SQL, PROC RANK, a MERGE), valid_exists decides (judge/runs/x27_C60_metrics, x27_E60_metrics)
+    valid_exists = logit_scored_valid.height > 0
+    if not valid_exists:
+        logit_scored_valid = pl.DataFrame(
+            schema=dict.fromkeys(["default_flag", "pd_logistic", "credit_risk_score"], pl.Float64)
+        )
     logit_scored_train = sas_compat.proc_import_csv(input_dir / "risk_scores_train.csv", guessingrows=20)
 
     # metrics_calculation.sas:71-77 PROC LOGISTIC nofit + roc (ROCAssociation)
@@ -319,6 +329,25 @@ def run(input_dir: Path, output_dir: Path) -> None:
             ),
         )
     )
+    if not valid_exists:
+        # x27: no decile_analysis (its SQL read no table), &total_defaults and &overall_default_rate never
+        # set: the step stops at compile time with no row; its variables are those it names, in the order it
+        # names them, each unresolved reference read as a variable of that name
+        cumulative_lift = pl.DataFrame(
+            schema=dict.fromkeys(
+                [
+                    "cum_defaults",
+                    "cum_count",
+                    "defaults",
+                    "total_count",
+                    "total_defaults",
+                    "cum_capture_rate",
+                    "overall_default_rate",
+                    "cum_lift",
+                ],
+                pl.Float64,
+            )
+        )
 
     # listing-only: PROC SGPLOT cumulative_lift (cumulative lift by decile)
 
@@ -427,7 +456,15 @@ def run(input_dir: Path, output_dir: Path) -> None:
     # metrics_calculation.sas:459-473 validation_summary
     # R§2 merge (S5); INV work.validation_summary: status via helpers (AUC, KS, PSI can be missing on
     # extra rows)
-    validation_summary = sas_compat.merge_one_to_one(auc_summary, ks_statistic, psi_summary)
+    validation_summary = (
+        sas_compat.merge_one_to_one(auc_summary, ks_statistic, psi_summary)
+        if valid_exists
+        # x27: the merge names ks_statistic, which does not exist: the step stops with no row; KS_Statistic is
+        # met in the IF, after model and status
+        else sas_compat.merge_one_to_one(auc_summary, psi_summary)
+        .clear()
+        .with_columns(KS_Statistic=pl.lit(None, pl.Float64))
+    )
     validation_summary = validation_summary.with_columns(
         model=pl.lit("Logistic Regression"),
         status=pl.when(
@@ -440,29 +477,48 @@ def run(input_dir: Path, output_dir: Path) -> None:
         .then(pl.lit("Requires Review"))
         .otherwise(pl.lit("Needs Improvement")),
     )
+    if not valid_exists:  # KS_Statistic after model and status (x27)
+        validation_summary = validation_summary.select(
+            [c for c in validation_summary.columns if c != "KS_Statistic"] + ["KS_Statistic"]
+        )
 
     # listing-only: PROC PRINT validation_summary
 
     # metrics_calculation.sas:484-516 PROC EXPORT validation_summary, decile_analysis, threshold_analysis,
     # ks_statistic, calibration_plot (INV validation_summary.csv, decile_analysis.csv, threshold_analysis.csv,
     # ks_statistic.csv, calibration_plot.csv for the stored formats)
+    # (x27: a table that does not exist is not exported; a format of a variable the table lacks is not
+    # applied)
     sas_compat.write_sas_csv(
         validation_summary,
         output_dir / "validation_summary.csv",
-        formats={"AUC": "8.4", "Gini": "8.4", "KS_Statistic": "8.4", "KS_Cutoff": "8.4", "PSI": "best12."},
+        formats={
+            k: v
+            for k, v in {
+                "AUC": "8.4",
+                "Gini": "8.4",
+                "KS_Statistic": "8.4",
+                "KS_Cutoff": "8.4",
+                "PSI": "best12.",
+            }.items()
+            if k in validation_summary.columns
+        },
     )
-    sas_compat.write_sas_csv(
-        decile_analysis, output_dir / "decile_analysis.csv", formats=decile_analysis_formats
-    )
+    if valid_exists:
+        sas_compat.write_sas_csv(
+            decile_analysis, output_dir / "decile_analysis.csv", formats=decile_analysis_formats
+        )
     sas_compat.write_sas_csv(threshold_analysis, output_dir / "threshold_analysis.csv", formats={})
-    sas_compat.write_sas_csv(
-        ks_statistic, output_dir / "ks_statistic.csv", formats={"KS_Statistic": "8.4", "KS_Cutoff": "8.4"}
-    )
-    sas_compat.write_sas_csv(
-        calibration_plot,
-        output_dir / "calibration_plot.csv",
-        formats={"mean_predicted": "8.4", "mean_actual": "8.4"},
-    )
+    if valid_exists:
+        sas_compat.write_sas_csv(
+            ks_statistic, output_dir / "ks_statistic.csv", formats={"KS_Statistic": "8.4", "KS_Cutoff": "8.4"}
+        )
+    if valid_exists:
+        sas_compat.write_sas_csv(
+            calibration_plot,
+            output_dir / "calibration_plot.csv",
+            formats={"mean_predicted": "8.4", "mean_actual": "8.4"},
+        )
 
     # metrics_calculation.sas:519-541 model_performance_metrics
     # INV work.model_performance_metrics: where=(threshold=0.5) (plain, never missing) + dataset rename
@@ -477,7 +533,13 @@ def run(input_dir: Path, output_dir: Path) -> None:
             "specificity": "specificity_at_50",
         }
     )
-    model_performance_metrics = sas_compat.merge_one_to_one(auc_summary, ks_statistic, psi_summary, at_50)
+    model_performance_metrics = (
+        sas_compat.merge_one_to_one(auc_summary, ks_statistic, psi_summary, at_50)
+        if valid_exists
+        else sas_compat.merge_one_to_one(
+            auc_summary, psi_summary, at_50
+        ).clear()  # no ks_statistic: no row (x27)
+    )
     model_performance_metrics = model_performance_metrics.with_columns(
         model_name=pl.lit("Logistic Regression"),
         validation_date=pl.lit(dt.date.today()),
@@ -490,12 +552,16 @@ def run(input_dir: Path, output_dir: Path) -> None:
         model_performance_metrics,
         output_dir / "model_performance_metrics.csv",
         formats={
-            "AUC": "8.4",
-            "Gini": "8.4",
-            "KS_Statistic": "8.4",
-            "KS_Cutoff": "8.4",
-            "PSI": "best12.",
-            "validation_date": "date9.",
+            k: v
+            for k, v in {
+                "AUC": "8.4",
+                "Gini": "8.4",
+                "KS_Statistic": "8.4",
+                "KS_Cutoff": "8.4",
+                "PSI": "best12.",
+                "validation_date": "date9.",
+            }.items()
+            if k in model_performance_metrics.columns  # x27: no KS_Statistic, KS_Cutoff
         },
     )
 
@@ -525,9 +591,13 @@ def run(input_dir: Path, output_dir: Path) -> None:
         cumulative_lift,
         output_dir / "printed_cumulative_lift.csv",
         formats={
-            **decile_analysis_formats,
-            "cum_capture_rate": "percent8.2",
-            "cum_lift": "8.2",
+            k: v
+            for k, v in {
+                **decile_analysis_formats,
+                "cum_capture_rate": "percent8.2",
+                "cum_lift": "8.2",
+            }.items()
+            if k in cumulative_lift.columns  # x27: the variables of the step that stopped
         },
     )
     sas_compat.write_sas_csv(psi_calculation, output_dir / "printed_psi_calculation.csv", formats={})
