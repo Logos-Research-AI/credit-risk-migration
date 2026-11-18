@@ -1,6 +1,6 @@
 # Requirements: what the documentation says the pipeline must do
 
-Draft 8, 2026-11-16: rulings G56 (counts taken as exact, files of fewer than 10^8 rows) and G57 (the training data has at least 4 rows). Draft 7, 2026-11-16: rulings G54 (income and dependents written in at most 12 characters) and G55 (hand-off files at full precision). Draft 6, 2026-11-16: ruling G53 reduces Q27 to valid inputs (the demand to stop on any other input is withdrawn, so rulings G11, G23, G36 and G42 no longer bear on a requirement) and sets rulings G46 to G52 aside. Draft 5, 2026-11-15, had rulings G44 and G45 added the same day (they confirm readings already formalised; no requirement changes). Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
+Draft 9, 2026-11-18: Q27 restated by the owner: feature engineering always returns; the steps after it return when the training part holds both outcomes (follows ruling G58). In the blueprint, `def:Q27` is restated (text and Lean); the sentences of `def:Q12`, `def:Q13` and `def:Q14` that point to Q27 now say "when the training part holds both outcomes" (text only, their Lean is unchanged); `def:Spec` is restored unchanged and consistency is proved again with the same witness (60 items). Draft 8, 2026-11-16: rulings G56 (counts taken as exact, files of fewer than 10^8 rows) and G57 (the training data has at least 4 rows). Draft 7, 2026-11-16: rulings G54 (income and dependents written in at most 12 characters) and G55 (hand-off files at full precision). Draft 6, 2026-11-16: ruling G53 reduces Q27 to valid inputs (the demand to stop on any other input is withdrawn, so rulings G11, G23, G36 and G42 no longer bear on a requirement) and sets rulings G46 to G52 aside. Draft 5, 2026-11-15, had rulings G44 and G45 added the same day (they confirm readings already formalised; no requirement changes). Draft 3 was signed off on 2026-11-14; drafts 4 and 5 add rulings G28 to G43,
 made after the requirements were checked against the SAS program and the program was corrected. The contradiction and the silences found in draft 1, and the twelve points
 the first formalisation raised, are ruled on (section 4).
 
@@ -67,7 +67,7 @@ data.
 
 | # | Requirement | Source |
 |---|---|---|
-| Q27 | On an input that meets the conditions of section 3, every step produces its result. What it does on an input that does not is not required (ruling G53, which withdraws the earlier demand to stop with an error; rulings G3, G4) | section 3 |
+| Q27 | On an input that meets the conditions of section 3, feature engineering always produces its result, and the steps after it (fitting, scoring, test scoring, metrics) produce their results when the training part of the split holds both outcomes. What it does on an input that does not meet the conditions is not required (ruling G53, which withdraws the earlier demand to stop with an error; rulings G3, G4, G58; restated by the owner on 2026-11-18) | section 3 |
 
 ## 2. Reported figures, not requirements
 
@@ -171,6 +171,8 @@ missing value does. What a pipeline does on an input outside these conditions is
 | G58 | The model fit is outside the verification and the migration proof: it is taken as given and assumed to return a model (ruling G12 leaves open what a model is). When the training part of the split holds only one outcome the SAS program fits no model: it writes training scores with a missing probability, grade F for every applicant, and no coefficients (experiment x27, cases C60 and E60). The claims therefore hold for inputs whose training part has both outcomes; on the others Q12 to Q14 and what follows from the scores are not verified. The condition depends on the split, so it is not written on the raw files. No formal item changes and neither program changes | 2026-11-16 |
 
 Ruling G58 (2026-11-16, owner's decision after the sign-off below) states a limit and changes no formal item.
+
+On 2026-11-18 the owner restated Q27 (section 1): feature engineering always returns; the later steps return when the training part holds both outcomes. Formalised in `def:Q27` with the readings: "always" within the scope Q27 keeps (inputs meeting section 3); "the training part" is the training feature table of the split; "holds both outcomes" is read on the applicants' raw outcomes (`SeriousDlqin2yrs` 0 and 1 among the training part's row ids), as Q26 reads defaulters, not on the `default_flag` the pipeline writes. Consistency proved again; not yet signed off.
 
 **Signed off by the owner on 2026-11-16, after rulings G56 and G57**, as formalised in the blueprint `credit-risk-requirements` (60 items: one clause added to `def:TrainOK`, the training table has at least 4 rows; G56 changes no formal item; consistency proved again with a four-row example; independent review found no open point; an audit compared the other 57 definitions and both theorem statements character for character with the state of the sign-off below and found them identical).
 
