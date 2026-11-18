@@ -1,5 +1,21 @@
 # Texts of `def:pyPipeline`, `def:PyLinks`, `def:Paired` (version 3, 2026-11-17)
 
+## Change note, 2026-11-18 (correction C-g, version 2; new `def:ScoreRun`)
+
+Entered for the lead as a records task (the lead commits); no blueprint item and no code was
+changed with it. Source: `rounds/port-change-spec-2026-11-18.md` sections 3 and 4 (C-g version
+2, which supersedes the uncompiled version 1 of `rounds/C-g-draft-2026-11-18.md`), observation
+H15 (`rounds/observation-H15-2026-11-18.md`), and the decisions of 2026-11-18 recorded in the
+change note of `informal-spec.md` (binding). New section at the end of the corrections:
+**C-g**, which changes `PyLinks` 6 (in place), adds 6b, 7b (second case of the training score
+flag, in place in clause 7), corrects conjunct 16 of clause 8 (H15), adds 8b and 8c (narrow),
+12 (`fsum`) and 13 (`einsum_q`); changes `pyPipeline` (`fit`, `score`, `metrics`); changes
+`Paired` 3 (filler form) and records `Paired` 1 unchanged; and gives the text of the new
+definition item `def:ScoreRun`. Where C-g and an older text of this file differ, C-g is in force.
+The definitions are entered on `5365851c` only after the port's units are updated (C-g, "Order").
+
+---
+
 The informal statements of the three definitions, in words. In force from 2026-11-17 with
 `informal-spec.md` version 3. Each text is the informal statement of its item on the port
 blueprint `5365851c`. This file holds no Lean. Since it was drafted the train stage changed
@@ -416,6 +432,252 @@ approved by the lead 2026-11-17. Entered on `5365851c` the same day.
   Lean of clause 4 was not changed; one comment line saying so was added above it, and the
   second submission was accepted. Whether the text of clause 4 overstates (a missing cell
   written empty leaves the column numeric in `proc_import_csv`) is left to the lead.
+
+### C-g. The fit, the flags, the read-backs, the sum, one numpy routine; `pyPipeline`; `Paired` 1 and 3 (version 2, 2026-11-18)
+
+Specified in `rounds/port-change-spec-2026-11-18.md` (sections 3, 4) after the owner's decisions
+of 2026-11-18 (no contract keeps a hypothesis of its own; the port follows SAS on a training part
+with one outcome, on three levels; G2 covers train steps 03 and 05 to 08; leverage near 1 and
+variance 0 fixed in the port, not assumed; the stated base (a) to (d) of `informal-spec.md`
+section 9) and the lead's (7b; `def:ScoreRun`; helper units; 8b, 8c narrow; conjunct 16 per
+H15; `Paired` 3 filler; `Paired` 1 unchanged). Version 1 (`rounds/C-g-draft-2026-11-18.md`) is
+superseded where they differ: its 6b (3) "a positive variance for every final parameter" and
+6b (4) "no leverage equal to 1" are dropped, and its clause 6 gains the covariance shape. Like
+C-a to C-f, these are assumptions of the claim, listed for the owner at the final sign-off.
+
+**Vocabulary.** For a table T, *the outcomes of T* are the `default_flag` values of its complete
+cases, as step 01 of train computes them (the rows where the 36 candidates and `default_flag`
+are all present). T is *a training frame* when, as a frame, its column names are distinct, its
+columns have one length, and the 36 candidates and `default_flag` are numeric columns (the
+three table conditions of `train_run_01_fit_frame_precond`). T *has both outcomes* when every
+outcome is 0 or 1 and both occur; T *has one outcome* when no two outcomes differ (this includes
+no outcome at all).
+
+**Shape.** New parts are appended after position 20 of the conjunction; `keeps` is not touched;
+clauses 6, 7 (the training score flag, 7b) and conjunct 16 are changed in place. Positions after
+the edit: 1 to 5; 6 (the fit, changed); 7 to 10; 11 (`scoresTrainExists`, changed: 7b); 12; 13
+to 15; 16 (`readScoresTrain`, changed); 17 to 20; then 21 (clause 12, `fsum`), 22 to 24 (8b), 25
+(8c), 26 (6b), 27 (clause 13). Every position and argument list is read again from the accepted
+units before the Lean is entered.
+
+**Head of `PyLinks`.** The sentence "Nothing is asked of the formatters, the numpy routines,
+`fsum`, `today` or `full`" (as amended by C-e) becomes: "Nothing is asked of the formatters or
+`full`; of `fsum` only clause 12; of the numpy routines only clause 13."
+
+#### `PyLinks` 6, the fit (in place)
+
+- **Before**: "For every table: the final effects of the stepwise result are distinct names
+  among the 36 candidates, and the result has the shape steps 01 and 04 ask for. The fit is
+  taken to return a result (decision D3 and ruling G58, ...)."
+- **After**: For every table: the final effects are distinct names among the 36 candidates
+  (unchanged). For every training frame:
+  - with both outcomes, the stepwise result has a final fit and an intercept-only fit; the
+    coefficient array of the final fit is one-dimensional with one entry per name of the fit
+    and at least one entry; and its covariance is two-dimensional and square with one row per
+    name;
+  - with one outcome, the stepwise result is the result with no fit: no step, no final fit, no
+    intercept-only fit.
+  Nothing is asked of any other table. On a training frame with both outcomes the fit is taken
+  to return a result (ruling G58, narrowed by the decision of 2026-11-18: base (a)).
+- **Reason**: the port's fit returns `StepwiseResult()` when the rows used hold fewer than two
+  response values, and train goes on without a model (commit 65430e4; SAS: x27, R46). The
+  covariance shape is new because step 04 now reads `cov[i, i]` for every name of the final fit
+  (`train.py:297`).
+- **True of the port by**: `sas_compat.py:1067-1070` (no fit), `:1118`, `:1206` (the final fit),
+  `:750`, `:950`, `:962` (coefficients; `_inv_sas(info)`, square, of the size of the design).
+- **Lean, in words**: the final fit is read from the stepwise result (`(py.fit T).final`), no
+  longer from an empty-fit default of step 01; the covariance conjunct (a list of rows c with
+  `final.cov` the 2-D array c, as many rows as `final.names` has names, every row of that length)
+  is added after the coefficient conjunct inside the both-outcomes branch.
+
+#### `PyLinks` 6b, the fitted result on a training frame with both outcomes (appended, position 26)
+
+For every training frame with both outcomes, with the values of steps 01 and 04 as
+`run_py_py_py` computes them:
+
+1. (step 03) For every step of the stepwise result whose fit has a variable: the names of the
+   fit after the first are among the 36 candidates; its coefficient array is one-dimensional
+   and its covariance two-dimensional and square with as many rows as there are coefficients;
+   the fit has at most that many names.
+2. (step 03) -2 Log L of the intercept-only fit is not 0.
+3. (steps 03 and 08) The names of the final fit after the first are among the 36 candidates.
+4. (step 06) For the intercept and for every final effect, the diagonal entry of the covariance
+   is not negative.
+
+Nothing more is asked. Parts 1 and 3 and the covariance shape of clause 6 are shape and naming
+facts of the `LogisticFit` the port builds; parts 2 and 4 are facts about values of the fit,
+true of it in exact arithmetic and not guaranteed by the code after it. Together they are base
+(b) of `informal-spec.md` section 9. Dropped against version 1: a positive variance (the port
+handles an entry exactly 0 since commit a9b1f41, `train.py:388-396`, X22) and all of the
+leverage part (commit 88df42d, X21; "one leverage per complete case" is clause 13). What steps
+05 and 07 ask is proved, not assumed: with the two sum bounds dropped from the preconditions
+(lead, 2026-11-18) the group sums being whole numbers follows from outcomes 0 or 1.
+
+#### `PyLinks` 7, the training score flag: a second case (7b, in place)
+
+- **Before**: `scoresTrainExists S` is true exactly when the score step of P (`pyPipeline py`)
+  returned S for some model and table.
+- **After**: `scoresTrainExists S` is true exactly when the score step of P returned S for some
+  model and table, **or** S is the training score table the train stage writes on some table
+  with the result with no fit: the table of E5's chain (steps 01, 04, 09, 12, 14,
+  `risk_scores_train.csv`) on the read-back of some F, at the stepwise result with no fit.
+  `scoresValidExists` is unchanged: the validation score table of a run without a model is the
+  table with no row, which the score step returns on the table with no row (to be proved once,
+  for P and for S).
+- **Reason**: on a run without a model the training score table is written by the train stage
+  and is not a value of `P.score` for any model: `P.score` gives a present probability on every
+  feature row. Without 7b the port's metrics step would stop (flag false) where the real stage
+  does not, and E8 to E11, F5, F6, G4 would fail on that run. 7b keeps the clause true of the
+  port ("a file exists when written"); it adds no hypothesis to a contract. The other choice (a
+  model with a term naming no column) was not taken: on the port it rests on what step 10 does
+  outside its precondition. `Paired` 5 is not touched (it restates `SasLinks` (8)).
+
+#### `PyLinks` 8, conjunct 16, `readScoresTrain` (in place; observation H15)
+
+- **Before**: `keeps py.readScoresTrain` on `row_id`, `default_flag`, `pd_logistic`,
+  `credit_risk_score`: in each of the four columns a numeric cell stays numeric, a missing one
+  missing.
+- **After**: the same for `row_id` and `default_flag`. For `pd_logistic` and
+  `credit_risk_score`: a numeric cell is read back as a numeric cell, a missing one missing;
+  **or**, when the column holds the missing number in every row of the table, as the text cell
+  with the missing text. The rows, the names, and "one kind of cell per column" (C-f) are asked
+  as before.
+- **Reason**: H15. On `risk_scores_train.csv` of a one-outcome run the two columns are empty in
+  every row, and the real reader (`guessingrows=20`) returns them as text columns of nulls. The
+  conjunct as it stood was false of the real reader on a file a valid run reaches.
+- **True of the port by**: `proc_import_csv` (`sas_compat.py:578-587`), H15. The identity meets
+  it (first branch).
+- **Lean, in words**: `keeps` is not edited (the other three read-backs use it). Conjunct 16 is
+  written out at its position: the `Forall₂` of rows with equal names; for the first two columns
+  the cell clause of `keeps`; for the other two the cell clause with the second disjunct "every
+  row of t has `Cell.num none` under c, and the read-back cell is `Cell.str none`"; then
+  `oneKind t → oneKind (R t)`. A proof that uses it for `pd_logistic` or `credit_risk_score`
+  first shows the column is not missing in every row.
+- **Limit**: true of the reader on the files a valid run reaches, not on every table (the reader
+  decides on the first 20 rows). The SAS side's clause (3) is weakened the same way (form W).
+
+#### `PyLinks` 8b and 8c, read-backs keep present numbers (appended, positions 22 to 25; narrow forms)
+
+- **8b.** For the feature read-back and each of the 42 feature columns, and for each score
+  read-back and each of `row_id`, `default_flag`, `pd_logistic`, `credit_risk_score`: for every
+  table in which every row holds a present number in that column, every row of the read-back
+  holds a present number in that column. True of `proc_import_csv` (`sas_compat.py:557-592`;
+  H4, H5 (a), (d)); the identity meets it.
+- **8c.** For every table in which every row holds a present number under `default_flag`: row
+  against row at the same index, a `default_flag` cell holding 0 or 1 is read back as the same
+  number. True of the same reader ("0" and "1" are read 0.0 and 1.0; H4); the identity meets it.
+- **Why narrow**: the wide forms ("for every table, a present number stays present"; "every
+  `default_flag` value is kept") are false of the real reader (a column with a text cell, or a
+  score column whose first 20 rows are empty, is read as text; 1/3 is changed by 12 characters).
+
+#### `PyLinks` 12, the sum (appended, position 21)
+
+For every list of real numbers all at least 0, `fsum` of the list is at least 0. True of
+`math.fsum` (`sas_compat.py:1317-1318`): correctly rounded, rounding is monotone.
+
+#### `PyLinks` 13, one value per row (appended, position 27; new)
+
+For every matrix x and every matrix v, `einsum_q x v` has as many entries as x has rows.
+
+- **Reason**: `classification_table_precond` (5) asks that the leverages have the length of y.
+  Stated of the routine: true of `np.einsum("ij,jk,ik->i", x, v, x)` whenever it returns, met by
+  T1's witness ("0 for each row").
+- **Helper units** (lead, 2026-11-18): `_kept`, `_inv_sas`, `_left_out` and
+  `classification_is_made` are new units of the port, with `inv`, `solve`, `matmul` as their
+  parameters; `def:PyParams` gains no parameter for them. If the preconditions of `_kept` and
+  `_inv_sas` ask the like of `inv` and `solve` (an n by n matrix in, an n by n matrix out; a
+  vector of length n), each such condition is one more line of clause 13, fixed when the units
+  are accepted.
+
+#### Text only
+
+Clause 11 cites `train.py:771` for the date; at HEAD (a9b1f41) the line is `train.py:883`
+(`dt.date.today()`).
+
+#### `def:pyPipeline` (from section 4.1 of the change specification)
+
+Needed by E3 (level 1) and, for `metrics`, by base (c) of `informal-spec.md` section 9.
+
+- **`fit`**: nothing when the flags say either feature file is absent, or when the fit returned
+  no model (a training part of one outcome: step 04 extracts no intercept; the stage then writes
+  no `model.json`); otherwise the model of step 04's intercept and coefficients, as before.
+- **`score`**: the same wiring on the units as changed: step 10 with the intercept of m as a
+  present value, step 12, step 14 with the fillers and `false` for both ROC flags.
+  `lem:py_score_fillers_idle` is proved again on the new step 14.
+- **`metrics`**: when `run_py` returns files, the KS and decile tables are the tables of their
+  files, **or the table with no row when the file is not written**; the summary and threshold
+  files are always written and are looked up as before. A file the stage does not write is given
+  as the table with no row, as the SAS units give a table that was not created (RULEBOOK of
+  `legacy-to-lean`, R39, R46). This is the first default written into `pyPipeline`: the
+  sentence of section 1 "It contains no arithmetic, comparison or default of its own" gains
+  "except this one".
+
+#### `def:Paired` 3, the fit (filler form)
+
+- **Before**: for every table T, `sas.fit T` is the model whose intercept and (name,
+  coefficient) list, in order, are those step 04 of train extracts from the port's fit on T.
+- **After**: for every table T, `sas.fit T` is the model step 04 extracts from the port's fit on
+  T; and where step 04 extracts none, the model with intercept 0 and no term.
+- **Reason**: step 04's intercept is optional after the update. The filler is never read by the
+  SAS pipeline (its `fit` field returns nothing there, by `logistic_no_fit`); it keeps
+  `lem:sas_fit_term_names` true for every table and the clause one equality at the same
+  position. With a left-out parameter step 04 gives coefficient 0 for it (a9b1f41), which is what
+  X22 shows of PROC LOGISTIC's parameter table.
+
+#### `def:Paired` 1, and the rest of `Paired`
+
+- Clause 1: unchanged in letters. After the profile refresh `SasLinks` (1), (2) carry one more
+  conjunct each in `deliveredCell` (padded text); `Paired` 1 keeps its old local definition, and
+  T0 gets the helper "the tightened delivery implies the old one".
+- Clauses 2, 4, 5, 6, 7: unchanged in letters. Clause 5 changes in value through
+  `sasPipelineOf` (the `fit` field of the SAS pipeline).
+- The closing note of section 3 ("`Paired` deliberately does not include clause (3) of
+  `SasLinks`") stands; clause (3) is now weakened for the training score file (form W), and the
+  identity read-backs still meet it.
+- `def:SasParams`, `def:SasLinksOf`, `def:sasPipelineOf`: Lean unchanged, resubmitted against the
+  refreshed profile.
+
+#### `def:ScoreRun` (new definition item; lead, 2026-11-18)
+
+**Text.** `ScoreRun` says that two tables S1, S2 are the score tables of a run, fitted or
+without a model, on the feature tables F1, F2 of that run. One definition, used on either side:
+it takes the pipeline Q (the SAS pipeline `sasPipelineOf sas`, or the port's `pyPipeline py`)
+and that side's training score table without a model, as a function of the feature table. It
+holds when:
+
+- **fitted**: there is a model m with `Q.fit F1` returning m, `Q.score m F1` returning S1 and
+  `Q.score m F2` returning S2; or
+- **without a model**: `Q.fit F1` returns nothing, S1 is the side's training score table without
+  a model on F1, and S2 is the table with no row.
+
+The training score table without a model is, on the SAS side, `logit_scored_train_output_nofit`
+of `sas.readFeatures F1`, then `logit_scored_train`, `risk_scores_train`,
+`risk_scores_train_clean`; on the port side, the table of E5's chain (steps 01, 04, 09, 12, 14,
+`risk_scores_train.csv`) on `py.readFeatures F1` at the stepwise result with no fit. On the SAS
+side the table with no row is what `logit_scored_valid_temp_nofit`, `logit_scored_valid`,
+`risk_scores_validation`, `risk_scores_validation_clean` give. Both disjuncts are reached-facts,
+so a contract that takes `ScoreRun` as its run hypothesis adds no hypothesis (`informal-spec.md`
+sections 1 and 2a). Users: E8 to E11, F5, F6 (SAS side); A4, G4 and the port half of the examples
+(port side). The stater fixes the exact signature; the reviewer checks it against this text and
+against the two chains it names.
+
+#### Order (from section 7 of the change specification)
+
+The SAS clearing signed off and the port's profile refreshed; the port's units updated
+(section 2 of the change specification, with the four helper units) and evaluated on the staged
+data; then `def:pyPipeline`, `def:PyLinks`, `def:Paired`, `def:ScoreRun` in dependency order,
+each reviewed by a prover who did not write it, clause against the port both ways, with the
+degenerate arguments of C-a (empty table, one row, every outcome equal, no complete case); then
+T1, T0, and the contracts.
+
+#### Cleared by C-g
+
+The 47 statement consumers of `def:PyLinks` and the 5 more of `def:Paired` (52; table in section
+6.1 of the change specification): 23 restated (13 contracts, 9 examples,
+`lem:sas_reached_scores_read_shape`), 29 resubmitted with the same statement. The update of the
+units clears about 21 more (section 6.3 there); the profile refresh reaches 24 more (6.4).
+Fetch `statement_lean` and `proof_lean` of all of them before clearing, and count the items
+(322 by `get_status` on 2026-11-18).
 
 ### Additions that are not changes of wording
 
