@@ -922,6 +922,10 @@ narrowed, because the equality contracts are stated at the reals, where there is
   other value of those runs is equal. Smallest case, seed 303397: `beta[2] = 0.0`,
   `cov[2][2] = 0.4976756833448731`, LowerCL bits ...620 in Python and ...621 in Lean
   (`diffeval/work/fz2_dbg06c.py`). Through that step it reaches `def:run_py_py_py`.
+  Also seen in `def:train_run_03_fit_global_rsquare` (fuzz of 2026-11-18, suite `fz3_s03`; `cox_snell` and
+  `nagelkerke`, `train.py:245-246`): seed 136, argument 104.60714285714286 (bits 0x405a26db6db6db6e); Lean
+  5286717714475752482 against CPython 5286717714475752481 (bits of the result). The Lean value is the correctly
+  rounded one (0.4992 against 0.5008 ulp). 1 of 2,280 kept cases.
 - **`** 2` on a Python float is not always `x * x`** (found by the same fuzz): on about 0.13 % of
   floats `x ** 2` differs from `x * x` by one unit in the last place (for example
   `(-0.06915923590149525) ** 2`). Count on this machine (macOS arm64, the port's Python): 1,314 of
