@@ -95,6 +95,11 @@ Stated by prover-1, reviewed by prover-2.
   fail on that alone (G4's prover, no port defect). Chosen over a correction C-g to PyLinks (same
   assumption, but it would clear every dependent again): G2 and G4 assume that `fsum` of a list of
   reals all >= 0 is >= 0, true of `math.fsum`.
+  Same run, same reasoning (G2's prover): PyLinks 8 lets a read-back turn a present number into a
+  missing one (the Lean of `keeps` asks only that missing stays missing), which empties the fit
+  frame. G2 and G4 also assume that their read-backs (G2 `readFeatures`; G4 `readScoresValid`,
+  `readScoresTrain`) keep a present number present in the columns PyLinks 8 lists. True of the real
+  reader and of the identity; chosen over a PyLinks correction for the same cost reason.
 
 - **E4 feature shape narrowed** (lead, 2026-11-17, W3 run; owner to see at sign-off): the feature
   table has at least one column, and every term of the model names one of the 42 feature columns
