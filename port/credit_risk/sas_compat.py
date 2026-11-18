@@ -1533,7 +1533,15 @@ def classification_table(
     (27 and 25 defaulters at probability 1; SAS's last row `1.000,0,165,0,115,...`). So that level
     is 1 + 1e-12 here too (port/tests/test_classification_level_one.py). Not established: what SAS
     does with a probability equal to a LOWER printed level on a fit with a variable; the plain >= on
-    the rounded level stays."""
+    the rounded level stays.
+    Leverage near 1 (experiment X21, `migration/legacy-to-port/experiments/x21_leverage_one.py`): SAS
+    makes no one-step adjustment for an observation whose leverage h is within 1e-8 of 1, its
+    cross-validated probability is its predicted one. Measured: adjusted at 1 - h = 1.489e-8, kept at
+    8.56e-9 and below and at h printed 1 (an effect that is 1 on that observation alone); the port
+    takes 1e-8 inside that bracket. Dividing by 1 - h as it comes gives 0 or 1 at h = 1 and leaves the
+    sign of a rounding residue to decide (raw input judge/runs/x21_r3_s03: 49 of 51 rows differ with
+    the same probabilities summed in another order). With the rule the table is SAS's on the 18 X21
+    fits that have one and on R3 in both orders (port/tests/test_leverage_one.py)."""
     if y.ndim == 2:  # inventory order (X, y, pd)
         y, x = x, y
     if fit is not None and not isinstance(fit, LogisticFit):
@@ -1550,7 +1558,10 @@ def classification_table(
     v = np.linalg.inv(x.T @ (x * w[:, None]))
     q = np.einsum("ij,jk,ik->i", x, v, x)
     h = w * q
-    ps = _expit(eta - (y - p) * q / (1.0 - h))
+    # an observation whose leverage is within 1e-8 of 1 keeps its probability: SAS makes no one-step
+    # adjustment there (experiment X21: adjusted at 1 - h = 1.489e-8, kept at 8.56e-9 and below)
+    lone = 1.0 - h <= 1e-8
+    ps = _expit(eta - np.where(lone, 0.0, (y - p) * q / np.where(lone, 1.0, 1.0 - h)))
     tol = 0.0
     if x.shape[1] == 1:  # intercept only: the exact leave-one-out mean
         ps = (float(y.sum()) - y) / (len(y) - 1.0)
