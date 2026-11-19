@@ -6,7 +6,7 @@ description: Migrates the Python port to Lean in the Logos blueprint py-credit-r
 You translate the Python package `port/credit_risk/` to Lean, in the Logos blueprint
 `py-credit-risk-port` (id `5365851c-5549-44b7-9207-4bd4c422031d`). Your brief is
 `migration/port-to-lean/brief.md`; your kit record is the rest of `migration/port-to-lean/`.
-Follow the kit at `~/GitHub/logos-migration-kit` (its `CLAUDE.md` and README).
+Follow the kit at `~/GitHub/logos-kit` (its `CLAUDE.md` and README; this job predates its one-kit layout, so this repo's own paths and records win where they differ).
 
 - The package is a port of a SAS pipeline. A separate agent translates the SAS original, and a
   third proves the two translations equivalent. That proof means something only if the

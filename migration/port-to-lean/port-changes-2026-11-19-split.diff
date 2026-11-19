@@ -1,0 +1,155 @@
+commit 4a757fb0ac5b385e1cbc6601ebc478655632abe7
+Author: Cristopher <c.salvi@logosresearch.ai>
+Date:   Thu Nov 19 09:56:31 2026 +0000
+
+    T0 (owner, 2026-11-19): the port's split selects exactly (7n+9)/10 distinct ids among the input's
+    
+    The split-ids file is used only when it names exactly (7n+9)/10 distinct ids, all among the
+    input's; otherwise a draw seeded 42 of that many distinct ids from the input's (sorted, so row
+    order cannot change it). The input check already stops any input with a missing or repeated id,
+    so the draw is over the n present, distinct ids. Real data keeps SAS's split; parity 10/10 PASS.
+    Tests: real data, files that do not fit, n = 4, 5, 10, seeded draw.
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+diff --git a/port/credit_risk/feature_engineering.py b/port/credit_risk/feature_engineering.py
+index 78f16ba..cf32867 100644
+--- a/port/credit_risk/feature_engineering.py
++++ b/port/credit_risk/feature_engineering.py
+@@ -9,6 +9,7 @@ stops the run with nothing exported.
+ from __future__ import annotations
+ 
+ import argparse
++import random
+ from pathlib import Path
+ 
+ import polars as pl
+@@ -16,6 +17,14 @@ import polars as pl
+ from credit_risk import sas_compat
+ 
+ 
++def _split_draw(input_ids: set[float], n_train: int, seed: int = 42) -> list[float]:
++    """A seeded draw of n_train distinct ids among input_ids (seed 42 as SURVEYSELECT's), independent
++    of row order. Not SAS's own draw: only its count. Fewer ids than n_train (not reachable after the
++    input check) gives all of them."""
++    pool = sorted(input_ids)
++    return random.Random(seed).sample(pool, min(n_train, len(pool)))
++
++
+ def run(
+     data_dir: Path,
+     output_dir: Path,
+@@ -340,11 +349,22 @@ def run(
+     # (SAS drew a different split in judge run x_split_drift_m_metrics_threshold, judge/README.md:75-81)
+     # the split is an INPUT (A27): selected = row_id is a training row_id in split_ids
+     # G1: the ids are SAS numbers (doubles, R§2 input best32.), matched by value; no whole-number cast
+-    train_ids = (
++    file_ids = (
+         pl.read_csv(split_ids, columns=["row_id"], infer_schema=False)  # R§1 CSV I/O: all text
+         .select(sas_compat.input_best32(pl.col("row_id")))
+         .get_column("row_id")
++        .to_list()
+     )
++    # T0 (owner, 2026-11-19): SAS selects exactly ceil(0.7 n) = (7n+9)/10 of the n rows
++    # (empty-validation.md section 1). The file is used only when it names exactly that many distinct
++    # ids, all among the input's; otherwise a seeded draw of that many distinct ids from the input's.
++    # Which ids count: the input check above (:109-123) stops every input with a missing or repeated
++    # id, so here the n row_ids are present and distinct; the draw is over the distinct present ids.
++    input_ids = set(credit_features.get_column("row_id").drop_nulls().to_list())
++    n_train = (7 * credit_features.height + 9) // 10
++    if not (len(file_ids) == n_train and len(set(file_ids)) == n_train and set(file_ids) <= input_ids):
++        file_ids = _split_draw(input_ids, n_train)
++    train_ids = pl.Series("row_id", file_ids, dtype=credit_features.schema["row_id"])
+     credit_split = credit_features.with_columns(selected=pl.col("row_id").is_in(train_ids.implode()))
+     credit_train = credit_split.filter(pl.col("selected")).drop("selected")
+     credit_validation = credit_split.filter(~pl.col("selected")).drop("selected")
+diff --git a/port/tests/test_split_ids.py b/port/tests/test_split_ids.py
+index 8ae51bf..5dd8536 100644
+--- a/port/tests/test_split_ids.py
++++ b/port/tests/test_split_ids.py
+@@ -1,4 +1,5 @@
+ """The split file's row_id values are SAS numbers (doubles), matched by value (finding G1).
++The split selects exactly (7n+9)/10 distinct ids among the input's (T0, owner 2026-11-19).
+ 
+ cd port && uv run python tests/test_split_ids.py        (or: uv run pytest tests)
+ """
+@@ -22,6 +23,15 @@ HEADER = (
+ )
+ 
+ 
++ROOT = HERE.parent.parent
++
++
++def _outputs(d: Path) -> tuple[list[float], list[float]]:
++    train = pl.read_csv(d / "model_features_train.csv").get_column("row_id").cast(pl.Float64)
++    valid = pl.read_csv(d / "model_features_validation.csv").get_column("row_id").cast(pl.Float64)
++    return sorted(train.to_list()), sorted(valid.to_list())
++
++
+ def _run(ids: list[str], split: list[str]) -> tuple[list[float], list[float]]:
+     with tempfile.TemporaryDirectory() as tmp:
+         d = Path(tmp)
+@@ -30,9 +40,7 @@ def _run(ids: list[str], split: list[str]) -> tuple[list[float], list[float]]:
+         )
+         (d / "split_ids.csv").write_text("row_id\n" + "".join(f"{i}\n" for i in split))
+         feature_engineering.run(d, d, split_ids=d / "split_ids.csv")
+-        train = pl.read_csv(d / "model_features_train.csv").get_column("row_id").cast(pl.Float64)
+-        valid = pl.read_csv(d / "model_features_validation.csv").get_column("row_id").cast(pl.Float64)
+-        return sorted(train.to_list()), sorted(valid.to_list())
++        return _outputs(d)
+ 
+ 
+ def test_fractional_ids_g1_witness() -> None:
+@@ -49,7 +57,52 @@ def test_whole_ids_match_by_value() -> None:
+     assert valid == [2.0]
+ 
+ 
++def _check_exact(n: int, split: list[str]) -> tuple[list[float], list[float]]:
++    ids = [str(i) for i in range(1, n + 1)]
++    train, valid = _run(ids, split)
++    assert len(train) == (7 * n + 9) // 10, (n, train)
++    assert len(set(train)) == len(train)
++    assert set(train) <= {float(i) for i in ids}
++    assert sorted(train + valid) == [float(i) for i in ids]
++    return train, valid
++
++
++def test_file_that_does_not_fit_is_replaced() -> None:
++    # T0 witnesses: an empty file, ids not in the input, too many, too few, repeated ids
++    for split in ([], ["101", "102", "103"], ["1", "2", "3", "4", "5", "6"], ["1"], ["1", "1", "2"]):
++        _check_exact(6, split)
++
++
++def test_counts_n_4_5_10() -> None:
++    assert len(_check_exact(4, [])[0]) == 3
++    assert len(_check_exact(5, [])[0]) == 4
++    assert len(_check_exact(10, [])[0]) == 7
++    # a fitting file is kept as given
++    assert _check_exact(10, ["1", "2", "3", "4", "5", "6", "7"])[0] == [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
++
++
++def test_draw_is_seeded() -> None:
++    assert _check_exact(10, []) == _check_exact(10, [])
++
++
++def test_real_data_keeps_sas_split() -> None:
++    reference = ROOT / "judge" / "reference"
++    ref_train = pl.read_csv(reference / "model_features_train.csv").get_column("row_id").cast(pl.Float64)
++    ref_valid = pl.read_csv(reference / "model_features_validation.csv").get_column("row_id").cast(pl.Float64)
++    with tempfile.TemporaryDirectory() as tmp:
++        d = Path(tmp)
++        (d / "split_ids.csv").write_text("row_id\n" + "".join(f"{i}\n" for i in ref_train.to_list()))
++        feature_engineering.run(ROOT / "legacy" / "data", d, split_ids=d / "split_ids.csv")
++        train, valid = _outputs(d)
++    assert train == sorted(ref_train.to_list())
++    assert valid == sorted(ref_valid.to_list())
++
++
+ if __name__ == "__main__":
+     test_fractional_ids_g1_witness()
+     test_whole_ids_match_by_value()
++    test_file_that_does_not_fit_is_replaced()
++    test_counts_n_4_5_10()
++    test_draw_is_seeded()
++    test_real_data_keeps_sas_split()
+     print("ok")

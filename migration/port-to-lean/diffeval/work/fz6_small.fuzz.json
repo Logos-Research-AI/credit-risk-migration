@@ -1,0 +1,23 @@
+{
+ "generated": 12,
+ "kept": 8,
+ "counts": {
+  "generated": 12,
+  "rejected_python_returns": 4,
+  "kept": 8,
+  "files:roc_validation,confusion_train,confusion_validation": 2,
+  "flags t=False v=True": 3,
+  "cm_width0": 1,
+  "alllabelnull_unexported_rows": 1,
+  "files:roc_train,confusion_train,confusion_validation": 3,
+  "flags t=True v=False": 3,
+  "files:roc_train,roc_validation,confusion_train,confusion_validation": 2,
+  "flags t=True v=True": 2,
+  "files:roc_validation,confusion_train": 1
+ },
+ "raises": [],
+ "slice_lines": [
+  945,
+  969
+ ]
+}

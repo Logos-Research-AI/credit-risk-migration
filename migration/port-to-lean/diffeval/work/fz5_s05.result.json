@@ -1,0 +1,482 @@
+[
+ {
+  "id": "fz5_s05/tame pd, seeds 500000..500049 (39 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500050..500099 (41 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500100..500149 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500150..500199 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500200..500249 (46 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500250..500299 (41 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500300..500349 (38 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500350..500399 (39 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500400..500449 (45 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500450..500499 (43 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500500..500549 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500550..500599 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500600..500649 (39 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500650..500699 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500700..500749 (46 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500750..500799 (41 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500800..500849 (45 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500850..500899 (44 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500900..500949 (37 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 500950..500999 (37 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501000..501049 (43 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501050..501099 (43 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501100..501149 (47 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501150..501199 (44 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501200..501249 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501250..501299 (46 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501300..501349 (44 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501350..501399 (39 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501400..501449 (41 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501450..501499 (41 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501500..501549 (44 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501550..501599 (45 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501600..501649 (45 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501650..501699 (39 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501700..501749 (38 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501750..501799 (43 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501800..501849 (40 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501850..501899 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501900..501949 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 501950..501999 (40 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 502000..502049 (46 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 502050..502099 (37 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 502100..502149 (40 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 502150..502199 (38 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 502200..502249 (44 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/tame pd, seeds 502250..502299 (39 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600000..600049 (41 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600050..600099 (40 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600100..600149 (43 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600150..600199 (40 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600200..600249 (39 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600250..600299 (43 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600300..600349 (45 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600350..600399 (40 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600400..600449 (42 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600450..600499 (40 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600500..600549 (49 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600550..600599 (38 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600600..600649 (41 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz5_s05/wild pd (NaN, +-inf, -0.0, 2.0, -1.0), seeds 600650..600699 (43 inputs)",
+  "primitive": "train_run_05_association",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

@@ -1,0 +1,38 @@
+[
+ {
+  "id": "fz8m_psi/seeds 70000..72999: kept (2647)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    2782501176171892181,
+    13171084997508307644
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz8m_psi/seeds 70000..72999: rejected, training frame without rows (317)",
+  "primitive": "metrics_run_06_psi",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz8m_psi/seeds 70000..72999: kept, one training row of text null (36): KNOWN DIFFERENCE, see note",
+  "primitive": "metrics_run_06_psi",
+  "note": "Pl.Expr.lt of a Null literal and a one-row String column is an empty column in the prelude, a one-row column in polars",
+  "diffs": [
+   [
+    "int",
+    17739024234331551885,
+    12929756702764860327
+   ]
+  ],
+  "ulps": [],
+  "status": "XFAIL"
+ }
+]

@@ -6,7 +6,7 @@ description: Migrates the legacy SAS program to Lean in the Logos blueprint sas-
 You translate the legacy SAS program in `legacy/` to Lean, in the Logos blueprint
 `sas-credit-risk-spec` (id `3f5df696-7c80-45cc-809f-b2881714663d`). Your brief is
 `migration/legacy-to-lean/brief.md`; your kit record is the rest of `migration/legacy-to-lean/`.
-Follow the kit at `~/GitHub/logos-migration-kit` (its `CLAUDE.md` and README).
+Follow the kit at `~/GitHub/logos-kit` (its `CLAUDE.md` and README; this job predates its one-kit layout, so this repo's own paths and records win where they differ).
 
 - A separate agent translates a Python port of this code, and a third proves the two translations
   equivalent. That proof means something only if the translations are independent. Never look

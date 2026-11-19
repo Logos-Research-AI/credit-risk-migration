@@ -1,0 +1,162 @@
+[
+ {
+  "id": "x27_run_py/x27_one_class/C60 [training scores cut to credit_risk_score]: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/x27_one_class/C60 [training scores cut to credit_risk_score]: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/x27_one_class/C60 [training scores cut to credit_risk_score]: number of files (without printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/x27_one_class/C60 [training scores cut to credit_risk_score]: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/x27_one_class/C60 [training scores cut to credit_risk_score]: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/x27_one_class/C60 [training scores cut to credit_risk_score]: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/x27_one_class/C60 [training scores cut to credit_risk_score]: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/x27_one_class/C60 [training scores cut to credit_risk_score]: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: input table risk_scores_validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: input table risk_scores_train",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: number of files (with printed_roc_metrics.csv)",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "x27_run_py/real_metrics [first 200 validation / 300 training lines, the columns the run reads]: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

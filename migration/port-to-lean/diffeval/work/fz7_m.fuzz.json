@@ -1,0 +1,95 @@
+{
+ "generator": "diffeval/units/fz7_metrics_gen.py",
+ "seeds": "41000..41799",
+ "units": {
+  "metrics_run_01_roc_auc": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_02_ks": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_04_deciles": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_05_cumulative_lift": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_05_cumulative_lift[valid_exists flipped]": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_06_psi": {
+   "kept": 723,
+   "rejected": 77,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_07_calibration": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_08_validation_summary": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_08_validation_summary[valid_exists flipped]": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_09_model_performance": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_09_model_performance[valid_exists flipped]": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_10_printed_roc": {
+   "kept": 800,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  }
+ },
+ "flavours": {
+  "empty_V": 61,
+  "empty_T": 77,
+  "strnull_T": 0
+ }
+}

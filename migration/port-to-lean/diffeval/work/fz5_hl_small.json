@@ -1,0 +1,544 @@
+{
+ "ramp20": {
+  "pre": true,
+  "exp": {
+   "chisq": "4625107934510813392",
+   "dof": 8,
+   "pv": "4609164867504323270",
+   "ng": 10,
+   "rows": [
+    "1/2/4607182418800017408/4594314991293244562/4607182418800017408/4611042647052049262",
+    "2/2/4607182418800017408/4599676419421066581/4607182418800017408/4610184818551597739",
+    "3/2/4607182418800017408/4602893276297759792/4607182418800017408/4609326990051146216",
+    "4/2/4607182418800017408/4604608933298662838/4607182418800017408/4608469161550694693",
+    "5/2/4607182418800017408/4606324590299565884/4607182418800017408/4607611333050243170",
+    "6/2/4607182418800017408/4607611333050243170/4607182418800017408/4606324590299565884",
+    "7/2/4607182418800017408/4608469161550694692/4607182418800017408/4604608933298662840",
+    "8/2/4607182418800017408/4609326990051146216/4607182418800017408/4602893276297759792",
+    "9/2/4607182418800017408/4610184818551597738/4607182418800017408/4599676419421066584",
+    "10/2/4607182418800017408/4611042647052049262/4607182418800017408/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "ties": {
+  "pre": true,
+  "exp": {
+   "chisq": "4622985228206772808",
+   "dof": 1,
+   "pv": "4613978028952031816",
+   "ng": 3,
+   "rows": [
+    "1/7/4616189618054758400/4608983858650965606/4613937818241073152/4617991057905706598",
+    "2/6/4613937818241073152/4613937818241073152/4613937818241073152/4613937818241073152",
+    "3/7/4613937818241073152/4617991057905706598/4616189618054758400/4608983858650965608"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4605380978949069210))]))] [\"x\"]"
+ },
+ "chain+1e-6": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149024)), (some (Float.ofBits 4599075975499547534)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149024)), (some (Float.ofBits 4599075975499547534)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149024)), (some (Float.ofBits 4599075975499547534)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149024)), (some (Float.ofBits 4599075975499547534)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149024)), (some (Float.ofBits 4599075975499547534)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149024)), (some (Float.ofBits 4599075975499547534)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149024))]))] [\"x\"]"
+ },
+ "chain+1e-6+ulp": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149025))]))] [\"x\"]"
+ },
+ "chain+1e-6-ulp": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149023)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149023)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149023)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149023)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4599075957485149023)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4603579539098121011))]))] [\"x\"]"
+ },
+ "nan_pd": {
+  "pre": true,
+  "exp": {
+   "chisq": "9221120237041090560",
+   "dof": 7,
+   "pv": "9221120237041090560",
+   "ng": 9,
+   "rows": [
+    "1/2/4611686018427387904/4596373779694328218/0/4610785298501913805",
+    "2/2/0/4600877379321698714/4611686018427387904/4609884578576439706",
+    "3/2/4611686018427387904/4603579539098121011/0/4608983858650965606",
+    "4/2/0/4605380978949069210/4611686018427387904/4608083138725491507",
+    "5/2/4611686018427387904/4607182418800017408/0/4607182418800017408",
+    "6/2/0/4608083138725491507/4611686018427387904/4605380978949069210",
+    "7/2/0/4609884578576439706/4611686018427387904/4600877379321698712",
+    "8/2/4611686018427387904/4610785298501913805/0/4596373779694328216",
+    "9/4/4611686018427387904/9221120237041090560/4611686018427387904/9221120237041090560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4591870180066957722)), (some (Float.ofBits 9221120237041090560)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 9221120237041090560)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4606281698874543309)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4591870180066957722)), (some (Float.ofBits 9221120237041090560)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 9221120237041090560)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4606281698874543309)), (some (Float.ofBits 4596373779694328218))]))] [\"x\"]"
+ },
+ "null_rows": {
+  "pre": true,
+  "exp": {
+   "chisq": "4622111762207615139",
+   "dof": 7,
+   "pv": "4607416534494932303",
+   "ng": 9,
+   "rows": [
+    "1/1/0/4591870180066957722/4607182418800017408/4606281698874543309",
+    "2/1/4607182418800017408/4596373779694328218/0/4605380978949069210",
+    "3/2/4607182418800017408/4603579539098121012/4607182418800017408/4608983858650965606",
+    "4/2/4611686018427387904/4605380978949069210/0/4608083138725491507",
+    "5/2/4607182418800017408/4607182418800017408/4607182418800017408/4607182418800017408",
+    "6/2/4607182418800017408/4608083138725491508/4607182418800017408/4605380978949069208",
+    "7/1/0/4604480259023595111/4607182418800017408/4599075939470750514",
+    "8/2/4611686018427387904/4609884578576439706/0/4600877379321698712",
+    "9/1/4607182418800017408/4606281698874543309/0/4591870180066957720"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), none, (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), none, (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), none, (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), none, (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), none, (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), none, (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [none, (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4599075939470750516)), (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4602678819172646912)), none, (some (Float.ofBits 4604480259023595111)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4606281698874543309)), (some (Float.ofBits 4591870180066957722)), none, (some (Float.ofBits 4599075939470750516)), (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4603579539098121012)), none, (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4606281698874543309)), (some (Float.ofBits 4591870180066957722)), (some (Float.ofBits 4596373779694328218)), none, (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4603579539098121012))]))] [\"x\"]"
+ },
+ "inf_pd": {
+  "pre": true,
+  "exp": {
+   "chisq": "4630595105818650704",
+   "dof": 8,
+   "pv": "4615034474813328407",
+   "ng": 10,
+   "rows": [
+    "1/2/0/4521832792735477133/4611686018427387904/4611686009420188649",
+    "2/2/4611686018427387904/4596373779694328218/0/4610785298501913805",
+    "3/2/0/4600877379321698714/4611686018427387904/4609884578576439706",
+    "4/2/4611686018427387904/4603579539098121011/0/4608983858650965606",
+    "5/2/0/4605380978949069210/4611686018427387904/4608083138725491507",
+    "6/2/4611686018427387904/4607182418800017408/0/4607182418800017408",
+    "7/2/0/4608083138725491507/4611686018427387904/4605380978949069210",
+    "8/2/4611686018427387904/4608983858650965606/0/4603579539098121012",
+    "9/2/0/4609884578576439706/4611686018427387904/4600877379321698712",
+    "10/2/4611686018427387904/4611686009420188649/0/4521832792735612928"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 9218868437227405312)), (some (Float.ofBits 18442240474082181120)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4591870180066957722)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4604480259023595110)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 9218868437227405312)), (some (Float.ofBits 18442240474082181120)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4591870180066957722)), (some (Float.ofBits 4603579539098121011)), (some (Float.ofBits 4604480259023595110)), (some (Float.ofBits 4605380978949069210))]))] [\"x\"]"
+ },
+ "pd_gt1_lt0": {
+  "pre": true,
+  "exp": {
+   "chisq": "4625578821315408776",
+   "dof": 8,
+   "pv": "4609785151730144919",
+   "ng": 10,
+   "rows": [
+    "1/2/0/4521832792735477133/4611686018427387904/4611686009420188649",
+    "2/2/0/4521832792735477133/4611686018427387904/4611686009420188649",
+    "3/2/0/4600877379321698714/4611686018427387904/4609884578576439706",
+    "4/2/4611686018427387904/4603579539098121011/0/4608983858650965606",
+    "5/2/0/4605380978949069210/4611686018427387904/4608083138725491507",
+    "6/2/4611686018427387904/4607182418800017408/0/4607182418800017408",
+    "7/2/4611686018427387904/4608983858650965606/0/4603579539098121012",
+    "8/2/0/4609884578576439706/4611686018427387904/4600877379321698712",
+    "9/2/4611686018427387904/4611686009420188649/0/4521832792735612928",
+    "10/2/4611686018427387904/4611686009420188649/0/4521832792735612928"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4611686018427387904)), (some (Float.ofBits 13830554455654793216)), (some (Float.ofBits 4609434218613702656)), (some (Float.ofBits 13826050856027422720)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4604480259023595110)), (some (Float.ofBits 4605380978949069210)), (some (Float.ofBits 4611686018427387904)), (some (Float.ofBits 13830554455654793216)), (some (Float.ofBits 4609434218613702656)), (some (Float.ofBits 13826050856027422720)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4600877379321698714)), (some (Float.ofBits 4599075939470750515)), (some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4604480259023595110)), (some (Float.ofBits 4605380978949069210))]))] [\"x\"]"
+ },
+ "negzero": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 9223372036854775808)), (some (Float.ofBits 0)), (some (Float.ofBits 9223372036854775808)), (some (Float.ofBits 0)), (some (Float.ofBits 9223372036854775808)), (some (Float.ofBits 0)), (some (Float.ofBits 9223372036854775808)), (some (Float.ofBits 0)), (some (Float.ofBits 9223372036854775808)), (some (Float.ofBits 0)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912))]))] [\"x\"]"
+ },
+ "pd_all0": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))]))] [\"x\"]"
+ },
+ "pd_all1": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408))]))] [\"x\"]"
+ },
+ "pd_1e-6": {
+  "pre": true,
+  "exp": {
+   "chisq": "4704985334441514460",
+   "dof": 1,
+   "pv": "4695978135186773468",
+   "ng": 3,
+   "rows": [
+    "1/5/4613937818241073152/4527516983983565040/4611686018427387904/4617315512332101490",
+    "2/10/4617315517961601024/4617315517961601024/4617315517961601024/4617315517961601024",
+    "3/5/4611686018427387904/4617315512332101490/4613937818241073152/4527516983983341568"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4517329193108106637)), (some (Float.ofBits 4517329193108106637)), (some (Float.ofBits 4517329193108106637)), (some (Float.ofBits 4517329193108106637)), (some (Float.ofBits 4517329193108106637)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4607182409792818153)), (some (Float.ofBits 4607182409792818153)), (some (Float.ofBits 4607182409792818153)), (some (Float.ofBits 4607182409792818153)), (some (Float.ofBits 4607182409792818153))]))] [\"x\"]"
+ },
+ "y_big53": {
+  "pre": true,
+  "exp": {
+   "chisq": "5103119107064521778",
+   "dof": 8,
+   "pv": "5087397585319185388",
+   "ng": 10,
+   "rows": [
+    "1/2/4845873199050653696/4594314991293244562/14069245235905429502/4611042647052049262",
+    "2/2/0/4599676419421066581/4611686018427387904/4610184818551597739",
+    "3/2/4845873199050653696/4602893276297759792/14069245235905429502/4609326990051146216",
+    "4/2/0/4604608933298662838/4611686018427387904/4608469161550694693",
+    "5/2/4845873199050653696/4606324590299565884/14069245235905429502/4607611333050243170",
+    "6/2/0/4607611333050243170/4611686018427387904/4606324590299565884",
+    "7/2/4845873199050653696/4608469161550694692/14069245235905429502/4604608933298662840",
+    "8/2/0/4609326990051146216/4611686018427387904/4602893276297759792",
+    "9/2/4845873199050653696/4610184818551597738/14069245235905429502/4599676419421066584",
+    "10/2/0/4611042647052049262/4611686018427387904/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_big52+1": {
+  "pre": true,
+  "exp": {
+   "chisq": "5094111907809780790",
+   "dof": 8,
+   "pv": "5078390386064444401",
+   "ng": 10,
+   "rows": [
+    "1/2/4841369599423283202/4594314991293244562/14064741636278059008/4611042647052049262",
+    "2/2/0/4599676419421066581/4611686018427387904/4610184818551597739",
+    "3/2/4841369599423283202/4602893276297759792/14064741636278059008/4609326990051146216",
+    "4/2/0/4604608933298662838/4611686018427387904/4608469161550694693",
+    "5/2/4841369599423283202/4606324590299565884/14064741636278059008/4607611333050243170",
+    "6/2/0/4607611333050243170/4611686018427387904/4606324590299565884",
+    "7/2/4841369599423283202/4608469161550694692/14064741636278059008/4604608933298662840",
+    "8/2/0/4609326990051146216/4611686018427387904/4602893276297759792",
+    "9/2/4841369599423283202/4610184818551597738/14064741636278059008/4599676419421066584",
+    "10/2/0/4611042647052049262/4611686018427387904/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4841369599423283201)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4841369599423283201)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4841369599423283201)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4841369599423283201)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4841369599423283201)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_big2^53+2": {
+  "pre": true,
+  "exp": {
+   "chisq": "5103119107064521783",
+   "dof": 8,
+   "pv": "5087397585319185395",
+   "ng": 10,
+   "rows": [
+    "1/2/4845873199050653698/4594314991293244562/14069245235905429505/4611042647052049262",
+    "2/2/0/4599676419421066581/4611686018427387904/4610184818551597739",
+    "3/2/4845873199050653698/4602893276297759792/14069245235905429505/4609326990051146216",
+    "4/2/0/4604608933298662838/4611686018427387904/4608469161550694693",
+    "5/2/4845873199050653698/4606324590299565884/14069245235905429505/4607611333050243170",
+    "6/2/0/4607611333050243170/4611686018427387904/4606324590299565884",
+    "7/2/4845873199050653698/4608469161550694692/14069245235905429505/4604608933298662840",
+    "8/2/0/4609326990051146216/4611686018427387904/4602893276297759792",
+    "9/2/4845873199050653698/4610184818551597738/14069245235905429505/4599676419421066584",
+    "10/2/0/4611042647052049262/4611686018427387904/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4845873199050653697)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653697)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653697)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653697)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653697)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_2^62": {
+  "pre": true,
+  "exp": {
+   "chisq": "5188687499984561204",
+   "dof": 8,
+   "pv": "5172965978239224815",
+   "ng": 10,
+   "rows": [
+    "1/2/4886405595696988160/4594314991293244562/14109777632551763968/4611042647052049262",
+    "2/2/4886405595696988160/4599676419421066581/14109777632551763968/4610184818551597739",
+    "3/2/4886405595696988160/4602893276297759792/14109777632551763968/4609326990051146216",
+    "4/2/4886405595696988160/4604608933298662838/14109777632551763968/4608469161550694693",
+    "5/2/4886405595696988160/4606324590299565884/14109777632551763968/4607611333050243170",
+    "6/2/4886405595696988160/4607611333050243170/14109777632551763968/4606324590299565884",
+    "7/2/4886405595696988160/4608469161550694692/14109777632551763968/4604608933298662840",
+    "8/2/4886405595696988160/4609326990051146216/14109777632551763968/4602893276297759792",
+    "9/2/4886405595696988160/4610184818551597738/14109777632551763968/4599676419421066584",
+    "10/2/4886405595696988160/4611042647052049262/14109777632551763968/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_2^62_single": {
+  "pre": true,
+  "exp": {
+   "chisq": "5178619925365219958",
+   "dof": 8,
+   "pv": "5162794339262047411",
+   "ng": 10,
+   "rows": [
+    "1/2/4886405595696988160/4594314991293244562/14109777632551763968/4611042647052049262",
+    "2/2/0/4599676419421066581/4611686018427387904/4610184818551597739",
+    "3/2/0/4602893276297759792/4611686018427387904/4609326990051146216",
+    "4/2/0/4604608933298662838/4611686018427387904/4608469161550694693",
+    "5/2/0/4606324590299565884/4611686018427387904/4607611333050243170",
+    "6/2/0/4607611333050243170/4611686018427387904/4606324590299565884",
+    "7/2/0/4608469161550694692/4611686018427387904/4604608933298662840",
+    "8/2/0/4609326990051146216/4611686018427387904/4602893276297759792",
+    "9/2/0/4610184818551597738/4611686018427387904/4599676419421066584",
+    "10/2/0/4611042647052049262/4611686018427387904/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_2^63": {
+  "pre": true,
+  "exp": "RAISE TypeError: unexpected value while building Series of type Int",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4890909195324358656)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_-2^63": {
+  "pre": true,
+  "exp": "RAISE TypeError: unexpected value while building Series of type Int",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 14114281232179134464)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_2^64": {
+  "pre": true,
+  "exp": "RAISE TypeError: unexpected value while building Series of type Int",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4895412794951729152)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_1e300": {
+  "pre": false,
+  "exp": "RAISE OverflowError: (34, 'Result too large')",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 9094988921128908188)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_-2^62": {
+  "pre": true,
+  "exp": {
+   "chisq": "5178619925365219958",
+   "dof": 8,
+   "pv": "5162794339262047411",
+   "ng": 10,
+   "rows": [
+    "1/2/14109777632551763968/4594314991293244562/4886405595696988160/4611042647052049262",
+    "2/2/4611686018427387904/4599676419421066581/0/4610184818551597739",
+    "3/2/4611686018427387904/4602893276297759792/0/4609326990051146216",
+    "4/2/4611686018427387904/4604608933298662838/0/4608469161550694693",
+    "5/2/4611686018427387904/4606324590299565884/0/4607611333050243170",
+    "6/2/4611686018427387904/4607611333050243170/0/4606324590299565884",
+    "7/2/4611686018427387904/4608469161550694692/0/4604608933298662840",
+    "8/2/4611686018427387904/4609326990051146216/0/4602893276297759792",
+    "9/2/4611686018427387904/4610184818551597738/0/4599676419421066584",
+    "10/2/4611686018427387904/4611042647052049262/0/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 14109777632551763968)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_2^62+1k": {
+  "pre": true,
+  "exp": {
+   "chisq": "5184183900357190707",
+   "dof": 8,
+   "pv": "5168462378611854317",
+   "ng": 10,
+   "rows": [
+    "1/2/4886405595696988160/4594314991293244562/14109777632551763968/4611042647052049262",
+    "2/2/4607182418800017408/4599676419421066581/4607182418800017408/4610184818551597739",
+    "3/2/4886405595696988160/4602893276297759792/14109777632551763968/4609326990051146216",
+    "4/2/4607182418800017408/4604608933298662838/4607182418800017408/4608469161550694693",
+    "5/2/4886405595696988160/4606324590299565884/14109777632551763968/4607611333050243170",
+    "6/2/4607182418800017408/4607611333050243170/4607182418800017408/4606324590299565884",
+    "7/2/4886405595696988160/4608469161550694692/14109777632551763968/4604608933298662840",
+    "8/2/4607182418800017408/4609326990051146216/4607182418800017408/4602893276297759792",
+    "9/2/4886405595696988160/4610184818551597738/14109777632551763968/4599676419421066584",
+    "10/2/4607182418800017408/4611042647052049262/4607182418800017408/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4886405595696988160)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_cancel": {
+  "pre": true,
+  "exp": {
+   "chisq": "4627458962370759282",
+   "dof": 8,
+   "pv": "4612102960391748598",
+   "ng": 10,
+   "rows": [
+    "1/2/0/4594314991293244562/4611686018427387904/4611042647052049262",
+    "2/2/4607182418800017408/4599676419421066581/4607182418800017408/4610184818551597739",
+    "3/2/0/4602893276297759792/4611686018427387904/4609326990051146216",
+    "4/2/4607182418800017408/4604608933298662838/4607182418800017408/4608469161550694693",
+    "5/2/0/4606324590299565884/4611686018427387904/4607611333050243170",
+    "6/2/4607182418800017408/4607611333050243170/4607182418800017408/4606324590299565884",
+    "7/2/0/4608469161550694692/4611686018427387904/4604608933298662840",
+    "8/2/4607182418800017408/4609326990051146216/4607182418800017408/4602893276297759792",
+    "9/2/0/4610184818551597738/4611686018427387904/4599676419421066584",
+    "10/2/4607182418800017408/4611042647052049262/4607182418800017408/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 14069245235905429504)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 14069245235905429504)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 14069245235905429504)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 14069245235905429504)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4845873199050653696)), (some (Float.ofBits 14069245235905429504)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_inf": {
+  "pre": false,
+  "exp": "RAISE OverflowError: cannot convert float infinity to integer",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 9218868437227405312)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_nan": {
+  "pre": false,
+  "exp": "RAISE ValueError: cannot convert float NaN to integer",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 9221120237041090560)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_half": {
+  "pre": false,
+  "exp": {
+   "chisq": "4632470725304633447",
+   "dof": 8,
+   "pv": "4616976133332939944",
+   "ng": 10,
+   "rows": [
+    "1/2/0/4594314991293244562/4611686018427387904/4611042647052049262",
+    "2/2/0/4599676419421066581/4611686018427387904/4610184818551597739",
+    "3/2/0/4602893276297759792/4611686018427387904/4609326990051146216",
+    "4/2/0/4604608933298662838/4611686018427387904/4608469161550694693",
+    "5/2/0/4606324590299565884/4611686018427387904/4607611333050243170",
+    "6/2/0/4607611333050243170/4611686018427387904/4606324590299565884",
+    "7/2/0/4608469161550694692/4611686018427387904/4604608933298662840",
+    "8/2/0/4609326990051146216/4611686018427387904/4602893276297759792",
+    "9/2/0/4610184818551597738/4611686018427387904/4599676419421066584",
+    "10/2/0/4611042647052049262/4611686018427387904/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "n3": {
+  "pre": true,
+  "exp": {
+   "chisq": "4617596992938311681",
+   "dof": 1,
+   "pv": "4608589793683570689",
+   "ng": 3,
+   "rows": [
+    "1/1/4607182418800017408/4596373779694328218/0/4605380978949069210",
+    "2/1/0/4602678819172646912/4607182418800017408/4602678819172646912",
+    "3/1/4607182418800017408/4605380978949069210/0/4596373779694328216"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4596373779694328218)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4605380978949069210))]))] [\"x\"]"
+ },
+ "n1": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4602678819172646912))]))] [\"x\"]"
+ },
+ "n2": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4603579539098121011))]))] [\"x\"]"
+ },
+ "n0": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [])), (\"pd_logistic\", (Pl.Col.f64 []))] [\"x\"]"
+ },
+ "all_null_pd": {
+  "pre": true,
+  "exp": "NOFILES",
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [none, none]))] [\"x\"]"
+ },
+ "n10": {
+  "pre": true,
+  "exp": {
+   "chisq": "4628946242713556256",
+   "dof": 8,
+   "pv": "4613184618822873670",
+   "ng": 10,
+   "rows": [
+    "1/1/4607182418800017408/4591215111030249286/0/4606363582504131863",
+    "2/1/0/4595718710657619782/4607182418800017408/4605544746208246318",
+    "3/1/4607182418800017408/4598584637693219188/0/4604725909912360774",
+    "4/1/0/4600222310284990278/4607182418800017408/4603907073616475229",
+    "5/1/4607182418800017408/4601859982876761367/0/4603088237320589684",
+    "6/1/0/4603088237320589684/4607182418800017408/4601859982876761368",
+    "7/1/4607182418800017408/4603907073616475229/0/4600222310284990278",
+    "8/1/0/4604725909912360774/4607182418800017408/4598584637693219188",
+    "9/1/4607182418800017408/4605544746208246319/0/4595718710657619780",
+    "10/1/0/4606363582504131863/4607182418800017408/4591215111030249288"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4591215111030249286)), (some (Float.ofBits 4595718710657619782)), (some (Float.ofBits 4598584637693219188)), (some (Float.ofBits 4600222310284990278)), (some (Float.ofBits 4601859982876761367)), (some (Float.ofBits 4603088237320589684)), (some (Float.ofBits 4603907073616475229)), (some (Float.ofBits 4604725909912360774)), (some (Float.ofBits 4605544746208246319)), (some (Float.ofBits 4606363582504131863))]))] [\"x\"]"
+ },
+ "n11": {
+  "pre": true,
+  "exp": {
+   "chisq": "4627797231802132339",
+   "dof": 9,
+   "pv": "4611918428213353037",
+   "ng": 11,
+   "rows": [
+    "1/1/4607182418800017408/4590669220166325589/0/4606431818862122325",
+    "2/1/0/4595172819793696085/4607182418800017408/4605681218924227243",
+    "3/1/4607182418800017408/4598175219545276416/0/4604930618986332160",
+    "4/1/0/4599676419421066581/4607182418800017408/4604180019048437078",
+    "5/1/4607182418800017408/4601177619296856747/0/4603429419110541994",
+    "6/1/0/4602678819172646912/4607182418800017408/4602678819172646912",
+    "7/1/4607182418800017408/4603429419110541995/0/4601177619296856746",
+    "8/1/0/4604180019048437077/4607182418800017408/4599676419421066582",
+    "9/1/4607182418800017408/4604930618986332160/0/4598175219545276416",
+    "10/1/0/4605681218924227243/4607182418800017408/4595172819793696084",
+    "11/1/4607182418800017408/4606431818862122325/0/4590669220166325592"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4590669220166325589)), (some (Float.ofBits 4595172819793696085)), (some (Float.ofBits 4598175219545276416)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4601177619296856747)), (some (Float.ofBits 4602678819172646912)), (some (Float.ofBits 4603429419110541995)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604930618986332160)), (some (Float.ofBits 4605681218924227243)), (some (Float.ofBits 4606431818862122325))]))] [\"x\"]"
+ },
+ "n100": {
+  "pre": true,
+  "exp": {
+   "chisq": "4639214131694211257",
+   "dof": 8,
+   "pv": "4623477058243806943",
+   "ng": 10,
+   "rows": [
+    "1/10/4613937818241073152/4602678819172646912/4619567317775286272/4621537642612260864",
+    "2/10/4613937818241073152/4609434218613702656/4619567317775286272/4620974692658839552",
+    "3/10/4613937818241073152/4612811918334230528/4619567317775286272/4620130267728707584",
+    "4/10/4616189618054758400/4615063718147915776/4618441417868443648/4619004367821864960",
+    "5/10/4616189618054758400/4616752568008179712/4618441417868443648/4617878467915022336",
+    "6/10/4616189618054758400/4617878467915022336/4618441417868443648/4616752568008179712",
+    "7/10/4616189618054758400/4619004367821864960/4618441417868443648/4615063718147915776",
+    "8/10/4613937818241073152/4620130267728707584/4619567317775286272/4612811918334230528",
+    "9/10/4613937818241073152/4620974692658839552/4619567317775286272/4609434218613702656",
+    "10/10/4613937818241073152/4621537642612260863/4619567317775286272/4602678819172646928"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4572414629676717179)), (some (Float.ofBits 4600427019358961664)), (some (Float.ofBits 4604885582990058455)), (some (Float.ofBits 4592951043977526641)), (some (Float.ofBits 4602408603195004682)), (some (Float.ofBits 4605876374908079964)), (some (Float.ofBits 4597274499619802317)), (some (Float.ofBits 4603534503101847306)), (some (Float.ofBits 4606867166826101473)), (some (Float.ofBits 4599706443418582385)), (some (Float.ofBits 4604525295019868815)), (some (Float.ofBits 4590068740216009523)), (some (Float.ofBits 4601688027254625403)), (some (Float.ofBits 4605516086937890324)), (some (Float.ofBits 4595833347739043758)), (some (Float.ofBits 4603174215131657667)), (some (Float.ofBits 4606506878855911834)), (some (Float.ofBits 4598985867478203105)), (some (Float.ofBits 4604165007049679176)), (some (Float.ofBits 4585204852618449388)), (some (Float.ofBits 4600967451314246124)), (some (Float.ofBits 4605155798967700685)), (some (Float.ofBits 4594392195858285199)), (some (Float.ofBits 4602813927161468027)), (some (Float.ofBits 4606146590885722194)), (some (Float.ofBits 4598265291537823826)), (some (Float.ofBits 4603804719079489536)), (some (Float.ofBits 4607137382803743703)), (some (Float.ofBits 4600246875373866844)), (some (Float.ofBits 4604795510997511045)), (some (Float.ofBits 4592230468037147361)), (some (Float.ofBits 4602228459209909862)), (some (Float.ofBits 4605786302915532554)), (some (Float.ofBits 4596914211649612677)), (some (Float.ofBits 4603444431109299896)), (some (Float.ofBits 4606777094833554063)), (some (Float.ofBits 4599526299433487565)), (some (Float.ofBits 4604435223027321405)), (some (Float.ofBits 4589348164275630244)), (some (Float.ofBits 4601507883269530583)), (some (Float.ofBits 4605426014945342915)), (some (Float.ofBits 4595473059768854118)), (some (Float.ofBits 4603084143139110257)), (some (Float.ofBits 4606416806863364424)), (some (Float.ofBits 4598805723493108285)), (some (Float.ofBits 4604074935057131766)), (some (Float.ofBits 4582862980812216730)), (some (Float.ofBits 4600787307329151304)), (some (Float.ofBits 4605065726975153275)), (some (Float.ofBits 4594031907888095560)), (some (Float.ofBits 4602723855168920617)), (some (Float.ofBits 4606056518893174784)), (some (Float.ofBits 4597995075560181596)), (some (Float.ofBits 4603714647086942126)), (some (Float.ofBits 4607047310811196293)), (some (Float.ofBits 4600066731388772024)), (some (Float.ofBits 4604705439004963635)), (some (Float.ofBits 4591509892096768082)), (some (Float.ofBits 4602048315224815043)), (some (Float.ofBits 4605696230922985144)), (some (Float.ofBits 4596553923679423037)), (some (Float.ofBits 4603354359116752486)), (some (Float.ofBits 4606687022841006653)), (some (Float.ofBits 4599346155448392745)), (some (Float.ofBits 4604345151034773996)), (some (Float.ofBits 4588087156379966505)), (some (Float.ofBits 4601327739284435763)), (some (Float.ofBits 4605335942952795505)), (some (Float.ofBits 4595112771798664479)), (some (Float.ofBits 4602994071146562847)), (some (Float.ofBits 4606326734870817014)), (some (Float.ofBits 4598625579508013466)), (some (Float.ofBits 4603984863064584356)), (some (Float.ofBits 4579800533065604792)), (some (Float.ofBits 4600607163344056484)), (some (Float.ofBits 4604975654982605865)), (some (Float.ofBits 4593671619917905920)), (some (Float.ofBits 4602588747180099502)), (some (Float.ofBits 4605966446900627374)), (some (Float.ofBits 4597634787589991956)), (some (Float.ofBits 4603624575094394716)), (some (Float.ofBits 4606957238818648883)), (some (Float.ofBits 4599886587403677204)), (some (Float.ofBits 4604615367012416225)), (some (Float.ofBits 4590789316156388803)), (some (Float.ofBits 4601868171239720223)), (some (Float.ofBits 4605606158930437734)), (some (Float.ofBits 4596193635709233398)), (some (Float.ofBits 4603264287124205076)), (some (Float.ofBits 4606596950848459244)), (some (Float.ofBits 4599166011463297925)), (some (Float.ofBits 4604255079042226586)), (some (Float.ofBits 4586646004499207946)), (some (Float.ofBits 4601147595299340943)), (some (Float.ofBits 4605245870960248095)), (some (Float.ofBits 4594752483828474839)), (some (Float.ofBits 4602903999154015437)), (some (Float.ofBits 4606236662878269604)), (some (Float.ofBits 4598445435522918646)), (some (Float.ofBits 4603894791072036946))]))] [\"x\"]"
+ },
+ "y_all1": {
+  "pre": true,
+  "exp": {
+   "chisq": "4632470725304633449",
+   "dof": 8,
+   "pv": "4616976133332939945",
+   "ng": 10,
+   "rows": [
+    "1/2/4611686018427387904/4594314991293244562/0/4611042647052049262",
+    "2/2/4611686018427387904/4599676419421066581/0/4610184818551597739",
+    "3/2/4611686018427387904/4602893276297759792/0/4609326990051146216",
+    "4/2/4611686018427387904/4604608933298662838/0/4608469161550694693",
+    "5/2/4611686018427387904/4606324590299565884/0/4607611333050243170",
+    "6/2/4611686018427387904/4607611333050243170/0/4606324590299565884",
+    "7/2/4611686018427387904/4608469161550694692/0/4604608933298662840",
+    "8/2/4611686018427387904/4609326990051146216/0/4602893276297759792",
+    "9/2/4611686018427387904/4610184818551597738/0/4599676419421066584",
+    "10/2/4611686018427387904/4611042647052049262/0/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408)), (some (Float.ofBits 4607182418800017408))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ },
+ "y_all0": {
+  "pre": true,
+  "exp": {
+   "chisq": "4632470725304633447",
+   "dof": 8,
+   "pv": "4616976133332939944",
+   "ng": 10,
+   "rows": [
+    "1/2/0/4594314991293244562/4611686018427387904/4611042647052049262",
+    "2/2/0/4599676419421066581/4611686018427387904/4610184818551597739",
+    "3/2/0/4602893276297759792/4611686018427387904/4609326990051146216",
+    "4/2/0/4604608933298662838/4611686018427387904/4608469161550694693",
+    "5/2/0/4606324590299565884/4611686018427387904/4607611333050243170",
+    "6/2/0/4607611333050243170/4611686018427387904/4606324590299565884",
+    "7/2/0/4608469161550694692/4611686018427387904/4604608933298662840",
+    "8/2/0/4609326990051146216/4611686018427387904/4602893276297759792",
+    "9/2/0/4610184818551597738/4611686018427387904/4599676419421066584",
+    "10/2/0/4611042647052049262/4611686018427387904/4594314991293244560"
+   ]
+  },
+  "in": "(fun (x : Option Float) (a b : Int) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String) ++ \"/\" ++ toString a ++ \"/\" ++ toString b) (fun (x : Option Float) => (match x with | none => \"N\" | some v => toString v.toBits.toNat : String)) (fun (x : Float) (d : Int) => x / (Float.ofInt d + 3.0)) (fun (x : Float) => x * x) [(\"default_flag\", (Pl.Col.f64 [(some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0)), (some (Float.ofBits 0))])), (\"pd_logistic\", (Pl.Col.f64 [(some (Float.ofBits 4587023449039406616)), (some (Float.ofBits 4591527048666777112)), (some (Float.ofBits 4594314991293244562)), (some (Float.ofBits 4596030648294147608)), (some (Float.ofBits 4597746305295050654)), (some (Float.ofBits 4598818590920615058)), (some (Float.ofBits 4599676419421066581)), (some (Float.ofBits 4600534247921518104)), (some (Float.ofBits 4601392076421969627)), (some (Float.ofBits 4602249904922421150)), (some (Float.ofBits 4602893276297759793)), (some (Float.ofBits 4603322190547985554)), (some (Float.ofBits 4603751104798211316)), (some (Float.ofBits 4604180019048437077)), (some (Float.ofBits 4604608933298662839)), (some (Float.ofBits 4605037847548888600)), (some (Float.ofBits 4605466761799114362)), (some (Float.ofBits 4605895676049340123)), (some (Float.ofBits 4606324590299565885)), (some (Float.ofBits 4606753504549791646))]))] [\"x\"]"
+ }
+}

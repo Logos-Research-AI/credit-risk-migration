@@ -1,5 +1,51 @@
 # Texts of `def:pyPipeline`, `def:PyLinks`, `def:Paired` (version 3, 2026-11-17)
 
+## Change note, 2026-11-19, latest (correction C-m)
+
+Port-translator's fix of `def:train_run_08_ctable_precond` (accepted rev 00420db1): the null
+clauses of train.py :482 and :486 are guarded (:482 by `final.isSome = true`, :486 by
+`ctable_made = true`). No text of `pyPipeline`, `PyLinks` or `Paired` changed. The four items the
+write cleared were restored unchanged by the prover. Section **C-m** at the end of the corrections.
+
+## Change note, 2026-11-19, before C-m (correction C-l)
+
+Owner's trusted base B4 item 2 (informal-spec amendment 2): made formal with no change. No
+precondition of the blueprint asks `solve` or `inv` to return or a matrix to be invertible, and
+the Lean routines are total functions of `def:PyParams`, so `PyLinks` needs no clause and no item
+was changed. Section **C-l** at the end of the corrections.
+
+## Change note, 2026-11-19, before C-l (correction C-k)
+
+Owner's decisions of 2026-11-19 ("G2 fit": "Add the clause"; "S6 lemmas": "Restate for the
+pipeline's split"). `PyLinks` gains clause 14 at the end (the final fit's first name is
+`Intercept`, on every argument). New lemmas `lem:py_split_ids_rowids` and `lem:py_split_fits`,
+stated, owed in C-j. Everything cleared was restored; four witness proofs got one added case each.
+Section **C-k** at the end of the corrections.
+
+## Change note, 2026-11-19, earlier (correction C-j)
+
+Owner's decision of 2026-11-19 on the T0 disproof ("Port split": "Fix the port"). The port's split
+now selects exactly (7n+9)/10 distinct ids among the input's (port commit 4a757fb). `PyLinks` 5 is
+restated to say so (text, then Lean in place at position 5). `Paired` 2 and `SasLinks` (5) line up
+again. Section **C-j** at the end of the corrections.
+
+## Change note, 2026-11-19, later (correction C-i)
+
+Lead's second task of 2026-11-19 (prover), on the review findings against C-h. `PyLinks` 7b gains the
+guard of `SasLinks` (8) (both feature flags at F, the fit giving the result with no fit); conjunct
+16 (`readScoresTrain`) takes the C-h form with the readability guard and the window of 20 rows;
+8b and 8c gain the readability guard; the read-back of the table with no row and the raw test
+table with no row are defined by the file they stand for; `ScoreRun` text no longer calls both
+disjuncts reached-facts. Section **C-i** at the end of the corrections.
+
+## Change note, 2026-11-19 (correction C-h)
+
+Lead's task of 2026-11-19, with the owner's decisions: `Paired` 5 restates `SasLinks` (8) of the
+refreshed profile; `Paired` 1 and `pyPipeline` text only; `PyLinks` head and citations; `PyLinks`
+13 `matmul` only for a non-empty b; `PyLinks` 8 `keeps` restated so that it is true of the real
+reader on every table; `PyLinks` 5 restated so that it is true of the real split; new
+`lem:py_scores_valid_empty`. Section **C-h** at the end of the corrections.
+
 ## Change note, 2026-11-18 (correction C-g, version 2; new `def:ScoreRun`)
 
 Entered for the lead as a records task (the lead commits); no blueprint item and no code was
@@ -457,7 +503,8 @@ no outcome at all).
 clauses 6, 7 (the training score flag, 7b) and conjunct 16 are changed in place. Positions after
 the edit: 1 to 5; 6 (the fit, changed); 7 to 10; 11 (`scoresTrainExists`, changed: 7b); 12; 13
 to 15; 16 (`readScoresTrain`, changed); 17 to 20; then 21 (clause 12, `fsum`), 22 to 24 (8b), 25
-(8c), 26 (6b), 27 (clause 13). Every position and argument list is read again from the accepted
+(8c), 26 (6b), 27 (clause 13, `einsum_q`); then 28 and 29 (clause 13, `matmul` and
+`matvec`; owner, 2026-11-18). Every position and argument list is read again from the accepted
 units before the Lean is entered.
 
 **Head of `PyLinks`.** The sentence "Nothing is asked of the formatters, the numpy routines,
@@ -578,7 +625,20 @@ For every list of real numbers all at least 0, `fsum` of the list is at least 0.
 #### `PyLinks` 13, one value per row (appended, position 27; new)
 
 For every matrix x and every matrix v, `einsum_q x v` has as many entries as x has rows.
+For every matrix a and every matrix b, `matmul a b` has as many rows as a has rows, each with as
+many entries as the first row of b has (so the product X'X of a matrix X, formed as the units
+form it, is square of the column count of X). For every matrix a and every vector v, `matvec a v`
+has as many entries as a has rows. (`np.matmul`, `@`: the shape of the product, whenever it
+returns.)
 
+- **Shapes of `matmul` and `matvec`** (owner, 2026-11-18): the last two sentences above, as facts
+  about numpy. They are what the accepted preconditions ask of the two routines: step 03
+  (`train_run_03_fit_global_rsquare_precond`: `_kept_precond` of X'X, a square 2-D array;
+  `_solve_sas_precond` of i0, the scaled X'X, and u0 = `matvec` of X' on the centred outcomes, a
+  vector of i0's size) and `classification_table_precond` ((4') `_inv_sas_precond` of
+  X'(x w), a square 2-D array; (5) p, `_expit` of `matvec x beta`, of the length of y). The
+  accepted preconditions of `_kept`, `_inv_sas` and `_solve_sas` ask nothing of `inv` and
+  `solve` ("the library routines play no part"), so clause 13 has no line for them.
 - **Reason**: `classification_table_precond` (5) asks that the leverages have the length of y.
   Stated of the routine: true of `np.einsum("ij,jk,ik->i", x, v, x)` whenever it returns, met by
   T1's witness ("0 for each row").
@@ -678,6 +738,633 @@ The 47 statement consumers of `def:PyLinks` and the 5 more of `def:Paired` (52; 
 units clears about 21 more (section 6.3 there); the profile refresh reaches 24 more (6.4).
 Fetch `statement_lean` and `proof_lean` of all of them before clearing, and count the items
 (322 by `get_status` on 2026-11-18).
+
+### C-h, 2026-11-19
+
+Lead's task of 2026-11-19 (prover), with the owner's decisions of 2026-11-18 and 2026-11-19. The
+lead lifted the rule "change no existing item" for `def:Paired`, `def:PyLinks`, `def:pyPipeline`,
+`def:ScoreRun` for this task only (`def:ScoreRun` was not changed). Order: this section, then the
+text of each item, then its Lean. Where C-h and an older text of this file differ, C-h is in force.
+The owner's rule of 2026-11-18 stands: no contract gets a hypothesis of its own; a narrowing is
+the owner's, reported and never taken.
+
+#### `Paired` 1, text only
+
+Clause 1 keeps the delivery of `SasLinks` (1), (2), (2b) as it was before the tightening of C-g
+(its own local `deliveredRow`, `textColumn`, `deliveredCell`, `deliveredTable`; Lean unchanged).
+The refreshed `SasLinks` adds to `deliveredCell` one conjunct in each text branch (the delivered
+text has no surrounding blanks: `Sas.trimBlanks` leaves it as it is). The tightened delivery
+implies the old one (one conjunct more), a helper of T0, so every `sas` meeting the refreshed
+`SasLinks` meets clause 1.
+
+#### `Paired` 5, `SasLinks` (8) word for word (Lean changed in place)
+
+- **Before**: the six SAS flags with one case each; the training score flag "true of S exactly
+  when `score` returns S for some model and table".
+- **After**: as the refreshed profile has it. The training score flag is true of S exactly when
+  `score` of `sasPipelineOf sas` returns S for some model and table, **or** there is a table F with
+  `train_inputs_stop (sas.featTrainExists F) (sas.featValidExists F) = false`,
+  `logistic_no_fit (sas.readFeatures F) = true` and S =
+  `risk_scores_train_clean (risk_scores_train (logit_scored_train
+  (logit_scored_train_output_nofit (sas.readFeatures F))))` (the training score table written
+  without a model). The other five flags as before. Same position, same order of the six as in
+  `SasLinks` (8): feature train, feature validation, training score, validation score, medians,
+  coefficients.
+- **Reason**: C-d condition 3 (`Paired` 5 and `SasLinks` (8) literally the same clause). The
+  profile refresh after the SAS clearing gave `SasLinks` (8) the second case; `Paired` 5 still had
+  the old one, so a `sas` meeting `Paired` did not meet `SasLinks` (8) on a run without a model.
+
+#### `pyPipeline`, text only
+
+"five read-backs" becomes "four read-backs" (the record has four: `readFeatures` for both feature
+files, `readMedians`, `readScoresValid`, `readScoresTrain`). Lean unchanged, resubmitted.
+
+#### `PyLinks` head, text
+
+"Nothing is asked of `full`, `chi2`, or of the formatters `fmt_wd`, `fmt_oddsr`, `sas_d8`,
+`sas_d12_3`, `sas_pvalue`. Of the formatter `sas_best12` only clause 2, of the formatter `sas_best`
+and of `parse_float` only clause 10, of `input_best32` only clauses 1 and 2, of `today` only clause
+11, of `fsum` only clause 12, of the numpy routines only clause 13 (`einsum_q`, `matmul`,
+`matvec`; nothing of `inv`, `solve`, `dot`, `log1p`, `pow2`)."
+
+#### `PyLinks`, line citations (text; checked against `port/` at HEAD 3272e9d)
+
+- Clause 6: `sas_compat.py` 1069-1072 (the result with no fit: `np.unique(y).size < 2`,
+  `return StepwiseResult(), ""`), 1120, 1208 (the final fit), 952, 964 (`LogisticFit(..., b,
+  _inv_sas(info), ...)`: coefficients and covariance).
+- Clause 11: `metrics_calculation.py` 545 and `train.py` 888 (`dt.date.today()`), `sas_compat.py`
+  275 (`today_date9`).
+- Clause 12: `sas_compat.py` 1319-1320 (`math.fsum`).
+
+#### `PyLinks` 13, `matmul` (owner, 2026-11-19; Lean changed in place, position 28)
+
+- **Before**: for every a and b, `matmul a b` has as many rows as a, each as long as the first row
+  of b.
+- **After**: the same for every a and every b that is not the empty list. `matvec` unchanged.
+- **Reason**: numpy gives a k by k matrix for X'X when X has no row (`a` = X' has k empty rows,
+  `b` = X = []); as lists, the first row of [] has length 0, so the line was false there. Lists
+  cannot say the column count of a matrix with no row.
+
+#### `PyLinks` 8, `keeps` for `readFeatures`, `readMedians`, `readScoresValid` (owner, 2026-11-19; Lean changed in place, positions 13 to 15)
+
+The read-back of a table t is what `proc_import_csv` (`sas_compat.py` 557-592) returns, as a table,
+on the file `write_sas_csv` (`sas_compat.py` 597-657, with `_render_column`) writes from the frame of t
+(`Pl.ofTable t`: the names and kinds of the first row). Guessing window: every row for the two
+feature files (`train.py` 46-51, `guessingrows=None`); the first 20 rows for the medians file
+(`predict.py` 211, the default) and the validation score file (`metrics_calculation.py` 107).
+Formats of the writer: none for the feature files; `best32.` on `median_income` and
+`overall_median_income` (`feature_engineering.py` 365-369); `percent8.2` on `interest_rate` of the
+score files (`train.py` 846-853).
+
+- **Before**: for every table t, the rows and names kept, a numeric cell of a listed column read
+  back numeric (a missing one missing), and one kind per column kept (C-f).
+- **After**: a table t is *readable*, for the list of formatted columns of its file, when
+  1. every row has the column names of the first row, in the same order;
+  2. those names are distinct, each of 1 to 32 characters, none contains a double quote, and the
+     first does not begin with the byte-order mark U+FEFF;
+  3. when t has a row, its first row has a column;
+  4. each column holds one kind of cell in every row (C-f, `oneKind`);
+  5. when t has a row, each formatted column is a numeric cell of the first row.
+
+  On every readable table the read-back returns a table with the same number of rows in the same
+  order, each row with the same column names in the same order, and one kind of cell per column;
+  and in each listed column (all 42 feature columns; the three medians columns; `row_id`,
+  `default_flag`, `pd_logistic`, `credit_risk_score` of the validation score file) a numeric cell
+  is read back as a numeric cell, a missing one missing, **or**, when every row of the guessing
+  window holds the missing number in that column, as a text cell. Nothing is asked of other tables
+  or of the values.
+- **True of the code** (probes of 2026-11-19 on the port at HEAD, polars 2.1.0, write then read):
+  on a readable table the writer does not raise and the reader keeps every row and every name; a
+  numeric column is written as number texts (`sas_best12`, `best32.`) and empty fields, so it is
+  read as numbers when some cell of the window is present, and as text of width 1 when none is
+  (H15; for the medians and validation score files a later present cell is then cut to its first
+  character: `[None]*20 + [123.25]` reads `'1'` in row 21); a single-column file of empty fields
+  keeps its rows; `Pl.toTable` gives every column one kind.
+- **What the code does on other tables** (why each condition is there): a name of more than 32
+  characters is cut (two names equal after the cut: `ValueError`); an empty name becomes `VARn`; a
+  name with a double quote is read with the quote doubled (`a"b` reads `a""b`); a leading U+FEFF
+  is dropped; a frame with no column gives an empty file (`NoDataError`); a row whose names differ
+  from the first row's is written under the first row's names; a cell of another kind than its
+  column's first cell is written empty; the writer raises on a formatted column that is absent or
+  text. The numeric window case is no longer outside the clause: it is its second disjunct.
+- **The table with no row**: readable (every condition holds of it), so the read-back of [] is []:
+  the real file of a table with no row is the header of the script's frame, which the reader
+  returns with no row (H13 (a), H15).
+- **Unchanged by C-h**: conjunct 16 (`readScoresTrain`, H15) and its recorded limit (true on the
+  files a valid run reaches, not on every table); 8b and 8c. The owner's task named the three
+  read-backs only. 8b, 8c and conjunct 16 are not true of the real reader on every table either
+  (a name with a double quote, rows with other names, a column of two kinds): reported, not
+  changed.
+- **Lean, in words**: a local `readable fmt t` (the five conditions; 4 is `oneKind t`); `keeps R win
+  fmt cols` is: for every readable t, the `Forall₂` of rows (equal names; for c listed, from a
+  numeric cell v, either a numeric cell w with v none implying w none, or every row of `win t`
+  holds `Cell.num none` under c and the read-back cell is a text cell), and `oneKind (R t)`. Window
+  `fun t => t` for the features, `List.take 20` for the medians and validation score files.
+
+#### `PyLinks` 5, the split (owner, 2026-11-19; Lean changed in place, position 5)
+
+- **Before** (C-a): the split table has the one numeric column `row_id`; the ids listed are
+  distinct and among those given; for present, pairwise distinct ids, their number is
+  (7n + 9) / 10.
+- **The code** (`feature_engineering.py` 343-350): `pl.read_csv(split_ids, columns=["row_id"],
+  infer_schema=False)` of a fixed file (`inputs/split_ids.csv`, SAS's draw on the 150,000 real
+  rows), then `input_best32`: a Float64 column, a cell missing where the text is blank or not a
+  number. The file depends on neither the seed nor the ids of the input. Its ids may repeat, be
+  missing, or not be among the ids given. Then (`def:fe_run_06_split`): a feature row is a
+  training row exactly when its `row_id` equals, by value, a present id of the table; a row whose
+  `row_id` is present and not listed is a validation row; a row with a missing `row_id` is in
+  neither set; a repeated id, an id of no row and a missing id have no effect; both sets keep the
+  order of the rows. The number of training rows is the number of rows whose id is listed:
+  anything from 0 to every row. The code guarantees no count, no distinctness and no membership.
+- **After**: for every seed and list of ids, the split table is a table with the one numeric
+  column `row_id`, one row per entry, each cell a number or missing. Nothing more.
+- **SAS side, through the profile**: `SasLinks` (5) asks, for every seed and table, that every row
+  gets `Selected` 0 or 1 and that the number selected is (7n + 9) / 10 (PROC SURVEYSELECT
+  `samprate=0.7 seed=42 outall`, `feature_engineering.sas` 323-335). `Paired` 2 (C-b) defines
+  the SAS split from the port's table and asks no count, so it is unchanged and still satisfiable.
+  **The pair no longer matches in the count**: a paired `sas` meets `SasLinks` (5) on a table t
+  exactly when the port's table lists exactly (7n + 9) / 10 of the ids of t, which no clause now
+  gives (C-b had already accepted that (5) is not derived for every paired `sas`; it was still
+  derivable on the ids of a valid run, and is no longer). For the real file it holds on the
+  150,000 real rows, and not in general.
+- **Reason**: the old clause was false of the real code (the file is fixed; on any input other
+  than the real data its ids need not be among those given, and the count fails).
+
+#### `lem:py_scores_valid_empty` (new item, stated, not proved)
+
+Under `PyLinks py`, `py.scoresValidExists [] = true`: the fact C-g says is "to be proved once"
+(the validation score table of a run without a model is the table with no row, which the score
+step returns on the table with no row), needed for the run without a model of E8 to E11, F5, F6.
+The contracts run proves it.
+
+#### Consumers that need new proof work
+
+- From 8 (C-h): every proof that uses `keeps` on `readFeatures`, `readMedians` or
+  `readScoresValid` must first show the table readable (names: rectangular, distinct, 1 to 32
+  characters, no double quote, no leading U+FEFF; one kind per column; `interest_rate` and the two
+  medians numeric in the first row) and then exclude the second disjunct for each listed column
+  it uses (some row of the window holds a present number there), or carry the text case.
+  Directly: `lem:sas_reached_feature_shape`, `lem:sas_reached_scores_read_shape`,
+  `lem:metrics_score_frames`, `lem:metrics_flags_reached`, E1, E2, E3, E4, E6, E8 to E11, F1, F5,
+  F6, A2, A4, G2, G4, T0 and T1 (the identity read-back: readable gives `oneKind t`, so it meets
+  the new form), the examples on reached tables, and the new `lem:py_scores_valid_empty` (the
+  table with no row is readable: the read-back of [] is []). Expected hardest: a feature column
+  missing in every row of a valid run (the port then reads it as text, the fit frame's numeric
+  condition fails); for the medians file, a median missing in the first 20 rows.
+- From 5: everything that used the count, distinctness or membership of the split ids.
+  `lem:py_split_input_ids`, `lem:sas_split_input_ids`; the "validation set is not empty" lemma of
+  G57 (no longer derivable: with the fixed file the validation set can be empty, or the training
+  set, on a valid input of at least 4 rows; then the train stage raises, H13 (a)); G1, G2 and
+  every contract whose run reaches train (E3, E5, A2, F3, F4, the metrics level, G4); T0's second
+  half (`SasLinks` (5) for the paired `sas`); the precondition `fe_run_06_split_precond` asks
+  `split_ids ≠ []`, which the clause no longer gives (it is that precondition's own narrowing).
+  Where a contract needs a count or a non-empty set, it goes to the owner as a narrowing; nothing
+  is added here.
+
+#### Cleared by C-h
+
+No formalized consumer: every statement consumer of `def:pyPipeline`, `def:PyLinks` and `def:Paired`
+was already unformalized (334 items, 263 formalized at the start). The edits cleared and restored
+`def:pyPipeline` (same Lean), `def:PyLinks` and `def:Paired` (new Lean). `lem:py_score_fillers_idle`
+does not depend on them and is untouched (state TheoremProved).
+Accepted revisions: `def:pyPipeline` f3d96a77d2c0465bbd3b25d2db113e36 (Lean as before),
+`def:PyLinks` 2fbfb39e1c8e496aa90427fdfd1d6a41, `def:Paired` daf7228889fa4fe085d2d32b8d6825f2,
+`lem:py_scores_valid_empty` 1a6bd86cb93242a9b5b44531c8aa17f2 (statement; proof to write).
+`get_status` at the end: 335 items (one new), 264 statements formalized. `def:ScoreRun` unchanged.
+
+### C-i, 2026-11-19 (later)
+
+Lead's task of 2026-11-19 (prover), on the review of C-h; owner's rule of 2026-11-18/19 (no
+contract keeps a hypothesis of its own; a narrowing is the owner's, reported, never taken). The lead
+lifted "change no existing item" for `def:Paired`, `def:PyLinks`, `def:pyPipeline`, `def:ScoreRun`
+for this task. Changed: `def:PyLinks` (text and Lean), `def:ScoreRun` (text only). `def:Paired` and
+`def:pyPipeline`: no finding against them; not touched. Where C-i and an older text of this file
+differ, C-i is in force.
+
+#### `PyLinks` 7b, the guard (Lean in place, position 11)
+
+- **Before**: the training score flag is true of S exactly when `score` returns S for some model
+  and table, or `noFitTrain F = some S` for some table F (no condition on F).
+- **After**: ... or there is a table F with `(py.featTrainExists F && py.featValidExists F) = true`,
+  `py.fit (py.readFeatures F) = {}` (the stepwise result with no fit) and `noFitTrain F = some S`.
+  The same three parts, in the same order, as the second case of `SasLinks` (8) / `Paired` 5
+  (`train_inputs_stop ... = false`, `logistic_no_fit (sas.readFeatures F) = true`, S the chain).
+- **Reason**: review witness. For a reached F with both outcomes, `noFitTrain F` (every
+  `pd_logistic` and `credit_risk_score` missing) is written by no run, yet the old clause made the
+  flag true of it. The code writes the no-fit training score file only when both feature files
+  exist (`train.py` 35-41) and `stepwise_logistic` returns `StepwiseResult()` (`sas_compat.py`
+  1069-1072, `np.unique(y).size < 2`; the only path with `final` None: line 1120 builds every
+  other result with a final fit). The guard is on the fit parameter itself, so the chain
+  `noFitTrain` (built at `{}`) is the chain the stage runs on that F.
+
+#### `PyLinks` conjunct 16, `readScoresTrain` (Lean in place, position 16)
+
+- **Before** (C-g, H15): for every table, rows and names kept; `row_id`, `default_flag` numeric
+  kept; `pd_logistic`, `credit_risk_score` numeric kept or, when missing in every row of the table,
+  the text cell with the missing text; `oneKind t -> oneKind (R t)`.
+- **After**: the form of conjuncts 13 to 15 (C-h), with window the first 20 rows
+  (`metrics_calculation.py` 117, `guessingrows=20`) and formatted column `interest_rate`
+  (`percent8.2`, `train.py` 846-847): on every readable table, rows and names kept; in each of
+  `row_id`, `default_flag`, `pd_logistic`, `credit_risk_score` a numeric cell is read back numeric
+  (missing stays missing), or, when every row of the window holds the missing number there, as a
+  text cell, which is the missing text when the cell was missing; one kind per column in the
+  read-back. Written out at its position (not through `keeps`), because of that last part.
+- **Reason**: review (a) 21 rows, `pd_logistic` missing in rows 1-20 and 0.5 in row 21: the real
+  reader gives text and row 21 reads `'0'`; the old second disjunct needed the column missing in
+  every row. (b) rows with other names: excluded by readability. `row_id` or `default_flag` missing
+  in the window is read as text too, so the two columns get the same either-or. H15 stays covered:
+  a missing cell is written as an empty field, which the text column reads as null.
+- **The limit of C-g** ("true on the files a valid run reaches, not on every table") is withdrawn:
+  the clause is now stated where it is true of the reader.
+
+#### `PyLinks` 8b and 8c (Lean in place, positions 22 to 25)
+
+`keepsPresent R fmt cols` and 8c now hold on every readable table (formatted columns: none for
+the features; `interest_rate` for the two score read-backs). On a readable table in which a column
+holds a present number in every row, the window has a present cell, so the reader reads the column
+as numbers and every cell present. Reason: review; the writer raises on a table with no
+`interest_rate` (`format given for unknown column`) and the reader on two names equal after 32
+characters or an empty name beside a `VARn` name, where the clauses asserted a value.
+
+#### The table with no row (text of clauses 4 and 8)
+
+- **Clause 8, the read-back of []**: the read-back of a table t with a row is what
+  `proc_import_csv` returns on the file `write_sas_csv` writes from the frame of t. A table with no
+  row records no header; it stands for the header-only file the script writes from its own frame,
+  which always has its columns (every frame the four files come from is built with its columns),
+  and its read-back is what the reader returns on that file: no row (H13 (a), H15). The C-h text
+  defined it through `Pl.ofTable []`, a frame with no column, whose file is empty (`NoDataError`).
+  Lean unchanged (it already said R [] = [] for readable []).
+- **Clause 4, the raw test table []**: stands for the test file of the header line alone (G44),
+  with the names of section 5 of the requirements (G46: a header with other names is not valid
+  input). The requirements' own reading of a raw table, so no condition is added. Lean unchanged.
+
+#### `ScoreRun`, text only (Lean unchanged, resubmitted)
+
+"Both disjuncts are reached-facts" becomes: the definition alone does not say F1, F2 are reached;
+the second disjunct holds whenever `Q.fit F1` returns nothing, also when a feature flag is false at
+F1 (then no run writes S1), on both sides alike. A contract applies it with F1, F2 returned by the
+features step on its valid input; there each disjunct is a reached fact, and the hypothesis adds
+nothing beyond the run.
+
+#### Checked, not changed
+
+- `PyLinks` 7, validation score flag, at []: in the Lean, `Pl.Frame.withColumns` broadcasts each
+  column to the frame's height (`Pl.Col.bcast c fr.height`), so step 10 on `Pl.ofTable []` (height
+  0) gives height 0, not the one row polars gives a frame with no column; the real file of a
+  header-only feature file has its columns and also gives no row. So a model m and F with
+  `py.readFeatures F = []` are expected to give `P.score m F = some []` (steps 12 and 14 not
+  inspected; `lem:py_score_fillers_idle` gives step 14's output as the cleaned frame).
+  `eval_decl` on step 10 failed again on the tool's output schema. Left to the proof of
+  `lem:py_scores_valid_empty`; if it fails, clause 7 needs the no-model case of 7b for the
+  validation flag, which goes to the lead.
+- `PyLinks` 13: the `matmul` line keeps `b != []` (C-h, owner 2026-11-19), which supersedes
+  "unconditional" (owner 2026-11-18).
+
+#### Cleared by C-i
+
+`get_status` at the start and at the end: 335 items, 264 statements formalized (the same 71
+statements and 1 proof to write). `edit_text` on `def:PyLinks` cleared `def:PyLinks` and its one
+formalized consumer `lem:py_scores_valid_empty` (statement only; no proof existed); both restored:
+`def:PyLinks` with the new Lean (revision f20bd80e95cb4e8fa5626feeba9fffe5),
+`lem:py_scores_valid_empty` with its accepted Lean resent unchanged (2b77fa1ab6614c2e85717b0978902fb5).
+`edit_text` on `def:ScoreRun` cleared only itself; Lean resent unchanged
+(73d67ded9b5847adb7e4b88c472bebcc). Every other consumer of the two items was already
+unformalized. `def:Paired`, `def:pyPipeline`, `lem:py_score_fillers_idle`: untouched. Trust layers
+are off on `5365851c` (Lean accepted on compiling), so the match of text and Lean rests on review.
+
+### C-j, 2026-11-19 (earlier)
+
+Lead's task of 2026-11-19 (prover), carrying the owner's decision of 2026-11-19 on the T0 disproof
+("Port split": "Fix the port"; stated consequence: the port's split selects exactly (7n+9)/10 ids,
+`PyLinks` 5 is restated to say so, T0 and its consumers are re-proved). The lead lifted "change no
+existing item" for `def:PyLinks` only, for this task. Changed: `def:PyLinks` (text and Lean, clause
+5 only, plus two Lean header comments naming C-j). `def:Paired`, `def:pyPipeline`, `def:PyParams`,
+`def:ScoreRun`: not touched. Where C-j and an older text of this file differ, C-j is in force.
+
+#### `PyLinks` 5, the split (Lean in place, position 5)
+
+- **Before** (C-h): for every seed and list of ids, the split table is the one numeric column
+  `row_id`, one row per entry, each a number or missing. Nothing more (the file was fixed, so no
+  count, distinctness or membership held).
+- **The code** (port commit 4a757fb, `feature_engineering.py` 20-25 and 352-366; diff
+  `migration/port-to-lean/port-changes-2026-11-19-split.diff`): `file_ids` is the `row_id` column of
+  the fixed `split_ids` file, read as text, then `input_best32`. `input_ids` is the set of present
+  `row_id` values of the feature frame; `n_train = (7 * height + 9) // 10`. The file is used when it
+  names exactly `n_train` ids, pairwise distinct, all in `input_ids`; otherwise
+  `random.Random(42).sample(sorted(input_ids), min(n_train, len(input_ids)))`. In both branches the
+  ids used are pairwise distinct, all present ids of the input, and their number is
+  `min(n_train, number of distinct present ids)` (in the file branch, `n_train` distinct ids among
+  `input_ids` exist, so the minimum is `n_train`). For present, pairwise distinct ids that minimum is
+  `n_train`, since (7n+9)/10 <= n for every n >= 0.
+- **After** (text, clause 5): for every seed and list of ids, of length n (missing entries counted),
+  the split table has the one numeric column `row_id`, one row per id listed, each a present
+  number; the ids listed are pairwise distinct, each a present id of the list given, and their
+  number is the smaller of (7n+9)/10 and the number of distinct present ids of the list. In
+  particular, for present, pairwise distinct ids (as `TrainOK` gives through the input check):
+  exactly (7n+9)/10 distinct ids, all among those given. With missing or repeated ids: still
+  exactly (7n+9)/10 when there are at least that many distinct present ids, otherwise every
+  distinct present id once. Nothing is asked of which ids, nor of the seed. No limit.
+- **Lean**:
+
+  ```
+  (∀ (seed : ℕ) (ids : List (Option ℝ)),
+    ∃ l : List ℝ,
+      py.split seed ids = l.map (fun x => [("row_id", Tabular.Cell.num (some x))]) ∧
+      l.Nodup ∧ (∀ x ∈ l, some x ∈ ids) ∧
+      l.length = min ((7 * ids.length + 9) / 10) (ids.filterMap id).toFinset.card)
+  ```
+- **What `py.split` now stands for.** Under C-h it was the fixed file. Under C-j it is the table of
+  the ids the port's split selects: the file's when it fits, otherwise the seeded draw. This is
+  what the `PyParams` comment already says ("the table of selected ids"). It is not a narrowing, on
+  one condition (below): the unit `fe_run_06_split`, given that table in place of the real file,
+  selects the same rows. Either the table fits (it has `n_train` distinct ids among the input's)
+  and is used as it is, or, when the input has fewer distinct present ids than `n_train`, it does
+  not fit and the unit makes the same draw again (the same pool, the same seed 42). The real file
+  therefore disappears from the claim. So the real port is the `py` whose split is that function,
+  and that `py` meets clause 5.
+- **The condition, owed and not stated** (for the lead): this rests on the list `pyPipeline` passes
+  to `py.split` (`VAR1` of the cleaned frame) having the same length and the same present values
+  as the `row_id` column of the feature frame that `fe_run_06_split` receives (steps 02 to 05 keep
+  the rows; `row_id` is `VAR1`, `feature_engineering.py` 220). It also rests on the idempotence above
+  ("`fe_run_06_split` on the table of its own selection selects the same rows as on the file"),
+  which is a lemma about the unit. I add neither as an item (no helper nodes). The first is
+  needed by any proof that ties `py.split` to the unit's own count; the second only by an argument
+  that the real port is covered, not by any contract's proof.
+- **`Paired` 2 (C-b), checked; it lines up.** On a table t whose `row_id` is present in every row and
+  pairwise distinct, `Paired` 2 gives `Selected` 1 exactly on the rows whose `row_id` the port's
+  split lists for the ids of t (`t.map (Sas.num · "row_id")`, so n = |t| and every id is present
+  and distinct). By clause 5 the split lists exactly (7|t|+9)/10 distinct ids, each the id of a row
+  of t, and each row's id is listed at most once and matched by exactly one row (distinct ids). So
+  exactly (7|t|+9)/10 rows get `Selected` 1, the others 0, and the SAS selection is the port's.
+- **`SasLinks` (5) (profile), checked; it lines up for the T0 witness.** (5) asks of `sas.split`, for
+  every seed and every table, `Selected` 0 or 1 on every row and (7|t|+9)/10 rows with `Selected`
+  1. On tables with present, pairwise distinct `row_id` this now follows from `Paired` 2 and
+  clause 5 (above). On other tables `Paired` 2 asks nothing, so the `sas` that T0 exhibits takes
+  the split of `lem:sas_split_sat` there (the first (7|t|+9)/10 rows get 1). As accepted in C-b,
+  (5) is still not derived for every paired `sas` on every table. It is derived on every table
+  a valid run gives the split, which was lost under C-h and is restored now.
+- **Consumers.** Everything that used the count, distinctness or membership of the split ids, as
+  listed under C-h ("From 5"): `lem:py_split_input_ids`, `lem:sas_split_input_ids`, the G57
+  "validation set is not empty" lemma (derivable again: from `TrainOK`, n >= 4, so 1 <= n -
+  (7n+9)/10, and the training set has at least 3 rows), G1, G2, E3, E5, A2, F3, F4, the metrics
+  level, G4, T0. `fe_run_06_split_precond` asks `split_ids ≠ []`, which clause 5 now gives for
+  n >= 1 with a present id ((7n+9)/10 >= 1); it is no longer that precondition's own narrowing
+  on valid input.
+- **Narrowing**: none. Clause 5 is true of the code (under the reading above) on every argument,
+  with no limit.
+
+#### Cleared by C-j
+
+`get_status` before and after: 350 items, 290 statements formalized (the same 57 statements and 14
+proofs to write). All 50 statement consumers of `def:PyLinks` were already unformalized (`get_items`:
+`lem:ex_G2_run`, `thm:F4_model_summary`, `thm:G2_train_coverage` are `TheoremUnformalized` with no
+Lean, though `get_status` does not list them among the statements to write). So `edit_text` cleared
+`def:PyLinks` only, and nothing else needed resubmitting. `def:PyLinks` was restored through
+`edit_statement` on its stored draft: clause 5 replaced in place, then two header comments
+(revisions 7722428b0cf340908afb8869d301515a, c4798c3d91644e5d94f772f3776ac28a, final
+b29d74d04dc949cd82fb13df38994f0d). Trust layers are off on `5365851c` (accepted when it compiles),
+so whether the text and the Lean match rests on review.
+
+### C-k, 2026-11-19 (before C-l)
+
+Lead's task of 2026-11-19 (prover), carrying two owner decisions of 2026-11-19 given in the main
+session: "G2 fit" answered "Add the clause"; "S6 lemmas" answered "Restate for the pipeline's
+split". The lead lifted "change no existing item" for `def:PyLinks` only, for this task. Changed:
+`def:PyLinks` (text: new clause 14 at the end; Lean: new last conjunct, position 30, plus header
+comments naming C-k and position 30). New items: `lem:py_split_ids_rowids`, `lem:py_split_fits`
+(stated, not proved). `def:Paired`, `def:pyPipeline`, `def:PyParams`, `def:ScoreRun`: not touched.
+Where C-k and an older text of this file differ, C-k is in force.
+
+#### `PyLinks` 14, the final fit's first name (new last conjunct, position 30)
+
+- **Text** (clause 14): for every table, whenever the fit parameter returns a final fit, the first
+  name of that final fit is `Intercept`. Stated of the fit parameter itself, on every argument,
+  as `sas_compat.stepwise_logistic` returns its result; nothing else is asked.
+- **Lean** (in words): for every table T and every `LogisticFit` f, if `(py.fit T).final = some f`
+  then `f.names.head? = some "Intercept"`.
+- **The code** (`port/credit_risk/sas_compat.py`): line 16 and line 672 (`names[0]` is
+  "Intercept"); line 1043 (every fit of the selection has `names[0] = "Intercept"`); line 1084 (the
+  intercept-only fit is built with `["Intercept"]`); line 1090 (every fit with a variable is built
+  with `["Intercept", *cols]`); `fit_logistic` (750) and `_fit_as_sas` (952, 964) return
+  `LogisticFit(list(names), ...)`, so the names are those given; the final fit is `cur`, always the
+  result of the local `fit` (1120 `final=cur`, 1208 `res.final = cur`; checked every assignment of
+  `cur` in 1120-1208); the result with no fit (1069-1072, `StepwiseResult()`) has no final fit; a
+  call that raises (`RuntimeError`) returns no result. So the clause is true of the code on every
+  argument, with no limit.
+- **Narrowing**: none.
+
+#### `lem:py_split_ids_rowids` and `lem:py_split_fits` (new, stated, owed in C-j)
+
+Both at the real numbers, for every `py` with `PyLinks py` and every raw training table meeting
+`TrainOK` (so on every valid input; `TrainOK` is what the feature stage reads of the input, as in
+`lem:py_split_input_ids`). The cleaned frame is `fe_run_01_clean` on the input check's frame of the
+import, as `pyPipeline` and `run` compose them; the feature frame is steps 02, 02b, 03, 04, 05 on it,
+as `run` composes them (the frame `fe_run_06_split` receives).
+
+- **`lem:py_split_ids_rowids`**: the list the pipeline passes to `py.split` (`VAR1` of the cleaned
+  frame) has the length of the feature frame's `row_id` column, and a real number is a present entry
+  of the one exactly when it is a present entry of the other. This is the first condition C-j left
+  owed ("the list `pyPipeline` passes to `py.split` ... has the same length and the same present
+  values as the `row_id` column of the feature frame that `fe_run_06_split` receives").
+- **`lem:py_split_fits`**: for every seed, the `row_id` column of the table `py.split` returns for
+  those ids, read as the unit reads it (`(Pl.ofTable table).getF "row_id"`, the `file_ids` of the
+  unit), is a list of present numbers, pairwise distinct, each a present `row_id` of the feature
+  frame, exactly (7n+9)/10 of them with n the feature frame's height. These are the three parts of
+  the unit's test `fits` (`feature_engineering.py` 365: `len(file_ids) == n_train`,
+  `len(set(file_ids)) == n_train`, `set(file_ids) <= input_ids`); at the real numbers, Python's `==`
+  on floats is equality, so `Nodup` is "distinct" and membership is `input_ids.any eqb`. So
+  `fe_run_06_split` uses the table as given, without drawing. Expected proof: `PyLinks` 5, the
+  previous lemma, and the input check on `TrainOK` (present, pairwise distinct ids, so the minimum in
+  clause 5 is (7n+9)/10).
+- **Not done here**: neither lemma is proved, and no S6 contract or other consumer is connected to
+  them (the task asked to state them). The second condition of C-j (the unit on the table of its own
+  selection selects the same rows as on the file) is not stated: with `py_split_fits` the unit takes
+  the fitting branch on the pipeline's table, which is what a proof about the pipeline needs.
+
+#### Restoring what the `PyLinks` edit cleared
+
+`get_status` before: 358 items, 344 statements formalized, 19 proofs to write; after the edit and
+the two new items: 360 items, 350 statements formalized, 23 proofs to write (the two new lemmas;
+`thm:F4_model_summary` and `thm:G2_train_coverage`, `TheoremStated` before and after, are now listed
+too, which they were not before: a listing difference of `get_status`, as noted in C-j; the count
+344 against 348 on the same states is the same difference). No `neg:` item vanished (358 before the
+two additions). `edit_text` on `def:PyLinks` cleared all 44 formalized statement consumers (50
+consumers, 6 already unformalized: `lem:ex_E3_fit`, `lem:ex_F3_final_model_output`,
+`lem:ex_G2_run`, `thm:E9_ks`, `thm:E10_decile`, `thm:F3_final_model_output`). `def:PyLinks` was
+restored by `edit_statement` on its stored draft (revisions e4ca1d9f302a4e41bfa7c69b74a0432b,
+1c9de65ba4bc48d98c5058d5f70b3878, final 20e0426a5a5c4ff795911dcf7661ba2b). Every one of the 44
+statements was resubmitted from its stored draft with `submit_statement` (same revision as before);
+their accepted Lean before and after the edit, compared from this session's record by SHA-256, is
+identical for all 44. Every state is as before: 27 `TheoremProved`, 17 `TheoremStated`.
+
+Of the 27 proofs, 23 were resubmitted unchanged from their stored drafts and accepted. Four could
+not be: each builds a `py` and proves `PyLinks` of it conjunct by conjunct, so the new conjunct has
+to be proved too. Each got the smallest addition that proves clause 14 for its own witness, and
+nothing else in it changed:
+
+- `thm:T1` (revision e595b2474f8e4b1d8b1a05d8e5fa6693): `?c14` added to the `refine` and a
+  `case c14`: the witness's only final fit is `fit1` (`T1W.fitR_final`), whose names are
+  `["Intercept"]`, so `rfl`. T1's witness meets the new `PyLinks`.
+- `lem:ex_reached_features_predict` (d873c481a701482cae54071f3f586143) and `lem:ex_G4_run`
+  (36eb1d4799f440c0ba22e9de7069e3dc): the last bullet of `links` (matvec) now splits the last goal
+  in two, matvec as before and clause 14: the fit is `sw0` (final fit `f0`, names `["Intercept"]`)
+  or the result with no fit (`fitC_cases`).
+- `lem:ex_A4_metrics` (600a3ff93cb04bab9a5c491a5289b75c): `modPy py` changes only the fit to
+  `fitM py`, which keeps the final fits of `py.fit` (`fitM_final`); the last component `h29` became
+  `h29.1` and clause 14 for `modPy py` is clause 14 of `py` through `fitM_final`.
+
+These four proofs are changes of existing items beyond "resubmit unchanged"; they were made because
+the stored proofs could not compile against the new conjunction, and they only add the case for the
+new clause. The lead may want them reviewed. Trust layers are off on `5365851c` (accepted when it
+compiles).
+
+### C-l, 2026-11-19 (before C-m)
+
+Lead's task of 2026-11-19 (prover), carrying the owner's trusted base B4 item 2 of amendment 2 of
+`informal-spec.md` ("on what a valid run reaches `solve` and `inv` raise no error for a singular
+matrix"; "G2 has no limit of its own"). Task: add one clause at the end of `def:PyLinks` stating
+that fact in the form the preconditions need, unless it is already given. **Result: already given;
+nothing changed.** No item of any blueprint was edited, cleared or resubmitted; `def:PyLinks` keeps
+30 positions; T1 and every other consumer are untouched (T1's witness meets `PyLinks` as before,
+since `PyLinks` is unchanged).
+
+#### What the preconditions ask of `solve` and `inv`
+
+Nothing. Every accepted precondition that reaches the two routines leaves singularity out, in its
+Lean, with "the LinAlgError ... is outside the model (§3: OPEN) ... no clause on singularity
+(lead)":
+
+- `def:_kept_precond`: a square 2-D array, nothing more ("Singularity is not constrained").
+- `def:_inv_sas_precond`: a square 2-D array ("singularity is not constrained").
+- `def:_solve_sas_precond`: a square 2-D array and a vector of its size.
+- `def:classification_is_made_precond` (2): `_kept_precond` of the product `matmul xT rows`.
+- `def:train_run_03_fit_global_rsquare_precond`: `_kept_precond` of `matmul xT x_k` and
+  `_solve_sas_precond` of i0, u0 (shapes, from `PyLinks` 13 and 6b).
+- `def:classification_table_precond` (4'): `_inv_sas_precond` of `matmul xT xw` (shape).
+- `def:_left_out_precond`: reads `fit.cov` only; no routine.
+
+`run_py_py_py_precond` asks these at its calls and adds nothing on the routines' success.
+
+#### Why that is the formal B4.2
+
+In `def:PyParams`, `inv : List (List ℝ) → List (List ℝ)` and `solve : List (List ℝ) → List ℝ →
+List ℝ` are total: every call in `_kept`, `_inv_sas`, `_solve_sas`, `classification_is_made`,
+`classification_table` and the train units returns a value. A raise of `LinAlgError` has no
+counterpart in the model, so "returns its result, no singular-matrix error" holds by the type on
+every argument, and no precondition, hence no coverage contract, depends on it. A clause "solve
+and inv return their result" has nothing to say in Lean (it would be `True`). Any clause with
+content (for instance `inv a` is an inverse of `a`, or `solve a g` solves `a x = g`) would assert
+values of the routines, which B4.2 does not trust, and is wider than the trusted fact. So the
+fact B4.2 trusts is given by the types of `def:PyParams` together with the preconditions above;
+what B4.2 also trusts of numpy (`matmul`, `matvec` shapes) is `PyLinks` 13, positions 28 and 29,
+unchanged. G2's Lean (`thm:G2_train_coverage`) already has no hypothesis but `PyLinks py`,
+`InputOK` and the reached-equation: no limit of its own in the formal statement.
+
+#### Left to the lead (not changed: a contract is not reworded here)
+
+- The statement text of `thm:G2_train_coverage` still carries amendment 1's sentence "Not
+  covered, and stated in the precondition itself: an error of `np.linalg.solve` or
+  `np.linalg.inv` on a singular matrix ...". Amendment 2 B4.2 says it is replaced; the Lean does
+  not reflect it (it has no such limit). Restating that text is a contract rewording, for the
+  lead; editing it clears the G2 statement, which is `TheoremStated` (not proved).
+- The OPEN notes in the Lean comments of `_kept`, `_inv_sas`, `_solve_sas` and their
+  preconditions ("outside the model (§3: OPEN)") now read as B4.2; they are comments of existing
+  items and were left as they are.
+
+#### Narrowing
+
+None beyond B4.2. One remark for the record: the model takes `solve` and `inv` as total on every
+argument, not only on what a valid run reaches; since no clause constrains their values, this
+adds no fact the claims could use beyond "a value is returned".
+
+### C-m, 2026-11-19 (latest)
+
+Port-translator's correction of `def:train_run_08_ctable_precond` (accepted rev 00420db1), under
+the owner's boundary B1 to B6 (amendment 2 of `informal-spec.md`). Restoration and the clause check
+by the prover, on the lead's task of 2026-11-19 (the lead authorised restoring cleared items to their
+accepted content, nothing else).
+
+#### What changed
+
+Only the Lean of `def:train_run_08_ctable_precond` (statement and signature unchanged; two clauses
+guarded):
+
+- :482, no null in the columns `final_names[1:]` of the fit frame: now asked only when there is a
+  final fit (`final.isSome = true`). Reason given by the translator: the unit drops nulls where
+  Python gets NaN, so guarding by `ctable_made` instead would admit an input on which Python raises.
+- :486/:492, no null `pd_logistic` on a complete case: now asked only when the table is made
+  (`ctable_made = true`).
+- Unchanged: `0 <= n_obs`; each column of `final_names[1:]` a Float64 column of `n_obs` values (on
+  every run); `pd_logistic` a Float64 column of the mask's length; `classification_is_made_precond`
+  when there is a final fit; `classification_table_precond` when the table is made.
+
+#### Items cleared by the write, restored (prover, 2026-11-19)
+
+All by resubmitting the stored draft unchanged; all accepted:
+
+| item | how | revision | result |
+|---|---|---|---|
+| `def:run_py_py_py_precond` | `submit_statement` | e914fe13 | accepted |
+| `def:zz_carrier_e` | `submit_statement` | 7b33ec2a | accepted |
+| `thm:G2_train_coverage` (statement) | `submit_statement` | dba73446 | accepted, judge approved; proof still owed, as before |
+| `thm:F4_model_summary` (proof) | `submit_solution` | 819c80cf (5309 lines) | accepted, 0 errors; nothing fixed |
+
+The prover did not hold the Lean the translator fetched before the change; the restored text is the
+stored draft, which the write did not touch (only the accepted state was cleared). The F4 proof
+compiled with no edit, so C-m broke nothing in it.
+
+#### Clause check (B3: a precondition asks only what the pipeline is proved to pass)
+
+Python: train.py:477-535, `sas_compat.classification_is_made` (:1653-1665), `classification_table`
+(:1502-1618). On the run: `fit_frame` is the complete cases of every candidate and `default_flag`
+(train.py:99-103); `final_names` is `[]` with no fit and `final.names` with one; `pd_logistic` is
+`1/(1+exp(-eta))` on every row of the training features, null on every row with no fit.
+
+Clauses that ask more than the Python needs:
+
+1. **:482 null clause** (`final.isSome = true -> no null`). Python needs it only when the table is
+   made and the model has an effect (a NaN in `x_final` makes `ps` NaN and `math.floor` raises);
+   with a fit and no table Python runs on, as the clause's own narrowing note says. **Not reachable**:
+   `final_names[1:]` are candidates (with a fit, `PyLinks` 8b gives every candidate column present
+   with present numbers), and the fit frame keeps complete cases only, so no row of the fit frame
+   has a null in a candidate column. The clause holds of every reached argument.
+2. **:482 Float64 kind**. `np.asarray(..., dtype=float64)` also takes an Int64 or Boolean column.
+   **Not reachable**: with a fit, `PyLinks` 8b makes every candidate column of the read-back hold a
+   present number in every row, which `Pl.ofTable` gives as a Float64 column. With no fit the
+   clause is about `[].drop 1` and is empty.
+3. **:486 null clause** (`ctable_made = true -> no null pd on a complete case`). Asked also for an
+   intercept-only final model, where Python replaces `ps` by the leave-one-out mean and runs on (the
+   clause's narrowing note). **Not reachable**: `ctable_made` implies a fit, so the intercept is
+   present and every effect column is present on a complete case; `pd_logistic` is non-null there.
+4. **Inherited through `classification_table_precond`**, on the call `(y_train, x_final, pd_train)`:
+   (3) `0 < pd < 1` with more than one column (numpy runs at 0 and 1 with a warning); (7)
+   `0 <= klo`, `khi <= 50`; (8) the sum of `y` integral (Python truncates). **Not reachable at ℝ**:
+   `pd = 1/(1+exp(-eta))` with `exp > 0` lies strictly in (0, 1), so does `_expit`, so `ps` lies in
+   [0, 1] and the bounds hold; `y_train` is `default_flag` on complete cases, 0 or 1 under `InputOK`
+   and `PyLinks` 8c, so its sum is integral. Remark (not a defect of the clause at ℝ, where the
+   contracts are stated): at Float `pd` is exactly 1.0 for `eta` above about 36.7, which a separated
+   fit with a table can reach (judge/runs/sep_age_gt_55 has leave-one-out probabilities of 1; `pd`
+   itself was not checked); there clause (3) would be false although Python runs on.
+
+Clauses the Python needs (kept by B3; each met on the run): `0 <= n_obs` (`np.ones`; `n_obs` is the
+fit frame's height); each column of `final_names[1:]` present with `n_obs` values (`get_column`
+raises `ColumnNotFoundError`, `np.column_stack` on different lengths; built on every run, a fit or
+not, before the test of :490); `pd_logistic` present with the mask's length (boolean index);
+`classification_is_made_precond` (shapes; `_left_out` reads `fit.cov[i, i]`); the shape clauses
+(1), (2), (4'), (5), (6), (6') and `ps` non-empty with no NaN of `classification_table_precond`.
+
+**Result**: no clause of the C-m precondition can be violated by an argument a run on valid input
+reaches at ℝ; four ask more than the Python needs (items 1 to 4 above) and are met on every reached
+argument, so they are proved facts under B3, not narrowings of the claim. Owed: their proof is part
+of `thm:G2_train_coverage` (still `TheoremStated`).
+
+#### Observed, not touched
+
+`get_status` after the restore: 360 of 366 statements formalized; `lem:zz_G2s1415_s14_merge_check`
+and `lem:zz_G2s_step06_check` have no accepted statement, and `lem:ex_sas_cov_train_bins`,
+`lem:metrics_flags_reached`, `thm:G2_train_coverage` have no accepted proof. They were not in the
+list of items C-m cleared and were left as they are.
 
 ### Additions that are not changes of wording
 

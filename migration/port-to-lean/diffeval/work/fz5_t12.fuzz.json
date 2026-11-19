@@ -1,0 +1,3107 @@
+{
+ "kept": 2257,
+ "rejected_returns": 721,
+ "rejected_python_raises": [
+  [
+   800003,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800004,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800006,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800010,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800012,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800014,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800019,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800035,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800039,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800041,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800044,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800051,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800053,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800054,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800057,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800065,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"risk_grade"
+  ],
+  [
+   800070,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800074,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800079,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800080,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"risk_grade"
+  ],
+  [
+   800082,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800087,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"risk_grade"
+  ],
+  [
+   800093,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800094,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800095,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800105,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800109,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   800119,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800123,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800128,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"credit_ris"
+  ],
+  [
+   800129,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800133,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800150,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800158,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800163,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800164,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   800165,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800171,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800181,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   800184,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800199,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"score_rang"
+  ],
+  [
+   800212,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800216,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800233,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   800237,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800238,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800239,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800248,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ri"
+  ],
+  [
+   800252,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800253,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800256,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800265,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800277,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800278,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800280,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800281,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800284,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800295,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800316,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800324,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800327,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800330,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800331,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800336,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800338,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800340,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800347,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800348,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800350,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800352,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800355,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800360,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800366,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800369,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800371,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800375,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800382,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800388,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800390,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800391,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800396,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800397,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800404,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   800405,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"interest_r"
+  ],
+  [
+   800408,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800414,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   800430,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   800431,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800435,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   800437,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800441,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   800443,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800444,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800445,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800446,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800452,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"cr"
+  ],
+  [
+   800455,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800458,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   800465,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800470,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800472,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   800475,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   800476,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800477,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800487,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800489,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800490,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   800503,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800507,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800513,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800525,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"risk_grade\", \"base_score\","
+  ],
+  [
+   800532,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800539,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800552,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800553,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800557,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800565,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   800568,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800574,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800582,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ri"
+  ],
+  [
+   800586,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800591,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800593,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800594,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800597,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800605,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800607,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   800612,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800616,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800618,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800619,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800634,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800642,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800646,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800651,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"interest_r"
+  ],
+  [
+   800658,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800661,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"credit_ris"
+  ],
+  [
+   800663,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800667,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800668,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800671,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800681,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800683,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800689,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800690,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800691,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800693,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   800694,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800700,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800710,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800712,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800716,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800719,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800726,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800730,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800736,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800739,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800744,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"recommendation\","
+  ],
+  [
+   800757,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800772,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800779,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800781,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800794,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800801,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800803,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800813,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800819,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800827,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800830,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_rat"
+  ],
+  [
+   800831,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800849,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800871,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   800876,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800878,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   800882,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800885,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800887,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800898,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   800905,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800908,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800909,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"interest_rate\", \"base_scor"
+  ],
+  [
+   800915,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800917,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800920,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800923,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800924,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800926,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   800927,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800932,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800936,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800957,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   800959,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800960,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   800966,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800970,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800973,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800976,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800982,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   800986,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   800994,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_rate\", \"base_score\", "
+  ],
+  [
+   800995,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   800996,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801006,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801040,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801045,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801049,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801050,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801051,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801062,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801064,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801070,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801072,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801076,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"interest_rate\", "
+  ],
+  [
+   801078,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801084,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801090,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801099,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"score_rang"
+  ],
+  [
+   801102,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801103,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801105,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801111,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801112,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801117,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801128,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801129,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801131,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801136,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801140,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801141,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801143,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801144,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801150,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"recommendation\","
+  ],
+  [
+   801161,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801165,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801170,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801175,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801176,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801184,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801189,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801192,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801194,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   801198,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801209,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801210,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801217,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801220,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801221,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801228,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801234,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801236,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801240,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801253,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801254,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801261,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801269,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801270,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"risk_grade\", \"base_score\","
+  ],
+  [
+   801274,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801276,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"sc"
+  ],
+  [
+   801283,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801284,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801299,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801308,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801315,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801323,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801327,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801330,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801338,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801342,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801343,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"score_rang"
+  ],
+  [
+   801344,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801347,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801349,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801350,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801352,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801356,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   801360,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801361,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"recommen"
+  ],
+  [
+   801364,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801396,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801397,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801400,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   801402,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801407,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801410,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801414,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"recommendation\", \"base_sco"
+  ],
+  [
+   801418,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801419,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801423,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801425,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801433,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801434,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801442,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801444,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"in"
+  ],
+  [
+   801452,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801453,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801455,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801461,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801464,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801471,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801474,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   801489,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801492,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801495,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801497,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801500,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801502,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801504,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801507,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801516,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801528,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801530,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   801533,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   801535,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801548,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801554,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801556,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801561,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801566,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801569,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801574,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801575,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801576,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801577,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801584,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801590,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801600,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801602,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801603,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801606,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801614,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801615,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801624,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"cr"
+  ],
+  [
+   801626,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801632,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801639,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"recommendation\","
+  ],
+  [
+   801644,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801645,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   801650,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801652,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801654,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801660,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801661,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801670,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801674,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801678,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801686,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801695,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801700,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801702,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801703,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   801705,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801707,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801711,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801718,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   801720,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801723,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801724,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   801725,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801731,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801732,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"score_range\", \"b"
+  ],
+  [
+   801735,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801737,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801738,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801741,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"risk_grade\", \"ba"
+  ],
+  [
+   801747,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801749,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801753,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801754,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"interest_r"
+  ],
+  [
+   801758,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801773,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801777,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801780,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801783,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801793,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"sc"
+  ],
+  [
+   801796,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801798,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   801802,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"credit_ris"
+  ],
+  [
+   801827,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   801828,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801830,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801834,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801845,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801846,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801856,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801866,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801867,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801883,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801885,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801894,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801902,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801930,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801935,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801950,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801951,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801952,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801953,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801955,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   801962,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801963,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801964,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801969,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801970,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801977,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801983,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801984,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801987,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   801988,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801993,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801994,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   801995,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   801996,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802022,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   802030,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   802035,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802037,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802039,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802042,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802047,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802048,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802052,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802054,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802065,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802066,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802081,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802085,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802089,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802093,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"credit_risk_score\", \"base_"
+  ],
+  [
+   802095,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802100,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802107,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802110,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802111,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"risk_grade"
+  ],
+  [
+   802112,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   802123,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802124,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_rate\", \"base_"
+  ],
+  [
+   802127,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802131,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802133,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"risk_grade"
+  ],
+  [
+   802136,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802137,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802142,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802143,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802155,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"credit_risk_scor"
+  ],
+  [
+   802157,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802163,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802173,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802177,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802185,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802189,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802190,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   802195,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802199,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802200,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802204,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802210,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802221,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802227,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802228,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"interest_rate\", "
+  ],
+  [
+   802232,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802234,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"sc"
+  ],
+  [
+   802237,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   802238,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"interest"
+  ],
+  [
+   802246,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802248,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802256,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802264,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802265,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802267,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802271,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802272,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802273,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802280,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802282,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802287,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802290,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802305,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802311,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802315,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802319,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802321,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   802322,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802324,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"recommendation\", \"base_sco"
+  ],
+  [
+   802330,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802334,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802343,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802351,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802357,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802358,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802360,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802362,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802368,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   802373,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802375,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802386,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802400,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802401,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"credit_ris"
+  ],
+  [
+   802404,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802405,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802411,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802413,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802422,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802435,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802440,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802441,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802442,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802456,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802459,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802461,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802470,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   802471,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802477,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802482,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   802483,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802487,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802488,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802492,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802502,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802511,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   802517,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802528,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   802532,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802539,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802548,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802549,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802552,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802562,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"credit_r"
+  ],
+  [
+   802567,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802570,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802585,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802586,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802594,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802599,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802600,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802601,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802606,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802607,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802615,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802624,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802627,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802628,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802632,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802647,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802650,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802651,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802658,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802661,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802672,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   802678,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802690,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802694,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802705,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802706,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802711,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802713,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802722,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802730,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802731,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   802738,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"score_range\", \"b"
+  ],
+  [
+   802739,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802742,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   802758,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802762,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802764,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"credit_ris"
+  ],
+  [
+   802766,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802781,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802783,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802784,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802787,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802792,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802793,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802798,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802799,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802801,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802802,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802809,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802814,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802815,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802821,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802841,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802845,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802847,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802851,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802857,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802886,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   802889,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802890,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802906,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802907,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802909,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802914,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802917,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802920,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   802922,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802928,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802929,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802935,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802936,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   802940,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802942,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802946,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802951,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   802958,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"re"
+  ],
+  [
+   802959,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802962,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802965,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802966,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802967,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802970,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   802972,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802973,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802976,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   802978,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   802981,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802982,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802983,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   802984,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   802991,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803001,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803003,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   803004,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803005,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803006,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803014,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803017,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803024,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803025,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803039,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803042,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803047,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   803049,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"risk_grade"
+  ],
+  [
+   803056,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   803063,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803067,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803071,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   803086,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   803090,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803097,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803102,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803105,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803110,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803111,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803116,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"interest_r"
+  ],
+  [
+   803118,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   803121,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803128,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803135,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   803141,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803150,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"sc"
+  ],
+  [
+   803151,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   803154,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803161,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803173,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"credit_ris"
+  ],
+  [
+   803182,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803184,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803203,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803204,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803205,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803207,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803214,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803217,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803219,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"risk_grade"
+  ],
+  [
+   803230,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803240,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803242,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803243,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803247,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   803248,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803256,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803264,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803267,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803271,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803274,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   803276,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803279,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   803282,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   803283,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803285,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   803290,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803295,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803315,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803318,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803319,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803321,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803330,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803336,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803338,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803346,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803353,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803358,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803363,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803374,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   803380,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803384,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803386,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803387,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803389,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803398,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"cr"
+  ],
+  [
+   803402,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803411,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   803416,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   803419,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803421,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803422,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803424,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803426,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803428,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803441,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"name\", \"ba"
+  ],
+  [
+   803445,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803447,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803450,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"interest_r"
+  ],
+  [
+   803454,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803456,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803466,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803474,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   803479,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   803484,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   803485,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803488,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803489,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"name\", \"base_score\", \"scor"
+  ],
+  [
+   803492,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803498,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_rate\""
+  ],
+  [
+   803501,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803503,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803509,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803518,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"risk_gra"
+  ],
+  [
+   803527,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803540,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803543,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803544,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803546,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   803548,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803553,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803566,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803567,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803570,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803571,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   803575,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803576,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803578,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803580,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803581,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803585,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803586,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   803588,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   803591,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803604,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"score_ra"
+  ],
+  [
+   803606,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"risk_grade"
+  ],
+  [
+   803607,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803608,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803642,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803647,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803657,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"base_score\", \"sc"
+  ],
+  [
+   803663,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803670,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803671,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803676,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"base_score"
+  ],
+  [
+   803677,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803679,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803682,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803686,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803687,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803688,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803689,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803707,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803708,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"row_id\", \"name\", \"base_sco"
+  ],
+  [
+   803711,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803724,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803735,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803738,
+   "InvalidOperationError: arithmetic on dtypes f64 and str is not allowed (lhs: column 'score_range', rhs:"
+  ],
+  [
+   803743,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"base_score\", \"score_range\""
+  ],
+  [
+   803746,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ],
+  [
+   803749,
+   "ColumnNotFoundError: unable to find column \"pd_logistic\"; valid columns: [\"default_flag\", \"row_id\", \""
+  ]
+ ],
+ "stats": {
+  "cases": 2257,
+  "header only (both)": 84,
+  "pd with null": 1354,
+  "pd NaN": 534,
+  "pd on a grade edge": 1662,
+  "pd all null": 342,
+  "collision column": 1493
+ },
+ "lines": [
+  706,
+  795
+ ]
+}

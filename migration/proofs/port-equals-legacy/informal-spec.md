@@ -1,5 +1,54 @@
 # Informal specification, version 3: the port equals the corrected SAS
 
+## Change note, 2026-11-19 (amendment 2 to version 3): the boundary of the claim
+
+Owner's decisions of 2026-11-19, binding; they take precedence over any older text of this file.
+One boundary, the same for every contract. No item carries a limit, hypothesis or "not covered"
+of its own.
+
+**B1. The claim.** End-to-end: on every valid input, the port writes the same compared files as
+the corrected SAS program. Every contract (equality, coverage, unit lemma, example) is stated on
+what the pipeline reaches from a valid input: the tables and argument values a run actually
+passes to that step, never arbitrary tables or argument combinations the code never builds. A
+statement that is false only on an input no run reaches is restated to the reached input (text
+first, then Lean) and proved. That is not a narrowing.
+Helper lemmas (the step lemmas kept from version 2.3) may carry conditions on their arguments
+as long as every contract that uses them discharges those conditions in its proof; they add
+nothing to the claim (owner, 2026-11-19: "Just finish", on the lead's recommendation).
+
+**B2. Valid input.** `CreditRisk.InputOK`: section 3 of the requirements as signed off (Draft 10),
+unchanged.
+
+**B3. Step requirements are proved.** A unit may require something of its argument (its
+precondition) only if the coverage contracts G1 to G4 and the lemmas of section 4a prove that the
+pipeline passes such an argument on every valid input. In particular, these are proved facts, no
+longer narrowings: `0 <= idx` of `train_run_06_coefficients_odds_precond`; the non-empty training
+table of `run_py_precond`; `split_ids != []` and no NaN row id in `fe_run_06_split_precond`. If one
+cannot be proved, the port is fixed. The first clause of `lem:sas_cov_total_good_bad` (fewer than
+10^8 rows) follows from `InputOK` since G56 was made formal, and is proved.
+
+**B4. The trusted base**, taken as given, stated once, the same for every contract:
+1. *The model fit*: on a training part with both outcomes the fit returns a model, the same on
+   both sides, with the value and shape facts of `PyLinks` 6 and 6b (base (a) and (b) of section
+   9). The classification table is part of the fit's output (base (d)).
+2. *numpy linear algebra*: `solve`, `inv`, `matmul` and `matvec` behave as `PyLinks` 13 says, and
+   on what a valid run reaches `solve` and `inv` raise no error for a singular matrix. Reason:
+   selection leaves out every linearly dependent variable (X28), so the final model's matrix is
+   invertible in exact arithmetic. This replaces the "not covered" sentence of G2: G2 has no
+   limit of its own.
+3. *Reading and writing files*: the CSV readers and writers are parameters described by `PyLinks`
+   from observed runs (RULEBOOK 2.8), including conjunct 16 on the files a valid run reaches; a
+   file not written and a header-only file are both the table with no row (base (c)).
+4. *Floating point*: the Lean `Float` is taken as the arithmetic of both programs, including the
+   recorded last-bit difference of `exp` and the fuel 4096 of `_randbelow`.
+
+**B5. Outputs.** The claim covers exactly the files the parity judge compares. The printed
+reports, the `printed_*` files, the coefficient and stepwise printouts and printed formats are
+not part of the claim, listed once in section 9.
+
+**B6. During a run** only a finding that would change B1 to B5 goes to the owner. Everything
+inside the boundary is proved, or found to be a defect of the port and fixed.
+
 ## Change note, 2026-11-18 (amendment 1 to version 3)
 
 Entered for the lead as a records task (the lead commits); no blueprint item and no code was
@@ -95,7 +144,7 @@ Write P for `pyPipeline py` and S for `sasPipeline sas`.
 | E1 | training feature table | `P.features train seed` and `S.features train seed` both return a pair or both return nothing; when they return pairs, the first tables are equal |
 | E2 | validation feature table | when both return pairs, the second tables are equal |
 | E3 | the model | for the tables F1, F2 that `S.features train seed` returns: `P.fit F1` is `S.fit F1`. (Level 1, 2026-11-18: text unchanged; it has two cases, both proved. With one outcome in the training feature table as read, both return nothing; with both outcomes, both return the same model) |
-| E4 | scores | for every model m and every table F of feature shape: `P.score m F` is `S.score m F` |
+| E4 | scores | (restated 2026-11-19 under B1, amendment 2) for F the training or validation feature table a run reaches on valid input (F1 or F2 with `S.features train seed = some (F1, F2)`) and every model m whose terms name candidates of step 01: `P.score m F` is `S.score m F` |
 | E5 | the training scores of the port | (amended 2026-11-18, level 2) for F1 as in E3: the table of `risk_scores_train.csv` that the training chain of the train stage produces (step 04 onward) is `P.score m F1` when `P.fit F1` returns m; and when `P.fit F1` returns nothing it is the SAS training score table without a model (section 2a) on the feature table as read |
 | E6 | test predictions | for F1 as in E3 and m with `S.fit F1` returning m: `P.scoreTest m test train` is `S.scoreTest m test train` |
 | E8 | validation summary | (amended 2026-11-18, level 3) for F1, F2 and S1, S2 the score tables of the run (section 2a), fitted or without a model: `P.metrics S1 S2` and `S.metrics S1 S2` both return tables or both return nothing; when they return tables, the summary tables are equal |
