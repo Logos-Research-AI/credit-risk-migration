@@ -9,11 +9,20 @@ stops the run with nothing exported.
 from __future__ import annotations
 
 import argparse
+import random
 from pathlib import Path
 
 import polars as pl
 
 from credit_risk import sas_compat
+
+
+def _split_draw(input_ids: set[float], n_train: int, seed: int = 42) -> list[float]:
+    """A seeded draw of n_train distinct ids among input_ids (seed 42 as SURVEYSELECT's), independent
+    of row order. Not SAS's own draw: only its count. Fewer ids than n_train (not reachable after the
+    input check) gives all of them."""
+    pool = sorted(input_ids)
+    return random.Random(seed).sample(pool, min(n_train, len(pool)))
 
 
 def run(
@@ -340,11 +349,22 @@ def run(
     # (SAS drew a different split in judge run x_split_drift_m_metrics_threshold, judge/README.md:75-81)
     # the split is an INPUT (A27): selected = row_id is a training row_id in split_ids
     # G1: the ids are SAS numbers (doubles, R§2 input best32.), matched by value; no whole-number cast
-    train_ids = (
+    file_ids = (
         pl.read_csv(split_ids, columns=["row_id"], infer_schema=False)  # R§1 CSV I/O: all text
         .select(sas_compat.input_best32(pl.col("row_id")))
         .get_column("row_id")
+        .to_list()
     )
+    # T0 (owner, 2026-11-19): SAS selects exactly ceil(0.7 n) = (7n+9)/10 of the n rows
+    # (empty-validation.md section 1). The file is used only when it names exactly that many distinct
+    # ids, all among the input's; otherwise a seeded draw of that many distinct ids from the input's.
+    # Which ids count: the input check above (:109-123) stops every input with a missing or repeated
+    # id, so here the n row_ids are present and distinct; the draw is over the distinct present ids.
+    input_ids = set(credit_features.get_column("row_id").drop_nulls().to_list())
+    n_train = (7 * credit_features.height + 9) // 10
+    if not (len(file_ids) == n_train and len(set(file_ids)) == n_train and set(file_ids) <= input_ids):
+        file_ids = _split_draw(input_ids, n_train)
+    train_ids = pl.Series("row_id", file_ids, dtype=credit_features.schema["row_id"])
     credit_split = credit_features.with_columns(selected=pl.col("row_id").is_in(train_ids.implode()))
     credit_train = credit_split.filter(pl.col("selected")).drop("selected")
     credit_validation = credit_split.filter(~pl.col("selected")).drop("selected")
