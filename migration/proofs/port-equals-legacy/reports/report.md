@@ -167,7 +167,7 @@ are listed under Findings.
 | C1 | covered by the split link of ST1 | | |
 | C2 | `thm:roc_association_C2` | disproved | Two rows of class 1: `TauA` is 0, not missing. The other six statistics are missing |
 | C3 | `thm:predict_run_06_score_C3` | proved, every type | |
-| C4 | `thm:train_run_01_fit_frame_C4` | disproved | A row with a missing `default_flag` and no missing candidate is also dropped by the mask |
+| ~~C4~~ | ~~`thm:train_run_01_fit_frame_C4`~~ | ~~disproved~~ | ~~A row with a missing `default_flag` and no missing candidate is also dropped by the mask~~ *(superseded 2026-11-19/20: C4 is restated and proved)* |
 | I1 off | `thm:metrics_run_06_psi_I1_off` | disproved (fails as expected) | Training 1/10, 1/5; validation 4/5, 9/10: PSI 0 with completely shifted distributions |
 | I1 on | `thm:metrics_run_06_psi_I1_on` | **not settled**; false by Float evaluation | Expected to hold, but PSI is 0 with differing shares when the differing bins sit at or below the 1e-4 floor. The witness needs 20,000 training rows, too large to evaluate formally |
 | I2 off | `thm:predict_run_02_medians_I2_off` | disproved (fails as expected) | The step returns the test set's own medians |
@@ -225,7 +225,7 @@ data could have shown the difference.
 10. **Inaccurate claims in the migration records.**
     - C2: a single-class ROC input gives `TauA` = 0, not missing (the record says "None
       statistics"). The Lean matches the Python source.
-    - C4: the fit mask also drops rows with a missing `default_flag`.
+    - ~~C4: the fit mask also drops rows with a missing `default_flag`.~~ *(superseded 2026-11-19/20: C4 is restated and proved)*
     - `eq` has a call site in the port (`metrics_calculation.py:137`), contrary to "no site".
 11. **Intent failures shared by SAS and Python** (I2 off, I4, I5 bands, I6, I7, I1 off), all as
     the specification expected. I1 off needs one correction: PSI is not "always 0 on untied
