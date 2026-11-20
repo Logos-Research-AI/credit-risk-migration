@@ -32,8 +32,13 @@ those is marked **(inferred)**; anything the records do not say is marked **not 
 |---|---|---|---|---|
 | PORT | 52 | 50 | 1 (P51, by ruling G57) | 1 (P52, NaN row id, see note) |
 | LEGACY | 22 | 20 | 2 (L21 by G53, L22 by G57) | 0 |
-| LEAN | 17 | 17 | 0 | 0 |
-| SPEC | 19 | 18 restated or ruled | | 1 (S19, audit points of 2026-11-19 for the owner) |
+| ~~LEAN~~ | ~~17~~ | ~~17~~ | ~~0~~ | ~~0~~ |
+| LEAN (2026-11-20) | 18 | 17 | 1 (T18, recorded as a known limit of the model in `RULEBOOK.md`, not fixed; reaches no compared output) | 0 |
+| ~~SPEC~~ | ~~19~~ | ~~18 restated or ruled~~ | | ~~1 (S19, audit points of 2026-11-19 for the owner)~~ |
+| SPEC (2026-11-20) | 20 | 19 restated or ruled (S20 by C-n) | | 1 (S19, audit points of 2026-11-19 for the owner) |
+
+*Counts updated 2026-11-20: T18 (the `m2ll0` placeholder) and S20 (fidelity finding F1) added,
+both from the fidelity pass of the port's Lean of 2026-11-20.*
 
 Of the 52 port entries, the parity judge passed at the moment of discovery on every one for
 which the records say; for none of them did the judge's own inputs fail before the defect was
@@ -154,6 +159,7 @@ all of them. After each SAS correction the port was made to follow (2026-11-16, 
 | T15 | SAS Lean input checks: an absent `VAR1` column; SAS's `%num(VAR1)` creates it as missing (training and test) | file without `VAR1` (x23 G) | `def:credit_raw_input_check`, `def:test_raw_input_check` | Three reviewers, confirmed by x23 | `VAR1 = .` after `bad_row` |
 | T16 | SAS Lean `COUNT(DISTINCT)` compared ids with trailing blanks; SAS ignores them (training and test) | ids `7` and `7 ` | `def:credit_raw_check_totals`, `def:test_raw_check_totals` | Reviewers, x23 H | Trim before comparing |
 | T17 | SAS Lean returned one `model_summary` row with a missing Area for a one-class ROC table; SAS writes none | x27 A4, B60, D60 | `def:roc_train`, `def:roc_valid`, `def:model_summary` | SAS experiment x27, found by the port's small-input runs (round 6) | Rule R46 |
+| T18 | *(2026-11-20)* Port Lean `def:train_run_01_fit_frame` returns `m2ll0 = 0.0` where the Python has NaN when `intercept_only` is `None` (no fit); a modelling placeholder named in the item's comment, covered by no rule | `StepwiseResult()` (no step, no fit), one row of the 36 candidates and `default_flag`, all 0.0: Lean `m2ll0` bits 0, Python NaN | `def:train_run_01_fit_frame` (not changed) | Differential fuzzing, fidelity pass 2026-11-20: 461 of 2,473 kept cases differ, only there (`migration/port-to-lean/diffeval/receipts/fuzz_2026-11-20c-train-a.tsv`) | Not fixed: recorded as a known limit of the model (`RULEBOOK.md`). Reaches no output: the whole-stage tests of `def:run_py_py_py` and of the glue (141 and 80 no-fit runs) are equal |
 
 ### SPEC: wording and specification errors
 
@@ -178,6 +184,7 @@ all of them. After each SAS correction the port was made to follow (2026-11-16, 
 | S17 | Requirements false only for undeliverable tables or needing a reading: Q2-Q5, Q10 (G28); Q6 counts not whole (`> 0` vs `>= 1`, 0.5 late payments) (G29); Q12, Q13 mixed missing encodings (G30, G39); Q22 empty validation (G31); Q27 on invalid input (G53) | Q6: `NumberOfTimes90DaysLate` = 0.5 | Logos: requirement contracts | Rulings |
 | S18 | `thm:fe_run_06_split_S6a`, `S6b` false after the split change; G2 needed the final fit's first name to be `Intercept` | not recorded | Provers, 2026-11-19 | C-k: restated for the pipeline's split; `PyLinks` 14 |
 | S19 | Audit points left for the owner (2026-11-19): P0's SAS half proves nothing about the SAS run; F1, F2, E7 one-directional; 368 items vs 367 formalised | | Audit | **Open** for the owner |
+| S20 | *(2026-11-20; LEAN and SPEC: the text and the Lean of a link)* Fidelity finding F1 (not contract F1): `PyLinks` clause 10, the count round trip `parse_float (sas_best n 8) = n`, asked for every whole number n; false of the real port from 10^8 (eight print positions cannot hold every such count exactly) | a count n >= 10^8 that BEST8. does not print exactly, e.g. 100000001 **(inferred)** | Non-author review of the glue, fidelity pass of the port's Lean, 2026-11-20 | Correction C-n (`definitions-v3.md`): clause 10 restated to n < 10^8 (text and Lean), `hcount` of `lem:metrics_ks_table` to n <= V.length; no contract gained a hypothesis, the bound is discharged from `InputOK` (G56, B3) in E8, E9 and G4 |
 
 ## One paragraph per entry
 
@@ -373,6 +380,12 @@ blanks). The SAS-side differential evaluation then found 0 unexplained differenc
 **T17.** The SAS Lean gave one `model_summary` row for a one-class ROC table; SAS writes none.
 Found because the port's small-input runs (P26) showed SAS's behaviour; corrected as rule R46.
 
+**T18 (2026-11-20).** When there is no fit, the port's Python carries `m2ll0` as NaN and the
+Lean of `def:train_run_01_fit_frame` as 0.0, a placeholder its comment names. Found by the
+differential fuzzing of the fidelity pass (461 of 2,473 kept cases, all the no-fit ones). No
+compared output depends on it: the whole-stage tests of the train stage (`def:run_py_py_py`) and
+of the glue, 141 and 80 no-fit runs, are equal. Recorded as a known limit of the model, not fixed.
+
 ### SPEC
 
 **S1 to S4.** Statements in the migration records that the code contradicted, found by the first
@@ -395,6 +408,12 @@ are whole numbers) made the two say the same.
 
 **S18, S19.** Restatements of 2026-11-19 and the audit points still open for the owner.
 
+**S20 (2026-11-20).** Fidelity finding F1: `PyLinks` clause 10 asked that every whole count read
+back exactly through BEST8., which the real port does only below 10^8. Found by the non-author
+review of the glue in the fidelity pass; fixed by restating the clause (text and Lean) to
+n < 10^8 (correction C-n). No contract gained a hypothesis: E8, E9 and G4 discharge the bound from
+`InputOK`.
+
 ## Sources
 
 `git log` and `git show` of `port/`, `credit_risk/`, `legacy/`, `judge/`, `migration/` (head
@@ -408,7 +427,8 @@ are whole numbers) made the two say the same.
 `disproof-G1-2026-11-17.md`, `observation-H15-2026-11-18.md`, `C-g-draft-2026-11-18.md`,
 `port-change-spec-2026-11-18.md`, `definitions-v3.md`, `informal-spec.md`;
 `migration/port-to-lean/`: `update-2026-11-17.md`, `update-2026-11-18.md`, `gates.md`,
-`amendments.md`, `RULEBOOK.md`, `reviews/verdicts.md`, `diffeval/receipts/fuzz_2026-11-18.tsv`;
+`amendments.md`, `RULEBOOK.md`, `reviews/verdicts.md`, `diffeval/receipts/fuzz_2026-11-18.tsv`,
+`diffeval/receipts/fuzz_2026-11-20c-train-a.tsv` (added 2026-11-20);
 `migration/legacy-to-lean/`: `corrections-account.md`, `retranslation-report.md`,
 `diffeval-receipt.md`, `amendments.md`, `corrections-round7.md`;
 `migration/proofs/legacy-meets-requirements/reports/`: `findings-for-legacy.md`,

@@ -52,3 +52,16 @@ after the first call was identical, but it does not change the stored text. `wri
 way to change the text, clears the Lean of `def:run` and everything that depends on it, so it was
 not used: the text is still stale. The status right after the second `update_item_source` call was
 the 63-item clearing above.
+
+## 2026-11-20, close of the fidelity pass: both carriers kept on purpose
+
+`def:zz_carrier_fid_1` and `def:zz_carrier_fid_2` stay on blueprint `5365851c` on purpose. They
+have no consumers (no statement or proof uses either), so they change no item and no part of the
+claim. They are kept so that the differential tests of the fidelity pass (receipts
+`diffeval/receipts/fuzz_2026-11-20*.tsv`) can be re-run without re-adding a carrier, which the
+removal of the `def:zz_carrier*` items at earlier closes had made necessary (see "Why" above).
+This is a disclosed exception to the rule that `zz_` items are removed at the close (as done for
+`def:zz_carrier`, `def:zz_carrier_p/_f/_t` and `def:zz_carrier_e`: `gates.md`,
+`update-2026-11-17.md`, `update-2026-11-18.md`). They count among the blueprint's items and are
+not contracts. Whoever closes the blueprint for good may remove them; to re-run the receipts
+afterwards, re-add them from `diffeval/carrier_fid.py`.

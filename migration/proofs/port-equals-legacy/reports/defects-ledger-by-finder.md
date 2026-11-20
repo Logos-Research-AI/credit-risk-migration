@@ -1,6 +1,8 @@
 # Defects ledger by finder (2026-11-20)
 
-Classification of the 110 entries of `defects-ledger.md` (52 PORT, 22 LEGACY, 17 LEAN, 19 SPEC) by
+Classification of the ~~110 entries of `defects-ledger.md` (52 PORT, 22 LEGACY, 17 LEAN, 19 SPEC)~~
+112 entries of `defects-ledger.md` (52 PORT, 22 LEGACY, 18 LEAN, 20 SPEC; T18 and S20 added
+2026-11-20) by
 who or what found each one, for the public post "the AI-native legacy-to-Python port made mistakes
 that the Logos verified layer caught". Read-only: built from the ledger, the records it cites and
 `git log` / `git show`. No blueprint was opened. Where the records do not settle a field it says
@@ -41,9 +43,15 @@ have caught it? The script hands the port SAS's split read from the SAS referenc
 |---|---|---|---|---|---|---|---|---|
 | PORT | 13 (11 / 2) | 0 | 0 | 26 | 11 | 1 | 1 | 52 |
 | LEGACY | 15 (15 / 0) | 0 | 0 | 1 | 6 | 0 | 0 | 22 |
-| LEAN | 0 | 0 | 4 | 1 | 11 | 0 | 1 | 17 |
-| SPEC | 14 (10 / 4) | 0 | 0 | 1 | 3 | 0 | 1 | 19 |
-| **Total** | **42** | **0** | **4** | **29** | **31** | **1** | **3** | **110** |
+| ~~LEAN~~ | ~~0~~ | ~~0~~ | ~~4~~ | ~~1~~ | ~~11~~ | ~~0~~ | ~~1~~ | ~~17~~ |
+| LEAN (2026-11-20) | 0 | 0 | 5 | 1 | 11 | 0 | 1 | 18 |
+| ~~SPEC~~ | ~~14 (10 / 4)~~ | ~~0~~ | ~~0~~ | ~~1~~ | ~~3~~ | ~~0~~ | ~~1~~ | ~~19~~ |
+| SPEC (2026-11-20) | 14 (10 / 4) | 0 | 0 | 1 | 4 | 0 | 1 | 20 |
+| ~~**Total**~~ | ~~**42**~~ | ~~**0**~~ | ~~**4**~~ | ~~**29**~~ | ~~**31**~~ | ~~**1**~~ | ~~**3**~~ | ~~**110**~~ |
+| **Total (2026-11-20)** | **42** | **0** | **5** | **29** | **32** | **1** | **3** | **112** |
+
+*Updated 2026-11-20: T18 (LEAN, code 3, differential fuzzing) and S20 (SPEC, code 5, non-author
+review of the glue) added.*
 
 SPEC 1o are S6, S7, S8, S11 (provers finding a definition or contract unsatisfiable or false while
 stating or writing a witness, without a proved negation). S11 also had per-contract hypotheses; it is
@@ -318,7 +326,7 @@ For every entry the port reproduced SAS, so the parity judge (port vs SAS) could
 
 ### LEAN
 
-The parity judge never runs the Lean: "no (out of reach)" for all 17. Severity is *model* for all.
+The parity judge never runs the Lean: "no (out of reach)" for all ~~17~~ 18 (2026-11-20). Severity is *model* for all.
 
 | ID | Kind | Finder | How, exactly | Judge | Severity | Evidence |
 |---|---|---|---|---|---|---|
@@ -339,10 +347,11 @@ The parity judge never runs the Lean: "no (out of reach)" for all 17. Severity i
 | T15 | LEAN | 5 | Three reviewers, x23 | no | model | same |
 | T16 | LEAN | 5 | Reviewers, x23 H | no | model | same |
 | T17 | LEAN | 4 | SAS experiment x27, prompted by the port's small-input runs | no | model | `migration/legacy-to-lean/corrections-round7.md:1-39` |
+| T18 | LEAN | 3 | Differential fuzzing of the fidelity pass, 2026-11-20: `m2ll0` placeholder (0.0 vs NaN when no fit), 461 of 2,473 kept cases; reaches no compared output | no (out of reach) | model | `migration/port-to-lean/diffeval/receipts/fuzz_2026-11-20c-train-a.tsv`; `migration/port-to-lean/RULEBOOK.md` (known limits) |
 
 ### SPEC
 
-Not program defects: "no (n/a)" for the judge, severity *records* for all 19.
+Not program defects: "no (n/a)" for the judge, severity *records* for all ~~19~~ 20 (2026-11-20).
 
 | ID | Kind | Finder | How, exactly | Evidence |
 |---|---|---|---|---|
@@ -365,6 +374,7 @@ Not program defects: "no (n/a)" for the judge, severity *records* for all 19.
 | S17 | SPEC | 1d | Requirement contracts on the SAS blueprint | `migration/requirements/requirements.md` rulings G28-G31, G39, G53 |
 | S18 | SPEC | 1d | Provers, 2026-11-19 | `reports/2026-11-19-final-report.md:282-286` |
 | S19 | SPEC | 5 | Audit of 2026-11-19 | `reports/2026-11-19-final-report.md` |
+| S20 | SPEC | 5 | Non-author review of the glue, fidelity pass 2026-11-20 (fidelity finding F1: `PyLinks` clause 10 unbounded; fixed by restating to n < 10^8, C-n) | `definitions-v3.md` (C-n); `informal-spec.md` (change note of 2026-11-20) |
 
 S12 and S18 are counted 1d as the ledger states them; the negation items are not named in the
 records read here, so a reader may prefer 1o. Moving them would not change any PORT count.

@@ -897,6 +897,11 @@ narrowed, because the equality contracts are stated at the reals, where there is
   through it `def:metrics_run_05_cumulative_lift` and `def:run_py` (`decile_analysis.csv`,
   `printed_cumulative_lift.csv`): 30 of 2,092 fuzzed runs. Not reached through `def:metrics_run_02_ks`
   (154 fuzzed frames with both zeros: equal).
+  *(Added 2026-11-20, fidelity pass.)* Seen again on the current `def:run_py` (whole metrics stage):
+  76 of 2,063 kept runs (seeds 7000000..7002099), every one with -0.0 and +0.0 in `pd_logistic` and a
+  zero `min_pd` or `max_pd`; only `decile_analysis.csv` and `printed_cumulative_lift.csv` differ, and
+  they are equal when zeros are compared unsigned. Smallest case: seed 7000137 (5 validation rows),
+  `max_pd` 0.0 in Python and -0.0 in the Lean. Receipt `diffeval/receipts/fuzz_2026-11-20c-compositions.tsv`.
 - the median when the middle of the sorted values falls on zeros of both signs: see the first bullet of
   "Known points on the T4 units" below (callers `def:fe_run_02_income_medians`,
   `def:fe_run_02b_medians_all`; seen from 17 values up).
@@ -926,6 +931,13 @@ narrowed, because the equality contracts are stated at the reals, where there is
   `nagelkerke`, `train.py:245-246`): seed 136, argument 104.60714285714286 (bits 0x405a26db6db6db6e); Lean
   5286717714475752482 against CPython 5286717714475752481 (bits of the result). The Lean value is the correctly
   rounded one (0.4992 against 0.5008 ulp). 1 of 2,280 kept cases.
+  *(Added 2026-11-20, fidelity pass.)* Two more arguments in `def:train_run_03_fit_global_rsquare`
+  (`printed_rsquare.csv` only; the X28 path): `exp(690.125)` Lean 9090778126006073288 against CPython
+  ...287 (seed 1493) and `exp(3.625)` Lean 4630477952598210645 against CPython ...644 (seed 1846); the
+  Lean value is again the correctly rounded one (0.4996 and 0.4997 ulp). Rerunning the Python with the
+  Lean's `exp` values for the three arguments gives the Lean digests exactly. Smallest case: seed 1846
+  (n_obs 1, argument 3.625 at step 3). Receipt `diffeval/receipts/fuzz_2026-11-20c-train-b.tsv`
+  (`diffeval/units/fz10c_train_run_03_explain.py`).
 - **`** 2` on a Python float is not always `x * x`** (found by the same fuzz): on about 0.13 % of
   floats `x ** 2` differs from `x * x` by one unit in the last place (for example
   `(-0.06915923590149525) ** 2`). Count on this machine (macOS arm64, the port's Python): 1,314 of
@@ -934,6 +946,18 @@ narrowed, because the equality contracts are stated at the reals, where there is
   passes `pow2 := x * x` plus a table of the arguments where Python's value differs (0 to 21
   entries per input). No item is affected: `pow2` is an explicit parameter (§3). Whoever
   gives `pow2` a value must take Python's `** 2`, not `x * x`.
+
+A modelling placeholder, found by the fidelity pass of 2026-11-20 (differential fuzzing of the current
+items against the current Python; recorded, not re-submitted):
+- **`m2ll0` when there is no fit** (`def:train_run_01_fit_frame`). When `intercept_only` is `None`
+  (no fit, no step; inside `def:train_run_01_fit_frame_precond`) the Python has `m2ll0 = math.nan`
+  and the item returns `0.0` (the item's comment calls it a placeholder; no rule covers it: R-NULLNAN
+  maps NaN to `Option`, the item does not). 461 of 2,473 kept fuzz cases differ, and only there; all
+  461 are the no-fit cases. Smallest input: `StepwiseResult()` and a frame of the 36 candidates and
+  `default_flag`, one row, all 0.0 (Lean `m2ll0` bits 0, Python NaN). Receipt
+  `diffeval/receipts/fuzz_2026-11-20c-train-a.tsv`. No compared output depends on it: the
+  whole-stage tests of `def:run_py_py_py` and of the glue, with 141 and 80 no-fit runs, are equal on
+  every one.
 
 Known points on the T4 units (2026-11-16, from the review by port-translator-6; the items stay as
 accepted, decision of the lead):

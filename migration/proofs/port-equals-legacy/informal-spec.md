@@ -586,8 +586,15 @@ discharges the condition on the reached argument.
 
 **What the claim counts (2026-11-20).** The claim is the contracts E1 to E11, F1 to F6, G1 to
 G4, A1 to A4, T0 to T2, P0 and R (one item each on 5365851c, 30 items), each assuming only
-`PyLinks`, `Paired`, `InputOK` and reached-equations (several assume fewer: R and G1 to G4 have no
-`Paired`, T0 and T1 no input). The step and helper lemmas whose statements carry a unit precondition (`hpre`), a
+`PyLinks`, `Paired`, `InputOK` and reached-equations ~~(several assume fewer: R and G1 to G4 have no
+`Paired`, T0 and T1 no input)~~ *(superseded 2026-11-20 by the correction below)*, except T2.
+**Correction, 2026-11-20.** T2 is the exception: it instead assumes `SasLinks`, `InputOK`, the
+reached fact `Fitted` and its defining equation, as section 6 allows (`[D8]`: an item of the port
+blueprint about SAS units seen through the profile). Several contracts assume fewer than the
+list: T0 assumes `PyLinks` only; T1 assumes nothing; A3 assumes nothing; G1 to G4, A1, A2 and R
+assume `PyLinks` and `InputOK` (no `Paired`). T2's Lean comment still mentions E4's superseded
+"feature shape" wording; this is cosmetic, and changing the
+comment would clear T2, so it is left as is. The step and helper lemmas whose statements carry a unit precondition (`hpre`), a
 `wf_` domain or a domain hypothesis and that nothing in the blueprint uses (roots of the
 dependency graph, read 2026-11-20) are proved as stated but are not part of the claim, since no
 contract uses them and their conditions are not discharged on reached input:
