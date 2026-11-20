@@ -1,0 +1,22 @@
+{
+ "fuzzer": "port-translator (fidelity pass 2026-11-20c, metrics)",
+ "generator": "diffeval/units/fz10c_metrics_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "metrics_run_03_thresholds": {
+   "seeds": "7100000..7102399",
+   "generated": 2400,
+   "kept": 2321,
+   "python_raises_inside_precondition": [],
+   "note": "the same frames as fz10c_cm (seeds 7100000..), result of step 03 (five calls, concat); one case = one digest over the kept (rejected) seeds of a window of 50 (400)",
+   "stat": {
+    "generated": 2400,
+    "kept": 2321,
+    "rejected": 79,
+    "dropped_rejected_raises": [],
+    "raises_kept": [],
+    "zeros": 0
+   }
+  }
+ }
+}

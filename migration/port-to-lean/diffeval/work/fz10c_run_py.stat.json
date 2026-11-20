@@ -1,0 +1,16 @@
+{
+ "generated": 2100,
+ "kept": 2063,
+ "not_held": 37,
+ "fsum": 0,
+ "raised": [],
+ "modes": {
+  "rows": 1233,
+  "training scores text-null": 200,
+  "stop: training absent": 196,
+  "stop: validation absent": 214,
+  "validation header only": 220
+ },
+ "stops": 410,
+ "nvalid0": 0
+}

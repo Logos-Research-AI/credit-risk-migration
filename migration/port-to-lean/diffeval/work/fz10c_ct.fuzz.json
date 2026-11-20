@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator (fidelity pass 2026-11-20 third attempt, train-c)",
+ "generator": "migration/port-to-lean/diffeval/units/fz10c_train_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "train_run_08_ctable": {
+   "seeds": "7200000..7202599",
+   "generated": 2600,
+   "kept": 2308,
+   "python_raises_inside_precondition": [],
+   "note": "[train-c scope] Lean of the CURRENT item def:train_run_08_ctable through def:zz_carrier_fid_2 vs the CURRENT train.py (HEAD 4a757fb) lines 479-535 executed. Explicit parameters (RULEBOOK section 3) as injective/simple stand-ins identical on both sides: FMT (bits of the float, w, d), INV (a at [0][0], 0 elsewhere), SOLVE (Cramer 1x1 / 2x2), DOT, MATMUL, MATVEC, EINSUM (sequential loops), LOG1P = log(1+x). Blocks of 650 seeds per Lean call. rejected and Python returns: 15; rejected and Python raises (dropped): 277; reached: {\"no fit\": 552, \"fit, table made\": 893, \"fit, no table\": 878, \"intercept only, made\": 372, \"with a variable, made\": 521, \"dupname\": 55, \"khi=50 (last level 1.000)\": 236, \"a level 0.000\": 230, \"null pd on a complete case\": 83, \"rows outside the mask\": 1157, \"table rows max\": 51}"
+  }
+ }
+}

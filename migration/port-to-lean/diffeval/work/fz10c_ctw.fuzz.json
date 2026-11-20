@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator (fidelity pass 2026-11-20 third attempt, train-c)",
+ "generator": "migration/port-to-lean/diffeval/units/fz10c_ctw_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "train_run_08_ctable": {
+   "seeds": "7300000..7300699",
+   "generated": 700,
+   "kept": 640,
+   "python_raises_inside_precondition": [],
+   "note": "[train-c scope] Supplement for def:train_run_08_ctable with the EXACT routines of the model: Gaussian elimination with partial pivoting (fz4_cim_gen.LEAN) for solve, sequential @ and einsum loops (fz4_cim_gen.NA, NPXE), wide designs of 2-5 predictors. Blocks of 350 seeds. EXACT routines, wide designs (2-5 predictors); rejected and Python returns: 0; rejected and Python raises (dropped): 60; exact zero pivot of the Gaussian solve (real numpy raises LinAlgError, outside the model, dropped): 0; reached: {\"made\": 155, \"made, a dependent column\": 145, \"no table (fit)\": 376, \"no fit\": 109, \"width>=5\": 295, \"dupname\": 61, \"khi=50\": 32, \"level 0.000\": 24}"
+  }
+ }
+}

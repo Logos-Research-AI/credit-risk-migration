@@ -1,0 +1,96 @@
+{
+ "generator": "diffeval/units/fz10c_m_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "seeds": "8200000..8201999",
+ "units": {
+  "metrics_run_01_roc_auc": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_02_ks": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_04_deciles": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_05_cumulative_lift": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_05_cumulative_lift[valid_exists flipped]": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_06_psi": {
+   "kept": 1780,
+   "rejected": 220,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_07_calibration": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_08_validation_summary": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_08_validation_summary[valid_exists flipped]": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_09_model_performance": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_09_model_performance[valid_exists flipped]": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  },
+  "metrics_run_10_printed_roc": {
+   "kept": 2000,
+   "rejected": 0,
+   "raises-kept": [],
+   "raises-rejected": 0,
+   "upstream": 0
+  }
+ },
+ "flavours": {
+  "empty_V": 155,
+  "empty_T": 220
+ },
+ "python_raises_seeds": []
+}

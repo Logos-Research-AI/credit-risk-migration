@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator (fidelity pass 2026-11-20 third attempt, train-c)",
+ "generator": "migration/port-to-lean/diffeval/units/fz10c_train_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "train_run_11_confusion_valid": {
+   "seeds": "7100000..7102399",
+   "generated": 2400,
+   "kept": 2006,
+   "python_raises_inside_precondition": [],
+   "note": "[train-c scope] Lean of the CURRENT item def:train_run_11_confusion_valid evaluated through the carrier def:zz_carrier_fid_2 vs the CURRENT port/credit_risk/train.py (HEAD 4a757fb) lines 640-700, sliced by text markers and executed. No stand-in routine (the step calls none). Digest of the tokens of input + confusion_matrix + validation_metrics per seed, blocks of 600 seeds per Lean call, generated inside Lean (hsh) and mirrored in Python. rejected and Python returns: 394; rejected and Python raises (dropped): 0; reached: {\"n=0\": 192, \"no default_flag\": 260, \"Int64 default_flag\": 714, \"NaN key\": 599, \"-0.0 key\": 580, \"null default_flag\": 933, \"null pred\": 1006, \"pred -1 or 2\": 433, \"every key row has a null (sum 0)\": 407, \"40 rows\": 185, \"levels>=5\": 858}"
+  }
+ }
+}

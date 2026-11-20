@@ -1,0 +1,66 @@
+[
+ {
+  "id": "fz10c_cv/kept 7100000..7100599 (509)",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv/rejected 7100000..7100599 (91)",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv/kept 7100600..7101199 (494)",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv/rejected 7100600..7101199 (106)",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv/kept 7101200..7101799 (491)",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv/rejected 7101200..7101799 (109)",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv/kept 7101800..7102399 (512)",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv/rejected 7101800..7102399 (88)",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

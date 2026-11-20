@@ -1,0 +1,434 @@
+[
+ {
+  "id": "fz10c_cm/kept seeds 7100000..7100049 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100050..7100099 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100100..7100149 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100150..7100199 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100200..7100249 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100250..7100299 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100300..7100349 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100350..7100399 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100400..7100449 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100450..7100499 (46)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100500..7100549 (47)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100550..7100599 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100600..7100649 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100650..7100699 (46)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100700..7100749 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100750..7100799 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100800..7100849 (46)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100851..7100899 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100900..7100949 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7100950..7100999 (47)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101000..7101049 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101050..7101099 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101100..7101149 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101150..7101199 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101200..7101249 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101250..7101299 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101300..7101349 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101350..7101399 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101400..7101449 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101450..7101499 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101500..7101549 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101550..7101599 (46)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101600..7101648 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101650..7101699 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101700..7101749 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101750..7101799 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101800..7101849 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101850..7101899 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101900..7101949 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7101950..7101999 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7102000..7102049 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7102050..7102099 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7102100..7102149 (50)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7102150..7102199 (44)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7102200..7102249 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7102250..7102299 (49)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7102301..7102349 (44)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/kept seeds 7102350..7102399 (48)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/rejected seeds 7100008..7100341 (6)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/rejected seeds 7100403..7100715 (17)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/rejected seeds 7100808..7101193 (16)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/rejected seeds 7101216..7101580 (14)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/rejected seeds 7101631..7101965 (9)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cm/rejected seeds 7102080..7102392 (17)",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

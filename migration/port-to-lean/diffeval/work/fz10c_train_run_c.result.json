@@ -1,0 +1,6398 @@
+[
+ {
+  "id": "fz10c_train_run_c/seed 3001300 [stop]: 7 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001301 [left-out parameter in final, validation of one class, no classification table, HL written]: 13 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001302 [final intercept only, q == 0 step, validation of one class]: 18 training / 5 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001303 [stop]: 21 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001304 [HL written]: 18 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001305 [HL written]: 23 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001306 [no step, final intercept only, validation of one class]: 10 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001307 [no step, final intercept only, validation of one class]: 8 training / 5 validation rows, 10 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001308 [stop]: 10 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001309 [validation of one class, HL written]: 8 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001310 [validation of one class, HL written]: 9 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001311 [HL written]: 25 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001312 [HL written]: 13 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001313 [HL written]: 6 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001314 [q == 0 step]: 7 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001315 [validation of one class, HL written]: 10 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001316 [validation of one class, HL written]: 24 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001317 [HL written]: 13 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001318 [q == 0 step, validation of one class, HL written]: 12 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001319 [final intercept only, q == 0 step, validation of one class]: 16 training / 9 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001320 [no step, final intercept only]: 10 training / 5 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001321 [validation of one class, HL written]: 25 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001322 [no step, final intercept only, validation of one class]: 22 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001323 [q == 0 step, HL written]: 19 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001324 [stop]: 6 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001325 [stop]: 18 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001326 [no fit]: 20 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001327 [no fit]: 9 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001328 [stop]: 17 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001329 [stop]: 11 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001330 [no step, final intercept only]: 15 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001331 [stop]: 17 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001332 [validation of one class, HL written]: 20 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001333 [q == 0 step, validation of one class, HL written]: 21 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001334 [no fit]: 24 training / 1 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001335 [no step, final intercept only]: 9 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001336 [stop]: 15 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001337 [fitted]: 11 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001338 [left-out parameter in final, no classification table]: 19 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001339 [stop]: 11 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001340 [validation of one class]: 15 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001341 [HL written]: 9 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001342 [stop]: 7 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001343 [stop]: 19 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001344 [no step, final intercept only, validation of one class]: 13 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001345 [stop]: 22 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001346 [validation of one class]: 7 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001347 [no step, final intercept only, validation of one class]: 20 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001348 [HL written]: 15 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001349 [q == 0 step, HL written]: 16 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001350 [validation of one class, HL written]: 9 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001351 [fitted]: 19 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001352 [no fit]: 11 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001353 [final intercept only, q == 0 step, validation of one class]: 11 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001354 [stop]: 20 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001355 [HL written]: 12 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001356 [HL written]: 15 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001357 [stop]: 9 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001358 [no step, final intercept only, validation of one class]: 21 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001359 [HL written]: 14 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001360 [q == 0 step, HL written]: 20 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001361 [validation of one class]: 14 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001362 [validation of one class, HL written]: 10 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001363 [stop]: 13 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001364 [HL written]: 18 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001365 [no fit]: 12 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001366 [validation of one class, HL written]: 15 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001367 [validation of one class]: 11 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001368 [stop]: 16 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001369 [final intercept only, q == 0 step, validation of one class]: 13 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001370 [stop]: 7 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001371 [stop]: 17 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001372 [validation of one class, HL written]: 20 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001373 [no fit]: 23 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001374 [validation of one class, HL written]: 23 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001375 [validation of one class, HL written]: 24 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001376 [q == 0 step, validation of one class, HL written]: 10 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001377 [no step, final intercept only, validation of one class]: 6 training / 1 validation rows, 10 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001378 [stop]: 25 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001379 [fitted]: 7 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001380 [stop]: 12 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001381 [validation of one class, HL written]: 17 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001382 [fitted]: 21 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001383 [final intercept only, q == 0 step, validation of one class]: 23 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001384 [no fit]: 8 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001385 [no step, final intercept only]: 21 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001386 [no fit]: 23 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001387 [validation of one class, HL written]: 9 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001388 [q == 0 step, HL written]: 9 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001389 [no fit]: 9 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001390 [validation of one class, HL written]: 10 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001391 [validation of one class, HL written]: 24 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001392 [final intercept only, q == 0 step, validation of one class]: 15 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001393 [stop]: 20 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001394 [no fit]: 21 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001395 [validation of one class, HL written]: 18 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001396 [q == 0 step, validation of one class, HL written]: 19 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001397 [validation of one class, HL written]: 7 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001398 [HL written]: 9 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001399 [final intercept only, q == 0 step]: 15 training / 5 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001400 [HL written]: 15 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001401 [no step, final intercept only, validation of one class]: 7 training / 1 validation rows, 10 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001402 [validation of one class, HL written]: 18 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001403 [validation of one class]: 24 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001404 [stop]: 10 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001405 [no step, final intercept only]: 24 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001406 [no step, final intercept only, validation of one class]: 10 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001407 [no step, final intercept only, validation of one class]: 8 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001408 [validation of one class, HL written]: 12 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001409 [stop]: 16 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001410 [final intercept only, q == 0 step]: 11 training / 9 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001411 [fitted]: 25 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001412 [validation of one class]: 6 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001413 [no fit]: 10 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001414 [no step, final intercept only, validation of one class]: 13 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001415 [q == 0 step, HL written]: 25 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001416 [q == 0 step]: 18 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001417 [stop]: 19 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001418 [validation of one class, HL written]: 24 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001419 [stop]: 21 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001420 [stop]: 21 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001421 [validation of one class]: 16 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001422 [no step, final intercept only, validation of one class]: 13 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001423 [no step, final intercept only, validation of one class]: 16 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001424 [no fit]: 18 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001425 [stop]: 10 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001426 [final intercept only, q == 0 step, validation of one class]: 10 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001427 [validation of one class, HL written]: 10 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001428 [validation of one class, HL written]: 14 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001429 [stop]: 21 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001430 [fitted]: 16 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001431 [validation of one class]: 20 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001432 [q == 0 step, validation of one class]: 11 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001433 [no fit]: 22 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001434 [stop]: 21 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001435 [HL written]: 25 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001436 [validation of one class, HL written]: 21 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001437 [stop]: 16 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001438 [validation of one class, HL written]: 22 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001439 [HL written]: 22 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001440 [final intercept only, q == 0 step, validation of one class]: 11 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001441 [validation of one class, HL written]: 25 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001442 [stop]: 17 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001443 [q == 0 step, HL written]: 20 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001444 [validation of one class, HL written]: 11 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001445 [validation of one class]: 20 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001446 [fitted]: 22 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001447 [left-out parameter in final, validation of one class, no classification table]: 25 training / 2 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001448 [stop]: 7 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001449 [validation of one class, HL written]: 12 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001450 [stop]: 18 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001451 [no step, final intercept only]: 13 training / 5 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001452 [q == 0 step, validation of one class, HL written]: 11 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001453 [no step, final intercept only, validation of one class]: 23 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001454 [q == 0 step, HL written]: 25 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001455 [validation of one class, HL written]: 16 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001456 [stop]: 25 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001457 [stop]: 18 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001458 [left-out parameter in final, validation of one class, no classification table]: 14 training / 9 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001459 [stop]: 20 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001460 [no step, final intercept only, validation of one class]: 19 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001461 [stop]: 10 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001462 [no step, final intercept only, validation of one class]: 18 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001463 [stop]: 8 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001464 [HL written]: 19 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001465 [validation of one class, HL written]: 15 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001466 [validation of one class, HL written]: 18 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001467 [HL written]: 17 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001468 [stop]: 13 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001469 [validation of one class, HL written]: 14 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001470 [stop]: 11 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001471 [stop]: 22 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001472 [left-out parameter in final, no classification table]: 18 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001473 [q == 0 step, validation of one class, HL written]: 6 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001474 [fitted]: 23 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001475 [validation of one class, HL written]: 13 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001476 [validation of one class, HL written]: 7 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001477 [stop]: 22 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001478 [stop]: 20 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001479 [stop]: 23 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001480 [no step, final intercept only, validation of one class]: 10 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001481 [stop]: 11 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001482 [validation of one class, HL written]: 25 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001483 [HL written]: 8 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001484 [HL written]: 14 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001485 [stop]: 23 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001486 [stop]: 12 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001487 [q == 0 step, validation of one class, HL written]: 20 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001488 [fitted]: 8 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001489 [HL written]: 12 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001490 [stop]: 12 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001491 [stop]: 6 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001492 [validation of one class, HL written]: 9 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001493 [HL written]: 7 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001494 [no step, final intercept only]: 23 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001495 [stop]: 15 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001496 [fitted]: 18 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001497 [validation of one class]: 22 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001498 [stop]: 25 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001499 [left-out parameter in final, no classification table, HL written]: 9 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001500 [q == 0 step, validation of one class, HL written]: 10 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001501 [final intercept only, q == 0 step, validation of one class]: 23 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001502 [HL written]: 22 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001503 [validation of one class, HL written]: 18 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001504 [no step, final intercept only]: 8 training / 5 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001505 [fitted]: 9 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001506 [stop]: 25 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001507 [validation of one class, HL written]: 13 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001508 [validation of one class, HL written]: 17 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001509 [validation of one class, HL written]: 25 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001510 [no fit]: 23 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001511 [left-out parameter in final, no classification table]: 14 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001512 [validation of one class, HL written]: 7 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001513 [validation of one class, HL written]: 6 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001514 [stop]: 12 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001515 [no step, final intercept only]: 17 training / 5 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001516 [stop]: 19 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001517 [left-out parameter in final, no classification table]: 15 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001518 [validation of one class]: 16 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001519 [HL written]: 18 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001520 [no step, final intercept only]: 11 training / 2 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001521 [validation of one class, HL written]: 23 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001522 [stop]: 15 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001523 [HL written]: 7 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001524 [validation of one class, HL written]: 6 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15624224260626675760,
+    12114880482718345709
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001525 [HL written]: 19 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001526 [fitted]: 15 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001527 [q == 0 step, validation of one class, HL written]: 13 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001528 [stop]: 6 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001529 [stop]: 22 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001530 [stop]: 13 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001531 [stop]: 23 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001532 [stop]: 11 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001533 [validation of one class, HL written]: 13 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001534 [stop]: 22 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001535 [stop]: 18 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001536 [no fit]: 12 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001537 [validation of one class, HL written]: 9 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001538 [stop]: 19 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001539 [no step, final intercept only, validation of one class]: 6 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001540 [validation of one class, HL written]: 12 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001541 [final intercept only, q == 0 step, validation of one class]: 9 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001542 [no step, final intercept only, validation of one class]: 8 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001543 [stop]: 25 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001544 [stop]: 19 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001545 [final intercept only, q == 0 step]: 22 training / 2 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001546 [validation of one class, HL written]: 11 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001547 [no step, final intercept only, validation of one class]: 17 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001548 [no fit]: 6 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001549 [no step, final intercept only, validation of one class]: 7 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001550 [stop]: 12 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001551 [final intercept only, q == 0 step]: 7 training / 9 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001552 [no fit]: 24 training / 1 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001553 [no step, final intercept only, validation of one class]: 24 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001554 [stop]: 24 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001555 [HL written]: 11 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001556 [validation of one class, HL written]: 10 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001557 [stop]: 13 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001558 [fitted]: 12 training / 5 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001559 [no step, final intercept only, validation of one class]: 13 training / 9 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001560 [no fit]: 22 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001561 [no step, final intercept only, validation of one class]: 7 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001562 [stop]: 9 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001563 [validation of one class, HL written]: 14 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001564 [validation of one class, HL written]: 13 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001565 [q == 0 step, validation of one class]: 22 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001566 [HL written]: 20 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001567 [final intercept only, q == 0 step, validation of one class]: 17 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001568 [q == 0 step, left-out parameter in final, no classification table]: 7 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001569 [stop]: 12 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001570 [left-out parameter in final, no classification table, HL written]: 17 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001571 [validation of one class, HL written]: 9 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001572 [stop]: 19 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001573 [validation of one class]: 19 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001574 [no fit]: 24 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001575 [stop]: 22 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001576 [validation of one class]: 9 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001577 [validation of one class]: 22 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001578 [validation of one class, HL written]: 8 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001579 [no step, final intercept only]: 18 training / 5 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001580 [stop]: 20 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001581 [validation of one class, HL written]: 8 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001582 [final intercept only, q == 0 step, validation of one class]: 19 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001583 [stop]: 9 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001584 [stop]: 11 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001585 [validation of one class]: 6 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001586 [HL written]: 20 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001587 [validation of one class, HL written]: 15 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001588 [no step, final intercept only, validation of one class]: 17 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001589 [q == 0 step, HL written]: 15 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001590 [left-out parameter in final, validation of one class, no classification table, HL written]: 16 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001591 [HL written]: 19 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001592 [stop]: 6 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001593 [stop]: 13 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001594 [no fit]: 17 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001595 [stop]: 16 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001596 [validation of one class]: 10 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001597 [validation of one class, HL written]: 25 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001598 [validation of one class]: 20 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001599 [fitted]: 6 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001600 [stop]: 25 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001601 [no fit]: 12 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001602 [no fit]: 17 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001603 [stop]: 8 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001604 [stop]: 21 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001605 [HL written]: 15 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001606 [validation of one class]: 19 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001608 [HL written]: 11 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001609 [validation of one class, HL written]: 11 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001610 [no step, final intercept only, validation of one class]: 12 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001611 [no fit]: 24 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001612 [validation of one class, HL written]: 9 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001613 [no step, final intercept only, validation of one class]: 14 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001614 [q == 0 step, validation of one class]: 7 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001615 [stop]: 15 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001616 [HL written]: 6 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001617 [stop]: 9 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001618 [no step, final intercept only]: 18 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001619 [no step, final intercept only, validation of one class]: 7 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001620 [q == 0 step, validation of one class]: 13 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001621 [left-out parameter in final, validation of one class, no classification table]: 11 training / 1 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001622 [stop]: 25 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001623 [validation of one class, HL written]: 9 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001624 [validation of one class, HL written]: 8 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001625 [final intercept only, q == 0 step]: 10 training / 5 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001626 [no step, final intercept only]: 13 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001627 [HL written]: 8 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001628 [validation of one class, HL written]: 9 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001629 [q == 0 step, validation of one class]: 7 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001630 [stop]: 18 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001631 [validation of one class]: 9 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001632 [fitted]: 17 training / 5 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001633 [stop]: 21 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001634 [q == 0 step, HL written]: 13 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001635 [validation of one class]: 11 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001636 [HL written]: 10 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001637 [no step, final intercept only, validation of one class]: 17 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001638 [q == 0 step, HL written]: 10 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001639 [stop]: 21 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001640 [no fit]: 10 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001641 [validation of one class, HL written]: 19 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001642 [HL written]: 10 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001643 [stop]: 14 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001644 [stop]: 21 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001645 [no step, final intercept only]: 7 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001646 [stop]: 16 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001647 [validation of one class, HL written]: 6 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001648 [q == 0 step]: 19 training / 5 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001649 [no step, final intercept only, validation of one class]: 9 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001650 [stop]: 22 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001652 [HL written]: 12 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001653 [no step, final intercept only, validation of one class]: 23 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001654 [q == 0 step]: 14 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001655 [validation of one class, HL written]: 10 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001656 [no fit]: 14 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001657 [final intercept only, q == 0 step]: 20 training / 5 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001658 [stop]: 6 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001659 [HL written]: 18 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001660 [final intercept only, q == 0 step, validation of one class]: 18 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001661 [stop]: 18 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001662 [no step, final intercept only]: 19 training / 2 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001663 [stop]: 24 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001664 [stop]: 7 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001665 [validation of one class, HL written]: 10 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001666 [validation of one class]: 17 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001667 [no step, final intercept only, validation of one class]: 9 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001668 [stop]: 22 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001669 [stop]: 12 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001670 [q == 0 step, validation of one class, HL written]: 21 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001671 [validation of one class, HL written]: 16 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001672 [validation of one class, HL written]: 12 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001673 [stop]: 10 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001674 [validation of one class]: 19 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001675 [stop]: 16 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001676 [stop]: 6 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001677 [validation of one class, HL written]: 24 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001678 [validation of one class]: 12 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001679 [q == 0 step, validation of one class, HL written]: 24 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001680 [no step, final intercept only]: 22 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001681 [no fit]: 22 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001682 [q == 0 step, HL written]: 17 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001683 [fitted]: 19 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001684 [stop]: 21 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001685 [validation of one class, HL written]: 16 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001686 [validation of one class, HL written]: 25 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001687 [no fit]: 25 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001688 [no step, final intercept only, validation of one class]: 7 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001689 [no step, final intercept only, validation of one class]: 23 training / 9 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001690 [q == 0 step, HL written]: 12 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001691 [no fit]: 18 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001692 [q == 0 step, validation of one class, HL written]: 18 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001693 [no step, final intercept only, validation of one class]: 16 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001694 [stop]: 14 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001695 [left-out parameter in final, no classification table]: 6 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001696 [stop]: 18 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001697 [validation of one class, HL written]: 12 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001698 [validation of one class, HL written]: 17 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001699 [stop]: 16 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001700 [stop]: 24 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001701 [no step, final intercept only, validation of one class]: 6 training / 2 validation rows, 10 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001702 [no fit]: 21 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001703 [no step, final intercept only, validation of one class]: 15 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001704 [fitted]: 7 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001705 [validation of one class, HL written]: 12 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001706 [no fit]: 11 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001707 [final intercept only, q == 0 step, validation of one class]: 8 training / 9 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001708 [validation of one class, HL written]: 14 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001709 [validation of one class, HL written]: 9 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001710 [HL written]: 11 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001711 [HL written]: 19 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001712 [HL written]: 6 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001713 [no fit]: 6 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001714 [no fit]: 14 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001715 [final intercept only, q == 0 step, validation of one class]: 11 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001716 [stop]: 22 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001717 [validation of one class]: 16 training / 9 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001718 [validation of one class, HL written]: 14 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001719 [validation of one class]: 24 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001720 [validation of one class, HL written]: 18 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001721 [stop]: 17 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001722 [no step, final intercept only]: 11 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001723 [stop]: 9 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001724 [left-out parameter in final, validation of one class, no classification table, HL written]: 12 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001725 [stop]: 10 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001726 [fitted]: 16 training / 5 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001727 [HL written]: 25 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001728 [left-out parameter in final, no classification table, HL written]: 10 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001729 [q == 0 step, HL written]: 13 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001730 [no step, final intercept only, validation of one class]: 7 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001731 [HL written]: 18 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001732 [validation of one class, HL written]: 17 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001733 [final intercept only, q == 0 step, validation of one class]: 9 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001734 [final intercept only, q == 0 step, validation of one class]: 9 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001735 [validation of one class]: 16 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001736 [q == 0 step, validation of one class, HL written]: 13 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001737 [validation of one class]: 9 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001738 [stop]: 16 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001739 [HL written]: 18 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001740 [q == 0 step, left-out parameter in final, validation of one class, no classification table, HL written]: 20 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001741 [stop]: 23 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001742 [left-out parameter in final, no classification table, HL written]: 13 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001743 [HL written]: 20 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001744 [q == 0 step]: 24 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001745 [validation of one class]: 14 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001746 [no fit]: 18 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001747 [HL written]: 8 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001748 [HL written]: 14 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001749 [stop]: 13 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001750 [no step, final intercept only]: 8 training / 2 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001751 [q == 0 step, validation of one class]: 12 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001752 [no fit]: 24 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001753 [q == 0 step, validation of one class, HL written]: 21 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001754 [q == 0 step, HL written]: 9 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001755 [HL written]: 19 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001756 [stop]: 17 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001757 [final intercept only, q == 0 step]: 16 training / 9 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001758 [HL written]: 16 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001759 [validation of one class]: 16 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001760 [no fit]: 9 training / 1 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001761 [HL written]: 20 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001762 [stop]: 9 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001763 [validation of one class, HL written]: 21 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001764 [no step, final intercept only]: 20 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001765 [stop]: 18 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001766 [no step, final intercept only, validation of one class]: 24 training / 9 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001767 [validation of one class, HL written]: 8 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001768 [stop]: 16 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001769 [stop]: 17 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001770 [HL written]: 22 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001771 [stop]: 21 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001772 [no fit]: 9 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001773 [no step, final intercept only, validation of one class]: 9 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001774 [validation of one class]: 11 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001775 [validation of one class]: 25 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001776 [stop]: 12 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001777 [validation of one class, HL written]: 7 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001778 [HL written]: 18 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001779 [q == 0 step, validation of one class, HL written]: 8 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001780 [HL written]: 15 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001781 [HL written]: 11 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001782 [stop]: 10 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001783 [stop]: 20 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001784 [stop]: 8 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001785 [stop]: 12 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001786 [validation of one class]: 13 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001787 [validation of one class, HL written]: 18 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001788 [HL written]: 16 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001789 [stop]: 10 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001790 [stop]: 14 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001791 [no step, final intercept only]: 18 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001792 [left-out parameter in final, validation of one class, no classification table, HL written]: 25 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001793 [stop]: 20 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001794 [validation of one class, HL written]: 18 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001795 [final intercept only, q == 0 step, validation of one class]: 18 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001796 [no step, final intercept only, validation of one class]: 22 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001797 [HL written]: 12 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001798 [validation of one class, HL written]: 15 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001799 [stop]: 19 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001800 [stop]: 22 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001801 [no step, final intercept only, validation of one class]: 14 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001802 [q == 0 step, HL written]: 16 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001803 [validation of one class]: 9 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001804 [validation of one class, HL written]: 18 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001805 [validation of one class]: 19 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001806 [no fit]: 23 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001807 [stop]: 15 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001808 [no step, final intercept only, validation of one class]: 7 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001809 [HL written]: 25 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001810 [HL written]: 19 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001811 [stop]: 24 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001812 [fitted]: 7 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001813 [left-out parameter in final, no classification table, HL written]: 8 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001814 [validation of one class, HL written]: 17 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001815 [no fit]: 15 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001816 [no step, final intercept only]: 9 training / 5 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001817 [stop]: 9 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001818 [validation of one class, HL written]: 23 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001819 [left-out parameter in final, no classification table]: 21 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001820 [no fit]: 24 training / 1 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001821 [final intercept only, q == 0 step, validation of one class]: 9 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001822 [no fit]: 6 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001823 [no step, final intercept only, validation of one class]: 20 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001824 [stop]: 21 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001825 [HL written]: 19 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001826 [stop]: 23 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001827 [q == 0 step, validation of one class]: 21 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001828 [stop]: 19 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001829 [q == 0 step]: 6 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001830 [q == 0 step, validation of one class, HL written]: 11 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001831 [no step, final intercept only, validation of one class]: 24 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001832 [stop]: 11 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001833 [q == 0 step, validation of one class, HL written]: 8 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001834 [q == 0 step, left-out parameter in final, validation of one class, no classification table]: 20 training / 1 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001835 [no step, final intercept only, validation of one class]: 12 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001836 [validation of one class, HL written]: 22 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001837 [fitted]: 11 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001838 [validation of one class, HL written]: 9 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001839 [stop]: 12 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001840 [validation of one class, HL written]: 16 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001841 [no step, final intercept only, validation of one class]: 17 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001842 [no step, final intercept only]: 14 training / 2 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001843 [no step, final intercept only, validation of one class]: 20 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001844 [validation of one class]: 18 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001845 [no step, final intercept only, validation of one class]: 23 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001846 [stop]: 21 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001847 [validation of one class, HL written]: 14 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001848 [final intercept only, q == 0 step]: 10 training / 9 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001849 [stop]: 23 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001850 [fitted]: 20 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001851 [stop]: 22 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001852 [no step, final intercept only, validation of one class]: 10 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001853 [no step, final intercept only, validation of one class]: 25 training / 9 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001854 [validation of one class, HL written]: 17 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001855 [no fit]: 8 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001856 [HL written]: 23 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001857 [q == 0 step, validation of one class, HL written]: 8 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001858 [left-out parameter in final, validation of one class, no classification table, HL written]: 18 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001859 [HL written]: 8 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001860 [stop]: 16 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001861 [stop]: 8 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001862 [HL written]: 24 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001863 [validation of one class]: 10 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001864 [no fit]: 22 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001865 [HL written]: 11 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001866 [stop]: 25 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001867 [final intercept only, q == 0 step, validation of one class]: 10 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001868 [validation of one class]: 11 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001869 [validation of one class, HL written]: 24 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001870 [fitted]: 19 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001871 [no step, final intercept only, validation of one class]: 14 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001872 [q == 0 step, validation of one class, HL written]: 7 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001873 [stop]: 8 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001874 [stop]: 15 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001875 [stop]: 10 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001876 [no fit]: 18 training / 1 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001877 [stop]: 16 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001878 [final intercept only, q == 0 step, validation of one class]: 10 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001879 [HL written]: 22 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001880 [stop]: 9 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001881 [q == 0 step, validation of one class, HL written]: 21 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001882 [stop]: 23 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001883 [HL written]: 10 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001884 [HL written]: 12 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001885 [no fit]: 21 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001886 [stop]: 11 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001887 [no step, final intercept only, validation of one class]: 12 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001888 [validation of one class]: 15 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001889 [stop]: 13 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001890 [stop]: 6 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001891 [q == 0 step, validation of one class]: 18 training / 9 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001892 [no step, final intercept only, validation of one class]: 21 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001893 [left-out parameter in final, no classification table]: 7 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001894 [validation of one class, HL written]: 21 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001895 [no step, final intercept only, validation of one class]: 12 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001896 [validation of one class, HL written]: 17 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001897 [stop]: 9 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001898 [validation of one class, HL written]: 10 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001899 [stop]: 25 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001900 [validation of one class, HL written]: 16 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001901 [validation of one class]: 15 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001902 [HL written]: 20 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001903 [HL written]: 14 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001904 [no step, final intercept only, validation of one class]: 15 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001905 [stop]: 12 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001906 [no step, final intercept only, validation of one class]: 22 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001907 [no fit]: 20 training / 1 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001908 [validation of one class, HL written]: 8 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001909 [HL written]: 16 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001910 [stop]: 22 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001911 [HL written]: 12 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001912 [no fit]: 11 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001913 [q == 0 step, left-out parameter in final, validation of one class, no classification table, HL written]: 10 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001914 [stop]: 19 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001915 [HL written]: 10 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001916 [validation of one class]: 20 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001917 [q == 0 step, HL written]: 19 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001918 [validation of one class, HL written]: 12 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001919 [validation of one class, HL written]: 12 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001920 [validation of one class, HL written]: 24 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001921 [stop]: 11 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001922 [HL written]: 25 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001923 [stop]: 11 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001924 [validation of one class, HL written]: 18 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001925 [validation of one class]: 22 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001926 [no step, final intercept only, validation of one class]: 16 training / 5 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001927 [HL written]: 10 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001928 [HL written]: 24 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001929 [stop]: 6 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001930 [final intercept only, q == 0 step]: 19 training / 2 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001931 [stop]: 12 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001932 [q == 0 step, validation of one class]: 14 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001933 [validation of one class]: 6 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001934 [stop]: 17 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001935 [stop]: 12 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001936 [stop]: 8 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001937 [final intercept only, q == 0 step, validation of one class]: 24 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001938 [stop]: 13 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001939 [stop]: 7 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001940 [no fit]: 17 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001941 [no fit]: 18 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001942 [validation of one class]: 9 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001943 [stop]: 11 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001944 [no fit]: 13 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001945 [no fit]: 10 training / 1 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001946 [validation of one class, HL written]: 22 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001947 [stop]: 25 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001948 [stop]: 15 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001949 [no step, final intercept only, validation of one class]: 20 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001950 [no step, final intercept only, validation of one class]: 8 training / 2 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001951 [validation of one class, HL written]: 21 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001952 [no fit]: 13 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001953 [validation of one class]: 6 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001954 [HL written]: 25 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001955 [stop]: 11 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001956 [HL written]: 15 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001957 [stop]: 10 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001958 [validation of one class, HL written]: 22 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001959 [HL written]: 19 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001960 [final intercept only, q == 0 step, validation of one class]: 22 training / 2 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001961 [validation of one class, HL written]: 25 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001962 [stop]: 12 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001963 [stop]: 16 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001964 [validation of one class, HL written]: 21 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001965 [validation of one class, HL written]: 15 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001966 [HL written]: 7 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001967 [validation of one class]: 9 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001968 [HL written]: 25 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001969 [no step, final intercept only]: 12 training / 2 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001970 [stop]: 11 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001971 [no fit]: 22 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001972 [no step, final intercept only]: 7 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001973 [validation of one class, HL written]: 6 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001974 [validation of one class, HL written]: 21 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001975 [stop]: 22 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001976 [stop]: 12 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001977 [stop]: 15 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001978 [q == 0 step, validation of one class, HL written]: 22 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001979 [no fit]: 15 training / 1 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001980 [stop]: 16 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001981 [stop]: 16 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001982 [final intercept only, q == 0 step]: 11 training / 2 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001983 [validation of one class, HL written]: 19 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001984 [validation of one class]: 7 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001985 [no step, final intercept only, validation of one class]: 25 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001986 [q == 0 step, validation of one class, HL written]: 14 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001987 [validation of one class]: 12 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001988 [fitted]: 18 training / 5 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001989 [stop]: 11 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001990 [validation of one class, HL written]: 19 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001991 [no fit]: 9 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001992 [validation of one class]: 8 training / 1 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001993 [validation of one class]: 19 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001994 [validation of one class, HL written]: 18 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001995 [stop]: 23 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001996 [HL written]: 12 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001997 [validation of one class, HL written]: 8 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001998 [fitted]: 19 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3001999 [stop]: 9 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002000 [q == 0 step, validation of one class]: 12 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002001 [HL written]: 16 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002002 [final intercept only, q == 0 step, validation of one class]: 17 training / 9 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002003 [stop]: 9 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002004 [validation of one class, HL written]: 24 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    8871419079864937073,
+    6719518166247584151
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002005 [fitted]: 6 training / 2 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002006 [no fit]: 15 training / 5 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002007 [stop]: 11 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002008 [final intercept only, q == 0 step, validation of one class]: 19 training / 9 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002009 [q == 0 step, HL written]: 7 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002010 [validation of one class]: 14 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002011 [q == 0 step, validation of one class, HL written]: 10 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002012 [validation of one class]: 7 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002013 [no step, final intercept only, validation of one class]: 14 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002014 [stop]: 8 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002015 [stop]: 21 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002016 [stop]: 10 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002017 [left-out parameter in final, no classification table]: 22 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002018 [HL written]: 15 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002019 [fitted]: 23 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002020 [validation of one class, HL written]: 25 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002021 [HL written]: 12 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002022 [left-out parameter in final, no classification table, HL written]: 11 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002023 [stop]: 21 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002024 [q == 0 step]: 24 training / 5 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002025 [validation of one class, HL written]: 23 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002026 [stop]: 20 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002027 [HL written]: 22 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002028 [HL written]: 16 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002029 [final intercept only, q == 0 step, validation of one class]: 11 training / 1 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002030 [q == 0 step, HL written]: 6 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002031 [stop]: 13 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002032 [validation of one class, HL written]: 7 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002033 [HL written]: 24 training / 5 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002034 [stop]: 12 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002035 [stop]: 12 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002036 [HL written]: 6 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002037 [validation of one class]: 17 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002038 [stop]: 12 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002039 [HL written]: 17 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002040 [stop]: 9 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002041 [stop]: 15 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002042 [no fit]: 6 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002043 [no step, final intercept only]: 13 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002044 [stop]: 11 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002045 [no fit]: 11 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002046 [stop]: 16 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002047 [validation of one class, HL written]: 24 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002048 [validation of one class]: 8 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002049 [validation of one class, HL written]: 21 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002050 [stop]: 16 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002051 [validation of one class, HL written]: 21 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002052 [validation of one class, HL written]: 13 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002053 [stop]: 13 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002054 [stop]: 12 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002055 [stop]: 6 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002056 [HL written]: 8 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002057 [final intercept only, q == 0 step, validation of one class]: 15 training / 9 validation rows, 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002058 [validation of one class]: 15 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002059 [no step, final intercept only]: 16 training / 5 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002060 [stop]: 12 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002061 [stop]: 25 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002062 [no fit]: 12 training / 2 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002063 [no step, final intercept only, validation of one class]: 18 training / 1 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002064 [validation of one class, HL written]: 8 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002065 [stop]: 12 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002066 [fitted]: 13 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002067 [HL written]: 23 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002068 [left-out parameter in final, validation of one class, no classification table, HL written]: 23 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002069 [stop]: 17 training / 2 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002070 [stop]: 7 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002071 [no step, final intercept only]: 22 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002072 [stop]: 25 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002073 [left-out parameter in final, validation of one class, no classification table, HL written]: 11 training / 1 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002074 [final intercept only, q == 0 step]: 21 training / 5 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002075 [validation of one class]: 21 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002076 [validation of one class, HL written]: 7 training / 5 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002077 [q == 0 step, validation of one class, HL written]: 6 training / 5 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002078 [left-out parameter in final, no classification table]: 25 training / 2 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002079 [stop]: 17 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002080 [stop]: 18 training / 5 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002081 [validation of one class]: 17 training / 5 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002082 [no fit]: 16 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002083 [no step, final intercept only]: 8 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002084 [validation of one class, HL written]: 21 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002085 [no fit]: 9 training / 9 validation rows, 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002086 [left-out parameter in final, validation of one class, no classification table]: 20 training / 2 validation rows, 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002087 [left-out parameter in final, no classification table]: 10 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002088 [q == 0 step, HL written]: 13 training / 9 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002089 [stop]: 21 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002090 [validation of one class, HL written]: 20 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002091 [left-out parameter in final, validation of one class, no classification table, HL written]: 14 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002092 [HL written]: 8 training / 2 validation rows, 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002093 [left-out parameter in final, no classification table]: 9 training / 9 validation rows, 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002094 [no step, final intercept only]: 8 training / 9 validation rows, 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002095 [fitted]: 18 training / 5 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002096 [q == 0 step, left-out parameter in final, validation of one class, no classification table, HL written]: 6 training / 1 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002097 [validation of one class, HL written]: 25 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002098 [no step, final intercept only]: 25 training / 9 validation rows, 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_c/seed 3002099 [stop]: 18 training / 1 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

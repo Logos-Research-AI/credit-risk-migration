@@ -1,0 +1,194 @@
+[
+ {
+  "id": "fz10c_train_run_real/real window 0 (train rows 0-7, validation rows 0-2), stepwise seed 3000000 [validation of one class, HL written]: 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 0 (train rows 0-7, validation rows 0-2), stepwise seed 3000001 [no fit]: 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 0 (train rows 0-7, validation rows 0-2), stepwise seed 3000006 [left-out parameter in final, validation of one class, no classification table]: 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 0 (train rows 0-7, validation rows 0-2), stepwise seed 3000015 [q == 0 step, validation of one class, HL written]: 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 0 (train rows 0-7, validation rows 0-2), stepwise seed 3000016 [no step, final intercept only, validation of one class]: 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 0 (train rows 0-7, validation rows 0-2), stepwise seed 3000002 [no step, final intercept only, validation of one class]: 11 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 0 (train rows 0-7, validation rows 0-2), stepwise seed 3000003 [validation of one class, HL written]: 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 0 (train rows 0-7, validation rows 0-2), stepwise seed 3000004 [final intercept only, q == 0 step, validation of one class]: 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 1 (train rows 60000-60007, validation rows 30000-30002), stepwise seed 3000000 [validation of one class, HL written]: 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 1 (train rows 60000-60007, validation rows 30000-30002), stepwise seed 3000001 [no fit]: 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 1 (train rows 60000-60007, validation rows 30000-30002), stepwise seed 3000006 [left-out parameter in final, validation of one class, no classification table]: 13 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 1 (train rows 60000-60007, validation rows 30000-30002), stepwise seed 3000015 [q == 0 step, validation of one class]: 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 1 (train rows 60000-60007, validation rows 30000-30002), stepwise seed 3000016 [no step, final intercept only, validation of one class]: 10 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 1 (train rows 60000-60007, validation rows 30000-30002), stepwise seed 3000002 [no step, final intercept only, validation of one class]: 10 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 1 (train rows 60000-60007, validation rows 30000-30002), stepwise seed 3000003 [validation of one class]: 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 1 (train rows 60000-60007, validation rows 30000-30002), stepwise seed 3000004 [final intercept only, q == 0 step, validation of one class]: 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 2 (4 defaults + 4 non-defaults (train rows [0, 1, 2, 3, 4, 8, 17, 32]), validation rows [0, 1, 6]), stepwise seed 3000000 [HL written]: 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 2 (4 defaults + 4 non-defaults (train rows [0, 1, 2, 3, 4, 8, 17, 32]), validation rows [0, 1, 6]), stepwise seed 3000001 [no fit]: 5 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 2 (4 defaults + 4 non-defaults (train rows [0, 1, 2, 3, 4, 8, 17, 32]), validation rows [0, 1, 6]), stepwise seed 3000006 [left-out parameter in final, no classification table]: 15 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 2 (4 defaults + 4 non-defaults (train rows [0, 1, 2, 3, 4, 8, 17, 32]), validation rows [0, 1, 6]), stepwise seed 3000015 [q == 0 step, HL written]: 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 2 (4 defaults + 4 non-defaults (train rows [0, 1, 2, 3, 4, 8, 17, 32]), validation rows [0, 1, 6]), stepwise seed 3000016 [no step, final intercept only]: 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 2 (4 defaults + 4 non-defaults (train rows [0, 1, 2, 3, 4, 8, 17, 32]), validation rows [0, 1, 6]), stepwise seed 3000002 [no step, final intercept only]: 12 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 2 (4 defaults + 4 non-defaults (train rows [0, 1, 2, 3, 4, 8, 17, 32]), validation rows [0, 1, 6]), stepwise seed 3000003 [HL written]: 18 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_real/real window 2 (4 defaults + 4 non-defaults (train rows [0, 1, 2, 3, 4, 8, 17, 32]), validation rows [0, 1, 6]), stepwise seed 3000004 [final intercept only, q == 0 step]: 14 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

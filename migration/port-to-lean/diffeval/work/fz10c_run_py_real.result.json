@@ -1,0 +1,290 @@
+[
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: input validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: input training",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: number of files",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 0: validation lines 1..120, training lines 1..120: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: input validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: input training",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: number of files",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 1: validation lines 22001..22120, training lines 52001..52120: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: input validation",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: input training",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: number of files",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: validation_summary.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: threshold_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: ks_statistic.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: calibration_plot.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: model_performance_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: printed_roc_metrics.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: printed_cumulative_lift.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_run_py_real/real window 2: validation lines 44881..45000, training lines 104881..105000: printed_psi_calculation.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

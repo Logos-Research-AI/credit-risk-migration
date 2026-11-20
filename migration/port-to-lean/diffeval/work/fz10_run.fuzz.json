@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator (stale-compositions 2026-11-20)",
+ "generator": "diffeval/units/fz10_run_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "run": {
+   "seeds": "1000000..1002399, no file, header only",
+   "generated": 2402,
+   "kept": 2301,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one seed: a cs-training frame of 1-12 rows written as a file and a split file, the real run; modes (0, 11-15 valid; 1 repeated id; 2 missing id; 3-7 one edge cell; 8 a text column; 9 names; 10 no known income) sent: {0: 156, 1: 150, 2: 146, 3: 133, 4: 140, 5: 137, 6: 159, 7: 140, 8: 164, 9: 142, 10: 131, 11: 157, 12: 139, 13: 141, 14: 132, 15: 147}; runs that complete: 1357, stop: 957; not used: 86 frames the file cannot hold; rejected by the precondition and sent: {'non-ASCII text in MonthlyIncome / NumberOfDependents': 12, 'no split id': 3}; rejected and Python raises: 0; full = (seed even); the four log columns compared without their low 20 bits; plus no file and a header-only file; SPLIT (4a757fb): 1224 seeds with a file that fits ((7n+9)//10 distinct present ids, used as given), 1176 with the 2026-11-16 subsets (the real run draws, seed 42)"
+  }
+ }
+}

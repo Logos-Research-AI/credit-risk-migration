@@ -1,0 +1,23 @@
+{
+ "generated": 975,
+ "kept": 969,
+ "rejected": {},
+ "raised": {},
+ "zero_pivot": 0,
+ "fsum": 0,
+ "pow2": 2,
+ "tags": {
+  "validation of one class": 363,
+  "HL written": 329,
+  "stop": 246,
+  "q == 0 step": 128,
+  "no step": 132,
+  "final intercept only": 178,
+  "left-out parameter in final": 49,
+  "no classification table": 49,
+  "no fit": 67
+ },
+ "raised_seeds": [],
+ "rejected_seeds": [],
+ "not_held": 4
+}

@@ -200,6 +200,19 @@ This is the claim's only boundary (owner, 2026-11-19; informal-spec, amendment 2
 Also in force: `PyLinks` and `Paired` (corrections C-a to C-m). Judging is off on `5365851c`
 (decision D7), so that each Lean statement says what its text says rests on the recorded reviews.
 
+**B7, amendment 3 (owner, 2026-11-20): the training split.** Added after the fidelity review's
+finding F2 (`port-lean-fidelity-2026-11-20.md`, w29). The training split is a shared random draw:
+SAS draws it with `PROC SURVEYSELECT` (its own generator, seed 42); the port reads that draw from
+a file and otherwise draws with Python's `random`. The two generators do not draw the same ids, so
+the claim is equality given that both sides train on the same ids. That is `Paired` clause 2,
+which stays as it is; no item and no proof changed. The pairing holds on the real 150,000-row file
+(`inputs/split_ids.csv` is SAS's own draw) and is not claimed elsewhere. B7 is part of the
+boundary, like the trusted base B4, and public text must say it: "on every valid input, given both
+sides train on the same ids". With it, the NaN wording of 0.2 and section 1 ("the split file fits")
+is to be read as reworded in the spec note of 2026-11-20 (finding F3): the row ids are present
+(`lem:py_split_ids_finite`, `InputOK`), and the port's own draw is reached on any input other than
+the real file, so it is not dead code.
+
 ### The former narrowings and B3
 
 The audit confirms that G1 to G4 and the 4a lemmas cover the unit preconditions. It does not list,
@@ -356,3 +369,67 @@ Contracts run summary: resubmitted `thm:E6_score_test` and `thm:G3_predict_cover
    last push on record) and an uncommitted working tree (`informal-spec.md`, `reports/report.md`,
    `reports/defects-ledger.md`, `legacy-to-lean/manifest.tsv`, the update note of 2026-11-20, and
    earlier files). The owner decides what is committed and pushed. This role made no git call.
+
+**Addendum, 2026-11-20, after fidelity pass w30 (records only; this supersedes the "every contract
+proved" and `verification_approved: true` statements of sections 0.1, 7 and 8 until re-checked).**
+Details are in `reports/port-lean-fidelity-2026-11-20.md`, section "Fidelity pass, second attempt
+(w30)". *Tests:* w30 compared 0 Lean cases with Python and wrote no receipt. An evaluation carrier,
+`def:zz_carrier_fid_1`, was added and `eval_decl` returned through it on every target unit, but the
+blueprint was cleared under the carrier step and no comparison followed; 17 of 100 code units and
+the glue's Lean remain without a unit-level receipt on their current Lean, and `def:run`'s stored
+Python text is still the version before `4a757fb`. *F1:* `def:PyLinks` clause 10 now reads
+`∀ n : Nat, n < 10 ^ 8 → parse_float (sas_best (some n) 8) = n ∧ sas_best (some n) 8 ≠ ""`
+(the port's `sas_best` switches to E-notation above 8 digits); `lem:metrics_ks_table`'s `hcount`
+is bounded by `n ≤ V.length` (a reviewer choice: no added hypothesis), and E8, E9 and G4 discharge
+the bound from `InputOK` (G56) through new in-file helpers, with edges E8 → `lem:sas_reached_feature_shape`,
+E8 → `lem:sas_split_input_ids`, G4 → `lem:sas_split_input_ids` added. No contract got a new
+hypothesis. *Re-proofs:* the restatement cleared 62 statements and proofs; all 30 contracts are
+again `TheoremProved` by state, but at the audit 18 of them (E1-E3, E5-E11, F2-F4, F6, G2, G4, P0,
+R) rest on `thm:fe_run_06_split_S6a`, which is only `TheoremStated`, and seven `ex_` lemmas are
+unproved, so the claim does not hold until S6a and those lemmas are proved and the states re-read.
+*Amendment 3 (B7)* is recorded in section 2; F3 and F4 are fixed in the spec and in
+`definitions-v3.md`. *Audit (`ok: false`):* 372 items, 371 formalized, `verification_approved`
+false; both `zz_carrier_fid_*` items are on the blueprint with no consumer and must be removed;
+`definitions-v3.md:215`, `:239`, its 2026-11-20 top note and the `PyLinks` Lean header comment
+are stale against the restated clause 10; T2 assumes `SasLinks`, not `PyLinks`/`Paired`, so the
+public sentence on hypotheses must allow for it. The owner's sign-off (section 8, item 1) waits on
+these.
+
+**Addendum, 2026-11-20, after fidelity pass w31 (third attempt and close; records only).** Details
+are in `reports/port-lean-fidelity-2026-11-20.md`, section "Fidelity pass, third attempt and close
+(w31)". *Re-proofs:* `thm:fe_run_06_split_S6a` and the seven `ex_` lemmas were resubmitted from
+their stored drafts unchanged and accepted with 0 errors, and `def:zz_carrier_fid_1` is formalized
+again; no statement, Lean or hypothesis changed. *Audit (`ok: true`):* 372 items, 372 formalized
+(203 `DefinitionFormalized`, 169 `TheoremProved`, read item by item), `verification_approved`
+true, all 30 contracts `TheoremProved` with no unproved item in their closure inside 5365851c; the
+SAS-side blueprints 3f5df696 and 006ff04c were not checked. So the "every contract proved"
+statement of sections 0.1, 7 and 8 holds again for this blueprint. *Tests:* through
+`def:zz_carrier_fid_2`, 46,359 cases compared against the port at HEAD `4a757fb`, including every
+unit left without a receipt in w30 and, for the first time, the glue end to end (4,342 cases, all
+bit-exact). 557 differences: 96 wholly explained by RULEBOOK section 6 limits (last bit of exp,
+signed zeros, running sum from -0.0), plus 3 such cases in `train_run_03`, and **461 unexplained,
+all in `def:train_run_01_fit_frame`**: on the no-fit case its m2ll0 is 0.0 where the port gives NaN
+(the Lean comment calls it a "placeholder, lead's decision"; no RULEBOOK rule covers it; nothing was
+fixed). Full-size real data is still reached only for `train_run_11` and `metrics_run_05`; other
+units ran on real windows or slices. *Records:* C-n is now recorded in `definitions-v3.md` and
+`informal-spec.md`. *Still open for sign-off:* the `train_run_01` finding; the audit's finding that
+the no-model training score table is spelled three ways (PyLinks 7b / A4, G4 / R, E5 / A2 / F3) with
+no item proving them equal; removal or disclosure of both `zz_carrier_fid_*` items; the stale
+`def:PyLinks` header comment and `def:run` stored text; trust layers off (fidelity rests on reviews
+and the diffeval receipts); boundary B1-B7, with B7 conditioning the claim on shared split ids; the
+`t16_run` work files regenerated as a side effect; and committing the working tree.
+
+**Addendum, 2026-11-20, w31 restart (records only).** The w31 workflow was restarted after an
+interruption. The re-proofs, tests and records returned the same results as in the addendum above.
+The audit ran again (read-only, `ok: true`) and is recorded verbatim in
+`reports/port-lean-fidelity-2026-11-20.md`, section "w31 restart: second audit". It confirms 372 of
+372 items formalized and all 30 contracts `TheoremProved`, and this time also read the SAS-side
+blueprints as complete (SAS spec 3f5df696 151/151, requirements 006ff04c 60/60, foundation 02011d57
+17/17); T2's closure rests on whole-blueprint completeness, not an item-by-item trace. New findings
+for a public text: T2 assumes `SasLinks`, `InputOK`, `CreditRisk.Fitted` and `hFt`, and A3 assumes
+nothing, which the summary sentence and exception list of informal-spec section 7 do not say; T2's
+Lean comment still cites the superseded "Feature shape of E4" wording; and both `zz_carrier_fid_*`
+items are still present although brief-prover.md says to remove every `zz_` item. On the no-model
+training score table the two audits disagree: the first counts three spellings with no item proving
+them equal, the second counts two and takes E5 as showing they are the same table. Both are on
+record; the point stays open for the lead. The rest of the open list in the addendum above stands.

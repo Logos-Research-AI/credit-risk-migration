@@ -1,0 +1,18 @@
+[
+ {
+  "id": "fz10c_ctr/real rows 0..39 (16 columns, 27 levels)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ctr/real rows 104960..104999 (16 columns, 43 levels)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

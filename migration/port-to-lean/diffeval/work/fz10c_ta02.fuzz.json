@@ -1,0 +1,1 @@
+{"fuzzer": "port-translator (fidelity pass 2026-11-20c train-a)", "generator": "diffeval/units/fz10c_train_a_gen.py", "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d", "units": {"train_run_02_stepwise_summary": {"seeds": "100000..102399", "generated": 2400, "kept": 2400, "python_raises_inside_precondition": [], "note": "{\"kept\": 2400, \"none\": 470, \"empty_table\": 260}"}}}

@@ -1,0 +1,50 @@
+[
+ {
+  "id": "fz10c_train_run/seed 1 [stop]: 21 training / 9 validation rows, stop",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run/seed 2 [HL written]: 23 training / 9 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run/seed 3 [fitted]: 13 training / 9 validation rows, 16 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run/seed 4 [validation of one class, HL written]: 12 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run/seed 5 [validation of one class, HL written]: 20 training / 2 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run/seed 6 [validation of one class, HL written]: 6 training / 1 validation rows, 17 files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

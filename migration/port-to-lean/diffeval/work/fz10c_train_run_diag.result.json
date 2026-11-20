@@ -1,0 +1,3922 @@
+[
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model.json token 0",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model.json token 1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model.json token 2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model.json token 3",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv.Step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv.EffectEntered",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv.EffectRemoved",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv.DF",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv.NumberInModel",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv.ScoreChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv.WaldChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: stepwise_summary.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv.Step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv.RowId",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv.Criterion",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv.Equals",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv.InterceptOnly",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_global_tests.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_global_tests.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_global_tests.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_global_tests.csv.Step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_global_tests.csv.Test",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_global_tests.csv.ChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_global_tests.csv.DF",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_global_tests.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv.Step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv.Label1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv.cValue1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv.nValue1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv.Label2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv.cValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_rsquare.csv.nValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv.Label1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv.cValue1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv.nValue1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv.Label2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv.cValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_association.csv.nValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_odds_ratios.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_odds_ratios.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_odds_ratios.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_odds_ratios.csv.Effect",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_odds_ratios.csv.OddsRatioEst",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_odds_ratios.csv.LowerCL",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_odds_ratios.csv.UpperCL",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv.Group",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv.Total",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv.EventsObserved",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv.EventsExpected",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv.NoneventsObserved",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hl_partition.csv.NoneventsExpected",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hosmer_lemeshow.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hosmer_lemeshow.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hosmer_lemeshow.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hosmer_lemeshow.csv.ChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hosmer_lemeshow.csv.DF",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hosmer_lemeshow.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_hosmer_lemeshow.csv.NGroups",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.ProbLevel",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.CorrectEvents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.CorrectNonevents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.IncorrectEvents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.IncorrectNonevents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.Correct",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.Sensitivity",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.Specificity",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.FalsePositive",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.FalseNegative",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.PPV",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_classification.csv.NPV",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.row_id",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.age",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.MonthlyIncome_missing",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.num_dependents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.Dependents_missing",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.age_group",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.num_late_30_59",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.num_late_60_89",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.num_late_90_plus",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.credit_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.num_real_estate_loans",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.has_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.has_serious_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.credit_util_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.debt_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.income_per_dependent",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.credit_lines_per_person",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.age_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_high_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_very_high_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_high_debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_very_high_debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_recent_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_serious_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_multiple_delinquencies",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_low_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_many_dependents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.flag_few_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.total_risk_flags",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.financial_health",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.log_monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.log_num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.log_total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.age_income_interaction",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.utilization_debt_interaction",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.credit_utilization_capped",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.debt_ratio_capped",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.pd_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12477762649307753412,
+    17261254240378598785
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.pred_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.base_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.score_range",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.credit_risk_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.risk_grade",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.recommendation",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.base_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_train.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.row_id",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.age",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.MonthlyIncome_missing",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.num_dependents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.Dependents_missing",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.age_group",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.num_late_30_59",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.num_late_60_89",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.num_late_90_plus",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.credit_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.num_real_estate_loans",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.has_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.has_serious_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.credit_util_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.debt_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.income_per_dependent",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.credit_lines_per_person",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.age_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_high_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_very_high_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_high_debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_very_high_debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_recent_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_serious_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_multiple_delinquencies",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_low_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_many_dependents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.flag_few_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.total_risk_flags",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.financial_health",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.log_monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.log_num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.log_total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.age_income_interaction",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.utilization_debt_interaction",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.credit_utilization_capped",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.debt_ratio_capped",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.pd_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.pred_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.base_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.score_range",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.credit_risk_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.risk_grade",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.recommendation",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.base_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: risk_scores_validation.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.row_id",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.age",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.credit_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.pd_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12477762649307753412,
+    17261254240378598785
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.credit_risk_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.risk_grade",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.recommendation",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: final_model_output.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_summary.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_summary.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv.Variable",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv.DF",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv.Estimate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv.StdErr",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv.WaldChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: model_coefficients.csv._ESTTYPE_",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv.ROCModel",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv.Area",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv.StdErr",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv.LowerArea",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv.UpperArea",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv.SomersD",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv.Gamma",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_roc_train.csv.TauA",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_train.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_train.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_train.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_train.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_train.csv.pred_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_train.csv.COUNT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_train.csv.PERCENT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_validation.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_validation.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_validation.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_validation.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_validation.csv.pred_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_validation.csv.COUNT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000515: printed_confusion_validation.csv.PERCENT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: number of files",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model.json token 0",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model.json token 1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model.json token 2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model.json token 3",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv.Step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv.EffectEntered",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv.EffectRemoved",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv.DF",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv.NumberInModel",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv.ScoreChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv.WaldChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: stepwise_summary.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv.Step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv.RowId",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv.Criterion",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv.Equals",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv.InterceptOnly",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_fit_statistics.csv.InterceptAndCovariates",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_global_tests.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_global_tests.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_global_tests.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_global_tests.csv.Step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_global_tests.csv.Test",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_global_tests.csv.ChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_global_tests.csv.DF",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_global_tests.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv.Step",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv.Label1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv.cValue1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv.nValue1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv.Label2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv.cValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_rsquare.csv.nValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv.Label1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv.cValue1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv.nValue1",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv.Label2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv.cValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_association.csv.nValue2",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_odds_ratios.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_odds_ratios.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_odds_ratios.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_odds_ratios.csv.Effect",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_odds_ratios.csv.OddsRatioEst",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_odds_ratios.csv.LowerCL",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_odds_ratios.csv.UpperCL",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv.Group",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv.Total",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv.EventsObserved",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv.EventsExpected",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv.NoneventsObserved",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hl_partition.csv.NoneventsExpected",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hosmer_lemeshow.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hosmer_lemeshow.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hosmer_lemeshow.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hosmer_lemeshow.csv.ChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hosmer_lemeshow.csv.DF",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hosmer_lemeshow.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_hosmer_lemeshow.csv.NGroups",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.row_id",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.age",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.MonthlyIncome_missing",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.num_dependents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.Dependents_missing",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.age_group",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.num_late_30_59",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.num_late_60_89",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.num_late_90_plus",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.credit_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.num_real_estate_loans",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.has_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.has_serious_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.credit_util_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.debt_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.income_per_dependent",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.credit_lines_per_person",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.age_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_high_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_very_high_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_high_debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_very_high_debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_recent_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_serious_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_multiple_delinquencies",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_low_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_many_dependents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.flag_few_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.total_risk_flags",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.financial_health",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.log_monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.log_num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.log_total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.age_income_interaction",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.utilization_debt_interaction",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.credit_utilization_capped",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.debt_ratio_capped",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.pd_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13031006477847729032,
+    16490067718285364767
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.pred_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.base_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.score_range",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.credit_risk_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.risk_grade",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.recommendation",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.base_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_train.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.row_id",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.age",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.MonthlyIncome_missing",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.num_dependents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.Dependents_missing",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.age_group",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.num_late_30_59",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.num_late_60_89",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.num_late_90_plus",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.credit_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.num_real_estate_loans",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.has_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.has_serious_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.credit_util_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.debt_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.income_per_dependent",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.credit_lines_per_person",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.age_category",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_high_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_very_high_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_high_debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_very_high_debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_recent_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_serious_delinquency",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_multiple_delinquencies",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_low_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_many_dependents",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.flag_few_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.total_risk_flags",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.financial_health",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.log_monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.log_num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.log_total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.age_income_interaction",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.utilization_debt_interaction",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.credit_utilization_capped",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.debt_ratio_capped",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.pd_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.pred_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.base_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.score_range",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.credit_risk_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.risk_grade",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.recommendation",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.base_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: risk_scores_validation.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.row_id",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.age",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.monthly_income",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.credit_utilization",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.debt_ratio",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.num_credit_lines",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.total_late_payments",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.pd_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    13031006477847729032,
+    16490067718285364767
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.credit_risk_score",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.risk_grade",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.recommendation",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: final_model_output.csv.interest_rate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_summary.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_summary.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv.Variable",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv.DF",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv.Estimate",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv.StdErr",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv.WaldChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv.ProbChiSq",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: model_coefficients.csv._ESTTYPE_",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv.ROCModel",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv.Area",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv.StdErr",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv.LowerArea",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv.UpperArea",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv.SomersD",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv.Gamma",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_roc_train.csv.TauA",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_train.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_train.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_train.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_train.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_train.csv.pred_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_train.csv.COUNT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_train.csv.PERCENT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_validation.csv: file name",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_validation.csv: rows",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_validation.csv: columns",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_validation.csv.default_flag",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_validation.csv.pred_logistic",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_validation.csv.COUNT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_train_run_diag/seed 3000862: printed_confusion_validation.csv.PERCENT",
+  "primitive": "run_py_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

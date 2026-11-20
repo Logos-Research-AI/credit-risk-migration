@@ -1,6 +1,26 @@
 # Texts of `def:pyPipeline`, `def:PyLinks`, `def:Paired` (version 3, 2026-11-17)
 
-## Change note, 2026-11-19, latest (correction C-m)
+## Change note, 2026-11-20, latest (correction C-n; fidelity finding F1)
+
+`PyLinks` clause 10 restated to counts below 10^8 (text and Lean, on `5365851c`), and the matching
+hypothesis `hcount` of `lem:metrics_ks_table` bounded by `n ≤ V.length`. No contract gained a
+hypothesis. Section **C-n** at the end of the corrections. This entry corrects the note below,
+which was written before the restatement.
+
+## Note, 2026-11-20, before C-n (records only; fidelity finding F4)
+
+~~Not a correction: no text or Lean of `pyPipeline`, `PyLinks` or `Paired` changed.~~ *(superseded
+2026-11-20 by C-n: the text and Lean of `PyLinks` clause 10 changed the same day; `pyPipeline` and
+`Paired` did not.)* C-k recorded
+`lem:py_split_ids_rowids` and `lem:py_split_fits` as "stated, not proved" and connected to no
+consumer. Both are now `TheoremProved` on `5365851c` (read with `get_items` on 2026-11-20, as are
+`lem:py_split_ids_finite` and `lem:fe_run_06_split_reached`, which cites the pipeline's split).
+Where C-k says "stated, not proved", this note is in force. C-m is no longer the latest entry of
+this file. Also of 2026-11-20: amendment 3 of `informal-spec.md` (B7, the training split as a
+shared random draw) leaves `Paired` 2 as it is; the pairing it states holds on the real
+150,000-row file and is not claimed elsewhere.
+
+## Change note, 2026-11-19, before the note of 2026-11-20 (correction C-m)
 
 Port-translator's fix of `def:train_run_08_ctable_precond` (accepted rev 00420db1): the null
 clauses of train.py :482 and :486 are guarded (:482 by `final.isSome = true`, :486 by
@@ -201,13 +221,18 @@ numpy routines, `fsum`, `today` or `full`.
    there, since a table with no row has no cell.)
 9. **The model file.** The intercept and the (name, coefficient) list predict parses are those
    of the model train returned, in the same order. (Rule H11, experiment E14: bit for bit.)
-10. **Counts as text.** For every whole number n, zero or more, `parse_float` of `sas_best n 8`
-    is n and the text is not empty; the text of a missing value is empty. This is an
+10. **Counts as text.** ~~For every whole number n, zero or more,~~ *(superseded 2026-11-20 by
+    C-n: "For every whole number n below 10^8,")* `parse_float` of `sas_best n 8`
+    is n and the text is not empty; the text of a missing value is empty. ~~This is an
     idealisation, by ruling G56 (decision D4, owner, 2026-11-16), in the style of the hand-off
     links of G55: counts of good and bad applicants are taken as exact on both sides. Rule H14
     (experiment E17) supports it below 10^8; from 10^8 the real function rounds the count, so
     the claims hold for raw files of fewer than 10^8 rows, and every report says so. `InputOK`
-    gets no row bound.
+    gets no row bound.~~ *(superseded 2026-11-20 by C-n: the clause is true of the real port
+    (rule H14, experiment E17: exact below 10^8; from 10^8 the real function rounds, e.g.
+    `sas_best(123456789, 8)` = `1.2346E8`, finding F1). Fewer than 10^8 raw rows is a clause of
+    `InputOK` since G56 was made formal (B2, B3), and each proof that uses clause 10 discharges
+    the bound from it.)*
 
 **Note on G54 and H9.** H9 finds one shape of 12 characters that the round trip changes: a point
 first, then 11 digits, the 11th not 0. The requirements count the 0 before the point
@@ -225,8 +250,11 @@ or more, dependents whole numbers).
 exactly and puts "fewer than 10^8 rows" in its precondition (SAS rule R19); the port's real
 function rounds a count from 10^8 to five significant digits (H14); the SAS program does the
 same 8-character round trip. The owner's ruling G56: a stated limit with no formal change.
-Counts are taken as exact on both sides (clause 10), no bound is added to the input conditions,
-and the claims are reported as holding for raw files of fewer than 10^8 rows.
+~~Counts are taken as exact on both sides (clause 10), no bound is added to the input conditions,
+and the claims are reported as holding for raw files of fewer than 10^8 rows.~~ *(superseded: G56
+was made formal (informal-spec amendment 2, B2, B3), so fewer than 10^8 raw rows is a clause of
+`InputOK`; and by C-n, 2026-11-20, clause 10 asks exactness only of counts below 10^8, which every
+proof using it discharges from `InputOK`.)*
 
 **Note on an empty validation set (H13; closed by ruling G57).** With at most three training
 rows, seven tenths rounded up is every row and the validation set has no row; the port's train
@@ -1178,7 +1206,8 @@ as `run` composes them (the frame `fe_run_06_split` receives).
   previous lemma, and the input check on `TrainOK` (present, pairwise distinct ids, so the minimum in
   clause 5 is (7n+9)/10).
 - **Not done here**: neither lemma is proved, and no S6 contract or other consumer is connected to
-  them (the task asked to state them). The second condition of C-j (the unit on the table of its own
+  them (the task asked to state them). *(2026-11-20: both are now `TheoremProved`; see the note of
+  2026-11-20 at the top of this file.)* The second condition of C-j (the unit on the table of its own
   selection selects the same rows as on the file) is not stated: with `py_split_fits` the unit takes
   the fitting branch on the pipeline's table, which is what a proof about the pipeline needs.
 
@@ -1278,7 +1307,7 @@ None beyond B4.2. One remark for the record: the model takes `solve` and `inv` a
 argument, not only on what a valid run reaches; since no clause constrains their values, this
 adds no fact the claims could use beyond "a value is returned".
 
-### C-m, 2026-11-19 (latest)
+### C-m, 2026-11-19 (~~latest~~ before C-n)
 
 Port-translator's correction of `def:train_run_08_ctable_precond` (accepted rev 00420db1), under
 the owner's boundary B1 to B6 (amendment 2 of `informal-spec.md`). Restoration and the clause check
@@ -1365,6 +1394,69 @@ of `thm:G2_train_coverage` (still `TheoremStated`).
 and `lem:zz_G2s_step06_check` have no accepted statement, and `lem:ex_sas_cov_train_bins`,
 `lem:metrics_flags_reached`, `thm:G2_train_coverage` have no accepted proof. They were not in the
 list of items C-m cleared and were left as they are.
+
+### C-n, 2026-11-20 (latest; fidelity finding F1)
+
+Recorded from `reports/port-lean-fidelity-2026-11-20.md` (sections "PyLinks clause 10 restated
+(finding F1)", "The re-proofs" and "The audit"). The records were written after the restatement;
+the restatement itself was made on `5365851c` on 2026-11-20.
+
+#### Why
+
+Finding F1 (high) of the fidelity review: clause 10 as stated, "for every whole number n",
+`parse_float (sas_best (some n) 8) = n`, is false of the real port. `sas_compat.sas_best`
+(`port/credit_risk/sas_compat.py:391-423`) switches to E-notation when the integer part does not
+fit in 8 characters, and `metrics_calculation._into_float` (`metrics_calculation.py:18-21`) parses
+that text: `sas_best(123456789, 8)` = `1.2346E8`, read back as 123460000; `sas_best(1e8, 8)` =
+`1E8`. So the real port's parameters did not meet `PyLinks`, and a contract of the form "for all
+py with `PyLinks` py" did not formally cover the real port, only ports whose formatter is exact on
+every count. The spec (B3 rewording of G56, `informal-spec.md` section 9) already said valid input
+bounds the counts below 10^8 and the round trip is exact there; the clause had not been restricted
+to that range.
+
+#### What changed
+
+- `def:PyLinks` clause 10, text (`edit_text`) then Lean (`edit_statement`), both compiled and
+  accepted by the judge:
+  `∀ n : Nat, n < 10 ^ 8 → parse_float (sas_best (some n) 8) = n ∧ sas_best (some n) 8 ≠ ""`;
+  `sas_best none 8 = ""` unchanged. The text cites F1 and the example above. No other clause, and
+  neither the number nor the order of the clauses, changed. The clause is weaker than before and
+  no stronger than the code.
+- `lem:metrics_ks_table` (a lemma, not a contract): its hypothesis `hcount` of the same shape is
+  restated as `∀ n : Nat, n ≤ V.length → ...` and moved after `f` and `V`; the number of
+  hypotheses is unchanged. This bound, `n ≤ V.length` rather than `n < 10^8` with a new
+  `V.length < 10^8` hypothesis, is the one place that goes beyond the literal wording "n < 10^8";
+  left for review.
+- No contract gained a hypothesis. `pyPipeline`, `Paired` and `SasLinks` are unchanged (`SasLinks`
+  has no count clause; the SAS bound is the first clause of `total_good_bad_precond`).
+- Not changed (records only, no Logos write): the Lean header comment of `def:PyLinks` still lists
+  corrections up to C-k only.
+
+#### Where the bound is discharged
+
+Clause 10 is used only through `lem:metrics_ks_table`, whose consumers are
+`thm:E8_validation_summary`, `thm:E9_ks` and `thm:G4_metrics_coverage` (the counts `total_good`,
+`total_bad` of `metrics_run_02_ks`). In each, the call passes
+`fun n hn => hCnt n (lt_of_le_of_lt hn hVlt)`, where `hVlt` is the lemma that the sorted
+validation score table has fewer than 10^8 rows on valid input. It is proved inside each proof
+file, not as a blueprint item: `E8R.read_len` in `thm:E8_validation_summary`, `e9_valid_len` in
+`thm:E9_ks`, `g4_valid_len` (with `g4_F2_len`; `g4_fit_core` takes the new clause and
+`xv.length < 10^8`) in `thm:G4_metrics_coverage`. The argument: read-backs keep the number of rows
+(`PyLinks` 8), the SAS score chain keeps rows, `Paired` 2 with `lem:sas_split_input_ids` makes the
+validation export a filter of the split of the raw training table, and `InputOK` bounds the raw
+rows below 10^8 (G56, `hOK.1.2.2.2.2`). So n ≤ V.length < 10^8. Edges added with `connect`:
+E8 to `lem:sas_reached_feature_shape` and `lem:sas_split_input_ids`; G4 to
+`lem:sas_split_input_ids`. In `thm:T1`, `lem:ex_G4_run` and `lem:ex_reached_features_predict` the
+witness round-trips every n, so the bound is taken and not used (`intro n _`). Step 05
+(`total_defaults`, `overall_default_rate`) feeds only the printed cumulative lift file; no
+contract uses clause 10 for it.
+
+#### State after the restatement (from the audit, not re-read here)
+
+The edit cleared 62 items; they were restored from their stored drafts. At the audit, 30 of 30
+contracts were `TheoremProved` by state, but 18 rested transitively on `thm:fe_run_06_split_S6a`,
+then `TheoremStated`, and seven `lem:ex_*` items and `lem:ex_port_train_outcomes` were not
+re-proved. See the report for the list; this correction records the restatement, not a close.
 
 ### Additions that are not changes of wording
 

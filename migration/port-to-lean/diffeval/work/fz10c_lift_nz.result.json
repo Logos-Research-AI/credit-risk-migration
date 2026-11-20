@@ -1,0 +1,106 @@
+[
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7100005..7100197 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7100205..7100397 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7100405..7100597 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7100605..7100797 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7100805..7100997 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7101005..7101197 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7101205..7101397 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7101405..7101597 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7101605..7101797 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7101805..7101997 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7102005..7102197 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7102205..7102397 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift_nz/kept zeros seeds 7102405..7102597 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

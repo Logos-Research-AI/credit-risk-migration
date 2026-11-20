@@ -1,0 +1,14 @@
+{
+ "fuzzer": "port-translator (stale-compositions 2026-11-20)",
+ "generator": "diffeval/units/fz10_run_py_py_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "run_py_py": {
+   "seeds": "2000000..2002599",
+   "generated": 2600,
+   "kept": 2300,
+   "python_raises_inside_precondition": [],
+   "note": "generated files, real predict.run; outcomes {'kept stop': 1329, 'kept files (no row)': 136, 'kept files': 835, 'rejected raises': 300}; rejected and Python raises (dropped): 300; kept cases digest a block of 25 seeds, each rejected input is one case"
+  }
+ }
+}

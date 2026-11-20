@@ -1,0 +1,66 @@
+[
+ {
+  "id": "fz10c_ct/kept 7200000..7200649 (572)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ct/rejected 7200000..7200649 (2)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ct/kept 7200650..7201299 (593)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ct/rejected 7200650..7201299 (6)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ct/kept 7201300..7201949 (572)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ct/rejected 7201300..7201949 (2)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ct/kept 7201950..7202599 (571)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ct/rejected 7201950..7202599 (5)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

@@ -1,0 +1,1162 @@
+[
+ {
+  "id": "fz10_td13/13 seeds 800000..800024 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800025..800049 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800050..800074 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800075..800099 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800100..800124 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800125..800149 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800150..800174 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800175..800199 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800200..800224 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800225..800249 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800250..800274 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800275..800299 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800300..800324 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800325..800349 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800350..800374 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800375..800399 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800400..800424 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800425..800449 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800450..800474 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800475..800499 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800500..800524 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800525..800549 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800550..800574 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800575..800599 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800600..800624 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800625..800649 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800650..800674 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800675..800699 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800700..800724 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800725..800749 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800750..800774 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800775..800799 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800800..800824 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800825..800849 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800850..800874 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800875..800899 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800900..800924 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800925..800949 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800950..800974 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 800975..800999 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801000..801024 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801025..801049 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801050..801074 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801075..801099 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801100..801124 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801125..801149 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801150..801174 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801175..801199 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801200..801224 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801225..801249 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801250..801274 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801275..801299 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801300..801324 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801325..801349 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801350..801374 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801375..801399 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801400..801424 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801425..801449 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801450..801474 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801475..801499 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801500..801524 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801525..801549 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801550..801574 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801575..801599 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801600..801624 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801625..801649 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801650..801674 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801675..801699 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801700..801724 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801725..801749 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801750..801774 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801775..801799 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801800..801824 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801825..801849 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801850..801874 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801875..801899 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801900..801924 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801925..801949 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801950..801974 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 801975..801999 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802000..802024 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802025..802049 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802050..802074 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802075..802099 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802100..802124 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802125..802149 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802150..802174 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802175..802199 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802200..802224 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802225..802249 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802250..802274 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802275..802299 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802300..802324 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802325..802349 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802350..802374 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802375..802399 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802400..802424 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802425..802449 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802450..802474 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802475..802499 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802500..802524 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802525..802549 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802550..802574 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802575..802599 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802600..802624 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802625..802649 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802650..802674 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802675..802699 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802700..802724 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802725..802749 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802750..802774 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802775..802799 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802800..802824 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802825..802849 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802850..802874 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802875..802899 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802900..802924 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802925..802949 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802950..802974 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 802975..802999 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803000..803024 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803025..803049 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803050..803074 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803075..803099 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803100..803124 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803125..803149 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803150..803174 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803175..803199 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803200..803224 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803225..803249 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803250..803274 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803275..803299 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803300..803324 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803325..803349 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803350..803374 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803375..803399 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803400..803424 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803425..803449 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803450..803474 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803475..803499 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803500..803524 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803525..803549 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803550..803574 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803575..803599 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td13/13 seeds 803600..803624 kept",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

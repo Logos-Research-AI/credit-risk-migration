@@ -1,0 +1,16 @@
+[
+ {
+  "id": "fz10c_run_py_tok/seed 7000137: decile_analysis.csv",
+  "primitive": "run_py",
+  "note": "",
+  "diffs": [
+   [
+    "table.row[7].cell[6:max_pd]",
+    "0x0000000000000000 (0.0)",
+    "0x8000000000000000 (-0.0)"
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ }
+]

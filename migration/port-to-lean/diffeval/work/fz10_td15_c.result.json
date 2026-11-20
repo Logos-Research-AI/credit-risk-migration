@@ -1,0 +1,66 @@
+[
+ {
+  "id": "fz10_td15_c/chunk 0: fz10_td15/seed600001..fz10_td15/seed600349 (270 kept seeds)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td15_c/chunk 1: fz10_td15/seed600350..fz10_td15/seed600696 (292 kept seeds)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td15_c/chunk 2: fz10_td15/seed600701..fz10_td15/seed601049 (273 kept seeds)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td15_c/chunk 3: fz10_td15/seed601053..fz10_td15/seed601399 (277 kept seeds)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td15_c/chunk 4: fz10_td15/seed601400..fz10_td15/seed601749 (281 kept seeds)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td15_c/chunk 5: fz10_td15/seed601750..fz10_td15/seed602099 (283 kept seeds)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td15_c/chunk 6: fz10_td15/seed602102..fz10_td15/seed602448 (288 kept seeds)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td15_c/chunk 7: fz10_td15/seed602450..fz10_td15/seed602799 (283 kept seeds)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

@@ -1,0 +1,28 @@
+{
+ "generated": 2800,
+ "kept": 2247,
+ "counts": {
+  "generated": 2800,
+  "rejected_python_returns": 553,
+  "kept": 2247,
+  "files:roc_validation,confusion_train,confusion_validation": 487,
+  "flags t=False v=True": 558,
+  "cm_width0": 332,
+  "alllabelnull_unexported_rows": 475,
+  "files:roc_train,confusion_train,confusion_validation": 463,
+  "flags t=True v=False": 543,
+  "files:roc_train,roc_validation,confusion_train,confusion_validation": 393,
+  "flags t=True v=True": 478,
+  "files:roc_validation,confusion_train": 71,
+  "files:confusion_train,confusion_validation": 572,
+  "flags t=False v=False": 668,
+  "files:roc_train,confusion_train": 80,
+  "files:confusion_train": 96,
+  "files:roc_train,roc_validation,confusion_train": 85
+ },
+ "raises": [],
+ "slice_lines": [
+  945,
+  969
+ ]
+}

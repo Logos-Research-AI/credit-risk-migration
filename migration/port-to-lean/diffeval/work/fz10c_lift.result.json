@@ -1,0 +1,704 @@
+[
+ {
+  "id": "fz10c_lift/kept seeds 7100000..7100049 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100050..7100099 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100100..7100148 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100150..7100199 (37)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100200..7100249 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100250..7100298 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100300..7100348 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100350..7100399 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100401..7100449 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100450..7100498 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100500..7100548 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100550..7100599 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100600..7100649 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100651..7100699 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100700..7100748 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100750..7100799 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100800..7100849 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100851..7100899 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100900..7100948 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7100950..7100999 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101000..7101049 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101050..7101099 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101100..7101148 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101150..7101199 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101200..7101249 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101250..7101299 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101300..7101348 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101351..7101399 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101400..7101449 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101450..7101499 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101500..7101548 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101550..7101599 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101600..7101649 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101650..7101699 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101700..7101748 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101750..7101799 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101800..7101849 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101850..7101899 (38)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101900..7101948 (42)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7101950..7101999 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102000..7102049 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102050..7102099 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102100..7102148 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102150..7102199 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102200..7102249 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102250..7102299 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102300..7102348 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102351..7102399 (35)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102400..7102449 (41)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102451..7102499 (39)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102500..7102548 (40)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept seeds 7102550..7102599 (43)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7100001..7100195 (18)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7100210..7100398 (18)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7100400..7100567 (17)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7100608..7100776 (19)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7100810..7100993 (16)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7101007..7101163 (11)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7101204..7101390 (12)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7101406..7101593 (13)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7101604..7101760 (11)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7101802..7101996 (13)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7102002..7102183 (14)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7102226..7102395 (20)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/rejected seeds 7102428..7102572 (12)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7100005..7100197 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    7533075668559432570,
+    12493265299493015594
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7100205..7100397 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    15568516032781073195,
+    16735877439133417962
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7100405..7100597 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5519843622609259567,
+    13195463141818660661
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7100605..7100797 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    9375074072088624143,
+    10554861865550802634
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7100805..7100997 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    14591736369900422438,
+    13840017691900660093
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7101005..7101197 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    22559385106519113,
+    15528523143569539964
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7101205..7101397 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    5307330236918199882,
+    17984677335676248728
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7101405..7101597 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    12400327257087276087,
+    16312497699678172610
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7101605..7101797 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17083345459876052982,
+    12125027770590350867
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7101805..7101997 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    986552999804808489,
+    2764091175124178545
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7102005..7102197 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    6849328815045481593,
+    4613930966643562396
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7102205..7102397 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    331119012310938358,
+    10799979741605460439
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ },
+ {
+  "id": "fz10c_lift/kept zeros seeds 7102405..7102597 (25)",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [
+   [
+    "int",
+    17450946354837899066,
+    14289848352978221324
+   ]
+  ],
+  "ulps": [],
+  "status": "FAIL"
+ }
+]

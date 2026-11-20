@@ -1,0 +1,52 @@
+[
+ {
+  "id": "fz10c_stale_real_pp/real cs-test random slice of 25 lines: kaggle_submission.csv 25 rows, test_predictions.csv 25 rows",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_stale_real_pp/real cs-test random slice of 40 lines: kaggle_submission.csv 40 rows, test_predictions.csv 40 rows",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "eval",
+    "a result",
+    "ERROR not run"
+   ]
+  ],
+  "ulps": [],
+  "status": "ERROR"
+ },
+ {
+  "id": "fz10c_stale_real_pp/real cs-test complete slice of 25 lines: kaggle_submission.csv 25 rows, test_predictions.csv 25 rows",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "eval",
+    "a result",
+    "ERROR not run"
+   ]
+  ],
+  "ulps": [],
+  "status": "ERROR"
+ },
+ {
+  "id": "fz10c_stale_real_pp/real cs-test complete slice of 40 lines: kaggle_submission.csv 40 rows, test_predictions.csv 40 rows",
+  "primitive": "run_py_py",
+  "note": "",
+  "diffs": [
+   [
+    "eval",
+    "a result",
+    "ERROR not run"
+   ]
+  ],
+  "ulps": [],
+  "status": "ERROR"
+ }
+]

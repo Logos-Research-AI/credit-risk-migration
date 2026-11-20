@@ -1,0 +1,26 @@
+[
+ {
+  "id": "fz10_td_real/real 13 (first 80 rows of each real scored set)",
+  "primitive": "train_run_13_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td_real/real 14 (real inputs, scored sets first row)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td_real/real 15 (exact real inputs, real sas_d8 table)",
+  "primitive": "train_run_15_printed_roc",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

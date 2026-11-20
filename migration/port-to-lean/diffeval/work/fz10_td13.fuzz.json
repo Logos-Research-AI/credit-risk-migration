@@ -1,0 +1,20 @@
+{
+ "seeds": "800000..803624",
+ "generated": 3625,
+ "kept": 2068,
+ "rejected_python_returns": 0,
+ "python_raises_inside_precondition": [],
+ "raises_outside": {
+  "NotImplementedError": 1120,
+  "ShapeError": 152
+ },
+ "counts": {
+  "dropped_len": 285,
+  "raises_out": 1272,
+  "noflag": 139,
+  "noflag_norow": 139,
+  "train_created": 1311,
+  "valid_created": 1279,
+  "X_len": 0
+ }
+}

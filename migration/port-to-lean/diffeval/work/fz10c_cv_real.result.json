@@ -1,0 +1,98 @@
+[
+ {
+  "id": "fz10c_cv_real/real rows 0..11999: input",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 0..11999: confusion_matrix",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 0..11999: validation_metrics",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 12000..23999: input",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 12000..23999: confusion_matrix",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 12000..23999: validation_metrics",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 24000..35999: input",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 24000..35999: confusion_matrix",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 24000..35999: validation_metrics",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 36000..44999: input",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 36000..44999: confusion_matrix",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_cv_real/real rows 36000..44999: validation_metrics",
+  "primitive": "train_run_11_confusion_valid",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

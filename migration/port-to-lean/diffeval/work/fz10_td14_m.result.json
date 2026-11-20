@@ -1,0 +1,82 @@
+[
+ {
+  "id": "fz10_td14/seeds 700000..700599: kept (581 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 700000..700599: rejected, a column `shared` Float64 in one metrics frame and text in the other (19 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 700600..701199: kept (580 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 700600..701199: rejected, a column `shared` Float64 in one metrics frame and text in the other (20 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 701200..701799: kept (587 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 701200..701799: rejected, a column `shared` Float64 in one metrics frame and text in the other (13 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 701800..702399: kept (583 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 701800..702399: rejected, a column `shared` Float64 in one metrics frame and text in the other (17 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 702400..702999: kept (576 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10_td14/seeds 702400..702999: rejected, a column `shared` Float64 in one metrics frame and text in the other (24 inputs)",
+  "primitive": "train_run_14_final_and_summary",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

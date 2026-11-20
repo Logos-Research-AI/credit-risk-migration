@@ -1,0 +1,18 @@
+[
+ {
+  "id": "fz10c_ctw/kept 7300000..7300349 (325)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_ctw/kept 7300350..7300699 (315)",
+  "primitive": "train_run_08_ctable",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

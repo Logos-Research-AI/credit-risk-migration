@@ -1,0 +1,386 @@
+[
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) input check",
+  "primitive": "input-check",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) confusion_metrics t=0.3",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) confusion_metrics t=0.4",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) confusion_metrics t=0.5",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) confusion_metrics t=0.6",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) confusion_metrics t=0.7",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) confusion_metrics t=0.49999999999999994",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) confusion_metrics t=0.5000000000000001",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real import order rows 0.. (60 rows) step 03",
+  "primitive": "metrics_run_03_thresholds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) input check",
+  "primitive": "input-check",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) confusion_metrics t=0.3",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) confusion_metrics t=0.4",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) confusion_metrics t=0.5",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) confusion_metrics t=0.6",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) confusion_metrics t=0.7",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) confusion_metrics t=0.49999999999999994",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) confusion_metrics t=0.5000000000000001",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted last rows (60 rows) step 03",
+  "primitive": "metrics_run_03_thresholds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) input check",
+  "primitive": "input-check",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) confusion_metrics t=0.3",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) confusion_metrics t=0.4",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) confusion_metrics t=0.5",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) confusion_metrics t=0.6",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) confusion_metrics t=0.7",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) confusion_metrics t=0.49999999999999994",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) confusion_metrics t=0.5000000000000001",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.3 (row 42512) (60 rows) step 03",
+  "primitive": "metrics_run_03_thresholds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) input check",
+  "primitive": "input-check",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) confusion_metrics t=0.3",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) confusion_metrics t=0.4",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) confusion_metrics t=0.5",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) confusion_metrics t=0.6",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) confusion_metrics t=0.7",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) confusion_metrics t=0.49999999999999994",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) confusion_metrics t=0.5000000000000001",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.5 (row 43933) (60 rows) step 03",
+  "primitive": "metrics_run_03_thresholds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) input check",
+  "primitive": "input-check",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) confusion_metrics t=0.3",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) confusion_metrics t=0.4",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) confusion_metrics t=0.5",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) confusion_metrics t=0.6",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) confusion_metrics t=0.7",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) confusion_metrics t=0.49999999999999994",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) confusion_metrics t=0.5000000000000001",
+  "primitive": "confusion_metrics",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real sorted around 0.7 (row 44847) (60 rows) step 03",
+  "primitive": "metrics_run_03_thresholds",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real whole real_metrics step 05 valid_exists=True",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real whole real_metrics step 05 valid_exists=False",
+  "primitive": "metrics_run_05_cumulative_lift",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ },
+ {
+  "id": "fz10c_real/real whole real_metrics decile_data input check",
+  "primitive": "input-check",
+  "note": "",
+  "diffs": [],
+  "ulps": [],
+  "status": "PASS"
+ }
+]

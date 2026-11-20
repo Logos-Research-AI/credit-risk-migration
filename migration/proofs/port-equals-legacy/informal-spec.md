@@ -1,5 +1,28 @@
 # Informal specification, version 3: the port equals the corrected SAS
 
+## Amendment 3 (2026-11-20, owner): B7, the training split
+
+Owner's decision of 2026-11-20 (main session), binding. B7 is part of the boundary of amendment 2,
+like the trusted base B4; B1 to B6 stand as written. `Paired` clause 2 stays as it is; no item and
+no code changed. Raised by the fidelity review of 2026-11-20, finding F2
+(`reports/port-lean-fidelity-2026-11-20.md`, section "Fidelity pass, 2026-11-20 (w29)").
+
+**B7. The training split is a shared random draw.** SAS draws it with `PROC SURVEYSELECT`
+(`samprate=0.7`, `seed=42`, `outall`; `legacy/feature_engineering.sas:323-327`), with SAS's own
+generator. The port reads that draw from a file (`split_ids`, `port/credit_risk/feature_engineering.py:352-366`)
+and, when the file does not fit the input, draws with Python's `random` (`_split_draw`,
+`random.Random(42).sample`, lines 20-25). The two generators do not draw the same ids. The claim is
+equality **given that both sides train on the same ids**: this is `Paired` clause 2 (the rows the
+SAS split selects are exactly the rows whose `row_id` is in the port's split table). That pairing
+holds on the real 150,000-row file (`inputs/split_ids.csv` is SAS's own draw on those rows) and is
+not claimed elsewhere: on any other valid input the real programs may train on different rows,
+and the claim says nothing of their files. B1's "on every valid input" is read with B7: on every
+valid input, given both sides train on the same ids.
+
+## Change note, 2026-11-20 (correction C-n of `definitions-v3.md`; fidelity finding F1)
+
+`PyLinks` clause 10 now asks the count round trip only for n < 10^8 (false of the real port from 10^8), and `hcount` of `lem:metrics_ks_table` only for n ≤ V.length; no contract gained a hypothesis, and the bound is discharged from `InputOK` (G56, B3) in E8, E9 and G4 by in-file lemmas that the validation table has fewer than 10^8 rows; see C-n.
+
 ## Change note, 2026-11-19 (amendment 2 to version 3): the boundary of the claim
 
 Owner's decisions of 2026-11-19, binding; they take precedence over any older text of this file.
@@ -49,7 +72,7 @@ not part of the claim, listed once in section 9.
 **B6. During a run** only a finding that would change B1 to B5 goes to the owner. Everything
 inside the boundary is proved, or found to be a defect of the port and fixed.
 
-**Note, 2026-11-20 (after amendment 2).** On valid input every row id the pipeline passes to the split is present and the split file fits (`lem:py_split_ids_finite`, `lem:py_split_fits`, both proved), so the draw on which Python's handling of NaN ids mattered is never reached. A NaN itself lies outside the real-number model (B4 item 4); the claim does not say NaN is proved impossible.
+**Note, 2026-11-20 (after amendment 2; reworded the same day after fidelity finding F3).** On valid input every row id the pipeline passes to the split is present (`lem:py_split_ids_finite`, proved, with `InputOK`), so no NaN row id reaches the split, on either of its branches, and Python's handling of NaN ids in the draw does not arise. The draw itself **is** reached in the real code: `_split_draw` (`feature_engineering.py:20-25`, called at :365-366) runs on every valid input other than the one the fixed file `inputs/split_ids.csv` fits, that is, on any file other than the real 150,000-row one. It is not dead code. `lem:py_split_fits` (proved) says only that the table the model's `py.split` returns fits the unit's test, where `py.split` already is the port's selection (C-j); it says nothing of the real file. Which ids SAS draws is B7 (amendment 3). A NaN itself lies outside the real-number model (B4 item 4); the claim does not say NaN is proved impossible. *(First wording, superseded: "On valid input every row id the pipeline passes to the split is present and the split file fits (`lem:py_split_ids_finite`, `lem:py_split_fits`, both proved), so the draw on which Python's handling of NaN ids mattered is never reached." The NaN conclusion stood, the reason did not.)*
 
 ## Change note, 2026-11-18 (amendment 1 to version 3)
 

@@ -1,0 +1,22 @@
+{
+ "fuzzer": "port-translator (fidelity pass 2026-11-20c, metrics)",
+ "generator": "diffeval/units/fz10c_metrics_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "metrics_run_05_cumulative_lift": {
+   "seeds": "7100000..7102599",
+   "generated": 2600,
+   "kept": 2406,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one digest over the seeds of one class in a window of 50 / 200 (decile_data, decile_analysis, valid_exists, cumulative_lift of each); decile_data 0..8 rows of {null,0,1}, one seed in 8 with NaN, +inf, 2, -0.0; decile_analysis 0..12 rows: decile 0..12 with nulls and duplicates, unsorted (Int64 in Python, Float64 in Lean: R-F2I); total_count -2..6 with nulls, one seed in 10 in [-2^41, 2^41); defaults from (null, NaN, 0, 1, 2, 3, +-inf, 1e300, 0.5) and 20 % random, one seed in 8 also -0.0 (family zeros); one seed in 3 an extra avg_pd column; valid_exists false one seed in 4; rejected = Float64 total_count; sas_best / float = lookup tables recorded from the real functions",
+   "stat": {
+    "generated": 2600,
+    "kept": 2406,
+    "rejected": 194,
+    "dropped_rejected_raises": [],
+    "raises_kept": [],
+    "zeros": 325
+   }
+  }
+ }
+}

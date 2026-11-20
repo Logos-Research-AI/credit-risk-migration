@@ -1,0 +1,22 @@
+{
+ "fuzzer": "port-translator (fidelity pass 2026-11-20c, metrics)",
+ "generator": "diffeval/units/fz10c_metrics_gen.py",
+ "blueprint": "5365851c-5549-44b7-9207-4bd4c422031d",
+ "units": {
+  "confusion_metrics": {
+   "seeds": "7100000..7102399",
+   "generated": 2400,
+   "kept": 2321,
+   "python_raises_inside_precondition": [],
+   "note": "one case = one digest over the kept (or rejected) seeds of a window of 50 (400) seeds: input frame, confusion, conf_matrix, metrics of each; 0..45 rows; default_flag clean Float64 {null,0,1} / Int64 {-1..2,null} / wild Float64 (NaN, +-inf, 2, 0.5, -1, -0.0, 1e300, random) / Boolean (rejected); pd_logistic Float64 70 % edges (null, NaN, +-inf, +-0, 1, 1e300, 1e-300, 5e-324, 0.25, 2, -1, each of 0.3..0.7 and one ulp either side) / Int64 / random; columns in either order, extra Float64 and String columns; threshold 85 % from (0.3..0.7 and +-1 ulp, +-0, NaN, +-inf, 1, 5e-324, 2, -1, 0.45), else random",
+   "stat": {
+    "generated": 2400,
+    "kept": 2321,
+    "rejected": 79,
+    "dropped_rejected_raises": [],
+    "raises_kept": [],
+    "zeros": 0
+   }
+  }
+ }
+}
