@@ -131,3 +131,10 @@ would need to move it onto the blueprint:
   and the PROC it calls; a setup step spans nine JCL files. add_code/update_item_source accept
   locations in one file only ("its locations must all be in one file"), so these items cannot
   carry their sources on the blueprint.
+- **8k. The accepted Lean of a cleared item, or a restore call.** A change to a shared
+  definition clears the accepted Lean of every item that depends on it (get_items returns null).
+  Only the last draft survives, and it can be a rejected one. Re-accepting the dependents then
+  needs a copy taken before the change. Lean must not leave the blueprint, so the kit now writes
+  each dependent's accepted Lean as its own draft just before the change. Wanted: the item's
+  revision history (accepted Lean by revision), or restore(item, revision) that resubmits it
+  against the new dependencies.
