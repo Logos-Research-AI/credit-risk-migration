@@ -123,3 +123,7 @@ would need to move it onto the blueprint:
   lemma their proofs use was TheoremStated after a definition edit cleared it.
 - **8h. Per-agent drafts on one item** (repeats 7a in another form): agents proving parts of
   one long proof need their own drafts, merged by the item's owner.
+- **8i. What the Python subset of LogosEmbeddings covers.** A port written inside the subset the
+  deterministic translator handles would need no hand translation and no translation checks.
+  Which constructs and libraries does it accept (pandas, polars, numpy, decimal, csv, datetime),
+  and does it run on Staging with Judging and Fuzzing on?
