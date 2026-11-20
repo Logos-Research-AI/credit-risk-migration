@@ -93,3 +93,33 @@ Asked: (a) how many compiles run in parallel per user / blueprint, and can it be
     longer timeout, and the accepted revision in `get_items`.
 7i. **`get_status` count.** It reported 369 items and 368 statements formalized with nothing left
     to write; every one of the 369 ids, fetched one by one, is formalized or proved.
+
+## 8. The blueprint as the agents' shared record (2026-11-20)
+
+The owner wants the blueprint, not local Markdown files, to be where translators, reviewers,
+fuzzers and provers read and write what they need to coordinate. Today an item holds its texts,
+Lean, code, dependencies, state and one scratch draft. Everything else lives in files the kit
+writes beside the blueprint, some of it repeating what the blueprint already holds. What we
+would need to move it onto the blueprint:
+
+- **8a. Item notes that do not clear Lean.** Editing statement_text or proof_text clears the
+  item's Lean and its dependents, so it cannot carry working notes. We need a per-item notes
+  thread (author, role, time) for review verdicts, fuzz results with their receipt, translator
+  notes, open questions and their answers.
+- **8b. Labels on items, queryable.** "reviewed", "fuzzed (N cases, 0 differences)",
+  "owner ruling R12", "carrier": set by an agent, filtered in get_status/get_items, so a
+  script can ask "which translated items are not yet reviewed".
+- **8c. Blueprint-level documents.** The rulebook (decided language rules with evidence), the
+  plan (units, waves, dependencies), the boundary of the claim and the owner's rulings: one
+  shared, versioned text per blueprint that every agent of that blueprint reads.
+- **8d. A change feed.** "What changed since revision N": items stated, proved, cleared (and by
+  which edit), notes added. Agents coordinate on it instead of polling get_status.
+- **8e. Bulk item creation.** Creating 102 planned items took one agent 18 minutes and 159
+  calls (add_code, update_item_source, connect per item).
+- **8f. More than one declaration per code item** (a prelude unit with several small defs is
+  refused: "only one is allowed"), or a way to group them; one item per tiny declaration
+  nearly doubled the agents of a COBOL translation.
+- **8g. Proof state follows its dependencies.** Two contracts stayed TheoremProved while a
+  lemma their proofs use was TheoremStated after a definition edit cleared it.
+- **8h. Per-agent drafts on one item** (repeats 7a in another form): agents proving parts of
+  one long proof need their own drafts, merged by the item's owner.
