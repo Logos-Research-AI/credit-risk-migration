@@ -127,3 +127,7 @@ would need to move it onto the blueprint:
   deterministic translator handles would need no hand translation and no translation checks.
   Which constructs and libraries does it accept (pandas, polars, numpy, decimal, csv, datetime),
   and does it run on Staging with Judging and Fuzzing on?
+- **8j. Code items with source locations in several files.** A batch job's item spans its JCL
+  and the PROC it calls; a setup step spans nine JCL files. add_code/update_item_source accept
+  locations in one file only ("its locations must all be in one file"), so these items cannot
+  carry their sources on the blueprint.
