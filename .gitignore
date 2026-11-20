@@ -2,3 +2,7 @@
 __pycache__/
 /out/
 .claude/hooks/agents-seen.json*
+
+# diff-eval run outputs (regenerable from the committed generators; receipts are committed)
+/migration/port-to-lean/diffeval/work/**/*.pkl
+/migration/port-to-lean/diffeval/work/**/*.csv
