@@ -62,3 +62,34 @@ the blueprint's environment on every call.
 
 Asked: (a) how many compiles run in parallel per user / blueprint, and can it be raised;
 (b) keep a blueprint's compiled environment warm between calls; (c) the batch calls of item 2.
+
+## 7. Added 2026-11-20, from the credit-risk close and two formalisation test runs (Staging)
+
+7a. **Edits on a shared solution draft conflict.** `edit_solution` and `edit_solution_draft` both
+    refused an edit without `expected_revision` ("Scratch revision conflict. Read the current draft
+    and retry explicitly."), and `edit_solution_draft` requires it in its schema, while the
+    server's own instructions say a revisionless edit applies to the latest draft. With several
+    agents each editing a different helper of one draft, edits keep colliding. Asked: apply
+    revisionless edits to the latest draft as documented, or better, apply any edit whose
+    `old_string` is unique without a conflict; otherwise correct the documentation.
+7b. **Diagnostics of one declaration.** Each edit returns every other declaration's "contains
+    `sorry`" error with its code (about 11 KB per edit on a 1,100-line draft). Asked: an option to
+    return diagnostics for a line range or named declarations only.
+7c. **Find a declaration in a draft.** A `read_scratch` lookup by declaration name returning its
+    current line range and text (drafts of 1,100+ lines move while others edit).
+7d. **Proof check without the proof text.** `get_items` with `proof_lean` on three proved items
+    was 144 KB and refused (`response_too_large`). Asked: a per-item `proof_has_sorry` / axioms
+    flag, or a size-bounded summary.
+7e. **Quote matching on accents.** `add_item` refused a PDF quote containing P̃ (the text layer
+    splits the tilde); only `[...]` matched. Asked: normalise combining accents (NFC/NFKD).
+7f. **A clear refusal on remote servers.** `upload_source_file` could fail with an explicit
+    "remote server: use begin_source_upload", so a client can tell where the server is.
+7g. **`check_decl` schema mismatch.** The published schema takes `decl` (a string); the server
+    asks for `decls` (a list) and then refuses a list as a string. Every call failed (reported
+    by several agents, 2026-11-19/20).
+7h. **Long submissions time out on the client.** `submit_solution` of an 8,300-line proof timed
+    out on the client on every try (with 503s in between), though the server finished; the
+    client cannot see the compile result. Asked: an asynchronous submit with a job id, or a
+    longer timeout, and the accepted revision in `get_items`.
+7i. **`get_status` count.** It reported 369 items and 368 statements formalized with nothing left
+    to write; every one of the 369 ids, fetched one by one, is formalized or proved.
